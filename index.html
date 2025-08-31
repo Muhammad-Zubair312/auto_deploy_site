@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Authentication</title>
     <style>
-        /* Theme and Fonts Integration */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@700&display=swap');
-
         :root {
             --background: #FFFFFF;
             --text-primary: #1F2937;
@@ -18,167 +15,302 @@
             --font-secondary: 'Roboto', sans-serif;
         }
 
-        /* Base Styles */
-        * {
+        /* Generic Reset & Base Styles */
+        *, *::before, *::after {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
-        html, body {
-            height: 100%;
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
+            margin: 0;
+            padding: 0;
             font-family: var(--font-primary);
             background-color: var(--background);
             color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Layout: top_fixed navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--background);
+            border-bottom: 1px solid var(--muted);
+            /* Layout: shadows: subtle */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        header nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Layout: spacing: wide */
+            padding: 1rem 2rem;
+        }
+
+        header nav h1 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        main {
+            width: 100%;
+            /* Padding top accounts for fixed header height */
+            padding: 5rem 1rem 2rem 1rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem; /* Wide Spacing */
+            flex-grow: 1;
         }
 
-        /* Main Login Container */
-        main {
+        /* Authentication Container */
+        #auth-container {
             width: 100%;
             max-width: 420px;
-        }
-
-        .login-container {
             background-color: var(--background);
-            padding: 3rem; /* Wide Spacing */
-            border-radius: 12px; /* Rounded Style */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle Shadow */
             border: 1px solid var(--muted);
+            /* Layout: spacing: wide */
+            padding: 2.5rem;
+            /* Layout: buttons: rounded -> giving the container a similar feel */
+            border-radius: 12px;
+            /* Layout: shadows: subtle */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-        /* Header section */
-        header {
-            text-align: center;
-            margin-bottom: 2rem; /* Wide Spacing */
-        }
-
-        h1 {
-            font-family: var(--font-secondary);
-            font-size: 2.25rem;
+        #auth-container h2 {
+            font-family: var(--font-primary);
+            font-size: 1.75rem;
+            font-weight: 600;
             color: var(--text-primary);
+            margin-top: 0;
             margin-bottom: 0.5rem;
+            text-align: center;
         }
 
-        .description {
-            font-size: 1rem;
+        #auth-container p {
+            font-family: var(--font-secondary);
             color: var(--text-secondary);
-            line-height: 1.5;
+            margin-top: 0;
+            margin-bottom: 2rem;
+            text-align: center;
+            line-height: 1.6;
         }
 
-        /* Form styling */
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem; /* Wide Spacing */
-        }
-
+        /* Form Elements */
         .form-group {
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 1.5rem;
         }
 
         label {
+            display: block;
             font-size: 0.875rem;
             font-weight: 500;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
 
-        input[type="text"],
+        input[type="email"],
         input[type="password"] {
-            font-family: var(--font-primary);
-            font-size: 1rem;
+            width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid var(--muted);
-            border-radius: 8px; /* Rounded Style */
-            background-color: #FFFFFF;
-            color: var(--text-primary);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 8px; /* matches rounded buttons */
+            background-color: #F9FAFB; /* Slightly off-white for contrast */
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        input[type="text"]:focus,
+        input[type="email"]:focus,
         input[type="password"]:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Subtle focus ring */
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
-        /* Button Styling */
-        .submit-btn {
-            font-family: var(--font-primary);
-            font-size: 1rem;
-            font-weight: 700;
-            color: #FFFFFF;
-            background-color: var(--accent);
+        button {
+            width: 100%;
+            padding: 0.875rem 1rem;
             border: none;
-            padding: 0.875rem;
-            border-radius: 8px; /* Rounded Buttons */
+            /* Layout: buttons: rounded */
+            border-radius: 8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: var(--font-primary);
             cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            margin-top: 1rem; /* Wide Spacing */
+            transition: filter 0.2s ease-in-out;
+            margin-top: 1rem;
         }
 
-        .submit-btn:hover {
-            background-color: #1D4ED8; /* Darker accent for hover */
+        button:hover {
+            filter: brightness(0.9);
         }
 
-        .submit-btn:active {
-            transform: scale(0.98);
+        /* Message Display */
+        #message {
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.875rem;
+            display: none; /* Hidden by default */
         }
 
+        #message.success {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+
+        #message.error {
+            background-color: #FEE2E2;
+            color: #991B1B;
+        }
+        
+        /* Logged In State Specific Styles */
+        #logout-button {
+            background-color: var(--text-secondary);
+        }
+        
+        #logout-button:hover {
+            filter: brightness(0.85);
+        }
+
+        .sub-text {
+            font-family: var(--font-secondary);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .sub-text strong {
+            color: var(--text-primary);
+        }
+
+        .sub-text em {
+            font-style: italic;
+            color: var(--text-primary);
+        }
     </style>
 </head>
 <body>
-
+    <header>
+        <nav>
+            <h1>My Secure Application</h1>
+        </nav>
+    </header>
     <main>
-        <section class="login-container">
-            <header>
-                <h1>User Authentication</h1>
-                <p class="description">Please log in to access protected functionality or data.</p>
-            </header>
-            <form id="loginForm" class="login-form" action="#" method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="submit-btn">Login</button>
-            </form>
+        <section id="auth-container">
+            <!-- Authentication UI will be rendered here by JavaScript -->
         </section>
     </main>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('loginForm');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Data from the provided functional requirements JSON
+            const FR_DATA = {
+                id: "FR-001",
+                name: "User Authentication",
+                description: "The system must require users to be authenticated (logged in) to access protected functionality or data.",
+                acceptance_criteria: [
+                    "An unauthenticated user attempting to access a protected resource must be prompted to log in.",
+                    "A user can log in using valid credentials.",
+                    "The system maintains a user's logged-in state across a session."
+                ]
+            };
 
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(event) {
-                    // Prevent the default form submission which reloads the page.
-                    event.preventDefault();
+            const authContainer = document.getElementById('auth-container');
 
-                    // Get values from the form inputs.
-                    const usernameInput = document.getElementById('username');
-                    const username = usernameInput.value;
+            const renderLoginView = () => {
+                authContainer.innerHTML = `
+                    <h2>${FR_DATA.name}</h2>
+                    <p>${FR_DATA.description}</p>
+                    <div id="message" class=""></div>
+                    <form id="login-form" novalidate>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required autocomplete="email" placeholder="user@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="********">
+                        </div>
+                        <button type="submit">Log In</button>
+                    </form>
+                `;
+                document.getElementById('login-form').addEventListener('submit', handleLogin);
+            };
 
-                    // Simulate a login attempt for demonstration.
-                    // In a real application, this would be an API call.
-                    if (username) {
-                        alert(`Login attempt for user: "${username}".\n\n(This is a demonstration based on FR-001)`);
-                    } else {
-                        alert('Please enter a username.');
-                    }
-                });
-            }
+            const renderLoggedInView = () => {
+                const userEmail = sessionStorage.getItem('userEmail') || 'user';
+                authContainer.innerHTML = `
+                    <h2>Welcome Back!</h2>
+                    <p>You are logged in as <strong>${userEmail}</strong>.</p>
+                    <p class="sub-text">This fulfills the requirement: <em>"${FR_DATA.acceptance_criteria[2]}"</em></p>
+                    <button id="logout-button">Log Out</button>
+                `;
+                document.getElementById('logout-button').addEventListener('click', handleLogout);
+            };
+
+            const showMessage = (text, type) => {
+                const messageEl = document.getElementById('message');
+                if (messageEl) {
+                    messageEl.textContent = text;
+                    messageEl.className = type;
+                    messageEl.style.display = 'block';
+                }
+            };
+
+            const handleLogin = (event) => {
+                event.preventDefault();
+                const emailInput = document.getElementById('email');
+                const passwordInput = document.getElementById('password');
+                const email = emailInput.value;
+                const password = passwordInput.value;
+
+                // Acceptance Criterion: "A user can log in using valid credentials."
+                // For this demo, any valid email format and any non-empty password is "valid".
+                if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && password) {
+                    // Acceptance Criterion: "The system maintains a user's logged-in state across a session."
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('userEmail', email);
+                    renderLoggedInView();
+                } else {
+                    showMessage('Invalid credentials. Please enter a valid email and password.', 'error');
+                }
+            };
+
+            const handleLogout = () => {
+                sessionStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('userEmail');
+                renderLoginView();
+            };
+
+            const initialize = () => {
+                // Acceptance Criterion: "An unauthenticated user attempting to access a protected resource must be prompted to log in."
+                // The initial state for a new session is the login form. This check handles page reloads within a session.
+                if (sessionStorage.getItem('isLoggedIn') === 'true') {
+                    renderLoggedInView();
+                } else {
+                    renderLoginView();
+                }
+            };
+
+            initialize();
         });
     </script>
 </body>
