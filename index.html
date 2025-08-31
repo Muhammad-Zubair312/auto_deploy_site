@@ -3,231 +3,436 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Authentication</title>
+    <title>Modern Professional Website</title>
     <style>
+        /* --- THEME AND GENERAL STYLING --- */
         :root {
-            /* Theme Colors */
             --background: #FFFFFF;
             --text-primary: #1F2937;
             --text-secondary: #4B5563;
             --accent: #2563EB;
             --muted: #E5E7EB;
-
-            /* Theme Fonts */
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            --font-secondary: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            
-            /* Theme Layout */
-            --spacing-unit: 1rem;
-            --border-radius: 8px; /* Rounded buttons */
-            --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Roboto', sans-serif;
         }
 
-        *,
-        *::before,
-        *::after {
+        /* --- BASIC RESET AND SETUP --- */
+        *, *::before, *::after {
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            font-family: var(--font-primary);
+            padding-top: 70px; /* Space for fixed header */
+            font-family: var(--font-secondary);
             background-color: var(--background);
-            color: var(--text-primary);
+            color: var(--text-secondary);
             line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-size: 16px;
         }
 
-        header {
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            color: var(--text-primary);
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1120px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        
+        .page-section {
+            padding-top: 4rem; /* Wide spacing */
+            padding-bottom: 4rem;
+        }
+
+        /* --- HEADER & NAVIGATION (HP-01, HP-03) --- */
+        .site-header {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            background-color: var(--background);
-            padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
-            box-shadow: var(--shadow-subtle);
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
+            border-bottom: 1px solid var(--muted);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow */
         }
 
-        header h1 {
-            font-family: var(--font-secondary);
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .site-logo {
             font-size: 1.5rem;
+            font-weight: 700;
             color: var(--text-primary);
+        }
+
+        .main-nav ul {
             margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: 2rem;
         }
         
-        main {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2); /* Wide spacing, account for fixed header */
+        .main-nav a {
+            font-family: var(--font-primary);
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
-        .login-container {
+        .main-nav a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* --- HOMEPAGE HERO (HP-02) --- */
+        #home {
+            text-align: center;
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+            background-color: #F9FAFB; /* Lighter than muted */
+        }
+
+        #home h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #home p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- ABOUT SECTION (AB-01, AB-02) --- */
+        #about .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        #about img {
             width: 100%;
             max-width: 450px;
-            padding: calc(var(--spacing-unit) * 2.5); /* Wide spacing */
+            border-radius: 8px; /* Rounded */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+        }
+
+        /* --- SERVICES SECTION (SRV-01, SRV-02) --- */
+        #services {
+            background-color: #F9FAFB;
+        }
+
+        #services .section-title, #about .section-title, #contact .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
             background-color: var(--background);
+            padding: 2rem;
             border: 1px solid var(--muted);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-subtle);
+            border-radius: 8px; /* Rounded */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04); /* Subtle shadow */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
         }
 
-        .login-container h2 {
-            font-family: var(--font-secondary);
-            font-size: 1.75rem;
-            color: var(--text-primary);
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-            text-align: center;
+        .service-card h3 {
+            color: var(--accent);
         }
 
-        .login-container p {
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: calc(var(--spacing-unit) * 2); /* Wide spacing */
+        /* --- CONTACT SECTION (CT-01, CT-02) --- */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            align-items: start;
         }
         
-        .form-group {
-            margin-bottom: calc(var(--spacing-unit) * 1.5); /* Wide spacing */
-        }
-
-        label {
-            display: block;
-            font-weight: 500;
+        .contact-info p {
             margin-bottom: 0.5rem;
-            color: var(--text-secondary);
         }
 
-        input[type="email"],
-        input[type="password"] {
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
             width: 100%;
             padding: 0.75rem 1rem;
-            font-family: var(--font-primary);
-            font-size: 1rem;
+            margin-bottom: 1.5rem;
             border: 1px solid var(--muted);
-            border-radius: var(--border-radius);
-            background-color: var(--background);
-            color: var(--text-primary);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 6px; /* Rounded */
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            background-color: #F9FAFB;
         }
-
-        input[type="email"]:focus,
-        input[type="password"]:focus {
+        .contact-form input:focus,
+        .contact-form textarea:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
 
-        button {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            font-family: var(--font-primary);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--background);
+        .btn-submit {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
             background-color: var(--accent);
+            color: var(--background);
             border: none;
-            border-radius: var(--border-radius); /* Rounded buttons */
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            margin-top: var(--spacing-unit);
-        }
-
-        button:hover {
-            background-color: #1D4ED8; /* A darker shade of the accent color */
-        }
-        
-        .message {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            text-align: center;
+            border-radius: 8px; /* Rounded */
+            font-size: 1rem;
             font-weight: 500;
-            display: none;
-        }
-        
-        .message.success {
-            background-color: #D1FAE5;
-            color: #065F46;
-            display: block;
-        }
-        
-        .message.error {
-            background-color: #FEE2E2;
-            color: #991B1B;
-            display: block;
+            cursor: pointer;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 5px rgba(37, 99, 235, 0.2); /* Subtle shadow */
         }
 
+        .btn-submit:hover {
+            background-color: #1D4ED8;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+            text-decoration: none;
+        }
+
+        /* --- FOOTER (FT-01, FT-02) --- */
+        .site-footer {
+            background-color: var(--text-primary);
+            color: var(--muted);
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--muted);
+            margin: 0 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            color: var(--background);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            #home h2 { font-size: 2.5rem; }
+
+            .site-header .container {
+                flex-direction: column;
+                height: auto;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            .main-nav ul {
+                margin-top: 1rem;
+                gap: 1.5rem;
+            }
+
+            body {
+                padding-top: 115px; /* Adjust for taller mobile header */
+            }
+
+            #about .about-content,
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            #about img {
+                margin: 0 auto;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>My Application</h1>
+    <!-- HP-01: Logo, HP-03: Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <div class="site-logo">Professional Brand</div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section class="login-container">
-            <h2>User Authentication</h2>
-            <p>Please log in to access protected functionality or data.</p>
-            <form id="loginForm" novalidate>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="you@example.com">
+        <!-- HP-02: Welcome tagline -->
+        <section id="home" class="page-section">
+            <div class="container">
+                <h2>A Modern & Professional Welcome</h2>
+                <p>We deliver high-quality solutions with a clean, modern approach to achieve your goals.</p>
+            </div>
+        </section>
+
+        <!-- AB-01: Textual info, AB-02: Optional image -->
+        <section id="about" class="page-section">
+            <div class="container">
+                <h2 class="section-title">About Our Company</h2>
+                <div class="about-content">
+                    <div>
+                        <h3>Our Mission</h3>
+                        <p>
+                            We are dedicated to providing the best services in the industry. Our team of experts is committed to excellence, innovation, and customer satisfaction. We believe in building long-term partnerships with our clients by delivering reliable and efficient solutions that drive growth and success.
+                        </p>
+                        <p>
+                            Founded in 2024, our journey began with a simple idea: to make professional services accessible and effective for businesses of all sizes.
+                        </p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Team collaborating in a modern office">
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="••••••••">
+            </div>
+        </section>
+
+        <!-- SRV-01: List services, SRV-02: Description for each -->
+        <section id="services" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Web Development</h3>
+                        <p>Creating responsive, high-performance websites with modern technologies to build your online presence.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>UI/UX Design</h3>
+                        <p>Designing intuitive and beautiful user interfaces that provide an exceptional user experience.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Digital Strategy</h3>
+                        <p>Developing data-driven strategies to help you reach your target audience and achieve business objectives.</p>
+                    </div>
                 </div>
-                <button type="submit">Log In</button>
-            </form>
-            <div id="message" class="message"></div>
+            </div>
+        </section>
+
+        <!-- CT-01: Contact info, CT-02: Contact form -->
+        <section id="contact" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-layout">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p><strong>Email:</strong> contact@professionalbrand.com</p>
+                        <p><strong>Phone:</strong> +1 (123) 456-7890</p>
+                        <p><strong>Address:</strong> 123 Innovation Drive, Tech City, 54321</p>
+                    </div>
+                    <form class="contact-form" action="#" method="post">
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
-    
+
+    <!-- FT-01: Copyright, FT-02: Social media links -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">Facebook</a>
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                <a href="#" aria-label="Twitter">Twitter</a>
+                <a href="#" aria-label="GitHub">GitHub</a>
+            </div>
+            <p class="copyright">&copy; 2024 Professional Brand. All Rights Reserved.</p>
+        </div>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('loginForm');
-            const messageDiv = document.getElementById('message');
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Prevent default anchor click behavior
+                e.preventDefault();
 
-            loginForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent actual form submission
-
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                
-                // Reset message
-                messageDiv.textContent = '';
-                messageDiv.className = 'message';
-
-                // Simple mock validation
-                if (email.trim() === '' || password.trim() === '') {
-                    messageDiv.textContent = 'Error: Email and password fields cannot be empty.';
-                    messageDiv.classList.add('error');
-                } else if (!validateEmail(email)) {
-                    messageDiv.textContent = 'Error: Please enter a valid email address.';
-                    messageDiv.classList.add('error');
-                } else {
-                    messageDiv.textContent = 'Success! You are now logged in.';
-                    messageDiv.classList.add('success');
-                    
-                    // Optional: You can clear the form after successful login
-                    loginForm.reset();
+                // Find the target element and scroll to it
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 }
             });
-
-            function validateEmail(email) {
-                // A simple regex for email validation
-                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(String(email).toLowerCase());
-            }
         });
     </script>
-
 </body>
 </html>
