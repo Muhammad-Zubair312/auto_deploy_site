@@ -3,297 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Authentication Portal</title>
+    <title>User Authentication</title>
     <style>
-        /* Theme and Layout Styles */
         :root {
+            /* Theme Colors */
             --background: #FFFFFF;
             --text-primary: #1F2937;
             --text-secondary: #4B5563;
             --accent: #2563EB;
             --muted: #E5E7EB;
-            --font-primary: 'Inter', sans-serif;
-            --font-secondary: 'Roboto', sans-serif;
+
+            /* Theme Fonts */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            --font-secondary: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            
+            /* Theme Layout */
+            --spacing-unit: 1rem;
+            --border-radius: 8px; /* Rounded buttons */
+            --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
-        /* Basic Reset and Body Styling */
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
+            margin: 0;
+            padding: 0;
             font-family: var(--font-primary);
             background-color: var(--background);
             color: var(--text-primary);
             line-height: 1.6;
-            padding-top: 80px; /* Space for fixed header */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* Header and Navigation */
         header {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
             background-color: var(--background);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* subtle shadow */
+            padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+            box-shadow: var(--shadow-subtle);
             z-index: 1000;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .brand-logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        #auth-status {
+        header h1 {
             font-family: var(--font-secondary);
-            color: var(--text-secondary);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin: 0;
         }
-
-        /* Main Content Area */
+        
         main {
+            flex-grow: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: calc(100vh - 80px); /* Full height minus header */
-            padding: 2rem; /* wide spacing */
+            padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2); /* Wide spacing, account for fixed header */
         }
 
-        /* Login and Protected Content Sections */
-        .content-section {
+        .login-container {
             width: 100%;
             max-width: 450px;
+            padding: calc(var(--spacing-unit) * 2.5); /* Wide spacing */
             background-color: var(--background);
-            padding: 2.5rem; /* wide spacing */
-            border-radius: 8px;
             border: 1px solid var(--muted);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* subtle shadow */
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
         }
 
-        h1, h2 {
-            font-family: var(--font-primary);
+        .login-container h2 {
+            font-family: var(--font-secondary);
+            font-size: 1.75rem;
             color: var(--text-primary);
-            margin-bottom: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
             text-align: center;
         }
 
-        p {
+        .login-container p {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 2); /* Wide spacing */
         }
-
-        /* Form Styling */
+        
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: calc(var(--spacing-unit) * 1.5); /* Wide spacing */
         }
 
         label {
             display: block;
-            font-size: 0.9rem;
             font-weight: 500;
             margin-bottom: 0.5rem;
             color: var(--text-secondary);
         }
 
-        input[type="text"],
+        input[type="email"],
         input[type="password"] {
             width: 100%;
             padding: 0.75rem 1rem;
-            border: 1px solid var(--muted);
-            border-radius: 6px; /* rounded */
             font-family: var(--font-primary);
             font-size: 1rem;
+            border: 1px solid var(--muted);
+            border-radius: var(--border-radius);
+            background-color: var(--background);
             color: var(--text-primary);
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        input[type="text"]:focus,
+        input[type="email"]:focus,
         input[type="password"]:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
 
-        /* Button Styling */
-        .btn {
-            display: inline-block;
+        button {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 8px; /* rounded */
+            padding: 0.85rem 1rem;
+            font-family: var(--font-primary);
             font-size: 1rem;
             font-weight: 600;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.2s, transform 0.1s;
-        }
-        
-        .btn-primary {
-            background-color: var(--accent);
             color: var(--background);
+            background-color: var(--accent);
+            border: none;
+            border-radius: var(--border-radius); /* Rounded buttons */
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: var(--spacing-unit);
         }
 
-        .btn-primary:hover {
-            background-color: #1D4ED8; /* Darker accent */
-        }
-
-        .btn:active {
-            transform: translateY(1px);
+        button:hover {
+            background-color: #1D4ED8; /* A darker shade of the accent color */
         }
         
-        .btn-secondary {
-            background-color: var(--muted);
-            color: var(--text-primary);
-        }
-        
-        .btn-secondary:hover {
-            background-color: #D1D5DB; /* Darker muted */
-        }
-
-        /* Message/Feedback Styling */
-        #login-message {
-            text-align: center;
+        .message {
             margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
             font-weight: 500;
-            min-height: 24px;
-        }
-        
-        .message-error {
-            color: #DC2626; /* Red for errors */
-        }
-
-        /* Utility Classes */
-        .hidden {
             display: none;
         }
+        
+        .message.success {
+            background-color: #D1FAE5;
+            color: #065F46;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: #FEE2E2;
+            color: #991B1B;
+            display: block;
+        }
+
     </style>
 </head>
 <body>
 
     <header>
-        <nav>
-            <a href="#" class="brand-logo">ModernApp</a>
-            <span id="auth-status">Logged Out</span>
-        </nav>
+        <h1>My Application</h1>
     </header>
 
     <main>
-        <section id="login-section" class="content-section">
-            <h1>User Login</h1>
-            <p>Please enter your credentials to access protected resources.</p>
-            <form id="login-form">
+        <section class="login-container">
+            <h2>User Authentication</h2>
+            <p>Please log in to access protected functionality or data.</p>
+            <form id="loginForm" novalidate>
                 <div class="form-group">
-                    <label for="username">Email Address</label>
-                    <input type="text" id="username" name="username" placeholder="user@example.com" required>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="you@example.com">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    <input type="password" id="password" name="password" required placeholder="••••••••">
                 </div>
-                <button type="submit" class="btn btn-primary">Log In</button>
+                <button type="submit">Log In</button>
             </form>
-            <p id="login-message"></p>
-        </section>
-
-        <section id="protected-content" class="content-section hidden">
-            <h2>Welcome Back!</h2>
-            <p>You have successfully logged in and can now access this protected functionality.</p>
-            <p><strong>Requirement ID:</strong> FR-001</p>
-            <p><strong>Description:</strong> The system shall require users to be logged in to access protected resources or functionality.</p>
-            <p>This content is only visible to authenticated users, fulfilling the requirement.</p>
-            <button id="logout-button" class="btn btn-secondary">Log Out</button>
+            <div id="message" class="message"></div>
         </section>
     </main>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get references to DOM elements
-            const loginForm = document.getElementById('login-form');
-            const loginSection = document.getElementById('login-section');
-            const protectedContent = document.getElementById('protected-content');
-            const logoutButton = document.getElementById('logout-button');
-            const loginMessage = document.getElementById('login-message');
-            const authStatus = document.getElementById('auth-status');
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
+            const loginForm = document.getElementById('loginForm');
+            const messageDiv = document.getElementById('message');
 
-            /**
-             * Handles the login form submission.
-             * Simulates credential verification as per FR-001.
-             */
             loginForm.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent actual form submission
 
-                const username = usernameInput.value;
-                const password = passwordInput.value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Reset message
+                messageDiv.textContent = '';
+                messageDiv.className = 'message';
 
-                // Acceptance Criterion: The system must verify the user's credentials.
-                // We'll simulate this with a hardcoded credential check.
-                // In a real application, this would be an API call.
-                if (username === 'user@example.com' && password === 'password123') {
-                    // Acceptance Criterion: A user must be able to log in using their credentials.
-                    handleLoginSuccess();
+                // Simple mock validation
+                if (email.trim() === '' || password.trim() === '') {
+                    messageDiv.textContent = 'Error: Email and password fields cannot be empty.';
+                    messageDiv.classList.add('error');
+                } else if (!validateEmail(email)) {
+                    messageDiv.textContent = 'Error: Please enter a valid email address.';
+                    messageDiv.classList.add('error');
                 } else {
-                    handleLoginFailure();
+                    messageDiv.textContent = 'Success! You are now logged in.';
+                    messageDiv.classList.add('success');
+                    
+                    // Optional: You can clear the form after successful login
+                    loginForm.reset();
                 }
             });
-            
-            /**
-             * Handles the logout button click.
-             */
-            logoutButton.addEventListener('click', function() {
-                // Show login form and hide protected content
-                loginSection.classList.remove('hidden');
-                protectedContent.classList.add('hidden');
-                
-                // Update UI elements
-                authStatus.textContent = 'Logged Out';
-                loginMessage.textContent = 'You have been successfully logged out.';
-                loginMessage.classList.remove('message-error');
-                
-                // Clear form fields
-                usernameInput.value = '';
-                passwordInput.value = '';
-            });
 
-            /**
-             * Updates the UI for a successful login.
-             * Hides the login form and shows the protected content.
-             */
-            function handleLoginSuccess() {
-                // Acceptance Criterion: Access to specific features is denied if the user is not logged in.
-                // By showing the content now, we fulfill this.
-                loginSection.classList.add('hidden');
-                protectedContent.classList.remove('hidden');
-                authStatus.textContent = 'Logged In as user@example.com';
+            function validateEmail(email) {
+                // A simple regex for email validation
+                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
             }
-
-            /**
-             * Updates the UI for a failed login attempt.
-             * Displays an error message to the user.
-             */
-            function handleLoginFailure() {
-                loginMessage.textContent = 'Invalid credentials. Please try again.';
-                loginMessage.classList.add('message-error');
-                // Clear password field for security
-                passwordInput.value = '';
-                passwordInput.focus();
-            }
-
         });
     </script>
+
 </body>
 </html>
