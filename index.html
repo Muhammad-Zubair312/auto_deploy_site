@@ -3,257 +3,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Authentication</title>
+    <title>Professional Portfolio</title>
     <style>
+        /* THEME AND GLOBAL STYLES */
         :root {
-            --background: #FFFFFF;
-            --text-primary: #1F2937;
-            --text-secondary: #4B5563;
-            --accent: #2563EB;
-            --muted: #E5E7EB;
+            --background-color: #FFFFFF;
+            --text-primary-color: #1F2937;
+            --text-secondary-color: #4B5563;
+            --accent-color: #2563EB;
+            --muted-color: #E5E7EB;
             --font-primary: 'Inter', sans-serif;
             --font-secondary: 'Roboto', sans-serif;
-            --layout-spacing: 1.5rem;
-            --button-radius: 8px;
-            --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
         }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap');
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: var(--font-primary);
-            background-color: #F9FAFB; /* A slightly muted bg to make the white card pop, fitting the clean style */
-            color: var(--text-primary);
+            background-color: var(--background-color);
+            color: var(--text-primary-color);
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-            width: 100%;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 var(--layout-spacing);
+            padding: 0 2rem;
         }
 
-        header {
+        section {
+            padding: 5rem 0;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-secondary);
+            color: var(--text-primary-color);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        p {
+            color: var(--text-secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* HEADER & NAVIGATION (HP-01, HP-03) */
+        .main-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--background);
+            background-color: var(--background-color);
             padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             z-index: 1000;
-            box-shadow: var(--shadow-subtle);
+            transition: padding 0.3s ease-in-out;
         }
 
-        header .brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 80px var(--layout-spacing) var(--layout-spacing); /* Top padding for fixed header */
-        }
-
-        .auth-card {
-            background-color: var(--background);
-            padding: calc(var(--layout-spacing) * 2);
-            border-radius: var(--button-radius);
-            box-shadow: var(--shadow-subtle);
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-        }
-
-        .fr-info {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: var(--layout-spacing);
-            background-color: #F9FAFB;
-            border: 1px solid var(--muted);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-family: var(--font-secondary);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary-color);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav li {
+            margin-left: 2rem;
+        }
+
+        .main-nav a {
+            color: var(--text-secondary-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* HOMEPAGE HERO (HP-02) */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        #home .container {
+            max-width: 800px;
+        }
+
+        .welcome-tagline {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* ABOUT SECTION (AB-01, AB-02) */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
         
-        .fr-info .priority-high {
-            background-color: #FEE2E2;
-            color: #991B1B;
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-weight: 500;
-        }
-
-        .auth-card h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .auth-card .description {
-            font-family: var(--font-secondary);
-            color: var(--text-secondary);
-            margin-bottom: calc(var(--layout-spacing) * 1.5);
-        }
-
-        #loginForm {
-            text-align: left;
-        }
-
-        .form-group {
-            margin-bottom: var(--layout-spacing);
-        }
-
-        label {
-            display: block;
-            font-family: var(--font-secondary);
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        input[type="email"],
-        input[type="password"] {
+        .about-image {
             width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--muted);
-            border-radius: var(--button-radius);
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            justify-self: center;
+        }
+        
+        /* SERVICES SECTION (SRV-01, SRV-02) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: #f8f9fa;
+            border: 1px solid var(--muted-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        /* CONTACT SECTION (CT-01, CT-02) */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info strong {
+            display: block;
+            color: var(--text-primary-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-secondary-color);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--muted-color);
+            border-radius: 8px;
             font-family: var(--font-primary);
             font-size: 1rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-        input[type="email"]:focus,
-        input[type="password"]:focus {
+        .contact-form input:focus,
+        .contact-form textarea:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-color);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
 
-        button[type="submit"] {
-            width: 100%;
-            padding: 0.8rem;
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--background-color);
+            padding: 0.8rem 2rem;
             border: none;
-            background-color: var(--accent);
-            color: var(--background);
-            font-family: var(--font-primary);
+            border-radius: 50px;
             font-size: 1rem;
-            font-weight: 700;
-            border-radius: var(--button-radius);
+            font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
         }
 
-        button[type="submit"]:hover {
-            background-color: #1D4ED8; /* A slightly darker accent shade */
+        .btn-submit:hover {
+            background-color: #1D4ED8;
+            transform: translateY(-2px);
         }
 
-        .message {
-            margin-top: var(--layout-spacing);
-            padding: 0.75rem;
-            border-radius: var(--button-radius);
-            font-family: var(--font-secondary);
+        /* FOOTER (FT-01, FT-02) */
+        .main-footer {
+            background-color: var(--text-primary-color);
+            color: var(--muted-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--muted-color);
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .copyright {
             font-size: 0.9rem;
-            display: none;
+            color: var(--text-secondary-color);
         }
 
-        .message.success {
-            background-color: #D1FAE5;
-            color: #065F46;
-        }
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            .main-nav {
+                margin-top: 1rem;
+            }
+            .main-nav li {
+                margin: 0 0.75rem;
+            }
+            
+            .welcome-tagline {
+                font-size: 2.5rem;
+            }
 
-        .message.error {
-            background-color: #FEE2E2;
-            color: #991B1B;
+            .about-content,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .about-image {
+                order: -1;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav class="container">
-            <a href="#" class="brand">System Portal</a>
-        </nav>
+    <header class="main-header">
+        <div class="container header-content">
+            <!-- HP-01: Display a logo and/or name. -->
+            <a href="#home" class="logo">Pro Modern</a>
+            <!-- HP-03: Display navigation links for 'About', 'Services', and 'Contact'. -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section class="auth-card">
-            <div class="fr-info">
-                <span>ID: FR-001</span>
-                <span class="priority-high">High Priority</span>
+        <section id="home">
+            <div class="container">
+                <!-- HP-02: Display a welcome tagline. -->
+                <h1 class="welcome-tagline">Clean, Modern, and Professional Solutions.</h1>
+                <p>We craft digital experiences that are intuitive, efficient, and beautiful.</p>
             </div>
-            <h1>User Authentication</h1>
-            <p class="description">The system shall require the user to be logged in to access protected functionality.</p>
-            
-            <form id="loginForm" novalidate>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="you@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="••••••••">
-                </div>
-                <button type="submit">Log In</button>
-            </form>
+        </section>
 
-            <div id="message" class="message" role="alert"></div>
+        <section id="about">
+            <div class="container">
+                <h2>About Us</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <!-- AB-01: Display informational text about the individual or company. -->
+                        <p>We are a passionate team of developers and designers dedicated to building high-quality web applications. With a focus on clean code and modern design principles, we strive to deliver products that not only meet but exceed client expectations.</p>
+                        <p>Our philosophy is centered around collaboration and transparency. We work closely with our clients through every stage of the project lifecycle, from initial concept to final deployment, ensuring the end result is a perfect fit for their business goals.</p>
+                    </div>
+                     <!-- AB-02: Support the display of optional images. -->
+                    <img src="data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='400' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24px' fill='%234B5563'%3EOptional Image%3C/text%3E%3C/svg%3E" alt="A placeholder image representing the team" class="about-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="services-grid">
+                    <!-- SRV-01 & SRV-02: List of key services with descriptions -->
+                    <div class="service-card">
+                        <h3>Web Development</h3>
+                        <p>Creating responsive, high-performance websites and applications using the latest technologies.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>UI/UX Design</h3>
+                        <p>Designing intuitive and engaging user interfaces that provide an exceptional user experience.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Cloud Solutions</h3>
+                        <p>Deploying and managing scalable, secure, and reliable applications on cloud platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                         <!-- CT-01: Display contact information -->
+                        <h3>Contact Information</h3>
+                        <p>Have a project in mind or just want to say hello? We'd love to hear from you.</p>
+                        <p><strong>Email:</strong><br><a href="mailto:contact@pro-modern.dev">contact@pro-modern.dev</a></p>
+                        <p><strong>Phone:</strong><br><a href="tel:+1234567890">(123) 456-7890</a></p>
+                        <p><strong>Address:</strong><br>123 Modern Ave, Suite 100<br>Tech City, TX 12345</p>
+                    </div>
+                    <!-- CT-02: Provide a contact form -->
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
 
+    <footer class="main-footer">
+        <div class="container">
+             <!-- FT-02: Display social media links -->
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 12 2.04Z"/></svg></a>
+                <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 6 8 5.44 7.22 5.44A1.68 1.68 0 0 0 5.54 6.88C5.54 7.74 6.1 8.3 6.88 8.56M8.27 18.5V10.13H5.54V18.5H8.27Z"/></svg></a>
+                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 2.9,4.79C2.53,5.42 2.33,6.15 2.33,6.94C2.33,8.43 3.11,9.75 4.26,10.54C3.55,10.51 2.88,10.31 2.3,10V10.05C2.3,12.27 3.84,14.1 6,14.56C5.65,14.65 5.28,14.69 4.89,14.69C4.6,14.69 4.32,14.66 4.05,14.61C4.61,16.45 6.28,17.75 8.28,17.8C6.77,18.98 4.91,19.67 2.89,19.67C2.54,19.67 2.19,19.65 1.85,19.61C3.88,20.93 6.28,21.72 8.86,21.72C16,21.72 20.24,15.82 20.24,10.63C20.24,10.45 20.24,10.27 20.23,10.09C20.93,9.59 21.76,8.88 22.46,8.02V8C21.7,8.32 20.9,8.53 20.08,8.61C20.85,8.12 21.46,7.35 21.78,6.46L22.46,6Z"/></svg></a>
+                <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/></svg></a>
+            </div>
+             <!-- FT-01: Display a copyright notice. -->
+            <p class="copyright">&copy; 2024 Pro Modern. All Rights Reserved.</p>
+        </div>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginForm = document.getElementById('loginForm');
-            const messageDiv = document.getElementById('message');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adjust body padding to account for fixed header
+            const header = document.querySelector('.main-header');
+            const setBodyPadding = () => {
+                const headerHeight = header.offsetHeight;
+                document.body.style.paddingTop = `${headerHeight}px`;
+            };
 
-            loginForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                
-                // Reset message state
-                messageDiv.style.display = 'none';
-                messageDiv.textContent = '';
-                messageDiv.className = 'message';
+            setBodyPadding();
+            window.addEventListener('resize', setBodyPadding);
 
-                const email = loginForm.elements.email.value.trim();
-                const password = loginForm.elements.password.value.trim();
+            // Handle contact form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent actual form submission
+                    
+                    // Simple validation check
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
 
-                if (email === '' || password === '') {
-                    displayMessage('Please fill in both email and password fields.', 'error');
-                    return;
-                }
-                
-                // Mock authentication logic
-                displayMessage('Login successful! Redirecting to dashboard...', 'success');
-
-                setTimeout(() => {
-                    // In a real application, you would redirect here.
-                    // e.g., window.location.href = '/dashboard';
-                    loginForm.reset();
-                    messageDiv.style.display = 'none';
-                }, 2000);
-            });
-
-            function displayMessage(text, type) {
-                messageDiv.textContent = text;
-                messageDiv.classList.add(type); // 'success' or 'error'
-                messageDiv.style.display = 'block';
+                    if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
+                         alert('Please fill out all fields.');
+                         return;
+                    }
+                    
+                    alert('Thank you for your message! This is a demo and your message has not been sent.');
+                    this.reset(); // Clear the form fields
+                });
             }
         });
     </script>
-
 </body>
 </html>
