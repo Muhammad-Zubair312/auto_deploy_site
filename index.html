@@ -11,11 +11,13 @@
             --primary: #6366f1;
             --secondary: #374151;
             --accent: #f43f5e;
-            --font-heading: 'Poppins', sans-serif;
-            --font-body: 'Open Sans', sans-serif;
+            --font-heading: Poppins, sans-serif;
+            --font-body: Open Sans, sans-serif;
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -25,7 +27,6 @@
             font-family: var(--font-body);
             background-color: var(--background);
             color: var(--text);
-            line-height: 1.6;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -35,147 +36,210 @@
 
         main {
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
         }
 
-        .auth-container {
-            background-color: var(--secondary);
-            padding: 2rem 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        h1 {
+        h1, h2 {
             font-family: var(--font-heading);
             color: var(--primary);
             text-align: center;
-            margin-bottom: 0.5rem;
-            font-size: 2.25rem;
+            margin-bottom: 1rem;
         }
         
-        .req-id {
-            font-family: var(--font-body);
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text);
-            opacity: 0.6;
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #d1d5db; /* Lighter than main text for subtlety */
+        }
+        
+        .card {
+            background-color: var(--secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .fr-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--background);
+            padding-bottom: 1rem;
             margin-bottom: 1rem;
         }
 
-        .req-description {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-style: italic;
-            opacity: 0.8;
+        .fr-id {
+            font-family: var(--font-heading);
+            font-weight: 600;
         }
 
-        .login-form .form-group {
+        .fr-priority {
+            background-color: var(--accent);
+            color: var(--text);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .fr-description {
             margin-bottom: 1.5rem;
         }
 
-        .login-form label {
-            display: block;
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
             margin-bottom: 0.5rem;
-            font-weight: bold;
-            font-family: var(--font-heading);
+            font-weight: 500;
             font-size: 0.9rem;
         }
 
-        .login-form input {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: var(--background);
-            border: 1px solid var(--secondary);
-            border-radius: 4px;
-            color: var(--text);
+        input[type="text"],
+        input[type="password"] {
             font-family: var(--font-body);
             font-size: 1rem;
+            padding: 0.75rem 1rem;
+            border: 2px solid #4b5563; /* Darker than secondary */
+            border-radius: 8px;
+            background-color: var(--background);
+            color: var(--text);
             transition: border-color 0.3s ease;
         }
 
-        .login-form input:focus {
+        input[type="text"]:focus,
+        input[type="password"]:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
         }
 
-        .btn-login {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: var(--primary);
-            color: var(--text);
-            border: none;
-            border-radius: 4px;
+        button {
             font-family: var(--font-heading);
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 600;
+            padding: 0.85rem 1rem;
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease;
+            margin-top: 0.5rem;
         }
 
-        .btn-login:hover {
-            background-color: var(--accent);
+        button[type="submit"] {
+            background-color: var(--primary);
+            color: var(--text);
+        }
+
+        button[type="submit"]:hover {
+            filter: brightness(1.1);
         }
         
-        .btn-login:active {
+        button:active {
             transform: translateY(1px);
         }
-        
-        #message {
-            margin-top: 1rem;
-            text-align: center;
-            height: 20px;
-            color: var(--accent);
+
+        #logoutButton {
+            background-color: var(--accent);
+            color: var(--text);
         }
+        
+        #logoutButton:hover {
+            filter: brightness(1.1);
+        }
+
+        #errorMessage {
+            color: var(--accent);
+            background-color: rgba(244, 63, 94, 0.1);
+            border: 1px solid var(--accent);
+            padding: 0.75rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none; /* Hidden by default */
+        }
+        
+        #protected-section {
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
 
     <main>
-        <div class="auth-container">
-            <h1>User Authentication</h1>
-            <p class="req-id">Requirement ID: FR-001</p>
-            <p class="req-description">The system shall require the user to be logged in to access protected functionality.</p>
-            
-            <form id="loginForm" class="login-form">
+        <section id="login-section" class="card">
+            <div class="fr-header">
+                <span class="fr-id">FR-001</span>
+                <span class="fr-priority">High</span>
+            </div>
+            <h2>User Authentication</h2>
+            <p class="fr-description">The system must ensure that a user is logged in before they can access protected resources or features.</p>
+
+            <form id="loginForm">
+                <div id="errorMessage"></div>
                 <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter 'admin'" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    <input type="password" id="password" name="password" placeholder="Enter 'password'" required>
                 </div>
-                <button type="submit" class="btn-login">Log In to Access</button>
+                <button type="submit">Log In</button>
             </form>
-            <div id="message"></div>
-        </div>
+        </section>
+
+        <section id="protected-section" class="card" style="display: none;">
+            <h2>Protected Resources</h2>
+            <p>Welcome, admin! You have successfully logged in and can now access this protected content.</p>
+            <button id="logoutButton">Log Out</button>
+        </section>
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', () => {
             const loginForm = document.getElementById('loginForm');
-            const messageDiv = document.getElementById('message');
+            const loginSection = document.getElementById('login-section');
+            const protectedSection = document.getElementById('protected-section');
+            const logoutButton = document.getElementById('logoutButton');
+            const errorMessage = document.getElementById('errorMessage');
 
-            loginForm.addEventListener('submit', function (event) {
+            loginForm.addEventListener('submit', (event) => {
                 event.preventDefault();
+                const username = event.target.username.value;
+                const password = event.target.password.value;
+
+                // Simple validation for demonstration
+                if (username === 'admin' && password === 'password') {
+                    loginSection.style.display = 'none';
+                    protectedSection.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                } else {
+                    errorMessage.textContent = 'Invalid username or password.';
+                    errorMessage.style.display = 'block';
+                }
+            });
+
+            logoutButton.addEventListener('click', () => {
+                protectedSection.style.display = 'none';
+                loginSection.style.display = 'block';
                 
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-
-                messageDiv.textContent = 'Authenticating...';
-
-                // Simulate an API call
-                setTimeout(() => {
-                    if (email && password.length > 5) {
-                        messageDiv.style.color = '#34d399'; // A green color
-                        messageDiv.textContent = 'Login successful! Access granted.';
-                    } else {
-                        messageDiv.style.color = 'var(--accent)';
-                        messageDiv.textContent = 'Invalid credentials. Please try again.';
-                    }
-                }, 1000);
+                // Clear form fields for security
+                loginForm.reset();
             });
         });
     </script>
