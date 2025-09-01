@@ -6,132 +6,134 @@
     <title>Functional Requirements</title>
     <style>
         :root {
-            --background-color: #111827;
-            --text-color: #f9fafb;
-            --primary-color: #6366f1;
-            --secondary-color: #374151;
-            --accent-color: #f43f5e;
-            --heading-font: 'Poppins', sans-serif;
-            --body-font: 'Open Sans', sans-serif;
+            --background: #111827;
+            --text: #f9fafb;
+            --primary: #6366f1;
+            --secondary: #374151;
+            --accent: #f43f5e;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
         }
 
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: var(--body-font);
+            font-family: var(--font-body);
+            background-color: var(--background);
+            color: var(--text);
             line-height: 1.6;
-        }
-
-        header {
-            background-color: var(--secondary-color);
-            padding: 1.5rem 2rem;
-            text-align: center;
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        h1, h2 {
-            font-family: var(--heading-font);
-            margin: 0;
-            font-weight: 600;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
+            padding: 1rem;
         }
 
         main {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
         }
 
-        .requirement-card {
-            background-color: var(--secondary-color);
+        .page-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+        }
+
+        .requirement {
+            background-color: var(--secondary);
+            border-left: 5px solid var(--primary);
             border-radius: 8px;
-            margin-bottom: 1.5rem;
             padding: 1.5rem 2rem;
-            border-left: 5px solid var(--primary-color);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
 
-        .requirement-card:hover {
-            transform: translateY(-5px);
+        .requirement:hover {
+            transform: translateY(-4px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
-        .card-header {
+        .requirement-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            gap: 1rem;
             flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
-        .card-header h2 {
-            font-size: 1.5rem;
-            color: var(--text-color);
+        .requirement-name {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 500;
+            color: var(--text);
+            margin: 0;
         }
 
         .requirement-id {
-            background-color: var(--background-color);
-            color: var(--accent-color);
-            padding: 0.25rem 0.75rem;
+            font-family: var(--font-body);
+            background-color: var(--accent);
+            color: var(--text);
+            padding: 0.3rem 0.75rem;
             border-radius: 12px;
-            font-family: monospace, sans-serif;
-            font-size: 0.9rem;
-            font-weight: bold;
+            font-size: 0.85rem;
+            font-weight: 700;
             flex-shrink: 0;
         }
 
-        .card-body p {
+        .requirement-description {
             margin: 0;
-            color: #d1d5db; /* A slightly lighter text color for description for contrast */
+            font-size: 1rem;
+            color: #d1d5db; /* Lighter than body text for subtle contrast */
+        }
+
+        .page-footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--secondary);
+            color: #9ca3af;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <header class="page-header">
         <h1>Functional Requirements</h1>
     </header>
 
     <main>
-        <article class="requirement-card" id="FR-001">
-            <div class="card-header">
-                <h2>User Authentication</h2>
-                <span class="requirement-id">FR-001</span>
-            </div>
-            <div class="card-body">
-                <p>The system must provide a mechanism for users to log in to verify their identity.</p>
-            </div>
-        </article>
-
-        <article class="requirement-card" id="FR-002">
-            <div class="card-header">
-                <h2>Access Control</h2>
-                <span class="requirement-id">FR-002</span>
-            </div>
-            <div class="card-body">
-                <p>The system must restrict access to certain features or resources to authenticated (logged-in) users only.</p>
-            </div>
+        <article class="requirement">
+            <header class="requirement-header">
+                <h2 class="requirement-name">User Authentication</h2>
+                <span class="requirement-id">FR001</span>
+            </header>
+            <p class="requirement-description">The system shall require users to be logged in to access protected resources or functionality.</p>
         </article>
     </main>
 
-    <script>
-        // All JavaScript logic would go here.
-        // For this static page, no JavaScript is currently needed.
-    </script>
+    <footer class="page-footer">
+        <p>Generated Document</p>
+    </footer>
 
+    <script>
+        // No JavaScript is required for this page.
+    </script>
 </body>
 </html>
