@@ -3,131 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Functional Requirements - Dark Matter</title>
+    <title>Functional Requirement Display</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
+
         :root {
-            --background: #111827;
-            --text: #f9fafb;
-            --primary: #6366f1;
-            --secondary: #374151;
-            --accent: #f43f5e;
-            --heading-font: 'Poppins', sans-serif;
-            --body-font: 'Open Sans', sans-serif;
+            --background-color: #111827;
+            --text-color: #f9fafb;
+            --primary-color: #6366f1;
+            --secondary-color: #374151;
+            --accent-color: #f43f5e;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
         }
 
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        html {
-            font-size: 16px;
-        }
-
         body {
-            background-color: var(--background);
-            color: var(--text);
-            font-family: var(--body-font);
-            line-height: 1.6;
-            padding: 2rem 1rem;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        h1 {
-            font-family: var(--heading-font);
-            color: var(--primary);
-            font-size: 2.5rem;
-            font-weight: 600;
+            font-family: var(--font-body);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
         }
 
         main {
-            max-width: 1024px;
-            margin: 0 auto;
-            background-color: rgba(31, 41, 55, 0.5); /* A slightly lighter, transparent version of secondary for depth */
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--secondary-color);
             border-radius: 8px;
             padding: 2rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
-        table {
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
-            border-collapse: collapse;
+            padding: 0.75rem;
+            border: 1px solid #4b5563;
+            border-radius: 4px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
         }
 
-        thead th {
-            font-family: var(--heading-font);
-            background-color: var(--secondary);
-            color: var(--text);
-            padding: 1rem;
-            text-align: left;
-            font-size: 1.1rem;
-            border-bottom: 2px solid var(--primary);
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
         }
 
-        tbody td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--secondary);
-            vertical-align: top;
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
         }
 
-        tbody tr:last-child td {
-            border-bottom: none;
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            margin-top: 1rem;
         }
         
-        tbody tr:hover {
-            background-color: var(--secondary);
+        .btn-primary:hover {
+            background-color: #4f46e5;
         }
 
-        td:first-child {
-            font-weight: 700;
-            color: var(--accent);
-            white-space: nowrap;
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            margin-top: 1.5rem;
         }
 
-        footer {
+        .btn-accent:hover {
+            background-color: #be123c;
+        }
+        
+        #protected-content {
+            display: none;
+        }
+        
+        .requirement-card {
+            background-color: rgba(17, 24, 39, 0.5);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+        
+        .requirement-card h3 {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .requirement-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .welcome-message {
             text-align: center;
-            margin-top: 3rem;
-            color: #9ca3af; /* A muted gray for footer text */
-            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
         }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Functional Requirements</h1>
-    </header>
-
     <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>FR-001</td>
-                    <td>User Authentication</td>
-                    <td>The system shall require users to be logged in to access protected resources or functionality.</td>
-                </tr>
-            </tbody>
-        </table>
+        <section id="login-section">
+            <h2>User Authentication</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-primary">Log In</button>
+            </form>
+        </section>
+
+        <section id="protected-content">
+            <h2>Protected Resources</h2>
+            <p class="welcome-message">You are now logged in and can view the system requirements.</p>
+
+            <article class="requirement-card">
+                <header>
+                    <h3>FR-AUTH-01: User Authentication</h3>
+                </header>
+                <p>The system shall require the user to be logged in to access protected resources or features.</p>
+            </article>
+
+            <button id="logout-button" class="btn-accent">Log Out</button>
+        </section>
     </main>
 
-    <footer>
-        <p>Generated based on provided requirements and theme.</p>
-    </footer>
-
     <script>
-        // No JavaScript functionality is required for this page.
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginSection = document.getElementById('login-section');
+            const protectedContentSection = document.getElementById('protected-content');
+            const loginForm = document.getElementById('login-form');
+            const logoutButton = document.getElementById('logout-button');
+
+            loginForm.addEventListener('submit', (event) => {
+                event.preventDefault(); 
+                // In a real application, you would validate credentials here.
+                // For this demonstration, any input is considered valid.
+                
+                loginSection.style.display = 'none';
+                protectedContentSection.style.display = 'block';
+            });
+
+            logoutButton.addEventListener('click', () => {
+                protectedContentSection.style.display = 'none';
+                loginSection.style.display = 'block';
+                loginForm.reset(); // Clear the form fields
+            });
+        });
     </script>
+
 </body>
 </html>
