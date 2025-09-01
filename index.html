@@ -3,207 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Functional Requirement Display</title>
+    <title>Functional Requirements</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
-
         :root {
             --background-color: #111827;
             --text-color: #f9fafb;
             --primary-color: #6366f1;
             --secondary-color: #374151;
             --accent-color: #f43f5e;
-            --font-heading: 'Poppins', sans-serif;
-            --font-body: 'Open Sans', sans-serif;
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Open Sans', sans-serif;
         }
 
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
-            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
             background-color: var(--background-color);
             color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 1rem;
-        }
-
-        main {
-            width: 100%;
-            max-width: 450px;
-            background-color: var(--secondary-color);
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #4b5563;
-            border-radius: 4px;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
-        }
-
-        button {
-            width: 100%;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 4px;
-            font-family: var(--font-heading);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-        }
-
-        button:active {
-            transform: translateY(1px);
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            margin-top: 1rem;
-        }
-        
-        .btn-primary:hover {
-            background-color: #4f46e5;
-        }
-
-        .btn-accent {
-            background-color: var(--accent-color);
-            color: var(--text-color);
-            margin-top: 1.5rem;
-        }
-
-        .btn-accent:hover {
-            background-color: #be123c;
-        }
-        
-        #protected-content {
-            display: none;
-        }
-        
-        .requirement-card {
-            background-color: rgba(17, 24, 39, 0.5);
-            border-left: 4px solid var(--primary-color);
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-        }
-        
-        .requirement-card h3 {
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .requirement-card p {
-            font-size: 0.95rem;
+            font-family: var(--body-font);
             line-height: 1.6;
         }
 
-        .welcome-message {
+        header {
+            background-color: var(--secondary-color);
+            padding: 1.5rem 2rem;
             text-align: center;
-            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--primary-color);
         }
 
+        h1, h2 {
+            font-family: var(--heading-font);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .requirement-card {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem 2rem;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .requirement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .card-header h2 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .requirement-id {
+            background-color: var(--background-color);
+            color: var(--accent-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-family: monospace, sans-serif;
+            font-size: 0.9rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .card-body p {
+            margin: 0;
+            color: #d1d5db; /* A slightly lighter text color for description for contrast */
+        }
     </style>
 </head>
 <body>
 
+    <header>
+        <h1>Functional Requirements</h1>
+    </header>
+
     <main>
-        <section id="login-section">
-            <h2>User Authentication</h2>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required autocomplete="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required autocomplete="current-password">
-                </div>
-                <button type="submit" class="btn-primary">Log In</button>
-            </form>
-        </section>
+        <article class="requirement-card" id="FR-001">
+            <div class="card-header">
+                <h2>User Authentication</h2>
+                <span class="requirement-id">FR-001</span>
+            </div>
+            <div class="card-body">
+                <p>The system must provide a mechanism for users to log in to verify their identity.</p>
+            </div>
+        </article>
 
-        <section id="protected-content">
-            <h2>Protected Resources</h2>
-            <p class="welcome-message">You are now logged in and can view the system requirements.</p>
-
-            <article class="requirement-card">
-                <header>
-                    <h3>FR-AUTH-01: User Authentication</h3>
-                </header>
-                <p>The system shall require the user to be logged in to access protected resources or features.</p>
-            </article>
-
-            <button id="logout-button" class="btn-accent">Log Out</button>
-        </section>
+        <article class="requirement-card" id="FR-002">
+            <div class="card-header">
+                <h2>Access Control</h2>
+                <span class="requirement-id">FR-002</span>
+            </div>
+            <div class="card-body">
+                <p>The system must restrict access to certain features or resources to authenticated (logged-in) users only.</p>
+            </div>
+        </article>
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginSection = document.getElementById('login-section');
-            const protectedContentSection = document.getElementById('protected-content');
-            const loginForm = document.getElementById('login-form');
-            const logoutButton = document.getElementById('logout-button');
-
-            loginForm.addEventListener('submit', (event) => {
-                event.preventDefault(); 
-                // In a real application, you would validate credentials here.
-                // For this demonstration, any input is considered valid.
-                
-                loginSection.style.display = 'none';
-                protectedContentSection.style.display = 'block';
-            });
-
-            logoutButton.addEventListener('click', () => {
-                protectedContentSection.style.display = 'none';
-                loginSection.style.display = 'block';
-                loginForm.reset(); // Clear the form fields
-            });
-        });
+        // All JavaScript logic would go here.
+        // For this static page, no JavaScript is currently needed.
     </script>
 
 </body>
