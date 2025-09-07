@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head><base href="./"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - WebApp Pro</title>
+<meta content="Admin Dashboard for WebApp Pro. Manage users, content, and view analytics." name="description"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="css/main.css" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#0ea5e9', 600: '#0284c7' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 antialiased font-sans">
+<div class="flex h-screen bg-slate-100 dark:bg-slate-900">
+<!-- Sidebar -->
+<div class="hidden md:flex flex-col w-64 bg-white dark:bg-slate-800">
+<div class="flex items-center justify-center h-16 border-b border-slate-200 dark:border-slate-700">
+<a class="flex items-center space-x-2" href="index.html">
+<img alt="WebApp Pro Logo" class="h-8 w-auto" src="assets/logo.png"/>
+<span class="font-bold text-xl text-slate-800 dark:text-white">WebApp Pro</span>
+</a>
+</div>
+<div class="flex flex-col flex-1 overflow-y-auto">
+<nav class="flex-1 px-2 py-4">
+<a class="flex items-center px-4 py-2 text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-700 rounded-md" href="#">Dashboard</a>
+<a class="flex items-center px-4 py-2 mt-2 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md" href="#">Users</a>
+<a class="flex items-center px-4 py-2 mt-2 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md" href="#">Content</a>
+<a class="flex items-center px-4 py-2 mt-2 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md" href="#">Analytics</a>
+<a class="flex items-center px-4 py-2 mt-2 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md" href="index.html">Exit to Site</a>
+</nav>
+</div>
+</div>
+<!-- Main content -->
+<div class="flex flex-col flex-1 overflow-y-auto">
+<div class="flex items-center justify-between h-16 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 sm:px-6 lg:px-8">
+<button class="md:hidden p-2 rounded-md text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500" id="mobile-menu-button-dash">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<h1 class="text-2xl font-semibold text-slate-800 dark:text-white">Dashboard</h1>
+<div class="flex items-center space-x-4">
+<button aria-label="Toggle dark mode" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 dark:focus:ring-offset-slate-900" id="theme-toggle">
+<svg class="h-6 w-6 hidden" fill="none" id="theme-icon-light" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="h-6 w-6 hidden" fill="none" id="theme-icon-dark" stroke="currentColor" viewbox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<p>Admin User</p>
+</div>
+</div>
+<main class="p-4 sm:p-6 lg:p-8">
+<!-- Analytics Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow"><h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Users</h3><p class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">10,482</p></div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow"><h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Active Posts</h3><p class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">3,205</p></div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow"><h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Uptime</h3><p class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">99.9%</p></div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow"><h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Response Time</h3><p class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">120ms</p></div>
+</div>
+<!-- User Management Table -->
+<div class="mt-8 bg-white dark:bg-slate-800 p-6 rounded-lg shadow">
+<h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">User Management</h2>
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+<thead class="bg-slate-50 dark:bg-slate-700">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-300 uppercase tracking-wider" scope="col">User</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-300 uppercase tracking-wider" scope="col">Role</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-300 uppercase tracking-wider" scope="col">Status</th>
+<th class="relative px-6 py-3" scope="col"><span class="sr-only">Actions</span></th>
+</tr>
+</thead>
+<tbody class="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-white">Jane Cooper</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">Admin</td>
+<td class="px-6 py-4 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span></td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"><a class="text-brand-600 hover:text-brand-900" href="#">Edit</a> <a class="text-red-600 hover:text-red-900 ml-4" href="#">Ban</a></td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-white">John Doe</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">User</td>
+<td class="px-6 py-4 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span></td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"><a class="text-brand-600 hover:text-brand-900" href="#">Edit</a> <a class="text-red-600 hover:text-red-900 ml-4" href="#">Ban</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</div>
+<div class="hidden fixed bottom-5 right-5 bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg text-base z-50" id="toast-notification"></div>
+<script defer="" src="js/main.js"></script>
+</body>
+</html>

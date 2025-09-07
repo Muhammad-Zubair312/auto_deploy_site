@@ -1,48 +1,34 @@
-document.addEventListener('DOMContentLoaded', function () {
-
-    // --- Dark Mode Toggle --- //
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Theme Toggler --- //
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const darkIcon = document.getElementById('theme-toggle-dark-icon');
-    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const lightIcon = document.getElementById('theme-icon-light');
+    const darkIcon = document.getElementById('theme-icon-dark');
 
-    // Check for saved theme preference or use system preference
-    if (localStorage.getItem('color-theme') === 'dark' || 
-        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-        if (lightIcon) lightIcon.classList.remove('hidden');
-    } else {
-        document.documentElement.classList.remove('dark');
-        if (darkIcon) darkIcon.classList.remove('hidden');
-    }
+    const applyTheme = (theme) => {
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+            darkIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            lightIcon.classList.add('hidden');
+            darkIcon.classList.remove('hidden');
+        }
+    };
 
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', function () {
-            // toggle icons inside button
-            if (darkIcon) darkIcon.classList.toggle('hidden');
-            if (lightIcon) lightIcon.classList.toggle('hidden');
+    // Check for saved theme in localStorage or use system preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    applyTheme(currentTheme);
 
-            // if set via local storage previously
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
-            } else { // if not set via local storage previously
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
-            }
-        });
-    }
+    themeToggleBtn.addEventListener('click', () => {
+        const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+    });
 
-    // --- Mobile Menu Toggle --- //
+    // --- Mobile Menu --- //
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -51,82 +37,38 @@ document.addEventListener('DOMContentLoaded', function () {
             const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
             mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
             mobileMenu.classList.toggle('hidden');
-            // Toggle icons
-            mobileMenuButton.querySelectorAll('svg').forEach(icon => icon.classList.toggle('hidden'));
         });
     }
 
-    // --- Sign In / Register Page Logic --- //
-    const signinTab = document.getElementById('signin-tab');
-    const registerTab = document.getElementById('register-tab');
-    const signinForm = document.getElementById('signin-form');
-    const registerForm = document.getElementById('register-form');
+    // --- Toast Notification --- //
+    const toast = document.getElementById('toast-notification');
+    let toastTimeout;
 
-    if (signinTab && registerTab && signinForm && registerForm) {
-        signinTab.addEventListener('click', () => {
-            signinForm.classList.remove('hidden');
-            registerForm.classList.add('hidden');
-            signinTab.classList.add('text-primary-600', 'border-primary-500');
-            signinTab.classList.remove('text-secondary-500', 'border-transparent', 'hover:text-secondary-700', 'hover:border-secondary-300');
-            registerTab.classList.add('text-secondary-500', 'border-transparent', 'hover:text-secondary-700', 'hover:border-secondary-300');
-            registerTab.classList.remove('text-primary-600', 'border-primary-500');
-        });
-
-        registerTab.addEventListener('click', () => {
-            registerForm.classList.remove('hidden');
-            signinForm.classList.add('hidden');
-            registerTab.classList.add('text-primary-600', 'border-primary-500');
-            registerTab.classList.remove('text-secondary-500', 'border-transparent', 'hover:text-secondary-700', 'hover:border-secondary-300');
-            signinTab.classList.add('text-secondary-500', 'border-transparent', 'hover:text-secondary-700', 'hover:border-secondary-300');
-            signinTab.classList.remove('text-primary-600', 'border-primary-500');
-        });
+    function showToast(message, duration = 3000) {
+        if (!toast) return;
+        clearTimeout(toastTimeout);
+        toast.textContent = message;
+        toast.classList.remove('hidden');
+        toast.classList.add('animate-fade-in'); // A simple fade-in animation could be added in CSS
+        toastTimeout = setTimeout(() => {
+            toast.classList.add('hidden');
+            toast.classList.remove('animate-fade-in');
+        }, duration);
     }
 
-    // --- Password Strength Meter --- //
-    const passwordInput = document.getElementById('register-password');
-    const strengthBar = document.getElementById('password-strength-bar');
-    const strengthText = document.getElementById('password-strength-text');
+    // --- Form Submission Simulation --- //
+    const handleFormSubmit = (formId, successMessage) => {
+        const form = document.getElementById(formId);
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showToast(successMessage);
+                form.reset();
+            });
+        }
+    };
 
-    if (passwordInput && strengthBar && strengthText) {
-        passwordInput.addEventListener('input', () => {
-            const password = passwordInput.value;
-            let score = 0;
-            if (password.length > 8) score++;
-            if (/[A-Z]/.test(password)) score++;
-            if (/[a-z]/.test(password)) score++;
-            if (/[0-9]/.test(password)) score++;
-            if (/[^A-Za-z0-9]/.test(password)) score++;
-
-            strengthBar.classList.remove('strength-weak', 'strength-medium', 'strength-strong');
-
-            switch (score) {
-                case 0:
-                case 1:
-                case 2:
-                    strengthBar.style.width = '25%';
-                    strengthBar.classList.add('strength-weak');
-                    strengthText.textContent = 'Weak';
-                    break;
-                case 3:
-                case 4:
-                    strengthBar.style.width = '65%';
-                    strengthBar.classList.add('strength-medium');
-                    strengthText.textContent = 'Medium';
-                    break;
-                case 5:
-                    strengthBar.style.width = '100%';
-                    strengthBar.classList.add('strength-strong');
-                    strengthText.textContent = 'Strong';
-                    break;
-                default:
-                    strengthBar.style.width = '0%';
-                    strengthText.textContent = '';
-            }
-            if (password.length === 0) {
-                strengthBar.style.width = '0%';
-                strengthText.textContent = '';
-            }
-        });
-    }
-
+    handleFormSubmit('contact-form', 'Message sent! We will get back to you soon.');
+    handleFormSubmit('login-form', 'Login successful! Redirecting...');
+    handleFormSubmit('register-form', 'Account created! Please check your email to verify.');
 });
