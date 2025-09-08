@@ -3,88 +3,57 @@
 <head><base href="./"/>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Login | ProPresence</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>Login - AuthFlow</title>
 <link href="css/main.css" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        'brand': '#4f46e5',
-                        'brand-dark': '#3730a3',
-                    }
-                }
-            }
-        }
-    </script>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 font-sans">
-<div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-violet-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-<header class="absolute top-0 left-0 right-0 p-4 flex justify-between items-center">
-<a class="flex items-center space-x-2" href="index.html">
-<img alt="ProPresence Logo" class="h-8 w-8" src="assets/logo.png"/>
-<span class="text-2xl font-bold text-gray-900 dark:text-white">ProPresence</span>
-</a>
-<button class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" id="dark-mode-toggle">
-<svg class="h-6 w-6" fill="none" id="sun-icon" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<svg class="h-6 w-6 hidden" fill="none" id="moon-icon" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</header>
-<main class="w-full max-w-md p-8 m-4 bg-white dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl shadow-slate-300/20 dark:shadow-black/20">
-<h1 class="text-3xl font-bold text-center text-gray-900 dark:text-white">Welcome Back</h1>
-<p class="text-center text-gray-500 dark:text-gray-400 mt-2">Sign in to your account</p>
-<div class="mt-6 space-y-4">
-<button class="w-full flex items-center justify-center gap-3 py-3 px-4 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" id="google-signin">
-<img alt="Google icon" class="h-6 w-6" src="assets/google-icon.png"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-200">Sign in with Google</span>
-</button>
-<button class="w-full flex items-center justify-center gap-3 py-3 px-4 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" id="facebook-signin">
-<img alt="Facebook icon" class="h-6 w-6" src="assets/facebook-icon.png"/>
-<span class="text-sm font-medium text-gray-700 dark:text-gray-200">Sign in with Facebook</span>
-</button>
+<body class="bg-gradient-auth dark:bg-gradient-auth-dark font-sans antialiased">
+<main class="min-h-screen flex items-center justify-center p-4">
+<div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+<div class="text-center mb-8">
+<a href="index.html"><img alt="AuthFlow Logo" class="h-12 w-12 mx-auto mb-2" src="assets/logo.png"/></a>
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Welcome Back</h1>
+<p class="text-gray-500 dark:text-gray-400">Sign in to continue to your account.</p>
 </div>
-<div class="mt-6 flex items-center">
-<hr class="w-full border-gray-300 dark:border-gray-600"/>
-<span class="px-4 text-sm text-gray-500 dark:text-gray-400">OR</span>
-<hr class="w-full border-gray-300 dark:border-gray-600"/>
+<form id="login-form" novalidate="">
+<div class="mb-4">
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="email">Email Address</label>
+<input class="w-full p-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:text-white" id="email" name="email" placeholder="you@example.com" required="" type="email"/>
+<p class="error-message mt-1 text-sm text-red-500 hidden">Please enter a valid email address.</p>
 </div>
-<form class="mt-6 space-y-6" id="login-form" novalidate="">
-<div>
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">Email Address</label>
-<div class="mt-1">
-<input autocomplete="email" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-brand focus:border-brand dark:bg-gray-700 dark:text-white sm:text-sm" id="email" name="email" required="" type="email"/>
-<p class="error-message mt-1 text-sm text-red-600 dark:text-red-400 h-4"></p>
-</div>
-</div>
-<div>
+<div class="mb-6">
 <div class="flex justify-between items-baseline">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="password">Password</label>
-<a class="text-sm text-brand hover:text-brand-dark dark:text-indigo-400 dark:hover:text-indigo-300" href="#">Forgot password?</a>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="password">Password</label>
+<a class="text-sm text-indigo-600 hover:underline dark:text-indigo-400" href="#">Forgot password?</a>
 </div>
-<div class="mt-1">
-<input autocomplete="current-password" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-brand focus:border-brand dark:bg-gray-700 dark:text-white sm:text-sm" id="password" name="password" required="" type="password"/>
-<p class="error-message mt-1 text-sm text-red-600 dark:text-red-400 h-4"></p>
+<input class="w-full p-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:text-white" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<p class="error-message mt-1 text-sm text-red-500 hidden">Password is required.</p>
 </div>
-</div>
-<p class="text-center text-sm text-red-600 dark:text-red-400 h-4" id="form-error"></p>
-<div>
-<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-dark transition-colors" type="submit">Sign In</button>
-</div>
+<button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" type="submit">Sign In</button>
 </form>
-<p class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
-                Not a member? 
-                <a class="font-medium text-brand hover:text-brand-dark dark:text-indigo-400 dark:hover:text-indigo-300" href="register.html">Sign up now</a>
+<div class="relative my-6">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="bg-white dark:bg-gray-800 px-2 text-gray-500 dark:text-gray-400">or</span>
+</div>
+</div>
+<div class="space-y-3">
+<button class="w-full flex items-center justify-center gap-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" id="google-login-btn">
+<img alt="Google icon" class="h-5 w-5" src="assets/google-icon.png"/>
+<span>Continue with Google</span>
+</button>
+<button class="w-full flex items-center justify-center gap-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" id="facebook-login-btn">
+<img alt="Facebook icon" class="h-5 w-5" src="assets/facebook-icon.png"/>
+<span>Continue with Facebook</span>
+</button>
+</div>
+<p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+                Don't have an account? <a class="font-medium text-indigo-600 hover:underline dark:text-indigo-400" href="register.html">Sign up</a>
 </p>
+</div>
 </main>
-<div class="hidden fixed bottom-5 right-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg shadow-lg z-50" id="firebase-config-alert" role="alert">
-<strong class="font-bold">Configuration Error!</strong>
-<span class="block sm:inline">Please configure your Firebase credentials in main.js.</span>
-</div>
-</div>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-<script defer="" src="js/main.js"></script>
+<script defer="" src="js/auth.js"></script>
 </body>
 </html>

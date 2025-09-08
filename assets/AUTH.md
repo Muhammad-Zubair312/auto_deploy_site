@@ -1,79 +1,142 @@
 # Authentication Setup Guide
 
-This guide explains how to set up authentication for this web template. The default implementation uses Firebase Authentication, but alternatives like Auth0 and Supabase are also excellent choices.
+This website includes pre-built UI components for user authentication (Login and Registration). To make them functional, you need to connect them to a backend authentication service.
 
-## Option 1: Firebase Authentication (Default)
+This guide provides instructions for integrating with popular services like Firebase, Auth0, or Supabase.
 
-This template is pre-configured to use the Firebase SDK. You just need to create a Firebase project and enable the sign-in methods.
+---
 
-### Step 1: Create a Firebase Project
+## 1. Choose an Authentication Provider
+
+- **Firebase Authentication**: A great choice for fast development, offering a generous free tier and easy integration with Google, Facebook, and other social providers.
+- **Auth0**: A powerful, enterprise-grade identity platform that is highly customizable and scalable.
+- **Supabase**: An open-source Firebase alternative that provides authentication, databases, and storage.
+
+For this example, we will use **Firebase**.
+
+---
+
+## 2. Firebase Setup Steps
+
+### Step 2.1: Create a Firebase Project
 
 1.  Go to the [Firebase Console](https://console.firebase.google.com/).
 2.  Click "Add project" and follow the on-screen instructions to create a new project.
+3.  Once your project is created, click the Web icon (`</>`) to add a web app to your project.
+4.  Register your app by giving it a nickname. You do not need to set up Firebase Hosting at this stage.
+5.  Firebase will provide you with a configuration object (`firebaseConfig`). **Copy this object.**
 
-### Step 2: Register Your Web App
+### Step 2.2: Enable Authentication Methods
 
-1.  In your new project's dashboard, click the web icon (`</>`) to add a new web app.
-2.  Give your app a nickname and click "Register app".
-3.  Firebase will provide you with a `firebaseConfig` object. **Copy this object.**
-
-### Step 3: Enable Sign-In Methods
-
-1.  In the Firebase Console, go to **Authentication** (in the Build section).
-2.  Click the **Sign-in method** tab.
+1.  In your Firebase project console, navigate to **Authentication** from the left-hand menu.
+2.  Click the "Sign-in method" tab.
 3.  Enable the following providers:
-    *   **Email/Password**: Just click enable.
-    *   **Google**: Click enable, provide a project support email, and save.
-    *   **Facebook**: Click enable. You'll need a Facebook for Developers App ID and App Secret. Follow their on-screen guide to get these.
+    *   **Email/Password**
+    *   **Google**: Click the pencil icon, enable it, and select a project support email.
+    *   **Facebook**: You will need to create a Facebook for Developers app to get an App ID and App Secret. Follow the on-screen instructions in Firebase.
 
-### Step 4: Add Your Credentials to the Code
+---
 
-1.  Open the `js/main.js` file in your project.
-2.  Find the `firebaseConfig` object at the top of the file.
-3.  Replace the placeholder values with the ones you copied from the Firebase console.
+## 3. Frontend Integration
 
-```javascript
-// js/main.js
+### Step 3.1: Add Firebase SDKs to Your HTML
 
-const firebaseConfig = {
+In `login.html` and `register.html`, add the following scripts to the bottom of the `<body>` tag, before your `auth.js` script.
+
+```html
+<!-- TODO: Add your project's Firebase SDKs here -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_AUTH_DOMAIN",
     projectId: "YOUR_PROJECT_ID",
     storageBucket: "YOUR_STORAGE_BUCKET",
     messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
     appId: "YOUR_APP_ID"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script src="js/auth.js" defer></script>
+```
+
+**Important:** Replace the `firebaseConfig` object with the one you copied from your Firebase project.
+
+### Step 3.2: Update `auth.js`
+
+Now, you need to replace the placeholder functions in `js/auth.js` with actual Firebase authentication calls.
+
+Find the `// TODO: Add real auth here` comments and replace the placeholder code.
+
+**Example for Social Logins:**
+
+```javascript
+// In handleOAuthLogin function
+const handleOAuthLogin = (providerName) => {
+    let provider;
+    if (providerName === 'Google') {
+        provider = new firebase.auth.GoogleAuthProvider();
+    } else if (providerName === 'Facebook') {
+        provider = new firebase.auth.FacebookAuthProvider();
+    } else {
+        return;
+    }
+
+    firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+            // User signed in.
+            console.log('User signed in:', result.user);
+            window.location.href = 'dashboard.html'; // Redirect to a protected page
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            console.error('OAuth Error:', error.message);
+            alert('Error signing in: ' + error.message);
+        });
 };
 ```
 
-### Step 5: Configure Authorized Domains
+**Example for Email/Password Registration:**
 
-1.  In the Firebase Authentication **Sign-in method** tab, scroll down to **Authorized domains**.
-2.  Ensure that the domain where you are hosting your website is listed (e.g., `localhost` for local development).
+```javascript
+// In the registerForm submit event listener
+if (isValid) {
+    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
+        .then((userCredential) => {
+            console.log('User created:', userCredential.user);
+            window.location.href = 'dashboard.html';
+        })
+        .catch((error) => {
+            console.error('Registration Error:', error.message);
+            alert('Error creating account: ' + error.message);
+        });
+}
+```
 
-That's it! Your login and registration pages should now work correctly.
+**Example for Email/Password Login:**
+
+```javascript
+// In the loginForm submit event listener
+if (isValid) {
+    firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+        .then((userCredential) => {
+            console.log('User signed in:', userCredential.user);
+            window.location.href = 'dashboard.html';
+        })
+        .catch((error) => {
+            console.error('Login Error:', error.message);
+            alert('Error signing in: ' + error.message);
+        });
+}
+```
 
 ---
 
-## Option 2: Auth0 Integration
+## 4. Next Steps
 
-Auth0 is a powerful and flexible identity platform.
-
-1.  **Sign up for Auth0**: Create a free account at [Auth0](https://auth0.com/).
-2.  **Create an Application**: In the Auth0 dashboard, go to Applications and create a new "Single Page Web Application".
-3.  **Configure URLs**: In your application settings, add your app's URL (e.g., `http://localhost:3000`) to "Allowed Callback URLs", "Allowed Logout URLs", and "Allowed Web Origins".
-4.  **Install SDK**: Replace the Firebase CDN scripts in `login.html` and `register.html` with the Auth0 SPA JS SDK:
-    `<script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>`
-5.  **Update `main.js`**: You will need to replace the Firebase initialization and auth calls with Auth0's methods. Refer to the [Auth0 Single-Page App Quickstart](https://auth0.com/docs/quickstart/spa) for detailed instructions.
-
----
-
-## Option 3: Supabase Integration
-
-Supabase is an open-source Firebase alternative with a great developer experience.
-
-1.  **Create a Supabase Project**: Sign up at [Supabase](https://supabase.com/) and create a new project.
-2.  **Get API Keys**: In your project dashboard, go to **Settings** -> **API**. You will find your Project URL and `anon` public key.
-3.  **Enable Providers**: Go to **Authentication** -> **Providers** and enable the social logins you want (Google, Facebook, etc.). Follow the on-screen guides to add your provider credentials.
-4.  **Install SDK**: Replace the Firebase CDN scripts in `login.html` and `register.html` with the Supabase JS library:
-    `<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>`
-5.  **Update `main.js`**: Replace the Firebase logic with Supabase's. You will initialize the Supabase client with your URL and key and then use `supabase.auth.signInWith...` methods. Refer to the [Supabase Auth Quickstart](https://supabase.com/docs/guides/auth) for code examples.
+- **Session Management**: Use `firebase.auth().onAuthStateChanged()` to listen for changes in the user's sign-in state and protect pages like `dashboard.html`.
+- **User Profiles**: Once a user is created, you can save additional user information (like their name from the registration form) to a database like Firestore.
+- **Logout**: Create a logout button that calls `firebase.auth().signOut()`.

@@ -3,64 +3,30 @@
 <head><base href="./"/>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Dashboard | ProPresence</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>Dashboard - AuthFlow</title>
 <link href="css/main.css" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        'brand': '#4f46e5',
-                        'brand-dark': '#3730a3',
-                    }
-                }
-            }
-        }
-    </script>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
-<!-- Header -->
-<header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
-<div class="container mx-auto px-6 py-4 flex justify-between items-center">
-<a class="flex items-center space-x-2" href="index.html">
-<img alt="ProPresence Logo" class="h-8 w-8" src="assets/logo.png"/>
-<span class="text-2xl font-bold text-gray-900 dark:text-white">ProPresence</span>
+<body class="bg-slate-100 dark:bg-gray-900 text-slate-800 dark:text-slate-200 font-sans antialiased">
+<header class="bg-white dark:bg-gray-800 shadow-md">
+<div class="container mx-auto flex justify-between items-center p-4">
+<a class="flex items-center gap-2" href="index.html">
+<img alt="AuthFlow Logo" class="h-8 w-8" src="assets/logo.png"/>
+<span class="text-xl font-bold">AuthFlow</span>
 </a>
-<nav class="hidden md:flex items-center space-x-6">
-<a class="hover:text-brand dark:hover:text-indigo-400 transition-colors" href="index.html">Home</a>
-<a class="hover:text-brand dark:hover:text-indigo-400 transition-colors" href="about.html">About</a>
-<a class="hover:text-brand dark:hover:text-indigo-400 transition-colors" href="services.html">Services</a>
+<nav>
+<a class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400" href="index.html">Logout</a>
 </nav>
-<div class="flex items-center space-x-4">
-<div class="hidden" id="auth-links-desktop"></div>
-<div class="hidden md:flex items-center space-x-4" id="user-menu-desktop">
-<span class="text-sm" id="user-greeting"></span>
-<button class="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors" id="logout-button">Log Out</button>
-</div>
-<button class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" id="dark-mode-toggle">
-<svg class="h-6 w-6" fill="none" id="sun-icon" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<svg class="h-6 w-6 hidden" fill="none" id="moon-icon" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
 </div>
 </header>
-<main class="container mx-auto px-6 py-12">
-<div class="hidden" id="dashboard-content">
-<h1 class="text-4xl font-bold mb-2">Welcome to your Dashboard</h1>
-<p class="text-lg text-gray-600 dark:text-gray-400" id="user-email">This is your protected area. Only logged-in users can see this content.</p>
-</div>
-<div class="text-center py-20" id="loading-spinner">
-<svg class="animate-spin h-10 w-10 text-brand mx-auto" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
-</svg>
-<p class="mt-4">Loading...</p>
+<main class="container mx-auto p-8">
+<h1 class="text-3xl font-bold mb-4">Welcome to your Dashboard</h1>
+<p class="text-lg text-gray-600 dark:text-gray-400">This is a protected area. You have successfully signed in.</p>
+<div class="mt-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+<h2 class="text-2xl font-semibold mb-2">Your Profile</h2>
+<p><strong>Email:</strong> user@example.com</p>
+<p><strong>Member Since:</strong> January 1, 2024</p>
 </div>
 </main>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-<script defer="" src="js/main.js"></script>
 </body>
 </html>
