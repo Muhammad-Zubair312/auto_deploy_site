@@ -1,118 +1,123 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Mobile Menu --- //
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (mobileMenuButton && mobileMenu) {
-    mobileMenuButton.addEventListener('click', () => {
-      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-      mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-      mobileMenu.classList.toggle('hidden');
-    });
-  }
-
-  // --- Dark Mode Toggle --- //
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
-  const themeIconLight = document.getElementById('theme-icon-light');
-  const themeIconDark = document.getElementById('theme-icon-dark');
-  const htmlElement = document.documentElement;
-
-  const applyTheme = (theme) => {
-    if (theme === 'dark') {
-      htmlElement.classList.add('dark');
-      themeIconLight.classList.add('hidden');
-      themeIconDark.classList.remove('hidden');
-    } else {
-      htmlElement.classList.remove('dark');
-      themeIconLight.classList.remove('hidden');
-      themeIconDark.classList.add('hidden');
-    }
-  };
-
-  const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  applyTheme(currentTheme);
-
-  if(darkModeToggle) {
-      darkModeToggle.addEventListener('click', () => {
-        const newTheme = htmlElement.classList.contains('dark') ? 'light' : 'dark';
-        localStorage.setItem('theme', newTheme);
-        applyTheme(newTheme);
-      });
-  }
-
-  // --- Scroll to Top Button --- //
-  const scrollToTopButton = document.getElementById('scroll-to-top');
-  if (scrollToTopButton) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollToTopButton.classList.add('visible');
-      } else {
-        scrollToTopButton.classList.remove('visible');
-      }
-    });
-    scrollToTopButton.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // --- Active Nav Link --- //
-  const navLinks = document.querySelectorAll('.nav-link');
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-  navLinks.forEach(link => {
-    if (link.getAttribute('href') === currentPath) {
-      link.setAttribute('aria-current', 'page');
-    } else {
-       link.removeAttribute('aria-current');
-    }
-  });
-
-  // --- FAQ Accordion --- //
-  const faqAccordion = document.getElementById('faq-accordion');
-  if (faqAccordion) {
-    const faqButtons = faqAccordion.querySelectorAll('.faq-button');
-    faqButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const content = button.parentElement.nextElementSibling;
-        const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-        // Optional: Close other accordions
-        // faqButtons.forEach(btn => {
-        //   btn.setAttribute('aria-expanded', 'false');
-        //   btn.parentElement.nextElementSibling.classList.add('hidden');
-        // });
-
-        button.setAttribute('aria-expanded', !isExpanded);
-        content.classList.toggle('hidden');
-      });
-    });
-  }
-
-  // --- Portfolio Filter --- //
-  const filtersContainer = document.getElementById('portfolio-filters');
-  const portfolioGrid = document.getElementById('portfolio-grid');
-  if(filtersContainer && portfolioGrid) {
-    const filterButtons = filtersContainer.querySelectorAll('.filter-btn');
-    const portfolioItems = portfolioGrid.querySelectorAll('.portfolio-item');
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active-filter'));
-        button.classList.add('active-filter');
-
-        // Filter items
-        portfolioItems.forEach(item => {
-          const category = item.getAttribute('data-category');
-          if (filter === 'all' || filter === category) {
-            item.classList.remove('hidden');
-          } else {
-            item.classList.add('hidden');
-          }
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
-      });
-    });
-  }
+    }
 
+    // Firebase Authentication integration
+    // IMPORTANT: Replace placeholders with your actual Firebase config
+    const firebaseConfig = {
+        apiKey: "FIREBASE_API_KEY_PLACEHOLDER",
+        authDomain: "FIREBASE_AUTH_DOMAIN_PLACEHOLDER",
+        projectId: "FIREBASE_PROJECT_ID_PLACEHOLDER",
+        storageBucket: "FIREBASE_STORAGE_BUCKET_PLACEHOLDER",
+        messagingSenderId: "FIREBASE_MESSAGING_SENDER_ID_PLACEHOLDER",
+        appId: "FIREBASE_APP_ID_PLACEHOLDER"
+    };
+
+    // Initialize Firebase if the SDK is loaded
+    if (typeof firebase !== 'undefined') {
+        try {
+            firebase.initializeApp(firebaseConfig);
+        } catch (error) {
+            console.error("Firebase initialization failed. Make sure your config is correct.", error);
+        }
+    }
+
+    const authErrorElement = document.getElementById('auth-error');
+
+    function showAuthError(message) {
+        if (authErrorElement) {
+            authErrorElement.textContent = message;
+            authErrorElement.classList.remove('hidden');
+        }
+    }
+
+    // Auth functions to be called from HTML onclick attributes
+    const authHandler = {
+        signInWithGoogle: () => {
+            if (!firebase) return console.error('Firebase not initialized.');
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    console.log('Google sign-in successful:', result.user);
+                    window.location.href = 'index.html'; // Redirect to a dashboard or home page
+                })
+                .catch((error) => {
+                    console.error('Google sign-in error:', error);
+                    showAuthError(error.message);
+                });
+        },
+
+        signInWithFacebook: () => {
+            if (!firebase) return console.error('Firebase not initialized.');
+            const provider = new firebase.auth.FacebookAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    console.log('Facebook sign-in successful:', result.user);
+                    window.location.href = 'index.html'; // Redirect
+                })
+                .catch((error) => {
+                    console.error('Facebook sign-in error:', error);
+                    showAuthError(error.message);
+                });
+        }
+    };
+
+    // Expose auth handler to the global scope
+    window.auth = authHandler;
+
+    // Handle email/password login
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!firebase) return showAuthError('Authentication service is not available.');
+            
+            const email = loginForm.email.value;
+            const password = loginForm.password.value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    console.log('Login successful:', userCredential.user);
+                    window.location.href = 'index.html';
+                })
+                .catch((error) => {
+                    console.error('Login error:', error);
+                    showAuthError(error.message);
+                });
+        });
+    }
+
+    // Handle email/password registration
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!firebase) return showAuthError('Authentication service is not available.');
+
+            const email = registerForm.email.value;
+            const password = registerForm.password.value;
+            const confirmPassword = registerForm['confirm-password'].value;
+
+            if (password !== confirmPassword) {
+                return showAuthError("Passwords do not match.");
+            }
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    console.log('Registration successful:', userCredential.user);
+                    window.location.href = 'index.html';
+                })
+                .catch((error) => {
+                    console.error('Registration error:', error);
+                    showAuthError(error.message);
+                });
+        });
+    }
 });

@@ -3,61 +3,56 @@
 <head><base href="./"/>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sign Up - WebApp Pro</title>
-<meta content="Create a new account on WebApp Pro to get started." name="description"/>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>Register - Professional Online Presence</title>
+<meta content="Create a new account." name="description"/>
 <link href="css/main.css" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { 500: '#0ea5e9', 600: '#0284c7' }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-slate-50 dark:bg-slate-900 flex flex-col min-h-screen">
-<div class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-<div class="max-w-md w-full space-y-8">
-<div>
-<a class="inline-block mx-auto" href="index.html">
-<img alt="WebApp Pro Logo" class="mx-auto h-12 w-auto" src="assets/logo.png"/>
-</a>
-<h2 class="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-white">Create your account</h2>
-<p class="mt-2 text-center text-sm text-slate-600 dark:text-slate-400">Already have an account? <a class="font-medium text-brand-600 hover:text-brand-500" href="login.html">Sign in</a></p>
-</div>
-<form action="#" class="mt-8 space-y-6" id="register-form" method="POST">
-<div class="space-y-4">
-<div>
-<label class="sr-only" for="username">Username</label>
-<input autocomplete="username" class="appearance-none relative block w-full px-3 py-2 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-md focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm dark:bg-slate-800 dark:border-slate-700 dark:text-white" id="username" name="username" placeholder="Username" required="" type="text"/>
-</div>
-<div>
-<label class="sr-only" for="email-address">Email address</label>
-<input autocomplete="email" class="appearance-none relative block w-full px-3 py-2 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-md focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm dark:bg-slate-800 dark:border-slate-700 dark:text-white" id="email-address" name="email" placeholder="Email address" required="" type="email"/>
-</div>
-<div>
-<label class="sr-only" for="password">Password</label>
-<input autocomplete="new-password" class="appearance-none relative block w-full px-3 py-2 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-md focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm dark:bg-slate-800 dark:border-slate-700 dark:text-white" id="password" name="password" placeholder="Password" required="" type="password"/>
-<div class="mt-2 h-2 bg-slate-200 dark:bg-slate-700 rounded-full"><div class="h-2 bg-green-500 w-1/3 rounded-full"></div></div>
-<p class="text-xs text-slate-500 mt-1">Password strength meter (static example)</p>
-</div>
-<div>
-<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="profile-picture">Profile Picture (Optional)</label>
-<input class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 dark:file:bg-slate-700 dark:file:text-slate-300 dark:hover:file:bg-slate-600" id="profile-picture" name="profile-picture" type="file"/>
-</div>
-</div>
-<div>
-<button class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 dark:focus:ring-offset-slate-900" type="submit">Create Account</button>
-</div>
-</form>
-</div>
-</div>
-<div class="hidden fixed bottom-5 right-5 bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg text-base z-50" id="toast-notification"></div>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 <script defer="" src="js/main.js"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen py-8">
+<div class="w-full max-w-md p-8 space-y-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+<div class="text-center">
+<a href="index.html"><img alt="POP Logo" class="h-12 w-12 mx-auto mb-2" src="assets/logo.png"/></a>
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Create an Account</h1>
+<p class="text-gray-600 dark:text-gray-400">Get started with us today!</p>
+</div>
+<form class="space-y-6" id="register-form">
+<div>
+<label class="form-label sr-only" for="name">Full Name</label>
+<input class="form-input" id="name" name="name" placeholder="Full Name" required="" type="text"/>
+</div>
+<div>
+<label class="form-label sr-only" for="email">Email Address</label>
+<input class="form-input" id="email" name="email" placeholder="Email Address" required="" type="email"/>
+</div>
+<div>
+<label class="form-label sr-only" for="password">Password</label>
+<input class="form-input" id="password" minlength="6" name="password" placeholder="Password" required="" type="password"/>
+</div>
+<div>
+<label class="form-label sr-only" for="confirm-password">Confirm Password</label>
+<input class="form-input" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required="" type="password"/>
+</div>
+<button class="btn btn-primary w-full" type="submit">Create Account</button>
+<div class="text-red-500 text-sm mt-2 text-center hidden" id="auth-error"></div>
+</form>
+<div class="relative flex items-center justify-center my-4">
+<div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+<span class="flex-shrink mx-4 text-gray-500 dark:text-gray-400">Or sign up with</span>
+<div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="btn btn-social" onclick="auth.signInWithGoogle()">
+<img alt="Google" class="w-5 h-5 mr-2" src="assets/google-icon.png"/> Google
+            </button>
+<button class="btn btn-social" onclick="auth.signInWithFacebook()">
+<img alt="Facebook" class="w-5 h-5 mr-2" src="assets/facebook-icon.png"/> Facebook
+            </button>
+</div>
+<p class="text-center text-sm text-gray-600 dark:text-gray-400">
+            Already have an account? <a class="font-medium text-primary-500 hover:underline" href="login.html">Log in</a>
+</p>
+</div>
 </body>
 </html>
