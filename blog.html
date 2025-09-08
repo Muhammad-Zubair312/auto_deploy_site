@@ -1,76 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head><base href="./"/>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Blog - ProWeb</title>
-<meta content="Read the latest articles and news from ProWeb." name="description"/>
+<title>Blog | ProPresence</title>
+<meta content="Read the latest news, insights, and case studies from the ProPresence team. Stay updated on web design trends, SEO tips, and more." name="description"/>
+<link href="/blog.html" rel="canonical"/>
+<meta content="Blog | ProPresence" property="og:title"/>
+<meta content="Read the latest news, insights, and case studies from the ProPresence team." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="/blog.html" property="og:url"/>
+<meta content="assets/logo.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Blog | ProPresence" name="twitter:title"/>
+<meta content="Read the latest news, insights, and case studies from the ProPresence team." name="twitter:description"/>
+<meta content="assets/logo.png" name="twitter:image"/>
 <link href="css/main.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
-<header class="header">
-<div class="container">
-<div class="nav-container">
-<a class="logo-link" href="index.html"><img alt="ProWeb Logo" class="logo" src="assets/logo.png"/> ProWeb</a>
-<nav class="nav-main">
-<ul class="nav-list">
-<li><a class="nav-link" href="index.html">Home</a></li>
-<li><a class="nav-link" href="products.html">Products</a></li>
-<li><a class="nav-link active" href="blog.html">Blog</a></li>
-<li><a class="nav-link" href="contact.html">Contact</a></li>
-</ul>
+<body class="bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 antialiased font-sans">
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 border-b border-slate-200 dark:border-slate-800" id="header">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<a aria-label="ProPresence Homepage" class="flex items-center gap-2" href="index.html">
+<img alt="ProPresence Logo" class="h-8 w-auto" src="assets/logo.png"/>
+<span class="text-xl font-bold text-slate-800 dark:text-white">ProPresence</span>
+</a>
+<nav class="hidden md:flex items-center space-x-1">
+<a class="nav-link px-3 py-2 rounded-md text-sm font-medium" href="index.html">Home</a>
+<a class="nav-link px-3 py-2 rounded-md text-sm font-medium" href="about.html">About</a>
+<a class="nav-link px-3 py-2 rounded-md text-sm font-medium" href="services.html">Services</a>
+<a class="nav-link px-3 py-2 rounded-md text-sm font-medium" href="portfolio.html">Portfolio</a>
+<a aria-current="page" class="nav-link px-3 py-2 rounded-md text-sm font-medium" href="blog.html">Blog</a>
+<a class="nav-link px-3 py-2 rounded-md text-sm font-medium" href="contact.html">Contact</a>
 </nav>
-<div class="nav-actions">
-<a class="nav-link cart-link" href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-<a class="btn btn-secondary" href="login.html">Login</a>
+<div class="flex items-center">
+<button aria-label="Toggle dark mode" class="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900" id="dark-mode-toggle">
+<svg class="h-5 w-5" fill="none" id="theme-icon-light" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="h-5 w-5 hidden" fill="none" id="theme-icon-dark" stroke="currentColor" viewbox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button aria-controls="mobile-menu" aria-expanded="false" class="md:hidden ml-2 p-2 rounded-md text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500" id="mobile-menu-button">
+<span class="sr-only">Open main menu</span>
+<svg aria-hidden="true" class="block h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
 </div>
-<button aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle"><span class="hamburger"></span></button>
+</div>
+<div class="md:hidden hidden" id="mobile-menu">
+<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+<a class="nav-link block px-3 py-2 rounded-md text-base font-medium" href="index.html">Home</a>
+<a class="nav-link block px-3 py-2 rounded-md text-base font-medium" href="about.html">About</a>
+<a class="nav-link block px-3 py-2 rounded-md text-base font-medium" href="services.html">Services</a>
+<a class="nav-link block px-3 py-2 rounded-md text-base font-medium" href="portfolio.html">Portfolio</a>
+<a aria-current="page" class="nav-link block px-3 py-2 rounded-md text-base font-medium" href="blog.html">Blog</a>
+<a class="nav-link block px-3 py-2 rounded-md text-base font-medium" href="contact.html">Contact</a>
+</div>
 </div>
 </div>
 </header>
-<main>
-<section class="page-header">
-<div class="container">
-<h1>ProWeb Blog</h1>
-<p>Insights, news, and updates from our team.</p>
+<main class="pt-16" id="main-content">
+<!-- Page Header -->
+<div class="bg-slate-50 dark:bg-slate-900/50 py-16 sm:py-24">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h1 class="text-4xl font-extrabold text-slate-900 dark:text-white sm:text-5xl">From The Blog</h1>
+<p class="mt-4 text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">Insights, tutorials, and news from our team of web professionals.</p>
 </div>
-</section>
-<section>
-<div class="container">
-<div class="blog-list">
-<article class="card blog-card-full">
-<div class="card-body">
-<h2><a href="blog-post.html">The Future of Web Development</a></h2>
-<p class="post-meta">Published on July 20, 2024 by Admin</p>
-<p>Explore the upcoming trends that are shaping the future of the web industry. From AI-powered tools to the rise of edge computing, we cover what you need to know to stay ahead. The landscape is constantly evolving, and keeping up is key to success.</p>
-<a class="read-more" href="blog-post.html">Read More →</a>
 </div>
+<!-- Blog List -->
+<section class="py-16 sm:py-24">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid lg:grid-cols-3 gap-12">
+<!-- Blog Posts -->
+<div class="lg:col-span-2 space-y-12">
+<article class="group">
+<a aria-label="Read more about The Importance of Mobile-First Design" href="#">
+<img alt="A smartphone showcasing a responsive website design." class="w-full h-80 object-cover rounded-lg shadow-lg mb-6 group-hover:opacity-90 transition-opacity" loading="lazy" src="assets/blog1.png"/>
+</a>
+<p class="text-sm text-primary-600 dark:text-primary-400">Web Design • <time datetime="2024-05-10">May 10, 2024</time></p>
+<h2 class="mt-2 text-2xl font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+<a href="#">The Importance of Mobile-First Design</a>
+</h2>
+<p class="mt-4 text-slate-600 dark:text-slate-400">In today's digital landscape, more users access the web from mobile devices than from desktops. Discover why a mobile-first approach is no longer optional but essential for a successful online presence.</p>
+<a class="mt-4 inline-block font-semibold text-primary-600 dark:text-primary-400 hover:underline" href="#">Read more →</a>
 </article>
-<article class="card blog-card-full">
-<div class="card-body">
-<h2><a href="blog-post.html">10 Tips for Better SEO</a></h2>
-<p class="post-meta">Published on July 15, 2024 by Admin</p>
-<p>Improve your website's visibility with these simple and effective SEO tips. We'll dive into keyword research, on-page optimization, backlink strategies, and more to help you climb the search engine rankings and attract more organic traffic.</p>
-<a class="read-more" href="blog-post.html">Read More →</a>
-</div>
+<article class="group">
+<a aria-label="Read more about 5 SEO Tips to Boost Your Rankings in 2024" href="#">
+<img alt="A computer screen with search engine results." class="w-full h-80 object-cover rounded-lg shadow-lg mb-6 group-hover:opacity-90 transition-opacity" loading="lazy" src="assets/blog2.png"/>
+</a>
+<p class="text-sm text-primary-600 dark:text-primary-400">SEO • <time datetime="2024-04-22">April 22, 2024</time></p>
+<h2 class="mt-2 text-2xl font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+<a href="#">5 SEO Tips to Boost Your Rankings in 2024</a>
+</h2>
+<p class="mt-4 text-slate-600 dark:text-slate-400">Search engine algorithms are constantly evolving. Stay ahead of the curve with these five actionable SEO tips that will help improve your website's visibility and drive more organic traffic this year.</p>
+<a class="mt-4 inline-block font-semibold text-primary-600 dark:text-primary-400 hover:underline" href="#">Read more →</a>
 </article>
-<article class="card blog-card-full">
-<div class="card-body">
-<h2><a href="blog-post.html">Why a Responsive Design is Non-Negotiable</a></h2>
-<p class="post-meta">Published on July 10, 2024 by Admin</p>
-<p>In today's multi-device world, a responsive website is essential for a good user experience. Learn why it matters and how to implement it effectively. We will cover the core principles, from fluid grids to flexible images and media queries.</p>
-<a class="read-more" href="blog-post.html">Read More →</a>
-</div>
+<article class="group">
+<a aria-label="Read more about The Power of a Strong Brand Identity" href="#">
+<img alt="Various branding materials like business cards and letterheads." class="w-full h-80 object-cover rounded-lg shadow-lg mb-6 group-hover:opacity-90 transition-opacity" loading="lazy" src="assets/blog3.png"/>
+</a>
+<p class="text-sm text-primary-600 dark:text-primary-400">Branding • <time datetime="2024-03-15">March 15, 2024</time></p>
+<h2 class="mt-2 text-2xl font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+<a href="#">The Power of a Strong Brand Identity</a>
+</h2>
+<p class="mt-4 text-slate-600 dark:text-slate-400">Your brand is more than just a logo. It's the core of your business's identity. Learn how a cohesive brand strategy can build trust, foster loyalty, and set you apart from the competition.</p>
+<a class="mt-4 inline-block font-semibold text-primary-600 dark:text-primary-400 hover:underline" href="#">Read more →</a>
 </article>
+</div>
+<!-- Sidebar -->
+<aside class="lg:col-span-1">
+<div class="sticky top-24">
+<div class="mb-8">
+<label class="sr-only" for="search">Search</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-md leading-5 bg-white dark:bg-slate-800 dark:border-slate-600 placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm" id="search" placeholder="Search articles..." type="search"/>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Categories</h3>
+<ul class="space-y-2">
+<li><a class="hover:text-primary-600 dark:hover:text-primary-400" href="#">Web Design</a></li>
+<li><a class="hover:text-primary-600 dark:hover:text-primary-400" href="#">SEO</a></li>
+<li><a class="hover:text-primary-600 dark:hover:text-primary-400" href="#">Branding</a></li>
+<li><a class="hover:text-primary-600 dark:hover:text-primary-400" href="#">Marketing</a></li>
+<li><a class="hover:text-primary-600 dark:hover:text-primary-400" href="#">Case Studies</a></li>
+</ul>
+</div>
+</div>
+</aside>
 </div>
 </div>
 </section>
 </main>
-<footer class="footer">
-<div class="container">
-<p class="copyright">© 2024 ProWeb. All rights reserved.</p>
+<footer class="bg-slate-800 dark:bg-black/50 text-slate-400">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<a aria-label="ProPresence Homepage" class="flex items-center gap-2" href="index.html">
+<img alt="ProPresence Logo" class="h-8 w-auto" src="assets/logo.png"/>
+<span class="text-xl font-bold text-white">ProPresence</span>
+</a>
+<p class="mt-4 text-sm">Building your professional digital footprint.</p>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-slate-300 tracking-wider uppercase">Navigation</h3>
+<ul class="mt-4 space-y-2">
+<li><a class="text-base hover:text-white transition-colors duration-300" href="about.html">About Us</a></li>
+<li><a class="text-base hover:text-white transition-colors duration-300" href="services.html">Services</a></li>
+<li><a class="text-base hover:text-white transition-colors duration-300" href="blog.html">Blog</a></li>
+<li><a class="text-base hover:text-white transition-colors duration-300" href="contact.html">Contact</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-slate-300 tracking-wider uppercase">Contact</h3>
+<ul class="mt-4 space-y-2">
+<li class="flex items-center"><svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>(555) 123-4567</span></li>
+<li class="flex items-center"><svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>contact@propresence.dev</span></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-slate-300 tracking-wider uppercase">Follow Us</h3>
+<div class="flex mt-4 space-x-4">
+<a aria-label="Twitter" class="hover:text-white" href="#"><svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+<a aria-label="LinkedIn" class="hover:text-white" href="#"><svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-slate-700 pt-8 text-center text-sm">
+<p>© 2024 ProPresence. All rights reserved.</p>
+</div>
 </div>
 </footer>
-<script src="js/main.js"></script>
+<button aria-label="Scroll to top" class="fixed bottom-4 right-4 bg-primary-600 text-white p-3 rounded-full shadow-lg hover:bg-primary-700 transition-opacity opacity-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900" id="scroll-to-top">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<script defer="" src="js/main.js"></script>
 </body>
 </html>
