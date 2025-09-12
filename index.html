@@ -1,60 +1,205 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
-<head><base href="./"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Welcome - AuthFlow</title>
-<meta content="Secure and easy authentication solutions for your modern web applications." name="description"/>
-<link href="css/main.css" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>
+        /* Using fonts from the theme. Since external CDNs are disallowed, these will only work if the user has them installed. */
+        /* Otherwise, the fallback 'sans-serif' will be used. */
+        
+        :root {
+            --background-color: #111827;
+            --text-color: #f9fafb;
+            --primary-color: #6366f1;
+            --primary-hover-color: #4f46e5;
+            --secondary-color: #374151;
+            --accent-color: #f43f5e;
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Open Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        main {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container {
+            background-color: var(--secondary-color);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-header h1 {
+            font-family: var(--heading-font);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--background-color);
+            border: 2px solid transparent;
+            border-radius: 4px;
+            color: var(--text-color);
+            font-family: var(--body-font);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 4px;
+            font-family: var(--body-font);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: var(--primary-hover-color);
+        }
+
+        .error-message {
+            color: var(--accent-color);
+            text-align: center;
+            margin-top: 1rem;
+            min-height: 1.2em;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .recovery-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .recovery-link:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200 font-sans antialiased">
-<header class="absolute top-0 left-0 right-0 z-10 p-4">
-<div class="container mx-auto flex justify-between items-center">
-<a class="flex items-center gap-2" href="index.html">
-<img alt="AuthFlow Logo" class="h-8 w-8" src="assets/logo.png"/>
-<span class="text-xl font-bold">AuthFlow</span>
-</a>
-<nav>
-<a class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300" href="login.html">Sign In</a>
-</nav>
-</div>
-</header>
-<main>
-<section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900">
-<div class="container mx-auto text-center px-4">
-<h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4">Modern Authentication for Modern Apps</h1>
-<p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">Our pre-built authentication pages provide a secure, stylish, and seamless user experience right out of the box.</p>
-<div class="flex justify-center gap-4">
-<a class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 text-lg" href="register.html">Get Started</a>
-<a class="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 border border-slate-300 dark:border-gray-600 hover:bg-slate-100 text-slate-800 dark:text-slate-200 font-bold py-3 px-6 rounded-lg transition duration-300 text-lg" href="#features">Learn More</a>
-</div>
-</div>
-</section>
-<section class="py-20" id="features">
-<div class="container mx-auto px-4">
-<h2 class="text-3xl font-bold text-center mb-12">Features</h2>
-<div class="grid md:grid-cols-3 gap-8 text-center">
-<div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md">
-<h3 class="text-xl font-semibold mb-2">Responsive Design</h3>
-<p class="text-gray-600 dark:text-gray-400">Flawless experience on any device, from mobile phones to desktops.</p>
-</div>
-<div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md">
-<h3 class="text-xl font-semibold mb-2">Social Logins</h3>
-<p class="text-gray-600 dark:text-gray-400">Easy one-click sign-in with Google and Facebook. Ready to integrate.</p>
-</div>
-<div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md">
-<h3 class="text-xl font-semibold mb-2">Dark Mode</h3>
-<p class="text-gray-600 dark:text-gray-400">Beautiful, eye-friendly dark theme supported by default.</p>
-</div>
-</div>
-</div>
-</section>
-</main>
-<footer class="bg-slate-100 dark:bg-gray-800 py-8">
-<div class="container mx-auto text-center text-gray-600 dark:text-gray-400">
-<p>© 2024 AuthFlow. All rights reserved.</p>
-</div>
-</footer>
+<body>
+
+    <main>
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Welcome Back</h1>
+            </div>
+            
+            <form id="login-form" novalidate>
+                <!-- FR1: Input fields for username/email and password. -->
+                <div class="form-group">
+                    <label for="username">Username / Email</label>
+                    <input type="text" id="username" name="username" class="input-field" required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <!-- FR6: Mask password input -->
+                    <input type="password" id="password" name="password" class="input-field" required autocomplete="current-password">
+                </div>
+
+                <!-- FR5: Container for displaying error messages -->
+                <p id="error-message" class="error-message"></p>
+
+                <!-- FR2: 'Login' button -->
+                <button type="submit" class="login-button">Login</button>
+            </form>
+
+            <!-- FR7: Link for password recovery -->
+            <a href="#" class="recovery-link">Forgot Password?</a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('login-form');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const errorMessage = document.getElementById('error-message');
+
+            loginForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+
+                // Clear previous error messages
+                errorMessage.textContent = '';
+
+                // --- Client-side validation ---
+                if (!username || !password) {
+                    errorMessage.textContent = 'Both fields are required.';
+                    return;
+                }
+                
+                // FR3: Validate the entered credentials against stored user data (simulated).
+                // In a real application, this would be an API call to a server.
+                // For this example, we'll use a hardcoded user.
+                const storedUsername = 'user@example.com';
+                const storedPassword = 'Password123!';
+
+                if (username === storedUsername && password === storedPassword) {
+                    // FR4: Upon successful authentication, grant access and redirect.
+                    // We'll simulate this with an alert and a message.
+                    alert('Login Successful! Redirecting to your dashboard.');
+                    // In a real app, you would redirect like this:
+                    // window.location.href = '/dashboard'; 
+                    loginForm.reset();
+                } else {
+                    // FR5: Upon failed authentication, display a clear error message.
+                    errorMessage.textContent = 'Invalid username or password.';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
