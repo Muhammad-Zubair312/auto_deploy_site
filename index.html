@@ -3,201 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-    <style>
-        /* Using fonts from the theme. Since external CDNs are disallowed, these will only work if the user has them installed. */
-        /* Otherwise, the fallback 'sans-serif' will be used. */
-        
-        :root {
-            --background-color: #111827;
-            --text-color: #f9fafb;
-            --primary-color: #6366f1;
-            --primary-hover-color: #4f46e5;
-            --secondary-color: #374151;
-            --accent-color: #f43f5e;
-            --heading-font: 'Poppins', sans-serif;
-            --body-font: 'Open Sans', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: var(--body-font);
-            background-color: var(--background-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 1rem;
-        }
-
-        main {
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .login-container {
-            background-color: var(--secondary-color);
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .login-header h1 {
-            font-family: var(--heading-font);
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: var(--background-color);
-            border: 2px solid transparent;
-            border-radius: 4px;
-            color: var(--text-color);
-            font-family: var(--body-font);
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .login-button {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            border: none;
-            border-radius: 4px;
-            font-family: var(--body-font);
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .login-button:hover {
-            background-color: var(--primary-hover-color);
-        }
-
-        .error-message {
-            color: var(--accent-color);
-            text-align: center;
-            margin-top: 1rem;
-            min-height: 1.2em;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .recovery-link {
-            display: block;
-            text-align: center;
-            margin-top: 1.5rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: opacity 0.3s ease;
-        }
-
-        .recovery-link:hover {
-            opacity: 0.8;
-            text-decoration: underline;
-        }
-    </style>
+    <title>Support Management System - Home</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<body>
-
-    <main>
-        <div class="login-container">
-            <div class="login-header">
-                <h1>Welcome Back</h1>
-            </div>
-            
-            <form id="login-form" novalidate>
-                <!-- FR1: Input fields for username/email and password. -->
-                <div class="form-group">
-                    <label for="username">Username / Email</label>
-                    <input type="text" id="username" name="username" class="input-field" required autocomplete="username">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <!-- FR6: Mask password input -->
-                    <input type="password" id="password" name="password" class="input-field" required autocomplete="current-password">
-                </div>
-
-                <!-- FR5: Container for displaying error messages -->
-                <p id="error-message" class="error-message"></p>
-
-                <!-- FR2: 'Login' button -->
-                <button type="submit" class="login-button">Login</button>
-            </form>
-
-            <!-- FR7: Link for password recovery -->
-            <a href="#" class="recovery-link">Forgot Password?</a>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex items-center space-x-2">
+            <i data-feather="life-buoy" class="w-8 h-8 text-blue-400"></i>
+            <span class="text-xl font-bold">SupportHub</span>
         </div>
-    </main>
+        <div class="flex space-x-4 mt-2 md:mt-0">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
+            <a href='support-tickets.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Support Tickets</a>
+            <a href='knowledge-base.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Knowledge Base</a>
+            <a href='contact-us.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Contact Us</a>
+            <a href='user-dashboard.html' class='px-3 py-2 hover:text-blue-400 font-medium'>User Dashboard</a>
+            <a href='admin-dashboard.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Admin Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Streamlined Support Management</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Efficiently manage support tickets, knowledge base, and customer interactions in one powerful platform.</p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <a href="support-tickets.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">Submit a Ticket</a>
+                <a href="knowledge-base.html" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition duration-300">Browse Knowledge Base</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Powerful Features for Your Support Team</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="message-square" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Ticket Management</h3>
+                    <p class="text-gray-600">Efficiently track, prioritize, and resolve customer support tickets with our intuitive system.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="book-open" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Knowledge Base</h3>
+                    <p class="text-gray-600">Create and maintain a comprehensive knowledge base to empower customers and reduce support load.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="bar-chart-2" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Analytics & Reporting</h3>
+                    <p class="text-gray-600">Gain insights into support performance with detailed analytics and customizable reports.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-gray-100 py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">10,000+</div>
+                    <div class="text-gray-600">Tickets Resolved</div>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-4xl font-bold text-green-600 mb-2">500+</div>
+                    <div class="text-gray-600">Knowledge Articles</div>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-4xl font-bold text-purple-600 mb-2">24/7</div>
+                    <div class="text-gray-600">Support Availability</div>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="400">
+                    <div class="text-4xl font-bold text-orange-600 mb-2">99%</div>
+                    <div class="text-gray-600">Customer Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 px-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Support Experience?</h2>
+            <p class="text-xl mb-8">Join thousands of companies using our platform to deliver exceptional customer support.</p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <a href="contact-us.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">Get Started Today</a>
+                <a href="user-dashboard.html" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition duration-300">User Dashboard</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="life-buoy" class="w-6 h-6 text-blue-400"></i>
+                        <span class="text-xl font-bold">SupportHub</span>
+                    </div>
+                    <p class="text-gray-400">Streamlining support management for businesses of all sizes.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="support-tickets.html" class="text-gray-400 hover:text-white transition duration-300">Support Tickets</a></li>
+                        <li><a href="knowledge-base.html" class="text-gray-400 hover:text-white transition duration-300">Knowledge Base</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contact-us.html" class="text-gray-400 hover:text-white transition duration-300">Contact Us</a></li>
+                        <li><a href="user-dashboard.html" class="text-gray-400 hover:text-white transition duration-300">User Dashboard</a></li>
+                        <li><a href="admin-dashboard.html" class="text-gray-400 hover:text-white transition duration-300">Admin Dashboard</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center space-x-2">
+                            <i data-feather="mail" class="w-4 h-4"></i>
+                            <span>support@supporthub.com</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-feather="phone" class="w-4 h-4"></i>
+                            <span>1-800-SUPPORT</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-feather="clock" class="w-4 h-4"></i>
+                            <span>24/7 Support Available</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 SupportHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginForm = document.getElementById('login-form');
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-            const errorMessage = document.getElementById('error-message');
-
-            loginForm.addEventListener('submit', (event) => {
-                event.preventDefault(); // Prevent default form submission
-
-                const username = usernameInput.value;
-                const password = passwordInput.value;
-
-                // Clear previous error messages
-                errorMessage.textContent = '';
-
-                // --- Client-side validation ---
-                if (!username || !password) {
-                    errorMessage.textContent = 'Both fields are required.';
-                    return;
-                }
-                
-                // FR3: Validate the entered credentials against stored user data (simulated).
-                // In a real application, this would be an API call to a server.
-                // For this example, we'll use a hardcoded user.
-                const storedUsername = 'user@example.com';
-                const storedPassword = 'Password123!';
-
-                if (username === storedUsername && password === storedPassword) {
-                    // FR4: Upon successful authentication, grant access and redirect.
-                    // We'll simulate this with an alert and a message.
-                    alert('Login Successful! Redirecting to your dashboard.');
-                    // In a real app, you would redirect like this:
-                    // window.location.href = '/dashboard'; 
-                    loginForm.reset();
-                } else {
-                    // FR5: Upon failed authentication, display a clear error message.
-                    errorMessage.textContent = 'Invalid username or password.';
-                }
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true
             });
         });
     </script>

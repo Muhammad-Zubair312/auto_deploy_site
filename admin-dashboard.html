@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Support Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='support-tickets.html' class='px-3 py-2 hover:text-blue-400'>Support Tickets</a>
+        <a href='knowledge-base.html' class='px-3 py-2 hover:text-blue-400'>Knowledge Base</a>
+        <a href='contact-us.html' class='px-3 py-2 hover:text-blue-400'>Contact Us</a>
+        <a href='user-dashboard.html' class='px-3 py-2 hover:text-blue-400'>User Dashboard</a>
+        <a href='admin-dashboard.html' class='px-3 py-2 hover:text-blue-400'>Admin Dashboard</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="mb-8" data-aos="fade-down">
+            <h1 class="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
+            <p class="text-gray-600">Manage your support system efficiently</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Total Tickets -->
+            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                        <i data-feather="file-text" class="w-6 h-6"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">1,247</h3>
+                        <p class="text-gray-600">Total Tickets</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open Tickets -->
+            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                        <i data-feather="alert-circle" class="w-6 h-6"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">89</h3>
+                        <p class="text-gray-600">Open Tickets</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resolved Today -->
+            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-green-100 text-green-600">
+                        <i data-feather="check-circle" class="w-6 h-6"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">42</h3>
+                        <p class="text-gray-600">Resolved Today</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agents Online -->
+            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                        <i data-feather="users" class="w-6 h-6"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">15</h3>
+                        <p class="text-gray-600">Agents Online</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Recent Tickets -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow" data-aos="fade-right">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-800">Recent Support Tickets</h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ticket ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">#TSK-7842</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Login issues after update</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Open</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">High</span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">#TSK-7841</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Payment gateway integration</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Resolved</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Medium</span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">#TSK-7840</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Database backup failure</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Open</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">High</span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">#TSK-7839</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Feature request: Dark mode</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">Pending</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Low</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-200">
+                        <a href="support-tickets.html" class="text-blue-600 hover:text-blue-800 font-medium">View all tickets →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions & System Status -->
+            <div class="space-y-8">
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-lg shadow" data-aos="fade-left">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-800">Quick Actions</h2>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <button class="w-full flex items-center justify-between p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                            <span class="font-medium text-blue-700">Create New Ticket</span>
+                            <i data-feather="plus" class="w-5 h-5 text-blue-600"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+                            <span class="font-medium text-green-700">Manage Users</span>
+                            <i data-feather="users" class="w-5 h-5 text-green-600"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
+                            <span class="font-medium text-purple-700">System Settings</span>
+                            <i data-feather="settings" class="w-5 h-5 text-purple-600"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors">
+                            <span class="font-medium text-orange-700">Generate Reports</span>
+                            <i data-feather="bar-chart" class="w-5 h-5 text-orange-600"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- System Status -->
+                <div class="bg-white rounded-lg shadow" data-aos="fade-left" data-aos-delay="200">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-800">System Status</h2>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">API Services</span>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Online</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Database</span>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Online</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Email Service</span>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Maintenance</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">File Storage</span>
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Feather Icons and AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        });
+    </script>
+</body>
+</html>
