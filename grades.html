@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grades - Student Learning Platform</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+        <a href='courses.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Courses</a>
+        <a href='lessons.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Lessons</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
+        <a href='progress-tracking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Progress Tracking</a>
+        <a href='profile.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Profile</a>
+        <a href='assignments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Assignments</a>
+        <a href='grades.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Grades</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-8" data-aos="fade-up">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Gradebook</h1>
+            <p class="text-gray-600">Track your academic performance across all enrolled courses</p>
+        </div>
+
+        <!-- Overall GPA Card -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8" data-aos="fade-up">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Overall GPA</h2>
+                    <p class="text-3xl font-bold text-blue-600">3.75</p>
+                    <p class="text-gray-600 text-sm">Based on 5 completed courses</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-600">Current Semester</p>
+                    <p class="text-lg font-semibold text-gray-800">Fall 2024</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade Filters -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8" data-aos="fade-up">
+            <div class="flex flex-wrap gap-4 items-center">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Semester</label>
+                    <select class="w-full md:w-48 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>All Semesters</option>
+                        <option>Fall 2024</option>
+                        <option>Spring 2024</option>
+                        <option>Fall 2023</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Course</label>
+                    <select class="w-full md:w-48 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>All Courses</option>
+                        <option>Mathematics 101</option>
+                        <option>Computer Science 201</option>
+                        <option>Physics 150</option>
+                        <option>English 101</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
+                        Apply Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grades Table -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden" data-aos="fade-up">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Instructor</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assignments</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quizzes</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Final Exam</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Overall Grade</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- Course 1 -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                        <i data-feather="calculator" class="text-blue-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Mathematics 101</div>
+                                        <div class="text-sm text-gray-500">Fall 2024</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Dr. Sarah Johnson</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">92%</div>
+                                <div class="text-xs text-gray-500">A-</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">88%</div>
+                                <div class="text-xs text-gray-500">B+</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">95%</div>
+                                <div class="text-xs text-gray-500">A</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-semibold text-green-600">91%</div>
+                                <div class="text-xs font-semibold text-green-600">A-</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Completed
+                                </span>
+                            </td>
+                        </tr>
+
+                        <!-- Course 2 -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                        <i data-feather="code" class="text-green-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Computer Science 201</div>
+                                        <div class="text-sm text-gray-500">Fall 2024</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Prof. Michael Chen</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">85%</div>
+                                <div class="text-xs text-gray-500">B</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">78%</div>
+                                <div class="text-xs text-gray-500">C+</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Pending</div>
+                                <div class="text-xs text-gray-500">-</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-semibold text-yellow-600">82%</div>
+                                <div class="text-xs font-semibold text-yellow-600">B-</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    In Progress
+                                </span>
+                            </td>
+                        </tr>
+
+                        <!-- Course 3 -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                        <i data-feather="atom" class="text-purple-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Physics 150</div>
+                                        <div class="text-sm text-gray-500">Spring 2024</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Dr. Emily Rodriguez</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">94%</div>
+                                <div class="text-xs text-gray-500">A</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">89%</div>
+                                <div class="text-xs text-gray-500">B+</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">91%</div>
+                                <div class="text-xs text-gray-500">A-</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-semibold text-green-600">92%</div>
+                                <div class="text-xs font-semibold text-green-600">A-</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Completed
+                                </span>
+                            </td>
+                        </tr>
+
+                        <!-- Course 4 -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                        <i data-feather="book-open" class="text-red-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">English 101</div>
+                                        <div class="text-sm text-gray-500">Spring 2024</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Prof. James Wilson</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">87%</div>
+                                <div class="text-xs text-gray-500">B+</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">83%</div>
+                                <div class="text-xs text-gray-500">B</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">85%</div>
+                                <div class="text-xs text-gray-500">B</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-semibold text-yellow-600">85%</div>
+                                <div class="text-xs font-semibold text-yellow-600">B</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Completed
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Grade Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8" data-aos="fade-up">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i data-feather="trending-up" class="text-blue-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Highest Grade</p>
+                        <p class="text-2xl font-bold text-gray-900">96%</p>
+                        <p class="text-xs text-gray-500">Physics Lab</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-12 w-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <i data-feather="trending-down" class="text-yellow-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Lowest Grade</p>
+                        <p class="text-2xl font-bold text-gray-900">78%</p>
+                        <p class="text-xs text-gray-500">Computer Science Quiz</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i data-feather="award" class="text-green-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Completed Courses</p>
+                        <p class="text-2xl font-bold text-gray-900">8</p>
+                        <p class="text-xs text-gray-500">Total enrolled: 12</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+    </script>
+</body>
+</html>

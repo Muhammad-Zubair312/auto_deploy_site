@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login - Student Learning Platform</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-50 min-h-screen">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+        <a href='courses.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Courses</a>
+        <a href='lessons.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Lessons</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
+        <a href='progress-tracking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Progress Tracking</a>
+        <a href='profile.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Profile</a>
+        <a href='assignments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Assignments</a>
+        <a href='grades.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Grades</a>
     </nav>
 
     <!-- Login Section -->
-    <div class="flex items-center justify-center min-h-[calc(100vh-80px)] py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full space-y-8">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8" data-aos="fade-up">
             <div>
                 <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                     Sign in to your account
                 </h2>
                 <p class="mt-2 text-center text-sm text-gray-600">
-                    Or
-                    <a href="signup.html" class="font-medium text-blue-600 hover:text-blue-500">
-                        create a new account
-                    </a>
+                    Access your courses, track progress, and continue learning
                 </p>
             </div>
             <form class="mt-8 space-y-6" action="#" method="POST">
@@ -64,11 +71,77 @@
                 <div>
                     <button type="submit" 
                             class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <i data-feather="log-in" class="h-5 w-5 text-blue-500 group-hover:text-blue-400"></i>
+                        </span>
                         Sign in
                     </button>
                 </div>
+
+                <div class="text-center">
+                    <p class="text-sm text-gray-600">
+                        Don't have an account? 
+                        <a href="signup.html" class="font-medium text-blue-600 hover:text-blue-500">
+                            Sign up here
+                        </a>
+                    </p>
+                </div>
             </form>
+
+            <!-- Social Login Options -->
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-gray-50 text-gray-500">Or continue with</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-2 gap-3">
+                    <button type="button" 
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition duration-200">
+                        <i data-feather="github" class="h-5 w-5"></i>
+                        <span class="ml-2">GitHub</span>
+                    </button>
+                    <button type="button" 
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition duration-200">
+                        <i data-feather="google" class="h-5 w-5"></i>
+                        <span class="ml-2">Google</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Initialize AOS and Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+            feather.replace();
+        });
+
+        // Simple form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-address').value;
+            const password = document.getElementById('password').value;
+            
+            if (email && password) {
+                // Simulate login process
+                const button = document.querySelector('button[type="submit"]');
+                button.innerHTML = '<span class="absolute left-0 inset-y-0 flex items-center pl-3"><i data-feather="loader" class="h-5 w-5 text-blue-500 animate-spin"></i></span>Signing in...';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,72 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><base href="./"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>User Profile - ProWeb</title>
-<meta content="Manage your user profile and settings." name="description"/>
-<link href="css/main.css" rel="stylesheet"/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile - Learning Platform</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<body>
-<header class="header">
-<div class="container">
-<div class="nav-container">
-<a class="logo-link" href="index.html"><img alt="ProWeb Logo" class="logo" src="assets/logo.png"/> ProWeb</a>
-<nav class="nav-main">
-<ul class="nav-list">
-<li><a class="nav-link" href="index.html">Home</a></li>
-<li><a class="nav-link" href="products.html">Products</a></li>
-<li><a class="nav-link" href="blog.html">Blog</a></li>
-</ul>
-</nav>
-<div class="nav-actions">
-<a class="nav-link" href="#">Logout</a>
-</div>
-<button aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle"><span class="hamburger"></span></button>
-</div>
-</div>
-</header>
-<main>
-<section class="page-header">
-<div class="container">
-<h1>My Profile</h1>
-<p>View and manage your account details.</p>
-</div>
-</section>
-<section>
-<div class="container content-container">
-<form class="form-stacked" id="profile-form">
-<div class="form-group">
-<label>Profile Picture</label>
-<div class="profile-pic-placeholder">👤</div>
-<input id="profile-pic" name="profile-pic" type="file"/>
-</div>
-<div class="form-group">
-<label for="name">Full Name</label>
-<input id="name" name="name" required="" type="text" value="John Doe"/>
-</div>
-<div class="form-group">
-<label for="email">Email Address</label>
-<input id="email" name="email" required="" type="email" value="john.doe@example.com"/>
-</div>
-<div class="form-group">
-<label>Privacy</label>
-<select>
-<option value="public">Public Profile</option>
-<option selected="" value="private">Private Profile</option>
-</select>
-</div>
-<button class="btn btn-primary" type="submit">Update Profile</button>
-</form>
-<div id="form-status"></div>
-</div>
-</section>
-</main>
-<footer class="footer">
-<div class="container">
-<p class="copyright">© 2024 ProWeb. All rights reserved.</p>
-</div>
-</footer>
-<script src="js/main.js"></script>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+        <a href='courses.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Courses</a>
+        <a href='lessons.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Lessons</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
+        <a href='progress-tracking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Progress Tracking</a>
+        <a href='profile.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Profile</a>
+        <a href='assignments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Assignments</a>
+        <a href='grades.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Grades</a>
+    </nav>
+
+    <!-- Profile Header -->
+    <div class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="py-6">
+                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                    <div class="w-24 h-24 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                        JD
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h1 class="text-3xl font-bold text-gray-900">John Doe</h1>
+                        <p class="text-gray-600">Computer Science Student</p>
+                        <div class="flex items-center space-x-2 mt-2 justify-center md:justify-start">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Active</span>
+                            <span class="text-gray-500 text-sm">Member since 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column - Profile Info -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Personal Information -->
+                <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Personal Information</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Email</label>
+                            <p class="text-gray-900">john.doe@student.edu</p>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Phone</label>
+                            <p class="text-gray-900">+1 (555) 123-4567</p>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Location</label>
+                            <p class="text-gray-900">New York, NY</p>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Bio</label>
+                            <p class="text-gray-900">Passionate computer science student with interest in web development and machine learning.</p>
+                        </div>
+                    </div>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Edit Profile
+                    </button>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="100">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Learning Stats</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center p-4 bg-blue-50 rounded-lg">
+                            <div class="text-2xl font-bold text-blue-600">12</div>
+                            <div class="text-sm text-gray-600">Courses</div>
+                        </div>
+                        <div class="text-center p-4 bg-green-50 rounded-lg">
+                            <div class="text-2xl font-bold text-green-600">85%</div>
+                            <div class="text-sm text-gray-600">Avg. Grade</div>
+                        </div>
+                        <div class="text-center p-4 bg-purple-50 rounded-lg">
+                            <div class="text-2xl font-bold text-purple-600">45</div>
+                            <div class="text-sm text-gray-600">Lessons</div>
+                        </div>
+                        <div class="text-center p-4 bg-orange-50 rounded-lg">
+                            <div class="text-2xl font-bold text-orange-600">8</div>
+                            <div class="text-sm text-gray-600">Certificates</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Main Content -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Enrolled Courses -->
+                <div class="bg-white rounded-lg shadow" data-aos="fade-up">
+                    <div class="p-6 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-900">Enrolled Courses</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Course 1 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                        <i data-feather="code" class="text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Web Development</h3>
+                                        <p class="text-sm text-gray-600">Progress: 75%</p>
+                                    </div>
+                                </div>
+                                <div class="mt-3 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Course 2 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                        <i data-feather="database" class="text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Data Structures</h3>
+                                        <p class="text-sm text-gray-600">Progress: 60%</p>
+                                    </div>
+                                </div>
+                                <div class="mt-3 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Course 3 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                        <i data-feather="cpu" class="text-purple-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Machine Learning</h3>
+                                        <p class="text-sm text-gray-600">Progress: 40%</p>
+                                    </div>
+                                </div>
+                                <div class="mt-3 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-purple-600 h-2 rounded-full" style="width: 40%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Course 4 -->
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                                        <i data-feather="shield" class="text-orange-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Cybersecurity</h3>
+                                        <p class="text-sm text-gray-600">Progress: 25%</p>
+                                    </div>
+                                </div>
+                                <div class="mt-3 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-orange-600 h-2 rounded-full" style="width: 25%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white rounded-lg shadow" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-6 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-900">Recent Activity</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <!-- Activity 1 -->
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-feather="check-circle" class="text-green-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-900">Completed quiz: <span class="font-semibold">JavaScript Basics</span></p>
+                                    <p class="text-sm text-gray-500">2 hours ago • Score: 92%</p>
+                                </div>
+                            </div>
+
+                            <!-- Activity 2 -->
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i data-feather="play" class="text-blue-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-900">Watched video: <span class="font-semibold">React Hooks Tutorial</span></p>
+                                    <p class="text-sm text-gray-500">Yesterday • 45 minutes</p>
+                                </div>
+                            </div>
+
+                            <!-- Activity 3 -->
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <i data-feather="message-square" class="text-purple-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-900">Posted in discussion: <span class="font-semibold">Algorithm Optimization</span></p>
+                                    <p class="text-sm text-gray-500">2 days ago • 3 replies</p>
+                                </div>
+                            </div>
+
+                            <!-- Activity 4 -->
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                                    <i data-feather="award" class="text-orange-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-900">Earned certificate: <span class="font-semibold">Web Development Fundamentals</span></p>
+                                    <p class="text-sm text-gray-500">3 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Deadlines -->
+                <div class="bg-white rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-6 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-900">Upcoming Deadlines</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <!-- Deadline 1 -->
+                            <div class="flex items-center justify-between p-4 bg-red-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <i data-feather="file-text" class="text-red-600"></i>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Final Project Submission</h3>
+                                        <p class="text-sm text-gray-600">Web Development Course</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-red-600 font-semibold">Due in 3 days</p>
+                                    <p class="text-sm text-gray-500">Dec 15, 2023</p>
+                                </div>
+                            </div>
+
+                            <!-- Deadline 2 -->
+                            <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <i data-feather="clipboard" class="text-yellow-600"></i>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Midterm Exam</h3>
+                                        <p class="text-sm text-gray-600">Data Structures Course</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-yellow-600 font-semibold">Due in 1 week</p>
+                                    <p class="text-sm text-gray-500">Dec 20, 2023</p>
+                                </div>
+                            </div>
+
+                            <!-- Deadline 3 -->
+                            <div class="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <i data-feather="edit" class="text-blue-600"></i>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Assignment #5</h3>
+                                        <p class="text-sm text-gray-600">Machine Learning Course</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-blue-600 font-semibold">Due in 2 weeks</p>
+                                    <p class="text-sm text-gray-500">Dec 28, 2023</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+    </script>
 </body>
 </html>

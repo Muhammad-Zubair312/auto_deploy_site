@@ -1,32 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><base href="./"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Dashboard - AuthFlow</title>
-<link href="css/main.css" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<body class="bg-slate-100 dark:bg-gray-900 text-slate-800 dark:text-slate-200 font-sans antialiased">
-<header class="bg-white dark:bg-gray-800 shadow-md">
-<div class="container mx-auto flex justify-between items-center p-4">
-<a class="flex items-center gap-2" href="index.html">
-<img alt="AuthFlow Logo" class="h-8 w-8" src="assets/logo.png"/>
-<span class="text-xl font-bold">AuthFlow</span>
-</a>
-<nav>
-<a class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400" href="index.html">Logout</a>
-</nav>
-</div>
-</header>
-<main class="container mx-auto p-8">
-<h1 class="text-3xl font-bold mb-4">Welcome to your Dashboard</h1>
-<p class="text-lg text-gray-600 dark:text-gray-400">This is a protected area. You have successfully signed in.</p>
-<div class="mt-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-<h2 class="text-2xl font-semibold mb-2">Your Profile</h2>
-<p><strong>Email:</strong> user@example.com</p>
-<p><strong>Member Since:</strong> January 1, 2024</p>
-</div>
-</main>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+        <a href='courses.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Courses</a>
+        <a href='lessons.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Lessons</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
+        <a href='progress-tracking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Progress Tracking</a>
+        <a href='profile.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Profile</a>
+        <a href='assignments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Assignments</a>
+        <a href='grades.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Grades</a>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Student Dashboard</h1>
+                    <p class="text-gray-600 mt-2">Welcome back, John! Here's your learning progress.</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
+                        <i data-feather="user" class="w-4 h-4 inline mr-2"></i>
+                        Student
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                        <i data-feather="book-open" class="w-6 h-6"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Enrolled Courses</p>
+                        <p class="text-2xl font-bold text-gray-900">5</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-green-100 text-green-600">
+                        <i data-feather="check-circle" class="w-6 h-6"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Completed Lessons</p>
+                        <p class="text-2xl font-bold text-gray-900">23</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                        <i data-feather="award" class="w-6 h-6"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Average Grade</p>
+                        <p class="text-2xl font-bold text-gray-900">87%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                        <i data-feather="clock" class="w-6 h-6"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Study Time</p>
+                        <p class="text-2xl font-bold text-gray-900">42h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Current Courses -->
+                <section class="bg-white rounded-lg shadow" data-aos="fade-right">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-900">Current Courses</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">
+                                        WD
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="font-medium text-gray-900">Web Development</h3>
+                                        <p class="text-sm text-gray-600">Progress: 75% • 12/16 lessons</p>
+                                    </div>
+                                </div>
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i data-feather="play-circle" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold">
+                                        DS
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="font-medium text-gray-900">Data Science</h3>
+                                        <p class="text-sm text-gray-600">Progress: 45% • 9/20 lessons</p>
+                                    </div>
+                                </div>
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i data-feather="play-circle" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center text-white font-bold">
+                                        ML
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="font-medium text-gray-900">Machine Learning</h3>
+                                        <p class="text-sm text-gray-600">Progress: 30% • 6/20 lessons</p>
+                                    </div>
+                                </div>
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i data-feather="play-circle" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Activity -->
+                <section class="bg-white rounded-lg shadow" data-aos="fade-right" data-aos-delay="200">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-900">Recent Activity</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                    <i data-feather="check" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-900">Completed lesson: "React Hooks"</p>
+                                    <p class="text-xs text-gray-500">2 hours ago</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                                    <i data-feather="file-text" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-900">Submitted assignment: "Final Project Proposal"</p>
+                                    <p class="text-xs text-gray-500">1 day ago</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600">
+                                    <i data-feather="award" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-900">Earned badge: "Quiz Master"</p>
+                                    <p class="text-xs text-gray-500">2 days ago</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
+                                    <i data-feather="message-square" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-900">Posted in discussion: "CSS Grid vs Flexbox"</p>
+                                    <p class="text-xs text-gray-500">3 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-8">
+                <!-- Upcoming Deadlines -->
+                <section class="bg-white rounded-lg shadow" data-aos="fade-left">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-900">Upcoming Deadlines</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="p-3 border border-orange-200 bg-orange-50 rounded-lg">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm font-medium text-orange-800">Web Development</span>
+                                    <span class="text-xs text-orange-600">Tomorrow</span>
+                                </div>
+                                <p class="text-sm text-orange-700 mt-1">Final Project Submission</p>
+                            </div>
+
+                            <div class="p-3 border border-blue-200 bg-blue-50 rounded-lg">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm font-medium text-blue-800">Data Science</span>
+                                    <span class="text-xs text-blue-600">In 3 days</span>
+                                </div>
+                                <p class="text-sm text-blue-700 mt-1">Quiz: Data Visualization</p>
+                            </div>
+
+                            <div class="p-3 border border-gray-200 bg-gray-50 rounded-lg">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm font-medium text-gray-800">Machine Learning</span>
+                                    <span class="text-xs text-gray-600">Next week</span>
+                                </div>
+                                <p class="text-sm text-gray-700 mt-1">Assignment: Model Evaluation</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Actions -->
+                <section class="bg-white rounded-lg shadow" data-aos="fade-left" data-aos-delay="200">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-900">Quick Actions</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <a href="courses.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
+                                <i data-feather="book" class="w-6 h-6 text-blue-600 mb-2"></i>
+                                <span class="text-sm font-medium text-gray-700">Browse Courses</span>
+                            </a>
+
+                            <a href="assignments.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
+                                <i data-feather="file-text" class="w-6 h-6 text-green-600 mb-2"></i>
+                                <span class="text-sm font-medium text-gray-700">Assignments</span>
+                            </a>
+
+                            <a href="grades.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
+                                <i data-feather="award" class="w-6 h-6 text-yellow-600 mb-2"></i>
+                                <span class="text-sm font-medium text-gray-700">View Grades</span>
+                            </a>
+
+                            <a href="progress-tracking.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
+                                <i data-feather="trending-up" class="w-6 h-6 text-purple-600 mb-2"></i>
+                                <span class="text-sm font-medium text-gray-700">Progress</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Study Goals -->
+                <section class="bg-white rounded-lg shadow" data-aos="fade-left" data-aos-delay="400">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-900">Study Goals</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>Complete Web Development</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>Study 10 hours this week</span>
+                                    <span>60%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>Complete 5 quizzes</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-purple-600 h-2 rounded-full" style="width: 40%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+    </script>
 </body>
 </html>
