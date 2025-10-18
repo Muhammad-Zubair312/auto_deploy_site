@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - E-Commerce Store</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <meta name="description" content="Find the perfect products with our advanced search and filtering options">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+        <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+        <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+        <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+        <a href='categories.html' class='px-3 py-2 hover:text-blue-400'>Categories</a>
+        <a href='search-results.html' class='px-3 py-2 hover:text-blue-400'>Search Results</a>
+    </nav>
+
+    <!-- Search Results Header -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Search Results</h1>
+            <p class="text-gray-600">Showing results for "electronics"</p>
+            <div class="flex items-center mt-4">
+                <span class="text-sm text-gray-500">128 products found</span>
+                <div class="ml-auto flex space-x-2">
+                    <select class="border rounded px-3 py-2 text-sm">
+                        <option>Sort by: Relevance</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Newest First</option>
+                        <option>Best Rated</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Filters Sidebar -->
+            <div class="lg:w-1/4">
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <h3 class="font-semibold text-lg mb-4">Filters</h3>
+                    
+                    <!-- Category Filter -->
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-3">Categories</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-sm">Laptops</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-sm">Smartphones</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-sm">Tablets</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-sm">Accessories</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-3">Price Range</h4>
+                        <div class="space-y-2">
+                            <input type="range" min="0" max="1000" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>$0</span>
+                                <span>$1000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brand Filter -->
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-3">Brand</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-sm">Apple</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-sm">Samsung</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-sm">Dell</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-sm">HP</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+                        Apply Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="lg:w-3/4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Product Card 1 -->
+                    <div class="bg-white rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up">
+                        <div class="p-4">
+                            <img src="https://via.placeholder.com/300x200" alt="MacBook Pro" class="w-full h-48 object-cover rounded mb-4">
+                            <h3 class="font-semibold text-lg mb-2">MacBook Pro 16"</h3>
+                            <p class="text-gray-600 text-sm mb-3">Latest Apple laptop with M2 chip</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold text-gray-800">$2,399</span>
+                                <span class="text-green-600 text-sm">In Stock</span>
+                            </div>
+                            <div class="flex items-center mt-2">
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-gray-500 ml-2">(128 reviews)</span>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition flex items-center justify-center">
+                                <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="bg-white rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="100">
+                        <div class="p-4">
+                            <img src="https://via.placeholder.com/300x200" alt="iPhone 15" class="w-full h-48 object-cover rounded mb-4">
+                            <h3 class="font-semibold text-lg mb-2">iPhone 15 Pro</h3>
+                            <p class="text-gray-600 text-sm mb-3">Latest smartphone with advanced camera</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold text-gray-800">$999</span>
+                                <span class="text-green-600 text-sm">In Stock</span>
+                            </div>
+                            <div class="flex items-center mt-2">
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                </div>
+                                <span class="text-sm text-gray-500 ml-2">(256 reviews)</span>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition flex items-center justify-center">
+                                <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="bg-white rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="200">
+                        <div class="p-4">
+                            <img src="https://via.placeholder.com/300x200" alt="iPad Air" class="w-full h-48 object-cover rounded mb-4">
+                            <h3 class="font-semibold text-lg mb-2">iPad Air 5th Gen</h3>
+                            <p class="text-gray-600 text-sm mb-3">Powerful tablet for work and creativity</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold text-gray-800">$749</span>
+                                <span class="text-green-600 text-sm">In Stock</span>
+                            </div>
+                            <div class="flex items-center mt-2">
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-gray-500 ml-2">(89 reviews)</span>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition flex items-center justify-center">
+                                <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <div class="bg-white rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="300">
+                        <div class="p-4">
+                            <img src="https://via.placeholder.com/300x200" alt="Samsung Galaxy" class="w-full h-48 object-cover rounded mb-4">
+                            <h3 class="font-semibold text-lg mb-2">Samsung Galaxy S24</h3>
+                            <p class="text-gray-600 text-sm mb-3">Advanced Android smartphone</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold text-gray-800">$899</span>
+                                <span class="text-green-600 text-sm">In Stock</span>
+                            </div>
+                            <div class="flex items-center mt-2">
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-gray-500 ml-2">(167 reviews)</span>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition flex items-center justify-center">
+                                <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="bg-white rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="400">
+                        <div class="p-4">
+                            <img src="https://via.placeholder.com/300x200" alt="Dell XPS" class="w-full h-48 object-cover rounded mb-4">
+                            <h3 class="font-semibold text-lg mb-2">Dell XPS 13</h3>
+                            <p class="text-gray-600 text-sm mb-3">Ultra-portable business laptop</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold text-gray-800">$1,299</span>
+                                <span class="text-green-600 text-sm">In Stock</span>
+                            </div>
+                            <div class="flex items-center mt-2">
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-gray-500 ml-2">(94 reviews)</span>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition flex items-center justify-center">
+                                <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="bg-white rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="500">
+                        <div class="p-4">
+                            <img src="https://via.placeholder.com/300x200" alt="AirPods Pro" class="w-full h-48 object-cover rounded mb-4">
+                            <h3 class="font-semibold text-lg mb-2">AirPods Pro 2nd Gen</h3>
+                            <p class="text-gray-600 text-sm mb-3">Wireless earbuds with noise cancellation</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold text-gray-800">$249</span>
+                                <span class="text-green-600 text-sm">In Stock</span>
+                            </div>
+                            <div class="flex items-center mt-2">
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                </div>
+                                <span class="text-sm text-gray-500 ml-2">(312 reviews)</span>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition flex items-center justify-center">
+                                <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-12 flex justify-center">
+                    <nav class="flex items-center space-x-2">
+                        <button class="px-3 py-2 rounded border text-gray-600 hover:bg-gray-50">
+                            <i data-feather="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                        <button class="px-3 py-2 rounded border bg-blue-600 text-white">1</button>
+                        <button class="px-3 py-2 rounded border text-gray-600 hover:bg-gray-50">2</button>
+                        <button class="px-3 py-2 rounded border text-gray-600 hover:bg-gray-50">3</button>
+                        <button class="px-3 py-2 rounded border text-gray-600 hover:bg-gray-50">4</button>
+                        <button class="px-3 py-2 rounded border text-gray-600 hover:bg-gray-50">5</button>
+                        <button class="px-3 py-2 rounded border text-gray-600 hover:bg-gray-50">
+                            <i data-feather="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">E-Commerce Store</h3>
+                    <p class="text-gray-400">Your one-stop shop for all electronics and gadgets.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping Info</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Returns</a></li>
+                        <li><a href="#" class="hover:text-white">Warranty</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for updates and offers</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-3 py-2 rounded-l text-gray-800 w-full">
+                        <button class="bg-blue-600 px-4 py-2 rounded-r hover:bg-blue-700">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+    </script>
+</body>
+</html>

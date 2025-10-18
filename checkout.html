@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Checkout | Your E-commerce Store</title>
-    <meta name="description" content="Complete your purchase securely with our PCI compliant checkout process">
+    <title>Checkout - E-Commerce Store</title>
     <script src='https://cdn.tailwindcss.com'></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -14,194 +13,190 @@
     <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
         <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
         <a href='products.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Products</a>
         <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Product Details</a>
         <a href='cart.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Cart</a>
         <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Checkout</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
-        <a href='user-dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>User Dashboard</a>
+        <a href='categories.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Categories</a>
+        <a href='search-results.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Search Results</a>
     </nav>
 
-    <!-- Checkout Header -->
-    <div class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <h1 class="text-3xl font-bold text-gray-900">Secure Checkout</h1>
-            <p class="text-gray-600 mt-2">Complete your purchase with confidence</p>
-        </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
-            <!-- Checkout Form -->
-            <div class="lg:col-span-7" data-aos="fade-right">
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Shipping Information</h2>
+    <!-- Checkout Page Content -->
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">Checkout</h1>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Order Summary -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
                     
-                    <form class="space-y-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
-                                <input type="text" id="firstName" name="firstName" required 
-                                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" required 
-                                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                            <input type="email" id="email" name="email" required 
-                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                        </div>
-
-                        <div>
-                            <label for="address" class="block text-sm font-medium text-gray-700">Street Address</label>
-                            <input type="text" id="address" name="address" required 
-                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div>
-                                <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-                                <input type="text" id="city" name="city" required 
-                                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="state" class="block text-sm font-medium text-gray-700">State</label>
-                                <input type="text" id="state" name="state" required 
-                                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="zipCode" class="block text-sm font-medium text-gray-700">ZIP Code</label>
-                                <input type="text" id="zipCode" name="zipCode" required 
-                                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Payment Information -->
-                <div class="bg-white rounded-lg shadow-sm p-6" data-aos="fade-up">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Payment Information</h2>
-                    
-                    <div class="bg-blue-50 border border-blue-200 rounded-md p-4 mb-6">
-                        <div class="flex items-center">
-                            <i data-feather="shield" class="text-blue-500 mr-2"></i>
-                            <span class="text-sm text-blue-800 font-medium">PCI Compliant Secure Payment Processing</span>
-                        </div>
-                    </div>
-
-                    <form class="space-y-4">
-                        <div>
-                            <label for="cardNumber" class="block text-sm font-medium text-gray-700">Card Number</label>
-                            <div class="mt-1 relative">
-                                <input type="text" id="cardNumber" name="cardNumber" required 
-                                       placeholder="1234 5678 9012 3456"
-                                       class="block w-full border border-gray-300 rounded-md shadow-sm p-2 pr-10 focus:ring-blue-500 focus:border-blue-500">
-                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                    <i data-feather="credit-card" class="text-gray-400"></i>
+                    <!-- Cart Items -->
+                    <div class="space-y-4">
+                        <div class="flex items-center border-b pb-4">
+                            <img src="https://via.placeholder.com/80" alt="Product" class="w-20 h-20 object-cover rounded">
+                            <div class="ml-4 flex-1">
+                                <h3 class="font-medium">Wireless Headphones</h3>
+                                <p class="text-gray-600 text-sm">Color: Black</p>
+                                <div class="flex justify-between items-center mt-2">
+                                    <span class="font-semibold">$99.99</span>
+                                    <span class="text-gray-600">Qty: 1</span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label for="expiryDate" class="block text-sm font-medium text-gray-700">Expiry Date</label>
-                                <input type="text" id="expiryDate" name="expiryDate" required placeholder="MM/YY"
-                                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="cvv" class="block text-sm font-medium text-gray-700">CVV</label>
-                                <input type="text" id="cvv" name="cvv" required placeholder="123"
-                                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
+                        
+                        <div class="flex items-center border-b pb-4">
+                            <img src="https://via.placeholder.com/80" alt="Product" class="w-20 h-20 object-cover rounded">
+                            <div class="ml-4 flex-1">
+                                <h3 class="font-medium">Smart Watch</h3>
+                                <p class="text-gray-600 text-sm">Size: Medium</p>
+                                <div class="flex justify-between items-center mt-2">
+                                    <span class="font-semibold">$199.99</span>
+                                    <span class="text-gray-600">Qty: 1</span>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    
+                    <!-- Price Breakdown -->
+                    <div class="mt-6 space-y-2">
+                        <div class="flex justify-between">
+                            <span>Subtotal</span>
+                            <span>$299.98</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Shipping</span>
+                            <span>$9.99</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Tax</span>
+                            <span>$24.00</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-lg border-t pt-2 mt-2">
+                            <span>Total</span>
+                            <span>$333.97</span>
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="flex items-center">
-                            <input type="checkbox" id="saveCard" name="saveCard" 
-                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                            <label for="saveCard" class="ml-2 block text-sm text-gray-700">
-                                Save card for future purchases
-                            </label>
+                <!-- Shipping Information -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-xl font-semibold mb-4">Shipping Information</h2>
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">State</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">ZIP Code</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
                         </div>
                     </form>
                 </div>
+
+                <!-- Payment Method -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold mb-4">Payment Method</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <input type="radio" name="payment" id="credit-card" class="h-4 w-4 text-blue-600 focus:ring-blue-500" checked>
+                            <label for="credit-card" class="ml-2 block text-sm font-medium text-gray-700">Credit Card</label>
+                        </div>
+                        
+                        <div class="border-t pt-4">
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+                                    <input type="text" placeholder="1234 5678 9012 3456" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+                                        <input type="text" placeholder="MM/YY" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                                        <input type="text" placeholder="123" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
+                                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mt-4">
+                            <input type="radio" name="payment" id="paypal" class="h-4 w-4 text-blue-600 focus:ring-blue-500">
+                            <label for="paypal" class="ml-2 block text-sm font-medium text-gray-700">PayPal</label>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Order Summary -->
-            <div class="lg:col-span-5 mt-8 lg:mt-0" data-aos="fade-left">
-                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-6">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Order Summary</h2>
-
-                    <!-- Cart Items -->
-                    <div class="space-y-4 mb-6">
-                        <div class="flex items-center space-x-4">
-                            <img src="https://via.placeholder.com/60x60" alt="Product" class="w-15 h-15 rounded-md object-cover">
-                            <div class="flex-1">
-                                <h3 class="text-sm font-medium text-gray-900">Premium Wireless Headphones</h3>
-                                <p class="text-sm text-gray-500">Black · Quantity: 1</p>
-                            </div>
-                            <span class="text-sm font-medium text-gray-900">$199.99</span>
+            <!-- Order Complete Section -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
+                    <h2 class="text-xl font-semibold mb-4">Complete Order</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-600">Items (2)</span>
+                            <span>$299.98</span>
                         </div>
-
-                        <div class="flex items-center space-x-4">
-                            <img src="https://via.placeholder.com/60x60" alt="Product" class="w-15 h-15 rounded-md object-cover">
-                            <div class="flex-1">
-                                <h3 class="text-sm font-medium text-gray-900">Smart Watch Series 5</h3>
-                                <p class="text-sm text-gray-500">Silver · Quantity: 1</p>
-                            </div>
-                            <span class="text-sm font-medium text-gray-900">$299.99</span>
-                        </div>
-                    </div>
-
-                    <!-- Order Totals -->
-                    <div class="border-t border-gray-200 pt-4 space-y-2">
-                        <div class="flex justify-between text-sm">
-                            <span class="text-gray-600">Subtotal</span>
-                            <span class="text-gray-900">$499.98</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
+                        <div class="flex items-center justify-between">
                             <span class="text-gray-600">Shipping</span>
-                            <span class="text-gray-900">$9.99</span>
+                            <span>$9.99</span>
                         </div>
-                        <div class="flex justify-between text-sm">
+                        <div class="flex items-center justify-between">
                             <span class="text-gray-600">Tax</span>
-                            <span class="text-gray-900">$35.00</span>
+                            <span>$24.00</span>
                         </div>
-                        <div class="flex justify-between text-base font-medium border-t border-gray-200 pt-2 mt-2">
-                            <span class="text-gray-900">Total</span>
-                            <span class="text-gray-900">$544.97</span>
-                        </div>
-                    </div>
-
-                    <!-- Trust Indicators -->
-                    <div class="mt-6 space-y-3">
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i data-feather="truck" class="mr-2 w-4 h-4"></i>
-                            <span>Free shipping on orders over $50</span>
-                        </div>
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i data-feather="shield" class="mr-2 w-4 h-4"></i>
-                            <span>Secure SSL encrypted payment</span>
-                        </div>
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i data-feather="refresh-cw" class="mr-2 w-4 h-4"></i>
-                            <span>30-day money-back guarantee</span>
+                        <div class="border-t pt-2">
+                            <div class="flex items-center justify-between font-bold text-lg">
+                                <span>Total</span>
+                                <span>$333.97</span>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Complete Order Button -->
-                    <button class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-6 font-medium transition-colors duration-200">
-                        Complete Order
+                    
+                    <button class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition duration-200 mt-6 font-medium">
+                        Place Order
                     </button>
-
-                    <p class="text-xs text-gray-500 text-center mt-3">
-                        By completing your purchase you agree to our <a href="#" class="text-blue-600 hover:text-blue-500">Terms of Service</a>
+                    
+                    <p class="text-xs text-gray-500 mt-4 text-center">
+                        By placing your order, you agree to our 
+                        <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> 
+                        and 
+                        <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
                     </p>
+                    
+                    <div class="mt-6 text-center">
+                        <i data-feather="lock" class="w-5 h-5 text-green-500 inline-block mr-2"></i>
+                        <span class="text-sm text-green-600">Secure Payment</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -209,62 +204,46 @@
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Company</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">About Us</a></li>
-                        <li><a href="#" class="hover:text-white">Careers</a></li>
-                        <li><a href="#" class="hover:text-white">Press</a></li>
+                    <h3 class="text-lg font-semibold mb-4">E-Commerce Store</h3>
+                    <p class="text-gray-400">Your one-stop shop for all your needs.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white">Categories</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Support</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">Help Center</a></li>
-                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-white">Shipping Info</a></li>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Info</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-white">Cookie Policy</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="facebook" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="twitter" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="instagram" class="w-5 h-5"></i>
-                        </a>
+                    <h3 class="text-lg font-semibold mb-4">Stay Connected</h3>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-3 py-2 bg-gray-800 text-white rounded-l-md focus:outline-none w-full">
+                        <button class="bg-blue-600 px-4 py-2 rounded-r-md hover:bg-blue-700">Subscribe</button>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Your E-commerce Store. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        // Initialize Feather Icons
         feather.replace();
+        AOS.init();
     </script>
 </body>
 </html>
