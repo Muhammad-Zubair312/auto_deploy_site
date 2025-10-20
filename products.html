@@ -4,67 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - E-Commerce Store</title>
-    <meta name="description" content="Browse our wide selection of products with secure payment processing and fast delivery">
-    <script src='https://cdn.tailwindcss.com'></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
-        <a href='products.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Products</a>
-        <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Product Details</a>
-        <a href='cart.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Cart</a>
-        <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Checkout</a>
-        <a href='categories.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Categories</a>
-        <a href='search-results.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Search Results</a>
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+        <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+        <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+        <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
     </nav>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
-        <!-- Page Header -->
-        <div class="mb-8" data-aos="fade-up">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">Our Products</h1>
-            <p class="text-gray-600">Discover amazing products with secure payment processing</p>
-        </div>
-
         <!-- Search and Filter Section -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8" data-aos="fade-up">
-            <div class="flex flex-col md:flex-row gap-4">
+        <div class="mb-8" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
                 <!-- Search Bar -->
-                <div class="flex-1">
-                    <div class="relative">
-                        <input type="text" 
-                               placeholder="Search products..." 
-                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <i data-feather="search" class="absolute right-3 top-2.5 text-gray-400"></i>
-                    </div>
+                <div class="relative w-full md:w-1/3">
+                    <input 
+                        type="text" 
+                        placeholder="Search products..." 
+                        class="w-full px-4 py-3 pl-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="productSearch"
+                    >
+                    <i data-feather="search" class="absolute left-4 top-3.5 text-gray-400"></i>
                 </div>
                 
-                <!-- Category Filter -->
-                <div class="flex-1">
-                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="">All Categories</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="home">Home & Garden</option>
-                        <option value="sports">Sports</option>
-                        <option value="books">Books</option>
+                <!-- Filter Options -->
+                <div class="flex flex-wrap gap-4">
+                    <select class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>All Categories</option>
+                        <option>Electronics</option>
+                        <option>Clothing</option>
+                        <option>Home & Garden</option>
+                        <option>Sports</option>
                     </select>
-                </div>
-                
-                <!-- Sort Options -->
-                <div class="flex-1">
-                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="featured">Featured</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="newest">Newest First</option>
-                        <option value="rating">Highest Rated</option>
+                    
+                    <select class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>Sort by: Featured</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Best Rating</option>
                     </select>
                 </div>
             </div>
@@ -73,17 +60,25 @@
         <!-- Products Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
             <!-- Product Card 1 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Wireless Headphones" 
-                     class="w-full h-48 object-cover">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Premium Camera" class="w-full h-48 object-cover">
                 <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-2">Wireless Headphones</h3>
-                    <p class="text-gray-600 text-sm mb-3">Premium sound quality with noise cancellation</p>
+                    <h3 class="font-semibold text-lg mb-2">Professional DSLR Camera</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4"></i>
+                        </div>
+                        <span class="text-sm text-gray-600 ml-2">(128 reviews)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">High-quality professional camera with 4K video capabilities</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-900">$199.99</span>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                        <span class="text-2xl font-bold text-gray-900">$899.99</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -91,17 +86,25 @@
             </div>
 
             <!-- Product Card 2 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Smart Watch" 
-                     class="w-full h-48 object-cover">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Wireless Headphones" class="w-full h-48 object-cover">
                 <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-2">Smart Watch</h3>
-                    <p class="text-gray-600 text-sm mb-3">Fitness tracking and notifications</p>
+                    <h3 class="font-semibold text-lg mb-2">Wireless Noise Cancelling Headphones</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <span class="text-sm text-gray-600 ml-2">(256 reviews)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Premium sound quality with active noise cancellation</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-gray-900">$299.99</span>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -109,17 +112,25 @@
             </div>
 
             <!-- Product Card 3 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Laptop" 
-                     class="w-full h-48 object-cover">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Smart Watch" class="w-full h-48 object-cover">
                 <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-2">Ultrabook Laptop</h3>
-                    <p class="text-gray-600 text-sm mb-3">Lightweight and powerful for work and play</p>
+                    <h3 class="font-semibold text-lg mb-2">Smart Fitness Watch</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4"></i>
+                        </div>
+                        <span class="text-sm text-gray-600 ml-2">(89 reviews)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Track your fitness goals with heart rate monitoring</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-900">$1,299.99</span>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                        <span class="text-2xl font-bold text-gray-900">$199.99</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -127,17 +138,25 @@
             </div>
 
             <!-- Product Card 4 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Running Shoes" 
-                     class="w-full h-48 object-cover">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Gaming Laptop" class="w-full h-48 object-cover">
                 <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-2">Running Shoes</h3>
-                    <p class="text-gray-600 text-sm mb-3">Comfortable and durable for all terrains</p>
+                    <h3 class="font-semibold text-lg mb-2">Gaming Laptop Pro</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4"></i>
+                        </div>
+                        <span class="text-sm text-gray-600 ml-2">(167 reviews)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">High-performance gaming laptop with RTX graphics</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-900">$129.99</span>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                        <span class="text-2xl font-bold text-gray-900">$1,499.99</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -145,17 +164,25 @@
             </div>
 
             <!-- Product Card 5 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Camera" 
-                     class="w-full h-48 object-cover">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="500">
+                <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Running Shoes" class="w-full h-48 object-cover">
                 <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-2">DSLR Camera</h3>
-                    <p class="text-gray-600 text-sm mb-3">Professional photography with 4K video</p>
+                    <h3 class="font-semibold text-lg mb-2">Premium Running Shoes</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <span class="text-sm text-gray-600 ml-2">(342 reviews)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Comfortable running shoes with advanced cushioning</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-900">$899.99</span>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                        <span class="text-2xl font-bold text-gray-900">$129.99</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -163,53 +190,25 @@
             </div>
 
             <!-- Product Card 6 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Backpack" 
-                     class="w-full h-48 object-cover">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="600">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Smartphone" class="w-full h-48 object-cover">
                 <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-2">Travel Backpack</h3>
-                    <p class="text-gray-600 text-sm mb-3">Waterproof and spacious for all your needs</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-900">$79.99</span>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
-                            Add to Cart
-                        </button>
+                    <h3 class="font-semibold text-lg mb-2">Latest Smartphone Pro</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4"></i>
+                        </div>
+                        <span class="text-sm text-gray-600 ml-2">(421 reviews)</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- Product Card 7 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Smartphone" 
-                     class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-2">Smartphone Pro</h3>
-                    <p class="text-gray-600 text-sm mb-3">Latest features with amazing camera</p>
+                    <p class="text-gray-600 text-sm mb-4">Flagship smartphone with advanced camera system</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-gray-900">$999.99</span>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Card 8 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Sunglasses" 
-                     class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-2">Designer Sunglasses</h3>
-                    <p class="text-gray-600 text-sm mb-3">UV protection with stylish design</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-900">$149.99</span>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -218,34 +217,12 @@
         </div>
 
         <!-- Pagination -->
-        <div class="flex justify-center items-center space-x-2 mb-12" data-aos="fade-up">
-            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">Previous</button>
-            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">1</button>
-            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">2</button>
-            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">3</button>
-            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">Next</button>
-        </div>
-
-        <!-- Security Features Section -->
-        <div class="bg-white rounded-lg shadow-md p-8 mb-8" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Secure Shopping Experience</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="text-center">
-                    <i data-feather="shield" class="w-12 h-12 text-green-500 mx-auto mb-4"></i>
-                    <h3 class="font-semibold text-lg mb-2">SSL Encryption</h3>
-                    <p class="text-gray-600">All transactions are protected with 256-bit SSL encryption</p>
-                </div>
-                <div class="text-center">
-                    <i data-feather="credit-card" class="w-12 h-12 text-blue-500 mx-auto mb-4"></i>
-                    <h3 class="font-semibold text-lg mb-2">Secure Payments</h3>
-                    <p class="text-gray-600">Multiple payment options with PCI DSS compliance</p>
-                </div>
-                <div class="text-center">
-                    <i data-feather="truck" class="w-12 h-12 text-orange-500 mx-auto mb-4"></i>
-                    <h3 class="font-semibold text-lg mb-2">Fast Delivery</h3>
-                    <p class="text-gray-600">Quick and reliable shipping with order tracking</p>
-                </div>
-            </div>
+        <div class="flex justify-center items-center space-x-2 mb-12">
+            <button class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100">Previous</button>
+            <button class="px-4 py-2 rounded-lg bg-blue-600 text-white">1</button>
+            <button class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100">2</button>
+            <button class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100">3</button>
+            <button class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100">Next</button>
         </div>
     </main>
 
@@ -254,32 +231,37 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="font-bold text-lg mb-4">E-Commerce Store</h3>
-                    <p class="text-gray-400">Your trusted online shopping destination with secure payment processing.</p>
+                    <h3 class="text-lg font-semibold mb-4">About Us</h3>
+                    <p class="text-gray-400">Your trusted e-commerce destination for quality products and excellent service.</p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
-                        <li><a href="categories.html" class="text-gray-400 hover:text-white">Categories</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white">Shopping Cart</a></li>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-white">Returns</a></li>
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Customer Service</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Info</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                    <h3 class="text-lg font-semibold mb-4">My Account</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="login.html" class="hover:text-white">Login</a></li>
+                        <li><a href="order-history.html" class="hover:text-white">Order History</a></li>
+                        <li><a href="wishlist.html" class="hover:text-white">Wishlist</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Stay Connected</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                    <h3 class="text-lg font-semibold mb-4">Secure Payment</h3>
+                    <div class="flex space-x-2">
+                        <div class="bg-white p-2 rounded">
+                            <i data-feather="credit-card" class="w-6 h-6 text-gray-800"></i>
+                        </div>
+                        <div class="bg-white p-2 rounded">
+                            <i data-feather="shield" class="w-6 h-6 text-gray-800"></i>
+                        </div>
                     </div>
+                    <p class="text-gray-400 mt-4">Your payment information is secure with us.</p>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
@@ -297,6 +279,21 @@
 
         // Initialize Feather Icons
         feather.replace();
+
+        // Product search functionality
+        document.getElementById('productSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const productCards = document.querySelectorAll('[data-aos]');
+            
+            productCards.forEach(card => {
+                const productName = card.querySelector('h3').textContent.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
