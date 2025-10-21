@@ -22,254 +22,219 @@
         </nav>
         
         <!-- ProfileHeader -->
-        <div class="flex items-center justify-between p-4">
+        <div class="flex justify-between items-center p-4 border-b">
             <div class="flex items-center space-x-3">
                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Profile" class="w-10 h-10 rounded-full">
                 <div>
-                    <h3 class="font-semibold text-gray-900">John Doe</h3>
-                    <p class="text-sm text-gray-500">Premium Member</p>
+                    <h3 class="font-semibold">John Doe</h3>
+                    <p class="text-sm text-gray-600">Premium Member</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-4">
-                <a href="#" class="text-gray-600 hover:text-gray-900">
+            <div class="flex space-x-2">
+                <button class="p-2 hover:bg-gray-100 rounded-full">
                     <i data-feather="settings"></i>
-                </a>
-                <a href="#" class="text-gray-600 hover:text-gray-900">
+                </button>
+                <button class="p-2 hover:bg-gray-100 rounded-full">
                     <i data-feather="log-out"></i>
-                </a>
+                </button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-6">
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <!-- Left Sidebar -->
-            <div class="lg:col-span-1 space-y-6">
+    <main class="container mx-auto px-4 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Left Column -->
+            <div class="lg:col-span-2">
+                <!-- RestaurantHeader -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">Tony's Italian Kitchen</h1>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <span class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </span>
+                                <span class="text-gray-600">(4.2) • Italian • $$</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">Authentic Italian cuisine with fresh ingredients</p>
+                        </div>
+                        <div class="mt-4 md:mt-0">
+                            <EstimatedArrivalTime class="text-green-600 font-semibold">25-35 min</EstimatedArrivalTime>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- SearchBar -->
-                <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
                     <div class="relative">
+                        <i data-feather="search" class="absolute left-3 top-3 text-gray-400 w-4 h-4"></i>
                         <input type="text" placeholder="Search menu items..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
                     </div>
                 </div>
 
                 <!-- CategoryFilter & MenuCategoryList -->
-                <div class="bg-white rounded-lg shadow-sm p-4">
-                    <h3 class="font-semibold text-gray-900 mb-4">Categories</h3>
-                    <div class="space-y-2">
-                        <button class="w-full text-left px-3 py-2 rounded-lg bg-blue-100 text-blue-700 font-medium">All Items</button>
-                        <button class="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100">Appetizers</button>
-                        <button class="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100">Main Courses</button>
-                        <button class="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100">Desserts</button>
-                        <button class="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100">Beverages</button>
-                        <button class="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100">Specials</button>
-                    </div>
-                </div>
-
-                <!-- RestaurantList -->
-                <div class="bg-white rounded-lg shadow-sm p-4">
-                    <h3 class="font-semibold text-gray-900 mb-4">Nearby Restaurants</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
-                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=50&h=50&fit=crop" alt="Restaurant" class="w-12 h-12 rounded-lg">
-                            <div>
-                                <h4 class="font-medium text-gray-900">Italian Bistro</h4>
-                                <p class="text-sm text-gray-500">0.8 miles away</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
-                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=50&h=50&fit=crop" alt="Restaurant" class="w-12 h-12 rounded-lg">
-                            <div>
-                                <h4 class="font-medium text-gray-900">Sushi Palace</h4>
-                                <p class="text-sm text-gray-500">1.2 miles away</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Content -->
-            <div class="lg:col-span-2 space-y-6">
-                <!-- RestaurantHeader -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h1 class="text-2xl font-bold text-gray-900">Gourmet Delight Restaurant</h1>
-                            <div class="flex items-center space-x-4 mt-2">
-                                <span class="flex items-center text-yellow-400">
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <span class="ml-1 text-gray-600">4.8 (247 reviews)</span>
-                                </span>
-                                <span class="text-gray-600">•</span>
-                                <span class="text-gray-600">Italian • $$</span>
-                                <span class="text-gray-600">•</span>
-                                <span class="text-green-600">Open until 10 PM</span>
-                            </div>
-                        </div>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center space-x-2">
-                            <i data-feather="heart" class="w-4 h-4"></i>
-                            <span>Favorite</span>
-                        </button>
+                <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                    <div class="flex space-x-4 overflow-x-auto pb-2">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-full whitespace-nowrap">All Items</button>
+                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 whitespace-nowrap">Appetizers</button>
+                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 whitespace-nowrap">Main Course</button>
+                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 whitespace-nowrap">Desserts</button>
+                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 whitespace-nowrap">Drinks</button>
                     </div>
                 </div>
 
                 <!-- MenuItemList -->
-                <div class="bg-white rounded-lg shadow-sm">
-                    <div class="p-6 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Menu Items</h2>
+                <div class="space-y-4">
+                    <!-- Menu Item 1 -->
+                    <div class="bg-white rounded-lg shadow-sm p-6" data-aos="fade-up">
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-lg">Margherita Pizza</h3>
+                                <p class="text-gray-600 mt-1">Fresh tomatoes, mozzarella, basil, and olive oil</p>
+                                <p class="text-green-600 font-semibold mt-2">$16.99</p>
+                            </div>
+                            <div class="ml-4 flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=80&h=80&fit=crop" alt="Margherita Pizza" class="w-20 h-20 rounded-lg object-cover">
+                                <button class="w-full mt-2 bg-blue-600 text-white py-1 px-3 rounded-lg text-sm hover:bg-blue-700 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="divide-y divide-gray-200">
-                        <!-- Menu Item 1 -->
-                        <div class="p-6 flex items-start justify-between">
-                            <div class="flex space-x-4">
-                                <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=80&h=80&fit=crop" alt="Margherita Pizza" class="w-20 h-20 rounded-lg object-cover">
-                                <div>
-                                    <h3 class="font-semibold text-gray-900">Margherita Pizza</h3>
-                                    <p class="text-gray-600 text-sm mt-1">Fresh tomatoes, mozzarella, basil, and olive oil on our signature crust</p>
-                                    <p class="text-green-600 font-semibold mt-2">$16.99</p>
-                                </div>
-                            </div>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                                Add to Cart
-                            </button>
-                        </div>
 
-                        <!-- Menu Item 2 -->
-                        <div class="p-6 flex items-start justify-between">
-                            <div class="flex space-x-4">
-                                <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=80&h=80&fit=crop" alt="Pasta Carbonara" class="w-20 h-20 rounded-lg object-cover">
-                                <div>
-                                    <h3 class="font-semibold text-gray-900">Pasta Carbonara</h3>
-                                    <p class="text-gray-600 text-sm mt-1">Spaghetti with pancetta, eggs, pecorino cheese, and black pepper</p>
-                                    <p class="text-green-600 font-semibold mt-2">$18.99</p>
-                                </div>
+                    <!-- Menu Item 2 -->
+                    <div class="bg-white rounded-lg shadow-sm p-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-lg">Spaghetti Carbonara</h3>
+                                <p class="text-gray-600 mt-1">Classic Roman pasta with eggs, cheese, pancetta, and black pepper</p>
+                                <p class="text-green-600 font-semibold mt-2">$18.99</p>
                             </div>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                                Add to Cart
-                            </button>
+                            <div class="ml-4 flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop" alt="Spaghetti Carbonara" class="w-20 h-20 rounded-lg object-cover">
+                                <button class="w-full mt-2 bg-blue-600 text-white py-1 px-3 rounded-lg text-sm hover:bg-blue-700 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
                         </div>
+                    </div>
 
-                        <!-- Menu Item 3 -->
-                        <div class="p-6 flex items-start justify-between">
-                            <div class="flex space-x-4">
-                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=80&h=80&fit=crop" alt="Tiramisu" class="w-20 h-20 rounded-lg object-cover">
-                                <div>
-                                    <h3 class="font-semibold text-gray-900">Tiramisu</h3>
-                                    <p class="text-gray-600 text-sm mt-1">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream</p>
-                                    <p class="text-green-600 font-semibold mt-2">$8.99</p>
-                                </div>
+                    <!-- Menu Item 3 -->
+                    <div class="bg-white rounded-lg shadow-sm p-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-lg">Tiramisu</h3>
+                                <p class="text-gray-600 mt-1">Coffee-flavored Italian dessert with mascarpone and cocoa</p>
+                                <p class="text-green-600 font-semibold mt-2">$8.99</p>
                             </div>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                                Add to Cart
-                            </button>
+                            <div class="ml-4 flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=80&h=80&fit=crop" alt="Tiramisu" class="w-20 h-20 rounded-lg object-cover">
+                                <button class="w-full mt-2 bg-blue-600 text-white py-1 px-3 rounded-lg text-sm hover:bg-blue-700 transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Sidebar - Cart & Order Info -->
-            <div class="lg:col-span-1 space-y-6">
-                <!-- Cart Summary -->
-                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-6">
-                    <h3 class="font-semibold text-gray-900 mb-4">Your Order</h3>
-                    
+            <!-- Right Column - Cart Sidebar -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-sm sticky top-6">
+                    <!-- Cart Header -->
+                    <div class="p-4 border-b">
+                        <h2 class="text-xl font-semibold">Your Cart</h2>
+                        <p class="text-gray-600 text-sm">3 items</p>
+                    </div>
+
                     <!-- CartItemList -->
-                    <div class="space-y-3 mb-4">
+                    <div class="p-4 space-y-4 max-h-96 overflow-y-auto">
                         <div class="flex justify-between items-center">
                             <div>
-                                <p class="font-medium text-gray-900">Margherita Pizza</p>
-                                <p class="text-sm text-gray-500">1 x $16.99</p>
+                                <h4 class="font-medium">Margherita Pizza</h4>
+                                <p class="text-gray-600 text-sm">$16.99</p>
                             </div>
-                            <button class="text-red-500 hover:text-red-700">
-                                <i data-feather="trash-2" class="w-4 h-4"></i>
-                            </button>
+                            <div class="flex items-center space-x-2">
+                                <button class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">-</button>
+                                <span>1</span>
+                                <button class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">+</button>
+                            </div>
                         </div>
+                        
                         <div class="flex justify-between items-center">
                             <div>
-                                <p class="font-medium text-gray-900">Tiramisu</p>
-                                <p class="text-sm text-gray-500">1 x $8.99</p>
+                                <h4 class="font-medium">Spaghetti Carbonara</h4>
+                                <p class="text-gray-600 text-sm">$18.99</p>
                             </div>
-                            <button class="text-red-500 hover:text-red-700">
-                                <i data-feather="trash-2" class="w-4 h-4"></i>
-                            </button>
+                            <div class="flex items-center space-x-2">
+                                <button class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">-</button>
+                                <span>1</span>
+                                <button class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">+</button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- PromoCodeInput -->
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                    <div class="p-4 border-t border-b">
                         <div class="flex space-x-2">
-                            <input type="text" placeholder="Enter code" class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">Apply</button>
+                            <input type="text" placeholder="Enter promo code" class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors">
+                                Apply
+                            </button>
                         </div>
                     </div>
 
                     <!-- OrderSummary -->
-                    <div class="space-y-2 mb-4">
-                        <div class="flex justify-between text-sm">
+                    <div class="p-4 space-y-2">
+                        <div class="flex justify-between">
                             <span class="text-gray-600">Subtotal</span>
-                            <span class="text-gray-900">$25.98</span>
+                            <span>$35.98</span>
                         </div>
-                        <div class="flex justify-between text-sm">
+                        <div class="flex justify-between">
                             <span class="text-gray-600">Delivery Fee</span>
-                            <span class="text-gray-900">$2.99</span>
+                            <span>$2.99</span>
                         </div>
-                        <div class="flex justify-between text-sm">
+                        <div class="flex justify-between">
                             <span class="text-gray-600">Tax</span>
-                            <span class="text-gray-900">$2.34</span>
+                            <span>$3.12</span>
                         </div>
-                        <div class="flex justify-between font-semibold text-lg border-t border-gray-200 pt-2">
+                        <div class="flex justify-between font-semibold text-lg border-t pt-2">
                             <span>Total</span>
-                            <span>$31.31</span>
+                            <span>$42.09</span>
                         </div>
                     </div>
 
-                    <!-- EstimatedArrivalTime -->
-                    <div class="bg-blue-50 rounded-lg p-3 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <i data-feather="clock" class="w-4 h-4 text-blue-600"></i>
-                            <span class="text-sm font-medium text-blue-900">Estimated arrival: 25-35 min</span>
-                        </div>
-                    </div>
-
-                    <!-- ViewCartButton & PlaceOrderButton -->
-                    <div class="space-y-3">
-                        <a href="your-cart.html" class="w-full bg-gray-200 text-gray-700 py-3 rounded-lg hover:bg-gray-300 flex items-center justify-center space-x-2">
-                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
-                            <span>View Cart</span>
-                        </a>
-                        <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 flex items-center justify-center space-x-2">
-                            <i data-feather="credit-card" class="w-4 h-4"></i>
-                            <span>Place Order</span>
+                    <!-- Action Buttons -->
+                    <div class="p-4 space-y-3">
+                        <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                            Checkout
+                        </button>
+                        <button class="w-full border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+                            View Cart
                         </button>
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h3 class="font-semibold text-gray-900 mb-4">Quick Actions</h3>
-                    <div class="space-y-3">
-                        <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg">
-                            <i data-feather="map-pin" class="w-5 h-5 text-gray-600"></i>
-                            <span class="text-gray-700">Address Manager</span>
-                        </a>
-                        <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg">
-                            <i data-feather="credit-card" class="w-5 h-5 text-gray-600"></i>
-                            <span class="text-gray-700">Payment Methods</span>
-                        </a>
-                        <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg">
-                            <i data-feather="clock" class="w-5 h-5 text-gray-600"></i>
-                            <span class="text-gray-700">Order History</span>
-                        </a>
-                        <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg">
-                            <i data-feather="help-circle" class="w-5 h-5 text-gray-600"></i>
-                            <span class="text-gray-700">Support</span>
-                        </a>
-                    </div>
+                <!-- Support & Additional Links -->
+                <div class="mt-6 space-y-3">
+                    <button class="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center space-x-2">
+                        <i data-feather="help-circle" class="w-4 h-4"></i>
+                        <span>Support</span>
+                    </button>
+                    
+                    <button class="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center space-x-2">
+                        <i data-feather="map-pin" class="w-4 h-4"></i>
+                        <span>Address Manager</span>
+                    </button>
+                    
+                    <button class="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center space-x-2">
+                        <i data-feather="credit-card" class="w-4 h-4"></i>
+                        <span>Payment Methods</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -277,7 +242,10 @@
 
     <script>
         feather.replace();
-        AOS.init();
+        AOS.init({
+            duration: 600,
+            once: true
+        });
     </script>
 </body>
 </html>

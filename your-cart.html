@@ -14,20 +14,36 @@
     <header class="bg-white shadow-sm">
         <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
+                <!-- Profile Header -->
                 <div class="flex items-center space-x-4">
-                    <h1 class="text-2xl font-bold text-gray-800">Pitchpilot</h1>
-                    <SearchBar class="hidden md:block">
-                        <div class="relative">
-                            <input type="text" placeholder="Search restaurants or dishes..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64">
-                            <i data-feather="search" class="absolute left-3 top-2.5 text-gray-400"></i>
-                        </div>
-                    </SearchBar>
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                        JD
+                    </div>
+                    <div>
+                        <h2 class="font-semibold">John Doe</h2>
+                        <p class="text-sm text-gray-500">Premium Member</p>
+                    </div>
                 </div>
+
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-md mx-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search restaurants or dishes..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i data-feather="search" class="absolute right-3 top-2.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
                 <div class="flex items-center space-x-4">
-                    <ProfileHeader class="flex items-center space-x-2">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Profile" class="w-8 h-8 rounded-full">
-                        <span class="text-gray-700">John Doe</span>
-                    </ProfileHeader>
+                    <button class="text-gray-600 hover:text-blue-500">
+                        <i data-feather="shopping-cart"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-blue-500">
+                        <i data-feather="heart"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-blue-500">
+                        <i data-feather="bell"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -48,162 +64,222 @@
             <!-- Left Column -->
             <div class="lg:col-span-2 space-y-6">
                 <!-- Restaurant Header -->
-                <RestaurantHeader class="bg-white rounded-lg shadow-sm p-6">
-                    <div class="flex items-center space-x-4">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Restaurant" class="w-16 h-16 rounded-lg object-cover">
-                        <div>
-                            <h2 class="text-xl font-bold text-gray-800">Italian Bistro</h2>
-                            <p class="text-gray-600">Italian • $$ • 4.5 ★ (250+)</p>
-                            <EstimatedArrivalTime class="text-green-600 font-medium">25-35 min</EstimatedArrivalTime>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i data-feather="coffee" class="text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-semibold">Burger Palace</h2>
+                                <p class="text-gray-500">American • $$ • 4.5 ★ (250+)</p>
+                                <p class="text-sm text-gray-400">Open until 11:00 PM</p>
+                            </div>
                         </div>
+                        <button class="text-blue-500 hover:text-blue-600">
+                            <i data-feather="heart"></i>
+                        </button>
                     </div>
-                </RestaurantHeader>
+                </div>
 
                 <!-- Cart Item List -->
-                <CartItemList class="bg-white rounded-lg shadow-sm p-6">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4">Your Order</h3>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold mb-4">Your Order</h3>
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between border-b pb-4">
+                        <!-- Cart Item 1 -->
+                        <div class="flex items-center justify-between py-3 border-b">
                             <div class="flex items-center space-x-4">
-                                <div class="w-16 h-16 bg-gray-200 rounded-lg"></div>
+                                <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
                                 <div>
-                                    <h4 class="font-medium text-gray-800">Margherita Pizza</h4>
-                                    <p class="text-gray-600 text-sm">Large • Extra cheese</p>
-                                    <p class="text-green-600 text-sm">$18.99</p>
+                                    <h4 class="font-medium">Classic Cheeseburger</h4>
+                                    <p class="text-sm text-gray-500">With fries and drink</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center">-</button>
-                                <span class="w-8 text-center">2</span>
-                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center">+</button>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex items-center space-x-2">
+                                    <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                                        <i data-feather="minus" class="w-4 h-4"></i>
+                                    </button>
+                                    <span class="w-8 text-center">2</span>
+                                    <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                                        <i data-feather="plus" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <span class="font-semibold">$24.98</span>
+                                <button class="text-red-500 hover:text-red-600">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
                             </div>
                         </div>
-                        
-                        <div class="flex items-center justify-between border-b pb-4">
+
+                        <!-- Cart Item 2 -->
+                        <div class="flex items-center justify-between py-3 border-b">
                             <div class="flex items-center space-x-4">
-                                <div class="w-16 h-16 bg-gray-200 rounded-lg"></div>
+                                <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
                                 <div>
-                                    <h4 class="font-medium text-gray-800">Caesar Salad</h4>
-                                    <p class="text-gray-600 text-sm">With grilled chicken</p>
-                                    <p class="text-green-600 text-sm">$12.99</p>
+                                    <h4 class="font-medium">Chicken Caesar Salad</h4>
+                                    <p class="text-sm text-gray-500">Extra dressing</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center">-</button>
-                                <span class="w-8 text-center">1</span>
-                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center">+</button>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex items-center space-x-2">
+                                    <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                                        <i data-feather="minus" class="w-4 h-4"></i>
+                                    </button>
+                                    <span class="w-8 text-center">1</span>
+                                    <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                                        <i data-feather="plus" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <span class="font-semibold">$14.99</span>
+                                <button class="text-red-500 hover:text-red-600">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                </CartItemList>
+                </div>
 
                 <!-- Address Selector -->
-                <AddressSelector class="bg-white rounded-lg shadow-sm p-6">
+                <div class="bg-white rounded-lg shadow-sm p-6">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-bold text-gray-800">Delivery Address</h3>
-                        <AddressManagerLink class="text-blue-600 hover:text-blue-800 text-sm">Manage Addresses</AddressManagerLink>
+                        <h3 class="text-lg font-semibold">Delivery Address</h3>
+                        <button class="text-blue-500 hover:text-blue-600 text-sm font-medium">
+                            <i data-feather="edit" class="w-4 h-4 mr-1"></i>
+                            Change
+                        </button>
                     </div>
-                    <div class="border border-gray-300 rounded-lg p-4">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="font-medium text-gray-800">Home</p>
-                                <p class="text-gray-600 text-sm">123 Main Street, Apt 4B, New York, NY 10001</p>
-                            </div>
-                            <button class="text-blue-600 hover:text-blue-800">Change</button>
+                    <div class="flex items-center space-x-4 p-4 border border-blue-200 rounded-lg bg-blue-50">
+                        <i data-feather="map-pin" class="text-blue-500"></i>
+                        <div>
+                            <p class="font-medium">Home</p>
+                            <p class="text-gray-600">123 Main Street, Apt 4B, New York, NY 10001</p>
                         </div>
                     </div>
-                </AddressSelector>
+                </div>
 
                 <!-- Payment Method Selector -->
-                <PaymentMethodSelector class="bg-white rounded-lg shadow-sm p-6">
+                <div class="bg-white rounded-lg shadow-sm p-6">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-bold text-gray-800">Payment Method</h3>
-                        <PaymentManagerLink class="text-blue-600 hover:text-blue-800 text-sm">Manage Payment</PaymentManagerLink>
+                        <h3 class="text-lg font-semibold">Payment Method</h3>
+                        <button class="text-blue-500 hover:text-blue-600 text-sm font-medium">
+                            <i data-feather="credit-card" class="w-4 h-4 mr-1"></i>
+                            Manage
+                        </button>
                     </div>
                     <div class="space-y-3">
-                        <label class="flex items-center space-x-3">
-                            <input type="radio" name="payment" checked class="text-blue-600">
-                            <span class="text-gray-800">Credit Card •••• 1234</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="radio" name="payment" class="text-blue-600">
-                            <span class="text-gray-800">PayPal</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="radio" name="payment" class="text-blue-600">
-                            <span class="text-gray-800">Cash on Delivery</span>
-                        </label>
+                        <div class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
+                            <input type="radio" name="payment" id="card1" checked class="text-blue-500">
+                            <label for="card1" class="flex-1">
+                                <p class="font-medium">Visa ending in 4242</p>
+                                <p class="text-gray-500 text-sm">Expires 12/25</p>
+                            </label>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
+                            <input type="radio" name="payment" id="card2" class="text-blue-500">
+                            <label for="card2" class="flex-1">
+                                <p class="font-medium">Mastercard ending in 8888</p>
+                                <p class="text-gray-500 text-sm">Expires 08/24</p>
+                            </label>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
+                            <input type="radio" name="payment" id="paypal" class="text-blue-500">
+                            <label for="paypal" class="flex-1">
+                                <p class="font-medium">PayPal</p>
+                                <p class="text-gray-500 text-sm">john.doe@email.com</p>
+                            </label>
+                        </div>
                     </div>
-                </PaymentMethodSelector>
+                </div>
 
                 <!-- Promo Code Input -->
-                <PromoCodeInput class="bg-white rounded-lg shadow-sm p-6">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4">Promo Code</h3>
-                    <div class="flex space-x-2">
-                        <input type="text" placeholder="Enter promo code" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">Apply</button>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold mb-4">Promo Code</h3>
+                    <div class="flex space-x-3">
+                        <input type="text" placeholder="Enter promo code" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium">
+                            Apply
+                        </button>
                     </div>
-                </PromoCodeInput>
+                </div>
             </div>
 
             <!-- Right Column -->
             <div class="space-y-6">
                 <!-- Order Summary -->
-                <OrderSummary class="bg-white rounded-lg shadow-sm p-6 sticky top-4">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4">Order Summary</h3>
-                    <div class="space-y-3 text-sm">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-6">
+                    <h3 class="text-lg font-semibold mb-4">Order Summary</h3>
+                    <div class="space-y-3 mb-6">
                         <div class="flex justify-between">
-                            <span class="text-gray-600">Subtotal (3 items)</span>
-                            <span class="text-gray-800">$50.97</span>
+                            <span class="text-gray-600">Subtotal</span>
+                            <span>$39.97</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Delivery Fee</span>
-                            <span class="text-gray-800">$2.99</span>
+                            <span>$2.99</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Tax</span>
-                            <span class="text-gray-800">$4.32</span>
+                            <span>$3.50</span>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Discount</span>
-                            <span class="text-green-600">-$5.00</span>
+                        <div class="flex justify-between text-green-600">
+                            <span>Promo Discount</span>
+                            <span>-$5.00</span>
                         </div>
-                        <div class="border-t pt-3 flex justify-between font-bold text-lg">
-                            <span class="text-gray-800">Total</span>
-                            <span class="text-gray-800">$53.28</span>
+                        <div class="border-t pt-3">
+                            <div class="flex justify-between font-semibold text-lg">
+                                <span>Total</span>
+                                <span>$41.46</span>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="mt-6 space-y-3">
-                        <PlaceOrderButton class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-medium text-center block">
-                            Place Order
-                        </PlaceOrderButton>
-                        <ViewCartButton class="w-full border border-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium text-center block">
-                            Continue Shopping
-                        </ViewCartButton>
-                    </div>
-                </OrderSummary>
 
-                <!-- Support & Actions -->
-                <div class="bg-white rounded-lg shadow-sm p-6 space-y-4">
-                    <SupportButton class="w-full flex items-center justify-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors">
-                        <i data-feather="help-circle"></i>
-                        <span>Customer Support</span>
-                    </SupportButton>
-                    
-                    <div class="border-t pt-4 space-y-2">
-                        <OrderHistoryLink class="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors">
-                            <i data-feather="clock"></i>
+                    <!-- Estimated Arrival Time -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <i data-feather="clock" class="text-blue-500"></i>
+                            <div>
+                                <p class="font-medium text-blue-800">Estimated Arrival</p>
+                                <p class="text-blue-600">25-35 minutes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Place Order Button -->
+                    <button class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-4">
+                        Place Order
+                    </button>
+
+                    <!-- View Cart Button -->
+                    <button class="w-full border border-gray-300 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                        View Cart Details
+                    </button>
+                </div>
+
+                <!-- Support & Quick Actions -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <button class="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg">
+                            <i data-feather="help-circle" class="text-gray-400"></i>
+                            <span>Contact Support</span>
+                        </button>
+                        <button class="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg">
+                            <i data-feather="map" class="text-gray-400"></i>
+                            <span>Track Live Order</span>
+                        </button>
+                        <button class="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg">
+                            <i data-feather="history" class="text-gray-400"></i>
                             <span>Order History</span>
-                        </OrderHistoryLink>
-                        <SettingsLink class="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors">
-                            <i data-feather="settings"></i>
+                        </button>
+                        <button class="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg">
+                            <i data-feather="settings" class="text-gray-400"></i>
                             <span>Settings</span>
-                        </SettingsLink>
-                        <LogoutButton class="flex items-center space-x-2 text-red-600 hover:text-red-800 transition-colors">
-                            <i data-feather="log-out"></i>
+                        </button>
+                        <button class="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg">
+                            <i data-feather="log-out" class="text-gray-400"></i>
                             <span>Logout</span>
-                        </LogoutButton>
+                        </button>
                     </div>
                 </div>
             </div>

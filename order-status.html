@@ -16,30 +16,18 @@
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-4">
                     <h1 class="text-2xl font-bold text-gray-800">Pitchpilot</h1>
-                    <SearchBar class="hidden md:block">
-                        <div class="relative">
-                            <input type="text" placeholder="Search restaurants or dishes..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64">
-                            <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
-                        </div>
-                    </SearchBar>
+                    <SearchBar />
                 </div>
                 <div class="flex items-center space-x-4">
-                    <ProfileHeader class="flex items-center space-x-2">
-                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">JD</div>
-                        <span class="hidden md:block text-gray-700">John Doe</span>
-                    </ProfileHeader>
-                    <SettingsLink class="text-gray-600 hover:text-blue-500 cursor-pointer">
-                        <i data-feather="settings"></i>
-                    </SettingsLink>
-                    <LogoutButton class="text-gray-600 hover:text-red-500 cursor-pointer">
-                        <i data-feather="log-out"></i>
-                    </LogoutButton>
+                    <ProfileHeader />
+                    <SettingsLink />
+                    <LogoutButton />
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
         <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
         <a href='restaurant-menu.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Restaurant Menu</a>
@@ -50,207 +38,345 @@
     </nav>
 
     <main class="container mx-auto px-4 py-8">
-        <div class="max-w-4xl mx-auto">
-            <!-- Order Status Header -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6" data-aos="fade-up">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl font-bold text-gray-800">Order Status</h2>
-                    <OrderHistoryLink class="text-blue-500 hover:text-blue-700 cursor-pointer font-medium">
-                        View Order History
-                    </OrderHistoryLink>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Order Status Tracker -->
+                <div class="bg-white rounded-lg shadow-sm p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-semibold mb-4">Order Status</h2>
+                    <OrderStatusTracker />
                 </div>
-                
-                <!-- Restaurant Header -->
-                <RestaurantHeader class="flex items-center space-x-4 mb-6">
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
-                        <i data-feather="coffee" class="text-gray-500"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800">Burger Palace</h3>
-                        <p class="text-gray-600">Fast Food • $$ • 4.5★</p>
-                    </div>
-                </RestaurantHeader>
+
+                <!-- Live Map View -->
+                <div class="bg-white rounded-lg shadow-sm p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-semibold mb-4">Live Tracking</h2>
+                    <LiveMapView />
+                </div>
+
+                <!-- Final Order Review -->
+                <div class="bg-white rounded-lg shadow-sm p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-semibold mb-4">Order Details</h2>
+                    <FinalOrderReview />
+                </div>
 
                 <!-- Order Confirmation Message -->
-                <OrderConfirmationMessage class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-                    <div class="flex items-center">
-                        <i data-feather="check-circle" class="text-green-500 mr-3"></i>
-                        <div>
-                            <h4 class="font-semibold text-green-800">Order Confirmed!</h4>
-                            <p class="text-green-700">Your order #ORD-12345 has been confirmed and is being prepared.</p>
-                        </div>
-                    </div>
-                </OrderConfirmationMessage>
+                <div class="bg-green-50 border border-green-200 rounded-lg p-6" data-aos="fade-up">
+                    <OrderConfirmationMessage />
+                </div>
             </div>
 
-            <!-- Order Status Tracker -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="text-xl font-semibold text-gray-800 mb-6">Order Progress</h3>
-                
-                <OrderStatusTracker class="relative">
-                    <div class="flex justify-between mb-2">
-                        <div class="text-center">
-                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                                <i data-feather="check" class="text-white text-sm"></i>
-                            </div>
-                            <span class="text-sm font-medium text-gray-700">Order Placed</span>
-                        </div>
-                        <div class="text-center">
-                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                                <i data-feather="check" class="text-white text-sm"></i>
-                            </div>
-                            <span class="text-sm font-medium text-gray-700">Confirmed</span>
-                        </div>
-                        <div class="text-center">
-                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                                <i data-feather="clock" class="text-white text-sm"></i>
-                            </div>
-                            <span class="text-sm font-medium text-gray-700">Preparing</span>
-                        </div>
-                        <div class="text-center">
-                            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-2">
-                                <i data-feather="truck" class="text-gray-500 text-sm"></i>
-                            </div>
-                            <span class="text-sm font-medium text-gray-500">On the Way</span>
-                        </div>
-                        <div class="text-center">
-                            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-2">
-                                <i data-feather="home" class="text-gray-500 text-sm"></i>
-                            </div>
-                            <span class="text-sm font-medium text-gray-500">Delivered</span>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-between px-4">
-                        <div class="h-1 bg-green-500 flex-1 mt-3"></div>
-                        <div class="h-1 bg-green-500 flex-1 mt-3"></div>
-                        <div class="h-1 bg-blue-500 flex-1 mt-3"></div>
-                        <div class="h-1 bg-gray-300 flex-1 mt-3"></div>
-                    </div>
-                </OrderStatusTracker>
-
+            <!-- Right Column -->
+            <div class="space-y-6">
                 <!-- Estimated Arrival Time -->
-                <EstimatedArrivalTime class="mt-6 text-center">
-                    <p class="text-gray-600">Estimated delivery</p>
-                    <p class="text-2xl font-bold text-gray-800">25-35 minutes</p>
-                    <p class="text-sm text-gray-500">Arriving by 7:45 PM</p>
-                </EstimatedArrivalTime>
-            </div>
+                <div class="bg-white rounded-lg shadow-sm p-6" data-aos="fade-left">
+                    <EstimatedArrivalTime />
+                </div>
 
-            <!-- Live Map View -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Live Tracking</h3>
-                <LiveMapView class="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
-                    <div class="text-center text-gray-500">
-                        <i data-feather="map" class="w-12 h-12 mx-auto mb-2"></i>
-                        <p>Live order tracking map</p>
-                        <p class="text-sm">Driver location and route will appear here</p>
-                    </div>
-                </LiveMapView>
-            </div>
+                <!-- Support & Actions -->
+                <div class="bg-white rounded-lg shadow-sm p-6 space-y-4" data-aos="fade-left">
+                    <SupportButton />
+                    <OrderHistoryLink />
+                    <PaymentManagerLink />
+                    <AddressManagerLink />
+                </div>
 
-            <!-- Final Order Review -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6" data-aos="fade-up" data-aos-delay="300">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Order Details</h3>
-                
-                <FinalOrderReview>
-                    <!-- Cart Item List -->
-                    <CartItemList class="space-y-4 mb-6">
-                        <div class="flex justify-between items-center border-b pb-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Classic Cheeseburger</h4>
-                                    <p class="text-sm text-gray-600">With fries and drink</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="font-medium text-gray-800">$12.99</p>
-                                <p class="text-sm text-gray-600">Qty: 1</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between items-center border-b pb-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Chicken Caesar Salad</h4>
-                                    <p class="text-sm text-gray-600">Extra dressing</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="font-medium text-gray-800">$9.99</p>
-                                <p class="text-sm text-gray-600">Qty: 1</p>
-                            </div>
-                        </div>
-                    </CartItemList>
-
-                    <!-- Order Summary -->
-                    <OrderSummary class="space-y-2">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Subtotal</span>
-                            <span class="font-medium">$22.98</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Delivery Fee</span>
-                            <span class="font-medium">$2.99</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Tax</span>
-                            <span class="font-medium">$1.84</span>
-                        </div>
-                        <div class="flex justify-between border-t pt-2">
-                            <span class="font-semibold text-gray-800">Total</span>
-                            <span class="font-bold text-lg">$27.81</span>
-                        </div>
-                    </OrderSummary>
-
-                    <!-- Payment Method -->
-                    <div class="mt-6">
-                        <h4 class="font-medium text-gray-800 mb-2">Payment Method</h4>
-                        <PaymentMethodSelector class="flex items-center space-x-2">
-                            <i data-feather="credit-card" class="text-gray-600"></i>
-                            <span class="text-gray-700">•••• 4242</span>
-                        </PaymentMethodSelector>
-                    </div>
-
-                    <!-- Delivery Address -->
-                    <div class="mt-6">
-                        <h4 class="font-medium text-gray-800 mb-2">Delivery Address</h4>
-                        <AddressSelector class="text-gray-700">
-                            123 Main Street, Apt 4B<br>
-                            New York, NY 10001
-                        </AddressSelector>
-                    </div>
-                </FinalOrderReview>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <SupportButton class="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition duration-200 flex items-center justify-center space-x-2">
-                    <i data-feather="help-circle"></i>
-                    <span>Get Support</span>
-                </SupportButton>
-                
-                <ViewCartButton class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-200 flex items-center justify-center space-x-2">
-                    <i data-feather="shopping-cart"></i>
-                    <span>View Cart</span>
-                </ViewCartButton>
-                
-                <PlaceOrderButton class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-200 flex items-center justify-center space-x-2">
-                    <i data-feather="repeat"></i>
-                    <span>Reorder</span>
-                </PlaceOrderButton>
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-lg shadow-sm p-6 space-y-3" data-aos="fade-left">
+                    <ViewCartButton />
+                    <PlaceOrderButton />
+                    <CheckoutButton />
+                </div>
             </div>
         </div>
     </main>
 
     <script>
-        feather.replace();
+        // Initialize AOS animations
         AOS.init({
             duration: 800,
             once: true
         });
+
+        // Initialize Feather Icons
+        feather.replace();
     </script>
 </body>
 </html>
+
+<!-- Component Definitions -->
+<script>
+// SearchBar Component
+class SearchBar extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <div class="relative">
+                <input type="text" placeholder="Search restaurants or dishes..." 
+                    class="w-64 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <i data-feather="search" class="absolute right-3 top-2.5 text-gray-400"></i>
+            </div>
+        `;
+    }
+}
+
+// ProfileHeader Component
+class ProfileHeader extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <div class="flex items-center space-x-2 cursor-pointer">
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white">
+                    <i data-feather="user"></i>
+                </div>
+                <span class="text-gray-700">John Doe</span>
+            </div>
+        `;
+    }
+}
+
+// SettingsLink Component
+class SettingsLink extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <a href="#" class="text-gray-600 hover:text-blue-500">
+                <i data-feather="settings"></i>
+            </a>
+        `;
+    }
+}
+
+// LogoutButton Component
+class LogoutButton extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <button class="text-gray-600 hover:text-red-500">
+                <i data-feather="log-out"></i>
+            </button>
+        `;
+    }
+}
+
+// OrderStatusTracker Component
+class OrderStatusTracker extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="font-medium">Order Placed</span>
+                    </div>
+                    <span class="text-sm text-gray-500">10:30 AM</span>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="font-medium">Order Confirmed</span>
+                    </div>
+                    <span class="text-sm text-gray-500">10:32 AM</span>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="font-medium">Food Preparation</span>
+                    </div>
+                    <span class="text-sm text-gray-500">10:35 AM</span>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <span class="font-medium">Out for Delivery</span>
+                    </div>
+                    <span class="text-sm text-gray-500">11:15 AM</span>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        <span class="font-medium text-gray-400">Delivered</span>
+                    </div>
+                    <span class="text-sm text-gray-400">Estimated: 11:45 AM</span>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// LiveMapView Component
+class LiveMapView extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <div class="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
+                <div class="text-center">
+                    <i data-feather="map" class="w-12 h-12 text-gray-400 mx-auto mb-2"></i>
+                    <p class="text-gray-500">Live map tracking will appear here</p>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// FinalOrderReview Component
+class FinalOrderReview extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <div class="space-y-4">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="font-semibold">Italian Bistro</h3>
+                        <p class="text-sm text-gray-600">2 items • $24.99</p>
+                    </div>
+                    <span class="text-green-600 font-semibold">Preparing</span>
+                </div>
+                
+                <div class="border-t pt-4">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span>Margherita Pizza</span>
+                        <span>$14.99</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Caesar Salad</span>
+                        <span>$9.99</span>
+                    </div>
+                </div>
+                
+                <div class="border-t pt-4 flex justify-between font-semibold">
+                    <span>Total</span>
+                    <span>$24.98</span>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// OrderConfirmationMessage Component
+class OrderConfirmationMessage extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <div class="flex items-center space-x-3">
+                <i data-feather="check-circle" class="text-green-500 w-6 h-6"></i>
+                <div>
+                    <h3 class="font-semibold text-green-800">Order Confirmed!</h3>
+                    <p class="text-green-700 text-sm">Your order #ORD-12345 has been confirmed and is being prepared.</p>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// EstimatedArrivalTime Component
+class EstimatedArrivalTime extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <div class="text-center">
+                <h3 class="text-lg font-semibold mb-2">Estimated Arrival</h3>
+                <div class="text-3xl font-bold text-blue-600 mb-2">11:45 AM</div>
+                <p class="text-sm text-gray-600">Approximately 30 minutes</p>
+            </div>
+        `;
+    }
+}
+
+// SupportButton Component
+class SupportButton extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200 flex items-center justify-center space-x-2">
+                <i data-feather="headphones"></i>
+                <span>Contact Support</span>
+            </button>
+        `;
+    }
+}
+
+// OrderHistoryLink Component
+class OrderHistoryLink extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <a href="#" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-200 flex items-center justify-center space-x-2">
+                <i data-feather="clock"></i>
+                <span>Order History</span>
+            </a>
+        `;
+    }
+}
+
+// PaymentManagerLink Component
+class PaymentManagerLink extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <a href="#" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-200 flex items-center justify-center space-x-2">
+                <i data-feather="credit-card"></i>
+                <span>Payment Methods</span>
+            </a>
+        `;
+    }
+}
+
+// AddressManagerLink Component
+class AddressManagerLink extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <a href="#" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-200 flex items-center justify-center space-x-2">
+                <i data-feather="map-pin"></i>
+                <span>Manage Addresses</span>
+            </a>
+        `;
+    }
+}
+
+// ViewCartButton Component
+class ViewCartButton extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <a href="your-cart.html" class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-200 flex items-center justify-center space-x-2">
+                <i data-feather="shopping-cart"></i>
+                <span>View Cart</span>
+            </a>
+        `;
+    }
+}
+
+// PlaceOrderButton Component
+class PlaceOrderButton extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <a href="checkout.html" class="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200 flex items-center justify-center space-x-2">
+                <i data-feather="shopping-bag"></i>
+                <span>Place New Order</span>
+            </a>
+        `;
+    }
+}
+
+// CheckoutButton Component
+class CheckoutButton extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <a href="checkout.html" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200 flex items-center justify-center space-x-2">
+                <i data-feather="credit-card"></i>
+                <span>Checkout</span>
+            </a>
+        `;
+    }
+}
+
+// Register all custom elements
+customElements.define('search-bar', SearchBar);
+customElements.define('profile-header', ProfileHeader);
+customElements.define('settings-link', SettingsLink);
+customElements.define('logout-button', LogoutButton);
+customElements.define('order-status-tracker', OrderStatusTracker);
+customElements.define('live-map-view', LiveMapView);
+customElements.define('final-order-review', FinalOrderReview);
+customElements.define('order-confirmation-message', OrderConfirmationMessage);
+customElements.define('estimated-arrival-time', EstimatedArrivalTime);
+customElements.define('support-button', SupportButton);
+customElements.define('order-history-link', OrderHistoryLink);
+customElements.define('payment-manager-link', PaymentManagerLink);
+customElements.define('address-manager-link', AddressManagerLink);
+customElements.define('view-cart-button', ViewCartButton);
+customElements.define('place-order-button', PlaceOrderButton);
+customElements.define('checkout-button', CheckoutButton);
+</script>
