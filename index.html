@@ -3,295 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pitchpilot Medical Center - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CricketHub - Home</title>
+    <script src='https://cdn.tailwindcss.com'></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header>
-        <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='home-page.html' class='px-3 py-2 hover:text-blue-400'>Home Page</a>
-            <a href='find-a-doctor.html' class='px-3 py-2 hover:text-blue-400'>Find a Doctor</a>
-            <a href='doctor-profile.html' class='px-3 py-2 hover:text-blue-400'>Doctor Profile</a>
-            <a href='services.html' class='px-3 py-2 hover:text-blue-400'>Services</a>
-            <a href='book-an-appointment.html' class='px-3 py-2 hover:text-blue-400'>Book an Appointment</a>
-            <a href='patient-portal.html' class='px-3 py-2 hover:text-blue-400'>Patient Portal</a>
-            <a href='patient-dashboard.html' class='px-3 py-2 hover:text-blue-400'>Patient Dashboard</a>
-            <a href='contact-us.html' class='px-3 py-2 hover:text-blue-400'>Contact Us</a>
-        </nav>
-    </header>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex space-x-4 flex-wrap">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-semibold'>Home</a>
+            <a href='live-scores.html' class='px-3 py-2 hover:text-blue-400'>Live Scores</a>
+            <a href='match-schedule.html' class='px-3 py-2 hover:text-blue-400'>Match Schedule</a>
+            <a href='player-profiles.html' class='px-3 py-2 hover:text-blue-400'>Player Profiles</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+            <a href='rankings.html' class='px-3 py-2 hover:text-blue-400'>Rankings</a>
+            <a href='forum.html' class='px-3 py-2 hover:text-blue-400'>Forum</a>
+        </div>
+        <div class="flex space-x-4">
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        </div>
+    </nav>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="bg-blue-600 text-white py-20">
-            <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6">Your Health, Our Priority</h1>
-                <p class="text-xl mb-8">Comprehensive healthcare services with expert medical professionals</p>
-                <div class="flex flex-col md:flex-row justify-center gap-4">
-                    <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300">Book an Appointment</button>
-                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">Find a Doctor</button>
-                </div>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-900 to-purple-900 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4" data-aos="fade-up">CricketHub</h1>
+            <p class="text-xl md:text-2xl mb-8" data-aos="fade-up" data-aos-delay="200">Your Ultimate Cricket Companion</p>
+            <div class="flex justify-center space-x-4" data-aos="fade-up" data-aos-delay="400">
+                <button class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg font-semibold">Live Scores</button>
+                <button class="bg-transparent border-2 border-white hover:bg-white hover:text-purple-900 px-6 py-3 rounded-lg font-semibold">Match Schedule</button>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Services Overview -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-12">Our Medical Services</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                        <i data-feather="heart" class="w-12 h-12 text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Cardiology</h3>
-                        <p class="text-gray-600">Comprehensive heart care with advanced diagnostic technology</p>
+    <!-- Live Score Updates -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Live Score Updates</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="liveScoresContainer">
+                <!-- Live scores will be populated by JavaScript -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded text-sm">LIVE</span>
+                        <span class="text-gray-500">ODI</span>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                        <i data-feather="activity" class="w-12 h-12 text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Primary Care</h3>
-                        <p class="text-gray-600">Routine check-ups and preventive healthcare services</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                        <i data-feather="eye" class="w-12 h-12 text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Ophthalmology</h3>
-                        <p class="text-gray-600">Expert eye care and vision correction services</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Doctor Highlight -->
-        <section class="py-16 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-12">Featured Doctors</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Doctor Bio Card 1 -->
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="p-6">
-                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=300&fit=crop" alt="Dr. Sarah Johnson" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
-                            <h3 class="text-xl font-semibold text-center">Dr. Sarah Johnson</h3>
-                            <p class="text-blue-600 text-center mb-2">Cardiologist</p>
-                            <p class="text-gray-600 text-center mb-4">15+ years of experience in cardiovascular medicine</p>
-                            <div class="flex justify-center">
-                                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">View Profile</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Doctor Bio Card 2 -->
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="p-6">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=300&fit=crop" alt="Dr. Michael Chen" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
-                            <h3 class="text-xl font-semibold text-center">Dr. Michael Chen</h3>
-                            <p class="text-blue-600 text-center mb-2">Orthopedic Surgeon</p>
-                            <p class="text-gray-600 text-center mb-4">Specialized in joint replacement and sports medicine</p>
-                            <div class="flex justify-center">
-                                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">View Profile</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Doctor Bio Card 3 -->
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="p-6">
-                            <img src="https://images.unsplash.com/photo-1594824947933-d0501ba2fe65?w=400&h=300&fit=crop" alt="Dr. Emily Rodriguez" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
-                            <h3 class="text-xl font-semibold text-center">Dr. Emily Rodriguez</h3>
-                            <p class="text-blue-600 text-center mb-2">Pediatrician</p>
-                            <p class="text-gray-600 text-center mb-4">Dedicated to children's health and wellness</p>
-                            <div class="flex justify-center">
-                                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">View Profile</button>
-                            </div>
-                        </div>
+                    <div class="text-center">
+                        <div class="font-semibold text-lg">IND vs AUS</div>
+                        <div class="text-2xl font-bold my-3">287/4 (45.2)</div>
+                        <div class="text-gray-600">Target: 325 • RR: 6.33</div>
+                        <div class="mt-2 text-sm">Kohli: 89* (78), Rahul: 45* (52)</div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Patient Reviews / Testimonials -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-12">What Our Patients Say</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400 flex">
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"The care I received was exceptional. Dr. Johnson took the time to explain everything and made me feel comfortable throughout my treatment."</p>
-                        <p class="font-semibold">- Jennifer M.</p>
+    <!-- Match Scheduler -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Upcoming Matches</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded-lg shadow-md" data-aos="fade-up">
+                    <thead class="bg-gray-800 text-white">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Date & Time</th>
+                            <th class="py-3 px-4 text-left">Match</th>
+                            <th class="py-3 px-4 text-left">Venue</th>
+                            <th class="py-3 px-4 text-left">Series</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matchSchedule">
+                        <!-- Match schedule will be populated by JavaScript -->
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4">Mar 15, 2024 • 14:30 IST</td>
+                            <td class="py-3 px-4">India vs England</td>
+                            <td class="py-3 px-4">Wankhede Stadium, Mumbai</td>
+                            <td class="py-3 px-4">World Test Championship</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Player Statistics -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Top Player Statistics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center" data-aos="fade-up">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="award" class="text-blue-500"></i>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400 flex">
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"From scheduling to follow-up, the entire experience was seamless. The staff is friendly and professional."</p>
-                        <p class="font-semibold">- Robert T.</p>
+                    <h3 class="text-xl font-semibold mb-2">Most Runs</h3>
+                    <div class="text-2xl font-bold text-blue-600">Virat Kohli</div>
+                    <div class="text-gray-600">12,345 runs</div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="target" class="text-green-500"></i>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400 flex">
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                            </div>
+                    <h3 class="text-xl font-semibold mb-2">Most Wickets</h3>
+                    <div class="text-2xl font-bold text-green-600">Jasprit Bumrah</div>
+                    <div class="text-gray-600">345 wickets</div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="star" class="text-purple-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Best Batting Avg</h3>
+                    <div class="text-2xl font-bold text-purple-600">Steve Smith</div>
+                    <div class="text-gray-600">61.23 average</div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="trending-up" class="text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Best Bowling Avg</h3>
+                    <div class="text-2xl font-bold text-red-600">Pat Cummins</div>
+                    <div class="text-gray-600">21.56 average</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Rosters -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Team Rosters</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-blue-600">IND</span>
                         </div>
-                        <p class="text-gray-600 mb-4">"My family has been coming here for years. We trust the doctors completely and appreciate the comprehensive care."</p>
-                        <p class="font-semibold">- Maria L.</p>
+                        <h3 class="text-xl font-semibold">India</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between">
+                            <span>Captain:</span>
+                            <span class="font-semibold">Rohit Sharma</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Players:</span>
+                            <span class="font-semibold">15</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Ranking:</span>
+                            <span class="font-semibold">#1</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- More teams would go here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- News Articles -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Latest News</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden" data-aos="fade-up">
+                    <div class="h-48 bg-gray-300"></div>
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600 font-semibold">Match Report</span>
+                        <h3 class="text-xl font-semibold my-2">India Clinches Thrilling Victory Against Australia</h3>
+                        <p class="text-gray-600 mb-4">In a nail-biting finish, India secured a 5-wicket victory with just 2 balls to spare...</p>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <span>March 12, 2024</span>
+                            <a href="#" class="text-blue-500 hover:underline">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- More news articles would go here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- User Comments -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Recent Comments</h2>
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md mb-4" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-semibold">AK</span>
+                        </div>
+                        <div>
+                            <div class="font-semibold">Amit Kumar</div>
+                            <div class="text-sm text-gray-500">2 hours ago</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">What an incredible innings by Kohli! His century under pressure was pure class. #INDvAUS</p>
+                </div>
+                <!-- More comments would go here -->
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <textarea class="w-full p-4 border rounded-lg mb-4" placeholder="Add your comment..."></textarea>
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold">Post Comment</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ranking System -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">ICC Rankings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div data-aos="fade-up">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Team Rankings</h3>
+                    <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-800 text-white">
+                                <tr>
+                                    <th class="py-3 px-4 text-left">Rank</th>
+                                    <th class="py-3 px-4 text-left">Team</th>
+                                    <th class="py-3 px-4 text-left">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="py-3 px-4 font-semibold">1</td>
+                                    <td class="py-3 px-4">India</td>
+                                    <td class="py-3 px-4">121</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-3 px-4 font-semibold">2</td>
+                                    <td class="py-3 px-4">Australia</td>
+                                    <td class="py-3 px-4">117</td>
+                                </tr>
+                                <!-- More rankings would go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Player Rankings</h3>
+                    <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-800 text-white">
+                                <tr>
+                                    <th class="py-3 px-4 text-left">Rank</th>
+                                    <th class="py-3 px-4 text-left">Player</th>
+                                    <th class="py-3 px-4 text-left">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="py-3 px-4 font-semibold">1</td>
+                                    <td class="py-3 px-4">Babar Azam</td>
+                                    <td class="py-3 px-4">865</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-3 px-4 font-semibold">2</td>
+                                    <td class="py-3 px-4">Virat Kohli</td>
+                                    <td class="py-3 px-4">857</td>
+                                </tr>
+                                <!-- More player rankings would go here -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Appointment CTA -->
-        <section class="py-16 bg-blue-600 text-white">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold mb-6">Ready to Schedule Your Visit?</h2>
-                <p class="text-xl mb-8">Book your appointment online or call us today</p>
-                <div class="flex flex-col md:flex-row justify-center gap-4">
-                    <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300">Book Appointment Now</button>
-                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">Call (555) 123-4567</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Address and Hours -->
-        <section class="py-16 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h2 class="text-2xl font-bold mb-6">Our Location</h2>
-                        <div class="bg-white p-6 rounded-lg shadow-md">
-                            <p class="text-gray-600 mb-4"><i data-feather="map-pin" class="w-5 h-5 inline mr-2"></i> 123 Medical Center Drive, Healthcare City, HC 12345</p>
-                            <p class="text-gray-600 mb-4"><i data-feather="phone" class="w-5 h-5 inline mr-2"></i> (555) 123-4567</p>
-                            <p class="text-gray-600"><i data-feather="mail" class="w-5 h-5 inline mr-2"></i> info@pitchpilotmedical.com</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold mb-6">Office Hours</h2>
-                        <div class="bg-white p-6 rounded-lg shadow-md">
-                            <div class="flex justify-between mb-2">
-                                <span>Monday - Friday</span>
-                                <span>8:00 AM - 6:00 PM</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span>Saturday</span>
-                                <span>9:00 AM - 2:00 PM</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Sunday</span>
-                                <span>Closed</span>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-4">* Emergency services available 24/7</p>
-                        </div>
+    <!-- Forum Discussions -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Forum Discussions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <h3 class="text-xl font-semibold mb-3">Who will win the World Cup 2024?</h3>
+                    <p class="text-gray-600 mb-4">Share your predictions and analysis for the upcoming World Cup...</p>
+                    <div class="flex justify-between text-sm text-gray-500">
+                        <span>125 comments</span>
+                        <span>2 days ago</span>
                     </div>
                 </div>
+                <!-- More forum topics would go here -->
             </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-                <div class="max-w-3xl mx-auto space-y-6">
-                    <div class="border-b border-gray-200 pb-4">
-                        <h3 class="text-xl font-semibold mb-2">Do you accept my insurance?</h3>
-                        <p class="text-gray-600">We accept most major insurance providers. Please contact our billing department to verify your specific coverage.</p>
-                    </div>
-                    <div class="border-b border-gray-200 pb-4">
-                        <h3 class="text-xl font-semibold mb-2">How do I schedule an appointment?</h3>
-                        <p class="text-gray-600">You can schedule online through our patient portal, call our office directly, or use the book appointment feature on our website.</p>
-                    </div>
-                    <div class="border-b border-gray-200 pb-4">
-                        <h3 class="text-xl font-semibold mb-2">What should I bring to my first appointment?</h3>
-                        <p class="text-gray-600">Please bring your insurance card, photo ID, list of current medications, and any relevant medical records from previous providers.</p>
-                    </div>
-                </div>
+            <div class="text-center mt-8" data-aos="fade-up">
+                <a href="forum.html" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold">View All Discussions</a>
             </div>
-        </section>
-
-        <!-- Login Form / Registration -->
-        <section class="py-16 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold mb-6 text-center">Patient Portal Login</h2>
-                    <form>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 mb-2" for="email">Email</label>
-                            <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 mb-2" for="password">Password</label>
-                            <input type="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300 mb-4">Login</button>
-                        <div class="text-center">
-                            <a href="#" class="text-blue-600 hover:underline text-sm">Forgot Password?</a>
-                            <p class="mt-4 text-gray-600">Don't have an account? <a href="#" class="text-blue-600 hover:underline">Register here</a></p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Pitchpilot Medical</h3>
-                    <p class="text-gray-400">Providing exceptional healthcare services with compassion and expertise.</p>
+                    <h3 class="text-xl font-semibold mb-4">CricketHub</h3>
+                    <p class="text-gray-400">Your ultimate destination for cricket updates, scores, and discussions.</p>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Find a Doctor</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Patient Portal</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contact Us</a></li>
+                        <li><a href="live-scores.html" class="text-gray-400 hover:text-white">Live Scores</a></li>
+                        <li><a href="match-schedule.html" class="text-gray-400 hover:text-white">Match Schedule</a></li>
+                        <li><a href="rankings.html" class="text-gray-400 hover:text-white">Rankings</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Services</h4>
+                    <h4 class="font-semibold mb-4">Teams</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Primary Care</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Specialty Care</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Emergency Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Diagnostic Imaging</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">India</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Australia</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">England</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Contact Info</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>123 Medical Center Drive</li>
-                        <li>Healthcare City, HC 12345</li>
-                        <li>(555) 123-4567</li>
-                        <li>info@pitchpilotmedical.com</li>
-                    </ul>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Pitchpilot Medical Center. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2024 CricketHub. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Initialize Feather Icons
         feather.replace();
-        AOS.init();
+
+        // Simulated real-time updates (in a real app, this would fetch from APIs)
+        function updateLiveScores() {
+            // This would make API calls to cricket data providers
+            console.log("Updating live scores...");
+        }
+
+        // Update scores every 30 seconds
+        setInterval(updateLiveScores, 30000);
+
+        // Initial load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLiveScores();
+        });
     </script>
 </body>
 </html>

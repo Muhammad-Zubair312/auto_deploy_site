@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Forum - Cricket Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+        <a href='live-scores.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Live Scores</a>
+        <a href='match-schedule.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Match Schedule</a>
+        <a href='player-profiles.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Player Profiles</a>
+        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Teams</a>
+        <a href='news.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>News</a>
+        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Rankings</a>
+        <a href='forum.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Forum</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Cricket Forum</h1>
+            <p class="text-gray-600 text-lg">Join the conversation with cricket fans worldwide</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Sidebar - Forum Categories -->
+            <div class="lg:col-span-1" data-aos="fade-right">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Forum Categories</h2>
+                    <div class="space-y-3">
+                        <a href="#" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-gray-700">Match Discussions</span>
+                                <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">24</span>
+                            </div>
+                        </a>
+                        <a href="#" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-gray-700">Team Analysis</span>
+                                <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">18</span>
+                            </div>
+                        </a>
+                        <a href="#" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-gray-700">Player Performance</span>
+                                <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">32</span>
+                            </div>
+                        </a>
+                        <a href="#" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-gray-700">Tournament Talk</span>
+                                <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">15</span>
+                            </div>
+                        </a>
+                        <a href="#" class="block p-3 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-gray-700">Cricket Rules & Laws</span>
+                                <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">8</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Live Match Updates -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Live Matches</h2>
+                    <div class="space-y-4" id="liveMatches">
+                        <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="font-bold text-red-600">LIVE</span>
+                                <span class="text-sm text-gray-500">45.3 overs</span>
+                            </div>
+                            <p class="font-medium text-gray-800">IND vs AUS - 3rd ODI</p>
+                            <p class="text-sm text-gray-600">IND: 245/6 | AUS: 198/4</p>
+                        </div>
+                        <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="font-bold text-green-600">UPCOMING</span>
+                                <span class="text-sm text-gray-500">Starts in 2h 15m</span>
+                            </div>
+                            <p class="font-medium text-gray-800">ENG vs NZ - T20 Series</p>
+                            <p class="text-sm text-gray-600">Lord's Cricket Ground</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Forum Content -->
+            <div class="lg:col-span-2" data-aos="fade-left">
+                <!-- Create New Thread -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i data-feather="plus" class="text-white"></i>
+                        </div>
+                        <input type="text" placeholder="Start a new discussion..." class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                            Post
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Forum Threads -->
+                <div class="space-y-6">
+                    <!-- Thread 1 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-start space-x-4">
+                            <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-bold text-lg text-gray-800">Virat Kohli's Form in World Cup 2024</h3>
+                                    <span class="text-sm text-gray-500">2 hours ago</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">What are your thoughts on Kohli's performance in the ongoing World Cup? His strike rate has been impressive but I'm concerned about his consistency in knockout matches.</p>
+                                <div class="flex items-center space-x-6 text-sm text-gray-500">
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="message-circle" class="w-4 h-4"></i>
+                                        <span>24 comments</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="eye" class="w-4 h-4"></i>
+                                        <span>156 views</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="thumbs-up" class="w-4 h-4"></i>
+                                        <span>45 likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thread 2 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-start space-x-4">
+                            <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-bold text-lg text-gray-800">Best Bowling Attack in Test Cricket?</h3>
+                                    <span class="text-sm text-gray-500">5 hours ago</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">With Australia's pace trio, India's spin dominance, and England's swing masters, which team currently has the best bowling attack for test matches?</p>
+                                <div class="flex items-center space-x-6 text-sm text-gray-500">
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="message-circle" class="w-4 h-4"></i>
+                                        <span>18 comments</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="eye" class="w-4 h-4"></i>
+                                        <span>89 views</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="thumbs-up" class="w-4 h-4"></i>
+                                        <span>32 likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thread 3 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-start space-x-4">
+                            <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-bold text-lg text-gray-800">T20 Leagues Impact on International Cricket</h3>
+                                    <span class="text-sm text-gray-500">1 day ago</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Are franchise T20 leagues like IPL, BBL, and PSL helping or harming international cricket? Players are prioritizing leagues over national duty.</p>
+                                <div class="flex items-center space-x-6 text-sm text-gray-500">
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="message-circle" class="w-4 h-4"></i>
+                                        <span>42 comments</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="eye" class="w-4 h-4"></i>
+                                        <span>203 views</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="thumbs-up" class="w-4 h-4"></i>
+                                        <span>67 likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thread 4 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-start space-x-4">
+                            <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-bold text-lg text-gray-800">Underrated Cricket Stadiums Around the World</h3>
+                                    <span class="text-sm text-gray-500">2 days ago</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Let's discuss some hidden gem cricket stadiums that don't get enough attention but offer amazing cricket viewing experiences.</p>
+                                <div class="flex items-center space-x-6 text-sm text-gray-500">
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="message-circle" class="w-4 h-4"></i>
+                                        <span>15 comments</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="eye" class="w-4 h-4"></i>
+                                        <span>78 views</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <i data-feather="thumbs-up" class="w-4 h-4"></i>
+                                        <span>28 likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-center mt-8">
+                    <nav class="flex space-x-2">
+                        <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">Previous</button>
+                        <button class="px-3 py-2 bg-blue-500 text-white rounded-lg">1</button>
+                        <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">2</button>
+                        <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">3</button>
+                        <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">Next</button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Cricket Website</h3>
+                    <p class="text-gray-400">Your ultimate destination for cricket news, scores, and community discussions.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-3 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none flex-1">
+                        <button class="bg-blue-500 px-4 py-2 rounded-r-lg hover:bg-blue-600 transition-colors">
+                            <i data-feather="send" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2024 Cricket Website. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Simulate live score updates
+        function updateLiveScores() {
+            const liveMatches = document.getElementById('liveMatches');
+            // This would typically fetch from an API
+            setTimeout(() => {
+                // Simulate score update
+                const matchElement = liveMatches.querySelector('.bg-red-50');
+                const scoreElement = matchElement.querySelector('.text-sm.text-gray-600');
+                if (scoreElement) {
+                    scoreElement.textContent = 'IND: 267/8 | AUS: 215/6';
+                }
+            }, 10000);
+        }
+
+        // Start live updates
+        updateLiveScores();
+        setInterval(updateLiveScores, 30000);
+    </script>
+</body>
+</html>

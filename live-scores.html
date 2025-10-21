@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Scores - Cricket Website</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='live-scores.html' class='px-3 py-2 hover:text-blue-400'>Live Scores</a>
+        <a href='match-schedule.html' class='px-3 py-2 hover:text-blue-400'>Match Schedule</a>
+        <a href='player-profiles.html' class='px-3 py-2 hover:text-blue-400'>Player Profiles</a>
+        <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+        <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400'>Rankings</a>
+        <a href='forum.html' class='px-3 py-2 hover:text-blue-400'>Forum</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="text-center mb-8" data-aos="fade-down">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Live Cricket Scores</h1>
+            <p class="text-gray-600">Real-time updates from matches around the world</p>
+        </div>
+
+        <!-- Live Matches Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Live Matches</h2>
+                <div class="flex items-center space-x-2 text-green-600">
+                    <i data-feather="radio" class="w-5 h-5"></i>
+                    <span class="animate-pulse">LIVE</span>
+                </div>
+            </div>
+
+            <!-- Live Match Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Match 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-green-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-gray-500">ODI • Dubai</span>
+                        <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Live</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/40" alt="IND" class="w-10 h-10 rounded-full">
+                                <span class="font-semibold">India</span>
+                            </div>
+                            <span class="text-xl font-bold">287/6</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/40" alt="AUS" class="w-10 h-10 rounded-full">
+                                <span class="font-semibold">Australia</span>
+                            </div>
+                            <span class="text-xl font-bold">154/3</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p>32.4 overs • Target: 288</p>
+                        <p class="mt-1">Last over: 1 4 0 1 2 W</p>
+                    </div>
+                </div>
+
+                <!-- Match 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-green-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-gray-500">T20 • London</span>
+                        <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Live</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/40" alt="ENG" class="w-10 h-10 rounded-full">
+                                <span class="font-semibold">England</span>
+                            </div>
+                            <span class="text-xl font-bold">89/2</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/40" alt="PAK" class="w-10 h-10 rounded-full">
+                                <span class="font-semibold">Pakistan</span>
+                            </div>
+                            <span class="text-xl font-bold">-</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p>10.2 overs • 1st Innings</p>
+                        <p class="mt-1">Buttler: 45*(28), Malan: 22*(19)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Matches Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Upcoming Matches</h2>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Match</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Series</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Venue</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex items-center space-x-2">
+                                            <img src="https://via.placeholder.com/24" alt="SA" class="w-6 h-6 rounded-full">
+                                            <span>South Africa</span>
+                                        </div>
+                                        <span class="mx-2">vs</span>
+                                        <div class="flex items-center space-x-2">
+                                            <img src="https://via.placeholder.com/24" alt="NZ" class="w-6 h-6 rounded-full">
+                                            <span>New Zealand</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">World Test Championship</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Tomorrow, 10:00 AM</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Johannesburg</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex items-center space-x-2">
+                                            <img src="https://via.placeholder.com/24" alt="WI" class="w-6 h-6 rounded-full">
+                                            <span>West Indies</span>
+                                        </div>
+                                        <span class="mx-2">vs</span>
+                                        <div class="flex items-center space-x-2">
+                                            <img src="https://via.placeholder.com/24" alt="BAN" class="w-6 h-6 rounded-full">
+                                            <span>Bangladesh</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">ODI Series</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Dec 15, 2:30 PM</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Barbados</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Results Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Recent Results</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Result 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-gray-500">Test Match • Completed</span>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Result</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/32" alt="AUS" class="w-8 h-8 rounded-full">
+                                <span>Australia</span>
+                            </div>
+                            <span class="font-bold text-green-600">Won by 89 runs</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/32" alt="ENG" class="w-8 h-8 rounded-full">
+                                <span>England</span>
+                            </div>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p>Australia: 385 & 265 | England: 237 & 324</p>
+                    </div>
+                </div>
+
+                <!-- Result 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-gray-500">T20 • Completed</span>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Result</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/32" alt="IND" class="w-8 h-8 rounded-full">
+                                <span>India</span>
+                            </div>
+                            <span class="font-bold text-green-600">Won by 7 wickets</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/32" alt="SL" class="w-8 h-8 rounded-full">
+                                <span>Sri Lanka</span>
+                            </div>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p>Sri Lanka: 142/8 | India: 145/3 (16.2 overs)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Commentary Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Live Commentary</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="space-y-4 max-h-96 overflow-y-auto">
+                    <!-- Commentary Items -->
+                    <div class="flex space-x-4 p-3 bg-gray-50 rounded-lg">
+                        <div class="text-sm text-gray-500 w-16">32.4</div>
+                        <div class="flex-1">
+                            <p class="text-gray-800">OUT! Smith caught at slip! Beautiful delivery from Bumrah.</p>
+                            <p class="text-sm text-gray-500 mt-1">Smith c Kohli b Bumrah 67(89)</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 p-3">
+                        <div class="text-sm text-gray-500 w-16">32.3</div>
+                        <div class="flex-1">
+                            <p class="text-gray-800">FOUR! Beautiful cover drive from Smith.</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 p-3 bg-gray-50 rounded-lg">
+                        <div class="text-sm text-gray-500 w-16">32.2</div>
+                        <div class="flex-1">
+                            <p class="text-gray-800">Dot ball. Good length outside off.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Match Statistics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">154/3</div>
+                    <p class="text-gray-600">Current Score</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">7.2</div>
+                    <p class="text-gray-600">Run Rate</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-red-600 mb-2">133</div>
+                    <p class="text-gray-600">Required Runs</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Cricket Hub</h3>
+                    <p class="text-gray-400">Your ultimate destination for live cricket scores, news, and updates.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Live Scores</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Schedule</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Teams</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">India</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Australia</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">England</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2024 Cricket Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Simulate live updates
+        function updateLiveScores() {
+            const liveElements = document.querySelectorAll('.animate-pulse');
+            liveElements.forEach(el => {
+                el.style.animation = 'none';
+                setTimeout(() => {
+                    el.style.animation = '';
+                }, 10);
+            });
+        }
+
+        // Update every 30 seconds
+        setInterval(updateLiveScores, 30000);
+    </script>
+</body>
+</html>

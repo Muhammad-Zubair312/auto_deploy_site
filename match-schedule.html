@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Match Schedule</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+        <a href='live-scores.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Live Scores</a>
+        <a href='match-schedule.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Match Schedule</a>
+        <a href='player-profiles.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Player Profiles</a>
+        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Teams</a>
+        <a href='news.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>News</a>
+        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Rankings</a>
+        <a href='forum.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Forum</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="text-center mb-8" data-aos="fade-up">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Match Schedule</h1>
+            <p class="text-gray-600">Stay updated with upcoming cricket matches and tournaments</p>
+        </div>
+
+        <!-- Live Score Updates -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8" data-aos="fade-up">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-800">Live Score Updates</h2>
+                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm animate-pulse">LIVE</span>
+            </div>
+            <div id="liveScores" class="space-y-4">
+                <div class="border-l-4 border-green-500 pl-4 py-2">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-semibold">IND vs AUS</span>
+                            <span class="text-sm text-gray-600 ml-2">T20 World Cup</span>
+                        </div>
+                        <span class="text-green-600 font-bold">IND: 156/4 (18.2)</span>
+                    </div>
+                </div>
+                <div class="border-l-4 border-blue-500 pl-4 py-2">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-semibold">ENG vs NZ</span>
+                            <span class="text-sm text-gray-600 ml-2">Test Match</span>
+                        </div>
+                        <span class="text-blue-600 font-bold">ENG: 289/6 (85.0)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Match Scheduler -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Upcoming Matches</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Date & Time</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Match</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Venue</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Series</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 text-sm">Dec 15, 2024 • 14:30 IST</td>
+                            <td class="px-4 py-3 text-sm font-medium">India vs Australia</td>
+                            <td class="px-4 py-3 text-sm">Melbourne Cricket Ground</td>
+                            <td class="px-4 py-3 text-sm">Border-Gavaskar Trophy</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 text-sm">Dec 18, 2024 • 10:00 IST</td>
+                            <td class="px-4 py-3 text-sm font-medium">England vs South Africa</td>
+                            <td class="px-4 py-3 text-sm">Lord's Cricket Ground</td>
+                            <td class="px-4 py-3 text-sm">Test Series</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 text-sm">Dec 20, 2024 • 19:30 IST</td>
+                            <td class="px-4 py-3 text-sm font-medium">Pakistan vs New Zealand</td>
+                            <td class="px-4 py-3 text-sm">Gaddafi Stadium</td>
+                            <td class="px-4 py-3 text-sm">T20 Series</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Player Statistics & Team Rosters -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Top Players -->
+            <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-right">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Top Players</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">VK</div>
+                            <div class="ml-3">
+                                <div class="font-semibold">Virat Kohli</div>
+                                <div class="text-sm text-gray-600">India</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold">8,676</div>
+                            <div class="text-sm text-gray-600">Runs</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">SR</div>
+                            <div class="ml-3">
+                                <div class="font-semibold">Steve Smith</div>
+                                <div class="text-sm text-gray-600">Australia</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold">8,647</div>
+                            <div class="text-sm text-gray-600">Runs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Rosters -->
+            <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-left">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Team Rosters</h2>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center p-3 border rounded">
+                        <span class="font-semibold">India</span>
+                        <span class="text-blue-600">15 Players</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 border rounded">
+                        <span class="font-semibold">Australia</span>
+                        <span class="text-yellow-600">15 Players</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 border rounded">
+                        <span class="font-semibold">England</span>
+                        <span class="text-red-600">16 Players</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Articles -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Latest News</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cricket News" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">World Cup 2024 Schedule Announced</h3>
+                        <p class="text-gray-600 text-sm mb-3">The ICC has released the official schedule for the 2024 Cricket World Cup with exciting matchups.</p>
+                        <span class="text-blue-600 text-sm">2 hours ago</span>
+                    </div>
+                </div>
+                <div class="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1612872087727-4cbe8b2b9bd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Player Injury" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Key Player Ruled Out Due to Injury</h3>
+                        <p class="text-gray-600 text-sm mb-3">Team India's star bowler will miss the upcoming series due to a shoulder injury.</p>
+                        <span class="text-blue-600 text-sm">5 hours ago</span>
+                    </div>
+                </div>
+                <div class="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="New Records" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">New Records Set in Recent Match</h3>
+                        <p class="text-gray-600 text-sm mb-3">Several batting and bowling records were broken during the thrilling encounter.</p>
+                        <span class="text-blue-600 text-sm">1 day ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Comments & Forum Discussions -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- User Comments -->
+            <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-right">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Recent Comments</h2>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold">CricketFan23</span>
+                            <span class="text-sm text-gray-500">2 hours ago</span>
+                        </div>
+                        <p class="text-gray-700">Excited for the India vs Australia series! Hope we get to see some quality cricket.</p>
+                    </div>
+                    <div class="border-l-4 border-green-500 pl-4 py-2">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold">SportsLover</span>
+                            <span class="text-sm text-gray-500">4 hours ago</span>
+                        </div>
+                        <p class="text-gray-700">The new schedule looks promising. Can't wait for the World Cup!</p>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <textarea class="w-full p-3 border rounded-lg" placeholder="Add your comment..." rows="3"></textarea>
+                    <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Post Comment</button>
+                </div>
+            </div>
+
+            <!-- Forum Discussions -->
+            <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-left">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Forum Discussions</h2>
+                <div class="space-y-4">
+                    <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <h3 class="font-semibold text-lg mb-1">Who will win the upcoming T20 World Cup?</h3>
+                        <p class="text-gray-600 text-sm mb-2">Started by CricketExpert • 45 replies</p>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Hot Topic</span>
+                    </div>
+                    <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <h3 class="font-semibold text-lg mb-1">Best bowling performance of the decade?</h3>
+                        <p class="text-gray-600 text-sm mb-2">Started by StatsGuru • 28 replies</p>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Active</span>
+                    </div>
+                    <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <h3 class="font-semibold text-lg mb-1">Team selection discussion for next series</h3>
+                        <p class="text-gray-600 text-sm mb-2">Started by TeamSelector • 15 replies</p>
+                        <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">New</span>
+                    </div>
+                </div>
+                <button class="mt-4 w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors">View All Discussions</button>
+            </div>
+        </div>
+
+        <!-- Ranking System -->
+        <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">ICC Rankings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-center">Test Teams</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center p-2 bg-yellow-100 rounded">
+                            <span>1. Australia</span>
+                            <span class="font-bold">128</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-gray-100 rounded">
+                            <span>2. India</span>
+                            <span class="font-bold">121</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-gray-100 rounded">
+                            <span>3. England</span>
+                            <span class="font-bold">115</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-center">ODI Teams</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center p-2 bg-yellow-100 rounded">
+                            <span>1. India</span>
+                            <span class="font-bold">122</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-gray-100 rounded">
+                            <span>2. Australia</span>
+                            <span class="font-bold">118</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-gray-100 rounded">
+                            <span>3. South Africa</span>
+                            <span class="font-bold">110</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-center">T20 Teams</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center p-2 bg-yellow-100 rounded">
+                            <span>1. India</span>
+                            <span class="font-bold">267</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-gray-100 rounded">
+                            <span>2. England</span>
+                            <span class="font-bold">259</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-gray-100 rounded">
+                            <span>3. Pakistan</span>
+                            <span class="font-bold">254</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Cricket Hub</h3>
+                    <p class="text-gray-400">Your ultimate destination for cricket updates, scores, and discussions.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><a href="#" class="hover:text-white">Live Scores</a></li>
+                        <li><a href="#" class="hover:text-white">Match Schedule</a></li>
+                        <li><a href="#" class="hover:text-white">Player Profiles</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">News</a></li>
+                        <li><a href="#" class="hover:text-white">Rankings</a></li>
+                        <li><a href="#" class="hover:text-white">Forum</a></li>
+                        <li><a href="#" class="hover:text-white">Statistics</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2024 Cricket Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Simulate live score updates
+        function updateLiveScores() {
+            const scores = document.getElementById('liveScores');
+            if (scores) {
+                // This would be replaced with actual API calls in production
+                setTimeout(() => {
+                    // Simulate score update
+                    console.log('Updating live scores...');
+                }, 30000); // Update every 30 seconds
+            }
+        }
+
+        // Start live updates
+        updateLiveScores();
+    </script>
+</body>
+</html>
