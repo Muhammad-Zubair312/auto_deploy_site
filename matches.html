@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matches | Cricket Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .match-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .live-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="text-xl font-bold text-blue-400">CricketHub</div>
+        <div class="flex flex-wrap space-x-2 md:space-x-4 mt-2 md:mt-0">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+            <a href='matches.html' class='px-3 py-2 bg-blue-600 rounded px-3 py-2 hover:text-blue-400'>Matches</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+            <a href='players.html' class='px-3 py-2 hover:text-blue-400'>Players</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+            <a href='statistics.html' class='px-3 py-2 hover:text-blue-400'>Statistics</a>
+            <a href='livescores.html' class='px-3 py-2 hover:text-blue-400'>LiveScores</a>
+            <a href='rankings.html' class='px-3 py-2 hover:text-blue-400'>Rankings</a>
+            <a href='tournaments.html' class='px-3 py-2 hover:text-blue-400'>Tournaments</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <header class="mb-10 text-center" data-aos="fade-down">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Cricket Matches</h1>
+            <p class="text-gray-600">Live scores, schedules, results, and match details</p>
+        </header>
+
+        <!-- Live Scores Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                    <i data-feather="activity" class="mr-2 text-red-500"></i>
+                    Live Score Updates
+                </h2>
+                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm flex items-center live-pulse">
+                    <span class="w-2 h-2 bg-white rounded-full mr-2"></span>
+                    LIVE
+                </span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Live Match Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500 match-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-sm text-gray-500">ICC World Cup • 45th Over</div>
+                            <div class="font-bold text-lg">IND vs AUS</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-gray-800">287/4</div>
+                            <div class="text-sm text-gray-600">Target: 326</div>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>India</span>
+                            <span class="font-bold">287/4 (45)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Australia</span>
+                            <span class="font-bold">325/8 (50)</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t">
+                        <div class="text-sm text-gray-600">Kohli 89* (75), Sharma 67 (59)</div>
+                        <div class="text-sm text-gray-600">Starc 2/45, Cummins 1/52</div>
+                    </div>
+                    <button class="mt-4 w-full bg-red-100 text-red-600 py-2 rounded-lg font-semibold hover:bg-red-200">
+                        Follow Live
+                    </button>
+                </div>
+
+                <!-- Live Match Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500 match-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-sm text-gray-500">T20 League • 18th Over</div>
+                            <div class="font-bold text-lg">MI vs CSK</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-gray-800">162/5</div>
+                            <div class="text-sm text-gray-600">Target: 185</div>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>Mumbai Indians</span>
+                            <span class="font-bold">162/5 (18)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Chennai Super Kings</span>
+                            <span class="font-bold">184/6 (20)</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t">
+                        <div class="text-sm text-gray-600">Sky 48* (28), Kishan 39 (24)</div>
+                        <div class="text-sm text-gray-600">Jadeja 2/28, Chahar 1/30</div>
+                    </div>
+                    <button class="mt-4 w-full bg-red-100 text-red-600 py-2 rounded-lg font-semibold hover:bg-red-200">
+                        Follow Live
+                    </button>
+                </div>
+
+                <!-- Live Match Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500 match-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-sm text-gray-500">Test Match • Day 3</div>
+                            <div class="font-bold text-lg">ENG vs NZ</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-gray-800">312/7</div>
+                            <div class="text-sm text-gray-600">Trail by 89</div>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>England</span>
+                            <span class="font-bold">312/7 (102)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>New Zealand</span>
+                            <span class="font-bold">401 (136.2)</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t">
+                        <div class="text-sm text-gray-600">Root 112* (198), Stokes 67 (125)</div>
+                        <div class="text-sm text-gray-600">Boult 3/78, Southee 2/65</div>
+                    </div>
+                    <button class="mt-4 w-full bg-red-100 text-red-600 py-2 rounded-lg font-semibold hover:bg-red-200">
+                        Follow Live
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Match Schedules & Results -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i data-feather="calendar" class="mr-2 text-blue-500"></i>
+                Match Schedules & Results
+            </h2>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-3 px-4 text-left">Date & Time</th>
+                                <th class="py-3 px-4 text-left">Match</th>
+                                <th class="py-3 px-4 text-left">Tournament</th>
+                                <th class="py-3 px-4 text-left">Venue</th>
+                                <th class="py-3 px-4 text-left">Result</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">Tomorrow, 14:30 IST</td>
+                                <td class="py-3 px-4 font-semibold">PAK vs SA</td>
+                                <td class="py-3 px-4">ICC World Cup</td>
+                                <td class="py-3 px-4">Chennai</td>
+                                <td class="py-3 px-4"><span class="text-blue-600 font-semibold">Upcoming</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">Oct 28, 10:30 IST</td>
+                                <td class="py-3 px-4 font-semibold">BAN vs NED</td>
+                                <td class="py-3 px-4">ICC World Cup</td>
+                                <td class="py-3 px-4">Kolkata</td>
+                                <td class="py-3 px-4"><span class="text-blue-600 font-semibold">Upcoming</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">Oct 27, 2023</td>
+                                <td class="py-3 px-4 font-semibold">IND vs ENG</td>
+                                <td class="py-3 px-4">ICC World Cup</td>
+                                <td class="py-3 px-4">Lucknow</td>
+                                <td class="py-3 px-4"><span class="text-green-600 font-semibold">IND won by 100 runs</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">Oct 26, 2023</td>
+                                <td class="py-3 px-4 font-semibold">AUS vs NZ</td>
+                                <td class="py-3 px-4">ICC World Cup</td>
+                                <td class="py-3 px-4">Dharamsala</td>
+                                <td class="py-3 px-4"><span class="text-green-600 font-semibold">AUS won by 5 runs</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">Oct 25, 2023</td>
+                                <td class="py-3 px-4 font-semibold">AFG vs SL</td>
+                                <td class="py-3 px-4">ICC World Cup</td>
+                                <td class="py-3 px-4">Pune</td>
+                                <td class="py-3 px-4"><span class="text-green-600 font-semibold">AFG won by 7 wickets</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tournament Standings -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i data-feather="award" class="mr-2 text-yellow-500"></i>
+                Tournament Standings
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Points Table -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">ICC World Cup Points Table</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="font-bold mr-4">1</span>
+                                <span class="font-semibold">India</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">12</div>
+                                <div class="text-sm text-gray-600">Pts</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="font-bold mr-4">2</span>
+                                <span class="font-semibold">South Africa</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">10</div>
+                                <div class="text-sm text-gray-600">Pts</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="font-bold mr-4">3</span>
+                                <span class="font-semibold">Australia</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">8</div>
+                                <div class="text-sm text-gray-600">Pts</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="font-bold mr-4">4</span>
+                                <span class="font-semibold">New Zealand</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">8</div>
+                                <div class="text-sm text-gray-600">Pts</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700">
+                        View Full Table
+                    </button>
+                </div>
+
+                <!-- Upcoming Fixtures -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Upcoming Key Fixtures</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 border rounded-lg">
+                            <div class="text-sm text-gray-500 mb-1">Nov 2, 14:30 IST</div>
+                            <div class="font-bold text-lg mb-2">IND vs SA</div>
+                            <div class="text-gray-600">Eden Gardens, Kolkata</div>
+                            <div class="text-sm text-gray-500">World Cup Group Stage</div>
+                        </div>
+                        <div class="p-4 border rounded-lg">
+                            <div class="text-sm text-gray-500 mb-1">Nov 4, 10:30 IST</div>
+                            <div class="font-bold text-lg mb-2">AUS vs ENG</div>
+                            <div class="text-gray-600">Narendra Modi Stadium, Ahmedabad</div>
+                            <div class="text-sm text-gray-500">World Cup Group Stage</div>
+                        </div>
+                        <div class="p-4 border rounded-lg">
+                            <div class="text-sm text-gray-500 mb-1">Nov 6, 14:30 IST</div>
+                            <div class="font-bold text-lg mb-2">PAK vs NZ</div>
+                            <div class="text-gray-600">M. Chinnaswamy Stadium, Bengaluru</div>
+                            <div class="text-sm text-gray-500">World Cup Group Stage</div>
+                        </div>
+                    </div>
+                    <button class="mt-6 w-full bg-gray-800 text-white py-2 rounded-lg font-semibold hover:bg-gray-900">
+                        View All Fixtures
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Match Highlights & News -->
+        <section data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i data-feather="video" class="mr-2 text-purple-500"></i>
+                Match Highlights & News
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden match-card">
+                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Match Highlight" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-sm text-purple-600 font-semibold mb-2">HIGHLIGHTS</div>
+                        <h3 class="font-bold text-lg mb-2">Kohli's Century Seals Victory</h3>
+                        <p class="text-gray-600 mb-4">Watch Virat Kohli's magnificent 112* that guided India to victory against England.</p>
+                        <button class="text-purple-600 font-semibold flex items-center">
+                            <i data-feather="play-circle" class="mr-2"></i>
+                            Watch Now
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden match-card">
+                    <img src="https://images.unsplash.com/photo-1595435934247-5d33b7f92c70?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Match Analysis" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-sm text-blue-600 font-semibold mb-2">ANALYSIS</div>
+                        <h3 class="font-bold text-lg mb-2">Australia's Bowling Strategy</h3>
+                        <p class="text-gray-600 mb-4">Deep dive into how Australia's bowlers restricted New Zealand in the thriller.</p>
+                        <button class="text-blue-600 font-semibold flex items-center">
+                            <i data-feather="bar-chart-2" class="mr-2"></i>
+                            Read Analysis
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden match-card">
+                    <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Player Performance" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-sm text-green-600 font-semibold mb-2">STATS</div>
+                        <h3 class="font-bold text-lg mb-2">Top Performers of the Week</h3>
+                        <p class="text-gray-600 mb-4">Statistical breakdown of the best batting and bowling performances from recent matches.</p>
+                        <button class="text-green-600 font-semibold flex items-center">
+                            <i data-feather="trending-up" class="mr-2"></i>
+                            View Stats
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold text-blue-400 mb-4">CricketHub</div>
+                    <p class="text-gray-400">Your ultimate destination for cricket matches, scores, and statistics.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="livescores.html" class="text-gray-400 hover:text-white">Live Scores</a></li>
+                        <li><a href="matches.html" class="text-gray-400 hover:text-white">Matches</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Teams</a></li>
+                        <li><a href="players.html" class="text-gray-400 hover:text-white">Players</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Tournaments</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">ICC World Cup</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">T20 Leagues</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Test Series</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Domestic</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 CricketHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+    </script>
+</body>
+</html>

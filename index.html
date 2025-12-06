@@ -3,228 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pitchpilot - Home</title>
+    <title>CricketHub - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+        .card-hover:hover { transform: translateY(-5px); transition: transform 0.3s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .live-pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+    </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation Bar -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-        <a href='restaurant-menu.html' class='px-3 py-2 hover:text-blue-400'>Restaurant Menu</a>
-        <a href='your-cart.html' class='px-3 py-2 hover:text-blue-400'>Your Cart</a>
-        <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-        <a href='order-status.html' class='px-3 py-2 hover:text-blue-400'>Order Status</a>
-        <a href='user-profile.html' class='px-3 py-2 hover:text-blue-400'>User Profile</a>
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
+        <div class="flex items-center space-x-2">
+            <i data-feather="activity" class="text-blue-400"></i>
+            <span class="text-xl font-bold">CricketHub</span>
+        </div>
+        <div class="flex flex-wrap space-x-1 md:space-x-4 mt-2 md:mt-0">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+            <a href='matches.html' class='px-3 py-2 hover:text-blue-400'>Matches</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+            <a href='players.html' class='px-3 py-2 hover:text-blue-400'>Players</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+            <a href='statistics.html' class='px-3 py-2 hover:text-blue-400'>Statistics</a>
+            <a href='livescores.html' class='px-3 py-2 hover:text-blue-400'>LiveScores</a>
+            <a href='rankings.html' class='px-3 py-2 hover:text-blue-400'>Rankings</a>
+            <a href='tournaments.html' class='px-3 py-2 hover:text-blue-400'>Tournaments</a>
+        </div>
     </nav>
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex justify-between items-center">
-                <h1 class="text-3xl font-bold text-gray-800">Pitchpilot</h1>
-                <div class="flex items-center space-x-4">
-                    <!-- Profile Header -->
-                    <div class="flex items-center space-x-2">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
-                            JD
-                        </div>
-                        <span class="text-gray-700">John Doe</span>
-                    </div>
-                    <!-- Logout Button -->
-                    <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition duration-200">
-                        Logout
-                    </button>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-12 md:py-20 px-4">
+        <div class="container mx-auto text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to CricketHub</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Your ultimate destination for live scores, match schedules, player stats, and all cricket updates in one place.</p>
+            <a href="#live-scores" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg inline-flex items-center">
+                <i data-feather="play-circle" class="mr-2"></i> Follow Live Matches
+            </a>
         </div>
-    </header>
+    </section>
 
-    <main class="container mx-auto px-4 py-8">
-        <!-- Search Bar -->
-        <div class="mb-8" data-aos="fade-up">
-            <div class="relative max-w-2xl mx-auto">
-                <input type="text" placeholder="Search for restaurants or dishes..." 
-                       class="w-full px-6 py-4 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm">
-                <i data-feather="search" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+    <!-- Live Score Updates -->
+    <section id="live-scores" class="py-12 px-4">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Live Score Updates</h2>
+                <a href="livescores.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                    View All <i data-feather="arrow-right" class="ml-2"></i>
+                </a>
             </div>
-        </div>
-
-        <!-- Category Filter -->
-        <div class="mb-8" data-aos="fade-up">
-            <div class="flex space-x-4 overflow-x-auto pb-2">
-                <button class="bg-blue-500 text-white px-6 py-2 rounded-full whitespace-nowrap">All</button>
-                <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full whitespace-nowrap hover:bg-gray-300">Fast Food</button>
-                <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full whitespace-nowrap hover:bg-gray-300">Italian</button>
-                <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full whitespace-nowrap hover:bg-gray-300">Asian</button>
-                <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full whitespace-nowrap hover:bg-gray-300">Mexican</button>
-                <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full whitespace-nowrap hover:bg-gray-300">Healthy</button>
-            </div>
-        </div>
-
-        <!-- Restaurant List -->
-        <section class="mb-12" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Popular Restaurants</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Restaurant Card 1 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
-                    <div class="h-48 bg-gray-200"></div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-gray-800">Burger Palace</h3>
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">4.5 ★</span>
+                <!-- Live Match Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500 card-hover">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full flex items-center live-pulse">
+                            <i data-feather="radio" class="w-4 h-4 mr-1"></i> LIVE
+                        </span>
+                        <span class="text-gray-500 text-sm">T20 World Cup</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="text-center">
+                            <div class="font-bold text-lg">IND</div>
+                            <div class="text-2xl font-bold">189/5</div>
+                            <div class="text-gray-600 text-sm">(20 ov)</div>
                         </div>
-                        <p class="text-gray-600 mb-4">American • $$ • 20-30 min</p>
-                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded transition duration-200">
-                            View Menu
-                        </button>
+                        <div class="text-gray-400 font-bold">VS</div>
+                        <div class="text-center">
+                            <div class="font-bold text-lg">AUS</div>
+                            <div class="text-2xl font-bold">145/3</div>
+                            <div class="text-gray-600 text-sm">(15.2 ov)</div>
+                        </div>
+                    </div>
+                    <div class="text-center text-gray-700 mb-4">AUS need 45 runs in 28 balls</div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 65%"></div>
                     </div>
                 </div>
 
-                <!-- Restaurant Card 2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
-                    <div class="h-48 bg-gray-300"></div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-gray-800">Pasta Paradise</h3>
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">4.8 ★</span>
+                <!-- Upcoming Match -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500 card-hover">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full flex items-center">
+                            <i data-feather="clock" class="w-4 h-4 mr-1"></i> 14:30 GMT
+                        </span>
+                        <span class="text-gray-500 text-sm">Test Match</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="font-bold text-lg">England</div>
+                        <div class="text-gray-400 font-bold">VS</div>
+                        <div class="font-bold text-lg">Pakistan</div>
+                    </div>
+                    <div class="text-center text-gray-600 text-sm mb-4">Lord's, London | Day 1</div>
+                    <a href="#" class="block text-center text-blue-600 hover:text-blue-800 font-medium">Set Reminder</a>
+                </div>
+
+                <!-- Recent Result -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500 card-hover">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full flex items-center">
+                            <i data-feather="check-circle" class="w-4 h-4 mr-1"></i> RESULT
+                        </span>
+                        <span class="text-gray-500 text-sm">ODI Series</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="font-bold text-lg">NZ</div>
+                        <div class="text-2xl font-bold text-green-700">281/7</div>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="font-bold text-lg">SA</div>
+                        <div class="text-2xl font-bold text-red-700">265</div>
+                    </div>
+                    <div class="text-center font-semibold text-gray-800">New Zealand won by 16 runs</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-12 px-4 bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Explore CricketHub</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <a href="players.html" class="bg-white rounded-xl shadow-md p-6 text-center card-hover" data-aos="fade-up">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="users" class="text-blue-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Player Profiles</h3>
+                    <p class="text-gray-600">Detailed stats, career records, and performance analysis of all players.</p>
+                </a>
+                <a href="teams.html" class="bg-white rounded-xl shadow-md p-6 text-center card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="flag" class="text-green-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Team Profiles</h3>
+                    <p class="text-gray-600">Comprehensive team information, squad details, and match history.</p>
+                </a>
+                <a href="news.html" class="bg-white rounded-xl shadow-md p-6 text-center card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="file-text" class="text-purple-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">News & Articles</h3>
+                    <p class="text-gray-600">Latest cricket news, expert analysis, and exclusive interviews.</p>
+                </a>
+                <a href="statistics.html" class="bg-white rounded-xl shadow-md p-6 text-center card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="bar-chart-2" class="text-red-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Statistical Analysis</h3>
+                    <p class="text-gray-600">Advanced stats, rankings, and data-driven insights.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tournament Standings & Match Schedules -->
+    <section class="py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Tournament Standings -->
+                <div data-aos="fade-right">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-3xl font-bold text-gray-800">Tournament Standings</h2>
+                        <a href="tournaments.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            View All <i data-feather="arrow-right" class="ml-2"></i>
+                        </a>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="bg-gray-800 text-white px-6 py-3">
+                            <h3 class="font-bold">ICC T20 World Cup 2023 - Group A</h3>
                         </div>
-                        <p class="text-gray-600 mb-4">Italian • $$$ • 25-35 min</p>
-                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded transition duration-200">
-                            View Menu
-                        </button>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Team</th>
+                                        <th class="py-3 px-4 text-center">P</th>
+                                        <th class="py-3 px-4 text-center">W</th>
+                                        <th class="py-3 px-4 text-center">Pts</th>
+                                        <th class="py-3 px-4 text-center">NRR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="py-3 px-4 font-bold">India</td>
+                                        <td class="py-3 px-4 text-center">4</td>
+                                        <td class="py-3 px-4 text-center">4</td>
+                                        <td class="py-3 px-4 text-center font-bold text-green-700">8</td>
+                                        <td class="py-3 px-4 text-center">+1.923</td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="py-3 px-4 font-bold">Australia</td>
+                                        <td class="py-3 px-4 text-center">4</td>
+                                        <td class="py-3 px-4 text-center">3</td>
+                                        <td class="py-3 px-4 text-center font-bold">6</td>
+                                        <td class="py-3 px-4 text-center">+0.876</td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="py-3 px-4">South Africa</td>
+                                        <td class="py-3 px-4 text-center">4</td>
+                                        <td class="py-3 px-4 text-center">2</td>
+                                        <td class="py-3 px-4 text-center">4</td>
+                                        <td class="py-3 px-4 text-center">+0.342</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-3 px-4">England</td>
+                                        <td class="py-3 px-4 text-center">4</td>
+                                        <td class="py-3 px-4 text-center">1</td>
+                                        <td class="py-3 px-4 text-center">2</td>
+                                        <td class="py-3 px-4 text-center">-0.654</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Restaurant Card 3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
-                    <div class="h-48 bg-gray-400"></div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-semibold text-gray-800">Sushi Express</h3>
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">4.6 ★</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">Japanese • $$ • 30-40 min</p>
-                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded transition duration-200">
-                            View Menu
-                        </button>
+                <!-- Match Schedules -->
+                <div data-aos="fade-left">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-3xl font-bold text-gray-800">Upcoming Matches</h2>
+                        <a href="matches.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            Full Schedule <i data-feather="arrow-right" class="ml-2"></i>
+                        </a>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Live Map View -->
-        <section class="mb-12" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Live Order Tracking</h2>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-                    <p class="text-gray-500">Live Map View - Order Tracking Interface</p>
-                </div>
-                <div class="mt-4">
-                    <h3 class="font-semibold text-gray-800 mb-2">Current Order Status</h3>
-                    <div class="flex items-center space-x-4">
-                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                            <div class="bg-green-500 h-2 rounded-full w-3/4"></div>
-                        </div>
-                        <span class="text-sm text-gray-600">Preparing your order</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quick Actions -->
-        <section class="mb-12" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Quick Actions</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <a href="your-cart.html" class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition duration-200">
-                    <i data-feather="shopping-cart" class="w-8 h-8 text-blue-500 mx-auto mb-2"></i>
-                    <span class="text-gray-700 font-medium">Your Cart</span>
-                </a>
-                <a href="order-status.html" class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition duration-200">
-                    <i data-feather="package" class="w-8 h-8 text-green-500 mx-auto mb-2"></i>
-                    <span class="text-gray-700 font-medium">Order Status</span>
-                </a>
-                <a href="user-profile.html" class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition duration-200">
-                    <i data-feather="user" class="w-8 h-8 text-purple-500 mx-auto mb-2"></i>
-                    <span class="text-gray-700 font-medium">Profile</span>
-                </a>
-                <a href="#" class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition duration-200">
-                    <i data-feather="settings" class="w-8 h-8 text-gray-500 mx-auto mb-2"></i>
-                    <span class="text-gray-700 font-medium">Settings</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Recent Orders -->
-        <section class="mb-12" data-aos="fade-up">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800">Recent Orders</h2>
-                <a href="order-status.html" class="text-blue-500 hover:text-blue-600 font-medium">View All</a>
-            </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="divide-y divide-gray-200">
-                    <!-- Order 1 -->
-                    <div class="p-4 hover:bg-gray-50 transition duration-200">
-                        <div class="flex justify-between items-center">
+                    <div class="space-y-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex items-center justify-between card-hover">
                             <div>
-                                <h3 class="font-semibold text-gray-800">Burger Palace</h3>
-                                <p class="text-gray-600 text-sm">2 items • $24.50</p>
+                                <div class="font-bold">IND vs ENG</div>
+                                <div class="text-gray-600 text-sm">3rd Test • Ahmedabad</div>
+                                <div class="text-gray-500 text-sm flex items-center mt-1">
+                                    <i data-feather="calendar" class="w-4 h-4 mr-1"></i> 15 Nov 2023 • 09:30 AM
+                                </div>
                             </div>
-                            <div class="text-right">
-                                <p class="text-green-600 font-medium">Delivered</p>
-                                <p class="text-gray-500 text-sm">Today, 12:30 PM</p>
-                            </div>
+                            <a href="#" class="bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-lg font-medium text-sm">
+                                Details
+                            </a>
                         </div>
-                    </div>
-                    <!-- Order 2 -->
-                    <div class="p-4 hover:bg-gray-50 transition duration-200">
-                        <div class="flex justify-between items-center">
+                        <div class="bg-white rounded-lg shadow p-4 flex items-center justify-between card-hover">
                             <div>
-                                <h3 class="font-semibold text-gray-800">Pasta Paradise</h3>
-                                <p class="text-gray-600 text-sm">3 items • $38.75</p>
+                                <div class="font-bold">AUS vs NZ</div>
+                                <div class="text-gray-600 text-sm">2nd ODI • Melbourne</div>
+                                <div class="text-gray-500 text-sm flex items-center mt-1">
+                                    <i data-feather="calendar" class="w-4 h-4 mr-1"></i> 18 Nov 2023 • 04:30 AM
+                                </div>
                             </div>
-                            <div class="text-right">
-                                <p class="text-blue-600 font-medium">On the way</p>
-                                <p class="text-gray-500 text-sm">Yesterday, 7:15 PM</p>
+                            <a href="#" class="bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-lg font-medium text-sm">
+                                Details
+                            </a>
+                        </div>
+                        <div class="bg-white rounded-lg shadow p-4 flex items-center justify-between card-hover">
+                            <div>
+                                <div class="font-bold">PAK vs SA</div>
+                                <div class="text-gray-600 text-sm">T20 Series • Lahore</div>
+                                <div class="text-gray-500 text-sm flex items-center mt-1">
+                                    <i data-feather="calendar" class="w-4 h-4 mr-1"></i> 20 Nov 2023 • 02:00 PM
+                                </div>
                             </div>
+                            <a href="#" class="bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-lg font-medium text-sm">
+                                Details
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- CTA & Authentication -->
+    <section class="py-12 px-4 bg-gray-900 text-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">Join CricketHub Community</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Create your free account to personalize your experience, save favorite teams/players, and get match notifications.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="signup.html" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg inline-flex items-center justify-center">
+                    <i data-feather="user-plus" class="mr-2"></i> Sign Up Free
+                </a>
+                <a href="login.html" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg inline-flex items-center justify-center">
+                    <i data-feather="log-in" class="mr-2"></i> Login to Account
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-xl font-bold">Pitchpilot</h3>
-                    <p class="text-gray-400">Delivering happiness to your doorstep</p>
+    <footer class="bg-gray-800 text-white py-8 px-4">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="activity" class="text-blue-400"></i>
+                        <span class="text-xl font-bold">CricketHub</span>
+                    </div>
+                    <p class="text-gray-400">Your comprehensive cricket companion for scores, stats, and stories.</p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-200">Support</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-200">Privacy</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-200">Terms</a>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="livescores.html" class="text-gray-400 hover:text-white">Live Scores</a></li>
+                        <li><a href="matches.html" class="text-gray-400 hover:text-white">Match Schedules</a></li>
+                        <li><a href="rankings.html" class="text-gray-400 hover:text-white">Rankings</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-white">News</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="players.html" class="text-gray-400 hover:text-white">Player Profiles</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Team Profiles</a></li>
+                        <li><a href="statistics.html" class="text-gray-400 hover:text-white">Statistics</a></li>
+                        <li><a href="tournaments.html" class="text-gray-400 hover:text-white">Tournaments</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="youtube"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
-                <p>&copy; 2024 Pitchpilot. All rights reserved.</p>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 CricketHub. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Feather Icons and AOS
-        document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
-            AOS.init({
-                duration: 800,
-                once: true
-            });
-        });
+        feather.replace();
+        AOS.init({ duration: 800, once: true });
     </script>
 </body>
 </html>

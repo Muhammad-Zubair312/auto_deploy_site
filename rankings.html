@@ -3,372 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket Rankings - Cricket World</title>
+    <title>Cricket Rankings | CricketHub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .ranking-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .ranking-table tr:hover {
+            background-color: #f1f5f9;
+        }
+        .tab-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+            font-weight: 600;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-        <a href='live-scores.html' class='px-3 py-2 hover:text-blue-400'>Live Scores</a>
-        <a href='match-schedule.html' class='px-3 py-2 hover:text-blue-400'>Match Schedule</a>
-        <a href='player-profiles.html' class='px-3 py-2 hover:text-blue-400'>Player Profiles</a>
-        <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
-        <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
-        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400'>Rankings</a>
-        <a href='forum.html' class='px-3 py-2 hover:text-blue-400'>Forum</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Signup</a>
+        <a href='matches.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Matches</a>
+        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Teams</a>
+        <a href='players.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Players</a>
+        <a href='news.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>News</a>
+        <a href='statistics.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Statistics</a>
+        <a href='livescores.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>LiveScores</a>
+        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base font-semibold text-blue-300'>Rankings</a>
+        <a href='tournaments.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Tournaments</a>
     </nav>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
         <!-- Page Header -->
-        <div class="text-center mb-12" data-aos="fade-up">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">ICC Cricket Rankings</h1>
-            <p class="text-gray-600 text-lg">Latest official rankings from the International Cricket Council</p>
-        </div>
+        <header class="mb-10 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Cricket Rankings</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">Official ICC and domestic cricket rankings for teams, batsmen, bowlers, and all-rounders across all formats.</p>
+        </header>
 
         <!-- Rankings Tabs -->
-        <div class="bg-white rounded-lg shadow-lg mb-8" data-aos="fade-up">
-            <div class="border-b border-gray-200">
-                <nav class="flex flex-wrap -mb-px">
-                    <button class="mr-8 py-4 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600" onclick="showRanking('teams')">
-                        Team Rankings
-                    </button>
-                    <button class="mr-8 py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" onclick="showRanking('batsmen')">
-                        Batsmen
-                    </button>
-                    <button class="mr-8 py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" onclick="showRanking('bowlers')">
-                        Bowlers
-                    </button>
-                    <button class="mr-8 py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" onclick="showRanking('allrounders')">
-                        All-rounders
-                    </button>
-                </nav>
-            </div>
-
-            <!-- Team Rankings -->
-            <div id="teams-rankings" class="p-6">
-                <div class="mb-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Test Team Rankings</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white">
-                            <thead>
-                                <tr class="bg-gray-50">
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matches</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Points</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">India</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">32</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3,906</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">122</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Australia</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">35</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3,714</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">116</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">England</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">38</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3,672</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">114</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">ODI Team Rankings</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white">
-                            <thead>
-                                <tr class="bg-gray-50">
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matches</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Points</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Australia</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">28</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3,468</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">124</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">India</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">41</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4,821</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">118</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">South Africa</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">27</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2,906</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">108</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Batsmen Rankings (Hidden by default) -->
-            <div id="batsmen-rankings" class="p-6 hidden">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Top Batsmen Rankings</h3>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full bg-white">
-                        <thead>
-                            <tr class="bg-gray-50">
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Player</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Kane Williamson</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">New Zealand</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">864</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Joe Root</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">England</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">859</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Steve Smith</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Australia</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">818</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Bowlers Rankings (Hidden by default) -->
-            <div id="bowlers-rankings" class="p-6 hidden">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Top Bowlers Rankings</h3>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full bg-white">
-                        <thead>
-                            <tr class="bg-gray-50">
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Player</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Pat Cummins</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Australia</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">867</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ravichandran Ashwin</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">India</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">859</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Kagiso Rabada</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">South Africa</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">825</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- All-rounders Rankings (Hidden by default) -->
-            <div id="allrounders-rankings" class="p-6 hidden">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Top All-rounders Rankings</h3>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full bg-white">
-                        <thead>
-                            <tr class="bg-gray-50">
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Player</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ravindra Jadeja</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">India</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">455</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Shakib Al Hasan</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Bangladesh</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">398</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ben Stokes</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">England</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">345</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="mb-8 border-b border-gray-300" data-aos="fade-up">
+            <div class="flex flex-wrap justify-center md:justify-start space-x-0 md:space-x-6">
+                <button class="tab-active px-4 py-3 text-lg font-medium transition" onclick="switchTab('teams')">
+                    Teams
+                </button>
+                <button class="px-4 py-3 text-lg font-medium text-gray-600 hover:text-blue-600 transition" onclick="switchTab('batsmen')">
+                    Batsmen
+                </button>
+                <button class="px-4 py-3 text-lg font-medium text-gray-600 hover:text-blue-600 transition" onclick="switchTab('bowlers')">
+                    Bowlers
+                </button>
+                <button class="px-4 py-3 text-lg font-medium text-gray-600 hover:text-blue-600 transition" onclick="switchTab('allrounders')">
+                    All-Rounders
+                </button>
             </div>
         </div>
 
-        <!-- Live Updates Section -->
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-8" data-aos="fade-up">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-2xl font-bold text-gray-800">Live Ranking Updates</h2>
-                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium animate-pulse">LIVE</span>
+        <!-- Rankings Content -->
+        <div data-aos="fade-up">
+            <!-- Teams Ranking (Default) -->
+            <div id="teams-tab" class="ranking-content">
+                <div class="mb-6 flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-gray-800">ICC Team Rankings</h2>
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium">Test</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300">ODI</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300">T20</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <table class="w-full ranking-table">
+                        <thead class="bg-gray-800 text-white">
+                            <tr>
+                                <th class="py-4 px-6 text-left">Rank</th>
+                                <th class="py-4 px-6 text-left">Team</th>
+                                <th class="py-4 px-6 text-left">Matches</th>
+                                <th class="py-4 px-6 text-left">Points</th>
+                                <th class="py-4 px-6 text-left">Rating</th>
+                                <th class="py-4 px-6 text-left">Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="py-4 px-6 font-bold text-lg">1</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                            <span class="font-bold text-blue-700">IND</span>
+                                        </div>
+                                        <span class="font-semibold">India</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">35</td>
+                                <td class="py-4 px-6">4,215</td>
+                                <td class="py-4 px-6 font-bold text-green-600">120</td>
+                                <td class="py-4 px-6">
+                                    <i data-feather="trending-up" class="text-green-500"></i>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-4 px-6 font-bold text-lg">2</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                            <span class="font-bold text-green-700">AUS</span>
+                                        </div>
+                                        <span class="font-semibold">Australia</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">32</td>
+                                <td class="py-4 px-6">3,856</td>
+                                <td class="py-4 px-6 font-bold text-green-600">118</td>
+                                <td class="py-4 px-6">
+                                    <i data-feather="trending-up" class="text-green-500"></i>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-4 px-6 font-bold text-lg">3</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                                            <span class="font-bold text-red-700">ENG</span>
+                                        </div>
+                                        <span class="font-semibold">England</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">38</td>
+                                <td class="py-4 px-6">4,112</td>
+                                <td class="py-4 px-6 font-bold text-gray-600">108</td>
+                                <td class="py-4 px-6">
+                                    <i data-feather="minus" class="text-gray-500"></i>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-4 px-6 font-bold text-lg">4</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
+                                            <span class="font-bold text-yellow-700">SA</span>
+                                        </div>
+                                        <span class="font-semibold">South Africa</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">28</td>
+                                <td class="py-4 px-6">2,950</td>
+                                <td class="py-4 px-6 font-bold text-green-600">105</td>
+                                <td class="py-4 px-6">
+                                    <i data-feather="trending-up" class="text-green-500"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-bold text-lg">5</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                            <span class="font-bold text-blue-700">NZ</span>
+                                        </div>
+                                        <span class="font-semibold">New Zealand</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">30</td>
+                                <td class="py-4 px-6">3,045</td>
+                                <td class="py-4 px-6 font-bold text-red-600">102</td>
+                                <td class="py-4 px-6">
+                                    <i data-feather="trending-down" class="text-red-500"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4 text-gray-500 text-sm">Last updated: Today, 10:45 AM UTC</p>
             </div>
-            <div class="space-y-4">
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div class="flex items-center space-x-3">
-                        <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">+2</span>
-                        <span class="text-gray-800 font-medium">Virat Kohli moves up 2 spots in ODI rankings</span>
+
+            <!-- Batsmen Ranking (Hidden) -->
+            <div id="batsmen-tab" class="ranking-content hidden">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Top Batsmen Rankings (Test)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Player Card -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <span class="font-bold text-2xl text-blue-700">1</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl">Steve Smith</h3>
+                                <p class="text-gray-600">Australia</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Rating</span>
+                                <span class="font-bold">894</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Career Best</span>
+                                <span class="font-bold">947</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Form</span>
+                                <span class="text-green-600 font-bold">↑ 12</span>
+                            </div>
+                        </div>
                     </div>
-                    <span class="text-gray-500 text-sm">2 mins ago</span>
+                    <!-- Add more player cards similarly -->
                 </div>
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div class="flex items-center space-x-3">
-                        <span class="bg-red-500 text-white px-2 py-1 rounded text-xs">-1</span>
-                        <span class="text-gray-800 font-medium">Australia drops to 2nd in T20I rankings</span>
-                    </div>
-                    <span class="text-gray-500 text-sm">15 mins ago</span>
-                </div>
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div class="flex items-center space-x-3">
-                        <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">NEW</span>
-                        <span class="text-gray-800 font-medium">New player enters top 10 bowlers rankings</span>
-                    </div>
-                    <span class="text-gray-500 text-sm">1 hour ago</span>
-                </div>
+            </div>
+
+            <!-- Bowlers Ranking (Hidden) -->
+            <div id="bowlers-tab" class="ranking-content hidden">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Top Bowlers Rankings (Test)</h2>
+                <p class="text-gray-600 mb-6">Rankings are updated after each match. Hover over player cards for detailed stats.</p>
+                <!-- Similar structure to batsmen -->
+            </div>
+
+            <!-- All-Rounders Ranking (Hidden) -->
+            <div id="allrounders-tab" class="ranking-content hidden">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">All-Rounders Rankings (Test)</h2>
+                <p class="text-gray-600 mb-6">Players ranked based on combined batting and bowling performance.</p>
+                <!-- Similar structure to batsmen -->
             </div>
         </div>
 
-        <!-- Comments Section -->
-        <div class="bg-white rounded-lg shadow-lg p-6" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Rankings Discussion</h2>
-            
-            <!-- Comment Form -->
-            <div class="mb-8">
-                <form class="space-y-4">
-                    <div>
-                        <label for="comment" class="block text-sm font-medium text-gray-700 mb-2">Share your thoughts</label>
-                        <textarea id="comment" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="What do you think about the current rankings?"></textarea>
+        <!-- Additional Info Section -->
+        <section class="mt-16" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Understanding Cricket Rankings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-feather="award" class="text-blue-600"></i>
                     </div>
-                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200">Post Comment</button>
-                </form>
-            </div>
-
-            <!-- Comments List -->
-            <div class="space-y-6">
-                <div class="border-b border-gray-200 pb-6">
-                    <div class="flex items-start space-x-3">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">JD</div>
-                        <div class="flex-1">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-semibold text-gray-800">John Doe</h4>
-                                <span class="text-gray-500 text-sm">2 hours ago</span>
-                            </div>
-                            <p class="text-gray-700">India's consistent performance across all formats is really impressive. They deserve the top spot!</p>
-                            <div class="flex items-center space-x-4 mt-2">
-                                <button class="text-gray-500 hover:text-blue-600 text-sm">Like</button>
-                                <button class="text-gray-500 hover:text-blue-600 text-sm">Reply</button>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3">ICC Points System</h3>
+                    <p class="text-gray-600">Teams earn points based on match results. The rating is calculated by dividing total points by matches played.</p>
                 </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-feather="trending-up" class="text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Player Rankings</h3>
+                    <p class="text-gray-600">Individual player rankings consider runs scored, wickets taken, strike rates, and opposition strength.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-feather="refresh-cw" class="text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Regular Updates</h3>
+                    <p class="text-gray-600">Rankings are updated after each completed match to reflect the most current performance data.</p>
+                </div>
+            </div>
+        </section>
 
-                <div class="border-b border-gray-200 pb-6">
-                    <div class="flex items-start space-x-3">
-                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-semibold">SJ</div>
-                        <div class="flex-1">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-semibold text-gray-800">Sarah Johnson</h4>
-                                <span class="text-gray-500 text-sm">5 hours ago</span>
-                            </div>
-                            <p class="text-gray-700">Surprised to see England at 3rd in Tests. They've been playing some amazing cricket lately!</p>
-                            <div class="flex items-center space-x-4 mt-2">
-                                <button class="text-gray-500 hover:text-blue-600 text-sm">Like</button>
-                                <button class="text-gray-500 hover:text-blue-600 text-sm">Reply</button>
-                            </div>
+        <!-- Live Score Updates Sidebar (Mobile Bottom, Desktop Right) -->
+        <div class="fixed bottom-0 left-0 right-0 md:fixed md:top-24 md:right-4 md:w-80 bg-white shadow-2xl rounded-t-2xl md:rounded-2xl z-50 border-t md:border" data-aos="fade-left">
+            <div class="p-4 border-b">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-lg flex items-center">
+                        <i data-feather="activity" class="mr-2 text-red-500"></i>
+                        Live Scores
+                    </h3>
+                    <span class="px-2 py-1 bg-red-100 text-red-700 text-xs rounded-full">LIVE</span>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm text-gray-500">IND vs AUS • 2nd Test</span>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">Day 3</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="font-medium">IND</span>
+                            <span class="font-bold">287/4</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-medium">AUS</span>
+                            <span class="font-bold">263</span>
                         </div>
                     </div>
+                    <p class="text-sm text-gray-600 mt-2">Kohli 82*, Jadeja 45* | Lead by 24 runs</p>
+                </div>
+                <div class="pt-4 border-t">
+                    <a href="livescores.html" class="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition">
+                        View All Live Matches
+                    </a>
                 </div>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-12">
+    <footer class="bg-gray-900 text-white mt-20 pt-10 pb-6">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Cricket World</h3>
-                    <p class="text-gray-400">Your ultimate destination for cricket news, scores, and rankings.</p>
+                    <h3 class="text-xl font-bold mb-4">CricketHub</h3>
+                    <p class="text-gray-400">Your premier destination for live cricket scores, rankings, news, and statistics.</p>
                 </div>
                 <div>
-                    <h4 class="text-md font-semibold mb-4">Quick Links</h4>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="matches.html" class="text-gray-400 hover:text-white">Upcoming Matches</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-white">Latest News</a></li>
+                        <li><a href="tournaments.html" class="text-gray-400 hover:text-white">Tournaments</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-md font-semibold mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">FB</a>
-                        <a href="#" class="text-gray-400 hover:text-white">TW</a>
-                        <a href="#" class="text-gray-400 hover:text-white">IG</a>
-                    </div>
+                    <h4 class="font-bold mb-4">Rankings</h4>
+                    <ul class="space-y-2">
+                        <li><a href="rankings.html" class="text-gray-400 hover:text-white">Team Rankings</a></li>
+                        <li><a href="players.html" class="text-gray-400 hover:text-white">Player Rankings</a></li>
+                        <li><a href="statistics.html" class="text-gray-400 hover:text-white">Detailed Stats</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4 class="text-md font-semibold mb-4">Newsletter</h4>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="px-3 py-2 bg-gray-800 text-white rounded-l focus:outline-none w-full">
-                        <button class="bg-blue-600 px-4 py-2 rounded-r hover:bg-blue-700">Subscribe</button>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="youtube"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Cricket World. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-sm">
+                <p>© 2023 CricketHub. All rights reserved. Data sourced from official cricket boards.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         // Initialize AOS
         AOS.init({
@@ -379,36 +346,38 @@
         // Initialize Feather Icons
         feather.replace();
 
-        // Rankings Tab Functionality
-        function showRanking(type) {
-            // Hide all ranking sections
-            document.getElementById('teams-rankings').classList.add('hidden');
-            document.getElementById('batsmen-rankings').classList.add('hidden');
-            document.getElementById('bowlers-rankings').classList.add('hidden');
-            document.getElementById('allrounders-rankings').classList.add('hidden');
-            
-            // Show selected ranking section
-            document.getElementById(type + '-rankings').classList.remove('hidden');
-            
-            // Update active tab
-            const tabs = document.querySelectorAll('nav button');
-            tabs.forEach(tab => {
-                tab.classList.remove('border-blue-500', 'text-blue-600');
-                tab.classList.add('border-transparent', 'text-gray-500');
+        // Tab Switching Function
+        function switchTab(tabName) {
+            // Hide all content
+            document.querySelectorAll('.ranking-content').forEach(content => {
+                content.classList.add('hidden');
             });
             
-            event.target.classList.remove('border-transparent', 'text-gray-500');
-            event.target.classList.add('border-blue-500', 'text-blue-600');
+            // Remove active from all tabs
+            document.querySelectorAll('nav button, .flex button').forEach(button => {
+                button.classList.remove('tab-active');
+                button.classList.add('text-gray-600', 'hover:text-blue-600');
+            });
+            
+            // Show selected content
+            document.getElementById(tabName + '-tab').classList.remove('hidden');
+            
+            // Activate selected tab button
+            event.target.classList.add('tab-active');
+            event.target.classList.remove('text-gray-600', 'hover:text-blue-600');
         }
 
-        // Simulate live updates (in real implementation, this would connect to an API)
-        setInterval(() => {
-            const liveUpdates = document.querySelector('.animate-pulse');
-            if (liveUpdates) {
-                liveUpdates.classList.toggle('animate-pulse');
-                setTimeout(() => liveUpdates.classList.toggle('animate-pulse'), 1000);
+        // Format switching for team rankings
+        function switchFormat(format) {
+            const buttons = event.target.parentElement.children;
+            for (let btn of buttons) {
+                btn.classList.remove('bg-blue-100', 'text-blue-700');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
             }
-        }, 3000);
+            event.target.classList.add('bg-blue-100', 'text-blue-700');
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            // In a real app, you would fetch and display data for the selected format
+        }
     </script>
 </body>
 </html>

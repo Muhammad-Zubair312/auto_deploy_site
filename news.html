@@ -4,259 +4,241 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cricket News - Latest Updates & Articles</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src='https://cdn.tailwindcss.com'></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .article-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .category-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
-        <a href='live-scores.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Live Scores</a>
-        <a href='match-schedule.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Match Schedule</a>
-        <a href='player-profiles.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Player Profiles</a>
-        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Teams</a>
-        <a href='news.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>News</a>
-        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Rankings</a>
-        <a href='forum.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Forum</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Signup</a>
+        <a href='matches.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Matches</a>
+        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Teams</a>
+        <a href='players.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Players</a>
+        <a href='news.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base font-semibold text-blue-300'>News</a>
+        <a href='statistics.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Statistics</a>
+        <a href='livescores.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>LiveScores</a>
+        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Rankings</a>
+        <a href='tournaments.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Tournaments</a>
     </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-4 py-8">
         <!-- Page Header -->
-        <div class="text-center mb-12" data-aos="fade-up">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">Cricket News</h1>
-            <p class="text-gray-600 text-lg">Latest updates, match reports, and exclusive interviews</p>
-        </div>
+        <header class="mb-10 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Cricket News</h1>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Stay updated with the latest cricket news, match reports, player interviews, and expert analysis from around the world.</p>
+        </header>
 
-        <!-- Breaking News Banner -->
-        <div class="bg-red-600 text-white p-4 rounded-lg mb-8" data-aos="fade-up">
-            <div class="flex items-center">
-                <span class="bg-white text-red-600 px-3 py-1 rounded font-bold mr-4">BREAKING</span>
-                <marquee class="text-lg">
-                    India vs England Test Series: Kohli returns for the final two matches • T20 World Cup 2024 schedule announced • BCCI announces central contracts
-                </marquee>
+        <!-- News Categories -->
+        <div class="mb-10 overflow-x-auto">
+            <div class="flex space-x-6 pb-2 min-w-max md:min-w-0 md:justify-center">
+                <button class="category-active px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">All News</button>
+                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Match Reports</button>
+                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Player Interviews</button>
+                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Tournament Updates</button>
+                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Transfer News</button>
+                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Analysis</button>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Main News Content -->
-            <div class="lg:col-span-2">
-                <!-- Featured Article -->
-                <article class="bg-white rounded-lg shadow-md overflow-hidden mb-8" data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                         alt="Cricket Match" class="w-full h-64 object-cover">
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-2">
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">EXCLUSIVE</span>
-                            <span class="mx-2">•</span>
-                            <span>2 hours ago</span>
-                        </div>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Kohli's Masterclass Leads India to Historic Victory</h2>
-                        <p class="text-gray-600 mb-4">Virat Kohli's brilliant century under pressure guided India to a memorable win against England in the third Test match at Rajkot...</p>
+        <!-- Featured Article -->
+        <div class="mb-12" data-aos="fade-up">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-2/3">
+                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Featured Cricket Match" 
+                             class="w-full h-64 md:h-full object-cover">
+                    </div>
+                    <div class="p-8 md:w-1/3">
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full mb-4">FEATURED</span>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">World Cup Final: Historic Victory for Underdogs</h2>
+                        <p class="text-gray-600 mb-6">In a stunning turn of events, the underdog team clinched their first World Cup title with a last-ball victory. Read the full match report and analysis.</p>
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center text-sm text-gray-500">
-                                <span>By John Smith</span>
-                                <span class="mx-2">•</span>
-                                <span>5 min read</span>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Sarah Johnson</p>
+                                    <p class="text-sm text-gray-500">2 hours ago</p>
+                                </div>
                             </div>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Read Full Story →</a>
+                            <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                                Read More
+                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
-                </article>
-
-                <!-- News Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- News Card 1 -->
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden" data-aos="zoom-in">
-                        <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                             alt="T20 World Cup" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg text-gray-800 mb-2">T20 World Cup 2024: Complete Schedule Released</h3>
-                            <p class="text-gray-600 text-sm mb-3">ICC announces full fixture list for the upcoming T20 World Cup in West Indies and USA...</p>
-                            <div class="flex items-center text-xs text-gray-500">
-                                <span>45 minutes ago</span>
-                                <span class="mx-2">•</span>
-                                <span>3 min read</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- News Card 2 -->
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="https://images.unsplash.com/photo-1592913406015-15d63b283a6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                             alt="Player Transfer" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg text-gray-800 mb-2">IPL 2024: Major Player Transfers Shake Up Teams</h3>
-                            <p class="text-gray-600 text-sm mb-3">Several big-name players change franchises in the IPL mini-auction ahead of the new season...</p>
-                            <div class="flex items-center text-xs text-gray-500">
-                                <span>2 hours ago</span>
-                                <span class="mx-2">•</span>
-                                <span>4 min read</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- News Card 3 -->
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="https://images.unsplash.com/photo-1614631446448-bb8bd37df1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                             alt="Injury Update" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg text-gray-800 mb-2">Injury Update: Key Players Ruled Out of PSL</h3>
-                            <p class="text-gray-600 text-sm mb-3">Multiple international stars face fitness concerns ahead of Pakistan Super League...</p>
-                            <div class="flex items-center text-xs text-gray-500">
-                                <span>3 hours ago</span>
-                                <span class="mx-2">•</span>
-                                <span>2 min read</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- News Card 4 -->
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
-                        <img src="https://images.unsplash.com/photo-1552664199-fd31f7431a55?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                             alt="Women's Cricket" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg text-gray-800 mb-2">Women's Cricket League Announces Expansion</h3>
-                            <p class="text-gray-600 text-sm mb-3">New teams and increased prize money for the upcoming women's T20 league season...</p>
-                            <div class="flex items-center text-xs text-gray-500">
-                                <span>4 hours ago</span>
-                                <span class="mx-2">•</span>
-                                <span>3 min read</span>
-                            </div>
-                        </div>
-                    </article>
                 </div>
+            </div>
+        </div>
 
-                <!-- Load More Button -->
-                <div class="text-center mt-8">
-                    <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
-                        Load More Articles
+        <!-- News Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Article 1 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1595435934247-5d33b7f92c60?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Player Profile" 
+                     class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">PLAYER INTERVIEW</span>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Exclusive: Star Batsman Reveals Training Secrets</h3>
+                    <p class="text-gray-600 mb-4">In an exclusive interview, the world's top-ranked batsman shares his rigorous training routine and mental preparation techniques.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">45 min ago</span>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Tournament Update" 
+                     class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">TOURNAMENT UPDATE</span>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">New Format Announced for Next Season</h3>
+                    <p class="text-gray-600 mb-4">Cricket governing body announces revolutionary changes to tournament structure, promising more competitive matches.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">3 hours ago</span>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Statistical Analysis" 
+                     class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="inline-block bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">ANALYSIS</span>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Data Reveals Most Effective Bowling Strategy</h3>
+                    <p class="text-gray-600 mb-4">Statistical analysis of 1000+ matches shows surprising trends in modern bowling techniques and their success rates.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">5 hours ago</span>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Team News" 
+                     class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">TRANSFER NEWS</span>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Record-Breaking Transfer Confirmed</h3>
+                    <p class="text-gray-600 mb-4">All-rounder signs with new franchise in the biggest transfer deal in cricket history. Details of the contract revealed.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">1 day ago</span>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Match Report" 
+                     class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">MATCH REPORT</span>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Thrilling Tie in Day-Night Test Match</h3>
+                    <p class="text-gray-600 mb-4">An epic battle ends in a rare tie as both teams finish with identical scores. Relive the final moments of this historic match.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">2 days ago</span>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Injury Update" 
+                     class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">TEAM NEWS</span>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Captain Returns from Injury Ahead of Crucial Series</h3>
+                    <p class="text-gray-600 mb-4">Team captain cleared to play after successful recovery from injury. Coach expresses confidence in team's chances.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">3 days ago</span>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mb-12" data-aos="fade-up">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+                Load More Articles
+            </button>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl p-8 text-white mb-12" data-aos="fade-up">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Never Miss a Cricket Update</h2>
+                <p class="mb-6 text-blue-100">Subscribe to our newsletter and get the latest news delivered directly to your inbox.</p>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" 
+                           placeholder="Enter your email address" 
+                           class="flex-grow px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    <button class="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                        Subscribe
                     </button>
                 </div>
             </div>
-
-            <!-- Sidebar -->
-            <div class="space-y-6">
-                <!-- Trending News -->
-                <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-left">
-                    <h3 class="font-bold text-xl text-gray-800 mb-4">Trending Now</h3>
-                    <div class="space-y-4">
-                        <div class="border-b pb-3">
-                            <h4 class="font-semibold text-gray-800 hover:text-blue-600 cursor-pointer">Smith breaks Bradman's record in Sheffield Shield</h4>
-                            <div class="flex items-center text-xs text-gray-500 mt-1">
-                                <span>1.2K views</span>
-                                <span class="mx-2">•</span>
-                                <span>30 min ago</span>
-                            </div>
-                        </div>
-                        <div class="border-b pb-3">
-                            <h4 class="font-semibold text-gray-800 hover:text-blue-600 cursor-pointer">BCCI announces new selection committee</h4>
-                            <div class="flex items-center text-xs text-gray-500 mt-1">
-                                <span>980 views</span>
-                                <span class="mx-2">•</span>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
-                        <div class="border-b pb-3">
-                            <h4 class="font-semibold text-gray-800 hover:text-blue-600 cursor-pointer">Afghanistan qualifies for Champions Trophy 2025</h4>
-                            <div class="flex items-center text-xs text-gray-500 mt-1">
-                                <span>850 views</span>
-                                <span class="mx-2">•</span>
-                                <span>2 hours ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Latest Comments -->
-                <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-left" data-aos-delay="100">
-                    <h3 class="font-bold text-xl text-gray-800 mb-4">Latest Comments</h3>
-                    <div class="space-y-4">
-                        <div class="border-b pb-3">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">JS</div>
-                                <div>
-                                    <p class="text-sm text-gray-800">"Kohli's comeback innings was absolutely sensational! Pure class under pressure."</p>
-                                    <div class="flex items-center text-xs text-gray-500 mt-1">
-                                        <span>John Smith</span>
-                                        <span class="mx-2">•</span>
-                                        <span>on Kohli's Masterclass</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-b pb-3">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">SR</div>
-                                <div>
-                                    <p class="text-sm text-gray-800">"The T20 World Cup schedule looks exciting! Can't wait for India vs Pakistan clash."</p>
-                                    <div class="flex items-center text-xs text-gray-500 mt-1">
-                                        <span>Sarah R.</span>
-                                        <span class="mx-2">•</span>
-                                        <span>on T20 World Cup</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Newsletter Signup -->
-                <div class="bg-blue-600 text-white rounded-lg shadow-md p-6" data-aos="fade-left" data-aos-delay="200">
-                    <h3 class="font-bold text-xl mb-2">Stay Updated</h3>
-                    <p class="text-blue-100 mb-4">Get the latest cricket news delivered to your inbox</p>
-                    <div class="space-y-3">
-                        <input type="email" placeholder="Enter your email" class="w-full px-4 py-2 rounded text-gray-800">
-                        <button class="w-full bg-white text-blue-600 font-semibold py-2 rounded hover:bg-gray-100 transition duration-300">
-                            Subscribe Now
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-12">
+    <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Cricket Hub</h4>
-                    <p class="text-gray-400">Your ultimate destination for cricket news, scores, and updates.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">CricketHub</h3>
+                    <p class="text-gray-400">Your ultimate cricket companion</p>
                 </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">About Us</a></li>
-                        <li><a href="#" class="hover:text-white">Contact</a></li>
-                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">Twitter</a>
-                        <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
-                        <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Contact Info</h4>
-                    <p class="text-gray-400">Email: info@crickethub.com</p>
-                    <p class="text-gray-400">Phone: +1 234 567 890</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="facebook" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="youtube" class="w-5 h-5"></i>
+                    </a>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-                <p>&copy; 2024 Cricket Hub. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2024 CricketHub. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         // Initialize AOS
         AOS.init({
@@ -266,6 +248,29 @@
 
         // Initialize Feather Icons
         feather.replace();
+
+        // Category switching functionality
+        document.querySelectorAll('.flex button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.flex button').forEach(btn => {
+                    btn.classList.remove('category-active');
+                });
+                this.classList.add('category-active');
+            });
+        });
+
+        // Load more articles functionality
+        document.querySelector('button.bg-blue-600').addEventListener('click', function() {
+            this.textContent = 'Loading...';
+            this.disabled = true;
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                this.textContent = 'No More Articles';
+                this.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                this.classList.add('bg-gray-400', 'cursor-not-allowed');
+            }, 1500);
+        });
     </script>
 </body>
 </html>

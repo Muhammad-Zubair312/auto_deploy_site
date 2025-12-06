@@ -3,458 +3,534 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket Teams - CricketHub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Cricket Teams | Team Profiles & Analysis</title>
+    <script src='https://cdn.tailwindcss.com'></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .team-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
-        <a href='live-scores.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Live Scores</a>
-        <a href='match-schedule.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Match Schedule</a>
-        <a href='player-profiles.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Player Profiles</a>
-        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Teams</a>
-        <a href='news.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>News</a>
-        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Rankings</a>
-        <a href='forum.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Forum</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Signup</a>
+        <a href='matches.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Matches</a>
+        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base font-semibold text-blue-300'>Teams</a>
+        <a href='players.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Players</a>
+        <a href='news.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>News</a>
+        <a href='statistics.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Statistics</a>
+        <a href='livescores.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>LiveScores</a>
+        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Rankings</a>
+        <a href='tournaments.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Tournaments</a>
     </nav>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
         <!-- Page Header -->
-        <div class="text-center mb-12" data-aos="fade-up">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">Cricket Teams</h1>
-            <p class="text-gray-600 text-lg">Explore all international and domestic cricket teams</p>
+        <header class="mb-10 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Cricket Teams</h1>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Explore detailed profiles of international and domestic cricket teams, including squad information, performance statistics, and recent match results.</p>
+        </header>
+
+        <!-- Live Score Updates Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Live Score Updates</h2>
+                <a href="livescores.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                    View All
+                    <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-gray-900">IND vs AUS</h3>
+                            <p class="text-gray-600 text-sm">3rd ODI • Melbourne</p>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">LIVE</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="font-medium">India</span>
+                            <span class="font-bold">287/6 (45.2)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-medium">Australia</span>
+                            <span class="font-bold">284/9 (50)</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <p class="text-sm text-gray-700">India need 12 runs from 28 balls</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-gray-900">ENG vs PAK</h3>
+                            <p class="text-gray-600 text-sm">2nd Test • Day 3</p>
+                        </div>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">IN PLAY</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="font-medium">England</span>
+                            <span class="font-bold">432 & 156/2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-medium">Pakistan</span>
+                            <span class="font-bold">297</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <p class="text-sm text-gray-700">Lead by 291 runs</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-gray-400">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-gray-900">SA vs NZ</h3>
+                            <p class="text-gray-600 text-sm">T20I • Starts in 2h</p>
+                        </div>
+                        <span class="bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">UPCOMING</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="font-medium">South Africa</span>
+                            <span class="font-bold">-</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-medium">New Zealand</span>
+                            <span class="font-bold">-</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <p class="text-sm text-gray-700">Match starts at 18:30 GMT</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Profiles Grid -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Team Profiles</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Team Card 1 -->
+                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i data-feather="flag" class="text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-900">India</h3>
+                                <p class="text-gray-600 text-sm">ICC Rank: 1</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Captain:</span>
+                                <span class="font-medium">Rohit Sharma</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Coach:</span>
+                                <span class="font-medium">Rahul Dravid</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Matches:</span>
+                                <span class="font-medium">1056</span>
+                            </div>
+                        </div>
+                        <a href="#" class="block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors">
+                            View Full Profile
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Team Card 2 -->
+                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                <i data-feather="flag" class="text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-900">Australia</h3>
+                                <p class="text-gray-600 text-sm">ICC Rank: 2</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Captain:</span>
+                                <span class="font-medium">Pat Cummins</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Coach:</span>
+                                <span class="font-medium">Andrew McDonald</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Matches:</span>
+                                <span class="font-medium">978</span>
+                            </div>
+                        </div>
+                        <a href="#" class="block text-center bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition-colors">
+                            View Full Profile
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Team Card 3 -->
+                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                                <i data-feather="flag" class="text-red-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-900">England</h3>
+                                <p class="text-gray-600 text-sm">ICC Rank: 3</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Captain:</span>
+                                <span class="font-medium">Jos Buttler</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Coach:</span>
+                                <span class="font-medium">Matthew Mott</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Matches:</span>
+                                <span class="font-medium">1023</span>
+                            </div>
+                        </div>
+                        <a href="#" class="block text-center bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-medium transition-colors">
+                            View Full Profile
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Team Card 4 -->
+                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
+                                <i data-feather="flag" class="text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-900">Pakistan</h3>
+                                <p class="text-gray-600 text-sm">ICC Rank: 4</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Captain:</span>
+                                <span class="font-medium">Babar Azam</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Coach:</span>
+                                <span class="font-medium">Grant Bradburn</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Matches:</span>
+                                <span class="font-medium">945</span>
+                            </div>
+                        </div>
+                        <a href="#" class="block text-center bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded-lg font-medium transition-colors">
+                            View Full Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistical Analysis & Tournament Standings -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- Statistical Analysis -->
+            <section data-aos="fade-right">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Team Statistics</h2>
+                <div class="space-y-4">
+                    <div class="stat-card rounded-xl p-6 text-white">
+                        <h3 class="font-bold text-xl mb-4">Highest Team Totals</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span>England</span>
+                                <span class="font-bold text-lg">498/4</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>India</span>
+                                <span class="font-bold text-lg">481/6</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>Australia</span>
+                                <span class="font-bold text-lg">434/4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="font-bold text-xl mb-4 text-gray-800">Win/Loss Ratio (Last 12 Months)</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">India</span>
+                                    <span class="font-bold">78%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Australia</span>
+                                    <span class="font-bold">72%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 72%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">England</span>
+                                    <span class="font-bold">65%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-red-600 h-2 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tournament Standings -->
+            <section data-aos="fade-left">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Tournament Standings</h2>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="font-bold text-lg text-gray-900">ICC World Test Championship</h3>
+                        <p class="text-gray-600 text-sm">Current Cycle 2023-2025</p>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">Team</th>
+                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">Pts</th>
+                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">PCT</th>
+                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">Matches</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium">India</td>
+                                    <td class="py-3 px-4 font-bold">74</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-semibold">64.5%</span>
+                                    </td>
+                                    <td class="py-3 px-4">9</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium">Australia</td>
+                                    <td class="py-3 px-4 font-bold">66</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-semibold">58.5%</span>
+                                    </td>
+                                    <td class="py-3 px-4">10</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium">South Africa</td>
+                                    <td class="py-3 px-4 font-bold">50</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm font-semibold">50.0%</span>
+                                    </td>
+                                    <td class="py-3 px-4">6</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium">New Zealand</td>
+                                    <td class="py-3 px-4 font-bold">36</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-semibold">40.0%</span>
+                                    </td>
+                                    <td class="py-3 px-4">6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="p-4 border-t border-gray-200 text-center">
+                        <a href="tournaments.html" class="text-blue-600 hover:text-blue-800 font-medium">
+                            View Full Standings & Tournament Details
+                        </a>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <!-- Teams Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-            <!-- Team Card 1 -->
-            <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
-                <div class="p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                            <i data-feather="flag" class="text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">India</h3>
-                            <p class="text-gray-600">ICC Ranking: #1</p>
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Matches:</span>
-                            <span class="font-semibold">45</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Wins:</span>
-                            <span class="font-semibold text-green-600">32</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Losses:</span>
-                            <span class="font-semibold text-red-600">13</span>
-                        </div>
-                    </div>
-                    <button class="w-full mt-4 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                        View Team
-                    </button>
-                </div>
+        <!-- Match Schedules -->
+        <section class="mb-12" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Upcoming Match Schedules</h2>
+                <a href="matches.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                    View Full Schedule
+                    <i data-feather="calendar" class="ml-2 w-4 h-4"></i>
+                </a>
             </div>
-
-            <!-- Team Card 2 -->
-            <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-                <div class="p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                            <i data-feather="flag" class="text-green-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">Australia</h3>
-                            <p class="text-gray-600">ICC Ranking: #2</p>
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Matches:</span>
-                            <span class="font-semibold">42</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Wins:</span>
-                            <span class="font-semibold text-green-600">28</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Losses:</span>
-                            <span class="font-semibold text-red-600">14</span>
-                        </div>
-                    </div>
-                    <button class="w-full mt-4 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
-                        View Team
-                    </button>
-                </div>
-            </div>
-
-            <!-- Team Card 3 -->
-            <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
-                <div class="p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                            <i data-feather="flag" class="text-red-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">England</h3>
-                            <p class="text-gray-600">ICC Ranking: #3</p>
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Matches:</span>
-                            <span class="font-semibold">40</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Wins:</span>
-                            <span class="font-semibold text-green-600">25</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Losses:</span>
-                            <span class="font-semibold text-red-600">15</span>
-                        </div>
-                    </div>
-                    <button class="w-full mt-4 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors">
-                        View Team
-                    </button>
-                </div>
-            </div>
-
-            <!-- Team Card 4 -->
-            <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
-                <div class="p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
-                            <i data-feather="flag" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">New Zealand</h3>
-                            <p class="text-gray-600">ICC Ranking: #4</p>
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Matches:</span>
-                            <span class="font-semibold">38</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Wins:</span>
-                            <span class="font-semibold text-green-600">22</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Losses:</span>
-                            <span class="font-semibold text-red-600">16</span>
-                        </div>
-                    </div>
-                    <button class="w-full mt-4 bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-700 transition-colors">
-                        View Team
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Team Details Section -->
-        <div class="bg-white rounded-lg shadow-md mb-12" data-aos="fade-up">
-            <div class="p-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Team Rosters & Statistics</h2>
-                
-                <!-- Team Selection -->
-                <div class="mb-6">
-                    <select class="w-full md:w-64 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <option>Select Team</option>
-                        <option>India</option>
-                        <option>Australia</option>
-                        <option>England</option>
-                        <option>New Zealand</option>
-                        <option>South Africa</option>
-                        <option>Pakistan</option>
-                    </select>
-                </div>
-
-                <!-- Players Table -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
                 <div class="overflow-x-auto">
-                    <table class="w-full min-w-full">
+                    <table class="w-full">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Player</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matches</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Runs</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Wickets</th>
+                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Date & Time</th>
+                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Match</th>
+                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Venue</th>
+                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Format</th>
+                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Series</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                            <i data-feather="user" class="text-blue-600"></i>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Virat Kohli</div>
-                                        </div>
-                                    </div>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">Dec 15, 10:30 GMT</td>
+                                <td class="py-3 px-4 font-medium">India vs South Africa</td>
+                                <td class="py-3 px-4">Wanderers, Johannesburg</td>
+                                <td class="py-3 px-4">
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-semibold">Test</span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Batsman</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">265</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12,344</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4</td>
+                                <td class="py-3 px-4">Freedom Trophy</td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                            <i data-feather="user" class="text-blue-600"></i>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Rohit Sharma</div>
-                                        </div>
-                                    </div>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">Dec 17, 14:00 GMT</td>
+                                <td class="py-3 px-4 font-medium">Australia vs Pakistan</td>
+                                <td class="py-3 px-4">MCG, Melbourne</td>
+                                <td class="py-3 px-4">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">ODI</span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Batsman</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">227</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">9,205</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">8</td>
+                                <td class="py-3 px-4">Bilateral Series</td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                            <i data-feather="user" class="text-blue-600"></i>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Jasprit Bumrah</div>
-                                        </div>
-                                    </div>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">Dec 20, 18:00 GMT</td>
+                                <td class="py-3 px-4 font-medium">England vs West Indies</td>
+                                <td class="py-3 px-4">Kennington Oval, London</td>
+                                <td class="py-3 px-4">
+                                    <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs font-semibold">T20I</span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Bowler</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">72</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">128</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">121</td>
+                                <td class="py-3 px-4">T20 Series</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">Dec 22, 08:30 GMT</td>
+                                <td class="py-3 px-4 font-medium">New Zealand vs Bangladesh</td>
+                                <td class="py-3 px-4">Bay Oval, Mount Maunganui</td>
+                                <td class="py-3 px-4">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">ODI</span>
+                                </td>
+                                <td class="py-3 px-4">World Cup Super League</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Team News & Updates -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            <!-- Team News -->
-            <div class="bg-white rounded-lg shadow-md" data-aos="fade-right">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Team News & Articles</h2>
-                    <div class="space-y-4">
-                        <div class="border-l-4 border-blue-500 pl-4">
-                            <h3 class="font-semibold text-gray-800">India Announces Squad for World Cup</h3>
-                            <p class="text-gray-600 text-sm mt-1">The BCCI has announced the 15-member squad for the upcoming ICC World Cup 2023.</p>
-                            <span class="text-blue-500 text-xs">2 hours ago</span>
+        <!-- News Articles -->
+        <section data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Latest Team News</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">SQUAD</span>
+                            <span class="text-gray-500 text-sm ml-auto">2 hours ago</span>
                         </div>
-                        <div class="border-l-4 border-green-500 pl-4">
-                            <h3 class="font-semibold text-gray-800">Australia's New Coach Appointment</h3>
-                            <p class="text-gray-600 text-sm mt-1">Cricket Australia has appointed Andrew McDonald as the new head coach.</p>
-                            <span class="text-green-500 text-xs">1 day ago</span>
-                        </div>
-                        <div class="border-l-4 border-red-500 pl-4">
-                            <h3 class="font-semibold text-gray-800">England Players Return from Injury</h3>
-                            <p class="text-gray-600 text-sm mt-1">Key players return to the England squad after recovering from injuries.</p>
-                            <span class="text-red-500 text-xs">2 days ago</span>
-                        </div>
+                        <h3 class="font-bold text-xl text-gray-900 mb-3">India Announces Test Squad for South Africa Tour</h3>
+                        <p class="text-gray-600 mb-4">Rohit Sharma to lead 18-member squad with three new faces included for the challenging away series.</p>
+                        <a href="news.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            Read More
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
                     </div>
-                </div>
+                </article>
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">INJURY</span>
+                            <span class="text-gray-500 text-sm ml-auto">5 hours ago</span>
+                        </div>
+                        <h3 class="font-bold text-xl text-gray-900 mb-3">Australia's Starc Ruled Out of First Test</h3>
+                        <p class="text-gray-600 mb-4">Mitchell Starc suffers shoulder strain during training, likely to miss the opening match against Pakistan.</p>
+                        <a href="news.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            Read More
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">ANALYSIS</span>
+                            <span class="text-gray-500 text-sm ml-auto">1 day ago</span>
+                        </div>
+                        <h3 class="font-bold text-xl text-gray-900 mb-3">England's Bazball Approach: Statistical Breakdown</h3>
+                        <p class="text-gray-600 mb-4">Deep dive into how England's aggressive Test strategy has transformed their performance metrics since 2022.</p>
+                        <a href="news.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            Read More
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
             </div>
-
-            <!-- Team Forum Discussions -->
-            <div class="bg-white rounded-lg shadow-md" data-aos="fade-left">
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Team Discussions</h2>
-                    <div class="space-y-4">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
-                                    <i data-feather="user" class="text-blue-600 w-4 h-4"></i>
-                                </div>
-                                <span class="font-semibold text-sm">CricketFan123</span>
-                            </div>
-                            <p class="text-gray-700 text-sm">What do you think about India's chances in the upcoming series?</p>
-                            <div class="flex items-center mt-2 text-xs text-gray-500">
-                                <span>12 comments</span>
-                                <span class="mx-2">•</span>
-                                <span>2 hours ago</span>
-                            </div>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-2">
-                                    <i data-feather="user" class="text-green-600 w-4 h-4"></i>
-                                </div>
-                                <span class="font-semibold text-sm">AussieSupporter</span>
-                            </div>
-                            <p class="text-gray-700 text-sm">Australia's bowling lineup looking strong for the Ashes!</p>
-                            <div class="flex items-center mt-2 text-xs text-gray-500">
-                                <span>8 comments</span>
-                                <span class="mx-2">•</span>
-                                <span>5 hours ago</span>
-                            </div>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-2">
-                                    <i data-feather="user" class="text-red-600 w-4 h-4"></i>
-                                </div>
-                                <span class="font-semibold text-sm">EnglishCricket</span>
-                            </div>
-                            <p class="text-gray-700 text-sm">Stokes' return could change everything for England.</p>
-                            <div class="flex items-center mt-2 text-xs text-gray-500">
-                                <span>15 comments</span>
-                                <span class="mx-2">•</span>
-                                <span>1 day ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Live Updates Section -->
-        <div class="bg-white rounded-lg shadow-md mb-12" data-aos="fade-up">
-            <div class="p-6">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">Live Team Updates</h2>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                        <span class="text-green-600 text-sm font-semibold">LIVE</span>
-                    </div>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-sm font-semibold">IND vs AUS - 3rd ODI</div>
-                        <div class="text-xs text-gray-500">Updated 2 mins ago</div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                        <div>
-                            <div class="font-bold text-lg">India</div>
-                            <div class="text-2xl font-bold text-gray-800">287/6</div>
-                            <div class="text-sm text-gray-600">50 overs</div>
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <div class="text-xl font-bold text-gray-700">VS</div>
-                        </div>
-                        <div>
-                            <div class="font-bold text-lg">Australia</div>
-                            <div class="text-2xl font-bold text-gray-800">145/3</div>
-                            <div class="text-sm text-gray-600">25 overs</div>
-                        </div>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <div class="text-sm text-gray-600">Australia needs 143 runs from 25 overs</div>
-                        <div class="text-xs text-gray-500 mt-1">Required RR: 5.72</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-gray-900 text-white py-8 mt-12">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">CricketHub</h3>
-                    <p class="text-gray-400 text-sm">Your ultimate destination for cricket updates, scores, and discussions.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">CricketHub</h3>
+                    <p class="text-gray-400">Your ultimate cricket companion</p>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white">Home</a></li>
-                        <li><a href="#" class="hover:text-white">Live Scores</a></li>
-                        <li><a href="#" class="hover:text-white">Teams</a></li>
-                        <li><a href="#" class="hover:text-white">Rankings</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="facebook"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Newsletter</h4>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="px-3 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
-                        <button class="bg-blue-600 px-4 py-2 rounded-r-lg hover:bg-blue-700 transition-colors">
-                            <i data-feather="send"></i>
-                        </button>
-                    </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="facebook" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="youtube" class="w-5 h-5"></i>
+                    </a>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-400">
-                <p>&copy; 2024 CricketHub. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 CricketHub. All rights reserved. | Live scores powered by official cricket boards.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS and Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                once: true
-            });
-            feather.replace();
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
         });
 
-        // Simulate live updates
-        function updateLiveScore() {
-            const scores = document.querySelectorAll('.text-2xl.font-bold.text-gray-800');
-            if (scores.length >= 2) {
-                const ausScore = parseInt(scores[1].textContent.split('/')[0]);
-                if (ausScore < 287) {
-                    const newScore = ausScore + Math.floor(Math.random() * 3) + 1;
-                    const wickets = Math.random() > 0.95 ? 1 : 0;
-                    const currentWickets = parseInt(scores[1].textContent.split('/')[1]);
-                    scores[1].textContent = `${newScore}/${currentWickets + wickets}`;
-                    
-                    const oversElement = document.querySelector('.text-sm.text-gray-600:last-child');
-                    if (oversElement) {
-                        const currentOvers = parseFloat(oversElement.textContent.split(' ')[0]);
-                        if (currentOvers < 50) {
-                            const newOvers = currentOvers + 0.1;
-                            oversElement.textContent = `${newOvers.toFixed(1)} overs`;
-                            
-                            const requiredElement = document.querySelector('.text-xs.text-gray-500.mt-1');
-                            if (requiredElement && newOvers > 0) {
-                                const runsNeeded = 287 - newScore;
-                                const oversLeft = 50 - newOvers;
-                                const requiredRR = (runsNeeded / oversLeft).toFixed(2);
-                                requiredElement.textContent = `Required RR: ${requiredRR}`;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Update score every 10 seconds
-        setInterval(updateLiveScore, 10000);
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
     </script>
 </body>
 </html>
