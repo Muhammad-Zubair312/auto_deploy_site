@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Scheduling | Hospital Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .calendar-day:hover {
+            background-color: #3b82f6;
+            color: white;
+            cursor: pointer;
+        }
+        .calendar-day.selected {
+            background-color: #1d4ed8;
+            color: white;
+        }
+        .time-slot:hover {
+            background-color: #dbeafe;
+            cursor: pointer;
+        }
+        .time-slot.selected {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointment-scheduling.html' class='px-3 py-2 hover:text-blue-400'>Appointment Scheduling</a>
+        <a href='doctor-directory.html' class='px-3 py-2 hover:text-blue-400'>Doctor Directory</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='medical-records.html' class='px-3 py-2 hover:text-blue-400'>Medical Records</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+        <a href='inventory-management.html' class='px-3 py-2 hover:text-blue-400'>Inventory Management</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-10" data-aos="fade-up">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Appointment Scheduling</h1>
+            <p class="text-gray-600">Book, manage, and track patient appointments with doctors and specialists</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Calendar & Time Selection -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Calendar Section -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-right">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-semibold text-gray-800">Select Date</h2>
+                        <div class="flex space-x-2">
+                            <button id="prevMonth" class="p-2 rounded-full hover:bg-gray-100">
+                                <i data-feather="chevron-left"></i>
+                            </button>
+                            <span id="currentMonth" class="font-medium text-gray-700 px-4">November 2023</span>
+                            <button id="nextMonth" class="p-2 rounded-full hover:bg-gray-100">
+                                <i data-feather="chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-2 mb-4">
+                        <div class="text-center font-medium text-gray-500 py-2">Sun</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Mon</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Tue</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Wed</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Thu</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Fri</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Sat</div>
+                    </div>
+                    <div id="calendar" class="grid grid-cols-7 gap-2">
+                        <!-- Calendar days will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Time Slots Section -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-right" data-aos-delay="100">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Available Time Slots</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="timeSlots">
+                        <!-- Time slots will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Doctor Selection -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-right" data-aos-delay="200">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Select Doctor</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="doctorList">
+                        <!-- Doctor cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Appointment Form & Summary -->
+            <div class="space-y-8">
+                <!-- Appointment Form -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-left">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Book Appointment</h2>
+                    <form id="appointmentForm">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Patient</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="">Select Patient</option>
+                                    <option value="1">John Doe (ID: P-1001)</option>
+                                    <option value="2">Jane Smith (ID: P-1002)</option>
+                                    <option value="3">Robert Johnson (ID: P-1003)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Appointment Type</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="consultation">Consultation</option>
+                                    <option value="followup">Follow-up</option>
+                                    <option value="emergency">Emergency</option>
+                                    <option value="routine">Routine Checkup</option>
+                                    <option value="specialist">Specialist Visit</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Reason for Visit</label>
+                                <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Brief description of symptoms or reason for appointment"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Priority Level</label>
+                                <div class="flex space-x-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="priority" value="low" class="text-blue-600">
+                                        <span class="ml-2">Low</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="priority" value="medium" class="text-blue-600" checked>
+                                        <span class="ml-2">Medium</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="priority" value="high" class="text-blue-600">
+                                        <span class="ml-2">High</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition duration-200 flex items-center justify-center">
+                                <i data-feather="calendar" class="mr-2"></i>
+                                Book Appointment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Appointment Summary -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-left" data-aos-delay="100">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Today's Appointments</h2>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Dr. Sarah Miller</h3>
+                                    <p class="text-sm text-gray-600">Cardiology</p>
+                                </div>
+                                <span class="text-sm font-medium text-blue-600">10:00 AM</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Patient: Robert Johnson</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4 py-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Dr. Michael Chen</h3>
+                                    <p class="text-sm text-gray-600">Pediatrics</p>
+                                </div>
+                                <span class="text-sm font-medium text-green-600">11:30 AM</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Patient: Emma Wilson</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Dr. James Wilson</h3>
+                                    <p class="text-sm text-gray-600">Orthopedics</p>
+                                </div>
+                                <span class="text-sm font-medium text-yellow-600">2:00 PM</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Patient: David Brown</p>
+                        </div>
+                    </div>
+                    <a href="#" class="block text-center mt-6 text-blue-600 hover:text-blue-800 font-medium">
+                        View All Appointments →
+                    </a>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white" data-aos="fade-left" data-aos-delay="200">
+                    <h2 class="text-xl font-semibold mb-4">Appointment Stats</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">24</div>
+                            <div class="text-sm opacity-90">Today</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">156</div>
+                            <div class="text-sm opacity-90">This Week</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">89%</div>
+                            <div class="text-sm opacity-90">Attendance Rate</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">12</div>
+                            <div class="text-sm opacity-90">Pending</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Calendar functionality
+        let currentDate = new Date();
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const currentMonth = document.getElementById('currentMonth');
+            
+            // Clear previous calendar
+            calendar.innerHTML = '';
+            
+            // Set current month display
+            currentMonth.textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+            
+            // Get first day of month
+            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            
+            // Get day of week for first day (0 = Sunday, 6 = Saturday)
+            const firstDayIndex = firstDay.getDay();
+            
+            // Get total days in month
+            const totalDays = lastDay.getDate();
+            
+            // Previous month days
+            const prevMonthLastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+            
+            // Fill previous month days
+            for (let i = firstDayIndex - 1; i >= 0; i--) {
+                const day = document.createElement('div');
+                day.className = 'text-center py-3 text-gray-400';
+                day.textContent = prevMonthLastDay - i;
+                calendar.appendChild(day);
+            }
+            
+            // Fill current month days
+            const today = new Date();
+            for (let i = 1; i <= totalDays; i++) {
+                const day = document.createElement('div');
+                day.className = 'text-center py-3 calendar-day rounded-lg';
+                day.textContent = i;
+                
+                // Highlight today
+                if (i === today.getDate() && 
+                    currentDate.getMonth() === today.getMonth() && 
+                    currentDate.getFullYear() === today.getFullYear()) {
+                    day.classList.add('bg-blue-100', 'text-blue-600', 'font-medium');
+                }
+                
+                // Add click event
+                day.addEventListener('click', function() {
+                    document.querySelectorAll('.calendar-day').forEach(d => {
+                        d.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    updateTimeSlots();
+                });
+                
+                calendar.appendChild(day);
+            }
+            
+            // Fill next month days
+            const totalCells = 42; // 6 weeks * 7 days
+            const nextMonthDays = totalCells - (firstDayIndex + totalDays);
+            
+            for (let i = 1; i <= nextMonthDays; i++) {
+                const day = document.createElement('div');
+                day.className = 'text-center py-3 text-gray-400';
+                day.textContent = i;
+                calendar.appendChild(day);
+            }
+        }
+
+        // Time slots data
+        const timeSlots = [
+            '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM',
+            '11:00 AM', '11:30 AM', '01:00 PM', '01:30 PM',
+            '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM',
+            '04:00 PM', '04:30 PM', '05:00 PM'
+        ];
+
+        function updateTimeSlots() {
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            timeSlotsContainer.innerHTML = '';
+            
+            timeSlots.forEach(slot => {
+                const timeSlot = document.createElement('div');
+                timeSlot.className = 'time-slot text-center py-3 border border-gray-200 rounded-lg font-medium';
+                timeSlot.textContent = slot;
+                
+                timeSlot.addEventListener('click', function() {
+                    document.querySelectorAll('.time-slot').forEach(ts => {
+                        ts.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+                
+                timeSlotsContainer.appendChild(timeSlot);
+            });
+        }
+
+        // Doctors data
+        const doctors = [
+            { name: 'Dr. Sarah Miller', specialty: 'Cardiology', available: true },
+            { name: 'Dr. Michael Chen', specialty: 'Pediatrics', available: true },
+            { name: 'Dr. James Wilson', specialty: 'Orthopedics', available: false },
+            { name: 'Dr. Emily Davis', specialty: 'Dermatology', available: true }
+        ];
+
+        function loadDoctors() {
+            const doctorList = document.getElementById('doctorList');
+            doctorList.innerHTML = '';
+            
+            doctors.forEach(doctor => {
+                const doctorCard = document.createElement('div');
+                doctorCard.className = 'border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition duration-200';
+                doctorCard.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="text-blue-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-medium text-gray-800">${doctor.name}</h3>
+                            <p class="text-sm text-gray-600">${doctor.specialty}</p>
+                            <span class="inline-block mt-2 px-2 py-1 text-xs rounded-full ${doctor.available ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${doctor.available ? 'Available' : 'Unavailable'}
+                            </span>
+                        </div>
+                    </div>
+                `;
+                
+                if (doctor.available) {
+                    doctorCard.addEventListener('click', function() {
+                        document.querySelectorAll('#doctorList > div').forEach(card => {
+                            card.classList.remove('border-blue-500', 'bg-blue-50');
+                        });
+                        this.classList.add('border-blue-500', 'bg-blue-50');
+                    });
+                }
+                
+                doctorList.appendChild(doctorCard);
+            });
+        }
+
+        // Event Listeners
+        document.getElementById('prevMonth').addEventListener('click', function() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            generateCalendar();
+            feather.replace();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', function() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            generateCalendar();
+            feather.replace();
+        });
+
+        // Form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Appointment booked successfully!');
+            // In a real application, you would send data to server here
+        });
+
+        // Initialize
+        generateCalendar();
+        updateTimeSlots();
+        loadDoctors();
+        feather.replace();
+    </script>
+</body>
+</html>

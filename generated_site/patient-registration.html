@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration | Hospital Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .form-section { transition: all 0.3s ease; }
+        .form-section:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointment-scheduling.html' class='px-3 py-2 hover:text-blue-400'>Appointment Scheduling</a>
+        <a href='doctor-directory.html' class='px-3 py-2 hover:text-blue-400'>Doctor Directory</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='medical-records.html' class='px-3 py-2 hover:text-blue-400'>Medical Records</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+        <a href='inventory-management.html' class='px-3 py-2 hover:text-blue-400'>Inventory Management</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-10 text-center" data-aos="fade-down">
+            <h1 class="text-4xl font-bold text-gray-800 mb-3">Patient Registration</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">Register new patients into the hospital system. All fields marked with * are required for compliance with health data regulations.</p>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up">
+            <div class="md:flex">
+                <!-- Left Column - Personal Information -->
+                <div class="md:w-1/2 p-8 form-section">
+                    <div class="flex items-center mb-6">
+                        <i data-feather="user" class="text-blue-500 mr-3"></i>
+                        <h2 class="text-2xl font-semibold text-gray-800">Personal Information</h2>
+                    </div>
+                    
+                    <form id="patientRegistrationForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- First Name -->
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="firstName">
+                                    First Name *
+                                </label>
+                                <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                       id="firstName" type="text" required>
+                            </div>
+                            
+                            <!-- Last Name -->
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="lastName">
+                                    Last Name *
+                                </label>
+                                <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                       id="lastName" type="text" required>
+                            </div>
+                            
+                            <!-- Date of Birth -->
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="dob">
+                                    Date of Birth *
+                                </label>
+                                <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                       id="dob" type="date" required>
+                            </div>
+                            
+                            <!-- Gender -->
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="gender">
+                                    Gender *
+                                </label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                        id="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Contact Information -->
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="phone">
+                                    Phone Number *
+                                </label>
+                                <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                       id="phone" type="tel" required>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="email">
+                                    Email Address
+                                </label>
+                                <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                       id="email" type="email">
+                            </div>
+                            
+                            <!-- Address -->
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="address">
+                                    Address *
+                                </label>
+                                <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                          id="address" rows="3" required></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Right Column - Medical & Emergency Contact -->
+                <div class="md:w-1/2 bg-gray-50 p-8 form-section">
+                    <div class="flex items-center mb-6">
+                        <i data-feather="heart" class="text-red-500 mr-3"></i>
+                        <h2 class="text-2xl font-semibold text-gray-800">Medical & Emergency Details</h2>
+                    </div>
+                    
+                    <!-- Emergency Contact -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-medium text-gray-700 mb-4">Emergency Contact</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="emergencyName">
+                                    Contact Name *
+                                </label>
+                                <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                       id="emergencyName" type="text" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="emergencyPhone">
+                                    Contact Phone *
+                                </label>
+                                <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                       id="emergencyPhone" type="tel" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="relationship">
+                                    Relationship *
+                                </label>
+                                <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                       id="relationship" type="text" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Medical Information -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-700 mb-4">Medical Information</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="bloodType">
+                                    Blood Type
+                                </label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                        id="bloodType">
+                                    <option value="">Select Blood Type</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="allergies">
+                                    Allergies
+                                </label>
+                                <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                          id="allergies" rows="2" placeholder="List any known allergies"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-2" for="medicalHistory">
+                                    Medical History
+                                </label>
+                                <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                          id="medicalHistory" rows="3" placeholder="Previous conditions, surgeries, etc."></textarea>
+                            </div>
+                            
+                            <!-- Insurance Information -->
+                            <div class="pt-4 border-t border-gray-200">
+                                <h4 class="text-md font-medium text-gray-700 mb-3">Insurance Information</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="insuranceProvider">
+                                            Provider
+                                        </label>
+                                        <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                               id="insuranceProvider" type="text">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="policyNumber">
+                                            Policy Number
+                                        </label>
+                                        <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                                               id="policyNumber" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Form Actions -->
+            <div class="px-8 py-6 bg-gray-100 border-t border-gray-200">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-sm text-gray-600">
+                        <i data-feather="shield" class="inline mr-2"></i>
+                        All patient data is encrypted and HIPAA compliant
+                    </div>
+                    <div class="flex space-x-4">
+                        <button type="button" onclick="clearForm()" 
+                                class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-300 flex items-center">
+                            <i data-feather="x" class="mr-2"></i>
+                            Clear Form
+                        </button>
+                        <button type="submit" form="patientRegistrationForm" 
+                                class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 flex items-center shadow-md hover:shadow-lg">
+                            <i data-feather="save" class="mr-2"></i>
+                            Register Patient
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Registrations Preview -->
+        <div class="mt-12 max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                        <i data-feather="users" class="mr-3 text-green-500"></i>
+                        Recently Registered Patients
+                    </h3>
+                    <a href="patient-records.html" class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                        View All Records
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient ID</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gender</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registration Date</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 text-sm font-medium text-blue-600">P-2024-00123</td>
+                                <td class="px-4 py-3 text-sm text-gray-900">John Smith</td>
+                                <td class="px-4 py-3 text-sm text-gray-700">45</td>
+                                <td class="px-4 py-3 text-sm text-gray-700">Male</td>
+                                <td class="px-4 py-3 text-sm text-gray-700">2024-01-15</td>
+                                <td class="px-4 py-3">
+                                    <span class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-800">Active</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 text-sm font-medium text-blue-600">P-2024-00122</td>
+                                <td class="px-4 py-3 text-sm text-gray-900">Maria Garcia</td>
+                                <td class="px-4 py-3 text-sm text-gray-700">32</td>
+                                <td class="px-4 py-3 text-sm text-gray-700">Female</td>
+                                <td class="px-4 py-3 text-sm text-gray-700">2024-01-14</td>
+                                <td class="px-4 py-3">
+                                    <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800">Scheduled</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12 py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="text-gray-400">© 2024 Hospital Management System. All rights reserved.</p>
+                <p class="text-gray-500 text-sm mt-2">HIPAA Compliant • Data Encrypted • Secure Patient Portal</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Form handling
+        document.getElementById('patientRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Form validation
+            const requiredFields = ['firstName', 'lastName', 'dob', 'gender', 'phone', 'address', 'emergencyName', 'emergencyPhone', 'relationship'];
+            let isValid = true;
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+            
+            if (isValid) {
+                // Show success message
+                alert('Patient registered successfully! Patient ID: P-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 90000));
+                this.reset();
+                
+                // In a real application, you would send data to server here
+                console.log('Patient data submitted');
+            } else {
+                alert('Please fill in all required fields marked with *');
+            }
+        });
+        
+        // Clear form function
+        function clearForm() {
+            if (confirm('Are you sure you want to clear all form data?')) {
+                document.getElementById('patientRegistrationForm').reset();
+                // Remove error borders
+                document.querySelectorAll('input, select, textarea').forEach(el => {
+                    el.classList.remove('border-red-500');
+                });
+            }
+        }
+        
+        // Real-time validation
+        document.querySelectorAll('#patientRegistrationForm input, #patientRegistrationForm select, #patientRegistrationForm textarea').forEach(el => {
+            el.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.classList.add('border-red-500');
+                } else {
+                    this.classList.remove('border-red-500');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

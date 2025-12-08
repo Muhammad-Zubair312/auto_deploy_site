@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records | Hospital Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-2 md:space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Records</a>
+        <a href='appointment-scheduling.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Appointment Scheduling</a>
+        <a href='doctor-directory.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Doctor Directory</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Staff Management</a>
+        <a href='medical-records.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap font-semibold text-blue-300'>Medical Records</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Billing</a>
+        <a href='inventory-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Inventory Management</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="flex min-h-screen">
+        <!-- Sidebar (for EHR navigation) -->
+        <aside class="sidebar bg-white w-64 border-r border-gray-200 p-6 hidden md:block">
+            <h2 class="text-xl font-bold text-gray-800 mb-6">EHR Navigation</h2>
+            <ul class="space-y-4">
+                <li><a href="#overview" class="flex items-center text-gray-700 hover:text-blue-600"><i data-feather="activity" class="mr-3"></i> Overview</a></li>
+                <li><a href="#clinical-notes" class="flex items-center text-gray-700 hover:text-blue-600"><i data-feather="file-text" class="mr-3"></i> Clinical Notes</a></li>
+                <li><a href="#lab-results" class="flex items-center text-gray-700 hover:text-blue-600"><i data-feather="droplet" class="mr-3"></i> Lab Results</a></li>
+                <li><a href="#imaging" class="flex items-center text-gray-700 hover:text-blue-600"><i data-feather="image" class="mr-3"></i> Imaging</a></li>
+                <li><a href="#prescriptions" class="flex items-center text-gray-700 hover:text-blue-600"><i data-feather="clipboard" class="mr-3"></i> Prescriptions</a></li>
+                <li><a href="#vaccinations" class="flex items-center text-gray-700 hover:text-blue-600"><i data-feather="shield" class="mr-3"></i> Vaccinations</a></li>
+                <li><a href="#allergies" class="flex items-center text-gray-700 hover:text-blue-600"><i data-feather="alert-triangle" class="mr-3"></i> Allergies</a></li>
+                <li><a href="#history" class="flex items-center text-gray-700 hover:text-blue-600"><i data-feather="calendar" class="mr-3"></i> Medical History</a></li>
+            </ul>
+            <div class="mt-10">
+                <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 flex items-center justify-center">
+                    <i data-feather="plus" class="mr-2"></i> New Record
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="sidebarToggle" class="md:hidden fixed top-20 left-4 bg-blue-600 text-white p-2 rounded z-50">
+            <i data-feather="menu"></i>
+        </button>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <!-- Page Header -->
+            <header class="mb-8" data-aos="fade-down">
+                <h1 class="text-3xl font-bold text-gray-800">Electronic Health Records</h1>
+                <p class="text-gray-600 mt-2">Secure, comprehensive digital medical records for patient care</p>
+                <div class="flex flex-wrap items-center justify-between mt-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Search patient records..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-64 md:w-80">
+                            <i data-feather="search" class="absolute left-3 top-2.5 text-gray-400"></i>
+                        </div>
+                        <select class="border border-gray-300 rounded-lg px-4 py-2">
+                            <option>All Departments</option>
+                            <option>Cardiology</option>
+                            <option>Neurology</option>
+                            <option>Pediatrics</option>
+                            <option>Orthopedics</option>
+                        </select>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center">
+                            <i data-feather="download" class="mr-2"></i> Export Records
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Patient Summary Card -->
+            <section class="bg-white rounded-xl shadow-md p-6 mb-8" data-aos="fade-up">
+                <div class="flex flex-wrap items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="text-blue-600 w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Johnathan Doe</h3>
+                            <p class="text-gray-600">Patient ID: P-7842 | Age: 42 | Blood Type: O+</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Hypertension</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Type 2 Diabetes</span>
+                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mr-3">
+                            Update Record
+                        </button>
+                        <button class="border border-blue-600 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50">
+                            View Full History
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EHR Sections Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Clinical Notes -->
+                <section id="clinical-notes" class="bg-white rounded-xl shadow-md p-6" data-aos="fade-right">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800 flex items-center">
+                            <i data-feather="file-text" class="mr-2 text-blue-600"></i> Clinical Notes
+                        </h2>
+                        <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <i data-feather="plus" class="mr-1"></i> Add Note
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <div class="flex justify-between">
+                                <h4 class="font-semibold">Follow-up Consultation</h4>
+                                <span class="text-sm text-gray-500">12 Nov 2023</span>
+                            </div>
+                            <p class="text-gray-600 mt-1">Patient reports improved blood pressure control with new medication. No side effects noted.</p>
+                            <p class="text-sm text-gray-500 mt-2">Dr. Sarah Chen, Cardiology</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4 py-2">
+                            <div class="flex justify-between">
+                                <h4 class="font-semibold">Annual Physical Exam</h4>
+                                <span class="text-sm text-gray-500">05 Oct 2023</span>
+                            </div>
+                            <p class="text-gray-600 mt-1">Comprehensive physical examination completed. All vitals within normal ranges.</p>
+                            <p class="text-sm text-gray-500 mt-2">Dr. Michael Rodriguez, General Practice</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Lab Results -->
+                <section id="lab-results" class="bg-white rounded-xl shadow-md p-6" data-aos="fade-left">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800 flex items-center">
+                            <i data-feather="droplet" class="mr-2 text-red-600"></i> Lab Results
+                        </h2>
+                        <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <i data-feather="bar-chart" class="mr-1"></i> View Trends
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="text-left py-2">Test</th>
+                                    <th class="text-left py-2">Result</th>
+                                    <th class="text-left py-2">Status</th>
+                                    <th class="text-left py-2">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="py-3">Glucose (Fasting)</td>
+                                    <td class="py-3">98 mg/dL</td>
+                                    <td class="py-3"><span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Normal</span></td>
+                                    <td class="py-3 text-gray-500">10 Nov 2023</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-3">Cholesterol</td>
+                                    <td class="py-3">210 mg/dL</td>
+                                    <td class="py-3"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Borderline</span></td>
+                                    <td class="py-3 text-gray-500">10 Nov 2023</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3">HbA1c</td>
+                                    <td class="py-3">6.2%</td>
+                                    <td class="py-3"><span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Controlled</span></td>
+                                    <td class="py-3 text-gray-500">10 Nov 2023</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Prescriptions -->
+                <section id="prescriptions" class="bg-white rounded-xl shadow-md p-6" data-aos="fade-right">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800 flex items-center">
+                            <i data-feather="clipboard" class="mr-2 text-purple-600"></i> Active Prescriptions
+                        </h2>
+                        <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <i data-feather="plus" class="mr-1"></i> New Prescription
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 border rounded-lg">
+                            <div>
+                                <h4 class="font-semibold">Lisinopril 10mg</h4>
+                                <p class="text-gray-600 text-sm">Take 1 tablet daily for hypertension</p>
+                                <p class="text-gray-500 text-xs mt-1">Prescribed: 15 Oct 2023 | Refills: 2</p>
+                            </div>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Active</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 border rounded-lg">
+                            <div>
+                                <h4 class="font-semibold">Metformin 500mg</h4>
+                                <p class="text-gray-600 text-sm">Take 1 tablet twice daily with meals</p>
+                                <p class="text-gray-500 text-xs mt-1">Prescribed: 15 Oct 2023 | Refills: 3</p>
+                            </div>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Active</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Allergies & Alerts -->
+                <section id="allergies" class="bg-white rounded-xl shadow-md p-6" data-aos="fade-left">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800 flex items-center">
+                            <i data-feather="alert-triangle" class="mr-2 text-red-600"></i> Allergies & Alerts
+                        </h2>
+                        <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <i data-feather="bell" class="mr-1"></i> Set Alert
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-3 bg-red-50 border border-red-200 rounded-lg">
+                            <i data-feather="alert-circle" class="text-red-600 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-red-800">Penicillin Allergy</h4>
+                                <p class="text-red-600 text-sm">Severe reaction - Anaphylaxis risk</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                            <i data-feather="alert-circle" class="text-yellow-600 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-yellow-800">Sulfa Drugs</h4>
+                                <p class="text-yellow-600 text-sm">Moderate skin reaction</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <i data-feather="info" class="text-blue-600 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-blue-800">Dietary Restriction</h4>
+                                <p class="text-blue-600 text-sm">Lactose intolerant</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Recent Visits Timeline -->
+            <section class="bg-white rounded-xl shadow-md p-6 mt-8" data-aos="fade-up">
+                <h2 class="text-xl font-bold text-gray-800 mb-6">Recent Medical Visits</h2>
+                <div class="relative">
+                    <!-- Timeline -->
+                    <div class="space-y-8">
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-12">
+                                <div class="w-6 h-6 bg-blue-600 rounded-full"></div>
+                                <div class="h-full w-0.5 bg-gray-300 ml-3"></div>
+                            </div>
+                            <div class="ml-6 pb-8">
+                                <h4 class="font-semibold">Cardiology Follow-up</h4>
+                                <p class="text-gray-600">Blood pressure monitoring and medication adjustment</p>
+                                <p class="text-sm text-gray-500 mt-1">12 Nov 2023 | Dr. Sarah Chen</p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-12">
+                                <div class="w-6 h-6 bg-green-600 rounded-full"></div>
+                                <div class="h-full w-0.5 bg-gray-300 ml-3"></div>
+                            </div>
+                            <div class="ml-6 pb-8">
+                                <h4 class="font-semibold">Annual Physical Examination</h4>
+                                <p class="text-gray-600">Complete health assessment and preventive screening</p>
+                                <p class="text-sm text-gray-500 mt-1">05 Oct 2023 | Dr. Michael Rodriguez</p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-12">
+                                <div class="w-6 h-6 bg-purple-600 rounded-full"></div>
+                            </div>
+                            <div class="ml-6">
+                                <h4 class="font-semibold">Lab Work & Diagnostics</h4>
+                                <p class="text-gray-600">Blood tests and metabolic panel analysis</p>
+                                <p class="text-sm text-gray-500 mt-1">10 Nov 2023 | Central Laboratory</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Compliance Notice -->
+            <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg" data-aos="fade-up">
+                <div class="flex items-center">
+                    <i data-feather="shield" class="text-blue-600 mr-3"></i>
+                    <div>
+                        <h4 class="font-semibold text-blue-800">HIPAA Compliant Records</h4>
+                        <p class="text-blue-700 text-sm">All medical records are encrypted and stored in compliance with healthcare privacy regulations. Access is logged and audited regularly.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-6 mt-8">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap justify-between items-center">
+                <div>
+                    <h3 class="text-xl font-bold">Hospital Management System</h3>
+                    <p class="text-gray-400 mt-2">Secure Electronic Health Records & Patient Management</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <p class="text-gray-400">© 2023 All rights reserved. HIPAA Compliant.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Mobile sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleBtn = document.getElementById('sidebarToggle');
+            if (window.innerWidth < 768 && sidebar.classList.contains('active') && 
+                !sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Directory | Hospital Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .specialty-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointment-scheduling.html' class='px-3 py-2 hover:text-blue-400'>Appointment Scheduling</a>
+        <a href='doctor-directory.html' class='px-3 py-2 hover:text-blue-400'>Doctor Directory</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='medical-records.html' class='px-3 py-2 hover:text-blue-400'>Medical Records</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+        <a href='inventory-management.html' class='px-3 py-2 hover:text-blue-400'>Inventory Management</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-10 text-center" data-aos="fade-down">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Doctor Directory</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">
+                Browse our team of experienced medical professionals. Each doctor is certified and ready to provide exceptional care.
+            </p>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8" data-aos="fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Search Input -->
+                <div class="relative">
+                    <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search doctors by name or specialty..." 
+                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                </div>
+                
+                <!-- Specialty Filter -->
+                <select id="specialtyFilter" class="border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <option value="">All Specialties</option>
+                    <option value="cardiology">Cardiology</option>
+                    <option value="neurology">Neurology</option>
+                    <option value="pediatrics">Pediatrics</option>
+                    <option value="orthopedics">Orthopedics</option>
+                    <option value="dermatology">Dermatology</option>
+                    <option value="surgery">General Surgery</option>
+                    <option value="oncology">Oncology</option>
+                </select>
+                
+                <!-- Availability Filter -->
+                <select id="availabilityFilter" class="border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <option value="">All Availability</option>
+                    <option value="available">Available Today</option>
+                    <option value="week">Available This Week</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Doctor Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <!-- Doctor Card 1 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i data-feather="user" class="text-blue-600 w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Dr. Sarah Johnson</h3>
+                                <p class="text-blue-600 font-medium">Cardiologist</p>
+                            </div>
+                        </div>
+                        <span class="specialty-badge bg-blue-100 text-blue-800">Cardiology</span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="briefcase" class="w-4 h-4 mr-2"></i>
+                            <span>15 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="award" class="w-4 h-4 mr-2"></i>
+                            <span>Board Certified</span>
+                        </div>
+                        <div class="flex items-center text-green-600">
+                            <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                            <span class="font-medium">Available Today</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        Specializes in heart disease prevention and treatment. Expert in echocardiography and cardiac rehabilitation.
+                    </p>
+                    
+                    <div class="flex space-x-3">
+                        <button onclick="bookAppointment('Dr. Sarah Johnson')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                            Book Appointment
+                        </button>
+                        <button onclick="viewProfile('Dr. Sarah Johnson')" class="border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition duration-300">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor Card 2 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                                <i data-feather="user" class="text-green-600 w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Dr. Michael Chen</h3>
+                                <p class="text-green-600 font-medium">Neurologist</p>
+                            </div>
+                        </div>
+                        <span class="specialty-badge bg-green-100 text-green-800">Neurology</span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="briefcase" class="w-4 h-4 mr-2"></i>
+                            <span>12 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="award" class="w-4 h-4 mr-2"></i>
+                            <span>Fellowship Trained</span>
+                        </div>
+                        <div class="flex items-center text-green-600">
+                            <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                            <span class="font-medium">Available Today</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        Expert in neurological disorders including epilepsy, migraines, and neurodegenerative diseases.
+                    </p>
+                    
+                    <div class="flex space-x-3">
+                        <button onclick="bookAppointment('Dr. Michael Chen')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                            Book Appointment
+                        </button>
+                        <button onclick="viewProfile('Dr. Michael Chen')" class="border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition duration-300">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor Card 3 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i data-feather="user" class="text-purple-600 w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Dr. Emily Rodriguez</h3>
+                                <p class="text-purple-600 font-medium">Pediatrician</p>
+                            </div>
+                        </div>
+                        <span class="specialty-badge bg-purple-100 text-purple-800">Pediatrics</span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="briefcase" class="w-4 h-4 mr-2"></i>
+                            <span>10 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="award" class="w-4 h-4 mr-2"></i>
+                            <span>Board Certified</span>
+                        </div>
+                        <div class="flex items-center text-yellow-600">
+                            <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                            <span>Available Next Week</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        Specializes in child healthcare from infancy through adolescence. Focus on preventive care and development.
+                    </p>
+                    
+                    <div class="flex space-x-3">
+                        <button onclick="bookAppointment('Dr. Emily Rodriguez')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                            Book Appointment
+                        </button>
+                        <button onclick="viewProfile('Dr. Emily Rodriguez')" class="border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition duration-300">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor Card 4 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                                <i data-feather="user" class="text-red-600 w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Dr. Robert Williams</h3>
+                                <p class="text-red-600 font-medium">Orthopedic Surgeon</p>
+                            </div>
+                        </div>
+                        <span class="specialty-badge bg-red-100 text-red-800">Orthopedics</span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="briefcase" class="w-4 h-4 mr-2"></i>
+                            <span>18 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="award" class="w-4 h-4 mr-2"></i>
+                            <span>Fellowship Trained</span>
+                        </div>
+                        <div class="flex items-center text-green-600">
+                            <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                            <span class="font-medium">Available Today</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        Expert in joint replacement, sports injuries, and spinal surgery. Minimally invasive techniques.
+                    </p>
+                    
+                    <div class="flex space-x-3">
+                        <button onclick="bookAppointment('Dr. Robert Williams')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                            Book Appointment
+                        </button>
+                        <button onclick="viewProfile('Dr. Robert Williams')" class="border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition duration-300">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor Card 5 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center">
+                                <i data-feather="user" class="text-yellow-600 w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Dr. Lisa Thompson</h3>
+                                <p class="text-yellow-600 font-medium">Dermatologist</p>
+                            </div>
+                        </div>
+                        <span class="specialty-badge bg-yellow-100 text-yellow-800">Dermatology</span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="briefcase" class="w-4 h-4 mr-2"></i>
+                            <span>8 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="award" class="w-4 h-4 mr-2"></i>
+                            <span>Board Certified</span>
+                        </div>
+                        <div class="flex items-center text-green-600">
+                            <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                            <span class="font-medium">Available Today</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        Specializes in skin cancer detection, cosmetic dermatology, and treatment of complex skin conditions.
+                    </p>
+                    
+                    <div class="flex space-x-3">
+                        <button onclick="bookAppointment('Dr. Lisa Thompson')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                            Book Appointment
+                        </button>
+                        <button onclick="viewProfile('Dr. Lisa Thompson')" class="border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition duration-300">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor Card 6 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center">
+                                <i data-feather="user" class="text-indigo-600 w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Dr. James Wilson</h3>
+                                <p class="text-indigo-600 font-medium">Oncologist</p>
+                            </div>
+                        </div>
+                        <span class="specialty-badge bg-indigo-100 text-indigo-800">Oncology</span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="briefcase" class="w-4 h-4 mr-2"></i>
+                            <span>20 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i data-feather="award" class="w-4 h-4 mr-2"></i>
+                            <span>Research Director</span>
+                        </div>
+                        <div class="flex items-center text-yellow-600">
+                            <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                            <span>Available Next Week</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        Leading expert in cancer treatment with focus on personalized medicine and immunotherapy approaches.
+                    </p>
+                    
+                    <div class="flex space-x-3">
+                        <button onclick="bookAppointment('Dr. James Wilson')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                            Book Appointment
+                        </button>
+                        <button onclick="viewProfile('Dr. James Wilson')" class="border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition duration-300">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="bg-white rounded-xl shadow-md p-8 mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Medical Team Statistics</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">24</div>
+                    <div class="text-gray-600">Total Doctors</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">12</div>
+                    <div class="text-gray-600">Specialties</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">98%</div>
+                    <div class="text-gray-600">Patient Satisfaction</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-red-600 mb-2">15+</div>
+                    <div class="text-gray-600">Avg. Years Experience</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Need Help Finding the Right Doctor?</h2>
+            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                Our patient coordinators can help you find the perfect specialist for your needs.
+            </p>
+            <button onclick="contactCoordinator()" class="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300 inline-flex items-center">
+                <i data-feather="phone" class="w-5 h-5 mr-2"></i>
+                Contact Patient Coordinator
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-4">© 2024 Hospital Management System. All rights reserved.</p>
+                <p class="text-gray-400 text-sm">HIPAA Compliant • Secure Health Data • Accredited Facility</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Filter functionality
+        document.getElementById('searchInput').addEventListener('input', filterDoctors);
+        document.getElementById('specialtyFilter').addEventListener('change', filterDoctors);
+        document.getElementById('availabilityFilter').addEventListener('change', filterDoctors);
+
+        function filterDoctors() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const specialty = document.getElementById('specialtyFilter').value;
+            const availability = document.getElementById('availabilityFilter').value;
+            const cards = document.querySelectorAll('.doctor-card');
+
+            cards.forEach(card => {
+                const name = card.querySelector('h3').textContent.toLowerCase();
+                const doctorSpecialty = card.querySelector('.specialty-badge').textContent.toLowerCase();
+                const availabilityText = card.querySelector('.flex.items-center.text-green-600 span, .flex.items-center.text-yellow-600 span').textContent.toLowerCase();
+                
+                const matchesSearch = name.includes(searchTerm) || doctorSpecialty.includes(searchTerm);
+                const matchesSpecialty = !specialty || doctorSpecialty.includes(specialty);
+                const matchesAvailability = !availability || 
+                    (availability === 'available' && availabilityText.includes('today')) ||
+                    (availability === 'week' && (availabilityText.includes('today') || availabilityText.includes('week')));
+
+                card.style.display = (matchesSearch && matchesSpecialty && matchesAvailability) ? 'block' : 'none';
+            });
+        }
+
+        // Action functions
+        function bookAppointment(doctorName) {
+            alert(`Redirecting to appointment booking for ${doctorName}`);
+            // In production: window.location.href = `appointment-scheduling.html?doctor=${encodeURIComponent(doctorName)}`;
+        }
+
+        function viewProfile(doctorName) {
+            alert(`Opening detailed profile for ${doctorName}`);
+            // In production: window.location.href = `doctor-profile.html?name=${encodeURIComponent(doctorName)}`;
+        }
+
+        function contactCoordinator() {
+            alert('Connecting you with a patient coordinator...');
+            // In production: window.location.href = 'contact.html';
+        }
+    </script>
+</body>
+</html>

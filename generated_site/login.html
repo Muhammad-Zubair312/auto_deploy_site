@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .login-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointment-scheduling.html' class='px-3 py-2 hover:text-blue-400'>Appointment Scheduling</a>
+        <a href='doctor-directory.html' class='px-3 py-2 hover:text-blue-400'>Doctor Directory</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='medical-records.html' class='px-3 py-2 hover:text-blue-400'>Medical Records</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+        <a href='inventory-management.html' class='px-3 py-2 hover:text-blue-400'>Inventory Management</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12" data-aos="fade-down">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Hospital Management System</h1>
+                <p class="text-gray-600 text-lg">Secure Login for Healthcare Professionals</p>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mt-4"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                <!-- Login Form -->
+                <div class="w-full lg:w-1/2" data-aos="fade-right">
+                    <div class="login-card rounded-2xl shadow-2xl p-8 md:p-12">
+                        <div class="flex items-center mb-8">
+                            <i data-feather="lock" class="text-blue-500 mr-3"></i>
+                            <h2 class="text-3xl font-bold text-gray-800">User Authentication</h2>
+                        </div>
+                        
+                        <form id="loginForm" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-medium">Username / Email</label>
+                                <div class="relative">
+                                    <i data-feather="user" class="absolute left-3 top-3 text-gray-400"></i>
+                                    <input type="text" 
+                                           class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                           placeholder="Enter your username or email"
+                                           required>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-medium">Password</label>
+                                <div class="relative">
+                                    <i data-feather="key" class="absolute left-3 top-3 text-gray-400"></i>
+                                    <input type="password" 
+                                           class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                           placeholder="Enter your password"
+                                           required>
+                                    <button type="button" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600" id="togglePassword">
+                                        <i data-feather="eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-500 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-700">Remember me</span>
+                                </label>
+                                <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Forgot Password?</a>
+                            </div>
+                            
+                            <button type="submit" 
+                                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
+                                <span class="flex items-center justify-center">
+                                    <i data-feather="log-in" class="mr-2"></i>
+                                    Login to Dashboard
+                                </span>
+                            </button>
+                            
+                            <div class="text-center pt-4 border-t border-gray-200">
+                                <p class="text-gray-600">
+                                    Don't have an account? 
+                                    <a href="signup.html" class="text-blue-500 hover:text-blue-700 font-medium">Sign up here</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Features & Info -->
+                <div class="w-full lg:w-1/2" data-aos="fade-left">
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i data-feather="shield" class="text-green-500 mr-3"></i>
+                            Secure Access to Hospital Systems
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-lg mr-4">
+                                    <i data-feather="users" class="text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Role-Based Access</h4>
+                                    <p class="text-gray-600">Different access levels for doctors, nurses, administrators, and staff.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-2 rounded-lg mr-4">
+                                    <i data-feather="file-text" class="text-green-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">HIPAA Compliant</h4>
+                                    <p class="text-gray-600">All data is encrypted and handled in compliance with healthcare regulations.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-2 rounded-lg mr-4">
+                                    <i data-feather="activity" class="text-purple-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Real-time Updates</h4>
+                                    <p class="text-gray-600">Access to live patient data, appointments, and medical records.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-red-100 p-2 rounded-lg mr-4">
+                                    <i data-feather="alert-triangle" class="text-red-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Emergency Access</h4>
+                                    <p class="text-gray-600">Quick access protocols for emergency medical situations.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2">Available Modules After Login:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Patient CRUD</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Appointments</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">EHR</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">Billing</span>
+                                <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">Staff Management</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">Inventory</span>
+                                <span class="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm">Prescriptions</span>
+                                <span class="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm">Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Notice -->
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <div class="inline-flex items-center bg-gray-100 rounded-lg px-6 py-4">
+                    <i data-feather="alert-circle" class="text-orange-500 mr-3"></i>
+                    <p class="text-gray-700">
+                        <strong>Security Notice:</strong> This system contains protected health information (PHI). 
+                        Unauthorized access is prohibited. All activities are logged and monitored.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = this.parentElement.querySelector('input');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                feather.replace();
+                this.querySelector('i').setAttribute('data-feather', 'eye-off');
+                feather.replace();
+            } else {
+                passwordInput.type = 'password';
+                feather.replace();
+                this.querySelector('i').setAttribute('data-feather', 'eye');
+                feather.replace();
+            }
+        });
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate login process
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = `
+                <span class="flex items-center justify-center">
+                    <i data-feather="loader" class="animate-spin mr-2"></i>
+                    Authenticating...
+                </span>
+            `;
+            feather.replace();
+            
+            // Simulate API call
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                feather.replace();
+                
+                // Show success message
+                alert('Login successful! Redirecting to dashboard...');
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

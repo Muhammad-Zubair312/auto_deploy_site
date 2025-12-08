@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management | Hospital Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .inventory-low { background-color: #fef2f2; border-left: 4px solid #dc2626; }
+        .inventory-medium { background-color: #fffbeb; border-left: 4px solid #d97706; }
+        .inventory-high { background-color: #f0fdf4; border-left: 4px solid #16a34a; }
+        .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+        .scrollbar-thin::-webkit-scrollbar-track { background: #f1f1f1; }
+        .scrollbar-thin::-webkit-scrollbar-thumb { background: #888; border-radius: 3px; }
+        .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointment-scheduling.html' class='px-3 py-2 hover:text-blue-400'>Appointment Scheduling</a>
+        <a href='doctor-directory.html' class='px-3 py-2 hover:text-blue-400'>Doctor Directory</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='medical-records.html' class='px-3 py-2 hover:text-blue-400'>Medical Records</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+        <a href='inventory-management.html' class='px-3 py-2 hover:text-blue-400'>Inventory Management</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="mb-8" data-aos="fade-down">
+            <h1 class="text-3xl font-bold text-gray-800">Medical Inventory Management</h1>
+            <p class="text-gray-600 mt-2">Track, manage, and optimize medical supplies and equipment</p>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" data-aos="fade-up">
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-blue-100 rounded-lg">
+                        <i data-feather="package" class="text-blue-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-gray-500 text-sm">Total Items</p>
+                        <p class="text-2xl font-bold">1,247</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-red-100 rounded-lg">
+                        <i data-feather="alert-triangle" class="text-red-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-gray-500 text-sm">Low Stock</p>
+                        <p class="text-2xl font-bold">23</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-green-100 rounded-lg">
+                        <i data-feather="dollar-sign" class="text-green-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-gray-500 text-sm">Total Value</p>
+                        <p class="text-2xl font-bold">$124,580</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-purple-100 rounded-lg">
+                        <i data-feather="trending-up" class="text-purple-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-gray-500 text-sm">This Month Usage</p>
+                        <p class="text-2xl font-bold">+12.5%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Inventory List -->
+            <div class="lg:col-span-2" data-aos="fade-right">
+                <!-- Search and Filter -->
+                <div class="bg-white rounded-lg shadow mb-6 p-4">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="flex-1">
+                            <div class="relative">
+                                <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
+                                <input type="text" placeholder="Search inventory items..." 
+                                       class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                        <div class="flex space-x-3">
+                            <select class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+                                <option>All Categories</option>
+                                <option>Medications</option>
+                                <option>Medical Supplies</option>
+                                <option>Equipment</option>
+                                <option>Lab Supplies</option>
+                            </select>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
+                                <i data-feather="plus" class="mr-2 w-4 h-4"></i>
+                                Add Item
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inventory Table -->
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="overflow-x-auto scrollbar-thin">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="inventory-low hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                                <i data-feather="activity" class="text-red-600"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Paracetamol 500mg</div>
+                                                <div class="text-sm text-gray-500">PAN-001</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Medication</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">45 units</div>
+                                        <div class="text-xs text-gray-500">Min: 100 units</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Low Stock</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-blue-600 hover:text-blue-900 mr-3">
+                                            <i data-feather="edit" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="text-green-600 hover:text-green-900">
+                                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="inventory-high hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                                <i data-feather="thermometer" class="text-green-600"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Surgical Gloves</div>
+                                                <div class="text-sm text-gray-500">SGL-002</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Medical Supplies</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">1,250 units</div>
+                                        <div class="text-xs text-gray-500">Min: 500 units</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">In Stock</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-blue-600 hover:text-blue-900 mr-3">
+                                            <i data-feather="edit" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="text-green-600 hover:text-green-900">
+                                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="inventory-medium hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                                <i data-feather="droplet" class="text-yellow-600"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">IV Saline Solution</div>
+                                                <div class="text-sm text-gray-500">IVS-003</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Medication</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">280 units</div>
+                                        <div class="text-xs text-gray-500">Min: 300 units</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Medium</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-blue-600 hover:text-blue-900 mr-3">
+                                            <i data-feather="edit" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="text-green-600 hover:text-green-900">
+                                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="inventory-high hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                                <i data-feather="scissors" class="text-green-600"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Surgical Masks</div>
+                                                <div class="text-sm text-gray-500">SMS-004</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Medical Supplies</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">3,450 units</div>
+                                        <div class="text-xs text-gray-500">Min: 1,000 units</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">In Stock</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-blue-600 hover:text-blue-900 mr-3">
+                                            <i data-feather="edit" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="text-green-600 hover:text-green-900">
+                                            <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">4</span> of <span class="font-medium">1,247</span> items
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">Previous</button>
+                                <button class="px-3 py-1 bg-blue-600 text-white rounded-lg text-sm">1</button>
+                                <button class="px-3 py-1 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">2</button>
+                                <button class="px-3 py-1 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Quick Actions & Analytics -->
+            <div data-aos="fade-left">
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-lg shadow p-6 mb-8">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <button class="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="p-2 bg-blue-100 rounded-lg mr-3">
+                                    <i data-feather="shopping-cart" class="text-blue-600"></i>
+                                </div>
+                                <span class="text-gray-700">Place New Order</span>
+                            </div>
+                            <i data-feather="chevron-right" class="text-gray-400"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="p-2 bg-green-100 rounded-lg mr-3">
+                                    <i data-feather="download" class="text-green-600"></i>
+                                </div>
+                                <span class="text-gray-700">Export Inventory Report</span>
+                            </div>
+                            <i data-feather="chevron-right" class="text-gray-400"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="p-2 bg-purple-100 rounded-lg mr-3">
+                                    <i data-feather="bell" class="text-purple-600"></i>
+                                </div>
+                                <span class="text-gray-700">Set Stock Alerts</span>
+                            </div>
+                            <i data-feather="chevron-right" class="text-gray-400"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="p-2 bg-red-100 rounded-lg mr-3">
+                                    <i data-feather="alert-triangle" class="text-red-600"></i>
+                                </div>
+                                <span class="text-gray-700">View Low Stock Items</span>
+                            </div>
+                            <i data-feather="chevron-right" class="text-gray-400"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stock Analytics -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Stock Analytics</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600">Medications</span>
+                                <span class="text-sm font-medium">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600">Medical Supplies</span>
+                                <span class="text-sm font-medium">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-600 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600">Equipment</span>
+                                <span class="text-sm font-medium">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-purple-600 h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600">Lab Supplies</span>
+                                <span class="text-sm font-medium">72%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-yellow-600 h-2 rounded-full" style="width: 72%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <h4 class="text-md font-semibold text-gray-800 mb-3">Recent Activity</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <div class="p-2 bg-blue-100 rounded-lg mr-3">
+                                    <i data-feather="package" class="text-blue-600 w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-800">New shipment of surgical gloves received</p>
+                                    <p class="text-xs text-gray-500">2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="p-2 bg-red-100 rounded-lg mr-3">
+                                    <i data-feather="alert-circle" class="text-red-600 w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-800">Paracetamol stock below minimum level</p>
+                                    <p class="text-xs text-gray-500">5 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="p-2 bg-green-100 rounded-lg mr-3">
+                                    <i data-feather="check-circle" class="text-green-600 w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-800">Inventory audit completed</p>
+                                    <p class="text-xs text-gray-500">Yesterday</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="text-gray-400">© 2024 Hospital Management System. All rights reserved.</p>
+                <p class="text-gray-500 text-sm mt-2">Secure inventory management for healthcare compliance</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Sample inventory management functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add item button functionality
+            const addItemBtn = document.querySelector('button:contains("Add Item")');
+            if (addItemBtn) {
+                addItemBtn.addEventListener('click', function() {
+                    alert('Add new inventory item form would open here.');
+                });
+            }
+            
+            // Edit buttons functionality
+            const editButtons = document.querySelectorAll('button:has(i[data-feather="edit"])');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Edit item form would open here.');
+                });
+            });
+            
+            // Order buttons functionality
+            const orderButtons = document.querySelectorAll('button:has(i[data-feather="shopping-cart"])');
+            orderButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Order more of this item.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
