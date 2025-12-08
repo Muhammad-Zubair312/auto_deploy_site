@@ -3,51 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart - E-commerce Store</title>
+    <title>Your Cart | E-Commerce</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .cart-item:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .quantity-btn {
+            user-select: none;
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
-        <a href='products.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Products</a>
-        <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Product Details</a>
-        <a href='cart.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Cart</a>
-        <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Checkout</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
-        <a href='user-dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>User Dashboard</a>
+    <!-- Shared Navbar -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        </div>
+        <div class="flex items-center space-x-2 mt-2 md:mt-0">
+            <span id="cart-count" class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
+            <span>Items</span>
+        </div>
     </nav>
 
-    <!-- Search Bar -->
-    <div class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-3">
-            <div class="flex items-center">
-                <input type="text" placeholder="Search products..." class="flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <button class="bg-blue-600 text-white px-6 py-2 rounded-r-lg hover:bg-blue-700 transition-colors">
-                    <i data-feather="search" class="w-5 h-5"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+    <!-- Main Cart Content -->
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Your Shopping Cart</h1>
+        <p class="text-gray-600 mb-8">Review your items and proceed to checkout</p>
 
-    <!-- Cart Content -->
-    <div class="max-w-7xl mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Cart Items Section -->
+            <div class="lg:w-2/3">
+                <div class="bg-white rounded-xl shadow-md p-6 mb-6" data-aos="fade-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-semibold">Cart Items (3)</h2>
+                        <button class="text-red-500 hover:text-red-700 flex items-center">
+                            <i data-feather="trash-2" class="w-4 h-4 mr-1"></i>
+                            Clear Cart
+                        </button>
+                    </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Cart Items -->
-            <div class="lg:col-span-2">
-                <!-- Cart Item 1 -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-4" data-aos="fade-up">
-                    <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
-                        <img src="https://via.placeholder.com/100x100" alt="Product" class="w-20 h-20 object-cover rounded-lg">
+                    <!-- Cart Item 1 -->
+                    <div class="cart-item border-b pb-6 mb-6 flex flex-col md:flex-row items-center">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
+                             alt="Wireless Headphones" 
+                             class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6">
                         <div class="flex-1">
-                            <h3 class="font-semibold text-lg text-gray-900">Wireless Bluetooth Headphones</h3>
-                            <p class="text-gray-600 text-sm mt-1">Premium sound quality with noise cancellation</p>
+                            <h3 class="font-semibold text-lg">Premium Wireless Headphones</h3>
+                            <p class="text-gray-600 text-sm mt-1">Noise cancelling, 30hr battery</p>
                             <div class="flex items-center mt-2">
                                 <span class="text-yellow-400 flex">
                                     <i data-feather="star" class="w-4 h-4 fill-current"></i>
@@ -59,30 +71,30 @@
                                 <span class="text-gray-500 text-sm ml-2">(128 reviews)</span>
                             </div>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <div class="flex items-center border border-gray-300 rounded-lg">
-                                <button class="px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
-                                <span class="px-3 py-1">1</span>
-                                <button class="px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
+                        <div class="flex items-center justify-between w-full md:w-auto mt-4 md:mt-0">
+                            <div class="flex items-center border rounded-lg mr-6">
+                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
+                                <span class="px-3 py-1 border-x">1</span>
+                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
                             </div>
                             <div class="text-right">
-                                <p class="text-lg font-semibold text-gray-900">$99.99</p>
-                                <button class="text-red-500 hover:text-red-700 text-sm mt-1 flex items-center gap-1">
-                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                <p class="text-xl font-bold">$199.99</p>
+                                <button class="text-red-500 hover:text-red-700 text-sm mt-1">
+                                    <i data-feather="x" class="w-4 h-4 inline mr-1"></i>
                                     Remove
                                 </button>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Cart Item 2 -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
-                        <img src="https://via.placeholder.com/100x100" alt="Product" class="w-20 h-20 object-cover rounded-lg">
+                    <!-- Cart Item 2 -->
+                    <div class="cart-item border-b pb-6 mb-6 flex flex-col md:flex-row items-center">
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
+                             alt="Camera" 
+                             class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6">
                         <div class="flex-1">
-                            <h3 class="font-semibold text-lg text-gray-900">Smart Watch Series 5</h3>
-                            <p class="text-gray-600 text-sm mt-1">Fitness tracking and heart rate monitor</p>
+                            <h3 class="font-semibold text-lg">Digital Camera 4K</h3>
+                            <p class="text-gray-600 text-sm mt-1">24MP, 4K Video, 3x Zoom</p>
                             <div class="flex items-center mt-2">
                                 <span class="text-yellow-400 flex">
                                     <i data-feather="star" class="w-4 h-4 fill-current"></i>
@@ -94,16 +106,51 @@
                                 <span class="text-gray-500 text-sm ml-2">(256 reviews)</span>
                             </div>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <div class="flex items-center border border-gray-300 rounded-lg">
-                                <button class="px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
-                                <span class="px-3 py-1">1</span>
-                                <button class="px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
+                        <div class="flex items-center justify-between w-full md:w-auto mt-4 md:mt-0">
+                            <div class="flex items-center border rounded-lg mr-6">
+                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
+                                <span class="px-3 py-1 border-x">1</span>
+                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
                             </div>
                             <div class="text-right">
-                                <p class="text-lg font-semibold text-gray-900">$199.99</p>
-                                <button class="text-red-500 hover:text-red-700 text-sm mt-1 flex items-center gap-1">
-                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                <p class="text-xl font-bold">$599.99</p>
+                                <button class="text-red-500 hover:text-red-700 text-sm mt-1">
+                                    <i data-feather="x" class="w-4 h-4 inline mr-1"></i>
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 3 -->
+                    <div class="cart-item flex flex-col md:flex-row items-center">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
+                             alt="Smart Watch" 
+                             class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg">Smart Watch Pro</h3>
+                            <p class="text-gray-600 text-sm mt-1">Heart rate monitor, GPS, Waterproof</p>
+                            <div class="flex items-center mt-2">
+                                <span class="text-yellow-400 flex">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </span>
+                                <span class="text-gray-500 text-sm ml-2">(89 reviews)</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between w-full md:w-auto mt-4 md:mt-0">
+                            <div class="flex items-center border rounded-lg mr-6">
+                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
+                                <span class="px-3 py-1 border-x">2</span>
+                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xl font-bold">$299.98</p>
+                                <button class="text-red-500 hover:text-red-700 text-sm mt-1">
+                                    <i data-feather="x" class="w-4 h-4 inline mr-1"></i>
                                     Remove
                                 </button>
                             </div>
@@ -111,51 +158,27 @@
                     </div>
                 </div>
 
-                <!-- Wishlist Section -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-semibold text-lg text-gray-900">Wishlist Items</h3>
-                        <button class="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-1">
-                            <i data-feather="heart" class="w-4 h-4"></i>
-                            View All
-                        </button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Wishlist Item 1 -->
-                        <div class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
-                            <img src="https://via.placeholder.com/60x60" alt="Product" class="w-12 h-12 object-cover rounded">
-                            <div class="flex-1">
-                                <p class="font-medium text-sm text-gray-900">Wireless Earbuds</p>
-                                <p class="text-green-600 font-semibold text-sm">$79.99</p>
-                            </div>
-                            <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
-                        <!-- Wishlist Item 2 -->
-                        <div class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
-                            <img src="https://via.placeholder.com/60x60" alt="Product" class="w-12 h-12 object-cover rounded">
-                            <div class="flex-1">
-                                <p class="font-medium text-sm text-gray-900">Phone Case</p>
-                                <p class="text-green-600 font-semibold text-sm">$24.99</p>
-                            </div>
-                            <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
+                <!-- Continue Shopping -->
+                <div class="flex justify-between items-center">
+                    <a href="products.html" class="text-blue-600 hover:text-blue-800 flex items-center">
+                        <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
+                        Continue Shopping
+                    </a>
+                    <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-lg font-medium">
+                        Update Cart
+                    </button>
                 </div>
             </div>
 
             <!-- Order Summary -->
-            <div class="lg:col-span-1">
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-4" data-aos="fade-left">
-                    <h3 class="font-semibold text-xl text-gray-900 mb-4">Order Summary</h3>
+            <div class="lg:w-1/3">
+                <div class="bg-white rounded-xl shadow-md p-6 sticky top-6" data-aos="fade-left">
+                    <h2 class="text-xl font-semibold mb-6">Order Summary</h2>
                     
-                    <div class="space-y-3 mb-6">
+                    <div class="space-y-4 mb-6">
                         <div class="flex justify-between">
                             <span class="text-gray-600">Subtotal</span>
-                            <span class="font-medium">$299.98</span>
+                            <span class="font-medium">$1,099.96</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Shipping</span>
@@ -163,52 +186,74 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Tax</span>
-                            <span class="font-medium">$24.99</span>
+                            <span class="font-medium">$88.00</span>
                         </div>
-                        <div class="border-t pt-3">
-                            <div class="flex justify-between text-lg font-semibold">
+                        <div class="border-t pt-4">
+                            <div class="flex justify-between text-lg font-bold">
                                 <span>Total</span>
-                                <span class="text-green-600">$334.96</span>
+                                <span>$1,197.95</span>
                             </div>
+                            <p class="text-gray-500 text-sm mt-1">Including $88.00 in taxes</p>
                         </div>
                     </div>
 
-                    <!-- Secure Checkout -->
+                    <!-- Promo Code -->
                     <div class="mb-6">
-                        <div class="flex items-center gap-2 text-green-600 mb-3">
-                            <i data-feather="shield" class="w-5 h-5"></i>
-                            <span class="font-medium">Secure Checkout</span>
-                        </div>
-                        <p class="text-gray-600 text-sm">Your payment information is encrypted and secure</p>
-                    </div>
-
-                    <!-- Payment Methods -->
-                    <div class="flex gap-2 mb-6">
-                        <div class="border border-gray-300 rounded p-2">
-                            <i data-feather="credit-card" class="w-6 h-6 text-gray-600"></i>
-                        </div>
-                        <div class="border border-gray-300 rounded p-2">
-                            <i data-feather="dollar-sign" class="w-6 h-6 text-gray-600"></i>
-                        </div>
-                        <div class="border border-gray-300 rounded p-2">
-                            <i data-feather="smartphone" class="w-6 h-6 text-gray-600"></i>
+                        <label class="block text-gray-700 text-sm font-medium mb-2">Promo Code</label>
+                        <div class="flex">
+                            <input type="text" 
+                                   class="flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   placeholder="Enter code">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-lg">
+                                Apply
+                            </button>
                         </div>
                     </div>
 
                     <!-- Checkout Button -->
-                    <a href="checkout.html" class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center gap-2 mb-4">
-                        <i data-feather="lock" class="w-5 h-5"></i>
-                        Proceed to Secure Checkout
+                    <a href="checkout.html" 
+                       class="block w-full bg-green-600 hover:bg-green-700 text-white text-center font-semibold py-3 px-4 rounded-lg mb-4 transition duration-300">
+                        Proceed to Checkout
                     </a>
 
-                    <!-- Order Tracking -->
-                    <div class="border-t pt-4">
-                        <h4 class="font-semibold text-gray-900 mb-3">Track Your Order</h4>
-                        <div class="flex items-center gap-3">
-                            <input type="text" placeholder="Enter order number" class="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <button class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-800 transition-colors">
-                                Track
-                            </button>
+                    <!-- Payment Methods -->
+                    <div class="border-t pt-6">
+                        <p class="text-gray-600 text-sm mb-3">We accept</p>
+                        <div class="flex space-x-4">
+                            <div class="w-12 h-8 bg-gray-200 rounded flex items-center justify-center">
+                                <i data-feather="credit-card" class="text-gray-600"></i>
+                            </div>
+                            <div class="w-12 h-8 bg-gray-200 rounded flex items-center justify-center">
+                                <i data-feather="dollar-sign" class="text-gray-600"></i>
+                            </div>
+                            <div class="w-12 h-8 bg-gray-200 rounded flex items-center justify-center">
+                                <i data-feather="smartphone" class="text-gray-600"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Note -->
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                        <div class="flex items-start">
+                            <i data-feather="shield" class="text-blue-500 mr-3 mt-1"></i>
+                            <div>
+                                <p class="text-sm text-blue-800 font-medium">Secure Checkout</p>
+                                <p class="text-xs text-blue-600 mt-1">Your payment information is encrypted and secure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recently Viewed -->
+                <div class="bg-white rounded-xl shadow-md p-6 mt-6" data-aos="fade-up">
+                    <h3 class="font-semibold mb-4">Recently Viewed</h3>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                             alt="Smartphone" 
+                             class="w-16 h-16 object-cover rounded-lg">
+                        <div>
+                            <p class="font-medium text-sm">Smartphone X</p>
+                            <p class="text-green-600 font-bold">$799.99</p>
                         </div>
                     </div>
                 </div>
@@ -216,34 +261,88 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-xl font-bold">E-Commerce</p>
+                    <p class="text-gray-400 text-sm">Your one-stop shopping destination</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Contact Us</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 E-Commerce. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS and Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                once: true
-            });
-            feather.replace();
+        // Initialize AOS animations
+        AOS.init({
+            duration: 600,
+            once: true
         });
 
-        // Cart quantity functionality
-        document.querySelectorAll('.flex.items-center.border').forEach(container => {
-            const minusBtn = container.querySelector('button:first-child');
-            const plusBtn = container.querySelector('button:last-child');
-            const quantitySpan = container.querySelector('span');
-            
-            minusBtn.addEventListener('click', () => {
-                let quantity = parseInt(quantitySpan.textContent);
-                if (quantity > 1) {
-                    quantitySpan.textContent = quantity - 1;
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Cart functionality
+        document.querySelectorAll('.quantity-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const span = this.parentElement.querySelector('span');
+                let quantity = parseInt(span.textContent);
+                
+                if (this.textContent === '+') {
+                    quantity++;
+                } else if (this.textContent === '-' && quantity > 1) {
+                    quantity--;
                 }
-            });
-            
-            plusBtn.addEventListener('click', () => {
-                let quantity = parseInt(quantitySpan.textContent);
-                quantitySpan.textContent = quantity + 1;
+                
+                span.textContent = quantity;
+                
+                // Update price (simplified - in real app would calculate properly)
+                const priceElement = this.closest('.cart-item').querySelector('.text-xl.font-bold');
+                const basePrice = parseFloat(priceElement.textContent.replace('$', '')) / (quantity === 1 ? 1 : quantity - (this.textContent === '+' ? 0 : 1));
+                priceElement.textContent = '$' + (basePrice * quantity).toFixed(2);
             });
         });
+
+        // Remove item functionality
+        document.querySelectorAll('.text-red-500.hover\\:text-red-700.text-sm').forEach(button => {
+            if (button.textContent.includes('Remove')) {
+                button.addEventListener('click', function() {
+                    const cartItem = this.closest('.cart-item');
+                    cartItem.style.opacity = '0';
+                    cartItem.style.transform = 'translateX(-20px)';
+                    setTimeout(() => {
+                        cartItem.remove();
+                        updateCartCount();
+                    }, 300);
+                });
+            }
+        });
+
+        // Clear cart button
+        document.querySelector('.text-red-500.hover\\:text-red-700.flex.items-center').addEventListener('click', function() {
+            document.querySelectorAll('.cart-item').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                setTimeout(() => item.remove(), 300);
+            });
+            setTimeout(updateCartCount, 350);
+        });
+
+        function updateCartCount() {
+            const count = document.querySelectorAll('.cart-item').length;
+            document.getElementById('cart-count').textContent = count;
+        }
     </script>
 </body>
 </html>

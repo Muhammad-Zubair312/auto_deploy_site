@@ -3,235 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Cricket Hub</title>
-    <script src='https://cdn.tailwindcss.com'></script>
+    <title>Sign Up - E Commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap');
-        body { font-family: 'Open Sans', sans-serif; }
-        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
-        .cricket-bg { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
-        .form-shadow { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
-        .input-focus:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base font-semibold text-blue-300'>Signup</a>
-        <a href='matches.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Matches</a>
-        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Teams</a>
-        <a href='players.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Players</a>
-        <a href='news.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>News</a>
-        <a href='statistics.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Statistics</a>
-        <a href='livescores.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>LiveScores</a>
-        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Rankings</a>
-        <a href='tournaments.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Tournaments</a>
+    <!-- Navbar -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex items-center space-x-2">
+            <i data-feather="shopping-bag" class="text-blue-400"></i>
+            <span class="font-bold text-xl">E-Shop</span>
+        </div>
+        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
+        </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="min-h-screen cricket-bg py-8 px-4">
-        <div class="max-w-6xl mx-auto">
-            <!-- Header Section -->
-            <div class="text-center mb-10 animate__animated animate__fadeIn">
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Join Cricket Hub</h1>
-                <p class="text-xl text-blue-100 max-w-2xl mx-auto">Create your account to access live scores, player stats, match schedules, and personalized cricket updates.</p>
-            </div>
-
-            <div class="flex flex-col lg:flex-row gap-8 items-start">
-                <!-- Signup Form -->
-                <div class="lg:w-1/2 w-full">
-                    <div class="bg-white rounded-2xl p-6 md:p-8 form-shadow animate__animated animate__fadeInUp">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Create Your Account</h2>
-                        
-                        <form id="signupForm" class="space-y-5">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div>
-                                    <label class="block text-gray-700 mb-2 font-medium" for="firstName">First Name</label>
-                                    <input type="text" id="firstName" required 
-                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition">
-                                </div>
-                                <div>
-                                    <label class="block text-gray-700 mb-2 font-medium" for="lastName">Last Name</label>
-                                    <input type="text" id="lastName" required 
-                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-medium" for="email">Email Address</label>
-                                <input type="email" id="email" required 
-                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition">
-                            </div>
-
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-medium" for="password">Password</label>
-                                <input type="password" id="password" required 
-                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition">
-                                <p class="text-sm text-gray-500 mt-1">Minimum 8 characters with letters and numbers</p>
-                            </div>
-
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-medium" for="confirmPassword">Confirm Password</label>
-                                <input type="password" id="confirmPassword" required 
-                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition">
-                            </div>
-
-                            <div>
-                                <label class="block text-gray-700 mb-2 font-medium" for="favoriteTeam">Favorite Team</label>
-                                <select id="favoriteTeam" 
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition">
-                                    <option value="">Select your favorite team</option>
-                                    <option value="india">India</option>
-                                    <option value="australia">Australia</option>
-                                    <option value="england">England</option>
-                                    <option value="pakistan">Pakistan</option>
-                                    <option value="south-africa">South Africa</option>
-                                    <option value="new-zealand">New Zealand</option>
-                                    <option value="west-indies">West Indies</option>
-                                    <option value="sri-lanka">Sri Lanka</option>
-                                    <option value="bangladesh">Bangladesh</option>
-                                    <option value="afghanistan">Afghanistan</option>
-                                </select>
-                            </div>
-
-                            <div class="flex items-center">
-                                <input type="checkbox" id="terms" required 
-                                       class="h-4 w-4 text-blue-600 border-gray-300 rounded">
-                                <label for="terms" class="ml-2 text-gray-700">
-                                    I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                                </label>
-                            </div>
-
-                            <div class="flex items-center">
-                                <input type="checkbox" id="newsletter" 
-                                       class="h-4 w-4 text-blue-600 border-gray-300 rounded" checked>
-                                <label for="newsletter" class="ml-2 text-gray-700">
-                                    Subscribe to cricket news and match updates
-                                </label>
-                            </div>
-
-                            <button type="submit" 
-                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                                Create Account
-                            </button>
-
-                            <div class="text-center pt-4 border-t border-gray-200">
-                                <p class="text-gray-600">Already have an account? 
-                                    <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log in here</a>
-                                </p>
-                            </div>
-                        </form>
+    <!-- Signup Section -->
+    <section class="py-12 px-4 md:px-8 lg:px-16">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Column: Benefits -->
+            <div>
+                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
+                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-2 rounded-full mr-4">
+                            <i data-feather="shopping-cart" class="text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
+                            <p class="text-gray-600">Save your details for quicker purchases.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-2 rounded-full mr-4">
+                            <i data-feather="package" class="text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
+                            <p class="text-gray-600">Monitor your orders in real-time.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-purple-100 p-2 rounded-full mr-4">
+                            <i data-feather="star" class="text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
+                            <p class="text-gray-600">Share and read authentic product reviews.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
+                            <i data-feather="credit-card" class="text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
+                            <p class="text-gray-600">Multiple payment options with top security.</p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Features List -->
-                <div class="lg:w-1/2 w-full">
-                    <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 form-shadow animate__animated animate__fadeInUp animate__delay-1s">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Unlock All Cricket Features</h2>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                    <i data-feather="activity" class="text-blue-600 w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-lg text-gray-800">Live Score Updates</h3>
-                                    <p class="text-gray-600">Real-time ball-by-ball commentary and scores from matches worldwide.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start">
-                                <div class="bg-green-100 p-3 rounded-full mr-4">
-                                    <i data-feather="calendar" class="text-green-600 w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-lg text-gray-800">Match Schedules</h3>
-                                    <p class="text-gray-600">Never miss a match with personalized calendar and notifications.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start">
-                                <div class="bg-purple-100 p-3 rounded-full mr-4">
-                                    <i data-feather="users" class="text-purple-600 w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-lg text-gray-800">Player & Team Profiles</h3>
-                                    <p class="text-gray-600">Detailed stats, career records, and performance analysis.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start">
-                                <div class="bg-yellow-100 p-3 rounded-full mr-4">
-                                    <i data-feather="bar-chart-2" class="text-yellow-600 w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-lg text-gray-800">Statistical Analysis</h3>
-                                    <p class="text-gray-600">Advanced metrics, head-to-head comparisons, and trend analysis.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start">
-                                <div class="bg-red-100 p-3 rounded-full mr-4">
-                                    <i data-feather="award" class="text-red-600 w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-lg text-gray-800">Tournament Standings</h3>
-                                    <p class="text-gray-600">Live points tables, qualification scenarios, and team rankings.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start">
-                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
-                                    <i data-feather="bell" class="text-indigo-600 w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-lg text-gray-800">Personalized Alerts</h3>
-                                    <p class="text-gray-600">Custom notifications for your favorite teams, players, and tournaments.</p>
-                                </div>
-                            </div>
+            </div>
+            
+            <!-- Right Column: Signup Form -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
+                
+                <form id="signupForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
+                            <input type="text" id="firstName" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
                         </div>
-
-                        <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                            <h4 class="font-bold text-blue-800 mb-2">Why Join Cricket Hub?</h4>
-                            <p class="text-blue-700 text-sm">
-                                Join over 500,000 cricket enthusiasts who track matches, analyze stats, and stay updated with the latest cricket news. Your personalized dashboard awaits!
-                            </p>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
+                            <input type="text" id="lastName" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
                         </div>
                     </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
+                        <input type="email" id="email" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="password">Password</label>
+                        <input type="password" id="password" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="terms" required 
+                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="terms" class="ml-3 text-gray-700">
+                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="newsletter" 
+                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="newsletter" class="ml-3 text-gray-700">
+                            Subscribe to our newsletter for exclusive deals
+                        </label>
+                    </div>
+                    
+                    <button type="submit" 
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
+                        Create Account
+                    </button>
+                    
+                    <div class="text-center">
+                        <p class="text-gray-600">Already have an account? 
+                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
+                        </p>
+                    </div>
+                    
+                    <div class="relative my-6">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <button type="button" 
+                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
+                            Facebook
+                        </button>
+                        <button type="button" 
+                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
+                            Twitter
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <i data-feather="shopping-bag" class="text-blue-400"></i>
+                    <span class="font-bold text-xl">E-Shop</span>
+                </div>
+                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
+            </div>
+            
+            <div>
+                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
+                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
+                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="font-bold text-lg mb-4">Account</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
+                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
+                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="font-bold text-lg mb-4">Contact</h3>
+                <p class="text-gray-400">support@eshop.com</p>
+                <p class="text-gray-400">+1 (555) 123-4567</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
                 </div>
             </div>
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold text-blue-300">Cricket Hub</h3>
-                    <p class="text-gray-400 mt-2">Your ultimate cricket companion</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-300 hover:text-blue-400 transition">Privacy Policy</a>
-                    <a href="#" class="text-gray-300 hover:text-blue-400 transition">Terms of Service</a>
-                    <a href="#" class="text-gray-300 hover:text-blue-400 transition">Contact Us</a>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
-                <p>&copy; 2024 Cricket Hub. All rights reserved. Cricket data and statistics provided by official sources.</p>
-            </div>
+        
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
         </div>
     </footer>
 
     <script>
-        // Initialize Feather Icons
         feather.replace();
         
-        // Form Validation
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -243,32 +232,9 @@
                 return;
             }
             
-            if (password.length < 8) {
-                alert('Password must be at least 8 characters long!');
-                return;
-            }
-            
             // Simulate successful signup
-            alert('Account created successfully! Redirecting to dashboard...');
-            // In a real application, you would submit to a server here
-            // window.location.href = 'dashboard.html';
-        });
-        
-        // Add animation on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.querySelectorAll('.animate__animated');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const animation = entry.target.getAttribute('data-animate');
-                        if (animation) {
-                            entry.target.classList.add(animation);
-                        }
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            elements.forEach(el => observer.observe(el));
+            alert('Account created successfully! Redirecting to login...');
+            window.location.href = 'login.html';
         });
     </script>
 </body>
