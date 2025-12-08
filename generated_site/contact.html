@@ -3,132 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Basic Website</title>
+    <title>Contact Us | Laymen</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none;
+        .contact-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+        }
+        .form-input:focus {
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="text-xl font-bold mb-2 md:mb-0">BasicWebsite</div>
-        <div class="flex space-x-2 md:space-x-4 flex-wrap">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
-            <a href='services.html' class='px-3 py-2 hover:text-blue-400'>Services</a>
-            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 text-blue-400 font-medium'>Contact</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
+        <div class="text-xl font-bold ml-4">Laymen</div>
+        <div class="flex space-x-4 mt-2 md:mt-0">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Home</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>About</a>
+            <a href='services.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Services</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 transition-colors font-semibold text-blue-300'>Contact</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Signup</a>
         </div>
     </nav>
 
-    <!-- Contact Page Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4">
-            <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
-                <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
-                    We're here to help and answer any questions you might have.
-                </p>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section class="contact-bg text-white py-16 px-4">
+        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Have questions? We're here to help. Reach out to our team for any inquiries or support.
+            </p>
+        </div>
+    </section>
 
-        <!-- Contact Content -->
-        <div class="container mx-auto max-w-6xl py-12 px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Contact Form -->
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-right">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
-                    <form class="contact-form space-y-6">
+    <!-- Contact Content -->
+    <main class="container mx-auto max-w-6xl px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div class="bg-white rounded-2xl shadow-xl p-8" data-aos="fade-right">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Send Us a Message</h2>
+                <p class="text-gray-600 mb-8">Fill out the form below and we'll respond within 24 hours.</p>
+                
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-gray-700 mb-2" for="name">Full Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 transition" placeholder="Your name" required>
+                            <label for="firstName" class="block text-gray-700 mb-2">First Name *</label>
+                            <input type="text" id="firstName" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition">
                         </div>
                         <div>
-                            <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 transition" placeholder="you@example.com" required>
+                            <label for="lastName" class="block text-gray-700 mb-2">Last Name *</label>
+                            <input type="text" id="lastName" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition">
                         </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="subject">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 transition" placeholder="How can we help?" required>
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="message">Message</label>
-                            <textarea id="message" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 transition" placeholder="Your message here..." required></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                            Send Message
-                        </button>
-                    </form>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" id="email" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition">
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" id="phone" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition">
+                    </div>
+                    
+                    <div>
+                        <label for="subject" class="block text-gray-700 mb-2">Subject *</label>
+                        <select id="subject" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition">
+                            <option value="">Select a topic</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="sales">Sales Question</option>
+                            <option value="billing">Billing Issue</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-gray-700 mb-2">Message *</label>
+                        <textarea id="message" rows="5" required 
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition"></textarea>
+                    </div>
+                    
+                    <button type="submit" 
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:-translate-y-1">
+                        Send Message
+                    </button>
+                </form>
+                
+                <div id="formSuccess" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
+                    <i data-feather="check-circle" class="inline mr-2"></i>
+                    Thank you! Your message has been sent successfully.
                 </div>
+            </div>
 
-                <!-- Contact Information -->
-                <div data-aos="fade-left">
-                    <div class="mb-10">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Contact Information</h2>
-                        <p class="text-gray-600 mb-8">
-                            Feel free to reach out to us through any of the following channels. Our team typically responds within 24 hours.
-                        </p>
+            <!-- Contact Information -->
+            <div class="space-y-8" data-aos="fade-left">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Contact Information</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i data-feather="mail" class="text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Email</h3>
+                                <p class="text-gray-600">support@laymen.com</p>
+                                <p class="text-gray-600">sales@laymen.com</p>
+                            </div>
+                        </div>
                         
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                    <i data-feather="mail" class="text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-lg">Email</h3>
-                                    <p class="text-gray-600">support@basicwebsite.com</p>
-                                    <p class="text-gray-600">info@basicwebsite.com</p>
-                                </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i data-feather="phone" class="text-blue-600"></i>
                             </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                    <i data-feather="phone" class="text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-lg">Phone</h3>
-                                    <p class="text-gray-600">+1 (555) 123-4567</p>
-                                    <p class="text-gray-600">Mon-Fri, 9am-6pm EST</p>
-                                </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Phone</h3>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                                <p class="text-gray-600">+1 (555) 987-6543 (Sales)</p>
                             </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                    <i data-feather="map-pin" class="text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-lg">Office Address</h3>
-                                    <p class="text-gray-600">123 Business Avenue</p>
-                                    <p class="text-gray-600">Suite 100, New York, NY 10001</p>
-                                </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i data-feather="map-pin" class="text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Office Address</h3>
+                                <p class="text-gray-600">123 Business Avenue</p>
+                                <p class="text-gray-600">Suite 500, Tech District</p>
+                                <p class="text-gray-600">San Francisco, CA 94107</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i data-feather="clock" class="text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Business Hours</h3>
+                                <p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                <p class="text-gray-600">Saturday: 10:00 AM - 4:00 PM</p>
+                                <p class="text-gray-600">Sunday: Closed</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- FAQ Section -->
-                    <div class="bg-gray-100 rounded-xl p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h3>
-                        <div class="space-y-4">
-                            <div class="border-b border-gray-300 pb-4">
-                                <h4 class="font-semibold text-gray-800 mb-2">What is your response time?</h4>
-                                <p class="text-gray-600">We aim to respond to all inquiries within 24 hours during business days.</p>
-                            </div>
-                            <div class="border-b border-gray-300 pb-4">
-                                <h4 class="font-semibold text-gray-800 mb-2">Do you offer phone support?</h4>
-                                <p class="text-gray-600">Yes, phone support is available during business hours for urgent matters.</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 mb-2">Can I schedule a meeting?</h4>
-                                <p class="text-gray-600">Absolutely! Please include your availability in your message and we'll coordinate.</p>
-                            </div>
+                <!-- FAQ Section -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+                    <div class="space-y-4">
+                        <div class="border-b border-gray-200 pb-4">
+                            <h3 class="font-semibold text-gray-800 mb-2">What is your typical response time?</h3>
+                            <p class="text-gray-600">We aim to respond to all inquiries within 24 hours during business days.</p>
+                        </div>
+                        <div class="border-b border-gray-200 pb-4">
+                            <h3 class="font-semibold text-gray-800 mb-2">Do you offer 24/7 support?</h3>
+                            <p class="text-gray-600">Yes, we provide 24/7 emergency support for our premium clients.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Can I schedule a call?</h3>
+                            <p class="text-gray-600">Absolutely! Mention your preferred time in your message and we'll arrange it.</p>
                         </div>
                     </div>
                 </div>
@@ -136,47 +181,44 @@
         </div>
 
         <!-- Map Placeholder -->
-        <section class="bg-gray-200 py-12 px-4">
-            <div class="container mx-auto max-w-6xl" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Find Our Office</h2>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="h-64 md:h-96 flex items-center justify-center bg-gradient-to-br from-gray-300 to-gray-400">
-                        <div class="text-center">
-                            <i data-feather="map" class="w-16 h-16 text-gray-600 mx-auto mb-4"></i>
-                            <p class="text-gray-700 font-medium">Interactive Map Location</p>
-                            <p class="text-gray-600">123 Business Avenue, New York, NY</p>
-                        </div>
-                    </div>
+        <div class="mt-16 bg-white rounded-2xl shadow-xl overflow-hidden" data-aos="zoom-in">
+            <div class="h-64 bg-gradient-to-r from-blue-50 to-gray-100 flex items-center justify-center">
+                <div class="text-center">
+                    <i data-feather="map" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-700">Interactive Map Location</h3>
+                    <p class="text-gray-600 mt-2">Our headquarters in San Francisco</p>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold">BasicWebsite</h3>
-                    <p class="text-gray-400 mt-2">Professional solutions for your needs</p>
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Laymen</h3>
+                    <p class="text-gray-400">Professional solutions for modern businesses. Excellence in every service we provide.</p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i data-feather="facebook"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i data-feather="twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i data-feather="linkedin"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i data-feather="instagram"></i>
-                    </a>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 BasicWebsite. All rights reserved.</p>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="instagram"></i></a>
+                    </div>
+                    <p class="text-gray-400 mt-4">© 2024 Laymen. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
@@ -184,20 +226,54 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize Feather Icons
-        feather.replace();
-        
-        // Initialize AOS animations
+        // Initialize AOS
         AOS.init({
             duration: 800,
             once: true
         });
 
-        // Form submission handler
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            
+            // Form submission handling
+            const contactForm = document.getElementById('contactForm');
+            const formSuccess = document.getElementById('formSuccess');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simple validation
+                const inputs = contactForm.querySelectorAll('input[required], select[required], textarea[required]');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.classList.add('border-red-500');
+                    } else {
+                        input.classList.remove('border-red-500');
+                    }
+                });
+                
+                if (isValid) {
+                    // Simulate form submission
+                    formSuccess.classList.remove('hidden');
+                    contactForm.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        formSuccess.classList.add('hidden');
+                    }, 5000);
+                }
+            });
+            
+            // Remove error styling on input
+            contactForm.querySelectorAll('input, select, textarea').forEach(element => {
+                element.addEventListener('input', function() {
+                    this.classList.remove('border-red-500');
+                });
+            });
         });
     </script>
 </body>
