@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standings & Results | Sport Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .table-row-hover:hover {
+            background-color: #f7fafc;
+            transition: background-color 0.2s ease;
+        }
+        .live-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex flex-wrap space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+            <a href='events-schedules.html' class='px-3 py-2 hover:text-blue-400'>Events/Schedules</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+            <a href='players.html' class='px-3 py-2 hover:text-blue-400'>Players</a>
+            <a href='standings-results.html' class='px-3 py-2 hover:text-blue-400'>Standings/Results</a>
+            <a href='gallery-media.html' class='px-3 py-2 hover:text-blue-400'>Gallery/Media</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
+        </div>
+        <div class="flex space-x-4 mt-2 md:mt-0">
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded-md px-4 py-2'>Signup</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <header class="mb-10 text-center" data-aos="fade-down">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Standings & Results</h1>
+            <p class="text-gray-600">Live scores, match schedules, team rankings, and player statistics</p>
+        </header>
+
+        <!-- Live Scores Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                    <i data-feather="activity" class="mr-2 text-red-500"></i>
+                    Live Scores
+                    <span class="ml-2 text-xs bg-red-500 text-white px-2 py-1 rounded-full live-pulse">LIVE</span>
+                </h2>
+                <select class="border rounded-lg px-4 py-2 bg-white">
+                    <option>All Leagues</option>
+                    <option>Premier League</option>
+                    <option>NBA</option>
+                    <option>NFL</option>
+                    <option>MLB</option>
+                </select>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Live Match Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-gray-500">NBA • 3rd Quarter</span>
+                        <span class="text-red-500 font-bold">LIVE</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Lakers</div>
+                            <div class="text-3xl font-bold mt-2">89</div>
+                        </div>
+                        <div class="text-gray-400">VS</div>
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Celtics</div>
+                            <div class="text-3xl font-bold mt-2">85</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center text-sm text-gray-500">Staples Center • 7:30 PM</div>
+                </div>
+
+                <!-- Live Match Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-gray-500">Premier League • 65'</span>
+                        <span class="text-red-500 font-bold">LIVE</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Man United</div>
+                            <div class="text-3xl font-bold mt-2">2</div>
+                        </div>
+                        <div class="text-gray-400">VS</div>
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Liverpool</div>
+                            <div class="text-3xl font-bold mt-2">1</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center text-sm text-gray-500">Old Trafford • 3:00 PM</div>
+                </div>
+
+                <!-- Upcoming Match -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-gray-500">NFL • Starts Soon</span>
+                        <span class="text-blue-500 font-bold">UPCOMING</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Patriots</div>
+                            <div class="text-2xl font-bold mt-2">-</div>
+                        </div>
+                        <div class="text-gray-400">VS</div>
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Dolphins</div>
+                            <div class="text-2xl font-bold mt-2">-</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center text-sm text-gray-500">8:20 PM ET • Fox Sports</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Standings Table -->
+        <section class="mb-12" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                    <i data-feather="award" class="mr-2 text-yellow-500"></i>
+                    League Standings
+                </h2>
+                <div class="flex space-x-2">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Premier League</button>
+                    <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300">NBA</button>
+                    <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300">NFL</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-800 text-white">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Position</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Team</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Played</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Won</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Drawn</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Lost</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Points</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="table-row-hover">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-full">1</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="h-8 w-8 bg-blue-500 rounded-full mr-3"></div>
+                                        <span class="font-semibold">Manchester City</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">28</td>
+                                <td class="px-6 py-4 whitespace-nowrap">22</td>
+                                <td class="px-6 py-4 whitespace-nowrap">3</td>
+                                <td class="px-6 py-4 whitespace-nowrap">3</td>
+                                <td class="px-6 py-4 whitespace-nowrap font-bold">69</td>
+                            </tr>
+                            <tr class="table-row-hover">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full">2</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="h-8 w-8 bg-red-500 rounded-full mr-3"></div>
+                                        <span class="font-semibold">Liverpool</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">28</td>
+                                <td class="px-6 py-4 whitespace-nowrap">21</td>
+                                <td class="px-6 py-4 whitespace-nowrap">4</td>
+                                <td class="px-6 py-4 whitespace-nowrap">3</td>
+                                <td class="px-6 py-4 whitespace-nowrap font-bold">67</td>
+                            </tr>
+                            <tr class="table-row-hover">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded-full">3</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="h-8 w-8 bg-blue-700 rounded-full mr-3"></div>
+                                        <span class="font-semibold">Chelsea</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">27</td>
+                                <td class="px-6 py-4 whitespace-nowrap">17</td>
+                                <td class="px-6 py-4 whitespace-nowrap">8</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2</td>
+                                <td class="px-6 py-4 whitespace-nowrap font-bold">59</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Match Schedule & Results -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i data-feather="calendar" class="mr-2 text-green-500"></i>
+                Match Schedule & Results
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Upcoming Matches -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Upcoming Matches</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 border rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 bg-blue-500 rounded-full mr-3"></div>
+                                <span class="font-semibold">Lakers</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-gray-500 text-sm">Apr 15 • 7:30 PM</div>
+                                <div class="text-xs text-gray-400">Staples Center</div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-semibold">Warriors</span>
+                                <div class="h-10 w-10 bg-yellow-500 rounded-full ml-3"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 border rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 bg-red-500 rounded-full mr-3"></div>
+                                <span class="font-semibold">Patriots</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-gray-500 text-sm">Apr 16 • 8:20 PM</div>
+                                <div class="text-xs text-gray-400">Gillette Stadium</div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-semibold">Dolphins</span>
+                                <div class="h-10 w-10 bg-teal-500 rounded-full ml-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Results -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Recent Results</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 border rounded-lg bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 bg-red-500 rounded-full mr-3"></div>
+                                <div>
+                                    <div class="font-semibold">Man United</div>
+                                    <div class="text-sm text-gray-500">2 - 1</div>
+                                </div>
+                            </div>
+                            <div class="text-center text-sm text-gray-500">
+                                <div>Premier League</div>
+                                <div>Apr 14 • FINAL</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="text-right mr-3">
+                                    <div class="font-semibold">Liverpool</div>
+                                    <div class="text-sm text-gray-500">1 - 2</div>
+                                </div>
+                                <div class="h-10 w-10 bg-red-500 rounded-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 border rounded-lg bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 bg-blue-500 rounded-full mr-3"></div>
+                                <div>
+                                    <div class="font-semibold">Bulls</div>
+                                    <div class="text-sm text-gray-500">98 - 102</div>
+                                </div>
+                            </div>
+                            <div class="text-center text-sm text-gray-500">
+                                <div>NBA</div>
+                                <div>Apr 13 • FINAL</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="text-right mr-3">
+                                    <div class="font-semibold">Celtics</div>
+                                    <div class="text-sm text-gray-500">102 - 98</div>
+                                </div>
+                                <div class="h-10 w-10 bg-green-500 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Player Statistics -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i data-feather="bar-chart-2" class="mr-2 text-purple-500"></i>
+                Top Player Statistics
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                    <div class="h-20 w-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="target" class="h-10 w-10 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Top Scorer</h3>
+                    <div class="text-2xl font-bold text-gray-900 mb-1">Mohamed Salah</div>
+                    <div class="text-gray-600 mb-2">Liverpool FC</div>
+                    <div class="text-3xl font-bold text-purple-600">22 Goals</div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                    <div class="h-20 w-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="share-2" class="h-10 w-10 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Most Assists</h3>
+                    <div class="text-2xl font-bold text-gray-900 mb-1">Kevin De Bruyne</div>
+                    <div class="text-gray-600 mb-2">Manchester City</div>
+                    <div class="text-3xl font-bold text-blue-600">15 Assists</div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                    <div class="h-20 w-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="shield" class="h-10 w-10 text-green-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Clean Sheets</h3>
+                    <div class="text-2xl font-bold text-gray-900 mb-1">Ederson</div>
+                    <div class="text-gray-600 mb-2">Manchester City</div>
+                    <div class="text-3xl font-bold text-green-600">18 Clean Sheets</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comment Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i data-feather="message-square" class="mr-2 text-indigo-500"></i>
+                Recent Comments
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="mb-6">
+                    <textarea 
+                        class="w-full border rounded-lg p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                        rows="3" 
+                        placeholder="Share your thoughts on the latest matches..."
+                    ></textarea>
+                    <div class="flex justify-between items-center mt-3">
+                        <div class="text-sm text-gray-500">Logged in as <span class="font-semibold">SportsFan23</span></div>
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Post Comment</button>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="border-b pb-6">
+                        <div class="flex items-start mb-3">
+                            <div class="h-10 w-10 bg-blue-500 rounded-full mr-3"></div>
+                            <div>
+                                <div class="font-bold">Alex Johnson</div>
+                                <div class="text-sm text-gray-500">2 hours ago • Premier League</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">What a game! Liverpool's comeback in the second half was incredible. Salah's goal was pure class.</p>
+                        <div class="flex space-x-4 mt-3">
+                            <button class="text-gray-500 hover:text-blue-600 flex items-center">
+                                <i data-feather="thumbs-up" class="h-4 w-4 mr-1"></i> 24
+                            </button>
+                            <button class="text-gray-500 hover:text-blue-600 flex items-center">
+                                <i data-feather="message-circle" class="h-4 w-4 mr-1"></i> Reply
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="border-b pb-6">
+                        <div class="flex items-start mb-3">
+                            <div class="h-10 w-10 bg-green-500 rounded-full mr-3"></div>
+                            <div>
+                                <div class="font-bold">Maria Garcia</div>
+                                <div class="text-sm text-gray-500">5 hours ago • NBA</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">The Lakers vs Celtics rivalry continues to deliver! Can't wait for the playoffs.</p>
+                        <div class="flex space-x-4 mt-3">
+                            <button class="text-gray-500 hover:text-blue-600 flex items-center">
+                                <i data-feather="thumbs-up" class="h-4 w-4 mr-1"></i> 18
+                            </button>
+                            <button class="text-gray-500 hover:text-blue-600 flex items-center">
+                                <i data-feather="message-circle" class="h-4 w-4 mr-1"></i> Reply
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">Sport Website</h3>
+                    <p class="text-gray-400">Your ultimate sports destination</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Sport Website. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+        
+        // Live scores update simulation
+        function updateLiveScores() {
+            const scores = document.querySelectorAll('.live-pulse');
+            scores.forEach(score => {
+                score.classList.toggle('live-pulse');
+                setTimeout(() => score.classList.toggle('live-pulse'), 100);
+            });
+        }
+        setInterval(updateLiveScores, 4000);
+    </script>
+</body>
+</html>

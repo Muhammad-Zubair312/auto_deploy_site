@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery & Media | Sport Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .gallery-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .video-thumbnail {
+            position: relative;
+            overflow: hidden;
+        }
+        .video-thumbnail::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
+        }
+        .video-thumbnail:hover::after {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            background: rgba(59, 130, 246, 0.9);
+            border-radius: 50%;
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+        .video-thumbnail:hover .play-icon {
+            background: rgba(59, 130, 246, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .comment-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .filter-btn.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center space-x-2 md:space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+        <a href='events-schedules.html' class='px-3 py-2 hover:text-blue-400'>Events/Schedules</a>
+        <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+        <a href='players.html' class='px-3 py-2 hover:text-blue-400'>Players</a>
+        <a href='standings-results.html' class='px-3 py-2 hover:text-blue-400'>Standings/Results</a>
+        <a href='gallery-media.html' class='px-3 py-2 hover:text-blue-400 text-blue-400 font-semibold'>Gallery/Media</a>
+        <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
+        <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <header class="mb-10 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Gallery & Media</h1>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Explore photos, videos, highlights, and fan comments from the latest matches and events.</p>
+        </header>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
+            <button class="filter-btn active px-5 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition" data-filter="all">All Media</button>
+            <button class="filter-btn px-5 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition" data-filter="photos">Photos</button>
+            <button class="filter-btn px-5 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition" data-filter="videos">Videos</button>
+            <button class="filter-btn px-5 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition" data-filter="highlights">Highlights</button>
+            <button class="filter-btn px-5 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition" data-filter="fan-content">Fan Content</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6" data-aos="fade-up">Latest Media</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="gallery-grid">
+                <!-- Photo Item -->
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-category="photos">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Team celebration" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">Photos</span>
+                            <span class="text-gray-500 text-sm">2 days ago</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Championship Celebration</h3>
+                        <p class="text-gray-600 text-sm mt-1">The team celebrates their latest victory with fans.</p>
+                    </div>
+                </div>
+
+                <!-- Video Item -->
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="100" data-category="videos">
+                    <div class="video-thumbnail relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Match highlights" class="w-full h-full object-cover">
+                        <div class="play-icon">
+                            <i data-feather="play" class="text-white" width="24" height="24"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">Video</span>
+                            <span class="text-gray-500 text-sm">3 days ago</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Match Highlights: Finals Game 5</h3>
+                        <p class="text-gray-600 text-sm mt-1">Watch the key moments from the championship decider.</p>
+                    </div>
+                </div>
+
+                <!-- Highlight Item -->
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="200" data-category="highlights">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Player highlight" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">Highlights</span>
+                            <span class="text-gray-500 text-sm">1 week ago</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Player of the Month: Top Plays</h3>
+                        <p class="text-gray-600 text-sm mt-1">A compilation of incredible plays from our star athlete.</p>
+                    </div>
+                </div>
+
+                <!-- Fan Content -->
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="300" data-category="fan-content">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Fan art" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">Fan Content</span>
+                            <span class="text-gray-500 text-sm">2 weeks ago</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Amazing Fan Art Submission</h3>
+                        <p class="text-gray-600 text-sm mt-1">Creative artwork from one of our dedicated supporters.</p>
+                    </div>
+                </div>
+
+                <!-- Additional Items -->
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-category="photos">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Training session" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">Photos</span>
+                            <span class="text-gray-500 text-sm">3 weeks ago</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Behind the Scenes: Training</h3>
+                        <p class="text-gray-600 text-sm mt-1">Exclusive look at team preparation for the big game.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="100" data-category="videos">
+                    <div class="video-thumbnail relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Interview" class="w-full h-full object-cover">
+                        <div class="play-icon">
+                            <i data-feather="play" class="text-white" width="24" height="24"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">Video</span>
+                            <span class="text-gray-500 text-sm">1 month ago</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Coach Interview: Season Strategy</h3>
+                        <p class="text-gray-600 text-sm mt-1">Head coach discusses team tactics and future plans.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="200" data-category="highlights">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Historic moment" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">Highlights</span>
+                            <span class="text-gray-500 text-sm">1 month ago</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Historic Comeback: Full Recap</h3>
+                        <p class="text-gray-600 text-sm mt-1">Relive the amazing comeback victory from last season.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="300" data-category="fan-content">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Fan meetup" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">Fan Content</span>
+                            <span class="text-gray-500 text-sm">2 months ago</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Global Fan Meetup Event</h3>
+                        <p class="text-gray-600 text-sm mt-1">Photos from our international fan gathering in London.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comments Section -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Fan Comments & Reactions</h2>
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                    <i data-feather="plus" class="mr-2" width="18" height="18"></i>
+                    Add Comment
+                </button>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <!-- Comment Form -->
+                <div class="mb-8 p-4 bg-gray-50 rounded-lg">
+                    <h3 class="font-semibold text-gray-800 mb-3">Share your thoughts</h3>
+                    <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="3" placeholder="What did you think of the latest match highlights?"></textarea>
+                    <div class="flex justify-between items-center mt-3">
+                        <div class="flex space-x-2">
+                            <button class="p-2 text-gray-600 hover:text-blue-600">
+                                <i data-feather="image" width="18" height="18"></i>
+                            </button>
+                            <button class="p-2 text-gray-600 hover:text-blue-600">
+                                <i data-feather="video" width="18" height="18"></i>
+                            </button>
+                        </div>
+                        <button class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Post Comment</button>
+                    </div>
+                </div>
+
+                <!-- Comments List -->
+                <div class="space-y-6">
+                    <!-- Comment 1 -->
+                    <div class="flex space-x-4 pb-6 border-b border-gray-100">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="comment-avatar">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Alex Johnson</h4>
+                                    <span class="text-gray-500 text-sm">2 hours ago</span>
+                                </div>
+                                <button class="text-gray-400 hover:text-blue-600">
+                                    <i data-feather="heart" width="18" height="18"></i>
+                                </button>
+                            </div>
+                            <p class="text-gray-700 mb-3">That championship celebration video gave me chills! The team's energy is incredible. Can't wait for next season!</p>
+                            <div class="flex items-center space-x-4 text-sm">
+                                <button class="text-gray-600 hover:text-blue-600 flex items-center">
+                                    <i data-feather="thumbs-up" class="mr-1" width="16" height="16"></i>
+                                    24
+                                </button>
+                                <button class="text-gray-600 hover:text-blue-600 flex items-center">
+                                    <i data-feather="message-circle" class="mr-1" width="16" height="16"></i>
+                                    Reply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comment 2 -->
+                    <div class="flex space-x-4 pb-6 border-b border-gray-100">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="comment-avatar">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Maria Rodriguez</h4>
+                                    <span class="text-gray-500 text-sm">1 day ago</span>
+                                </div>
+                                <button class="text-gray-400 hover:text-red-600">
+                                    <i data-feather="heart" width="18" height="18"></i>
+                                </button>
+                            </div>
+                            <p class="text-gray-700 mb-3">The fan art gallery is amazing! So much talent in our community. I especially loved the watercolor painting of the stadium.</p>
+                            <div class="flex items-center space-x-4 text-sm">
+                                <button class="text-gray-600 hover:text-blue-600 flex items-center">
+                                    <i data-feather="thumbs-up" class="mr-1" width="16" height="16"></i>
+                                    18
+                                </button>
+                                <button class="text-gray-600 hover:text-blue-600 flex items-center">
+                                    <i data-feather="message-circle" class="mr-1" width="16" height="16"></i>
+                                    Reply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comment 3 -->
+                    <div class="flex space-x-4">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="User" class="comment-avatar">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">David Chen</h4>
+                                    <span class="text-gray-500 text-sm">3 days ago</span>
+                                </div>
+                                <button class="text-gray-400 hover:text-blue-600">
+                                    <i data-feather="heart" width="18" height="18"></i>
+                                </button>
+                            </div>
+                            <p class="text-gray-700 mb-3">The behind-the-scenes training photos are gold! It's great to see the hard work that goes into each game. More content like this please!</p>
+                            <div class="flex items-center space-x-4 text-sm">
+                                <button class="text-gray-600 hover:text-blue-600 flex items-center">
+                                    <i data-feather="thumbs-up" class="mr-1" width="16" height="16"></i>
+                                    42
+                                </button>
+                                <button class="text-gray-600 hover:text-blue-600 flex items-center">
+                                    <i data-feather="message-circle" class="mr-1" width="16" height="16"></i>
+                                    Reply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8">
+                    <button class="px-5 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
+                        Load More Comments
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="bg-gradient-to-r from-blue-900 to-gray-900 text-white rounded-2xl p-8 mb-16" data-aos="fade-up">
+            <h2 class="text-2xl font-bold mb-8 text-center">Media Statistics</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                    <div class="text-4xl font-bold mb-2">1,250+</div>
+                    <div class="text-blue-200">Photos Uploaded</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">340+</div>
+                    <div class="text-blue-200">Videos Published</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">5,800+</div>
+                    <div class="text-blue-200">Fan Comments</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">2.4M</div>
+                    <div class="text-blue-200">Total Views</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">Sport Website</h3>
+                    <p class="text-gray-400">Your ultimate destination for sports news, media, and community.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="facebook" width="20" height="20"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="twitter" width="20" height="20"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="instagram" width="20" height="20"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="youtube" width="20" height="20"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 Sport Website. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Filter items
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Video play simulation
+            document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    alert('Video player would open here. In a real implementation, this would play the video.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
