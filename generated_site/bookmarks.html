@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarks | Book App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .bookmark-card:hover .bookmark-actions {
+            opacity: 1;
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='library.html' class='px-3 py-2 hover:text-blue-400'>Library</a>
+        <a href='bookdetails.html' class='px-3 py-2 hover:text-blue-400'>BookDetails</a>
+        <a href='reading.html' class='px-3 py-2 hover:text-blue-400'>Reading</a>
+        <a href='bookmarks.html' class='px-3 py-2 hover:text-blue-400'>Bookmarks</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-10" data-aos="fade-down">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">My Bookmarks</h1>
+            <p class="text-gray-600">All your saved reading positions across books</p>
+            
+            <!-- Stats Summary -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-blue-100 rounded-lg mr-4">
+                            <i data-feather="bookmark" class="text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-gray-800">12</p>
+                            <p class="text-gray-600">Total Bookmarks</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-green-100 rounded-lg mr-4">
+                            <i data-feather="book-open" class="text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-gray-800">8</p>
+                            <p class="text-gray-600">Active Books</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-purple-100 rounded-lg mr-4">
+                            <i data-feather="clock" class="text-purple-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-gray-800">4h 32m</p>
+                            <p class="text-gray-600">Total Reading Time</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Bookmarks Grid -->
+        <section data-aos="fade-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800">Recent Bookmarks</h2>
+                <div class="flex space-x-2">
+                    <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition flex items-center">
+                        <i data-feather="filter" class="w-4 h-4 mr-2"></i>
+                        Filter
+                    </button>
+                    <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition flex items-center">
+                        <i data-feather="sort-asc" class="w-4 h-4 mr-2"></i>
+                        Sort
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bookmarks List -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Bookmark Card 1 -->
+                <div class="bookmark-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
+                                    Fiction
+                                </span>
+                                <h3 class="text-xl font-bold text-gray-800 mt-2">The Silent Echo</h3>
+                                <p class="text-gray-600">By James Patterson</p>
+                            </div>
+                            <div class="relative">
+                                <button class="bookmark-actions opacity-0 transition-opacity duration-300 p-2 hover:bg-gray-100 rounded-full">
+                                    <i data-feather="more-vertical" class="text-gray-500"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="relative w-12 h-12 mr-3">
+                                    <svg class="progress-ring w-12 h-12" width="48" height="48">
+                                        <circle class="text-gray-200" stroke-width="4" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24"/>
+                                        <circle class="progress-ring-circle text-blue-600" stroke-width="4" stroke-dasharray="125.6" stroke-dashoffset="37.68" stroke-linecap="round" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24"/>
+                                    </svg>
+                                    <span class="absolute inset-0 flex items-center justify-center text-sm font-bold text-gray-800">70%</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">Progress</p>
+                                    <p class="font-semibold">Chapter 14</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-600">Last opened</p>
+                                <p class="font-semibold">2 hours ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-gray-700 line-clamp-2">"The city slept under a blanket of stars, unaware of the secrets that whispered through its empty streets..."</p>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">
+                                <i data-feather="calendar" class="w-4 h-4 inline mr-1"></i>
+                                Bookmarked: Today
+                            </span>
+                            <div class="flex space-x-2">
+                                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                                    <i data-feather="play" class="w-4 h-4 mr-2"></i>
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bookmark Card 2 -->
+                <div class="bookmark-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                                    Science
+                                </span>
+                                <h3 class="text-xl font-bold text-gray-800 mt-2">Quantum Realms</h3>
+                                <p class="text-gray-600">By Dr. Sarah Chen</p>
+                            </div>
+                            <div class="relative">
+                                <button class="bookmark-actions opacity-0 transition-opacity duration-300 p-2 hover:bg-gray-100 rounded-full">
+                                    <i data-feather="more-vertical" class="text-gray-500"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="relative w-12 h-12 mr-3">
+                                    <svg class="progress-ring w-12 h-12" width="48" height="48">
+                                        <circle class="text-gray-200" stroke-width="4" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24"/>
+                                        <circle class="progress-ring-circle text-green-600" stroke-width="4" stroke-dasharray="125.6" stroke-dashoffset="62.8" stroke-linecap="round" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24"/>
+                                    </svg>
+                                    <span class="absolute inset-0 flex items-center justify-center text-sm font-bold text-gray-800">50%</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">Progress</p>
+                                    <p class="font-semibold">Chapter 8</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-600">Last opened</p>
+                                <p class="font-semibold">Yesterday</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-gray-700 line-clamp-2">"In the quantum world, particles exist in multiple states simultaneously, challenging our classical understanding of reality..."</p>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">
+                                <i data-feather="calendar" class="w-4 h-4 inline mr-1"></i>
+                                Bookmarked: 2 days ago
+                            </span>
+                            <div class="flex space-x-2">
+                                <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center">
+                                    <i data-feather="play" class="w-4 h-4 mr-2"></i>
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bookmark Card 3 -->
+                <div class="bookmark-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">
+                                    History
+                                </span>
+                                <h3 class="text-xl font-bold text-gray-800 mt-2">Ancient Civilizations</h3>
+                                <p class="text-gray-600">By Robert Johnson</p>
+                            </div>
+                            <div class="relative">
+                                <button class="bookmark-actions opacity-0 transition-opacity duration-300 p-2 hover:bg-gray-100 rounded-full">
+                                    <i data-feather="more-vertical" class="text-gray-500"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <div class="relative w-12 h-12 mr-3">
+                                    <svg class="progress-ring w-12 h-12" width="48" height="48">
+                                        <circle class="text-gray-200" stroke-width="4" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24"/>
+                                        <circle class="progress-ring-circle text-purple-600" stroke-width="4" stroke-dasharray="125.6" stroke-dashoffset="94.2" stroke-linecap="round" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24"/>
+                                    </svg>
+                                    <span class="absolute inset-0 flex items-center justify-center text-sm font-bold text-gray-800">25%</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">Progress</p>
+                                    <p class="font-semibold">Chapter 5</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-600">Last opened</p>
+                                <p class="font-semibold">1 week ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-gray-700 line-clamp-2">"The pyramids of Giza stand as eternal monuments to human ingenuity and the organizational power of ancient societies..."</p>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">
+                                <i data-feather="calendar" class="w-4 h-4 inline mr-1"></i>
+                                Bookmarked: 1 week ago
+                            </span>
+                            <div class="flex space-x-2">
+                                <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition flex items-center">
+                                    <i data-feather="play" class="w-4 h-4 mr-2"></i>
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State (Hidden by default) -->
+            <div id="emptyState" class="hidden text-center py-16" data-aos="fade-up">
+                <div class="max-w-md mx-auto">
+                    <div class="w-24 h-24 mx-auto mb-6 text-gray-300">
+                        <i data-feather="bookmark" class="w-full h-full"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-700 mb-2">No bookmarks yet</h3>
+                    <p class="text-gray-600 mb-8">Start reading books and add bookmarks to save your progress</p>
+                    <a href="library.html" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
+                        Browse Library
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="mt-12" data-aos="fade-up">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Quick Actions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <button class="bg-white p-4 rounded-lg shadow hover:shadow-md transition flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition">
+                            <i data-feather="plus" class="text-blue-600"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-700">Add Bookmark</p>
+                    </div>
+                </button>
+                <button class="bg-white p-4 rounded-lg shadow hover:shadow-md transition flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition">
+                            <i data-feather="download" class="text-green-600"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-700">Export All</p>
+                    </div>
+                </button>
+                <button class="bg-white p-4 rounded-lg shadow hover:shadow-md transition flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition">
+                            <i data-feather="trash-2" class="text-purple-600"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-700">Clear Old</p>
+                    </div>
+                </button>
+                <button class="bg-white p-4 rounded-lg shadow hover:shadow-md transition flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition">
+                            <i data-feather="settings" class="text-orange-600"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-700">Settings</p>
+                    </div>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">Book App</h3>
+                    <p class="text-gray-400 mt-2">Your digital reading companion</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Contact</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-400">
+                <p>&copy; 2024 Book App. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Progress ring calculations
+        document.addEventListener('DOMContentLoaded', function() {
+            const circles = document.querySelectorAll('.progress-ring-circle');
+            circles.forEach(circle => {
+                const radius = circle.r.baseVal.value;
+                const circumference = radius * 2 * Math.PI;
+                const percentage = parseInt(circle.parentElement.nextElementSibling.textContent);
+                const offset = circumference - (percentage / 100) * circumference;
+                
+                circle.style.strokeDasharray = `${circumference} ${circumference}`;
+                circle.style.strokeDashoffset = offset;
+            });
+
+            // Bookmark actions
+            const actionButtons = document.querySelectorAll('.bookmark-actions');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    // In a real app, this would show a dropdown menu
+                    alert('Bookmark options: Continue, Edit, Delete, Share');
+                });
+            });
+
+            // Continue reading buttons
+            const continueButtons = document.querySelectorAll('button:has(i[data-feather="play"])');
+            continueButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const bookTitle = this.closest('.bookmark-card').querySelector('h3').textContent;
+                    alert(`Continuing to read: ${bookTitle}\nRedirecting to reading page...`);
+                    // In real app: window.location.href = 'reading.html?book=' + encodeURIComponent(bookTitle);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3,401 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SportHub - Home</title>
+    <title>BookApp - Your Digital Reading Companion</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <style>
-        .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        .stat-card {
-            transition: transform 0.3s ease;
-        }
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        .live-pulse {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .hero-title { font-family: 'Merriweather', serif; }
+        .book-card:hover { transform: translateY(-8px); transition: transform 0.3s ease; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
         <div class="flex items-center space-x-2">
-            <i data-feather="activity" class="text-blue-400"></i>
-            <span class="text-xl font-bold">SportHub</span>
+            <i data-feather="book-open" class="text-blue-400"></i>
+            <span class="text-xl font-bold">BookApp</span>
         </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
+        <div class="flex space-x-4 mt-2 md:mt-0">
             <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
-            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
-            <a href='events-schedules.html' class='px-3 py-2 hover:text-blue-400'>Events/Schedules</a>
-            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
-            <a href='players.html' class='px-3 py-2 hover:text-blue-400'>Players</a>
-            <a href='standings-results.html' class='px-3 py-2 hover:text-blue-400'>Standings/Results</a>
-            <a href='gallery-media.html' class='px-3 py-2 hover:text-blue-400'>Gallery/Media</a>
-            <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
-            <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
-            <a href='login.html' class='px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded-md px-4'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-green-600 hover:bg-green-700 rounded-md px-4'>Signup</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Signup</a>
+            <a href='library.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Library</a>
+            <a href='bookdetails.html' class='px-3 py-2 hover:text-blue-400 font-medium'>BookDetails</a>
+            <a href='reading.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Reading</a>
+            <a href='bookmarks.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Bookmarks</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-bg text-white py-20 px-4">
-        <div class="container mx-auto text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to SportHub</h1>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Your ultimate destination for live scores, match schedules, team rosters, player statistics, and sports news</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#live-scores" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold">Live Scores</a>
-                <a href="events-schedules.html" class="bg-gray-700 hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold">View Schedule</a>
-                <a href="news.html" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold">Latest News</a>
+    <section class="gradient-bg text-white py-16 md:py-24 px-4">
+        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
+            <h1 class="hero-title text-4xl md:text-6xl font-bold mb-6">Discover Your Next Favorite Book</h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90">
+                Read thousands of books, track your progress, and manage your personal library—all in one beautiful digital reading app.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                <a href="signup.html" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 shadow-lg">
+                    Start Reading Free
+                </a>
+                <a href="library.html" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-gray-900 transition duration-300">
+                    Explore Library
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Live Scores Section -->
-    <section id="live-scores" class="py-12 px-4 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-2">
-                <i data-feather="radio" class="text-red-500"></i>
-                Live Scores
-                <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full live-pulse">LIVE</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Match 1 -->
-                <div class="bg-gray-100 rounded-xl p-6 shadow-lg" data-aos="fade-up">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Soccer • Premier League</span>
-                        <span class="text-green-600 font-bold">65'</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="text-center">
-                            <div class="font-bold text-lg">Manchester United</div>
-                            <div class="text-sm text-gray-600">Home</div>
-                        </div>
-                        <div class="text-3xl font-bold">2 - 1</div>
-                        <div class="text-center">
-                            <div class="font-bold text-lg">Liverpool</div>
-                            <div class="text-sm text-gray-600">Away</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Match 2 -->
-                <div class="bg-gray-100 rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Basketball • NBA</span>
-                        <span class="text-green-600 font-bold">Q3</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="text-center">
-                            <div class="font-bold text-lg">Lakers</div>
-                            <div class="text-sm text-gray-600">85 pts</div>
-                        </div>
-                        <div class="text-3xl font-bold">85 - 78</div>
-                        <div class="text-center">
-                            <div class="font-bold text-lg">Warriors</div>
-                            <div class="text-sm text-gray-600">78 pts</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Match 3 -->
-                <div class="bg-gray-100 rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Tennis • US Open</span>
-                        <span class="text-green-600 font-bold">Set 2</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="text-center">
-                            <div class="font-bold text-lg">Nadal</div>
-                            <div class="text-sm text-gray-600">6-4, 3-2</div>
-                        </div>
-                        <div class="text-3xl font-bold">VS</div>
-                        <div class="text-center">
-                            <div class="font-bold text-lg">Djokovic</div>
-                            <div class="text-sm text-gray-600">4-6, 2-3</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Grid -->
-    <section class="py-16 px-4 bg-gray-100">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-12 text-center" data-aos="fade-up">Explore SportHub Features</h2>
+    <!-- Features Section -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Everything You Need for Digital Reading</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md text-center stat-card" data-aos="zoom-in">
+                <div class="text-center p-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-feather="calendar" class="text-blue-600 text-2xl"></i>
+                        <i data-feather="user-check" class="text-blue-600 w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Match Schedules</h3>
-                    <p class="text-gray-600">Never miss a game with our comprehensive event calendar</p>
+                    <h3 class="text-xl font-bold mb-3">User Authentication</h3>
+                    <p class="text-gray-600">Secure login and personalized profiles to keep your reading data safe and accessible anywhere.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center stat-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-feather="users" class="text-green-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Team Rosters</h3>
-                    <p class="text-gray-600">Detailed profiles of all teams and their players</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center stat-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="text-center p-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-feather="bar-chart-2" class="text-purple-600 text-2xl"></i>
+                        <i data-feather="book" class="text-purple-600 w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Player Statistics</h3>
-                    <p class="text-gray-600">Advanced stats and performance analytics</p>
+                    <h3 class="text-xl font-bold mb-3">Library Management</h3>
+                    <p class="text-gray-600">Organize your books into custom collections, sort by genre, and easily find what you want to read next.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center stat-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-feather="message-square" class="text-red-600 text-2xl"></i>
+                <div class="text-center p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="bookmark" class="text-green-600 w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Comment System</h3>
-                    <p class="text-gray-600">Engage with other fans in real-time discussions</p>
+                    <h3 class="text-xl font-bold mb-3">Bookmarking</h3>
+                    <p class="text-gray-600">Save your favorite passages, mark pages, and quickly return to where you left off across all devices.</p>
+                </div>
+                <div class="text-center p-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="trending-up" class="text-yellow-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Progress Tracking</h3>
+                    <p class="text-gray-600">Visualize your reading habits, set goals, and celebrate milestones with detailed reading statistics.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- News Preview -->
-    <section class="py-16 px-4 bg-white">
-        <div class="container mx-auto">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl font-bold">Latest News</h2>
-                <a href="news.html" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-2">
-                    View All News <i data-feather="arrow-right"></i>
-                </a>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <article class="rounded-xl overflow-hidden shadow-lg" data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="Basketball news" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-sm text-blue-600 font-semibold">Basketball • 2 hours ago</span>
-                        <h3 class="text-xl font-bold my-2">Historic Triple-Double Record Broken</h3>
-                        <p class="text-gray-600 mb-4">Player sets new league record with consecutive triple-doubles...</p>
-                        <a href="#" class="text-blue-600 font-semibold">Read More</a>
-                    </div>
-                </article>
-                <article class="rounded-xl overflow-hidden shadow-lg" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="Soccer news" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-sm text-green-600 font-semibold">Soccer • 5 hours ago</span>
-                        <h3 class="text-xl font-bold my-2">Champions League Quarterfinal Draw</h3>
-                        <p class="text-gray-600 mb-4">Exciting matchups revealed for the upcoming quarterfinal stage...</p>
-                        <a href="#" class="text-blue-600 font-semibold">Read More</a>
-                    </div>
-                </article>
-                <article class="rounded-xl overflow-hidden shadow-lg" data-aos="fade-left">
-                    <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="Tennis news" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-sm text-purple-600 font-semibold">Tennis • 1 day ago</span>
-                        <h3 class="text-xl font-bold my-2">New Rising Star Wins First Major</h3>
-                        <p class="text-gray-600 mb-4">Young talent surprises veterans to claim championship title...</p>
-                        <a href="#" class="text-blue-600 font-semibold">Read More</a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Preview -->
+    <!-- Popular Books -->
     <section class="py-16 px-4 bg-gray-100">
-        <div class="container mx-auto">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl font-bold">Featured Media</h2>
-                <a href="gallery-media.html" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-2">
-                    View Gallery <i data-feather="image"></i>
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-800">Popular This Week</h2>
+                <a href="library.html" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                    View All <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                 </a>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="rounded-lg overflow-hidden shadow-md" data-aos="flip-left">
-                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Sports action" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="book-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Book Cover" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-1">The Silent Echo</h4>
+                        <p class="text-gray-500 text-sm mb-3">by Maria Chen</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-500 flex">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4"></i>
+                            </span>
+                            <a href="bookdetails.html" class="text-blue-600 text-sm font-medium hover:text-blue-800">Details</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="rounded-lg overflow-hidden shadow-md" data-aos="flip-left" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Basketball game" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+                <div class="book-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Book Cover" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-1">Beyond the Horizon</h4>
+                        <p class="text-gray-500 text-sm mb-3">by James Rivera</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-500 flex">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            </span>
+                            <a href="bookdetails.html" class="text-blue-600 text-sm font-medium hover:text-blue-800">Details</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="rounded-lg overflow-hidden shadow-md" data-aos="flip-left" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Soccer match" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+                <div class="book-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Book Cover" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-1">Code of Ethics</h4>
+                        <p class="text-gray-500 text-sm mb-3">by Alex Morgan</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-500 flex">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4"></i>
+                                <i data-feather="star" class="w-4 h-4"></i>
+                            </span>
+                            <a href="bookdetails.html" class="text-blue-600 text-sm font-medium hover:text-blue-800">Details</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="rounded-lg overflow-hidden shadow-md" data-aos="flip-left" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Tennis action" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+                <div class="book-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Book Cover" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-1">Whispers of Time</h4>
+                        <p class="text-gray-500 text-sm mb-3">by Sofia Lee</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-500 flex">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4"></i>
+                            </span>
+                            <a href="bookdetails.html" class="text-blue-600 text-sm font-medium hover:text-blue-800">Details</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- User Profiles & Comments Preview -->
+    <!-- Reading Experience Preview -->
     <section class="py-16 px-4 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-8 text-center">Community Highlights</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Top Users -->
-                <div data-aos="fade-right">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
-                        <i data-feather="award" class="text-yellow-500"></i>
-                        Top Contributors
-                    </h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                                <i data-feather="user" class="text-blue-600"></i>
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0" data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Immersive Reading Experience</h2>
+                    <p class="text-gray-600 mb-6">
+                        Enjoy a distraction‑free reading interface with customizable fonts, themes, and spacing. Our reader adapts to your preferences for maximum comfort.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-3"></i>
+                            <span>Adjustable text size and font family</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-3"></i>
+                            <span>Day/Night reading modes</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-3"></i>
+                            <span>Auto‑save reading position across devices</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-3"></i>
+                            <span>Quick access to dictionary and notes</span>
+                        </li>
+                    </ul>
+                    <a href="reading.html" class="inline-block mt-8 bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-300">
+                        Try the Reader
+                    </a>
+                </div>
+                <div class="lg:w-1/2 lg:pl-12" data-aos="fade-left">
+                    <div class="bg-gray-800 rounded-2xl shadow-2xl p-2">
+                        <div class="bg-white rounded-xl p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <div class="text-gray-500 text-sm">Chapter 5 • 72%</div>
                             </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold">SportsFan99</h4>
-                                <p class="text-sm text-gray-600">245 comments • 12 articles</p>
+                            <div class="text-gray-800">
+                                <h4 class="font-bold text-xl mb-4">The Silent Echo</h4>
+                                <p class="mb-4 leading-relaxed">
+                                    The forest was silent, but not empty. Every tree held a memory, every leaf a whispered secret. Elena walked slowly, her boots crunching on the frost‑covered path. She could feel the weight of centuries in the air.
+                                </p>
+                                <p class="leading-relaxed">
+                                    She paused, listening. Somewhere in the distance, a bird called—a single, clear note that seemed to hang in the cold morning. It was then she realized the silence wasn't absence. It was presence, waiting.
+                                </p>
                             </div>
-                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Expert</span>
-                        </div>
-                        <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                                <i data-feather="user" class="text-green-600"></i>
+                            <div class="flex justify-between items-center mt-8 pt-6 border-t">
+                                <button class="text-gray-500 hover:text-gray-800">
+                                    <i data-feather="bookmark"></i>
+                                </button>
+                                <div class="flex space-x-4">
+                                    <button class="text-gray-500 hover:text-gray-800">
+                                        <i data-feather="chevron-left"></i>
+                                    </button>
+                                    <button class="text-gray-500 hover:text-gray-800">
+                                        <i data-feather="chevron-right"></i>
+                                    </button>
+                                </div>
+                                <button class="text-gray-500 hover:text-gray-800">
+                                    <i data-feather="settings"></i>
+                                </button>
                             </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold">StatsMaster</h4>
-                                <p class="text-sm text-gray-600">189 comments • 8 analyses</p>
-                            </div>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Analyst</span>
                         </div>
                     </div>
                 </div>
-                <!-- Recent Comments -->
-                <div data-aos="fade-left">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
-                        <i data-feather="message-circle" class="text-blue-500"></i>
-                        Recent Comments
-                    </h3>
-                    <div class="space-y-4">
-                        <div class="p-4 bg-gray-50 rounded-lg">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-bold">GoalKeeperPro</span>
-                                <span class="text-sm text-gray-500">2 hours ago</span>
-                            </div>
-                            <p class="text-gray-700">"That last-minute goal was incredible! The goalkeeper had no chance."</p>
-                            <div class="mt-2 text-sm text-blue-600">On: Champions League Match</div>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-bold">BasketballExpert</span>
-                                <span class="text-sm text-gray-500">5 hours ago</span>
-                            </div>
-                            <p class="text-gray-700">"The rookie's performance tonight shows great promise for the season ahead."</p>
-                            <div class="mt-2 text-sm text-blue-600">On: NBA Game Analysis</div>
-                        </div>
-                    </div>
-                    <div class="mt-6">
-                        <a href="login.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold">
-                            Join Discussion
-                        </a>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 px-4 gradient-bg text-white">
+        <div class="container mx-auto max-w-4xl text-center" data-aos="zoom-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Start Your Reading Journey Today</h2>
+            <p class="text-xl mb-10 opacity-90">
+                Join thousands of readers who are already enjoying unlimited access to books, personalized recommendations, and powerful reading tools.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                <a href="signup.html" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 shadow-lg">
+                    Create Free Account
+                </a>
+                <a href="login.html" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-gray-900 transition duration-300">
+                    Existing User? Login
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-4">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-feather="activity" class="text-blue-400"></i>
-                        <span class="text-xl font-bold">SportHub</span>
+    <footer class="bg-gray-900 text-gray-300 py-10 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="book-open" class="text-blue-400"></i>
+                        <span class="text-xl font-bold text-white">BookApp</span>
                     </div>
-                    <p class="text-gray-400">Your ultimate sports destination for scores, news, and community.</p>
+                    <p class="mt-2">Your digital reading companion since 2023.</p>
                 </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="news.html" class="text-gray-400 hover:text-white">News</a></li>
-                        <li><a href="events-schedules.html" class="text-gray-400 hover:text-white">Schedules</a></li>
-                        <li><a href="standings-results.html" class="text-gray-400 hover:text-white">Standings</a></li>
-                        <li><a href="gallery-media.html" class="text-gray-400 hover:text-white">Gallery</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Connect</h4>
-                    <ul class="space-y-2">
-                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Teams</a></li>
-                        <li><a href="players.html" class="text-gray-400 hover:text-white">Players</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Account</h4>
-                    <ul class="space-y-2">
-                        <li><a href="login.html" class="text-gray-400 hover:text-white">Login</a></li>
-                        <li><a href="signup.html" class="text-gray-400 hover:text-white">Sign Up</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">User Profile</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Settings</a></li>
-                    </ul>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" class="hover:text-white">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" class="hover:text-white">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" class="hover:text-white">
+                        <i data-feather="github"></i>
+                    </a>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 SportHub. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2023 BookApp. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-        
-        // Initialize Feather Icons
+        AOS.init({ duration: 800, once: true });
         feather.replace();
-        
-        // Initialize Vanta.js for background effect (optional)
-        document.addEventListener('DOMContentLoaded', function() {
-            if (document.querySelector('#vanta-bg')) {
-                VANTA.NET({
-                    el: '#vanta-bg',
-                    mouseControls: true,
-                    touchControls: true,
-                    gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00,
-                    scale: 1.00,
-                    scaleMobile: 1.00,
-                    color: 0x3b82f6,
-                    backgroundColor: 0x111827
-                });
-            }
-        });
-        
-        // Live score update simulation
-        function updateLiveScores() {
-            const scores = document.querySelectorAll('.live-score');
-            scores.forEach(score => {
-                const current = parseInt(score.textContent);
-                if (Math.random() > 0.7) {
-                    score.textContent = current + 1;
-                }
-            });
-        }
-        setInterval(updateLiveScores, 30000);
     </script>
 </body>
 </html>

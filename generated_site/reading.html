@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading - Book App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@300;400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .reading-content { font-family: 'Merriweather', serif; }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.5s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='library.html' class='px-3 py-2 hover:text-blue-400'>Library</a>
+        <a href='bookdetails.html' class='px-3 py-2 hover:text-blue-400'>BookDetails</a>
+        <a href='reading.html' class='px-3 py-2 hover:text-blue-400'>Reading</a>
+        <a href='bookmarks.html' class='px-3 py-2 hover:text-blue-400'>Bookmarks</a>
+    </nav>
+
+    <!-- Main Reading Interface -->
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Book Header -->
+        <div class="mb-8" data-aos="fade-down">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">The Silent Echo</h1>
+                    <p class="text-gray-600">by Jonathan R. Sterling</p>
+                </div>
+                <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                    <div class="flex items-center">
+                        <div class="relative w-16 h-16">
+                            <svg class="w-full h-full" viewBox="0 0 36 36">
+                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="3"/>
+                                <path class="progress-ring-circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="100, 100" id="progress-ring"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-sm font-bold text-gray-700" id="progress-percent">65%</span>
+                            </div>
+                        </div>
+                        <span class="ml-2 text-gray-700">Progress</span>
+                    </div>
+                    <button id="bookmark-btn" class="p-3 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+                        <i data-feather="bookmark" class="text-gray-700"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-4">
+                <div class="flex items-center text-gray-600">
+                    <i data-feather="book-open" class="w-4 h-4 mr-2"></i>
+                    <span>Chapter 12 of 20</span>
+                </div>
+                <div class="flex items-center text-gray-600">
+                    <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                    <span>45 min remaining</span>
+                </div>
+                <div class="flex items-center text-gray-600">
+                    <i data-feather="calendar" class="w-4 h-4 mr-2"></i>
+                    <span>Last read: Today</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reading Controls -->
+        <div class="bg-white rounded-xl shadow-md p-4 mb-6 flex flex-wrap justify-between items-center" data-aos="fade-up">
+            <div class="flex space-x-2 mb-4 md:mb-0">
+                <button class="p-3 rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-700 transition">
+                    <i data-feather="chevron-left"></i>
+                </button>
+                <button class="p-3 rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-700 transition">
+                    <i data-feather="chevron-right"></i>
+                </button>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center">
+                    <i data-feather="type" class="text-gray-500 mr-2"></i>
+                    <select class="border rounded-lg px-3 py-2 bg-gray-50">
+                        <option>Serif</option>
+                        <option>Sans-serif</option>
+                        <option>Monospace</option>
+                    </select>
+                </div>
+                <div class="flex items-center">
+                    <i data-feather="sun" class="text-gray-500 mr-2"></i>
+                    <select class="border rounded-lg px-3 py-2 bg-gray-50">
+                        <option>Light</option>
+                        <option>Sepia</option>
+                        <option>Dark</option>
+                    </select>
+                </div>
+                <button class="p-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+                    <i data-feather="settings"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Reading Content -->
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8" data-aos="fade-up" data-aos-delay="100">
+            <div class="reading-content text-lg leading-relaxed text-gray-800">
+                <h2 class="text-2xl font-bold mb-6 text-gray-900">Chapter 12: The Unspoken Truth</h2>
+                <p class="mb-6">The morning fog clung to the city like a memory unwilling to fade. Eleanor walked through the empty streets, her footsteps echoing against the cobblestones. Each sound seemed amplified in the silence, a reminder of the words she had left unspoken.</p>
+                <p class="mb-6">She remembered the last conversation with her father, the way his eyes had searched hers for something she couldn't give. The truth had been there, balanced on the tip of her tongue, but fear had sealed her lips. Now, with him gone, those unspoken words hung in the air around her, heavier than the fog.</p>
+                <p class="mb-6">The bookstore appeared before her like an apparition. Its windows glowed with warm light, a beacon in the gray morning. Without thinking, she pushed the door open, the bell above jingling a welcome that felt both familiar and foreign.</p>
+                <p class="mb-6">Inside, the scent of old paper and binding glue wrapped around her. Books lined every wall, their spines creating a mosaic of colors and textures. For a moment, she simply stood there, breathing in the quiet comfort of the place.</p>
+                <p class="mb-6">"Looking for something specific?" The voice came from behind a stack of books near the counter. An elderly man emerged, his glasses perched on the end of his nose, a smile crinkling the corners of his eyes.</p>
+                <p class="mb-6">"I'm not sure," Eleanor admitted. "I just needed to be somewhere that made sense."</p>
+                <p class="mb-6">The man nodded as if this were the most reasonable statement in the world. "The books that find us are often the ones we need most," he said, gesturing to the shelves. "Take your time. The right story has a way of making itself known."</p>
+                <p class="mb-6">Eleanor wandered through the aisles, her fingers trailing across leather and cloth bindings. She paused at a section marked "Letters & Diaries," her hand hovering over a slim volume with a faded green cover. Something about it called to her, a quiet pull she couldn't explain.</p>
+            </div>
+            
+            <!-- Page Navigation -->
+            <div class="flex justify-between items-center mt-10 pt-6 border-t">
+                <button class="flex items-center text-blue-600 hover:text-blue-800 transition">
+                    <i data-feather="arrow-left" class="mr-2"></i>
+                    Previous Chapter
+                </button>
+                <div class="text-gray-500">
+                    Page <span class="font-bold text-gray-700">142</span> of 312
+                </div>
+                <button class="flex items-center text-blue-600 hover:text-blue-800 transition">
+                    Next Chapter
+                    <i data-feather="arrow-right" class="ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Reading Stats & Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white rounded-xl shadow p-6" data-aos="fade-right">
+                <h3 class="font-bold text-lg mb-4 text-gray-800">Reading Session</h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-600">Time spent today</span>
+                            <span class="font-bold">1h 25m</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-600">Daily goal</span>
+                            <span class="font-bold">2h / day</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 42%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6" data-aos="fade-up">
+                <h3 class="font-bold text-lg mb-4 text-gray-800">Quick Actions</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="flex flex-col items-center justify-center p-4 border rounded-lg hover:bg-gray-50 transition">
+                        <i data-feather="flag" class="w-6 h-6 text-blue-600 mb-2"></i>
+                        <span class="text-sm">Add Note</span>
+                    </button>
+                    <button class="flex flex-col items-center justify-center p-4 border rounded-lg hover:bg-gray-50 transition">
+                        <i data-feather="highlight" class="w-6 h-6 text-yellow-600 mb-2"></i>
+                        <span class="text-sm">Highlight</span>
+                    </button>
+                    <button class="flex flex-col items-center justify-center p-4 border rounded-lg hover:bg-gray-50 transition">
+                        <i data-feather="share-2" class="w-6 h-6 text-green-600 mb-2"></i>
+                        <span class="text-sm">Share</span>
+                    </button>
+                    <button class="flex flex-col items-center justify-center p-4 border rounded-lg hover:bg-gray-50 transition">
+                        <i data-feather="download" class="w-6 h-6 text-purple-600 mb-2"></i>
+                        <span class="text-sm">Download</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6" data-aos="fade-left">
+                <h3 class="font-bold text-lg mb-4 text-gray-800">Book Insights</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-center">
+                        <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-3"></i>
+                        <span>You've read 8 chapters this week</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i data-feather="star" class="w-4 h-4 text-yellow-500 mr-3"></i>
+                        <span>12 highlights in this book</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i data-feather="clock" class="w-4 h-4 text-blue-500 mr-3"></i>
+                        <span>Average: 35 min per session</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i data-feather="trending-up" class="w-4 h-4 text-purple-500 mr-3"></i>
+                        <span>On track to finish in 4 days</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Recent Bookmarks -->
+        <div class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Recent Bookmarks</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow p-5 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Chapter 8</span>
+                        <i data-feather="bookmark" class="text-blue-500"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Sometimes the quietest moments speak the loudest truths."</p>
+                    <div class="text-sm text-gray-500">Added 2 days ago</div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-5 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Chapter 10</span>
+                        <i data-feather="bookmark" class="text-blue-500"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Memory is not a recording but a story we tell ourselves."</p>
+                    <div class="text-sm text-gray-500">Added yesterday</div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-5 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Chapter 11</span>
+                        <i data-feather="bookmark" class="text-blue-500"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"The distance between two people is measured in unspoken words."</p>
+                    <div class="text-sm text-gray-500">Added today</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Progress ring animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressRing = document.getElementById('progress-ring');
+            const progressPercent = document.getElementById('progress-percent');
+            const radius = progressRing.r.baseVal.value;
+            const circumference = radius * 2 * Math.PI;
+            
+            progressRing.style.strokeDasharray = `${circumference} ${circumference}`;
+            progressRing.style.strokeDashoffset = circumference;
+            
+            function setProgress(percent) {
+                const offset = circumference - (percent / 100) * circumference;
+                progressRing.style.strokeDashoffset = offset;
+                progressPercent.textContent = percent + '%';
+            }
+            
+            // Set initial progress to 65%
+            setProgress(65);
+
+            // Bookmark toggle
+            const bookmarkBtn = document.getElementById('bookmark-btn');
+            let bookmarked = false;
+            bookmarkBtn.addEventListener('click', function() {
+                bookmarked = !bookmarked;
+                const icon = bookmarkBtn.querySelector('i');
+                if (bookmarked) {
+                    icon.setAttribute('data-feather', 'bookmark');
+                    bookmarkBtn.classList.remove('bg-gray-200');
+                    bookmarkBtn.classList.add('bg-blue-100');
+                } else {
+                    icon.setAttribute('data-feather', 'bookmark');
+                    bookmarkBtn.classList.remove('bg-blue-100');
+                    bookmarkBtn.classList.add('bg-gray-200');
+                }
+                feather.replace();
+            });
+        });
+    </script>
+</body>
+</html>
