@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations | Travel Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .destination-card:hover {
+            transform: translateY(-8px);
+            transition: transform 0.3s ease;
+        }
+        .star-rating {
+            color: #fbbf24;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="text-xl font-bold ml-4">TravelExplorer</div>
+        <div class="flex space-x-4 flex-wrap">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='destinations.html' class='px-3 py-2 hover:text-blue-400 bg-blue-600 rounded'>Destinations</a>
+            <a href='tour-details.html' class='px-3 py-2 hover:text-blue-400'>Tour Details</a>
+            <a href='booking.html' class='px-3 py-2 hover:text-blue-400'>Booking</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
+            <a href='gallery.html' class='px-3 py-2 hover:text-blue-400'>Gallery</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-blue-900 to-purple-900 text-white py-16 px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover Amazing Destinations</h1>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">Explore breathtaking locations around the world and book your dream tour today.</p>
+        
+        <!-- Search Bar -->
+        <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-4">
+            <div class="flex flex-col md:flex-row gap-4">
+                <input type="text" placeholder="Search destinations..." class="flex-grow p-3 border border-gray-300 rounded-lg text-gray-800">
+                <select class="p-3 border border-gray-300 rounded-lg text-gray-800">
+                    <option value="">All Categories</option>
+                    <option value="beach">Beach</option>
+                    <option value="mountain">Mountain</option>
+                    <option value="city">City</option>
+                    <option value="cultural">Cultural</option>
+                </select>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center">
+                    <i data-feather="search" class="mr-2"></i> Search
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Filter Section -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Popular Destinations</h2>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg">All</button>
+                <button class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg">Beach</button>
+                <button class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg">Mountain</button>
+                <button class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg">City</button>
+                <button class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg">Cultural</button>
+                <button class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg">Adventure</button>
+            </div>
+        </div>
+
+        <!-- Destinations Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <!-- Destination Card 1 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden destination-card" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bali, Indonesia" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold text-gray-800">Bali, Indonesia</h3>
+                        <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded">Beach</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Experience tropical paradise with stunning beaches and rich culture.</p>
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex">
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="w-5 h-5 text-gray-300"></i>
+                        </div>
+                        <span class="ml-2 text-gray-600">(124 reviews)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-blue-600">$899</span>
+                            <span class="text-gray-500"> / person</span>
+                        </div>
+                        <a href="tour-details.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg">
+                            View Tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destination Card 2 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden destination-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Swiss Alps" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold text-gray-800">Swiss Alps</h3>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded">Mountain</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Majestic mountains, alpine lakes, and charming villages await.</p>
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex">
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                        </div>
+                        <span class="ml-2 text-gray-600">(89 reviews)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-blue-600">$1,299</span>
+                            <span class="text-gray-500"> / person</span>
+                        </div>
+                        <a href="tour-details.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg">
+                            View Tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destination Card 3 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden destination-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tokyo, Japan" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold text-gray-800">Tokyo, Japan</h3>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-semibold px-3 py-1 rounded">City</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Modern metropolis blending tradition with cutting-edge technology.</p>
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex">
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="w-5 h-5 text-gray-300"></i>
+                        </div>
+                        <span class="ml-2 text-gray-600">(156 reviews)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-blue-600">$1,099</span>
+                            <span class="text-gray-500"> / person</span>
+                        </div>
+                        <a href="tour-details.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg">
+                            View Tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destination Card 4 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden destination-card" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Santorini, Greece" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold text-gray-800">Santorini, Greece</h3>
+                        <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded">Beach</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">White-washed buildings with blue domes overlooking the Aegean Sea.</p>
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex">
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                        </div>
+                        <span class="ml-2 text-gray-600">(203 reviews)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-blue-600">$1,499</span>
+                            <span class="text-gray-500"> / person</span>
+                        </div>
+                        <a href="tour-details.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg">
+                            View Tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destination Card 5 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden destination-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kyoto, Japan" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold text-gray-800">Kyoto, Japan</h3>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-semibold px-3 py-1 rounded">Cultural</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Ancient temples, traditional tea houses, and beautiful gardens.</p>
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex">
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="w-5 h-5 text-gray-300"></i>
+                        </div>
+                        <span class="ml-2 text-gray-600">(98 reviews)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-blue-600">$949</span>
+                            <span class="text-gray-500"> / person</span>
+                        </div>
+                        <a href="tour-details.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg">
+                            View Tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destination Card 6 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden destination-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="New Zealand" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold text-gray-800">New Zealand</h3>
+                        <span class="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">Adventure</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Breathtaking landscapes perfect for adventure seekers.</p>
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex">
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                            <i data-feather="star" class="fill-current w-5 h-5"></i>
+                        </div>
+                        <span class="ml-2 text-gray-600">(167 reviews)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-blue-600">$1,799</span>
+                            <span class="text-gray-500"> / person</span>
+                        </div>
+                        <a href="tour-details.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg">
+                            View Tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Reviews Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Traveler Reviews</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xl mr-4">
+                            JS
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">John Smith</h4>
+                            <div class="star-rating flex">
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The Bali tour was absolutely incredible! Everything was perfectly organized."</p>
+                    <p class="text-gray-500 text-sm mt-2">Reviewed: Bali, Indonesia</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-xl mr-4">
+                            MA
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Maria Alvarez</h4>
+                            <div class="star-rating flex">
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="w-4 h-4 text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Swiss Alps tour was breathtaking. The guides were knowledgeable and friendly."</p>
+                    <p class="text-gray-500 text-sm mt-2">Reviewed: Swiss Alps</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mr-4">
+                            TK
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Tomiko Kato</h4>
+                            <div class="star-rating flex">
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                                <i data-feather="star" class="fill-current w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Kyoto cultural tour exceeded all expectations. A truly authentic experience!"</p>
+                    <p class="text-gray-500 text-sm mt-2">Reviewed: Kyoto, Japan</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready for Your Next Adventure?</h2>
+            <p class="text-xl mb-6 max-w-2xl mx-auto">Browse our destinations, read reviews, and book your dream tour today.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="gallery.html" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg">
+                    View Gallery
+                </a>
+                <a href="booking.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 font-bold py-3 px-8 rounded-lg">
+                    Book Now
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">TravelExplorer</h3>
+                    <p class="text-gray-400">Discover the world's most amazing destinations with our curated tours and experiences.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="destinations.html" class="text-gray-400 hover:text-white">Destinations</a></li>
+                        <li><a href="tour-details.html" class="text-gray-400 hover:text-white">Tour Packages</a></li>
+                        <li><a href="booking.html" class="text-gray-400 hover:text-white">Booking</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cancellation Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact Info</h4>
+                    <p class="text-gray-400">123 Travel Street</p>
+                    <p class="text-gray-400">Adventure City, AC 12345</p>
+                    <p class="text-gray-400">contact@travelexplorer.com</p>
+                    <p class="text-gray-400">+1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 TravelExplorer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Search functionality
+        document.querySelector('button.bg-blue-600').addEventListener('click', function() {
+            const searchInput = document.querySelector('input[type="text"]');
+            const categorySelect = document.querySelector('select');
+            alert(`Searching for "${searchInput.value}" in category: ${categorySelect.value || 'All'}`);
+        });
+    </script>
+</body>
+</html>

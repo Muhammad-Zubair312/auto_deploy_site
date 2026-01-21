@@ -3,301 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookApp - Your Digital Reading Companion</title>
+    <title>ExploreWorld - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .hero-title { font-family: 'Merriweather', serif; }
-        .book-card:hover { transform: translateY(-8px); transition: transform 0.3s ease; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .destination-card:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease;
+        }
+        .review-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
         <div class="flex items-center space-x-2">
-            <i data-feather="book-open" class="text-blue-400"></i>
-            <span class="text-xl font-bold">BookApp</span>
+            <i data-feather="compass" class="text-blue-400"></i>
+            <span class="text-xl font-bold">ExploreWorld</span>
         </div>
-        <div class="flex space-x-4 mt-2 md:mt-0">
+        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
             <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
+            <a href='destinations.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Destinations</a>
+            <a href='tour-details.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Tour Details</a>
+            <a href='booking.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Booking</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Contact</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400 font-medium'>About</a>
+            <a href='gallery.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Gallery</a>
             <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
             <a href='signup.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Signup</a>
-            <a href='library.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Library</a>
-            <a href='bookdetails.html' class='px-3 py-2 hover:text-blue-400 font-medium'>BookDetails</a>
-            <a href='reading.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Reading</a>
-            <a href='bookmarks.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Bookmarks</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="gradient-bg text-white py-16 md:py-24 px-4">
-        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
-            <h1 class="hero-title text-4xl md:text-6xl font-bold mb-6">Discover Your Next Favorite Book</h1>
-            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90">
-                Read thousands of books, track your progress, and manage your personal library—all in one beautiful digital reading app.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="signup.html" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 shadow-lg">
-                    Start Reading Free
-                </a>
-                <a href="library.html" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-gray-900 transition duration-300">
-                    Explore Library
-                </a>
+    <!-- Hero Section with Search -->
+    <section class="hero-bg text-white py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Discover Your Next Adventure</h1>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Explore breathtaking destinations, book amazing tours, and create memories that last a lifetime.</p>
+            
+            <!-- Destination Search -->
+            <div class="bg-white rounded-xl p-4 md:p-6 max-w-4xl mx-auto shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Destination</label>
+                        <input type="text" placeholder="Where do you want to go?" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Dates</label>
+                        <input type="text" placeholder="Select travel dates" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Travelers</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option>1 Traveler</option>
+                            <option>2 Travelers</option>
+                            <option>3-5 Travelers</option>
+                            <option>6+ Travelers</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center">
+                            <i data-feather="search" class="mr-2"></i>
+                            Search Tours
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-16 px-4 bg-white">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Everything You Need for Digital Reading</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center p-6" data-aos="fade-up" data-aos-delay="100">
+    <!-- Featured Destinations -->
+    <section class="py-16 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Popular Destinations</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Explore our most sought-after travel destinations around the world</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Destination 1 -->
+            <div class="destination-card bg-white rounded-xl overflow-hidden shadow-lg" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bali" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Bali, Indonesia</h3>
+                    <p class="text-gray-600 mb-4">Experience tropical paradise with beautiful beaches and rich culture.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-blue-600">$899</span>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-300">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Destination 2 -->
+            <div class="destination-card bg-white rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Switzerland" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Swiss Alps</h3>
+                    <p class="text-gray-600 mb-4">Majestic mountains and picturesque villages await in Switzerland.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-blue-600">$1,299</span>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-300">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Destination 3 -->
+            <div class="destination-card bg-white rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Japan" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Kyoto, Japan</h3>
+                    <p class="text-gray-600 mb-4">Discover ancient temples and modern wonders in beautiful Japan.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-blue-600">$1,199</span>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-300">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-10">
+            <a href="destinations.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                View All Destinations
+                <i data-feather="arrow-right" class="ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Tour Booking System Preview -->
+    <section class="bg-gray-100 py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Easy Tour Booking</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Simple steps to book your dream vacation</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up">
                     <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-feather="user-check" class="text-blue-600 w-8 h-8"></i>
+                        <i data-feather="search" class="text-blue-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">User Authentication</h3>
-                    <p class="text-gray-600">Secure login and personalized profiles to keep your reading data safe and accessible anywhere.</p>
+                    <h3 class="font-bold text-lg mb-2">1. Search</h3>
+                    <p class="text-gray-600">Find your perfect destination</p>
                 </div>
-                <div class="text-center p-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-feather="book" class="text-purple-600 w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Library Management</h3>
-                    <p class="text-gray-600">Organize your books into custom collections, sort by genre, and easily find what you want to read next.</p>
-                </div>
-                <div class="text-center p-6" data-aos="fade-up" data-aos-delay="300">
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-feather="bookmark" class="text-green-600 w-8 h-8"></i>
+                        <i data-feather="calendar" class="text-green-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Bookmarking</h3>
-                    <p class="text-gray-600">Save your favorite passages, mark pages, and quickly return to where you left off across all devices.</p>
+                    <h3 class="font-bold text-lg mb-2">2. Select Dates</h3>
+                    <p class="text-gray-600">Choose your travel dates</p>
                 </div>
-                <div class="text-center p-6" data-aos="fade-up" data-aos-delay="400">
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-feather="trending-up" class="text-yellow-600 w-8 h-8"></i>
+                        <i data-feather="user" class="text-yellow-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Progress Tracking</h3>
-                    <p class="text-gray-600">Visualize your reading habits, set goals, and celebrate milestones with detailed reading statistics.</p>
+                    <h3 class="font-bold text-lg mb-2">3. Customize</h3>
+                    <p class="text-gray-600">Add travelers & preferences</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="credit-card" class="text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">4. Book & Pay</h3>
+                    <p class="text-gray-600">Secure payment processing</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Popular Books -->
-    <section class="py-16 px-4 bg-gray-100">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex justify-between items-center mb-10">
-                <h2 class="text-3xl font-bold text-gray-800">Popular This Week</h2>
-                <a href="library.html" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
-                    View All <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+            
+            <div class="text-center mt-12">
+                <a href="booking.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center">
+                    Start Booking Now
+                    <i data-feather="arrow-right" class="ml-2"></i>
                 </a>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="book-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in">
-                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Book Cover" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h4 class="font-bold text-lg mb-1">The Silent Echo</h4>
-                        <p class="text-gray-500 text-sm mb-3">by Maria Chen</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-yellow-500 flex">
+        </div>
+    </section>
+
+    <!-- Image Gallery Preview -->
+    <section class="py-16 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Travel Gallery</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Get inspired by stunning travel photos from around the world</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="overflow-hidden rounded-lg" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Beach" class="w-full h-48 object-cover hover:scale-110 transition duration-500">
+            </div>
+            <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mountain" class="w-full h-48 object-cover hover:scale-110 transition duration-500">
+            </div>
+            <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="City" class="w-full h-48 object-cover hover:scale-110 transition duration-500">
+            </div>
+            <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lake" class="w-full h-48 object-cover hover:scale-110 transition duration-500">
+            </div>
+        </div>
+        
+        <div class="text-center mt-10">
+            <a href="gallery.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                View Full Gallery
+                <i data-feather="image" class="ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- User Reviews -->
+    <section class="bg-gray-900 text-white py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Traveler Reviews</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">See what our customers say about their experiences</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="review-card p-6 rounded-xl" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center mr-4">
+                            <span class="font-bold text-xl">JS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">John Smith</h4>
+                            <div class="flex text-yellow-400">
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </span>
-                            <a href="bookdetails.html" class="text-blue-600 text-sm font-medium hover:text-blue-800">Details</a>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            </div>
                         </div>
                     </div>
+                    <p class="text-gray-300">"The Bali tour was absolutely incredible! Everything was perfectly organized. Can't wait to book my next adventure!"</p>
                 </div>
-                <div class="book-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Book Cover" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h4 class="font-bold text-lg mb-1">Beyond the Horizon</h4>
-                        <p class="text-gray-500 text-sm mb-3">by James Rivera</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-yellow-500 flex">
+                
+                <div class="review-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center mr-4">
+                            <span class="font-bold text-xl">MJ</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Maria Johnson</h4>
+                            <div class="flex text-yellow-400">
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                            </span>
-                            <a href="bookdetails.html" class="text-blue-600 text-sm font-medium hover:text-blue-800">Details</a>
+                            </div>
                         </div>
                     </div>
+                    <p class="text-gray-300">"Swiss Alps tour exceeded all expectations. The guides were knowledgeable and the scenery was breathtaking!"</p>
                 </div>
-                <div class="book-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Book Cover" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h4 class="font-bold text-lg mb-1">Code of Ethics</h4>
-                        <p class="text-gray-500 text-sm mb-3">by Alex Morgan</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-yellow-500 flex">
+                
+                <div class="review-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center mr-4">
+                            <span class="font-bold text-xl">RD</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Robert Davis</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4 fill-current"></i>
                                 <i data-feather="star" class="w-4 h-4"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </span>
-                            <a href="bookdetails.html" class="text-blue-600 text-sm font-medium hover:text-blue-800">Details</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="book-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Book Cover" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h4 class="font-bold text-lg mb-1">Whispers of Time</h4>
-                        <p class="text-gray-500 text-sm mb-3">by Sofia Lee</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-yellow-500 flex">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </span>
-                            <a href="bookdetails.html" class="text-blue-600 text-sm font-medium hover:text-blue-800">Details</a>
-                        </div>
-                    </div>
+                    <p class="text-gray-300">"Kyoto cultural tour was amazing. The payment process was smooth and secure. Highly recommended!"</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reading Experience Preview -->
-    <section class="py-16 px-4 bg-white">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-10 lg:mb-0" data-aos="fade-right">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Immersive Reading Experience</h2>
-                    <p class="text-gray-600 mb-6">
-                        Enjoy a distraction‑free reading interface with customizable fonts, themes, and spacing. Our reader adapts to your preferences for maximum comfort.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center">
-                            <i data-feather="check-circle" class="text-green-500 mr-3"></i>
-                            <span>Adjustable text size and font family</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i data-feather="check-circle" class="text-green-500 mr-3"></i>
-                            <span>Day/Night reading modes</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i data-feather="check-circle" class="text-green-500 mr-3"></i>
-                            <span>Auto‑save reading position across devices</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i data-feather="check-circle" class="text-green-500 mr-3"></i>
-                            <span>Quick access to dictionary and notes</span>
-                        </li>
-                    </ul>
-                    <a href="reading.html" class="inline-block mt-8 bg-gray-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-300">
-                        Try the Reader
-                    </a>
-                </div>
-                <div class="lg:w-1/2 lg:pl-12" data-aos="fade-left">
-                    <div class="bg-gray-800 rounded-2xl shadow-2xl p-2">
-                        <div class="bg-white rounded-xl p-6">
-                            <div class="flex justify-between items-center mb-6">
-                                <div class="flex space-x-2">
-                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                                </div>
-                                <div class="text-gray-500 text-sm">Chapter 5 • 72%</div>
-                            </div>
-                            <div class="text-gray-800">
-                                <h4 class="font-bold text-xl mb-4">The Silent Echo</h4>
-                                <p class="mb-4 leading-relaxed">
-                                    The forest was silent, but not empty. Every tree held a memory, every leaf a whispered secret. Elena walked slowly, her boots crunching on the frost‑covered path. She could feel the weight of centuries in the air.
-                                </p>
-                                <p class="leading-relaxed">
-                                    She paused, listening. Somewhere in the distance, a bird called—a single, clear note that seemed to hang in the cold morning. It was then she realized the silence wasn't absence. It was presence, waiting.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-center mt-8 pt-6 border-t">
-                                <button class="text-gray-500 hover:text-gray-800">
-                                    <i data-feather="bookmark"></i>
-                                </button>
-                                <div class="flex space-x-4">
-                                    <button class="text-gray-500 hover:text-gray-800">
-                                        <i data-feather="chevron-left"></i>
-                                    </button>
-                                    <button class="text-gray-500 hover:text-gray-800">
-                                        <i data-feather="chevron-right"></i>
-                                    </button>
-                                </div>
-                                <button class="text-gray-500 hover:text-gray-800">
-                                    <i data-feather="settings"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Payment Processing Security -->
+    <section class="py-16 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Secure Payment Processing</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Your security is our priority. We use industry-leading encryption for all transactions.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center" data-aos="fade-up">
+                <i data-feather="shield" class="text-green-600 w-12 h-12 mx-auto mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">SSL Encryption</h3>
+                <p class="text-gray-600">Bank-level security</p>
             </div>
+            
+            <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                <i data-feather="credit-card" class="text-blue-600 w-12 h-12 mx-auto mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">Multiple Methods</h3>
+                <p class="text-gray-600">Credit cards, PayPal, more</p>
+            </div>
+            
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                <i data-feather="lock" class="text-purple-600 w-12 h-12 mx-auto mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">Secure Checkout</h3>
+                <p class="text-gray-600">Protected transactions</p>
+            </div>
+            
+            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                <i data-feather="refresh-cw" class="text-orange-600 w-12 h-12 mx-auto mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">Easy Refunds</h3>
+                <p class="text-gray-600">30-day refund policy</p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="booking.html" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center">
+                <i data-feather="lock" class="mr-2"></i>
+                Start Secure Booking
+            </a>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 px-4 gradient-bg text-white">
-        <div class="container mx-auto max-w-4xl text-center" data-aos="zoom-in">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Start Your Reading Journey Today</h2>
-            <p class="text-xl mb-10 opacity-90">
-                Join thousands of readers who are already enjoying unlimited access to books, personalized recommendations, and powerful reading tools.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="signup.html" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 shadow-lg">
+    <!-- Call to Action -->
+    <section class="bg-blue-600 text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready for Your Next Adventure?</h2>
+            <p class="text-xl mb-8">Join thousands of satisfied travelers who have explored the world with us.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="signup.html" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition duration-300">
                     Create Free Account
                 </a>
-                <a href="login.html" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-gray-900 transition duration-300">
-                    Existing User? Login
+                <a href="destinations.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 font-bold py-3 px-8 rounded-lg transition duration-300">
+                    Browse Tours
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-10 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-2">
-                        <i data-feather="book-open" class="text-blue-400"></i>
-                        <span class="text-xl font-bold text-white">BookApp</span>
+    <footer class="bg-gray-800 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="compass" class="text-blue-400"></i>
+                        <span class="text-xl font-bold">ExploreWorld</span>
                     </div>
-                    <p class="mt-2">Your digital reading companion since 2023.</p>
+                    <p class="text-gray-400">Making travel dreams come true since 2010.</p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-white">
-                        <i data-feather="twitter"></i>
-                    </a>
-                    <a href="#" class="hover:text-white">
-                        <i data-feather="facebook"></i>
-                    </a>
-                    <a href="#" class="hover:text-white">
-                        <i data-feather="instagram"></i>
-                    </a>
-                    <a href="#" class="hover:text-white">
-                        <i data-feather="github"></i>
-                    </a>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="destinations.html" class="text-gray-400 hover:text-white">Destinations</a></li>
+                        <li><a href="booking.html" class="text-gray-400 hover:text-white">Booking</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Contact Info</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i data-feather="mail" class="w-4 h-4 mr-2"></i>
+                            info@exploreworld.com
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="phone" class="w-4 h-4 mr-2"></i>
+                            +1 (555) 123-4567
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="map-pin" class="w-4 h-4 mr-2"></i>
+                            123 Travel Street, Adventure City
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
-                <p>&copy; 2023 BookApp. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ExploreWorld Tourism. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
-        feather.replace();
+        // Initialize AOS animations
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
     </script>
 </body>
 </html>

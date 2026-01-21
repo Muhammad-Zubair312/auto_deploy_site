@@ -3,288 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - SportHub</title>
+    <title>Contact Us | TravelEase Tourism</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-        .contact-card:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s ease;
+        .contact-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
         }
-        .form-input:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2 mb-2 md:mb-0">
-            <i data-feather="activity" class="text-blue-400"></i>
-            <span class="font-bold text-xl">SportHub</span>
-        </div>
-        <div class="flex flex-wrap space-x-1 md:space-x-4">
+        <div class="text-xl font-bold text-blue-400 mb-4 md:mb-0">TravelEase</div>
+        <div class="flex flex-wrap space-x-2 md:space-x-4">
             <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
-            <a href='events-schedules.html' class='px-3 py-2 hover:text-blue-400'>Events/Schedules</a>
-            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
-            <a href='players.html' class='px-3 py-2 hover:text-blue-400'>Players</a>
-            <a href='standings-results.html' class='px-3 py-2 hover:text-blue-400'>Standings/Results</a>
-            <a href='gallery-media.html' class='px-3 py-2 hover:text-blue-400'>Gallery/Media</a>
+            <a href='destinations.html' class='px-3 py-2 hover:text-blue-400'>Destinations</a>
+            <a href='tour-details.html' class='px-3 py-2 hover:text-blue-400'>Tour Details</a>
+            <a href='booking.html' class='px-3 py-2 hover:text-blue-400'>Booking</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 text-blue-400 font-semibold'>Contact</a>
             <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
-            <a href='contact.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Contact</a>
+            <a href='gallery.html' class='px-3 py-2 hover:text-blue-400'>Gallery</a>
             <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
             <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <header class="bg-gradient-to-r from-blue-900 to-gray-900 text-white py-16 px-4">
-        <div class="container mx-auto text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact SportHub</h1>
-            <p class="text-xl text-blue-200 max-w-3xl mx-auto">Get in touch with our team for inquiries, feedback, or support regarding live scores, schedules, statistics, and all your sports needs.</p>
-        </div>
-    </header>
+    <!-- Hero Section -->
+    <section class="contact-bg text-white py-20 px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6" data-aos="fade-up">Get In Touch</h1>
+        <p class="text-xl max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+            Have questions about our tours, destinations, or bookings? Our team is here to help you plan your perfect journey.
+        </p>
+    </section>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-12">
+    <!-- Contact Content -->
+    <div class="container mx-auto px-4 py-16">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Contact Form -->
-            <section data-aos="fade-right">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
-                <p class="text-gray-600 mb-8">Have questions about live scores, player stats, or feature suggestions? Fill out the form below and we'll respond within 24 hours.</p>
-                
+            <div data-aos="fade-right">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">Send Us a Message</h2>
                 <form id="contactForm" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="name" class="block text-gray-700 font-medium mb-2">Full Name *</label>
-                            <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500">
+                            <label class="block text-gray-700 mb-2" for="name">Full Name *</label>
+                            <input type="text" id="name" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address *</label>
-                            <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500">
+                            <label class="block text-gray-700 mb-2" for="email">Email Address *</label>
+                            <input type="email" id="email" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         </div>
                     </div>
-                    
                     <div>
-                        <label for="subject" class="block text-gray-700 font-medium mb-2">Subject *</label>
-                        <select id="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500">
-                            <option value="" disabled selected>Select a topic</option>
-                            <option value="live-scores">Live Scores & Updates</option>
-                            <option value="schedules">Match Schedules</option>
-                            <option value="statistics">Player/Team Statistics</option>
-                            <option value="news">News & Articles</option>
-                            <option value="gallery">Photo/Video Gallery</option>
-                            <option value="account">User Account Issues</option>
-                            <option value="feedback">General Feedback</option>
+                        <label class="block text-gray-700 mb-2" for="subject">Subject *</label>
+                        <select id="subject" required 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Select a topic</option>
+                            <option value="booking">Tour Booking Inquiry</option>
+                            <option value="destination">Destination Information</option>
+                            <option value="payment">Payment Issue</option>
+                            <option value="custom">Custom Tour Request</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
-                    
                     <div>
-                        <label for="message" class="block text-gray-700 font-medium mb-2">Your Message *</label>
-                        <textarea id="message" rows="6" required class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500"></textarea>
+                        <label class="block text-gray-700 mb-2" for="message">Your Message *</label>
+                        <textarea id="message" rows="6" required 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
                     </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" class="mr-3">
-                        <label for="newsletter" class="text-gray-700">Subscribe to our newsletter for latest sports news and updates</label>
-                    </div>
-                    
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center">
-                        <i data-feather="send" class="mr-2"></i>
+                    <button type="submit" 
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
                         Send Message
                     </button>
                 </form>
-            </section>
-            
-            <!-- Contact Information & Details -->
-            <section data-aos="fade-left">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Contact Information</h2>
-                <p class="text-gray-600 mb-8">Reach out to our dedicated teams for specific inquiries about different sections of SportHub.</p>
+            </div>
+
+            <!-- Contact Information & Map -->
+            <div data-aos="fade-left">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">Contact Information</h2>
                 
-                <div class="space-y-6 mb-10">
-                    <div class="bg-white p-6 rounded-xl shadow-md contact-card">
-                        <div class="flex items-start">
-                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                                <i data-feather="mail" class="text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-gray-800 mb-1">General Inquiries</h3>
-                                <p class="text-gray-600 mb-2">For general questions about SportHub features and services.</p>
-                                <a href="mailto:info@sporthub.com" class="text-blue-600 font-medium">info@sporthub.com</a>
-                            </div>
+                <div class="space-y-8 mb-12">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-100 p-3 rounded-full">
+                            <i data-feather="map-pin" class="text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 text-lg">Our Office</h3>
+                            <p class="text-gray-600">123 Travel Street, Adventure City<br>Tourism District 45678</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white p-6 rounded-xl shadow-md contact-card">
-                        <div class="flex items-start">
-                            <div class="bg-green-100 p-3 rounded-lg mr-4">
-                                <i data-feather="bar-chart-2" class="text-green-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-gray-800 mb-1">Statistics & Data</h3>
-                                <p class="text-gray-600 mb-2">For questions about player stats, team rosters, and live scores.</p>
-                                <a href="mailto:stats@sporthub.com" class="text-blue-600 font-medium">stats@sporthub.com</a>
-                            </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-100 p-3 rounded-full">
+                            <i data-feather="phone" class="text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 text-lg">Phone Numbers</h3>
+                            <p class="text-gray-600">Main: +1 (555) 123-4567<br>Support: +1 (555) 987-6543</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white p-6 rounded-xl shadow-md contact-card">
-                        <div class="flex items-start">
-                            <div class="bg-purple-100 p-3 rounded-lg mr-4">
-                                <i data-feather="users" class="text-purple-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-gray-800 mb-1">User Support</h3>
-                                <p class="text-gray-600 mb-2">For help with user profiles, login issues, and comment system.</p>
-                                <a href="mailto:support@sporthub.com" class="text-blue-600 font-medium">support@sporthub.com</a>
-                            </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-100 p-3 rounded-full">
+                            <i data-feather="mail" class="text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 text-lg">Email Addresses</h3>
+                            <p class="text-gray-600">General: info@travelease.com<br>Bookings: bookings@travelease.com</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white p-6 rounded-xl shadow-md contact-card">
-                        <div class="flex items-start">
-                            <div class="bg-red-100 p-3 rounded-lg mr-4">
-                                <i data-feather="image" class="text-red-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-gray-800 mb-1">Media & Gallery</h3>
-                                <p class="text-gray-600 mb-2">For photo/video submissions and gallery-related questions.</p>
-                                <a href="mailto:media@sporthub.com" class="text-blue-600 font-medium">media@sporthub.com</a>
-                            </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-100 p-3 rounded-full">
+                            <i data-feather="clock" class="text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 text-lg">Business Hours</h3>
+                            <p class="text-gray-600">Monday - Friday: 8:00 AM - 8:00 PM<br>Saturday - Sunday: 9:00 AM - 6:00 PM</p>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Office Location -->
-                <div class="bg-gray-800 text-white p-6 rounded-xl">
-                    <h3 class="font-bold text-xl mb-4 flex items-center">
-                        <i data-feather="map-pin" class="mr-2"></i>
-                        Our Headquarters
-                    </h3>
-                    <p class="mb-4">123 Sports Avenue, Stadium District</p>
-                    <p class="mb-4">Cityville, SP 12345</p>
-                    <p class="mb-4">
-                        <i data-feather="phone" class="inline mr-2"></i>
-                        +1 (555) 123-4567
-                    </p>
-                    <p class="text-blue-300">Open Monday-Friday, 9AM-6PM EST</p>
-                </div>
-            </section>
-        </div>
-        
-        <!-- FAQ Section -->
-        <section class="mt-20" data-aos="fade-up">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Frequently Asked Questions</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="font-bold text-xl text-gray-800 mb-3 flex items-center">
-                        <i data-feather="help-circle" class="text-blue-500 mr-2"></i>
-                        How often are live scores updated?
-                    </h3>
-                    <p class="text-gray-600">Live scores are updated in real-time during matches. We have dedicated data feeds from official sources to ensure accuracy and timeliness.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="font-bold text-xl text-gray-800 mb-3 flex items-center">
-                        <i data-feather="help-circle" class="text-blue-500 mr-2"></i>
-                        Can I submit my own sports photos/videos?
-                    </h3>
-                    <p class="text-gray-600">Yes! We welcome user submissions to our gallery. Please email media@sporthub.com with your content for review and potential publication.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="font-bold text-xl text-gray-800 mb-3 flex items-center">
-                        <i data-feather="help-circle" class="text-blue-500 mr-2"></i>
-                        How do player statistics get calculated?
-                    </h3>
-                    <p class="text-gray-600">Our statistics are compiled from official league data, verified sources, and our own analytics team to ensure comprehensive and accurate player metrics.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="font-bold text-xl text-gray-800 mb-3 flex items-center">
-                        <i data-feather="help-circle" class="text-blue-500 mr-2"></i>
-                        Is there a mobile app available?
-                    </h3>
-                    <p class="text-gray-600">Our mobile app is currently in development and will be released later this year. The website is fully responsive and works great on mobile devices.</p>
+
+                <!-- Map Placeholder -->
+                <div class="map-container">
+                    <div class="bg-gray-200 h-64 flex items-center justify-center">
+                        <div class="text-center">
+                            <i data-feather="map" class="w-12 h-12 text-gray-400 mx-auto mb-4"></i>
+                            <p class="text-gray-600">Interactive Map Location</p>
+                            <p class="text-sm text-gray-500">(Map integration available)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="mt-24" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Frequently Asked Questions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-semibold text-gray-800 text-lg mb-3">How do I book a tour?</h3>
+                    <p class="text-gray-600">Browse our destinations, select your preferred tour, and proceed to booking. Login or signup is required to complete your reservation.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-semibold text-gray-800 text-lg mb-3">What payment methods do you accept?</h3>
+                    <p class="text-gray-600">We accept all major credit cards, PayPal, and bank transfers. All payments are secured with SSL encryption.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-semibold text-gray-800 text-lg mb-3">Can I customize my tour package?</h3>
+                    <p class="text-gray-600">Yes! Contact us with your requirements, and our travel experts will create a customized itinerary just for you.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-semibold text-gray-800 text-lg mb-3">What is your cancellation policy?</h3>
+                    <p class="text-gray-600">Cancellations made 30+ days before departure receive full refund. Please check individual tour details for specific policies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 mt-16">
+    <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-feather="activity" class="text-blue-400"></i>
-                        <span class="font-bold text-xl">SportHub</span>
-                    </div>
-                    <p class="text-gray-400">Your ultimate destination for live sports scores, statistics, news, and community.</p>
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4">TravelEase</h3>
+                    <p class="text-gray-400">Creating unforgettable travel experiences since 2010.</p>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="news.html" class="text-gray-400 hover:text-blue-400">Latest News</a></li>
-                        <li><a href="events-schedules.html" class="text-gray-400 hover:text-blue-400">Match Schedules</a></li>
-                        <li><a href="standings-results.html" class="text-gray-400 hover:text-blue-400">League Standings</a></li>
-                        <li><a href="gallery-media.html" class="text-gray-400 hover:text-blue-400">Photo Gallery</a></li>
+                        <li><a href="destinations.html" class="text-gray-400 hover:text-white">Destinations</a></li>
+                        <li><a href="tour-details.html" class="text-gray-400 hover:text-white">Popular Tours</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Photo Gallery</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-4">Features</h4>
+                    <h4 class="font-semibold text-lg mb-4">Support</h4>
                     <ul class="space-y-2">
-                        <li class="text-gray-400">Live Scores</li>
-                        <li class="text-gray-400">Player Statistics</li>
-                        <li class="text-gray-400">Team Rosters</li>
-                        <li class="text-gray-400">Comment System</li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-4">Connect With Us</h4>
-                    <div class="flex space-x-4 mb-4">
-                        <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-blue-600"><i data-feather="facebook"></i></a>
-                        <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-blue-400"><i data-feather="twitter"></i></a>
-                        <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-red-500"><i data-feather="youtube"></i></a>
-                        <a href="#" class="bg-gray-800 p-2 rounded-full hover:bg-blue-700"><i data-feather="linkedin"></i></a>
+                    <h4 class="font-semibold text-lg mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="youtube"></i></a>
                     </div>
-                    <p class="text-gray-400">Subscribe to our newsletter for updates</p>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
-                <p>&copy; 2023 SportHub. All rights reserved. | <a href="privacy.html" class="hover:text-blue-400">Privacy Policy</a> | <a href="terms.html" class="hover:text-blue-400">Terms of Service</a></p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 TravelEase Tourism. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS animations
+        // Initialize AOS
         AOS.init({
             duration: 800,
             once: true
         });
-        
+
         // Initialize Feather Icons
         feather.replace();
-        
-        // Form submission handler
+
+        // Contact Form Submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // In a real application, you would send this data to a server
-            // For this example, we'll just show an alert
-            alert(`Thank you ${name}! Your message has been received. We'll respond to ${email} within 24 hours.`);
-            
-            // Reset form
-            document.getElementById('contactForm').reset();
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            this.reset();
         });
     </script>
 </body>
