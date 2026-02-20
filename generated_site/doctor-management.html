@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Management | Hospital System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+        <a href='doctor-management.html' class='px-3 py-2 hover:text-blue-400'>Doctor Management</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='pharmacy-inventory.html' class='px-3 py-2 hover:text-blue-400'>Pharmacy Inventory</a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="menuToggle" class="md:hidden fixed top-20 left-4 z-50 bg-blue-600 text-white p-2 rounded-lg shadow-lg">
+        <i data-feather="menu"></i>
+    </button>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar w-64 bg-white shadow-lg h-screen fixed md:relative z-40">
+            <div class="p-6 border-b">
+                <h2 class="text-xl font-bold text-gray-800">Doctor Management</h2>
+                <p class="text-gray-600 text-sm mt-1">Manage medical staff and schedules</p>
+            </div>
+            <div class="p-4">
+                <ul class="space-y-2">
+                    <li><a href="#doctors-list" class="flex items-center p-3 text-gray-700 hover:bg-blue-50 rounded-lg"><i data-feather="users" class="mr-3"></i> All Doctors</a></li>
+                    <li><a href="#add-doctor" class="flex items-center p-3 text-gray-700 hover:bg-blue-50 rounded-lg"><i data-feather="user-plus" class="mr-3"></i> Add New Doctor</a></li>
+                    <li><a href="#schedules" class="flex items-center p-3 text-gray-700 hover:bg-blue-50 rounded-lg"><i data-feather="calendar" class="mr-3"></i> Schedules</a></li>
+                    <li><a href="#specialties" class="flex items-center p-3 text-gray-700 hover:bg-blue-50 rounded-lg"><i data-feather="briefcase" class="mr-3"></i> Specialties</a></li>
+                    <li><a href="#reports" class="flex items-center p-3 text-gray-700 hover:bg-blue-50 rounded-lg"><i data-feather="bar-chart-2" class="mr-3"></i> Reports</a></li>
+                </ul>
+            </div>
+            <div class="absolute bottom-0 w-full p-4 border-t">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i data-feather="user" class="text-blue-600"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="font-medium">Admin User</p>
+                        <p class="text-xs text-gray-500">Hospital Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6 md:p-8">
+            <!-- Header -->
+            <div class="mb-8" data-aos="fade-down">
+                <h1 class="text-3xl font-bold text-gray-800">Doctor Management</h1>
+                <p class="text-gray-600 mt-2">Manage physician profiles, schedules, and departmental assignments</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <i data-feather="users" class="text-blue-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-gray-500">Total Doctors</p>
+                            <p class="text-2xl font-bold">47</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-green-100 rounded-lg">
+                            <i data-feather="clock" class="text-green-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-gray-500">On Duty Today</p>
+                            <p class="text-2xl font-bold">22</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-purple-100 rounded-lg">
+                            <i data-feather="briefcase" class="text-purple-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-gray-500">Specialties</p>
+                            <p class="text-2xl font-bold">12</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-yellow-100 rounded-lg">
+                            <i data-feather="calendar" class="text-yellow-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-gray-500">Appointments Today</p>
+                            <p class="text-2xl font-bold">156</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctors List Section -->
+            <section id="doctors-list" class="mb-12" data-aos="fade-up">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">All Doctors</h2>
+                    <div class="flex space-x-4">
+                        <input type="text" placeholder="Search doctors..." class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
+                            <i data-feather="filter" class="mr-2"></i> Filter
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-3 px-4 text-left">Doctor ID</th>
+                                    <th class="py-3 px-4 text-left">Name</th>
+                                    <th class="py-3 px-4 text-left">Specialty</th>
+                                    <th class="py-3 px-4 text-left">Department</th>
+                                    <th class="py-3 px-4 text-left">Status</th>
+                                    <th class="py-3 px-4 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4">DOC-001</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                <i data-feather="user" class="text-blue-600 text-sm"></i>
+                                            </div>
+                                            Dr. Sarah Johnson
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">Cardiology</td>
+                                    <td class="py-3 px-4">Heart Center</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">On Duty</span>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                                            <i data-feather="edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4">DOC-002</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                <i data-feather="user" class="text-blue-600 text-sm"></i>
+                                            </div>
+                                            Dr. Michael Chen
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">Neurology</td>
+                                    <td class="py-3 px-4">Neuro Center</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">On Duty</span>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                                            <i data-feather="edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4">DOC-003</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                <i data-feather="user" class="text-blue-600 text-sm"></i>
+                                            </div>
+                                            Dr. Robert Williams
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">Orthopedics</td>
+                                    <td class="py-3 px-4">Bone & Joint</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Off Duty</span>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                                            <i data-feather="edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4">DOC-004</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                <i data-feather="user" class="text-blue-600 text-sm"></i>
+                                            </div>
+                                            Dr. Maria Garcia
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">Pediatrics</td>
+                                    <td class="py-3 px-4">Children's Wing</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">On Duty</span>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                                            <i data-feather="edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Doctor Form -->
+            <section id="add-doctor" class="mb-12" data-aos="fade-up">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Add New Doctor</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <form id="addDoctorForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Full Name</label>
+                                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Dr. First Last">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Specialty</label>
+                                <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option>Select Specialty</option>
+                                    <option>Cardiology</option>
+                                    <option>Neurology</option>
+                                    <option>Orthopedics</option>
+                                    <option>Pediatrics</option>
+                                    <option>Dermatology</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Department</label>
+                                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Heart Center">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">License Number</label>
+                                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="MED-XXXXXX">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Email Address</label>
+                                <input type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="doctor@hospital.com">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="(555) 123-4567">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 mb-2">Qualifications</label>
+                                <textarea class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Medical degrees, certifications, etc."></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex justify-end">
+                            <button type="button" class="px-6 py-2 border rounded-lg mr-4 hover:bg-gray-50">Cancel</button>
+                            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 flex items-center">
+                                <i data-feather="user-plus" class="mr-2"></i> Add Doctor
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Schedules Section -->
+            <section id="schedules" class="mb-12" data-aos="fade-up">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Doctor Schedules</h2>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b">
+                        <div class="flex flex-wrap justify-between items-center">
+                            <div class="flex space-x-4 mb-4 md:mb-0">
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg">Today</button>
+                                <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">Week</button>
+                                <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">Month</button>
+                            </div>
+                            <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center">
+                                <i data-feather="plus" class="mr-2"></i> New Schedule
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Doctor</th>
+                                        <th class="py-3 px-4 text-left">Monday</th>
+                                        <th class="py-3 px-4 text-left">Tuesday</th>
+                                        <th class="py-3 px-4 text-left">Wednesday</th>
+                                        <th class="py-3 px-4 text-left">Thursday</th>
+                                        <th class="py-3 px-4 text-left">Friday</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="py-3 px-4 font-medium">Dr. Sarah Johnson</td>
+                                        <td class="py-3 px-4">9:00 AM - 5:00 PM</td>
+                                        <td class="py-3 px-4">9:00 AM - 5:00 PM</td>
+                                        <td class="py-3 px-4">9:00 AM - 5:00 PM</td>
+                                        <td class="py-3 px-4">9:00 AM - 5:00 PM</td>
+                                        <td class="py-3 px-4">9:00 AM - 1:00 PM</td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="py-3 px-4 font-medium">Dr. Michael Chen</td>
+                                        <td class="py-3 px-4">10:00 AM - 6:00 PM</td>
+                                        <td class="py-3 px-4">10:00 AM - 6:00 PM</td>
+                                        <td class="py-3 px-4">Surgery Day</td>
+                                        <td class="py-3 px-4">10:00 AM - 6:00 PM</td>
+                                        <td class="py-3 px-4">10:00 AM - 6:00 PM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Specialties Section -->
+            <section id="specialties" class="mb-12" data-aos="fade-up">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Medical Specialties</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 bg-blue-100 rounded-lg">
+                                <i data-feather="heart" class="text-blue-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-lg">Cardiology</h3>
+                                <p class="text-gray-600">8 Doctors</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">Heart and cardiovascular system specialists</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 bg-green-100 rounded-lg">
+                                <i data-feather="brain" class="text-green-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-lg">Neurology</h3>
+                                <p class="text-gray-600">6 Doctors</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">Nervous system and brain specialists</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 bg-purple-100 rounded-lg">
+                                <i data-feather="bone" class="text-purple-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-lg">Orthopedics</h3>
+                                <p class="text-gray-600">7 Doctors</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">Bone, joint, and muscle specialists</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Form submission
+        document.getElementById('addDoctorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Doctor added successfully!');
+            this.reset();
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.sidebar');
+            const menuToggle = document.getElementById('menuToggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Management | Hospital Management System</title>
+    <title>Staff Management - Hospital Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <style>
         .staff-card:hover {
             transform: translateY(-5px);
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-        .sidebar {
-            height: calc(100vh - 80px);
+        .status-active {
+            background-color: #d1fae5;
+            color: #065f46;
         }
-        @media (max-width: 768px) {
-            .sidebar {
-                height: auto;
-            }
+        .status-inactive {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .status-onleave {
+            background-color: #fef3c7;
+            color: #92400e;
         }
     </style>
 </head>
@@ -33,419 +35,310 @@
         <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
         <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
         <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
         <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
-        <a href='appointment-scheduling.html' class='px-3 py-2 hover:text-blue-400'>Appointment Scheduling</a>
-        <a href='doctor-directory.html' class='px-3 py-2 hover:text-blue-400'>Doctor Directory</a>
-        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
-        <a href='medical-records.html' class='px-3 py-2 hover:text-blue-400'>Medical Records</a>
         <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
-        <a href='inventory-management.html' class='px-3 py-2 hover:text-blue-400'>Inventory Management</a>
+        <a href='doctor-management.html' class='px-3 py-2 hover:text-blue-400'>Doctor Management</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='pharmacy-inventory.html' class='px-3 py-2 hover:text-blue-400'>Pharmacy Inventory</a>
     </nav>
 
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-8">
-        <div class="flex flex-col lg:flex-row gap-8">
-            <!-- Sidebar Filters -->
-            <div class="lg:w-1/4">
-                <div class="bg-white rounded-xl shadow-md p-6 sidebar">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                        <i data-feather="filter" class="mr-3"></i> Filters
-                    </h2>
-                    
-                    <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Department</label>
-                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="">All Departments</option>
-                            <option value="nursing">Nursing</option>
-                            <option value="administration">Administration</option>
-                            <option value="laboratory">Laboratory</option>
-                            <option value="pharmacy">Pharmacy</option>
-                            <option value="housekeeping">Housekeeping</option>
-                            <option value="security">Security</option>
-                        </select>
+        <!-- Header -->
+        <div class="mb-8" data-aos="fade-down">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Staff Management</h1>
+            <p class="text-gray-600">Manage hospital staff, roles, schedules, and employment details</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8" data-aos="fade-up">
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-blue-100 rounded-lg">
+                        <i data-feather="users" class="text-blue-600"></i>
                     </div>
-                    
-                    <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Role</label>
-                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="">All Roles</option>
-                            <option value="nurse">Nurse</option>
-                            <option value="administrator">Administrator</option>
-                            <option value="technician">Technician</option>
-                            <option value="pharmacist">Pharmacist</option>
-                            <option value="support">Support Staff</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Status</label>
-                        <div class="space-y-2">
-                            <label class="flex items-center">
-                                <input type="checkbox" class="rounded text-blue-600" checked>
-                                <span class="ml-2 text-gray-700">Active</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" class="rounded text-blue-600">
-                                <span class="ml-2 text-gray-700">On Leave</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="checkbox" class="rounded text-blue-600">
-                                <span class="ml-2 text-gray-700">Terminated</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center">
-                        <i data-feather="search" class="mr-2"></i> Apply Filters
-                    </button>
-                    
-                    <div class="mt-8 pt-6 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
-                        <button class="w-full mb-3 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center">
-                            <i data-feather="user-plus" class="mr-2"></i> Add New Staff
-                        </button>
-                        <button class="w-full mb-3 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center">
-                            <i data-feather="file-text" class="mr-2"></i> Generate Report
-                        </button>
-                        <button class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center">
-                            <i data-feather="download" class="mr-2"></i> Export Data
-                        </button>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">142</h3>
+                        <p class="text-gray-600">Total Staff</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- Main Content Area -->
-            <div class="lg:w-3/4">
-                <!-- Header -->
-                <div class="mb-8">
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Staff Management</h1>
-                    <p class="text-gray-600">Manage hospital staff, roles, schedules, and performance metrics</p>
-                </div>
-                
-                <!-- Stats Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white rounded-xl shadow-md p-6 staff-card">
-                        <div class="flex items-center">
-                            <div class="p-3 bg-blue-100 rounded-lg">
-                                <i data-feather="users" class="text-blue-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-2xl font-bold text-gray-800">142</h3>
-                                <p class="text-gray-600">Total Staff</p>
-                            </div>
-                        </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-green-100 rounded-lg">
+                        <i data-feather="user-check" class="text-green-600"></i>
                     </div>
-                    
-                    <div class="bg-white rounded-xl shadow-md p-6 staff-card">
-                        <div class="flex items-center">
-                            <div class="p-3 bg-green-100 rounded-lg">
-                                <i data-feather="user-check" class="text-green-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-2xl font-bold text-gray-800">128</h3>
-                                <p class="text-gray-600">Active Today</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-md p-6 staff-card">
-                        <div class="flex items-center">
-                            <div class="p-3 bg-yellow-100 rounded-lg">
-                                <i data-feather="calendar" class="text-yellow-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-2xl font-bold text-gray-800">14</h3>
-                                <p class="text-gray-600">On Leave</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-md p-6 staff-card">
-                        <div class="flex items-center">
-                            <div class="p-3 bg-red-100 rounded-lg">
-                                <i data-feather="alert-circle" class="text-red-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-2xl font-bold text-gray-800">3</h3>
-                                <p class="text-gray-600">Vacant Positions</p>
-                            </div>
-                        </div>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">128</h3>
+                        <p class="text-gray-600">Active Today</p>
                     </div>
                 </div>
-                
-                <!-- Search and Actions -->
-                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between">
-                        <div class="mb-4 md:mb-0 md:w-1/2">
-                            <div class="relative">
-                                <input type="text" placeholder="Search staff by name, ID, or department..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <i data-feather="search" class="absolute left-3 top-3.5 text-gray-400"></i>
-                            </div>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center">
-                                <i data-feather="user-plus" class="mr-2"></i> Add Staff
-                            </button>
-                            <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center">
-                                <i data-feather="filter" class="mr-2"></i> Filter
-                            </button>
-                        </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-yellow-100 rounded-lg">
+                        <i data-feather="calendar" class="text-yellow-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">8</h3>
+                        <p class="text-gray-600">On Leave</p>
                     </div>
                 </div>
-                
-                <!-- Staff Table -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-bold text-gray-800">Staff Directory</h2>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-purple-100 rounded-lg">
+                        <i data-feather="briefcase" class="text-purple-600"></i>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Staff Member</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center">
-                                                <span class="text-blue-800 font-bold">JD</span>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Dr. Jane Doe</div>
-                                                <div class="text-sm text-gray-500">jane.doe@hospital.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">EMP-00123</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Nursing</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900">Head Nurse</td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm font-medium">
-                                        <button class="text-blue-600 hover:text-blue-900 mr-3"><i data-feather="eye"></i></button>
-                                        <button class="text-green-600 hover:text-green-900 mr-3"><i data-feather="edit"></i></button>
-                                        <button class="text-red-600 hover:text-red-900"><i data-feather="trash-2"></i></button>
-                                    </td>
-                                </tr>
-                                
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0 bg-green-100 rounded-full flex items-center justify-center">
-                                                <span class="text-green-800 font-bold">RS</span>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Robert Smith</div>
-                                                <div class="text-sm text-gray-500">robert.smith@hospital.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">EMP-00145</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Administration</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900">HR Manager</td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm font-medium">
-                                        <button class="text-blue-600 hover:text-blue-900 mr-3"><i data-feather="eye"></i></button>
-                                        <button class="text-green-600 hover:text-green-900 mr-3"><i data-feather="edit"></i></button>
-                                        <button class="text-red-600 hover:text-red-900"><i data-feather="trash-2"></i></button>
-                                    </td>
-                                </tr>
-                                
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0 bg-yellow-100 rounded-full flex items-center justify-center">
-                                                <span class="text-yellow-800 font-bold">MJ</span>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Maria Johnson</div>
-                                                <div class="text-sm text-gray-500">maria.johnson@hospital.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">EMP-00167</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Laboratory</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900">Lab Technician</td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">On Leave</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm font-medium">
-                                        <button class="text-blue-600 hover:text-blue-900 mr-3"><i data-feather="eye"></i></button>
-                                        <button class="text-green-600 hover:text-green-900 mr-3"><i data-feather="edit"></i></button>
-                                        <button class="text-red-600 hover:text-red-900"><i data-feather="trash-2"></i></button>
-                                    </td>
-                                </tr>
-                                
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0 bg-indigo-100 rounded-full flex items-center justify-center">
-                                                <span class="text-indigo-800 font-bold">TW</span>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Thomas Wilson</div>
-                                                <div class="text-sm text-gray-500">thomas.wilson@hospital.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">EMP-00189</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">Pharmacy</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900">Pharmacist</td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm font-medium">
-                                        <button class="text-blue-600 hover:text-blue-900 mr-3"><i data-feather="eye"></i></button>
-                                        <button class="text-green-600 hover:text-green-900 mr-3"><i data-feather="edit"></i></button>
-                                        <button class="text-red-600 hover:text-red-900"><i data-feather="trash-2"></i></button>
-                                    </td>
-                                </tr>
-                                
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center">
-                                                <span class="text-gray-800 font-bold">LB</span>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Lisa Brown</div>
-                                                <div class="text-sm text-gray-500">lisa.brown@hospital.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">EMP-00201</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">Housekeeping</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900">Supervisor</td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm font-medium">
-                                        <button class="text-blue-600 hover:text-blue-900 mr-3"><i data-feather="eye"></i></button>
-                                        <button class="text-green-600 hover:text-green-900 mr-3"><i data-feather="edit"></i></button>
-                                        <button class="text-red-600 hover:text-red-900"><i data-feather="trash-2"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">12</h3>
+                        <p class="text-gray-600">Departments</p>
                     </div>
-                    <div class="px-6 py-4 border-t border-gray-200">
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-700">
-                                Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">142</span> staff members
-                            </div>
-                            <div class="flex space-x-2">
-                                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</button>
-                                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">1</button>
-                                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">2</button>
-                                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">3</button>
-                                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Next</button>
-                            </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap gap-4 mb-8" data-aos="fade-up">
+            <button onclick="openAddStaffModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center">
+                <i data-feather="user-plus" class="mr-2"></i>
+                Add New Staff
+            </button>
+            <button onclick="openScheduleModal()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg flex items-center">
+                <i data-feather="calendar" class="mr-2"></i>
+                Manage Schedules
+            </button>
+            <button onclick="openDepartmentModal()" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg flex items-center">
+                <i data-feather="layers" class="mr-2"></i>
+                Departments
+            </button>
+            <button onclick="exportStaffData()" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg flex items-center">
+                <i data-feather="download" class="mr-2"></i>
+                Export Data
+            </button>
+        </div>
+
+        <!-- Staff Table -->
+        <div class="bg-white rounded-lg shadow overflow-hidden mb-8" data-aos="fade-up">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-gray-800">Staff Directory</h2>
+                    <div class="relative">
+                        <input type="text" placeholder="Search staff..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i data-feather="search" class="absolute left-3 top-2.5 text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Staff ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">STF-001</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="h-10 w-10 flex-shrink-0">
+                                        <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                            <span class="text-blue-600 font-semibold">JS</span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">John Smith</div>
+                                        <div class="text-sm text-gray-500">john.smith@hospital.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Head Nurse</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Emergency</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">(555) 123-4567</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full status-active">Active</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <button onclick="viewStaff('STF-001')" class="text-blue-600 hover:text-blue-900 mr-3">
+                                    <i data-feather="eye" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="editStaff('STF-001')" class="text-green-600 hover:text-green-900 mr-3">
+                                    <i data-feather="edit" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="deleteStaff('STF-001')" class="text-red-600 hover:text-red-900">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">STF-002</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="h-10 w-10 flex-shrink-0">
+                                        <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
+                                            <span class="text-green-600 font-semibold">MJ</span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Maria Johnson</div>
+                                        <div class="text-sm text-gray-500">maria.j@hospital.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Lab Technician</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Pathology</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">(555) 987-6543</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full status-active">Active</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <button onclick="viewStaff('STF-002')" class="text-blue-600 hover:text-blue-900 mr-3">
+                                    <i data-feather="eye" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="editStaff('STF-002')" class="text-green-600 hover:text-green-900 mr-3">
+                                    <i data-feather="edit" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="deleteStaff('STF-002')" class="text-red-600 hover:text-red-900">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">STF-003</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="h-10 w-10 flex-shrink-0">
+                                        <div class="h-10 w-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                                            <span class="text-yellow-600 font-semibold">RB</span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Robert Brown</div>
+                                        <div class="text-sm text-gray-500">robert.b@hospital.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Administrator</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Administration</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">(555) 456-7890</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full status-onleave">On Leave</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <button onclick="viewStaff('STF-003')" class="text-blue-600 hover:text-blue-900 mr-3">
+                                    <i data-feather="eye" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="editStaff('STF-003')" class="text-green-600 hover:text-green-900 mr-3">
+                                    <i data-feather="edit" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="deleteStaff('STF-003')" class="text-red-600 hover:text-red-900">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="px-6 py-4 border-t border-gray-200">
+                <div class="flex justify-between items-center">
+                    <div class="text-sm text-gray-700">
+                        Showing <span class="font-medium">1</span> to <span class="font-medium">3</span> of <span class="font-medium">142</span> staff members
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">Previous</button>
+                        <button class="px-3 py-1 bg-blue-600 text-white rounded-md text-sm">1</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">2</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">3</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Department Overview -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" data-aos="fade-up">
+            <!-- Department Distribution -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Department Distribution</h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700">Nursing</span>
+                            <span class="text-sm font-medium text-gray-700">45 staff</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: 32%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700">Administration</span>
+                            <span class="text-sm font-medium text-gray-700">28 staff</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-600 h-2 rounded-full" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700">Laboratory</span>
+                            <span class="text-sm font-medium text-gray-700">22 staff</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-purple-600 h-2 rounded-full" style="width: 15%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700">Pharmacy</span>
+                            <span class="text-sm font-medium text-gray-700">18 staff</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-yellow-600 h-2 rounded-full" style="width: 13%"></div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Department Distribution -->
-                <div class="bg-white rounded-xl shadow-md p-6">
-                    <h2 class="text-xl font-bold text-gray-800 mb-6">Department Distribution</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            </div>
+
+            <!-- Upcoming Leaves -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Upcoming Leaves</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
                         <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center">
-                                    <div class="h-3 w-3 rounded-full bg-blue-500 mr-2"></div>
-                                    <span class="text-sm font-medium">Nursing</span>
-                                </div>
-                                <span class="text-sm font-bold">45 staff</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
-                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 32%"></div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center">
-                                    <div class="h-3 w-3 rounded-full bg-green-500 mr-2"></div>
-                                    <span class="text-sm font-medium">Administration</span>
-                                </div>
-                                <span class="text-sm font-bold">28 staff</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
-                                <div class="bg-green-600 h-2.5 rounded-full" style="width: 20%"></div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center">
-                                    <div class="h-3 w-3 rounded-full bg-purple-500 mr-2"></div>
-                                    <span class="text-sm font-medium">Laboratory</span>
-                                </div>
-                                <span class="text-sm font-bold">22 staff</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
-                                <div class="bg-purple-600 h-2.5 rounded-full" style="width: 15%"></div>
-                            </div>
+                            <h4 class="font-medium text-gray-800">Robert Brown</h4>
+                            <p class="text-sm text-gray-600">Administrator</p>
                         </div>
-                        
+                        <div class="text-right">
+                            <p class="text-sm font-medium text-gray-800">Dec 15 - Dec 22</p>
+                            <p class="text-xs text-gray-600">7 days</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center">
-                                    <div class="h-3 w-3 rounded-full bg-yellow-500 mr-2"></div>
-                                    <span class="text-sm font-medium">Pharmacy</span>
-                                </div>
-                                <span class="text-sm font-bold">18 staff</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
-                                <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 13%"></div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center">
-                                    <div class="h-3 w-3 rounded-full bg-red-500 mr-2"></div>
-                                    <span class="text-sm font-medium">Housekeeping</span>
-                                </div>
-                                <span class="text-sm font-bold">15 staff</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
-                                <div class="bg-red-600 h-2.5 rounded-full" style="width: 11%"></div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center">
-                                    <div class="h-3 w-3 rounded-full bg-indigo-500 mr-2"></div>
-                                    <span class="text-sm font-medium">Other</span>
-                                </div>
-                                <span class="text-sm font-bold">14 staff</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 9%"></div>
-                            </div>
+                            <h4 class="font-medium text-gray-800">Sarah Wilson</h4>
+                            <p class="text-sm text-gray-600">Nurse</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-medium text-gray-800">Dec 20 - Dec 25</p>
+                            <p class="text-xs text-gray-600">5 days</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                        <div>
+                            <h4 class="font-medium text-gray-800">Michael Chen</h4>
+                            <p class="text-sm text-gray-600">Lab Technician</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-medium text-gray-800">Jan 5 - Jan 10</p>
+                            <p class="text-xs text-gray-600">5 days</p>
                         </div>
                     </div>
                 </div>
@@ -453,59 +346,121 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-xl font-bold">Hospital Management System</h3>
-                    <p class="text-gray-400 mt-2">Comprehensive healthcare management solution</p>
-                </div>
-                <div class="text-gray-400">
-                    <p>&copy; 2023 Hospital Management System. All rights reserved.</p>
-                    <p class="mt-1">Staff Management Module v2.1</p>
-                </div>
+    <!-- Add Staff Modal -->
+    <div id="addStaffModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-medium text-gray-900">Add New Staff Member</h3>
+                <button onclick="closeAddStaffModal()" class="text-gray-400 hover:text-gray-600">
+                    <i data-feather="x"></i>
+                </button>
             </div>
+            <form id="addStaffForm">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="">Select Role</option>
+                            <option value="nurse">Nurse</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="technician">Lab Technician</option>
+                            <option value="admin">Administrator</option>
+                            <option value="pharmacist">Pharmacist</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Department</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="">Select Department</option>
+                            <option value="emergency">Emergency</option>
+                            <option value="surgery">Surgery</option>
+                            <option value="pathology">Pathology</option>
+                            <option value="pharmacy">Pharmacy</option>
+                            <option value="administration">Administration</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="button" onclick="closeAddStaffModal()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700">
+                        Add Staff
+                    </button>
+                </div>
+            </form>
         </div>
-    </footer>
+    </div>
 
     <script>
-        // Initialize Feather Icons
-        feather.replace();
-        
-        // Initialize AOS animations
+        // Initialize AOS
         AOS.init({
-            duration: 800,
+            duration: 600,
             once: true
         });
-        
-        // Sample staff data for interactivity
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add click event to staff cards
-            const staffCards = document.querySelectorAll('.staff-card');
-            staffCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    // In a real application, this would navigate to staff details
-                    console.log('Staff card clicked');
-                });
-            });
-            
-            // Search functionality
-            const searchInput = document.querySelector('input[type="text"]');
-            searchInput.addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') {
-                    alert('Searching for: ' + this.value);
-                }
-            });
-            
-            // Add Staff button
-            const addStaffBtn = document.querySelectorAll('button:contains("Add Staff")');
-            addStaffBtn.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    alert('Opening staff registration form');
-                });
-            });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Modal Functions
+        function openAddStaffModal() {
+            document.getElementById('addStaffModal').classList.remove('hidden');
+        }
+
+        function closeAddStaffModal() {
+            document.getElementById('addStaffModal').classList.add('hidden');
+        }
+
+        function openScheduleModal() {
+            alert('Schedule management modal would open here.');
+        }
+
+        function openDepartmentModal() {
+            alert('Department management modal would open here.');
+        }
+
+        // Staff Actions
+        function viewStaff(staffId) {
+            alert(`Viewing details for staff ID: ${staffId}`);
+        }
+
+        function editStaff(staffId) {
+            alert(`Editing staff ID: ${staffId}`);
+        }
+
+        function deleteStaff(staffId) {
+            if (confirm(`Are you sure you want to delete staff member ${staffId}?`)) {
+                alert(`Staff ${staffId} deleted successfully.`);
+            }
+        }
+
+        function exportStaffData() {
+            alert('Exporting staff data to CSV...');
+        }
+
+        // Form Submission
+        document.getElementById('addStaffForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('New staff member added successfully!');
+            closeAddStaffModal();
+            this.reset();
         });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('addStaffModal');
+            if (event.target === modal) {
+                closeAddStaffModal();
+            }
+        }
     </script>
 </body>
 </html>

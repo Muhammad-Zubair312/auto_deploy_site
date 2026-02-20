@@ -9,401 +9,335 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .sidebar { transition: all 0.3s ease; }
-        .record-row:hover { background-color: #f7fafc; }
-        .modal { display: none; }
-        .modal.active { display: flex; }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
-        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
-        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Registration</a>
-        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Records</a>
-        <a href='appointment-scheduling.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Appointment Scheduling</a>
-        <a href='doctor-directory.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Doctor Directory</a>
-        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Staff Management</a>
-        <a href='medical-records.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Medical Records</a>
-        <a href='billing.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Billing</a>
-        <a href='inventory-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Inventory Management</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+        <a href='doctor-management.html' class='px-3 py-2 hover:text-blue-400'>Doctor Management</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='pharmacy-inventory.html' class='px-3 py-2 hover:text-blue-400'>Pharmacy Inventory</a>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Mobile Menu Button -->
+    <button id="menuToggle" class="md:hidden fixed top-4 right-4 z-50 bg-blue-600 text-white p-2 rounded-lg">
+        <i data-feather="menu"></i>
+    </button>
+
+    <!-- Main Container -->
     <div class="flex min-h-screen">
-        <!-- Sidebar Filters -->
-        <div class="sidebar w-64 bg-white border-r border-gray-200 p-6 hidden lg:block">
-            <h2 class="text-xl font-bold text-gray-800 mb-6">Filters & Actions</h2>
-            
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Search Patient</label>
-                <input type="text" id="searchInput" placeholder="Name, ID, or Contact..." 
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        <!-- Sidebar -->
+        <div class="sidebar w-64 bg-white shadow-lg fixed md:relative h-full z-40">
+            <div class="p-6 border-b">
+                <h2 class="text-xl font-bold text-gray-800">Patient Records</h2>
+                <p class="text-gray-600 text-sm mt-1">Electronic Health Records System</p>
             </div>
-
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Status Filter</label>
-                <select id="statusFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-                    <option value="all">All Patients</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="discharged">Discharged</option>
-                </select>
-            </div>
-
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Date Registered</label>
-                <input type="date" id="dateFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-            </div>
-
-            <button onclick="applyFilters()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 mb-4">
-                Apply Filters
-            </button>
-            <button onclick="resetFilters()" class="w-full bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 mb-6">
-                Reset Filters
-            </button>
-
-            <div class="border-t pt-6">
-                <h3 class="font-medium text-gray-700 mb-4">Quick Actions</h3>
-                <button onclick="openNewRecordModal()" class="w-full flex items-center justify-center bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 mb-3">
-                    <i data-feather="plus" class="mr-2"></i> New Record
-                </button>
-                <button onclick="exportRecords()" class="w-full flex items-center justify-center bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 mb-3">
-                    <i data-feather="download" class="mr-2"></i> Export Data
-                </button>
-                <button onclick="generateReport()" class="w-full flex items-center justify-center bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">
-                    <i data-feather="file-text" class="mr-2"></i> Generate Report
-                </button>
+            <div class="p-4">
+                <div class="mb-6">
+                    <h3 class="font-semibold text-gray-700 mb-3">Quick Actions</h3>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg mb-2 flex items-center justify-center">
+                        <i data-feather="plus" class="mr-2"></i> New Record
+                    </button>
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        <i data-feather="download" class="mr-2"></i> Export Records
+                    </button>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-700 mb-3">Filters</h3>
+                    <select class="w-full border rounded-lg p-2 mb-3">
+                        <option>All Departments</option>
+                        <option>Cardiology</option>
+                        <option>Neurology</option>
+                        <option>Pediatrics</option>
+                        <option>Orthopedics</option>
+                    </select>
+                    <select class="w-full border rounded-lg p-2">
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>Discharged</option>
+                        <option>In Treatment</option>
+                    </select>
+                </div>
             </div>
         </div>
 
-        <!-- Main Content Area -->
-        <div class="flex-1 p-6">
+        <!-- Main Content -->
+        <div class="flex-1 p-4 md:p-8">
             <!-- Header -->
             <div class="mb-8" data-aos="fade-down">
-                <h1 class="text-3xl font-bold text-gray-900">Patient Records</h1>
-                <p class="text-gray-600 mt-2">Manage and view all patient information, medical history, and records</p>
+                <h1 class="text-3xl font-bold text-gray-800">Patient Records Management</h1>
+                <p class="text-gray-600 mt-2">View and manage electronic health records for all patients</p>
             </div>
 
-            <!-- Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white rounded-xl shadow p-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center">
-                        <div class="p-3 bg-blue-100 rounded-lg">
-                            <i data-feather="users" class="text-blue-600"></i>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm text-gray-500">Total Patients</p>
-                            <p class="text-2xl font-bold text-gray-900">1,247</p>
+            <!-- Search and Controls -->
+            <div class="bg-white rounded-xl shadow p-6 mb-8" data-aos="fade-up">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
+                            <input type="text" placeholder="Search patient records by name, ID, or condition..." 
+                                   class="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                     </div>
-                </div>
-                <div class="bg-white rounded-xl shadow p-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center">
-                        <div class="p-3 bg-green-100 rounded-lg">
-                            <i data-feather="activity" class="text-green-600"></i>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm text-gray-500">Active Cases</p>
-                            <p class="text-2xl font-bold text-gray-900">342</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow p-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center">
-                        <div class="p-3 bg-yellow-100 rounded-lg">
-                            <i data-feather="calendar" class="text-yellow-600"></i>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm text-gray-500">Today's Appointments</p>
-                            <p class="text-2xl font-bold text-gray-900">48</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow p-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="flex items-center">
-                        <div class="p-3 bg-red-100 rounded-lg">
-                            <i data-feather="alert-circle" class="text-red-600"></i>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm text-gray-500">Critical Patients</p>
-                            <p class="text-2xl font-bold text-gray-900">12</p>
-                        </div>
+                    <div class="flex space-x-3">
+                        <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-lg flex items-center">
+                            <i data-feather="filter" class="mr-2"></i> Filter
+                        </button>
+                        <button class="bg-blue-100 hover:bg-blue-200 text-blue-800 py-2 px-4 rounded-lg flex items-center">
+                            <i data-feather="refresh-cw" class="mr-2"></i> Refresh
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Records Table -->
             <div class="bg-white rounded-xl shadow overflow-hidden" data-aos="fade-up">
-                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                    <h2 class="text-lg font-semibold text-gray-800">Patient Records List</h2>
-                    <div class="flex space-x-3">
-                        <button onclick="toggleSidebar()" class="lg:hidden px-4 py-2 border border-gray-300 rounded-lg">
-                            <i data-feather="filter"></i>
-                        </button>
-                        <button onclick="refreshRecords()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                            <i data-feather="refresh-cw" class="mr-2"></i> Refresh
-                        </button>
-                    </div>
-                </div>
-
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient ID</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age/Gender</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Visit</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                <th class="py-4 px-6 text-left font-semibold text-gray-700">Patient ID</th>
+                                <th class="py-4 px-6 text-left font-semibold text-gray-700">Full Name</th>
+                                <th class="py-4 px-6 text-left font-semibold text-gray-700">Age</th>
+                                <th class="py-4 px-6 text-left font-semibold text-gray-700">Condition</th>
+                                <th class="py-4 px-6 text-left font-semibold text-gray-700">Department</th>
+                                <th class="py-4 px-6 text-left font-semibold text-gray-700">Status</th>
+                                <th class="py-4 px-6 text-left font-semibold text-gray-700">Last Visit</th>
+                                <th class="py-4 px-6 text-left font-semibold text-gray-700">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200">
-                            <!-- Sample Records -->
-                            <tr class="record-row hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="font-mono text-sm font-medium text-blue-600">PAT-2024-001</span>
+                        <tbody class="divide-y">
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-6 font-mono">#P-1001</td>
+                                <td class="py-4 px-6">Johnathan Smith</td>
+                                <td class="py-4 px-6">45</td>
+                                <td class="py-4 px-6">Hypertension</td>
+                                <td class="py-4 px-6">Cardiology</td>
+                                <td class="py-4 px-6">
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Active</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="h-10 w-10 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center">
-                                            <span class="text-blue-600 font-medium">JS</span>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">John Smith</div>
-                                            <div class="text-sm text-gray-500">Diabetes Type 2</div>
-                                        </div>
+                                <td class="py-4 px-6">2024-01-15</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">
+                                            <i data-feather="eye"></i>
+                                        </button>
+                                        <button class="text-green-600 hover:text-green-800">
+                                            <i data-feather="edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">45 / Male</div>
-                                    <div class="text-sm text-gray-500">Blood Type: O+</div>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-6 font-mono">#P-1002</td>
+                                <td class="py-4 px-6">Maria Garcia</td>
+                                <td class="py-4 px-6">32</td>
+                                <td class="py-4 px-6">Diabetes Type 2</td>
+                                <td class="py-4 px-6">Endocrinology</td>
+                                <td class="py-4 px-6">
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full">In Treatment</span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">john.smith@email.com</div>
-                                    <div class="text-sm text-gray-500">(555) 123-4567</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-01-15</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <button onclick="viewRecord('PAT-2024-001')" class="text-blue-600 hover:text-blue-900 mr-3">
-                                        <i data-feather="eye" class="w-4 h-4"></i>
-                                    </button>
-                                    <button onclick="editRecord('PAT-2024-001')" class="text-green-600 hover:text-green-900 mr-3">
-                                        <i data-feather="edit" class="w-4 h-4"></i>
-                                    </button>
-                                    <button onclick="deleteRecord('PAT-2024-001')" class="text-red-600 hover:text-red-900">
-                                        <i data-feather="trash-2" class="w-4 h-4"></i>
-                                    </button>
+                                <td class="py-4 px-6">2024-01-14</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">
+                                            <i data-feather="eye"></i>
+                                        </button>
+                                        <button class="text-green-600 hover:text-green-800">
+                                            <i data-feather="edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
-                            <!-- More records would be dynamically loaded -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-6 font-mono">#P-1003</td>
+                                <td class="py-4 px-6">Robert Johnson</td>
+                                <td class="py-4 px-6">58</td>
+                                <td class="py-4 px-6">Arthritis</td>
+                                <td class="py-4 px-6">Orthopedics</td>
+                                <td class="py-4 px-6">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Discharged</span>
+                                </td>
+                                <td class="py-4 px-6">2024-01-10</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">
+                                            <i data-feather="eye"></i>
+                                        </button>
+                                        <button class="text-green-600 hover:text-green-800">
+                                            <i data-feather="edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-6 font-mono">#P-1004</td>
+                                <td class="py-4 px-6">Sarah Williams</td>
+                                <td class="py-4 px-6">29</td>
+                                <td class="py-4 px-6">Pregnancy Care</td>
+                                <td class="py-4 px-6">Obstetrics</td>
+                                <td class="py-4 px-6">
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Active</span>
+                                </td>
+                                <td class="py-4 px-6">2024-01-12</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">
+                                            <i data-feather="eye"></i>
+                                        </button>
+                                        <button class="text-green-600 hover:text-green-800">
+                                            <i data-feather="edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-6 font-mono">#P-1005</td>
+                                <td class="py-4 px-6">David Chen</td>
+                                <td class="py-4 px-6">67</td>
+                                <td class="py-4 px-6">Asthma</td>
+                                <td class="py-4 px-6">Pulmonology</td>
+                                <td class="py-4 px-6">
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full">In Treatment</span>
+                                </td>
+                                <td class="py-4 px-6">2024-01-13</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-600 hover:text-blue-800">
+                                            <i data-feather="eye"></i>
+                                        </button>
+                                        <button class="text-green-600 hover:text-green-800">
+                                            <i data-feather="edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Pagination -->
-                <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-                    <div class="text-sm text-gray-700">
-                        Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">1,247</span> records
+                <div class="border-t px-6 py-4 flex items-center justify-between">
+                    <div class="text-gray-600">
+                        Showing 5 of 247 patient records
                     </div>
                     <div class="flex space-x-2">
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50">
-                            <i data-feather="chevron-left"></i>
-                        </button>
-                        <button class="px-3 py-1 bg-blue-600 text-white rounded-lg">1</button>
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50">2</button>
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50">3</button>
-                        <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50">
-                            <i data-feather="chevron-right"></i>
-                        </button>
+                        <button class="px-3 py-1 border rounded-lg hover:bg-gray-50">Previous</button>
+                        <button class="px-3 py-1 border rounded-lg bg-blue-600 text-white">1</button>
+                        <button class="px-3 py-1 border rounded-lg hover:bg-gray-50">2</button>
+                        <button class="px-3 py-1 border rounded-lg hover:bg-gray-50">3</button>
+                        <button class="px-3 py-1 border rounded-lg hover:bg-gray-50">Next</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- View Record Modal -->
-    <div id="viewRecordModal" class="modal fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-        <div class="relative top-20 mx-auto p-5 border w-full max-w-4xl shadow-lg rounded-xl bg-white">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold text-gray-900">Patient Record Details</h3>
-                <button onclick="closeModal('viewRecordModal')" class="text-gray-400 hover:text-gray-600">
-                    <i data-feather="x"></i>
-                </button>
+            <!-- Statistics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8" data-aos="fade-up">
+                <div class="bg-white rounded-xl shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <i data-feather="users" class="text-blue-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-2xl font-bold text-gray-800">247</h3>
+                            <p class="text-gray-600">Total Patients</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-green-100 rounded-lg">
+                            <i data-feather="activity" class="text-green-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-2xl font-bold text-gray-800">189</h3>
+                            <p class="text-gray-600">Active Cases</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-yellow-100 rounded-lg">
+                            <i data-feather="file-text" class="text-yellow-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-2xl font-bold text-gray-800">1,245</h3>
+                            <p class="text-gray-600">Medical Records</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-purple-100 rounded-lg">
+                            <i data-feather="calendar" class="text-purple-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-2xl font-bold text-gray-800">58</h3>
+                            <p class="text-gray-600">Today's Visits</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="recordDetails" class="space-y-6">
-                <!-- Details will be loaded here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- New Record Modal -->
-    <div id="newRecordModal" class="modal fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-        <div class="relative top-20 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-xl bg-white">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold text-gray-900">Create New Patient Record</h3>
-                <button onclick="closeModal('newRecordModal')" class="text-gray-400 hover:text-gray-600">
-                    <i data-feather="x"></i>
-                </button>
-            </div>
-            <form id="newRecordForm" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                        <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
-                        <input type="date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
-                        <input type="tel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                    <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Medical History Notes</label>
-                    <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg"></textarea>
-                </div>
-                <div class="flex justify-end space-x-3 pt-4">
-                    <button type="button" onclick="closeModal('newRecordModal')" class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                        Cancel
-                    </button>
-                    <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                        Create Record
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
 
     <script>
-        // Initialize AOS and Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({ duration: 600 });
-            feather.replace();
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
         });
 
-        // Modal Functions
-        function openNewRecordModal() {
-            document.getElementById('newRecordModal').classList.add('active');
-        }
+        // Initialize Feather Icons
+        feather.replace();
 
-        function viewRecord(patientId) {
-            // Simulate loading record details
-            const details = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="font-semibold text-gray-700 mb-2">Personal Information</h4>
-                        <div class="space-y-2">
-                            <p><span class="font-medium">Patient ID:</span> ${patientId}</p>
-                            <p><span class="font-medium">Full Name:</span> John Smith</p>
-                            <p><span class="font-medium">Date of Birth:</span> 1979-05-15</p>
-                            <p><span class="font-medium">Gender:</span> Male</p>
-                            <p><span class="font-medium">Blood Type:</span> O+</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-700 mb-2">Contact Information</h4>
-                        <div class="space-y-2">
-                            <p><span class="font-medium">Email:</span> john.smith@email.com</p>
-                            <p><span class="font-medium">Phone:</span> (555) 123-4567</p>
-                            <p><span class="font-medium">Emergency Contact:</span> Jane Smith (555) 987-6543</p>
-                            <p><span class="font-medium">Address:</span> 123 Main St, City, State 12345</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="pt-6 border-t">
-                    <h4 class="font-semibold text-gray-700 mb-2">Medical Information</h4>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="text-gray-700">Primary Diagnosis: Diabetes Type 2</p>
-                        <p class="text-gray-700 mt-2">Allergies: Penicillin, Sulfa drugs</p>
-                        <p class="text-gray-700 mt-2">Current Medications: Metformin 500mg, Lisinopril 10mg</p>
-                    </div>
-                </div>
-            `;
-            document.getElementById('recordDetails').innerHTML = details;
-            document.getElementById('viewRecordModal').classList.add('active');
-            feather.replace();
-        }
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-        }
-
-        function editRecord(patientId) {
-            alert(`Edit record for ${patientId} - This would open edit form`);
-        }
-
-        function deleteRecord(patientId) {
-            if (confirm(`Are you sure you want to delete record ${patientId}?`)) {
-                alert(`Record ${patientId} deleted successfully`);
-            }
-        }
-
-        // Filter Functions
-        function applyFilters() {
-            const search = document.getElementById('searchInput').value;
-            const status = document.getElementById('statusFilter').value;
-            const date = document.getElementById('dateFilter').value;
-            
-            alert(`Applying filters:\nSearch: ${search}\nStatus: ${status}\nDate: ${date}`);
-            // In real implementation, this would filter the table data
-        }
-
-        function resetFilters() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('statusFilter').value = 'all';
-            document.getElementById('dateFilter').value = '';
-            alert('Filters reset');
-        }
-
-        function toggleSidebar() {
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
             const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('hidden');
-        }
-
-        function refreshRecords() {
-            alert('Refreshing patient records...');
-            // In real implementation, this would reload data from server
-        }
-
-        function exportRecords() {
-            alert('Exporting patient records to CSV...');
-        }
-
-        function generateReport() {
-            alert('Generating patient records report...');
-        }
-
-        // Form Submission
-        document.getElementById('newRecordForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('New patient record created successfully!');
-            closeModal('newRecordModal');
-            this.reset();
+            const menuToggle = document.getElementById('menuToggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
         });
     </script>
 </body>

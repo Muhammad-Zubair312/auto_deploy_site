@@ -3,279 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Wanderlust Tours</title>
+    <title>Hospital Management System - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
         }
         .login-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
-        .input-focus:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        .card-shadow {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
         }
     </style>
 </head>
-<body class="font-sans">
+<body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2 mb-2 md:mb-0">
-            <i data-feather="compass" class="text-blue-400"></i>
-            <span class="font-bold text-xl">Wanderlust Tours</span>
-        </div>
-        <div class="flex flex-wrap space-x-2 md:space-x-4">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='destinations.html' class='px-3 py-2 hover:text-blue-400'>Destinations</a>
-            <a href='tour-details.html' class='px-3 py-2 hover:text-blue-400'>Tour Details</a>
-            <a href='booking.html' class='px-3 py-2 hover:text-blue-400'>Booking</a>
-            <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
-            <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
-            <a href='gallery.html' class='px-3 py-2 hover:text-blue-400'>Gallery</a>
-            <a href='login.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
-        </div>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+        <a href='doctor-management.html' class='px-3 py-2 hover:text-blue-400'>Doctor Management</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='pharmacy-inventory.html' class='px-3 py-2 hover:text-blue-400'>Pharmacy Inventory</a>
     </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-12">
-        <div class="max-w-6xl mx-auto">
-            <!-- Hero Section -->
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Welcome Back</h1>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Login to access your bookings, manage tours, and continue your adventure planning.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Login Form -->
-                <div class="login-container rounded-2xl shadow-2xl p-8 md:p-12" data-aos="fade-right">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Login to Your Account</h2>
-                    <p class="text-gray-600 mb-8">Enter your credentials to access your travel dashboard</p>
+    <div class="login-container min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <!-- Left Column - Hospital Info -->
+            <div class="hidden lg:block">
+                <div class="bg-white rounded-2xl p-8 card-shadow">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="heart" class="text-white"></i>
+                        </div>
+                        <h1 class="text-3xl font-bold text-gray-800">MediCare Hospital</h1>
+                    </div>
                     
-                    <form id="loginForm" class="space-y-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2 font-medium">Email Address</label>
-                            <div class="relative">
-                                <i data-feather="mail" class="absolute left-3 top-3 text-gray-400"></i>
-                                <input type="email" 
-                                       class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500"
-                                       placeholder="you@example.com"
-                                       required>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-gray-700 mb-2 font-medium">Password</label>
-                            <div class="relative">
-                                <i data-feather="lock" class="absolute left-3 top-3 text-gray-400"></i>
-                                <input type="password" 
-                                       class="w-full pl-12 pr-12 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500"
-                                       placeholder="Enter your password"
-                                       required>
-                                <button type="button" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600" id="togglePassword">
-                                    <i data-feather="eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between">
-                            <label class="flex items-center">
-                                <input type="checkbox" class="rounded text-blue-600 focus:ring-blue-500">
-                                <span class="ml-2 text-gray-700">Remember me</span>
-                            </label>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Forgot password?</a>
-                        </div>
-                        
-                        <button type="submit" 
-                                class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:-translate-y-1">
-                            Sign In
-                        </button>
-                        
-                        <div class="text-center">
-                            <p class="text-gray-600">Don't have an account? 
-                                <a href="signup.html" class="text-blue-600 font-medium hover:text-blue-800">Sign up here</a>
-                            </p>
-                        </div>
-                        
-                        <div class="relative my-6">
-                            <div class="absolute inset-0 flex items-center">
-                                <div class="w-full border-t border-gray-300"></div>
-                            </div>
-                            <div class="relative flex justify-center text-sm">
-                                <span class="px-4 bg-white text-gray-500">Or continue with</span>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-4">
-                            <button type="button" 
-                                    class="flex items-center justify-center space-x-2 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                                <i data-feather="facebook" class="text-blue-600"></i>
-                                <span>Facebook</span>
-                            </button>
-                            <button type="button" 
-                                    class="flex items-center justify-center space-x-2 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                                <i data-feather="twitter" class="text-blue-400"></i>
-                                <span>Twitter</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Features & Benefits -->
-                <div class="space-y-8" data-aos="fade-left">
-                    <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-blue-100 p-3 rounded-lg">
+                    <p class="text-gray-600 mb-8 text-lg">
+                        Secure access to our comprehensive Hospital Management System. Manage appointments, patient records, billing, and more with our integrated platform.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
                                 <i data-feather="calendar" class="text-blue-600"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-xl text-gray-800 mb-2">Manage Your Bookings</h3>
-                                <p class="text-gray-600">View and modify your upcoming tours, check availability, and make changes to your itinerary.</p>
+                                <h3 class="font-semibold text-gray-800">Appointment Scheduling</h3>
+                                <p class="text-gray-600">Book and manage patient appointments efficiently</p>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-green-100 p-3 rounded-lg">
-                                <i data-feather="star" class="text-green-600"></i>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                <i data-feather="file-text" class="text-green-600"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-xl text-gray-800 mb-2">Exclusive Member Benefits</h3>
-                                <p class="text-gray-600">Get access to special discounts, early bird offers, and personalized travel recommendations.</p>
+                                <h3 class="font-semibold text-gray-800">Electronic Health Records</h3>
+                                <p class="text-gray-600">Secure digital records for all patients</p>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-purple-100 p-3 rounded-lg">
-                                <i data-feather="credit-card" class="text-purple-600"></i>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                <i data-feather="dollar-sign" class="text-purple-600"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-xl text-gray-800 mb-2">Secure Payment History</h3>
-                                <p class="text-gray-600">Track all your transactions, download invoices, and manage payment methods securely.</p>
+                                <h3 class="font-semibold text-gray-800">Billing & Invoicing</h3>
+                                <p class="text-gray-600">Streamlined financial management system</p>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-yellow-100 p-3 rounded-lg">
-                                <i data-feather="message-circle" class="text-yellow-600"></i>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                                <i data-feather="package" class="text-yellow-600"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-xl text-gray-800 mb-2">24/7 Support Access</h3>
-                                <p class="text-gray-600">Get priority support from our travel experts for any questions or assistance you may need.</p>
+                                <h3 class="font-semibold text-gray-800">Pharmacy Inventory</h3>
+                                <p class="text-gray-600">Track medications and medical supplies</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Security Notice -->
-            <div class="mt-16 text-center" data-aos="fade-up">
-                <div class="inline-flex items-center space-x-2 text-gray-600 bg-gray-100 rounded-full px-6 py-3">
-                    <i data-feather="shield" class="text-green-500"></i>
-                    <span>Your security is our priority. All data is encrypted and protected.</span>
+
+            <!-- Right Column - Login Form -->
+            <div class="bg-white rounded-2xl p-8 card-shadow">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h2>
+                    <p class="text-gray-600">Sign in to access the Hospital Management System</p>
+                </div>
+
+                <form id="loginForm" class="space-y-6">
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+                            Username or Email
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-feather="user" class="text-gray-400"></i>
+                            </div>
+                            <input type="text" id="username" name="username" 
+                                   class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                   placeholder="Enter your username or email" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                            Password
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-feather="lock" class="text-gray-400"></i>
+                            </div>
+                            <input type="password" id="password" name="password" 
+                                   class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                   placeholder="Enter your password" required>
+                            <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <i data-feather="eye" class="text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember-me" name="remember-me" type="checkbox" 
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="remember-me" class="ml-2 block text-sm text-gray-700">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="#" class="text-sm text-blue-600 hover:text-blue-500 font-medium">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <div>
+                        <button type="submit" 
+                                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200">
+                            Sign In
+                        </button>
+                    </div>
+
+                    <div class="relative my-6">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <button type="button" 
+                                class="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                            <i data-feather="smartphone" class="w-5 h-5 mr-2"></i>
+                            <span>Mobile OTP</span>
+                        </button>
+                        <button type="button" 
+                                class="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                            <i data-feather="key" class="w-5 h-5 mr-2"></i>
+                            <span>SSO</span>
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-6">
+                        <p class="text-gray-600">
+                            Don't have an account? 
+                            <a href="signup.html" class="text-blue-600 hover:text-blue-500 font-medium">
+                                Sign up here
+                            </a>
+                        </p>
+                    </div>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <div class="text-center">
+                        <p class="text-sm text-gray-500">
+                            <i data-feather="shield" class="inline w-4 h-4 mr-1"></i>
+                            Your login is secured with 256-bit SSL encryption
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white mt-20">
-        <div class="container mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-feather="compass" class="text-blue-400"></i>
-                        <span class="font-bold text-xl">Wanderlust Tours</span>
-                    </div>
-                    <p class="text-gray-400">Discover the world's wonders with our curated travel experiences.</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="destinations.html" class="hover:text-white">Popular Destinations</a></li>
-                        <li><a href="tour-details.html" class="hover:text-white">Featured Tours</a></li>
-                        <li><a href="gallery.html" class="hover:text-white">Travel Gallery</a></li>
-                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Support</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="contact.html" class="hover:text-white">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-white">FAQ</a></li>
-                        <li><a href="#" class="hover:text-white">Booking Help</a></li>
-                        <li><a href="#" class="hover:text-white">Cancellation Policy</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Newsletter</h4>
-                    <p class="text-gray-400 mb-4">Subscribe for travel tips and exclusive offers.</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="flex-grow px-4 py-2 rounded-l text-gray-900">
-                        <button class="bg-blue-600 px-4 py-2 rounded-r hover:bg-blue-700">
-                            <i data-feather="send"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Wanderlust Tours. All rights reserved.</p>
-            </div>
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2024 MediCare Hospital Management System. All rights reserved.</p>
+            <p class="text-gray-500 text-sm mt-2">Secure login portal for authorized personnel only.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                feather.icons['eye-off'].replace(icon);
+            } else {
+                passwordInput.type = 'password';
+                feather.icons['eye'].replace(icon);
+            }
         });
         
-        // Initialize Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Toggle password visibility
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordInput = document.querySelector('input[type="password"]');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
             
-            togglePassword.addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                this.querySelector('i').setAttribute('data-feather', type === 'password' ? 'eye' : 'eye-off');
-                feather.replace();
-            });
+            // Simple validation
+            if (!username || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
             
-            // Form submission
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Simulate login process
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const originalText = submitBtn.textContent;
+            // Simulate login process
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Signing in...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // In a real application, this would be an API call
+                console.log('Login attempt:', { username, password });
                 
-                submitBtn.textContent = 'Signing in...';
-                submitBtn.disabled = true;
+                // Redirect to dashboard (simulated)
+                window.location.href = 'dashboard.html';
                 
-                setTimeout(() => {
-                    alert('Login successful! Redirecting to dashboard...');
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    // In real implementation, redirect to dashboard
-                    // window.location.href = 'dashboard.html';
-                }, 1500);
-            });
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
         });
+        
+        // Auto-focus username field
+        document.getElementById('username').focus();
     </script>
 </body>
 </html>

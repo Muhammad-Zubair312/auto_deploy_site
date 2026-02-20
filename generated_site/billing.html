@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billing & Invoicing | Hospital Management System</title>
+    <title>Billing - Hospital Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <style>
-        .invoice-table tbody tr:nth-child(even) {
-            background-color: #f8fafc;
+        .invoice-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
-        .print-area {
-            background: white;
-            color: black;
+        .status-paid {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .status-pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .status-overdue {
+            background-color: #fee2e2;
+            color: #991b1b;
         }
     </style>
 </head>
@@ -27,206 +34,182 @@
         <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
         <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
         <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
         <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
-        <a href='appointment-scheduling.html' class='px-3 py-2 hover:text-blue-400'>Appointment Scheduling</a>
-        <a href='doctor-directory.html' class='px-3 py-2 hover:text-blue-400'>Doctor Directory</a>
-        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
-        <a href='medical-records.html' class='px-3 py-2 hover:text-blue-400'>Medical Records</a>
         <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
-        <a href='inventory-management.html' class='px-3 py-2 hover:text-blue-400'>Inventory Management</a>
+        <a href='doctor-management.html' class='px-3 py-2 hover:text-blue-400'>Doctor Management</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='pharmacy-inventory.html' class='px-3 py-2 hover:text-blue-400'>Pharmacy Inventory</a>
     </nav>
 
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-8">
-        <!-- Page Header -->
-        <div class="mb-8" data-aos="fade-down">
-            <h1 class="text-3xl font-bold text-gray-800">Billing & Invoicing</h1>
+        <header class="mb-10" data-aos="fade-down">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Billing & Invoicing</h1>
             <p class="text-gray-600 mt-2">Manage patient invoices, payments, and billing records</p>
-        </div>
+        </header>
 
-        <!-- Billing Summary Cards -->
+        <!-- Billing Actions -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8" data-aos="fade-up">
-            <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
-                <div class="flex items-center justify-between">
+            <div class="bg-white p-6 rounded-xl invoice-shadow">
+                <div class="flex items-center">
+                    <i data-feather="file-text" class="text-blue-500 mr-4"></i>
                     <div>
-                        <p class="text-gray-500 text-sm">Total Revenue</p>
-                        <p class="text-2xl font-bold text-gray-800">$124,580</p>
+                        <h3 class="font-semibold text-gray-800">Create Invoice</h3>
+                        <p class="text-sm text-gray-500">Generate new bill</p>
                     </div>
-                    <i class="fas fa-dollar-sign text-blue-500 text-2xl"></i>
                 </div>
-                <p class="text-green-600 text-sm mt-2"><i class="fas fa-arrow-up mr-1"></i> 12% from last month</p>
+                <button class="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition">
+                    New Invoice
+                </button>
             </div>
-            
-            <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
-                <div class="flex items-center justify-between">
+
+            <div class="bg-white p-6 rounded-xl invoice-shadow">
+                <div class="flex items-center">
+                    <i data-feather="dollar-sign" class="text-green-500 mr-4"></i>
                     <div>
-                        <p class="text-gray-500 text-sm">Pending Invoices</p>
-                        <p class="text-2xl font-bold text-gray-800">24</p>
+                        <h3 class="font-semibold text-gray-800">Process Payment</h3>
+                        <p class="text-sm text-gray-500">Record payment</p>
                     </div>
-                    <i class="fas fa-file-invoice text-green-500 text-2xl"></i>
                 </div>
-                <p class="text-red-600 text-sm mt-2"><i class="fas fa-clock mr-1"></i> Requires attention</p>
+                <button class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition">
+                    Add Payment
+                </button>
             </div>
-            
-            <div class="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
-                <div class="flex items-center justify-between">
+
+            <div class="bg-white p-6 rounded-xl invoice-shadow">
+                <div class="flex items-center">
+                    <i data-feather="filter" class="text-purple-500 mr-4"></i>
                     <div>
-                        <p class="text-gray-500 text-sm">Paid This Month</p>
-                        <p class="text-2xl font-bold text-gray-800">$42,350</p>
+                        <h3 class="font-semibold text-gray-800">Filter Bills</h3>
+                        <p class="text-sm text-gray-500">By status or date</p>
                     </div>
-                    <i class="fas fa-check-circle text-purple-500 text-2xl"></i>
                 </div>
-                <p class="text-green-600 text-sm mt-2"><i class="fas fa-arrow-up mr-1"></i> 8% from last month</p>
+                <select class="mt-4 w-full border border-gray-300 rounded-lg p-2">
+                    <option>All Status</option>
+                    <option>Paid</option>
+                    <option>Pending</option>
+                    <option>Overdue</option>
+                </select>
             </div>
-            
-            <div class="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-500">
-                <div class="flex items-center justify-between">
+
+            <div class="bg-white p-6 rounded-xl invoice-shadow">
+                <div class="flex items-center">
+                    <i data-feather="download" class="text-orange-500 mr-4"></i>
                     <div>
-                        <p class="text-gray-500 text-sm">Overdue Payments</p>
-                        <p class="text-2xl font-bold text-gray-800">$8,750</p>
+                        <h3 class="font-semibold text-gray-800">Export Reports</h3>
+                        <p class="text-sm text-gray-500">Financial reports</p>
                     </div>
-                    <i class="fas fa-exclamation-triangle text-yellow-500 text-2xl"></i>
                 </div>
-                <p class="text-red-600 text-sm mt-2"><i class="fas fa-arrow-up mr-1"></i> 3% from last month</p>
+                <button class="mt-4 w-full bg-gray-800 hover:bg-black text-white py-2 rounded-lg transition">
+                    Download CSV
+                </button>
             </div>
         </div>
 
-        <!-- Billing Actions & Search -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4" data-aos="fade-up">
-            <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-                <button id="createInvoiceBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg flex items-center">
-                    <i class="fas fa-plus mr-2"></i> Create New Invoice
-                </button>
-                <button id="generateReportBtn" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg flex items-center">
-                    <i class="fas fa-chart-bar mr-2"></i> Generate Report
-                </button>
-            </div>
-            
-            <div class="relative w-full md:w-64">
-                <input type="text" id="searchBilling" placeholder="Search by patient or invoice ID..." 
-                       class="w-full p-3 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <i class="fas fa-search absolute left-3 top-3.5 text-gray-400"></i>
-            </div>
-        </div>
-
-        <!-- Billing Table -->
-        <div class="bg-white rounded-lg shadow overflow-hidden mb-8" data-aos="fade-up">
-            <div class="px-6 py-4 border-b border-gray-200">
-                <h2 class="text-xl font-semibold text-gray-800">Recent Invoices</h2>
+        <!-- Invoice List -->
+        <div class="bg-white rounded-xl invoice-shadow overflow-hidden mb-8" data-aos="fade-up">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-gray-800">Recent Invoices</h2>
+                <div class="flex space-x-4">
+                    <input type="text" placeholder="Search invoice or patient..." class="border border-gray-300 rounded-lg px-4 py-2 w-64">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                        <i data-feather="search" class="w-4 h-4 inline"></i>
+                    </button>
+                </div>
             </div>
             
             <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200 invoice-table">
-                    <thead class="bg-gray-100">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Invoice ID</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Patient</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Date</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Services</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Amount</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Status</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Actions</th>
+                            <th class="py-3 px-6 text-left text-gray-700 font-semibold">Invoice #</th>
+                            <th class="py-3 px-6 text-left text-gray-700 font-semibold">Patient</th>
+                            <th class="py-3 px-6 text-left text-gray-700 font-semibold">Date</th>
+                            <th class="py-3 px-6 text-left text-gray-700 font-semibold">Amount</th>
+                            <th class="py-3 px-6 text-left text-gray-700 font-semibold">Status</th>
+                            <th class="py-3 px-6 text-left text-gray-700 font-semibold">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="font-medium text-blue-600">INV-2023-0876</span>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-4 px-6 font-medium">INV-2023-0876</td>
+                            <td class="py-4 px-6">John Smith</td>
+                            <td class="py-4 px-6">Nov 15, 2023</td>
+                            <td class="py-4 px-6 font-semibold">$1,250.00</td>
+                            <td class="py-4 px-6">
+                                <span class="status-paid px-3 py-1 rounded-full text-xs font-medium">Paid</span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">John Smith</div>
-                                        <div class="text-sm text-gray-500">MRN: P-23456</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Nov 15, 2023</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm text-gray-700">Consultation, Lab Tests</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$450.00</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Paid</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button class="text-blue-600 hover:text-blue-900 mr-3 view-invoice" data-id="INV-2023-0876">View</button>
-                                <button class="text-green-600 hover:text-green-900 print-invoice" data-id="INV-2023-0876">Print</button>
+                            <td class="py-4 px-6">
+                                <button class="text-blue-500 hover:text-blue-700 mr-3">
+                                    <i data-feather="eye" class="w-4 h-4"></i>
+                                </button>
+                                <button class="text-green-500 hover:text-green-700 mr-3">
+                                    <i data-feather="download" class="w-4 h-4"></i>
+                                </button>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="font-medium text-blue-600">INV-2023-0877</span>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-4 px-6 font-medium">INV-2023-0875</td>
+                            <td class="py-4 px-6">Maria Garcia</td>
+                            <td class="py-4 px-6">Nov 14, 2023</td>
+                            <td class="py-4 px-6 font-semibold">$850.50</td>
+                            <td class="py-4 px-6">
+                                <span class="status-pending px-3 py-1 rounded-full text-xs font-medium">Pending</span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Maria Garcia</div>
-                                        <div class="text-sm text-gray-500">MRN: P-23457</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Nov 16, 2023</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm text-gray-700">Surgery, Medication</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$2,850.00</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button class="text-blue-600 hover:text-blue-900 mr-3 view-invoice" data-id="INV-2023-0877">View</button>
-                                <button class="text-green-600 hover:text-green-900 print-invoice" data-id="INV-2023-0877">Print</button>
+                            <td class="py-4 px-6">
+                                <button class="text-blue-500 hover:text-blue-700 mr-3">
+                                    <i data-feather="eye" class="w-4 h-4"></i>
+                                </button>
+                                <button class="text-green-500 hover:text-green-700 mr-3">
+                                    <i data-feather="download" class="w-4 h-4"></i>
+                                </button>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="font-medium text-blue-600">INV-2023-0878</span>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-4 px-6 font-medium">INV-2023-0874</td>
+                            <td class="py-4 px-6">Robert Johnson</td>
+                            <td class="py-4 px-6">Nov 10, 2023</td>
+                            <td class="py-4 px-6 font-semibold">$2,340.00</td>
+                            <td class="py-4 px-6">
+                                <span class="status-overdue px-3 py-1 rounded-full text-xs font-medium">Overdue</span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Robert Johnson</div>
-                                        <div class="text-sm text-gray-500">MRN: P-23458</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Nov 17, 2023</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm text-gray-700">X-Ray, Consultation</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$320.00</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Overdue</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button class="text-blue-600 hover:text-blue-900 mr-3 view-invoice" data-id="INV-2023-0878">View</button>
-                                <button class="text-green-600 hover:text-green-900 print-invoice" data-id="INV-2023-0878">Print</button>
+                            <td class="py-4 px-6">
+                                <button class="text-blue-500 hover:text-blue-700 mr-3">
+                                    <i data-feather="eye" class="w-4 h-4"></i>
+                                </button>
+                                <button class="text-green-500 hover:text-green-700 mr-3">
+                                    <i data-feather="download" class="w-4 h-4"></i>
+                                </button>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="font-medium text-blue-600">INV-2023-0879</span>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-4 px-6 font-medium">INV-2023-0873</td>
+                            <td class="py-4 px-6">Sarah Williams</td>
+                            <td class="py-4 px-6">Nov 8, 2023</td>
+                            <td class="py-4 px-6 font-semibold">$560.75</td>
+                            <td class="py-4 px-6">
+                                <span class="status-paid px-3 py-1 rounded-full text-xs font-medium">Paid</span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Sarah Williams</div>
-                                        <div class="text-sm text-gray-500">MRN: P-23459</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Nov 18, 2023</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm text-gray-700">Lab Tests, Medication</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$180.00</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Paid</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button class="text-blue-600 hover:text-blue-900 mr-3 view-invoice" data-id="INV-2023-0879">View</button>
-                                <button class="text-green-600 hover:text-green-900 print-invoice" data-id="INV-2023-0879">Print</button>
+                            <td class="py-4 px-6">
+                                <button class="text-blue-500 hover:text-blue-700 mr-3">
+                                    <i data-feather="eye" class="w-4 h-4"></i>
+                                </button>
+                                <button class="text-green-500 hover:text-green-700 mr-3">
+                                    <i data-feather="download" class="w-4 h-4"></i>
+                                </button>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -234,293 +217,138 @@
             </div>
             
             <div class="px-6 py-4 border-t border-gray-200 flex justify-between items-center">
-                <div class="text-sm text-gray-700">
-                    Showing <span class="font-medium">1</span> to <span class="font-medium">4</span> of <span class="font-medium">24</span> invoices
-                </div>
+                <div class="text-gray-600">Showing 4 of 128 invoices</div>
                 <div class="flex space-x-2">
-                    <button class="px-3 py-1 rounded border border-gray-300 text-gray-700 hover:bg-gray-50">Previous</button>
-                    <button class="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700">1</button>
-                    <button class="px-3 py-1 rounded border border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
-                    <button class="px-3 py-1 rounded border border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
-                    <button class="px-3 py-1 rounded border border-gray-300 text-gray-700 hover:bg-gray-50">Next</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50">Previous</button>
+                    <button class="px-3 py-1 bg-blue-500 text-white rounded-lg">1</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50">2</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50">3</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50">Next</button>
                 </div>
             </div>
         </div>
 
-        <!-- Invoice Preview Modal -->
-        <div id="invoiceModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
-            <div class="relative top-10 mx-auto p-5 border w-full max-w-4xl shadow-lg rounded-lg bg-white">
-                <div class="flex justify-between items-center pb-3">
-                    <h3 class="text-2xl font-bold text-gray-800">Invoice Details</h3>
-                    <button id="closeModal" class="text-gray-400 hover:text-gray-600 text-3xl">&times;</button>
-                </div>
-                
-                <div class="print-area p-6">
-                    <!-- Invoice Header -->
-                    <div class="flex justify-between items-start mb-8">
-                        <div>
-                            <h1 class="text-3xl font-bold text-gray-800">MEDCARE HOSPITAL</h1>
-                            <p class="text-gray-600">123 Health Street, Medical City</p>
-                            <p class="text-gray-600">Phone: (555) 123-4567 | Email: billing@medcarehospital.com</p>
+        <!-- Billing Summary & Create Invoice -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Billing Summary -->
+            <div class="lg:col-span-2" data-aos="fade-right">
+                <div class="bg-white rounded-xl invoice-shadow p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Billing Summary</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-blue-50 p-5 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Total Revenue</p>
+                                    <p class="text-2xl font-bold text-gray-800">$48,560</p>
+                                </div>
+                                <i data-feather="dollar-sign" class="text-blue-500"></i>
+                            </div>
+                            <p class="text-green-600 text-sm mt-2">+12% from last month</p>
                         </div>
-                        <div class="text-right">
-                            <h2 class="text-2xl font-bold text-blue-600">INVOICE</h2>
-                            <p class="text-gray-700 mt-2">Invoice #: <span id="invoiceId" class="font-bold">INV-2023-0876</span></p>
-                            <p class="text-gray-700">Date: <span id="invoiceDate" class="font-bold">November 15, 2023</span></p>
-                            <p class="text-gray-700">Due Date: <span id="dueDate" class="font-bold">November 30, 2023</span></p>
+                        <div class="bg-green-50 p-5 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Paid Invoices</p>
+                                    <p class="text-2xl font-bold text-gray-800">$42,100</p>
+                                </div>
+                                <i data-feather="check-circle" class="text-green-500"></i>
+                            </div>
+                            <p class="text-green-600 text-sm mt-2">86% collection rate</p>
+                        </div>
+                        <div class="bg-red-50 p-5 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Pending Amount</p>
+                                    <p class="text-2xl font-bold text-gray-800">$6,460</p>
+                                </div>
+                                <i data-feather="clock" class="text-red-500"></i>
+                            </div>
+                            <p class="text-red-600 text-sm mt-2">14% pending</p>
                         </div>
                     </div>
                     
-                    <!-- Patient & Billing Info -->
-                    <div class="grid grid-cols-2 gap-8 mb-8">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Bill To:</h3>
-                            <p id="patientName" class="font-bold text-gray-900">John Smith</p>
-                            <p id="patientAddress" class="text-gray-700">123 Main Street, Anytown</p>
-                            <p id="patientContact" class="text-gray-700">Phone: (555) 987-6543</p>
-                            <p id="patientMRN" class="text-gray-700">Medical Record #: P-23456</p>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Payment Details:</h3>
-                            <p class="text-gray-700">Payment Method: <span class="font-bold">Credit Card</span></p>
-                            <p class="text-gray-700">Account Number: <span class="font-bold">**** **** **** 1234</span></p>
-                            <p class="text-gray-700">Billing Department: <span class="font-bold">Finance</span></p>
-                        </div>
-                    </div>
-                    
-                    <!-- Invoice Items Table -->
-                    <div class="mb-8">
-                        <table class="min-w-full border-collapse border border-gray-300">
-                            <thead>
-                                <tr class="bg-gray-100">
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Description</th>
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Quantity</th>
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Unit Price</th>
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody id="invoiceItems">
-                                <!-- Items will be populated by JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <!-- Invoice Totals -->
-                    <div class="flex justify-end">
-                        <div class="w-64">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700">Subtotal:</span>
-                                <span id="subtotal" class="font-bold">$0.00</span>
+                    <div class="border-t border-gray-200 pt-6">
+                        <h3 class="font-semibold text-gray-800 mb-4">Recent Payments</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium">John Smith</p>
+                                    <p class="text-sm text-gray-500">Card payment • Nov 15</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-semibold">$1,250.00</p>
+                                    <p class="text-sm text-green-600">Completed</p>
+                                </div>
                             </div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700">Tax (8%):</span>
-                                <span id="tax" class="font-bold">$0.00</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700">Discount:</span>
-                                <span id="discount" class="font-bold">$0.00</span>
-                            </div>
-                            <div class="flex justify-between text-lg font-bold border-t pt-2 mt-2">
-                                <span>Total:</span>
-                                <span id="totalAmount" class="text-blue-600">$0.00</span>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium">Sarah Williams</p>
+                                    <p class="text-sm text-gray-500">Insurance • Nov 8</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-semibold">$560.75</p>
+                                    <p class="text-sm text-green-600">Completed</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Invoice Footer -->
-                    <div class="mt-12 pt-8 border-t border-gray-300">
-                        <p class="text-gray-600 text-sm">Thank you for choosing MedCare Hospital. Please make payment within 15 days of invoice date.</p>
-                        <p class="text-gray-600 text-sm mt-2">For billing inquiries, contact our finance department at (555) 123-4567 ext. 222</p>
-                    </div>
-                </div>
-                
-                <div class="flex justify-end mt-6 space-x-4">
-                    <button id="printInvoiceBtn" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-lg flex items-center">
-                        <i class="fas fa-print mr-2"></i> Print Invoice
-                    </button>
-                    <button id="markAsPaidBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg flex items-center">
-                        <i class="fas fa-check-circle mr-2"></i> Mark as Paid
-                    </button>
-                    <button id="closeModalBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-6 rounded-lg">
-                        Close
-                    </button>
                 </div>
             </div>
-        </div>
 
-        <!-- Create Invoice Form -->
-        <div id="createInvoiceForm" class="hidden bg-white rounded-lg shadow p-6 mb-8" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Create New Invoice</h2>
-            <form id="invoiceForm">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-gray-700 text-sm font-medium mb-2" for="patientSelect">Select Patient</label>
-                        <select id="patientSelect" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="">Choose a patient...</option>
-                            <option value="P-23456">John Smith (MRN: P-23456)</option>
-                            <option value="P-23457">Maria Garcia (MRN: P-23457)</option>
-                            <option value="P-23458">Robert Johnson (MRN: P-23458)</option>
-                            <option value="P-23459">Sarah Williams (MRN: P-23459)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-medium mb-2" for="invoiceDateInput">Invoice Date</label>
-                        <input type="date" id="invoiceDateInput" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="2023-11-20">
-                    </div>
-                </div>
-                
-                <div class="mb-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Invoice Items</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full border-collapse">
-                            <thead>
-                                <tr class="bg-gray-100">
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Service/Item</th>
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Description</th>
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Quantity</th>
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Unit Price ($)</th>
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Amount ($)</th>
-                                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="invoiceItemsForm">
-                                <tr>
-                                    <td class="border border-gray-300 px-4 py-3">
-                                        <input type="text" class="w-full p-2 border-none focus:outline-none" placeholder="Consultation">
-                                    </td>
-                                    <td class="border border-gray-300 px-4 py-3">
-                                        <input type="text" class="w-full p-2 border-none focus:outline-none" placeholder="Doctor consultation fee">
-                                    </td>
-                                    <td class="border border-gray-300 px-4 py-3">
-                                        <input type="number" class="w-full p-2 border-none focus:outline-none" value="1" min="1">
-                                    </td>
-                                    <td class="border border-gray-300 px-4 py-3">
-                                        <input type="number" class="w-full p-2 border-none focus:outline-none" value="150.00" step="0.01">
-                                    </td>
-                                    <td class="border border-gray-300 px-4 py-3">
-                                        <span class="item-amount">$150.00</span>
-                                    </td>
-                                    <td class="border border-gray-300 px-4 py-3">
-                                        <button type="button" class="text-red-600 hover:text-red-800 remove-item">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button type="button" id="addItemBtn" class="mt-4 text-blue-600 hover:text-blue-800 flex items-center">
-                        <i class="fas fa-plus-circle mr-2"></i> Add Another Item
-                    </button>
-                </div>
-                
-                <div class="flex justify-between items-center">
-                    <div class="text-lg font-bold">
-                        Total: <span id="formTotalAmount" class="text-blue-600">$150.00</span>
-                    </div>
-                    <div class="space-x-4">
-                        <button type="button" id="cancelInvoiceBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-6 rounded-lg">
-                            Cancel
-                        </button>
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg">
+            <!-- Create Invoice Form -->
+            <div data-aos="fade-left">
+                <div class="bg-white rounded-xl invoice-shadow p-6 sticky top-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Create New Invoice</h2>
+                    <form id="invoiceForm">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Patient ID/Name</label>
+                            <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search patient...">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Service Type</label>
+                            <select class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Consultation</option>
+                                <option>Laboratory Tests</option>
+                                <option>Radiology</option>
+                                <option>Pharmacy</option>
+                                <option>Procedure/Surgery</option>
+                                <option>Hospital Stay</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Amount ($)</label>
+                            <input type="number" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Description</label>
+                            <textarea class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Service details..."></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Payment Method</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center">
+                                    <input type="radio" name="payment" checked class="mr-2">
+                                    <span>Insurance</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="payment" class="mr-2">
+                                    <span>Cash</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="payment" class="mr-2">
+                                    <span>Card</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg transition duration-300">
                             Generate Invoice
                         </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <!-- Payment Analytics -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" data-aos="fade-up">
-            <div class="bg-white rounded-lg shadow p-6">
-                <h2 class="text-xl font-semibold text-gray-800 mb-6">Payment Status Distribution</h2>
-                <div class="flex items-center justify-center">
-                    <div class="relative w-64 h-64">
-                        <canvas id="paymentChart"></canvas>
-                    </div>
-                </div>
-                <div class="mt-6 grid grid-cols-3 gap-4 text-center">
-                    <div>
-                        <div class="w-4 h-4 bg-green-500 rounded-full inline-block mr-2"></div>
-                        <span class="text-gray-700">Paid (65%)</span>
-                    </div>
-                    <div>
-                        <div class="w-4 h-4 bg-yellow-500 rounded-full inline-block mr-2"></div>
-                        <span class="text-gray-700">Pending (25%)</span>
-                    </div>
-                    <div>
-                        <div class="w-4 h-4 bg-red-500 rounded-full inline-block mr-2"></div>
-                        <span class="text-gray-700">Overdue (10%)</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-lg shadow p-6">
-                <h2 class="text-xl font-semibold text-gray-800 mb-6">Recent Payments</h2>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="bg-blue-100 p-2 rounded-lg mr-4">
-                                <i class="fas fa-credit-card text-blue-600"></i>
-                            </div>
-                            <div>
-                                <p class="font-medium text-gray-800">Credit Card Payment</p>
-                                <p class="text-sm text-gray-600">INV-2023-0876 • John Smith</p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold text-gray-800">$450.00</p>
-                            <p class="text-sm text-green-600">Nov 15, 2023</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="bg-green-100 p-2 rounded-lg mr-4">
-                                <i class="fas fa-university text-green-600"></i>
-                            </div>
-                            <div>
-                                <p class="font-medium text-gray-800">Bank Transfer</p>
-                                <p class="text-sm text-gray-600">INV-2023-0879 • Sarah Williams</p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold text-gray-800">$180.00</p>
-                            <p class="text-sm text-green-600">Nov 18, 2023</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="bg-yellow-100 p-2 rounded-lg mr-4">
-                                <i class="fas fa-money-check-alt text-yellow-600"></i>
-                            </div>
-                            <div>
-                                <p class="font-medium text-gray-800">Insurance Claim</p>
-                                <p class="text-sm text-gray-600">INV-2023-0875 • Michael Brown</p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold text-gray-800">$1,250.00</p>
-                            <p class="text-sm text-green-600">Nov 14, 2023</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="bg-purple-100 p-2 rounded-lg mr-4">
-                                <i class="fas fa-mobile-alt text-purple-600"></i>
-                            </div>
-                            <div>
-                                <p class="font-medium text-gray-800">Mobile Payment</p>
-                                <p class="text-sm text-gray-600">INV-2023-0874 • Lisa Chen</p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold text-gray-800">$95.00</p>
-                            <p class="text-sm text-green-600">Nov 13, 2023</p>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -530,14 +358,18 @@
     <footer class="bg-gray-900 text-white py-8 mt-12">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h2 class="text-2xl font-bold">MedCare Hospital</h2>
-                    <p class="text-gray-400 mt-2">Comprehensive Healthcare Management System</p>
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">Hospital Management System</h3>
+                    <p class="text-gray-400 mt-2">Comprehensive healthcare management solution</p>
                 </div>
-                <div class="text-gray-400 text-center md:text-right">
-                    <p>© 2023 Hospital Management System. All rights reserved.</p>
-                    <p class="mt-2">Billing Department: billing@medcarehospital.com | (555) 123-4567 ext. 222</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Contact</a>
                 </div>
+            </div>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-500">
+                <p>&copy; 2023 Hospital Management System. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -550,18 +382,16 @@
         });
         
         // Initialize Feather Icons
-        feather.replace();
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
         
-        // Invoice data for the modal
-        const invoiceData = {
-            "INV-2023-0876": {
-                patientName: "John Smith",
-                patientAddress: "123 Main Street, Anytown",
-                patientContact: "Phone: (555) 987-6543",
-                patientMRN: "P-23456",
-                date: "November 15, 2023",
-                dueDate: "November 30, 2023",
-                items: [
-                    { description: "Doctor Consultation", quantity: 1, unitPrice: 200.00, amount: 200.00 },
-                    { description: "Blood Tests (Complete Panel)", quantity: 1, unitPrice: 150.00, amount: 150.00 },
-                    { description: "X-Ray
+        // Form submission handler
+        document.getElementById('invoiceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Invoice generated successfully!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
