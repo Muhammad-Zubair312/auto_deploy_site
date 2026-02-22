@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories | E-Commerce Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+        .filter-option:hover {
+            background-color: #f3f4f6;
+        }
+        .active-category {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex space-x-4 flex-wrap">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+            <a href='account.html' class='px-3 py-2 hover:text-blue-400'>Account</a>
+            <a href='categories.html' class='px-3 py-2 hover:text-blue-400 font-semibold text-blue-300'>Categories</a>
+            <a href='search-results.html' class='px-3 py-2 hover:text-blue-400'>Search Results</a>
+        </div>
+        <div class="mt-2 md:mt-0">
+            <a href="cart.html" class="flex items-center hover:text-blue-400">
+                <i data-feather="shopping-cart"></i>
+                <span class="ml-1">Cart (3)</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <header class="mb-10 text-center" data-aos="fade-down">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Shop by Categories</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">Browse our extensive collection of products organized by category. Find exactly what you're looking for with our intuitive filtering system.</p>
+        </header>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar Filters -->
+            <aside class="lg:w-1/4" data-aos="fade-right">
+                <div class="bg-white rounded-lg shadow-md p-6 sticky top-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="filter" class="mr-2"></i> Filters
+                    </h2>
+                    
+                    <!-- Price Range -->
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-gray-700 mb-4">Price Range</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center filter-option p-2 rounded cursor-pointer">
+                                <input type="radio" id="price-all" name="price" class="mr-3" checked>
+                                <label for="price-all" class="cursor-pointer">All Prices</label>
+                            </div>
+                            <div class="flex items-center filter-option p-2 rounded cursor-pointer">
+                                <input type="radio" id="price-low" name="price" class="mr-3">
+                                <label for="price-low" class="cursor-pointer">Under $50</label>
+                            </div>
+                            <div class="flex items-center filter-option p-2 rounded cursor-pointer">
+                                <input type="radio" id="price-mid" name="price" class="mr-3">
+                                <label for="price-mid" class="cursor-pointer">$50 - $200</label>
+                            </div>
+                            <div class="flex items-center filter-option p-2 rounded cursor-pointer">
+                                <input type="radio" id="price-high" name="price" class="mr-3">
+                                <label for="price-high" class="cursor-pointer">Over $200</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rating Filter -->
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-gray-700 mb-4">Customer Rating</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center filter-option p-2 rounded cursor-pointer">
+                                <input type="checkbox" id="rating-5" class="mr-3">
+                                <label for="rating-5" class="cursor-pointer flex items-center">
+                                    <div class="flex text-yellow-400 mr-2">
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    </div>
+                                    & above
+                                </label>
+                            </div>
+                            <div class="flex items-center filter-option p-2 rounded cursor-pointer">
+                                <input type="checkbox" id="rating-4" class="mr-3">
+                                <label for="rating-4" class="cursor-pointer flex items-center">
+                                    <div class="flex text-yellow-400 mr-2">
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    </div>
+                                    & above
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Availability -->
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-gray-700 mb-4">Availability</h3>
+                        <div class="flex items-center filter-option p-2 rounded cursor-pointer">
+                            <input type="checkbox" id="in-stock" class="mr-3" checked>
+                            <label for="in-stock" class="cursor-pointer">In Stock Only</label>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                        <i data-feather="check-circle" class="mr-2"></i> Apply Filters
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Categories Grid -->
+            <section class="lg:w-3/4">
+                <!-- Category Navigation -->
+                <div class="mb-8 overflow-x-auto">
+                    <div class="flex space-x-2 pb-4">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-full font-medium active-category">All Categories</button>
+                        <button class="px-4 py-2 bg-white border rounded-full font-medium hover:bg-gray-50">Electronics</button>
+                        <button class="px-4 py-2 bg-white border rounded-full font-medium hover:bg-gray-50">Fashion</button>
+                        <button class="px-4 py-2 bg-white border rounded-full font-medium hover:bg-gray-50">Home & Garden</button>
+                        <button class="px-4 py-2 bg-white border rounded-full font-medium hover:bg-gray-50">Sports</button>
+                        <button class="px-4 py-2 bg-white border rounded-full font-medium hover:bg-gray-50">Books</button>
+                        <button class="px-4 py-2 bg-white border rounded-full font-medium hover:bg-gray-50">Beauty</button>
+                    </div>
+                </div>
+
+                <!-- Categories Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up">
+                    <!-- Category Card 1 -->
+                    <div class="category-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="p-3 bg-blue-100 rounded-lg">
+                                    <i data-feather="smartphone" class="w-8 h-8 text-blue-600 category-icon"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-500">1,245 products</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Electronics</h3>
+                            <p class="text-gray-600 mb-4">Latest smartphones, laptops, gadgets and electronic accessories for your digital lifestyle.</p>
+                            <a href="products.html?category=electronics" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center">
+                                Shop Now <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Category Card 2 -->
+                    <div class="category-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="p-3 bg-green-100 rounded-lg">
+                                    <i data-feather="shopping-bag" class="w-8 h-8 text-green-600 category-icon"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-500">892 products</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Fashion</h3>
+                            <p class="text-gray-600 mb-4">Trendy clothing, shoes, accessories and jewelry for men, women and children.</p>
+                            <a href="products.html?category=fashion" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center">
+                                Shop Now <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Category Card 3 -->
+                    <div class="category-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="p-3 bg-yellow-100 rounded-lg">
+                                    <i data-feather="home" class="w-8 h-8 text-yellow-600 category-icon"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-500">756 products</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Home & Garden</h3>
+                            <p class="text-gray-600 mb-4">Furniture, decor, kitchenware, gardening tools and everything for your living space.</p>
+                            <a href="products.html?category=home" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center">
+                                Shop Now <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Category Card 4 -->
+                    <div class="category-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="p-3 bg-red-100 rounded-lg">
+                                    <i data-feather="activity" class="w-8 h-8 text-red-600 category-icon"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-500">543 products</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Sports & Outdoors</h3>
+                            <p class="text-gray-600 mb-4">Fitness equipment, outdoor gear, sports apparel and accessories for active lifestyles.</p>
+                            <a href="products.html?category=sports" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center">
+                                Shop Now <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Category Card 5 -->
+                    <div class="category-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="p-3 bg-purple-100 rounded-lg">
+                                    <i data-feather="book-open" class="w-8 h-8 text-purple-600 category-icon"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-500">1,089 products</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Books & Media</h3>
+                            <p class="text-gray-600 mb-4">Best-selling books, e-books, audiobooks, movies, music and educational materials.</p>
+                            <a href="products.html?category=books" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center">
+                                Shop Now <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Category Card 6 -->
+                    <div class="category-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="p-3 bg-pink-100 rounded-lg">
+                                    <i data-feather="heart" class="w-8 h-8 text-pink-600 category-icon"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-500">621 products</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Beauty & Health</h3>
+                            <p class="text-gray-600 mb-4">Skincare, makeup, fragrances, vitamins and wellness products for your self-care routine.</p>
+                            <a href="products.html?category=beauty" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center">
+                                Shop Now <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Products Section -->
+                <div class="mt-16" data-aos="fade-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="award" class="mr-3 text-yellow-500"></i> Featured Products
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Featured Product 1 -->
+                        <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="headphones" class="w-8 h-8 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Wireless Headphones</h4>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4"></i>
+                                        <span class="text-gray-600 text-sm ml-2">(128)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">Premium noise-cancelling wireless headphones with 30-hour battery life.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg text-gray-800">$129.99</span>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Featured Product 2 -->
+                        <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="watch" class="w-8 h-8 text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Smart Watch</h4>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <span class="text-gray-600 text-sm ml-2">(89)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">Fitness tracker with heart rate monitor and GPS. Water resistant.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg text-gray-800">$199.99</span>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Featured Product 3 -->
+                        <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="book" class="w-8 h-8 text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Bestseller Book</h4>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4"></i>
+                                        <span class="text-gray-600 text-sm ml-2">(256)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">New York Times bestselling novel by award-winning author.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg text-gray-800">$24.99</span>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-16 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">E-Commerce Store</h3>
+                    <p class="text-gray-400">Your one-stop shop for all your needs. Quality products, best prices.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">All Products</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white">Categories</a></li>
+                        <li><a href="account.html" class="text-gray-400 hover:text-white">My Account</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for updates and exclusive offers.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg text-gray-800 flex-grow">
+                        <button class="bg-blue-600 px-4 py-2 rounded-r-lg hover:bg-blue-700">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Category filter functionality
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.closest('a')) {
+                    this.querySelector('a').click();
+                }
+            });
+        });
+
+        // Filter option selection
+        document.querySelectorAll('.filter-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const input = this.querySelector('input');
+                if (input.type === 'checkbox') {
+                    input.checked = !input.checked;
+                } else {
+                    // For radio buttons, uncheck all others in group
+                    document.querySelectorAll(`input[name="${input.name}"]`).forEach(radio => {
+                        radio.checked = false;
+                    });
+                    input.checked = true;
+                }
+            });
+        });
+
+        // Category navigation buttons
+        document.querySelectorAll('button.bg-white.border').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelector('.active-category').classList.remove('active-category');
+                this.classList.add('active-category');
+                this.classList.add('bg-blue-600', 'text-white');
+                this.classList.remove('bg-white', 'border', 'hover:bg-gray-50');
+            });
+        });
+    </script>
+</body>
+</html>

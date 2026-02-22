@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results | E-Commerce Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .star-filled {
+            color: #fbbf24;
+        }
+        .star-empty {
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex space-x-4 flex-wrap">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+            <a href='account.html' class='px-3 py-2 hover:text-blue-400'>Account</a>
+            <a href='categories.html' class='px-3 py-2 hover:text-blue-400'>Categories</a>
+            <a href='search-results.html' class='px-3 py-2 hover:text-blue-400'>Search Results</a>
+        </div>
+        <div class="mt-2 md:mt-0">
+            <span class="text-sm text-gray-300">Welcome, User</span>
+        </div>
+    </nav>
+
+    <!-- Search Results Header -->
+    <header class="bg-white shadow-sm py-6 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Search Results</h1>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <p class="text-gray-600">Showing results for "<span class="font-semibold">Wireless Headphones</span>"</p>
+                <div class="flex items-center space-x-2">
+                    <span class="text-gray-600">24 products found</span>
+                    <div class="w-px h-6 bg-gray-300"></div>
+                    <a href="categories.html" class="text-blue-600 hover:text-blue-800 text-sm">Browse all categories</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Filters Sidebar -->
+            <aside class="lg:w-1/4">
+                <div class="bg-white rounded-lg shadow p-6 sticky top-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-6">Filter Results</h2>
+                    
+                    <!-- Category Filter -->
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-gray-800 mb-3">Categories</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600" checked>
+                                <span class="ml-2 text-gray-700">Electronics</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-gray-700">Audio</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-gray-700">Accessories</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-gray-700">Gaming</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-gray-800 mb-3">Price Range</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <input type="range" min="0" max="500" value="250" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>$0</span>
+                                <span>$250</span>
+                                <span>$500+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rating Filter -->
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-gray-800 mb-3">Customer Rating</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="rating" class="text-blue-600" checked>
+                                <div class="flex ml-2">
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <span class="ml-2 text-gray-700">& above</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="rating" class="text-blue-600">
+                                <div class="flex ml-2">
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-empty"></i>
+                                    <span class="ml-2 text-gray-700">& above</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Brand Filter -->
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-gray-800 mb-3">Brand</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600" checked>
+                                <span class="ml-2 text-gray-700">Sony</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-gray-700">Bose</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-gray-700">Sennheiser</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="ml-2 text-gray-700">JBL</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Apply Filters
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Product Results -->
+            <section class="lg:w-3/4">
+                <!-- Sort and View Options -->
+                <div class="bg-white rounded-lg shadow p-4 mb-6 flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <span class="text-gray-600">Sort by:</span>
+                        <select class="ml-2 border rounded-lg px-3 py-1">
+                            <option>Relevance</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Customer Rating</option>
+                            <option>Newest Arrivals</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600">View:</span>
+                        <button class="p-2 rounded-lg hover:bg-gray-100">
+                            <i data-feather="grid" class="w-5 h-5"></i>
+                        </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-100">
+                            <i data-feather="list" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Product Card 1 -->
+                    <div class="bg-white rounded-lg shadow product-card overflow-hidden" data-aos="fade-up">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Wireless Headphones" class="w-full h-48 object-cover">
+                            <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">Sale</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-900 mb-2">Premium Wireless Headphones</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="flex">
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-empty"></i>
+                                </div>
+                                <span class="text-sm text-gray-600 ml-2">(128 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Noise cancelling wireless headphones with 30-hour battery life.</p>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-2xl font-bold text-gray-900">$199.99</span>
+                                    <span class="text-sm text-gray-500 line-through ml-2">$249.99</span>
+                                </div>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center">
+                                    <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="bg-white rounded-lg shadow product-card overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Bluetooth Earbuds" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-900 mb-2">True Wireless Earbuds</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="flex">
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                </div>
+                                <span class="text-sm text-gray-600 ml-2">(256 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Sweat-resistant earbuds with charging case. 24h total battery.</p>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-2xl font-bold text-gray-900">$129.99</span>
+                                </div>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center">
+                                    <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="bg-white rounded-lg shadow product-card overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Gaming Headset" class="w-full h-48 object-cover">
+                            <span class="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">New</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-900 mb-2">Pro Gaming Headset</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="flex">
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-empty"></i>
+                                </div>
+                                <span class="text-sm text-gray-600 ml-2">(89 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">7.1 surround sound gaming headset with microphone.</p>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-2xl font-bold text-gray-900">$149.99</span>
+                                </div>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center">
+                                    <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <div class="bg-white rounded-lg shadow product-card overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Sports Headphones" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-900 mb-2">Sports Wireless Headphones</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="flex">
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                </div>
+                                <span class="text-sm text-gray-600 ml-2">(312 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Waterproof headphones perfect for workouts and running.</p>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-2xl font-bold text-gray-900">$89.99</span>
+                                    <span class="text-sm text-gray-500 line-through ml-2">$109.99</span>
+                                </div>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center">
+                                    <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="bg-white rounded-lg shadow product-card overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Studio Headphones" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-900 mb-2">Studio Monitor Headphones</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="flex">
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-empty"></i>
+                                </div>
+                                <span class="text-sm text-gray-600 ml-2">(167 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Professional studio headphones for audio production.</p>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-2xl font-bold text-gray-900">$299.99</span>
+                                </div>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center">
+                                    <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="bg-white rounded-lg shadow product-card overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1599669454699-248893623440?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Budget Headphones" class="w-full h-48 object-cover">
+                            <span class="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded">Best Value</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-900 mb-2">Budget Wireless Headphones</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="flex">
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-filled"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-empty"></i>
+                                    <i data-feather="star" class="w-4 h-4 star-empty"></i>
+                                </div>
+                                <span class="text-sm text-gray-600 ml-2">(421 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Affordable wireless headphones with decent sound quality.</p>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-2xl font-bold text-gray-900">$49.99</span>
+                                </div>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center">
+                                    <i data-feather="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-12 flex justify-center">
+                    <nav class="flex items-center space-x-2">
+                        <button class="px-3 py-2 rounded-lg border hover:bg-gray-50">
+                            <i data-feather="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                        <button class="px-3 py-2 rounded-lg bg-blue-600 text-white">1</button>
+                        <button class="px-3 py-2 rounded-lg border hover:bg-gray-50">2</button>
+                        <button class="px-3 py-2 rounded-lg border hover:bg-gray-50">3</button>
+                        <span class="px-2">...</span>
+                        <button class="px-3 py-2 rounded-lg border hover:bg-gray-50">8</button>
+                        <button class="px-3 py-2 rounded-lg border hover:bg-gray-50">
+                            <i data-feather="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Search Tips -->
+                <div class="mt-12 bg-blue-50 rounded-lg p-6">
+                    <h3 class="font-bold text-gray-900 mb-3">Search Tips</h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                        <li>Try using more specific keywords like "noise cancelling" or "bluetooth 5.0"</li>
+                        <li>Check different categories for similar products</li>
+                        <li>Use the price filter to find products within your budget</li>
+                        <li>Read customer reviews to make informed decisions</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">E-Commerce Store</h3>
+                    <p class="text-gray-400">Your one-stop shop for all electronics and accessories.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">All Products</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white">Categories</a></li>
+                        <li><a href="account.html" class="text-gray-400 hover:text-white">My Account</a></li>
+                        <li><a href="cart.html" class="text-gray-400 hover:text-white">Shopping Cart</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Connected</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg flex-grow text-gray-900">
+                        <button class="bg-blue-600 px-4 py-2 rounded-r-lg hover:bg-blue-700">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 600,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Add to Cart functionality
+        document.querySelectorAll('button:has(i[data-feather="shopping-cart"])').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('h3').textContent;
+                alert(`Added "${productName}" to cart!`);
+                // In a real implementation, this would update the cart state
+            });
+        });
+    </script>
+</body>
+</html>
