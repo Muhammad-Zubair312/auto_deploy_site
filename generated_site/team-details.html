@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Details | Sport Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .player-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .stat-bar {
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex space-x-4 flex-wrap">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+            <a href='events.html' class='px-3 py-2 hover:text-blue-400'>Events</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+            <a href='standings.html' class='px-3 py-2 hover:text-blue-400'>Standings</a>
+            <a href='event-details.html' class='px-3 py-2 hover:text-blue-400'>Event Details</a>
+            <a href='team-details.html' class='px-3 py-2 hover:text-blue-400'>Team Details</a>
+        </div>
+        <div class="flex space-x-4">
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        </div>
+    </nav>
+
+    <!-- Team Details Header -->
+    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-12 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center" data-aos="fade-up">
+                <div class="w-32 h-32 md:w-48 md:h-48 bg-white rounded-full flex items-center justify-center mb-6 md:mb-0 md:mr-10">
+                    <img src="https://via.placeholder.com/150" alt="Team Logo" class="w-24 h-24 md:w-36 md:h-36 rounded-full">
+                </div>
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Thunderbolts FC</h1>
+                    <div class="flex flex-wrap items-center gap-4 mb-4">
+                        <span class="bg-blue-800 px-4 py-1 rounded-full">Est. 2010</span>
+                        <span class="bg-green-600 px-4 py-1 rounded-full">League: Premier Division</span>
+                        <span class="bg-yellow-600 px-4 py-1 rounded-full">Coach: Alex Johnson</span>
+                    </div>
+                    <p class="text-blue-200 max-w-3xl">A dominant force in the league with 3 championship titles in the last 5 seasons. Known for aggressive offense and solid defense.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Team Info & Stats -->
+            <div class="lg:col-span-2">
+                <!-- Team Stats -->
+                <section class="bg-white rounded-xl shadow-lg p-6 mb-8" data-aos="fade-right">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="bar-chart-2" class="mr-2"></i> Team Statistics
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-blue-700">18</div>
+                            <div class="text-gray-600">Matches Played</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-green-700">14</div>
+                            <div class="text-gray-600">Wins</div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-red-700">2</div>
+                            <div class="text-gray-600">Losses</div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-yellow-700">2</div>
+                            <div class="text-gray-600">Draws</div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Win Rate</span>
+                                <span>78%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-green-600 h-2.5 rounded-full stat-bar" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Goals Scored (Avg per match)</span>
+                                <span>2.8</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-blue-600 h-2.5 rounded-full stat-bar" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Player Stats -->
+                <section class="bg-white rounded-xl shadow-lg p-6 mb-8" data-aos="fade-right" data-aos-delay="100">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="users" class="mr-2"></i> Top Players
+                    </h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-3 px-4 text-left">Player</th>
+                                    <th class="py-3 px-4 text-left">Position</th>
+                                    <th class="py-3 px-4 text-left">Goals</th>
+                                    <th class="py-3 px-4 text-left">Assists</th>
+                                    <th class="py-3 px-4 text-left">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4 flex items-center">
+                                        <img src="https://via.placeholder.com/40" alt="Player" class="w-8 h-8 rounded-full mr-3">
+                                        Marcus Rodriguez
+                                    </td>
+                                    <td class="py-3 px-4">Forward</td>
+                                    <td class="py-3 px-4 font-bold">22</td>
+                                    <td class="py-3 px-4">8</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">9.2</span>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4 flex items-center">
+                                        <img src="https://via.placeholder.com/40" alt="Player" class="w-8 h-8 rounded-full mr-3">
+                                        James Wilson
+                                    </td>
+                                    <td class="py-3 px-4">Midfielder</td>
+                                    <td class="py-3 px-4 font-bold">12</td>
+                                    <td class="py-3 px-4">15</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">8.7</span>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4 flex items-center">
+                                        <img src="https://via.placeholder.com/40" alt="Player" class="w-8 h-8 rounded-full mr-3">
+                                        David Chen
+                                    </td>
+                                    <td class="py-3 px-4">Defender</td>
+                                    <td class="py-3 px-4 font-bold">4</td>
+                                    <td class="py-3 px-4">6</td>
+                                    <td class="py-3 px-4">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">8.5</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Match Highlights -->
+                <section class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-right" data-aos-delay="200">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="film" class="mr-2"></i> Recent Match Highlights
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border rounded-lg overflow-hidden">
+                            <div class="relative h-48 bg-gray-300">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <i data-feather="play-circle" class="w-16 h-16 text-white opacity-80"></i>
+                                </div>
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                    <div class="text-white font-bold">Thunderbolts 3 - 1 Rivals FC</div>
+                                    <div class="text-gray-300 text-sm">April 15, 2023 | League Match</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg overflow-hidden">
+                            <div class="relative h-48 bg-gray-300">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <i data-feather="play-circle" class="w-16 h-16 text-white opacity-80"></i>
+                                </div>
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                    <div class="text-white font-bold">Thunderbolts 2 - 0 United SC</div>
+                                    <div class="text-gray-300 text-sm">April 8, 2023 | Cup Quarterfinal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: News, Events, Live Scores -->
+            <div>
+                <!-- Live Scores -->
+                <section class="bg-white rounded-xl shadow-lg p-6 mb-8" data-aos="fade-left">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="radio" class="mr-2"></i> Live Scores
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-green-500 pl-4 py-2">
+                            <div class="font-bold">LIVE 65'</div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <div class="font-semibold">Thunderbolts FC</div>
+                                    <div class="text-sm text-gray-600">Home</div>
+                                </div>
+                                <div class="text-2xl font-bold">2 - 1</div>
+                                <div>
+                                    <div class="font-semibold">City United</div>
+                                    <div class="text-sm text-gray-600">Away</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-gray-300 pl-4 py-2">
+                            <div class="font-bold text-gray-500">FINAL</div>
+                            <div class="flex justify-between items-center">
+                                <div class="font-semibold">Rovers FC</div>
+                                <div class="text-xl font-bold">0 - 3</div>
+                                <div class="font-semibold">Strikers SC</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Team News Feed -->
+                <section class="bg-white rounded-xl shadow-lg p-6 mb-8" data-aos="fade-left" data-aos-delay="100">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="file-text" class="mr-2"></i> Team News
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="pb-4 border-b">
+                            <div class="text-sm text-gray-500 mb-1">April 18, 2023</div>
+                            <h3 class="font-bold text-lg mb-2">Star Forward Signs Contract Extension</h3>
+                            <p class="text-gray-700">Marcus Rodriguez commits to Thunderbolts for 3 more seasons...</p>
+                            <a href="#" class="text-blue-600 hover:underline text-sm flex items-center mt-2">
+                                Read more <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                        <div class="pb-4 border-b">
+                            <div class="text-sm text-gray-500 mb-1">April 12, 2023</div>
+                            <h3 class="font-bold text-lg mb-2">Team Announces Youth Academy Partnership</h3>
+                            <p class="text-gray-700">New talent development program launched with local schools...</p>
+                            <a href="#" class="text-blue-600 hover:underline text-sm flex items-center mt-2">
+                                Read more <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Upcoming Events -->
+                <section class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-left" data-aos-delay="200">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="calendar" class="mr-2"></i> Upcoming Matches
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="border rounded-lg p-4 hover:bg-blue-50 cursor-pointer">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="font-bold">vs. Warriors FC</div>
+                                    <div class="text-sm text-gray-600">Premier Division</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-semibold">Apr 22</div>
+                                    <div class="text-sm text-gray-600">7:30 PM</div>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-sm text-gray-700">Thunderbolt Stadium</div>
+                        </div>
+                        <div class="border rounded-lg p-4 hover:bg-blue-50 cursor-pointer">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="font-bold">@ City Rivals</div>
+                                    <div class="text-sm text-gray-600">Cup Semifinal</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-semibold">Apr 28</div>
+                                    <div class="text-sm text-gray-600">8:00 PM</div>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-sm text-gray-700">National Arena</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Full Squad -->
+        <section class="mt-12" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Full Squad</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <!-- Player Cards -->
+                <div class="player-card bg-white rounded-xl shadow-md p-4 text-center hover:shadow-xl">
+                    <img src="https://via.placeholder.com/80" alt="Player" class="w-20 h-20 rounded-full mx-auto mb-3">
+                    <div class="font-bold">M. Rodriguez</div>
+                    <div class="text-sm text-gray-600">Forward</div>
+                    <div class="text-xs text-blue-600 mt-1">#9</div>
+                </div>
+                <div class="player-card bg-white rounded-xl shadow-md p-4 text-center hover:shadow-xl">
+                    <img src="https://via.placeholder.com/80" alt="Player" class="w-20 h-20 rounded-full mx-auto mb-3">
+                    <div class="font-bold">J. Wilson</div>
+                    <div class="text-sm text-gray-600">Midfielder</div>
+                    <div class="text-xs text-blue-600 mt-1">#8</div>
+                </div>
+                <div class="player-card bg-white rounded-xl shadow-md p-4 text-center hover:shadow-xl">
+                    <img src="https://via.placeholder.com/80" alt="Player" class="w-20 h-20 rounded-full mx-auto mb-3">
+                    <div class="font-bold">D. Chen</div>
+                    <div class="text-sm text-gray-600">Defender</div>
+                    <div class="text-xs text-blue-600 mt-1">#4</div>
+                </div>
+                <div class="player-card bg-white rounded-xl shadow-md p-4 text-center hover:shadow-xl">
+                    <img src="https://via.placeholder.com/80" alt="Player" class="w-20 h-20 rounded-full mx-auto mb-3">
+                    <div class="font-bold">K. Tanaka</div>
+                    <div class="text-sm text-gray-600">Goalkeeper</div>
+                    <div class="text-xs text-blue-600 mt-1">#1</div>
+                </div>
+                <div class="player-card bg-white rounded-xl shadow-md p-4 text-center hover:shadow-xl">
+                    <img src="https://via.placeholder.com/80" alt="Player" class="w-20 h-20 rounded-full mx-auto mb-3">
+                    <div class="font-bold">S. Miller</div>
+                    <div class="text-sm text-gray-600">Defender</div>
+                    <div class="text-xs text-blue-600 mt-1">#5</div>
+                </div>
+                <div class="player-card bg-white rounded-xl shadow-md p-4 text-center hover:shadow-xl">
+                    <img src="https://via.placeholder.com/80" alt="Player" class="w-20 h-20 rounded-full mx-auto mb-3">
+                    <div class="font-bold">R. Silva</div>
+                    <div class="text-sm text-gray-600">Midfielder</div>
+                    <div class="text-xs text-blue-600 mt-1">#10</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold mb-2">Sport Website</div>
+                    <div class="text-gray-400">Your premier source for sports news and updates</div>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-blue-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-blue-400">Terms of Service</a>
+                    <a href="#" class="hover:text-blue-400">Contact</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                &copy; 2023 Sport Website. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        feather.replace();
+        
+        // Animate stat bars on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statBars = entry.target.querySelectorAll('.stat-bar');
+                        statBars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0';
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 300);
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('[data-aos]').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

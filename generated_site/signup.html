@@ -3,179 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E-Commerce Store</title>
+    <title>Sign Up - SportHub</title>
     <script src='https://cdn.tailwindcss.com'></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .input-focus:focus { box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2); }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+        }
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="text-gray-100">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Home</a>
-        <a href='products.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Products</a>
-        <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Product Details</a>
-        <a href='cart.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Cart</a>
-        <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Checkout</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base font-semibold text-blue-300'>Signup</a>
-        <a href='account.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Account</a>
-        <a href='categories.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Categories</a>
-        <a href='search-results.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Search Results</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
+        <div class="flex items-center space-x-2 mb-2 md:mb-0">
+            <i data-feather="activity" class="text-blue-400"></i>
+            <span class="text-xl font-bold">SportHub</span>
+        </div>
+        <div class="flex flex-wrap space-x-2 md:space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 transition'>Home</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400 transition'>News</a>
+            <a href='events.html' class='px-3 py-2 hover:text-blue-400 transition'>Events</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400 transition'>Teams</a>
+            <a href='standings.html' class='px-3 py-2 hover:text-blue-400 transition'>Standings</a>
+            <a href='event-details.html' class='px-3 py-2 hover:text-blue-400 transition'>Event Details</a>
+            <a href='team-details.html' class='px-3 py-2 hover:text-blue-400 transition'>Team Details</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 transition'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded-md hover:bg-blue-700 transition'>Signup</a>
+        </div>
     </nav>
 
-    <!-- Signup Section -->
-    <main class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">Create Your Account</h1>
-                <p class="text-gray-600 max-w-2xl mx-auto">Join our e-commerce community to enjoy seamless shopping, secure payments, order tracking, and personalized recommendations.</p>
-            </div>
-
-            <div class="flex flex-col lg:flex-row gap-12 items-start">
-                <!-- Signup Form -->
-                <div class="lg:w-1/2 w-full" data-aos="fade-right">
-                    <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                        <form id="signupForm" class="space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                                    <input type="text" id="firstName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition duration-200" placeholder="John">
-                                </div>
-                                <div>
-                                    <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                                    <input type="text" id="lastName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition duration-200" placeholder="Doe">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                                <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition duration-200" placeholder="john@example.com">
-                            </div>
-
-                            <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                                <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition duration-200" placeholder="+1 (555) 123-4567">
-                            </div>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password *</label>
-                                    <div class="relative">
-                                        <input type="password" id="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition duration-200" placeholder="••••••••">
-                                        <button type="button" class="absolute right-3 top-3 text-gray-500 hover:text-gray-700" onclick="togglePassword('password')">
-                                            <i data-feather="eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">Confirm Password *</label>
-                                    <div class="relative">
-                                        <input type="password" id="confirmPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition duration-200" placeholder="••••••••">
-                                        <button type="button" class="absolute right-3 top-3 text-gray-500 hover:text-gray-700" onclick="togglePassword('confirmPassword')">
-                                            <i data-feather="eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center">
-                                <input id="newsletter" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" checked>
-                                <label for="newsletter" class="ml-3 text-sm text-gray-700">Subscribe to our newsletter for exclusive deals and updates</label>
-                            </div>
-
-                            <div class="flex items-center">
-                                <input id="terms" type="checkbox" required class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                <label for="terms" class="ml-3 text-sm text-gray-700">
-                                    I agree to the 
-                                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Terms of Service</a> 
-                                    and 
-                                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Privacy Policy</a> *
-                                </label>
-                            </div>
-
-                            <button type="submit" class="w-full gradient-bg text-white font-semibold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300 transform hover:-translate-y-1 shadow-lg">
-                                Create Account
-                            </button>
-
-                            <div class="text-center pt-4">
-                                <p class="text-gray-600">Already have an account? 
-                                    <a href="login.html" class="text-blue-600 hover:text-blue-800 font-semibold">Log In</a>
-                                </p>
-                            </div>
-                        </form>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column - Signup Form -->
+                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 shadow-2xl" data-aos="fade-right">
+                    <div class="text-center mb-10">
+                        <h1 class="text-4xl font-bold mb-3">Join SportHub</h1>
+                        <p class="text-gray-300">Create your account to access all sports features</p>
                     </div>
+
+                    <form id="signupForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">First Name</label>
+                                <input type="text" 
+                                       class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg form-input focus:outline-none focus:border-blue-500"
+                                       placeholder="John"
+                                       required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Last Name</label>
+                                <input type="text" 
+                                       class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg form-input focus:outline-none focus:border-blue-500"
+                                       placeholder="Doe"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email Address</label>
+                            <input type="email" 
+                                   class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg form-input focus:outline-none focus:border-blue-500"
+                                   placeholder="john@example.com"
+                                   required>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Password</label>
+                            <input type="password" 
+                                   class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg form-input focus:outline-none focus:border-blue-500"
+                                   placeholder="••••••••"
+                                   required>
+                            <p class="text-xs text-gray-400 mt-2">Must be at least 8 characters with numbers and letters</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Confirm Password</label>
+                            <input type="password" 
+                                   class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg form-input focus:outline-none focus:border-blue-500"
+                                   placeholder="••••••••"
+                                   required>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Favorite Sport</label>
+                            <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg form-input focus:outline-none focus:border-blue-500">
+                                <option value="">Select your favorite sport</option>
+                                <option value="football">Football</option>
+                                <option value="basketball">Basketball</option>
+                                <option value="tennis">Tennis</option>
+                                <option value="baseball">Baseball</option>
+                                <option value="hockey">Hockey</option>
+                                <option value="soccer">Soccer</option>
+                            </select>
+                        </div>
+
+                        <div class="flex items-center">
+                            <input type="checkbox" id="terms" class="mr-3 h-5 w-5 text-blue-600 rounded">
+                            <label for="terms" class="text-sm">
+                                I agree to the <a href="#" class="text-blue-400 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-[1.02]">
+                            Create Account
+                        </button>
+
+                        <div class="text-center">
+                            <p class="text-gray-400">Already have an account? 
+                                <a href="login.html" class="text-blue-400 hover:underline font-medium">Sign In</a>
+                            </p>
+                        </div>
+                    </form>
                 </div>
 
-                <!-- Benefits Section -->
-                <div class="lg:w-1/2 w-full" data-aos="fade-left">
-                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 md:p-10 h-full border border-blue-100">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-8">Benefits of Creating an Account</h2>
-                        
-                        <div class="space-y-8">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 p-3 rounded-xl mr-4">
-                                    <i data-feather="shopping-bag" class="w-6 h-6 text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Faster Checkout</h3>
-                                    <p class="text-gray-600">Save your shipping and payment details for quick, one-click purchases.</p>
-                                </div>
-                            </div>
+                <!-- Right Column - Features Preview -->
+                <div class="space-y-8" data-aos="fade-left">
+                    <div class="text-center lg:text-left">
+                        <h2 class="text-3xl font-bold mb-4">Unlock All Sports Features</h2>
+                        <p class="text-gray-300 text-lg">Join thousands of sports enthusiasts tracking their favorite teams and events</p>
+                    </div>
 
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-purple-100 p-3 rounded-xl mr-4">
-                                    <i data-feather="package" class="w-6 h-6 text-purple-600"></i>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Feature Cards -->
+                        <div class="bg-gray-800/50 p-6 rounded-xl hover:bg-gray-800/70 transition">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 bg-blue-900/30 rounded-lg mr-4">
+                                    <i data-feather="rss" class="text-blue-400"></i>
                                 </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Order History & Tracking</h3>
-                                    <p class="text-gray-600">Access your complete purchase history and track current orders in real-time.</p>
-                                </div>
+                                <h3 class="text-xl font-semibold">Personalized News Feed</h3>
                             </div>
+                            <p class="text-gray-300">Get customized sports news based on your favorite teams and sports.</p>
+                        </div>
 
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-green-100 p-3 rounded-xl mr-4">
-                                    <i data-feather="credit-card" class="w-6 h-6 text-green-600"></i>
+                        <div class="bg-gray-800/50 p-6 rounded-xl hover:bg-gray-800/70 transition">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 bg-green-900/30 rounded-lg mr-4">
+                                    <i data-feather="calendar" class="text-green-400"></i>
                                 </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Secure Payment Gateway</h3>
-                                    <p class="text-gray-600">Multiple secure payment options with encrypted transactions for your safety.</p>
-                                </div>
+                                <h3 class="text-xl font-semibold">Event Calendar</h3>
                             </div>
+                            <p class="text-gray-300">Never miss a game with our comprehensive sports event calendar.</p>
+                        </div>
 
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-yellow-100 p-3 rounded-xl mr-4">
-                                    <i data-feather="star" class="w-6 h-6 text-yellow-600"></i>
+                        <div class="bg-gray-800/50 p-6 rounded-xl hover:bg-gray-800/70 transition">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 bg-purple-900/30 rounded-lg mr-4">
+                                    <i data-feather="users" class="text-purple-400"></i>
                                 </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Exclusive Member Deals</h3>
-                                    <p class="text-gray-600">Get special discounts, early access to sales, and personalized recommendations.</p>
-                                </div>
+                                <h3 class="text-xl font-semibold">Team Profiles</h3>
                             </div>
+                            <p class="text-gray-300">Detailed profiles of all your favorite teams with rosters and stats.</p>
+                        </div>
 
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-red-100 p-3 rounded-xl mr-4">
-                                    <i data-feather="message-circle" class="w-6 h-6 text-red-600"></i>
+                        <div class="bg-gray-800/50 p-6 rounded-xl hover:bg-gray-800/70 transition">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 bg-red-900/30 rounded-lg mr-4">
+                                    <i data-feather="bar-chart-2" class="text-red-400"></i>
                                 </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Write Reviews</h3>
-                                    <p class="text-gray-600">Share your experiences and help other customers make informed decisions.</p>
-                                </div>
+                                <h3 class="text-xl font-semibold">Player Stats</h3>
                             </div>
+                            <p class="text-gray-300">Real-time player statistics and performance analytics.</p>
+                        </div>
 
-                            <div class="mt-10 p-6 bg-white rounded-xl border border-gray-200">
-                                <h3 class="text-lg font-semibold text-gray-900 mb-3">Ready to Shop?</h3>
-                                <p class="text-gray-600 mb-4">Create your account now and get 10% off your first purchase!</p>
-                                <a href="products.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
-                                    Browse Products
-                                    <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                                </a>
+                        <div class="bg-gray-800/50 p-6 rounded-xl hover:bg-gray-800/70 transition">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 bg-yellow-900/30 rounded-lg mr-4">
+                                    <i data-feather="radio" class="text-yellow-400"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">Live Scores</h3>
+                            </div>
+                            <p class="text-gray-300">Follow live scores and game updates in real-time.</p>
+                        </div>
+
+                        <div class="bg-gray-800/50 p-6 rounded-xl hover:bg-gray-800/70 transition">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 bg-pink-900/30 rounded-lg mr-4">
+                                    <i data-feather="film" class="text-pink-400"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">Match Highlights</h3>
+                            </div>
+                            <p class="text-gray-300">Watch highlights and replays of the best moments.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 p-6 rounded-xl border border-blue-800/30">
+                        <div class="flex items-center">
+                            <i data-feather="star" class="text-yellow-400 mr-4"></i>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Premium Features Available</h3>
+                                <p class="text-gray-300">Upgrade to premium for ad-free experience, exclusive content, and advanced analytics.</p>
                             </div>
                         </div>
                     </div>
@@ -185,87 +209,70 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">E-Commerce Store</h3>
-                    <p class="text-gray-400">Your one-stop destination for quality products and seamless shopping experience.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="products.html" class="hover:text-white">All Products</a></li>
-                        <li><a href="categories.html" class="hover:text-white">Categories</a></li>
-                        <li><a href="account.html" class="hover:text-white">My Account</a></li>
-                        <li><a href="cart.html" class="hover:text-white">Shopping Cart</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Support</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">Help Center</a></li>
-                        <li><a href="#" class="hover:text-white">Payment Methods</a></li>
-                        <li><a href="#" class="hover:text-white">Returns & Refunds</a></li>
-                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Stay Connected</h4>
-                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates.</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg text-gray-900 flex-grow">
-                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg">Subscribe</button>
+    <footer class="bg-gray-900 mt-20 py-8 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="activity" class="text-blue-400"></i>
+                        <span class="text-xl font-bold">SportHub</span>
                     </div>
+                    <p class="text-gray-400 mt-2">Your ultimate sports companion</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="youtube"></i>
+                    </a>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
+            <div class="text-center text-gray-500 text-sm mt-8 pt-8 border-t border-gray-800">
+                <p>&copy; 2024 SportHub. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS animations
+        // Initialize AOS
         AOS.init({
             duration: 800,
             once: true
         });
 
         // Initialize Feather Icons
-        feather.replace();
-
-        // Password visibility toggle
-        function togglePassword(inputId) {
-            const input = document.getElementById(inputId);
-            const icon = input.nextElementSibling.querySelector('i');
-            if (input.type === 'password') {
-                input.type = 'text';
-                feather.replace();
-                icon.setAttribute('data-feather', 'eye-off');
-            } else {
-                input.type = 'password';
-                feather.replace();
-                icon.setAttribute('data-feather', 'eye');
-            }
+        document.addEventListener('DOMContentLoaded', function() {
             feather.replace();
-        }
-
-        // Form submission handling
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to your account...');
-            window.location.href = 'account.html';
+            // Form submission handler
+            document.getElementById('signupForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const password = formData.get('password');
+                const confirmPassword = formData.get('confirmPassword');
+                
+                // Simple validation
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                // Simulate successful signup
+                alert('Account created successfully! Redirecting to dashboard...');
+                // In a real app, you would redirect to dashboard
+                // window.location.href = 'dashboard.html';
+            });
         });
     </script>
 </body>

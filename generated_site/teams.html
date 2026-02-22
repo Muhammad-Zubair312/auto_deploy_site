@@ -3,37 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teams | Sport Website</title>
+    <title>Teams | SportHub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <style>
         .team-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             transition: transform 0.3s ease;
         }
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .stat-bar {
+            transition: width 1s ease-in-out;
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex flex-wrap space-x-4">
+        <div class="flex space-x-4 flex-wrap">
             <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
             <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
-            <a href='events-schedules.html' class='px-3 py-2 hover:text-blue-400'>Events/Schedules</a>
-            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
-            <a href='players.html' class='px-3 py-2 hover:text-blue-400'>Players</a>
-            <a href='standings-results.html' class='px-3 py-2 hover:text-blue-400'>Standings/Results</a>
-            <a href='gallery-media.html' class='px-3 py-2 hover:text-blue-400'>Gallery/Media</a>
-            <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
-            <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
+            <a href='events.html' class='px-3 py-2 hover:text-blue-400'>Events</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400 font-semibold text-blue-300'>Teams</a>
+            <a href='standings.html' class='px-3 py-2 hover:text-blue-400'>Standings</a>
+            <a href='event-details.html' class='px-3 py-2 hover:text-blue-400'>Event Details</a>
+            <a href='team-details.html' class='px-3 py-2 hover:text-blue-400'>Team Details</a>
         </div>
-        <div class="flex space-x-4 mt-2 md:mt-0">
+        <div class="flex space-x-4">
             <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded-md px-4 py-2'>Signup</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
         </div>
     </nav>
 
@@ -41,8 +40,8 @@
     <main class="container mx-auto px-4 py-8">
         <!-- Page Header -->
         <header class="mb-12 text-center" data-aos="fade-down">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Teams</h1>
-            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Explore professional teams, view rosters, check live scores, and follow match schedules.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Team Profiles</h1>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Explore professional teams, player statistics, and team performance metrics across all major leagues.</p>
         </header>
 
         <!-- Live Scores Section -->
@@ -54,226 +53,339 @@
                 </span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Live Match 1 -->
                 <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
                     <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-gray-500">Premier League • 45'</span>
+                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">Live</span>
+                    </div>
+                    <div class="flex justify-between items-center">
                         <div class="text-center">
-                            <div class="font-bold text-xl">Lakers</div>
-                            <div class="text-gray-500">Home</div>
+                            <div class="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-blue-600">MU</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800">Manchester United</h3>
                         </div>
-                        <div class="text-3xl font-bold">102 - 98</div>
                         <div class="text-center">
-                            <div class="font-bold text-xl">Celtics</div>
-                            <div class="text-gray-500">Away</div>
+                            <div class="text-4xl font-bold text-gray-800">2 - 1</div>
+                            <div class="text-sm text-gray-500 mt-1">Half Time</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-100 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-red-600">MC</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800">Manchester City</h3>
                         </div>
                     </div>
-                    <div class="text-center text-gray-600">Q4 - 2:34 remaining</div>
                 </div>
+
+                <!-- Live Match 2 -->
                 <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
                     <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-gray-500">NBA • 3rd Q</span>
+                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">Live</span>
+                    </div>
+                    <div class="flex justify-between items-center">
                         <div class="text-center">
-                            <div class="font-bold text-xl">United</div>
-                            <div class="text-gray-500">Home</div>
+                            <div class="w-16 h-16 bg-purple-100 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-purple-600">LAL</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800">Lakers</h3>
                         </div>
-                        <div class="text-3xl font-bold">2 - 1</div>
                         <div class="text-center">
-                            <div class="font-bold text-xl">City</div>
-                            <div class="text-gray-500">Away</div>
+                            <div class="text-4xl font-bold text-gray-800">78 - 82</div>
+                            <div class="text-sm text-gray-500 mt-1">3rd Quarter</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-green-600">GSW</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800">Warriors</h3>
                         </div>
                     </div>
-                    <div class="text-center text-gray-600">Half Time</div>
                 </div>
+
+                <!-- Live Match 3 -->
                 <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
                     <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-gray-500">Champions League • 60'</span>
+                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">Live</span>
+                    </div>
+                    <div class="flex justify-between items-center">
                         <div class="text-center">
-                            <div class="font-bold text-xl">Yankees</div>
-                            <div class="text-gray-500">Home</div>
+                            <div class="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-blue-800">RM</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800">Real Madrid</h3>
                         </div>
-                        <div class="text-3xl font-bold">5 - 3</div>
                         <div class="text-center">
-                            <div class="font-bold text-xl">Red Sox</div>
-                            <div class="text-gray-500">Away</div>
+                            <div class="text-4xl font-bold text-gray-800">1 - 0</div>
+                            <div class="text-sm text-gray-500 mt-1">60th Minute</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-100 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-red-800">FCB</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800">Barcelona</h3>
                         </div>
                     </div>
-                    <div class="text-center text-gray-600">7th Inning</div>
                 </div>
             </div>
         </section>
 
-        <!-- Teams Grid -->
+        <!-- Team Profiles Grid -->
         <section class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">Team Rosters</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Team Card 1 -->
-                <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8" data-aos="fade-right">Featured Teams</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Team 1 -->
+                <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300" data-aos="zoom-in">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                                <i data-feather="users" class="w-8 h-8 text-blue-600"></i>
+                                <span class="text-2xl font-bold text-blue-600">MU</span>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900">Los Angeles Lakers</h3>
-                                <p class="text-gray-600">Basketball • NBA</p>
+                                <h3 class="text-xl font-bold text-gray-800">Manchester United</h3>
+                                <p class="text-gray-600">Premier League</p>
                             </div>
                         </div>
                         <div class="mb-4">
-                            <h4 class="font-semibold text-gray-800 mb-2">Key Players:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">LeBron James</span>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Anthony Davis</span>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Russell Westbrook</span>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Win Rate</span>
+                                <span class="font-bold text-green-600">68%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full stat-bar" style="width: 68%"></div>
                             </div>
                         </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-300">
-                            View Full Roster
-                        </button>
+                        <div class="flex justify-between text-sm text-gray-600 mb-4">
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">24</div>
+                                <div>Players</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">5</div>
+                                <div>Trophies</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">1st</div>
+                                <div>Rank</div>
+                            </div>
+                        </div>
+                        <a href="team-details.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-3 rounded-lg transition duration-300">
+                            View Team Details
+                        </a>
                     </div>
                 </div>
 
-                <!-- Team Card 2 -->
-                <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+                <!-- Team 2 -->
+                <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300" data-aos="zoom-in" data-aos-delay="100">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                                <i data-feather="users" class="w-8 h-8 text-red-600"></i>
+                                <span class="text-2xl font-bold text-red-600">LFC</span>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900">Manchester United</h3>
-                                <p class="text-gray-600">Soccer • Premier League</p>
+                                <h3 class="text-xl font-bold text-gray-800">Liverpool FC</h3>
+                                <p class="text-gray-600">Premier League</p>
                             </div>
                         </div>
                         <div class="mb-4">
-                            <h4 class="font-semibold text-gray-800 mb-2">Key Players:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Cristiano Ronaldo</span>
-                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Bruno Fernandes</span>
-                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">David De Gea</span>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Win Rate</span>
+                                <span class="font-bold text-green-600">72%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full stat-bar" style="width: 72%"></div>
                             </div>
                         </div>
-                        <button class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition duration-300">
-                            View Full Roster
-                        </button>
+                        <div class="flex justify-between text-sm text-gray-600 mb-4">
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">23</div>
+                                <div>Players</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">6</div>
+                                <div>Trophies</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">2nd</div>
+                                <div>Rank</div>
+                            </div>
+                        </div>
+                        <a href="team-details.html" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center font-semibold py-3 rounded-lg transition duration-300">
+                            View Team Details
+                        </a>
                     </div>
                 </div>
 
-                <!-- Team Card 3 -->
-                <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+                <!-- Team 3 -->
+                <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-2xl font-bold text-blue-800">FCB</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">FC Barcelona</h3>
+                                <p class="text-gray-600">La Liga</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Win Rate</span>
+                                <span class="font-bold text-green-600">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full stat-bar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-600 mb-4">
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">25</div>
+                                <div>Players</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">26</div>
+                                <div>Trophies</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">3rd</div>
+                                <div>Rank</div>
+                            </div>
+                        </div>
+                        <a href="team-details.html" class="block w-full bg-blue-800 hover:bg-blue-900 text-white text-center font-semibold py-3 rounded-lg transition duration-300">
+                            View Team Details
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Team 4 -->
+                <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300" data-aos="zoom-in" data-aos-delay="300">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                                <i data-feather="users" class="w-8 h-8 text-green-600"></i>
+                                <span class="text-2xl font-bold text-green-600">GSW</span>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900">New York Yankees</h3>
-                                <p class="text-gray-600">Baseball • MLB</p>
+                                <h3 class="text-xl font-bold text-gray-800">Golden State Warriors</h3>
+                                <p class="text-gray-600">NBA</p>
                             </div>
                         </div>
                         <div class="mb-4">
-                            <h4 class="font-semibold text-gray-800 mb-2">Key Players:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Aaron Judge</span>
-                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Giancarlo Stanton</span>
-                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Gerrit Cole</span>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Win Rate</span>
+                                <span class="font-bold text-green-600">78%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full stat-bar" style="width: 78%"></div>
                             </div>
                         </div>
-                        <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-300">
-                            View Full Roster
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Team Card 4 -->
-                <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                                <i data-feather="users" class="w-8 h-8 text-purple-600"></i>
+                        <div class="flex justify-between text-sm text-gray-600 mb-4">
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">15</div>
+                                <div>Players</div>
                             </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">Golden State Warriors</h3>
-                                <p class="text-gray-600">Basketball • NBA</p>
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">7</div>
+                                <div>Trophies</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-bold text-gray-800">1st</div>
+                                <div>Rank</div>
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <h4 class="font-semibold text-gray-800 mb-2">Key Players:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Stephen Curry</span>
-                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Klay Thompson</span>
-                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Draymond Green</span>
-                            </div>
-                        </div>
-                        <button class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition duration-300">
-                            View Full Roster
-                        </button>
+                        <a href="team-details.html" class="block w-full bg-green-600 hover:bg-green-700 text-white text-center font-semibold py-3 rounded-lg transition duration-300">
+                            View Team Details
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Match Schedules -->
+        <!-- Player Stats Section -->
         <section class="mb-16" data-aos="fade-up">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">Upcoming Matches</h2>
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Top Player Statistics</h2>
             <div class="bg-white rounded-xl shadow-lg overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full">
-                        <thead class="bg-gray-100">
+                        <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th class="py-4 px-6 text-left">Date & Time</th>
-                                <th class="py-4 px-6 text-left">Match</th>
-                                <th class="py-4 px-6 text-left">League</th>
-                                <th class="py-4 px-6 text-left">Venue</th>
-                                <th class="py-4 px-6 text-left">Action</th>
+                                <th class="py-4 px-6 text-left">Player</th>
+                                <th class="py-4 px-6 text-left">Team</th>
+                                <th class="py-4 px-6 text-left">Position</th>
+                                <th class="py-4 px-6 text-left">Goals</th>
+                                <th class="py-4 px-6 text-left">Assists</th>
+                                <th class="py-4 px-6 text-left">Rating</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="border-b hover:bg-gray-50">
-                                <td class="py-4 px-6">Nov 15, 2023 • 19:30</td>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
                                 <td class="py-4 px-6">
                                     <div class="flex items-center">
-                                        <span class="font-bold">Lakers</span>
-                                        <span class="mx-4">vs</span>
-                                        <span class="font-bold">Warriors</span>
+                                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="font-bold text-blue-600">CR</span>
+                                        </div>
+                                        <span class="font-semibold">Cristiano Ronaldo</span>
                                     </div>
                                 </td>
-                                <td class="py-4 px-6">NBA Regular Season</td>
-                                <td class="py-4 px-6">Staples Center</td>
+                                <td class="py-4 px-6">Manchester United</td>
+                                <td class="py-4 px-6">Forward</td>
+                                <td class="py-4 px-6 font-bold text-gray-800">24</td>
+                                <td class="py-4 px-6">8</td>
                                 <td class="py-4 px-6">
-                                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
-                                        Set Reminder
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="border-b hover:bg-gray-50">
-                                <td class="py-4 px-6">Nov 18, 2023 • 15:00</td>
-                                <td class="py-4 px-6">
-                                    <div class="flex items-center">
-                                        <span class="font-bold">Man United</span>
-                                        <span class="mx-4">vs</span>
-                                        <span class="font-bold">Man City</span>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-6">Premier League</td>
-                                <td class="py-4 px-6">Old Trafford</td>
-                                <td class="py-4 px-6">
-                                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
-                                        Set Reminder
-                                    </button>
+                                    <span class="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full">9.2</span>
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-50">
-                                <td class="py-4 px-6">Nov 20, 2023 • 20:00</td>
                                 <td class="py-4 px-6">
                                     <div class="flex items-center">
-                                        <span class="font-bold">Yankees</span>
-                                        <span class="mx-4">vs</span>
-                                        <span class="font-bold">Red Sox</span>
+                                        <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="font-bold text-red-600">LM</span>
+                                        </div>
+                                        <span class="font-semibold">Lionel Messi</span>
                                     </div>
                                 </td>
-                                <td class="py-4 px-6">MLB Playoffs</td>
-                                <td class="py-4 px-6">Yankee Stadium</td>
+                                <td class="py-4 px-6">PSG</td>
+                                <td class="py-4 px-6">Forward</td>
+                                <td class="py-4 px-6 font-bold text-gray-800">21</td>
+                                <td class="py-4 px-6">14</td>
                                 <td class="py-4 px-6">
-                                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
-                                        Set Reminder
-                                    </button>
+                                    <span class="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full">9.4</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="font-bold text-purple-600">KM</span>
+                                        </div>
+                                        <span class="font-semibold">Kylian Mbappé</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">PSG</td>
+                                <td class="py-4 px-6">Forward</td>
+                                <td class="py-4 px-6 font-bold text-gray-800">28</td>
+                                <td class="py-4 px-6">7</td>
+                                <td class="py-4 px-6">
+                                    <span class="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full">9.1</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="font-bold text-green-600">KH</span>
+                                        </div>
+                                        <span class="font-semibold">Kevin De Bruyne</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">Manchester City</td>
+                                <td class="py-4 px-6">Midfielder</td>
+                                <td class="py-4 px-6 font-bold text-gray-800">12</td>
+                                <td class="py-4 px-6">18</td>
+                                <td class="py-4 px-6">
+                                    <span class="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full">8.9</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -282,128 +394,152 @@
             </div>
         </section>
 
-        <!-- Player Statistics -->
+        <!-- Match Highlights -->
         <section class="mb-16" data-aos="fade-up">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">Top Player Statistics</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="stat-card text-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-4">
-                            <i data-feather="award" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold">Most Points</h3>
-                            <p class="text-blue-100">Season 2023-24</p>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold mb-2">LeBron James</div>
-                        <div class="text-xl">32.4 PPG</div>
-                        <div class="text-blue-200 mt-2">Los Angeles Lakers</div>
-                    </div>
-                </div>
-                <div class="stat-card text-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-4">
-                            <i data-feather="target" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold">Top Scorer</h3>
-                            <p class="text-blue-100">Season 2023-24</p>
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Match Highlights</h2>
+                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                    View All Highlights
+                    <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Highlight 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                            <i data-feather="play-circle" class="w-16 h-16 text-white opacity-80"></i>
+                            <div class="absolute bottom-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+                                5:24
+                            </div>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold mb-2">Cristiano Ronaldo</div>
-                        <div class="text-xl">24 Goals</div>
-                        <div class="text-blue-200 mt-2">Manchester United</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Manchester Derby Highlights</h3>
+                        <p class="text-gray-600 mb-4">Watch all the key moments from the intense Manchester derby.</p>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <span>Premier League</span>
+                            <span>2 days ago</span>
+                        </div>
                     </div>
                 </div>
-                <div class="stat-card text-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-4">
-                            <i data-feather="star" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold">MVP Leader</h3>
-                            <p class="text-blue-100">Season 2023-24</p>
+
+                <!-- Highlight 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-r from-red-500 to-orange-600 flex items-center justify-center">
+                            <i data-feather="play-circle" class="w-16 h-16 text-white opacity-80"></i>
+                            <div class="absolute bottom-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+                                4:12
+                            </div>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold mb-2">Stephen Curry</div>
-                        <div class="text-xl">28.6 PPG</div>
-                        <div class="text-blue-200 mt-2">Golden State Warriors</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Champions League Final</h3>
+                        <p class="text-gray-600 mb-4">Relive the epic Champions League final highlights.</p>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <span>Champions League</span>
+                            <span>1 week ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Highlight 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center">
+                            <i data-feather="play-circle" class="w-16 h-16 text-white opacity-80"></i>
+                            <div class="absolute bottom-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+                                6:45
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">NBA Finals Game 7</h3>
+                        <p class="text-gray-600 mb-4">The complete highlights from the championship deciding game.</p>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <span>NBA</span>
+                            <span>3 days ago</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Comment System -->
-        <section class="mb-16" data-aos="fade-up">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">Team Discussions</h2>
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <div class="mb-6">
-                    <h3 class="text-xl font-semibold mb-4">Join the Conversation</h3>
-                    <textarea 
-                        class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                        rows="4" 
-                        placeholder="Share your thoughts about your favorite team..."></textarea>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center space-x-4">
-                            <button class="flex items-center text-gray-600 hover:text-blue-600">
-                                <i data-feather="image" class="w-5 h-5 mr-2"></i> Add Photo
-                            </button>
-                            <button class="flex items-center text-gray-600 hover:text-blue-600">
-                                <i data-feather="video" class="w-5 h-5 mr-2"></i> Add Video
-                            </button>
-                        </div>
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg">
-                            Post Comment
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="space-y-6">
-                    <!-- Comment 1 -->
-                    <div class="border-b pb-6">
+        <!-- Event Calendar -->
+        <section data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Upcoming Team Events</h2>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                    <!-- Event 1 -->
+                    <div class="p-8">
                         <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                                <i data-feather="user" class="w-6 h-6 text-blue-600"></i>
+                            <div class="bg-blue-100 text-blue-600 rounded-lg p-3 mr-4">
+                                <div class="text-2xl font-bold">15</div>
+                                <div class="text-sm">DEC</div>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-900">Michael Johnson</h4>
-                                <p class="text-gray-600 text-sm">Lakers Fan • 2 hours ago</p>
+                                <h3 class="text-xl font-bold text-gray-800">Manchester United vs Chelsea</h3>
+                                <p class="text-gray-600">Premier League Match</p>
                             </div>
                         </div>
-                        <p class="text-gray-800 mb-4">The Lakers are looking strong this season! LeBron's leadership combined with AD's defense makes us championship contenders.</p>
-                        <div class="flex space-x-4">
-                            <button class="flex items-center text-gray-600 hover:text-blue-600">
-                                <i data-feather="thumbs-up" class="w-4 h-4 mr-2"></i> 42
-                            </button>
-                            <button class="flex items-center text-gray-600 hover:text-blue-600">
-                                <i data-feather="message-circle" class="w-4 h-4 mr-2"></i> Reply
-                            </button>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                                <span>20:00 GMT</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i data-feather="map-pin" class="w-4 h-4 mr-2"></i>
+                                <span>Old Trafford, Manchester</span>
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- Comment 2 -->
-                    <div class="border-b pb-6">
+
+                    <!-- Event 2 -->
+                    <div class="p-8">
                         <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                                <i data-feather="user" class="w-6 h-6 text-red-600"></i>
+                            <div class="bg-red-100 text-red-600 rounded-lg p-3 mr-4">
+                                <div class="text-2xl font-bold">18</div>
+                                <div class="text-sm">DEC</div>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-900">Sarah Williams</h4>
-                                <p class="text-gray-600 text-sm">United Supporter • 5 hours ago</p>
+                                <h3 class="text-xl font-bold text-gray-800">Barcelona vs Real Madrid</h3>
+                                <p class="text-gray-600">El Clásico - La Liga</p>
                             </div>
                         </div>
-                        <p class="text-gray-800 mb-4">Ronaldo's return has brought back the winning mentality to Old Trafford. Can't wait for the derby this weekend!</p>
-                        <div class="flex space-x-4">
-                            <button class="flex items-center text-gray-600 hover:text-blue-600">
-                                <i data-feather="thumbs-up" class="w-4 h-4 mr-2"></i> 28
-                            </button>
-                            <button class="flex items-center text-gray-600 hover:text-blue-600">
-                                <i data-feather="message-circle" class="w-4 h-4 mr-2"></i> Reply
-                            </button>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                                <span>19:45 GMT</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i data-feather="map-pin" class="w-4 h-4 mr-2"></i>
+                                <span>Camp Nou, Barcelona</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="p-8">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-green-100 text-green-600 rounded-lg p-3 mr-4">
+                                <div class="text-2xl font-bold">20</div>
+                                <div class="text-sm">DEC</div>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Warriors vs Lakers</h3>
+                                <p class="text-gray-600">NBA Regular Season</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                                <span>02:30 GMT</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i data-feather="map-pin" class="w-4 h-4 mr-2"></i>
+                                <span>Chase Center, San Francisco</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -412,46 +548,83 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-gray-900 text-white py-12 mt-16">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-2">Sport Website</h3>
-                    <p class="text-gray-400">Your ultimate sports destination</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">SportHub</h3>
+                    <p class="text-gray-400">Your ultimate destination for sports news, teams, events, and live scores.</p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="facebook" class="w-6 h-6"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="twitter" class="w-6 h-6"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="instagram" class="w-6 h-6"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="youtube" class="w-6 h-6"></i>
-                    </a>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="news.html" class="text-gray-400 hover:text-white">News</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Teams</a></li>
+                        <li><a href="standings.html" class="text-gray-400 hover:text-white">Standings</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Twitter</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Facebook</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Instagram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">YouTube</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for latest updates</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg flex-grow">
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg">
+                            <i data-feather="send" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Sport Website. All rights reserved.</p>
+                <p>&copy; 2024 SportHub. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS
+        // Initialize AOS animations
         AOS.init({
             duration: 800,
             once: true
         });
-        
+
         // Initialize Feather Icons
         document.addEventListener('DOMContentLoaded', function() {
             feather.replace();
+            
+            // Animate stat bars on scroll
+            const observerOptions = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statBars = entry.target.querySelectorAll('.stat-bar');
+                        statBars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0';
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 300);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            // Observe team cards for stat bar animation
+            document.querySelectorAll('.team-card').forEach(card => {
+                observer.observe(card);
+            });
         });
     </script>
 </body>
