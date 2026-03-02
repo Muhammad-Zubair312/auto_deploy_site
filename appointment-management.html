@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management | Hospital Management System</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#0ea5e9',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .role-badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 9999px;
+        }
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        .hipaa-notice {
+            border-left: 4px solid #1e40af;
+            background-color: #f0f9ff;
+        }
+        .scrollbar-thin {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-2 space-y-2 md:space-y-0'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-home mr-1"></i> Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-sign-in-alt mr-1"></i> Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-user-plus mr-1"></i> Signup</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-user-injured mr-1"></i> Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-file-medical mr-1"></i> Patient Records</a>
+        <a href='appointment-booking.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-calendar-plus mr-1"></i> Appointment Booking</a>
+        <a href='appointment-management.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-calendar-check mr-1"></i> Appointment Management</a>
+        <a href='doctors-schedule.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-calendar-alt mr-1"></i> Doctors Schedule</a>
+        <a href='doctor-profiles.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-user-md mr-1"></i> Doctor Profiles</a>
+        <a href='departments.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-clinic-medical mr-1"></i> Departments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-users-cog mr-1"></i> Staff Management</a>
+        <a href='billing-payments.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-file-invoice-dollar mr-1"></i> Billing & Payments</a>
+        <a href='prescription-management.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-prescription mr-1"></i> Prescription Management</a>
+        <a href='medical-history.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-history mr-1"></i> Medical History</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-chart-bar mr-1"></i> Dashboard</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800"><i class="fas fa-calendar-check text-primary mr-3"></i>Appointment Management</h1>
+                <p class="text-gray-600 mt-2">Manage, schedule, and track all patient appointments with role-based access control</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <div class="flex items-center space-x-2">
+                    <span class="text-gray-700">Logged in as:</span>
+                    <div class="flex items-center">
+                        <span class="bg-blue-100 text-primary font-medium px-3 py-1 rounded-full">Dr. Sarah Johnson</span>
+                        <span class="role-badge bg-purple-100 text-purple-800 ml-2">Doctor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HIPAA Compliance Notice -->
+        <div class="hipaa-notice p-4 rounded-lg mb-8">
+            <div class="flex items-start">
+                <i class="fas fa-shield-alt text-primary text-xl mt-1 mr-3"></i>
+                <div>
+                    <h3 class="font-bold text-gray-800">HIPAA Compliance Notice</h3>
+                    <p class="text-gray-700 text-sm mt-1">All appointment data is protected under HIPAA regulations. Access to patient information is restricted based on role permissions. Unauthorized access or disclosure is prohibited.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Role-Based Access Control Panel -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-user-lock text-primary mr-2"></i>Role-Based Access Control</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-user-injured text-primary"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Patient Access</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li><i class="fas fa-check-circle text-success mr-2"></i>View own appointments</li>
+                        <li><i class="fas fa-check-circle text-success mr-2"></i>Request appointment changes</li>
+                        <li><i class="fas fa-times-circle text-danger mr-2"></i>Cannot view other patients</li>
+                        <li><i class="fas fa-times-circle text-danger mr-2"></i>No access to medical records</li>
+                    </ul>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-user-md text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Doctor Access</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li><i class="fas fa-check-circle text-success mr-2"></i>View assigned appointments</li>
+                        <li><i class="fas fa-check-circle text-success mr-2"></i>Update appointment status</li>
+                        <li><i class="fas fa-check-circle text-success mr-2"></i>Access patient medical history</li>
+                        <li><i class="fas fa-times-circle text-danger mr-2"></i>Cannot modify billing</li>
+                    </ul>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-purple-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-users-cog text-purple-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Staff/Admin Access</h3>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li><i class="fas fa-check-circle text-success mr-2"></i>Full appointment management</li>
+                        <li><i class="fas fa-check-circle text-success mr-2"></i>Schedule and reschedule</li>
+                        <li><i class="fas fa-check-circle text-success mr-2"></i>Access all patient data</li>
+                        <li><i class="fas fa-check-circle text-success mr-2"></i>Billing integration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Management Dashboard -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Appointment List -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-list-alt text-primary mr-2"></i>Appointments</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
+                                <i class="fas fa-plus mr-2"></i> New Appointment
+                            </button>
+                            <div class="relative">
+                                <select class="border border-gray-300 rounded-lg px-4 py-2 appearance-none bg-white">
+                                    <option>Today</option>
+                                    <option>This Week</option>
+                                    <option selected>This Month</option>
+                                    <option>All Upcoming</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Appointment Filters -->
+                    <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg">All</button>
+                            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">Scheduled</button>
+                            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">In Progress</button>
+                            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">Completed</button>
+                            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">Cancelled</button>
+                            <div class="relative flex-grow max-w-xs">
+                                <input type="text" placeholder="Search appointments..." class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2">
+                                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Appointment Table -->
+                    <div class="overflow-x-auto scrollbar-thin">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient</th>
+                                    <th class="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Doctor</th>
+                                    <th class="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                                    <th class="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                                    <th class="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <!-- Appointment 1 -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                                <span class="text-primary font-medium">MJ</span>
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Michael Johnson</div>
+                                                <div class="text-sm text-gray-500">ID: P-10023</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="text-sm text-gray-900">Dr. Sarah Johnson</div>
+                                        <div class="text-sm text-gray-500">Cardiology</div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="text-sm text-gray-900">May 15, 2023</div>
+                                        <div class="text-sm text-gray-500">10:30 AM</div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <span class="px-3 py-1 bg-blue-100 text-primary rounded-full text-xs">Cardiology</span>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <span class="status-badge bg-green-100 text-green-800">Scheduled</span>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary hover:text-blue-700" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-warning hover:text-yellow-700" title="Reschedule">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </button>
+                                            <button class="text-danger hover:text-red-700" title="Cancel">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Appointment 2 -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
+                                                <span class="text-green-600 font-medium">ER</span>
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Emma Rodriguez</div>
+                                                <div class="text-sm text-gray-500">ID: P-10045</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="text-sm text-gray-900">Dr. James Wilson</div>
+                                        <div class="text-sm text-gray-500">Orthopedics</div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="text-sm text-gray-900">May 16, 2023</div>
+                                        <div class="text-sm text-gray-500">2:00 PM</div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Orthopedics</span>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <span class="status-badge bg-yellow-100 text-yellow-800">In Progress</span>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary hover:text-blue-700" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-success hover:text-green-700" title="Complete">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Appointment 3 -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                                <span class="text-purple-600 font-medium">RK</span>
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Robert Kim</div>
+                                                <div class="text-sm text-gray-500">ID: P-10012</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="text-sm text-gray-900">Dr. Lisa Chen</div>
+                                        <div class="text-sm text-gray-500">Neurology</div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="text-sm text-gray-900">May 14, 2023</div>
+                                        <div class="text-sm text-gray-500">11:15 AM</div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Neurology</span>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <span class="status-badge bg-blue-100 text-primary">Completed</span>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary hover:text-blue-700" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-secondary hover:text-cyan-700" title="Medical Records">
+                                                <i class="fas fa-file-medical"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Appointment 4 -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 bg-red-100 rounded-full flex items-center justify-center">
+                                                <span class="text-red-600 font-medium">AS</span>
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Amanda Smith</div>
+                                                <div class="text-sm text-gray-500">ID: P-10067</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="text-sm text-gray-900">Dr. David Miller</div>
+                                        <div class="text-sm text-gray-500">Pediatrics</div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="text-sm text-gray-900">May 18, 2023</div>
+                                        <div class="text-sm text-gray-500">9:00 AM</div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">Pediatrics</span>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <span class="status-badge bg-gray-100 text-gray-800">Cancelled</span>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary hover:text-blue-700" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-secondary hover:text-cyan-700" title="Reschedule">
+                                                <i class="fas fa-calendar-plus"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+                        <div class="text-sm text-gray-700">
+                            Showing <span class="font-medium">1</span> to <span class="font-medium">4</span> of <span class="font-medium">127</span> appointments
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="px-3 py-1 bg-primary text-white rounded-lg">1</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">2</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">3</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: Quick Actions & Stats -->
+            <div class="space-y-8">
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-bolt text-warning mr-2"></i>Quick Actions</h2>
+                    <div class="space-y-3">
+                        <button class="w-full bg-primary text-white py-3 rounded-lg hover:bg-blue-700 transition flex items-center justify-center">
+                            <i class="fas fa-calendar-plus mr-2"></i> Schedule New Appointment
+                        </button>
+                        <button class="w-full bg-green-100 text-green-800 py-3 rounded-lg hover:bg-green-200 transition flex items-center justify-center">
+                            <i class="fas fa-file-export mr-2"></i> Export Appointments
+                        </button>
+                        <button class="w-full bg-purple-100 text-purple-800 py-3 rounded-lg hover:bg-purple-200 transition flex items-center justify-center">
+                            <i class="fas fa-bell mr-2"></i> Send Reminders
+                        </button>
+                        <button class="w-full bg-gray-100 text-gray-800 py-3 rounded-lg hover:bg-gray-200 transition flex items-center justify-center">
+                            <i class="fas fa-print mr-2"></i> Print Schedule
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Appointment Statistics -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-chart-pie text-secondary mr-2"></i>Appointment Statistics</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">Scheduled</span>
+                                <span class="text-sm font-medium text-gray-700">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">In Progress</span>
+                                <span class="text-sm font-medium text-gray-700">20%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">Completed</span>
+                                <span class="text-sm font-medium text-gray-700">10%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 10%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">Cancelled</span>
+                                <span class="text-sm font-medium text-gray-700">5%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-gray-500 h-2 rounded-full" style="width: 5%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-primary">42</div>
+                                <div class="text-sm text-gray-600">Today</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-secondary">127</div>
+                                <div class="text-sm text-gray-600">This Week</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Doctor Availability -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-user-clock text-success mr-2"></i>Doctor Availability</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                            <div>
+                                <div class="font-medium text-gray-800">Dr. Sarah Johnson</div>
+                                <div class="text-sm text-gray-600">Cardiology</div>
+                            </div>
+                            <span class="status-badge bg-green-100 text-green-800">Available</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div>
+                                <div class="font-medium text-gray-800">Dr. James Wilson</div>
+                                <div class="text-sm text-gray-600">Orthopedics</div>
+                            </div>
+                            <span class="status-badge bg-yellow-100 text-yellow-800">Busy</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                            <div>
+                                <div class="font-medium text-gray-800">Dr. Lisa Chen</div>
+                                <div class="text-sm text-gray-600">Neurology</div>
+                            </div>
+                            <span class="status-badge bg-green-100 text-green-800">Available</span>
+                        </div>
+                        <button class="w-full text-primary hover:text-blue-700 text-sm font-medium flex items-center justify-center mt-2">
+                            <i class="fas fa-calendar-alt mr-2"></i> View All Schedules
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Billing Integration Section -->
+        <div class="bg-white rounded-xl shadow-md p-6 mt-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-file-invoice-dollar text-green-600 mr-2"></i>Billing Integration</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Appointment Billing</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">Automatically generate bills for completed appointments with integrated insurance verification.</p>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-sync-alt text-primary"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Real-time Sync</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">Appointment status changes automatically update billing records in real-time.</p>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-purple-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-shield-alt text-purple-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Secure Processing</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">HIPAA-compliant payment processing with encrypted financial data storage.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">Hospital Management System</h3>
+                    <p class="text-gray-400 mt-2">Secure • Compliant • Efficient</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400"><i class="fas fa-shield-alt mr-2"></i>HIPAA Compliant</p>
+                    <p class="text-gray-400 text-sm mt-1">© 2023 Hospital Management System. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactive Elements -->
+    <script>
+        // Role-based access simulation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate role-based UI changes
+            const roleBadge = document.querySelector('.role-badge');
+            const currentRole = roleBadge.textContent.trim();
+            
+            // Adjust UI based on role (simulated)
+            if(currentRole === 'Patient') {
+                // Hide admin-only elements for patients
+                document.querySelectorAll('.admin-only').forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+            
+            // Appointment status update functionality
+            const statusButtons = document.querySelectorAll('button[title="Complete"], button[title="Cancel"]');
+            statusButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const statusCell = row.querySelector('.status-badge');
+                    const action = this.getAttribute('title');
+                    
+                    if(action === 'Complete') {
+                        statusCell.textContent = 'Completed';
+                        statusCell.className = 'status-badge bg-blue-100 text-primary';
+                        this.innerHTML = '<i class="fas fa-file-medical"></i>';
+                        this.setAttribute('title', 'Medical Records');
+                    } else if(action === 'Cancel') {
+                        statusCell.textContent = 'Cancelled';
+                        statusCell.className = 'status-badge bg-gray-100 text-gray-800';
+                        this.innerHTML = '<i class="fas fa-calendar-plus"></i>';
+                        this.setAttribute('title', 'Reschedule');
+                    }
+                    
+                    // Show confirmation message
+                    showNotification(`Appointment status updated to "${statusCell.textContent}"`);
+                });
+            });
+            
+            // Quick action buttons
+            document.querySelector('button:contains("Schedule New Appointment")').addEventListener('click', function() {
+                showNotification('Redirecting to appointment booking page...');
+                setTimeout(() => {
+                    window.location.href = 'appointment-booking.html';
+                }, 1000);
+            });
+            
+            // Search functionality
+            const searchInput = document.querySelector('input[placeholder="Search appointments..."]');
+            searchInput.addEventListener('keyup', function(e) {
+                if(e.key === 'Enter') {
+                    const searchTerm = this.value.toLowerCase();
+                    const rows = document.querySelectorAll('tbody tr');
+                    
+                    rows.forEach(row => {
+                        const patientName = row.querySelector('.text-sm.font-medium.text-gray-900').textContent.toLowerCase();
+                        const doctorName = row.querySelector('.text-sm.text-gray-900').textContent.toLowerCase();
+                        
+                        if(patientName.includes(searchTerm) || doctorName.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                    
+                    if(searchTerm) {
+                        showNotification(`Found ${document.querySelectorAll('tbody tr[style=""]').length} appointments matching "${searchTerm}"`);
+                    }
+                }
+            });
+            
+            // Filter buttons
+            document.querySelectorAll('.bg-gray-200.text-gray-700').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active filter
+                    document.querySelectorAll('.bg-gray-200.text-gray-700').forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    
+                    this.classList.remove('bg-gray-200', 'text-gray-700');
+                    this.classList.add('bg-primary', 'text-white');
+                    
+                    const filter = this.textContent;
+                    showNotification(`Filtering appointments

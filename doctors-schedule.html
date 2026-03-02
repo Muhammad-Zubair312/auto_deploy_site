@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors Schedule | Hospital Management System</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#0f766e',
+                        accent: '#3b82f6',
+                        dark: '#1f2937'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .schedule-cell {
+            transition: all 0.2s ease;
+        }
+        .schedule-cell:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .availability-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+        }
+        .role-badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.25rem;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-full {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap gap-2 no-print'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-home mr-1"></i>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-sign-in-alt mr-1"></i>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-user-plus mr-1"></i>Signup</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-user-injured mr-1"></i>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-file-medical mr-1"></i>Patient Records</a>
+        <a href='appointment-booking.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-calendar-plus mr-1"></i>Appointment Booking</a>
+        <a href='appointment-management.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-calendar-check mr-1"></i>Appointment Management</a>
+        <a href='doctors-schedule.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-calendar-alt mr-1"></i>Doctors Schedule</a>
+        <a href='doctor-profiles.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-user-md mr-1"></i>Doctor Profiles</a>
+        <a href='departments.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-building mr-1"></i>Departments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-users mr-1"></i>Staff Management</a>
+        <a href='billing-payments.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-credit-card mr-1"></i>Billing & Payments</a>
+        <a href='prescription-management.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-prescription mr-1"></i>Prescription Management</a>
+        <a href='medical-history.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-history mr-1"></i>Medical History</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-chart-bar mr-1"></i>Dashboard</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">
+                <i class="fas fa-calendar-alt text-primary mr-2"></i>Doctors Schedule & Availability
+            </h1>
+            <p class="text-gray-600">Manage and view doctor schedules, track availability, and assign appointments. HIPAA-compliant access controls enforced.</p>
+            
+            <!-- Role-Based Access Notice -->
+            <div class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-shield-alt text-blue-500 text-xl mr-3"></i>
+                    <div>
+                        <h3 class="font-semibold text-blue-800">Role-Based Access Control Active</h3>
+                        <p class="text-blue-700 text-sm">Your access level: <span id="currentRole" class="font-bold">Administrator</span> • Schedule modifications are logged for compliance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls and Filters -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8 no-print">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Select Department</label>
+                        <select id="departmentFilter" class="w-full md:w-48 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="all">All Departments</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="orthopedics">Orthopedics</option>
+                            <option value="pediatrics">Pediatrics</option>
+                            <option value="oncology">Oncology</option>
+                            <option value="emergency">Emergency Medicine</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+                        <div class="flex gap-2">
+                            <input type="date" id="startDate" class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent" value="2024-01-15">
+                            <span class="self-center">to</span>
+                            <input type="date" id="endDate" class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent" value="2024-01-21">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Availability Status</label>
+                        <select id="availabilityFilter" class="w-full md:w-48 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="all">All Statuses</option>
+                            <option value="available">Available</option>
+                            <option value="busy">Busy</option>
+                            <option value="off">Off Duty</option>
+                            <option value="emergency">Emergency Only</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <button id="printSchedule" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition flex items-center">
+                        <i class="fas fa-print mr-2"></i> Print
+                    </button>
+                    <button id="refreshSchedule" class="bg-primary hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-lg transition flex items-center">
+                        <i class="fas fa-sync-alt mr-2"></i> Refresh
+                    </button>
+                    <button id="addSchedule" class="bg-secondary hover:bg-teal-700 text-white font-medium py-2 px-4 rounded-lg transition flex items-center">
+                        <i class="fas fa-plus mr-2"></i> Add Schedule
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-blue-700">Doctors On Duty</p>
+                            <p class="text-2xl font-bold text-blue-900">14</p>
+                        </div>
+                        <i class="fas fa-user-md text-blue-500 text-2xl"></i>
+                    </div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-green-700">Available Slots Today</p>
+                            <p class="text-2xl font-bold text-green-900">47</p>
+                        </div>
+                        <i class="fas fa-calendar-check text-green-500 text-2xl"></i>
+                    </div>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-yellow-700">Scheduled Appointments</p>
+                            <p class="text-2xl font-bold text-yellow-900">89</p>
+                        </div>
+                        <i class="fas fa-calendar-day text-yellow-500 text-2xl"></i>
+                    </div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-100">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-purple-700">Emergency Coverage</p>
+                            <p class="text-2xl font-bold text-purple-900">8</p>
+                        </div>
+                        <i class="fas fa-ambulance text-purple-500 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Table -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 print-full">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-xl font-semibold text-gray-800">Weekly Schedule: Jan 15 - Jan 21, 2024</h2>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-info-circle mr-1"></i> Click on any slot for details
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Doctor & Department</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Mon 15</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Tue 16</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Wed 17</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Thu 18</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Fri 19</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Sat 20</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Sun 21</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- Doctor 1 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user-md text-blue-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Dr. Sarah Johnson</div>
+                                        <div class="text-sm text-gray-500">Cardiology</div>
+                                        <span class="role-badge bg-blue-100 text-blue-800">Senior Consultant</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Monday -->
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Sarah Johnson', 'Mon 15', '9:00 AM - 5:00 PM', 'Available', 'Cardiology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">9:00 AM - 5:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 12/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Tuesday -->
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Sarah Johnson', 'Tue 16', '9:00 AM - 5:00 PM', 'Available', 'Cardiology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">9:00 AM - 5:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 10/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Wednesday -->
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-yellow-50 border border-yellow-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Sarah Johnson', 'Wed 17', '1:00 PM - 9:00 PM', 'Limited', 'Cardiology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-yellow-100 text-yellow-800">Limited</span>
+                                            <p class="text-sm font-medium mt-1">1:00 PM - 9:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 14/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Thursday -->
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-red-50 border border-red-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Sarah Johnson', 'Thu 18', 'Off Duty', 'Unavailable', 'Cardiology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-red-100 text-red-800">Off Duty</span>
+                                            <p class="text-sm font-medium mt-1">Off Duty</p>
+                                            <p class="text-xs text-gray-600 mt-1">No appointments</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Friday -->
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Sarah Johnson', 'Fri 19', '9:00 AM - 5:00 PM', 'Available', 'Cardiology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">9:00 AM - 5:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 8/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Saturday -->
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-blue-50 border border-blue-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Sarah Johnson', 'Sat 20', 'Emergency Only', 'Emergency', 'Cardiology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-blue-100 text-blue-800">Emergency</span>
+                                            <p class="text-sm font-medium mt-1">Emergency Only</p>
+                                            <p class="text-xs text-gray-600 mt-1">On-call duty</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Sunday -->
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-red-50 border border-red-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Sarah Johnson', 'Sun 21', 'Off Duty', 'Unavailable', 'Cardiology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-red-100 text-red-800">Off Duty</span>
+                                            <p class="text-sm font-medium mt-1">Off Duty</p>
+                                            <p class="text-xs text-gray-600 mt-1">No appointments</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Doctor 2 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user-md text-purple-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Dr. Michael Chen</div>
+                                        <div class="text-sm text-gray-500">Neurology</div>
+                                        <span class="role-badge bg-purple-100 text-purple-800">Head of Department</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Schedule cells for Dr. Michael Chen -->
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-yellow-50 border border-yellow-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Michael Chen', 'Mon 15', '10:00 AM - 6:00 PM', 'Limited', 'Neurology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-yellow-100 text-yellow-800">Limited</span>
+                                            <p class="text-sm font-medium mt-1">10:00 AM - 6:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 14/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Michael Chen', 'Tue 16', '9:00 AM - 5:00 PM', 'Available', 'Neurology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">9:00 AM - 5:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 9/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Michael Chen', 'Wed 17', '9:00 AM - 5:00 PM', 'Available', 'Neurology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">9:00 AM - 5:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 11/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Michael Chen', 'Thu 18', '9:00 AM - 5:00 PM', 'Available', 'Neurology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">9:00 AM - 5:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 7/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-red-50 border border-red-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Michael Chen', 'Fri 19', 'Conference', 'Unavailable', 'Neurology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-red-100 text-red-800">Conference</span>
+                                            <p class="text-sm font-medium mt-1">Medical Conference</p>
+                                            <p class="text-xs text-gray-600 mt-1">Out of office</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-blue-50 border border-blue-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Michael Chen', 'Sat 20', 'Emergency Only', 'Emergency', 'Neurology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-blue-100 text-blue-800">Emergency</span>
+                                            <p class="text-sm font-medium mt-1">Emergency Only</p>
+                                            <p class="text-xs text-gray-600 mt-1">On-call duty</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-red-50 border border-red-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Michael Chen', 'Sun 21', 'Off Duty', 'Unavailable', 'Neurology')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-red-100 text-red-800">Off Duty</span>
+                                            <p class="text-sm font-medium mt-1">Off Duty</p>
+                                            <p class="text-xs text-gray-600 mt-1">No appointments</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Doctor 3 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-teal-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user-md text-teal-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Dr. Elena Rodriguez</div>
+                                        <div class="text-sm text-gray-500">Pediatrics</div>
+                                        <span class="role-badge bg-teal-100 text-teal-800">Consultant</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- Schedule cells for Dr. Elena Rodriguez (simplified for brevity) -->
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Elena Rodriguez', 'Mon 15', '8:00 AM - 4:00 PM', 'Available', 'Pediatrics')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">8:00 AM - 4:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 10/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Elena Rodriguez', 'Tue 16', '8:00 AM - 4:00 PM', 'Available', 'Pediatrics')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">8:00 AM - 4:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 12/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Elena Rodriguez', 'Wed 17', '8:00 AM - 4:00 PM', 'Available', 'Pediatrics')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">8:00 AM - 4:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 9/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-yellow-50 border border-yellow-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Elena Rodriguez', 'Thu 18', '1:00 PM - 9:00 PM', 'Limited', 'Pediatrics')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-yellow-100 text-yellow-800">Limited</span>
+                                            <p class="text-sm font-medium mt-1">1:00 PM - 9:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 14/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-green-50 border border-green-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Elena Rodriguez', 'Fri 19', '8:00 AM - 4:00 PM', 'Available', 'Pediatrics')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-green-100 text-green-800">Available</span>
+                                            <p class="text-sm font-medium mt-1">8:00 AM - 4:00 PM</p>
+                                            <p class="text-xs text-gray-600 mt-1">Appointments: 11/16</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-blue-50 border border-blue-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Elena Rodriguez', 'Sat 20', 'Emergency Only', 'Emergency', 'Pediatrics')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-blue-100 text-blue-800">Emergency</span>
+                                            <p class="text-sm font-medium mt-1">Emergency Only</p>
+                                            <p class="text-xs text-gray-600 mt-1">On-call duty</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="schedule-cell bg-red-50 border border-red-200 rounded-lg p-3 cursor-pointer" onclick="openSlotDetails('Dr. Elena Rodriguez', 'Sun 21', 'Off Duty', 'Unavailable', 'Pediatrics')">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="availability-badge bg-red-100 text-red-800">Off Duty</span>
+                                            <p class="text-sm font-medium mt-1">Off Duty</p>
+                                            <p class="text-xs text-gray-600 mt-1">No appointments</p>
+                                        </div>
+                                        <i class="fas fa-chevron-right text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="px-6 py-4 border-t border-gray-200 text-sm text-gray-500">
+                <i class="fas fa-lock mr-1"></i> Schedule data is encrypted and HIPAA compliant. Access is logged for security auditing.
+            </div>
+        </div>
+
+        <!-- Legend and Notes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 no-print">
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-key mr-2"></i>Availability Legend
+                </h3>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-green-100 border border-green-300 mr-3"></div>
+                        <span class="text-gray-700">Available - Open for appointments</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-yellow-100 border border-yellow-300 mr-3"></div>
+                        <span class="text-gray-700">Limited - Few slots remaining</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-red-100 border border-red-300 mr-3"></div>
+                        <span class="text-gray-700">Unavailable - Off duty or occupied</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-blue-100 border border-blue-300 mr-3"></div>
+                        <span class="text-gray-700">Emergency - On-call for emergencies only</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-clipboard-list mr-2"></i>Schedule Management
+                </h3>
+                <ul class="space-y-2 text-gray-700">
+                    <li class="

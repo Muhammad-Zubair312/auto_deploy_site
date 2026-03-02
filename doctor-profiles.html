@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profiles | Hospital Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .doctor-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .availability-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .availability-available {
+            background-color: #10b981;
+        }
+        .availability-busy {
+            background-color: #ef4444;
+        }
+        .availability-away {
+            background-color: #f59e0b;
+        }
+        .filter-active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .role-badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .role-doctor {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        .role-specialist {
+            background-color: #f0f9ff;
+            color: #0c4a6e;
+        }
+        .role-head {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap items-center justify-between'>
+        <div class="flex items-center space-x-2 mb-2 md:mb-0">
+            <i class="fas fa-hospital text-blue-400 text-xl"></i>
+            <span class="font-bold text-lg">MediCare HMS</span>
+        </div>
+        <div class="flex flex-wrap gap-1 md:gap-0">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Home</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Signup</a>
+            <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Patient Registration</a>
+            <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Patient Records</a>
+            <a href='appointment-booking.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Appointment Booking</a>
+            <a href='appointment-management.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Appointment Management</a>
+            <a href='doctors-schedule.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Doctors Schedule</a>
+            <a href='doctor-profiles.html' class='px-3 py-2 hover:text-blue-400 text-sm font-semibold text-blue-300'>Doctor Profiles</a>
+            <a href='departments.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Departments</a>
+            <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Staff Management</a>
+            <a href='billing-payments.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Billing & Payments</a>
+            <a href='prescription-management.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Prescription Management</a>
+            <a href='medical-history.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Medical History</a>
+            <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 text-sm'>Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Doctor Profiles</h1>
+            <p class="text-gray-600">Browse and manage our medical professionals. All profiles are HIPAA compliant with role-based access control.</p>
+            <div class="flex items-center mt-4 text-sm text-gray-500">
+                <i class="fas fa-shield-alt text-blue-500 mr-2"></i>
+                <span>Secure access: Patient data is protected according to HIPAA regulations</span>
+            </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="bg-white rounded-lg shadow p-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Search -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Search Doctors</label>
+                    <div class="relative">
+                        <input type="text" id="searchDoctors" placeholder="Search by name, specialty, or department" 
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Department Filter -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Department</label>
+                    <select id="departmentFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="all">All Departments</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="oncology">Oncology</option>
+                        <option value="dermatology">Dermatology</option>
+                        <option value="surgery">General Surgery</option>
+                    </select>
+                </div>
+                
+                <!-- Availability Filter -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Availability</label>
+                    <div class="flex space-x-2">
+                        <button class="availability-filter filter-active px-4 py-2 rounded-lg border" data-status="all">All</button>
+                        <button class="availability-filter px-4 py-2 rounded-lg border hover:bg-gray-50" data-status="available">
+                            <span class="availability-dot availability-available"></span> Available
+                        </button>
+                        <button class="availability-filter px-4 py-2 rounded-lg border hover:bg-gray-50" data-status="busy">
+                            <span class="availability-dot availability-busy"></span> Busy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Role-based Access Notice -->
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                <div class="flex items-start">
+                    <i class="fas fa-user-shield text-blue-500 mt-1 mr-3"></i>
+                    <div>
+                        <h3 class="font-medium text-blue-800">Role-Based Access Control</h3>
+                        <p class="text-blue-700 text-sm mt-1">Access to detailed doctor information is restricted based on user roles. Patients can view basic profiles, while staff and doctors have access to full details and management functions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Doctor Profiles Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="doctorGrid">
+            <!-- Doctor Card 1 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user-md text-blue-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Dr. Sarah Johnson</h3>
+                                <p class="text-gray-600">Cardiologist</p>
+                                <span class="role-badge role-head mt-1">Department Head</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex items-center justify-end mb-1">
+                                <span class="availability-dot availability-available"></span>
+                                <span class="text-sm text-green-600 font-medium">Available</span>
+                            </div>
+                            <div class="text-xs text-gray-500">Next: 2:30 PM</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-graduation-cap text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">MD, Cardiology, Johns Hopkins University</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-briefcase-medical text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">15 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-yellow-400 mr-2 w-5"></i>
+                            <span class="text-sm">4.8/5.0 (247 reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-2">Specializations</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">Heart Failure</span>
+                            <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">Arrhythmia</span>
+                            <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">Preventive Care</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <button class="view-profile-btn px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium" data-id="1">
+                            View Full Profile
+                        </button>
+                        <a href="appointment-booking.html?doctor=1" class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition text-sm font-medium">
+                            Book Appointment
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doctor Card 2 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-brain text-green-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Dr. Michael Chen</h3>
+                                <p class="text-gray-600">Neurologist</p>
+                                <span class="role-badge role-specialist mt-1">Senior Specialist</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex items-center justify-end mb-1">
+                                <span class="availability-dot availability-busy"></span>
+                                <span class="text-sm text-red-600 font-medium">In Surgery</span>
+                            </div>
+                            <div class="text-xs text-gray-500">Available: 4:00 PM</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-graduation-cap text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">MD, Neurology, Stanford University</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-briefcase-medical text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">12 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-yellow-400 mr-2 w-5"></i>
+                            <span class="text-sm">4.9/5.0 (189 reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-2">Specializations</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs">Epilepsy</span>
+                            <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs">Stroke Care</span>
+                            <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs">Movement Disorders</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <button class="view-profile-btn px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium" data-id="2">
+                            View Full Profile
+                        </button>
+                        <a href="appointment-booking.html?doctor=2" class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition text-sm font-medium">
+                            Book Appointment
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doctor Card 3 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-bone text-purple-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Dr. Robert Williams</h3>
+                                <p class="text-gray-600">Orthopedic Surgeon</p>
+                                <span class="role-badge role-doctor mt-1">Consultant</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex items-center justify-end mb-1">
+                                <span class="availability-dot availability-available"></span>
+                                <span class="text-sm text-green-600 font-medium">Available</span>
+                            </div>
+                            <div class="text-xs text-gray-500">Next: 3:15 PM</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-graduation-cap text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">MD, Orthopedics, Harvard Medical School</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-briefcase-medical text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">18 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-yellow-400 mr-2 w-5"></i>
+                            <span class="text-sm">4.7/5.0 (312 reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-2">Specializations</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">Joint Replacement</span>
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">Sports Injuries</span>
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">Spinal Surgery</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <button class="view-profile-btn px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium" data-id="3">
+                            View Full Profile
+                        </button>
+                        <a href="appointment-booking.html?doctor=3" class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition text-sm font-medium">
+                            Book Appointment
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doctor Card 4 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-baby text-pink-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Dr. Amanda Rodriguez</h3>
+                                <p class="text-gray-600">Pediatrician</p>
+                                <span class="role-badge role-head mt-1">Department Head</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex items-center justify-end mb-1">
+                                <span class="availability-dot availability-available"></span>
+                                <span class="text-sm text-green-600 font-medium">Available</span>
+                            </div>
+                            <div class="text-xs text-gray-500">Next: 1:45 PM</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-graduation-cap text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">MD, Pediatrics, University of California</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-briefcase-medical text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">10 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-yellow-400 mr-2 w-5"></i>
+                            <span class="text-sm">4.9/5.0 (276 reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-2">Specializations</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-pink-50 text-pink-700 rounded-full text-xs">Neonatology</span>
+                            <span class="px-3 py-1 bg-pink-50 text-pink-700 rounded-full text-xs">Adolescent Medicine</span>
+                            <span class="px-3 py-1 bg-pink-50 text-pink-700 rounded-full text-xs">Developmental Disorders</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <button class="view-profile-btn px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium" data-id="4">
+                            View Full Profile
+                        </button>
+                        <a href="appointment-booking.html?doctor=4" class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition text-sm font-medium">
+                            Book Appointment
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doctor Card 5 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-microscope text-red-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Dr. James Wilson</h3>
+                                <p class="text-gray-600">Oncologist</p>
+                                <span class="role-badge role-specialist mt-1">Senior Specialist</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex items-center justify-end mb-1">
+                                <span class="availability-dot availability-busy"></span>
+                                <span class="text-sm text-red-600 font-medium">In Consultation</span>
+                            </div>
+                            <div class="text-xs text-gray-500">Available: 3:30 PM</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-graduation-cap text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">MD, Oncology, Mayo Clinic</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-briefcase-medical text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">14 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-yellow-400 mr-2 w-5"></i>
+                            <span class="text-sm">4.8/5.0 (203 reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-2">Specializations</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-red-50 text-red-700 rounded-full text-xs">Breast Cancer</span>
+                            <span class="px-3 py-1 bg-red-50 text-red-700 rounded-full text-xs">Lung Cancer</span>
+                            <span class="px-3 py-1 bg-red-50 text-red-700 rounded-full text-xs">Immunotherapy</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <button class="view-profile-btn px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium" data-id="5">
+                            View Full Profile
+                        </button>
+                        <a href="appointment-booking.html?doctor=5" class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition text-sm font-medium">
+                            Book Appointment
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doctor Card 6 -->
+            <div class="doctor-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-allergies text-yellow-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Dr. Lisa Thompson</h3>
+                                <p class="text-gray-600">Dermatologist</p>
+                                <span class="role-badge role-doctor mt-1">Consultant</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex items-center justify-end mb-1">
+                                <span class="availability-dot availability-available"></span>
+                                <span class="text-sm text-green-600 font-medium">Available</span>
+                            </div>
+                            <div class="text-xs text-gray-500">Next: 2:00 PM</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-graduation-cap text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">MD, Dermatology, Yale University</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-briefcase-medical text-gray-400 mr-2 w-5"></i>
+                            <span class="text-sm">9 years experience</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-yellow-400 mr-2 w-5"></i>
+                            <span class="text-sm">4.6/5.0 (178 reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-2">Specializations</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-xs">Skin Cancer</span>
+                            <span class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-xs">Cosmetic Dermatology</span>
+                            <span class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-xs">Acne Treatment</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <button class="view-profile-btn px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium" data-id="6">
+                            View Full Profile
+                        </button>
+                        <a href="appointment-booking.html?doctor=6" class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition text-sm font-medium">
+                            Book Appointment
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HIPAA Compliance Section -->
+        <div class="bg-white rounded-xl shadow p-6 mb-8 border border-gray-200">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">HIPAA Compliance & Data Security</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-medium text-gray-700 mb-2 flex items-center">
+                        <i class="fas fa-lock text-green-500 mr-2"></i> Protected Health Information (PHI)
+                    </h3>
+                    <p class="text-gray-600 text-sm">All doctor profiles and patient interactions are managed in compliance with HIPAA regulations. Access to sensitive information is strictly controlled.</p>
+                </div>
+                <div>
+                    <h3 class="font-medium text-gray-700 mb-2 flex items-center">
+                        <i class="fas fa-user-check text-blue-500 mr-2"></i> Role-Based Access Control
+                    </h3>
+                    <p class="text-gray-600 text-sm">Different user roles (Patient, Doctor, Staff, Admin) have appropriate access levels to doctor profiles and related medical data.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Staff Management Access (Visible to staff/admin only) -->
+        <div class="bg-blue-50 rounded-xl shadow p-6 border border-blue-200" id="staffAccessSection">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-blue-800">Staff Management Functions</h2>
+                <span class="role-badge bg-blue-100 text-blue-800">Staff Access Only</span>
+            </div>
+            <p class="text-blue-700 mb-6">Authorized staff can manage doctor profiles, update availability, and modify department assignments.</p>
+            <div class="flex flex-wrap gap-4">
+                <button class="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
+                    <i class="fas fa-user-plus mr-2"></i> Add New Doctor
+                </button>
+                <button class="px-5 py-2.5 bg-white text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition font-medium">
+                    <i class="fas fa-edit mr-2"></i> Edit Profiles
+                </button>
+                <button class="px-5 py-2.5 bg-white text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition font-medium">
+                    <i class="fas fa-calendar-alt mr-2"></i> Manage Schedules
+                </button>
+                <button class="px-5 py-2.5 bg-white text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition font-medium">
+                    <i class="fas fa-file-export mr-2"></i> Export Directory
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4 flex items-center">
+                        <i class="fas fa-hospital text-blue-400 mr-2"></i> MediCare HMS
+                    </h3>
+                    <p class="text-gray-400 text-sm">A secure, HIPAA-compliant hospital management system for efficient healthcare delivery and patient care.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="doctors-schedule.html" class="text-gray-400 hover:text-white text-sm">Doctors Schedule</a></li>
+                        <li><a href="departments.html" class="text-gray-400 hover:text-white text-sm">Departments</a></li>
+                        <li><a href="appointment-booking.html" class="text-gray-400 hover:text-white text-sm">Book Appointment</a></li>
+                        <li><a href="patient-records.html" class="text-gray-400 hover:text-white text-sm">Patient Portal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <p class="text-gray-400 text-sm">123 Medical Center Drive<br>Healthcare City, HC 12345<br>Phone: (555) 123-4567<br>Email: info@medicarehms.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 MediCare Hospital Management System. All rights reserved. HIPAA Compliant.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactive Features -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const searchInput = document.getElementById('searchDoctors');
+            const departmentFilter = document.getElementById('departmentFilter');
+            const availabilityFilters = document.querySelectorAll('.availability-filter');
+            const doctorCards = document.querySelectorAll('.doctor-card');
+            
+            // Search functionality
+            searchInput.addEventListener('input', filterDoctors);
+            departmentFilter.addEventListener('change', filterDoctors);
+            
+            // Availability filter buttons
+            availabilityFilters.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    availabilityFilters.forEach(btn => {
+                        btn.classList.remove('filter-active', 'bg-blue-600', 'text-white');
+                        btn.classList.add('hover:bg-gray-50');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('filter-active', 'bg-blue-600', 'text-white');
+                    this.classList.remove('hover:bg-gray-50');
+                    
+                    filterDoctors();
+                });
+            });
+            
+            // View profile button functionality
+            document.querySelectorAll('.view-profile-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const doctorId = this.getAttribute('data-id');
+                    alert(`Viewing full profile for Doctor ID: ${doctorId}. In a full implementation, this would redirect to a detailed profile page with role-based access control.`);
+                    // In a real implementation, this would redirect to doctor-profile-detail.html?id=${doctorId}
+                });
+            });
+            
+            // Filter function
+            function filterDoctors() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const department = departmentFilter.value;
+                const activeAvailabilityFilter = document.querySelector('.availability-filter.filter-active');
+                const availabilityStatus = activeAvailabilityFilter ? activeAvailabilityFilter.getAttribute('data-status') : 'all';
+                
+                doctorCards.forEach(card => {
+                    const doctorName = card.querySelector('h3').textContent.toLowerCase();
+                    const doctorSpecialty = card.querySelector('p.text-gray-600').textContent.toLowerCase();
+                    const doctorDepartment = getDepartmentFromSpecialty(card.querySelector('p.text-gray-600').textContent);
+                    const availabilityElement = card.querySelector('.text-sm.font-medium');
+                    const isAvailable = availabilityElement.textContent.includes('Available');
+                    
+                    // Check search term
+                    const matchesSearch = doctorName.includes(searchTerm) || 
+                                         doctorSpecialty.includes(searchTerm) ||
+                                         searchTerm === '';
+                    
+                    // Check department
+                    const matchesDepartment = department ===

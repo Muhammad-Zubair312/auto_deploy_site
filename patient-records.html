@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Records | Hospital Management System</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .record-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .record-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .role-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        .patient-active {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .patient-inactive {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .hipaa-notice {
+            border-left: 4px solid #3b82f6;
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Records</a>
+        <a href='appointment-booking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Appointment Booking</a>
+        <a href='appointment-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Appointment Management</a>
+        <a href='doctors-schedule.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Doctors Schedule</a>
+        <a href='doctor-profiles.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Doctor Profiles</a>
+        <a href='departments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Departments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Staff Management</a>
+        <a href='billing-payments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Billing & Payments</a>
+        <a href='prescription-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Prescription Management</a>
+        <a href='medical-history.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Medical History</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar bg-white w-64 min-h-screen p-6 border-r border-gray-200 hidden md:block">
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-gray-800">Patient Records</h2>
+                <p class="text-sm text-gray-600 mt-1">HIPAA Compliant Management</p>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="font-semibold text-gray-700 mb-3">Filters</h3>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <select id="statusFilter" class="w-full border border-gray-300 rounded-md p-2 text-sm">
+                            <option value="all">All Patients</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Department</label>
+                        <select id="departmentFilter" class="w-full border border-gray-300 rounded-md p-2 text-sm">
+                            <option value="all">All Departments</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="orthopedics">Orthopedics</option>
+                            <option value="pediatrics">Pediatrics</option>
+                            <option value="oncology">Oncology</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+                        <input type="date" id="startDate" class="w-full border border-gray-300 rounded-md p-2 text-sm mb-2">
+                        <input type="date" id="endDate" class="w-full border border-gray-300 rounded-md p-2 text-sm">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hipaa-notice p-4 rounded-md mb-6">
+                <h4 class="font-semibold text-blue-800 mb-2"><i class="fas fa-shield-alt mr-2"></i>HIPAA Compliance</h4>
+                <p class="text-sm text-blue-700">All patient data is encrypted and access is logged. Only authorized personnel can view sensitive information.</p>
+            </div>
+            
+            <div class="mt-8">
+                <h3 class="font-semibold text-gray-700 mb-3">Quick Actions</h3>
+                <div class="space-y-2">
+                    <button onclick="openNewRecordModal()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md text-sm flex items-center justify-center">
+                        <i class="fas fa-plus mr-2"></i> New Patient Record
+                    </button>
+                    <button onclick="exportRecords()" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md text-sm flex items-center justify-center">
+                        <i class="fas fa-file-export mr-2"></i> Export Records
+                    </button>
+                    <button onclick="printRecords()" class="w-full bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-md text-sm flex items-center justify-center">
+                        <i class="fas fa-print mr-2"></i> Print Summary
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 p-6">
+            <div class="mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800">Patient Records</h1>
+                        <p class="text-gray-600 mt-2">Manage and view all patient records with role-based access control</p>
+                    </div>
+                    <div class="mt-4 md:mt-0 flex space-x-3">
+                        <div class="relative">
+                            <input type="text" id="searchRecords" placeholder="Search patients..." class="border border-gray-300 rounded-md p-2 pl-10 w-full md:w-64">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        <button onclick="toggleSidebar()" class="md:hidden bg-gray-200 hover:bg-gray-300 p-2 rounded-md">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Role-Based Access Notice -->
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-user-shield text-yellow-400"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-yellow-700">
+                                <span class="font-medium">Role-Based Access Active:</span> You are logged in as <span class="font-semibold">Medical Staff</span>. Your access level allows viewing and editing of patient records. Administrative functions are restricted.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-user-injured text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Total Patients</p>
+                                <p class="text-2xl font-bold text-gray-800">1,247</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-calendar-check text-green-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Active Appointments</p>
+                                <p class="text-2xl font-bold text-gray-800">89</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-file-medical text-purple-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Records Updated Today</p>
+                                <p class="text-2xl font-bold text-gray-800">24</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="bg-red-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-exclamation-triangle text-red-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Pending Actions</p>
+                                <p class="text-2xl font-bold text-gray-800">7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Patient Records Table -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                    <h2 class="text-lg font-semibold text-gray-800">Patient List</h2>
+                    <div class="text-sm text-gray-500">
+                        Showing <span id="showingCount">10</span> of 1,247 patients
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient ID</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age/Gender</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Primary Doctor</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Visit</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="patientTableBody">
+                            <!-- Patient records will be populated here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="px-6 py-4 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-sm text-gray-500 mb-4 md:mb-0">
+                        <span id="selectedCount">0</span> patients selected
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-700 mr-2">Rows per page:</span>
+                            <select id="rowsPerPage" class="border border-gray-300 rounded-md p-1 text-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="previousPage()" class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button onclick="nextPage()" class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Record Updates</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start border-b border-gray-100 pb-4">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-notes-medical text-blue-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-800">Medical history updated for Sarah Johnson</p>
+                                    <p class="text-xs text-gray-500">Dr. Michael Chen • 2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start border-b border-gray-100 pb-4">
+                                <div class="bg-green-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-prescription text-green-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-800">New prescription added for Robert Davis</p>
+                                    <p class="text-xs text-gray-500">Dr. Amanda Rodriguez • 4 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start border-b border-gray-100 pb-4">
+                                <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-file-invoice-dollar text-purple-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-800">Billing information updated for Maria Garcia</p>
+                                    <p class="text-xs text-gray-500">Billing Department • 6 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-yellow-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-calendar-plus text-yellow-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-800">Appointment scheduled for James Wilson</p>
+                                    <p class="text-xs text-gray-500">Scheduling System • Yesterday</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Access Log</h3>
+                        <div class="space-y-3">
+                            <div class="text-sm">
+                                <p class="font-medium text-gray-700">You viewed John Smith's record</p>
+                                <p class="text-gray-500 text-xs">Today, 10:24 AM</p>
+                            </div>
+                            <div class="text-sm">
+                                <p class="font-medium text-gray-700">Record edited for Emily Brown</p>
+                                <p class="text-gray-500 text-xs">Today, 9:15 AM</p>
+                            </div>
+                            <div class="text-sm">
+                                <p class="font-medium text-gray-700">New patient record created</p>
+                                <p class="text-gray-500 text-xs">Yesterday, 4:30 PM</p>
+                            </div>
+                            <div class="text-sm">
+                                <p class="font-medium text-gray-700">Export of records initiated</p>
+                                <p class="text-gray-500 text-xs">Yesterday, 2:10 PM</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-200">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-history mr-2"></i> View Full Access Log
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Record Modal -->
+    <div id="newRecordModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Create New Patient Record</h2>
+                <button onclick="closeNewRecordModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <form id="newRecordForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                        <input type="text" required class="w-full border border-gray-300 rounded-md p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                        <input type="text" required class="w-full border border-gray-300 rounded-md p-2">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth *</label>
+                        <input type="date" required class="w-full border border-gray-300 rounded-md p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                        <select class="w-full border border-gray-300 rounded-md p-2">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                        <input type="tel" class="w-full border border-gray-300 rounded-md p-2">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" class="w-full border border-gray-300 rounded-md p-2">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Primary Address</label>
+                    <textarea rows="2" class="w-full border border-gray-300 rounded-md p-2"></textarea>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Primary Doctor</label>
+                        <select class="w-full border border-gray-300 rounded-md p-2">
+                            <option value="">Select a doctor</option>
+                            <option value="dr-chen">Dr. Michael Chen</option>
+                            <option value="dr-rodriguez">Dr. Amanda Rodriguez</option>
+                            <option value="dr-patel">Dr. Raj Patel</option>
+                            <option value="dr-wilson">Dr. Jennifer Wilson</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Primary Department</label>
+                        <select class="w-full border border-gray-300 rounded-md p-2">
+                            <option value="">Select a department</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="orthopedics">Orthopedics</option>
+                            <option value="pediatrics">Pediatrics</option>
+                            <option value="oncology">Oncology</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 p-4 rounded-md">
+                    <h4 class="font-semibold text-blue-800 mb-2"><i class="fas fa-shield-alt mr-2"></i>HIPAA Acknowledgement</h4>
+                    <div class="flex items-start">
+                        <input type="checkbox" id="hipaaAck" required class="mt-1 mr-3">
+                        <label for="hipaaAck" class="text-sm text-blue-700">I acknowledge that I am accessing protected health information (PHI) and will comply with all HIPAA regulations regarding patient privacy and data security.</label>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-4 pt-4">
+                    <button type="button" onclick="closeNewRecordModal()" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Create Patient Record</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Record Modal -->
+    <div id="viewRecordModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Patient Record Details</h2>
+                <button onclick="closeViewRecordModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="recordDetails" class="space-y-6">
+                <!-- Record details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample patient data
+        const patients = [
+            { id: "P-1001", name: "John Smith", age: 45, gender: "Male", doctor: "Dr. Michael Chen", department: "Cardiology", lastVisit: "2023-10-15", status: "active" },
+            { id: "P-1002", name: "Sarah Johnson", age: 32, gender: "Female", doctor: "Dr. Amanda Rodriguez", department: "Neurology", lastVisit: "2023-10-18", status: "active" },
+            { id: "P-1003", name: "Robert Davis", age: 58, gender: "Male", doctor: "Dr. Raj Patel", department: "Orthopedics", lastVisit: "2023-10-10", status: "active" },
+            { id: "P-1004", name: "Maria Garcia", age: 29, gender: "Female", doctor: "Dr. Jennifer Wilson", department: "Pediatrics", lastVisit: "2023-09-28", status: "inactive" },
+            { id: "P-1005", name: "James Wilson", age: 67, gender: "Male", doctor: "Dr. Michael Chen", department: "Cardiology", lastVisit: "2023-10-20", status: "active" },
+            { id: "P-1006", name: "Emily Brown", age: 41, gender: "Female", doctor: "Dr. Amanda Rodriguez", department: "Neurology", lastVisit: "2023-10-05", status: "active" },
+            { id: "P-1007", name: "David Miller", age: 53, gender: "Male", doctor: "Dr. Raj Patel", department: "Orthopedics", lastVisit: "2023-09-15", status: "inactive" },
+            { id: "P-1008", name: "Lisa Taylor", age: 38, gender: "Female", doctor: "Dr. Jennifer Wilson", department: "Pediatrics", lastVisit: "2023-10-22", status: "active" },
+            { id: "P-1009", name: "Thomas Anderson", age: 62, gender: "Male", doctor: "Dr. Michael Chen", department: "Cardiology", lastVisit: "2023-10-12", status: "active" },
+            { id: "P-1010", name: "Jennifer Lee", age: 35, gender: "Female", doctor: "Dr. Amanda Rodriguez", department: "Neurology", lastVisit: "2023-09-30", status: "inactive" }
+        ];
+
+        let currentPage = 1;
+        let rowsPerPage = 10;
+        let selectedPatients = new Set();
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPatientTable();
+            
+            // Set up event listeners
+            document.getElementById('statusFilter').addEventListener('change', renderPatientTable);
+            document.getElementById('departmentFilter').addEventListener('change', renderPatientTable);
+            document.getElementById('rowsPerPage').addEventListener('change', function() {
+                rowsPerPage = parseInt(this.value);
+                currentPage = 1;
+                renderPatientTable();
+            });
+            document.getElementById('searchRecords').addEventListener('input', renderPatientTable);
+            document.getElementById('newRecordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Patient record created successfully! This would be connected to backend in production.');
+                closeNewRecordModal();
+            });
+        });
+
+        // Render patient table
+        function renderPatientTable() {
+            const tableBody = document.getElementById('patientTableBody');
+            const statusFilter = document.getElementById('statusFilter').value;
+            const departmentFilter = document.getElementById('departmentFilter').value;
+            const searchQuery = document.getElementById('searchRecords').value.toLowerCase();
+            
+            // Filter patients
+            let filteredPatients = patients.filter(patient => {
+                if (statusFilter !== 'all' && patient.status !== statusFilter) return false;
+                if (departmentFilter !== 'all' && patient.department !== departmentFilter) return false;
+                if (searchQuery && !patient.name.toLowerCase().includes(searchQuery) && !patient.id.toLowerCase().includes(searchQuery)) return false;
+                return true;
+            });
+            
+            // Calculate pagination
+            const totalPages = Math.ceil(filteredPatients.length / rowsPerPage);
+            const startIndex = (currentPage - 1) * rowsPerPage;
+            const endIndex = Math.min(startIndex + rowsPerPage, filteredPatients.length);
+            const pagePatients = filteredPatients.slice(startIndex, endIndex);
+            
+            // Update showing count
+            document.getElementById('showingCount').textContent = `${startIndex + 1}-${endIndex}`;
+            
+            // Clear table
+            tableBody.innerHTML = '';
+            
+            // Add rows
+            pagePatients.forEach(patient => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50';
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">${patient.id}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">${patient.name}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${patient.age} / ${patient.gender}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${patient.doctor}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${patient.department}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${formatDate(patient.lastVisit)}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="role-badge ${patient.status === 'active' ? 'patient-active' : 'patient-inactive'}">
+                            ${patient.status === 'active' ? 'Active' : 'Inactive'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button onclick="viewPatientRecord('${patient.id}')" class="text-blue-600 hover:text-blue-900 mr-3">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button onclick="editPatientRecord('${patient.id}')" class="text-green-600 hover:text-green-900 mr-3">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="deletePatientRecord('${patient.id}')" class="text-red-600 hover:text-red-900">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            // Update selected count
+            updateSelectedCount();
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // View patient record
+        function viewPatientRecord(patientId) {
+            const patient = patients.find(p => p.id === patientId);
+            if (!patient) return;
+            
+            const detailsDiv = document.getElementById('recordDetails');
+            detailsDiv.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Personal Information</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="text-sm text-gray-500">Patient ID</p>
+                                <p class="font-medium">${patient.id}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Full Name</p>
+                                <p class="font-medium">${patient.name}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Age / Gender</p>
+                                <p class="font-medium">${patient.age} years / ${patient.gender}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Status</p>
+                                <span class="role-badge ${patient.status === 'active' ? 'patient-active' : 'patient-inactive'}">
+                                    ${patient.status === 'active' ? 'Active' : 'Inactive'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Medical Information</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="text-sm text-gray-500">Primary Doctor</p>
+                                <p class="font-medium">${patient.doctor}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Department</p>
+                                <p class="font-medium">${patient.department}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Last Visit</p>
+                                <p class="font-medium">${formatDate(patient.lastVisit)}</p>
+                            </div

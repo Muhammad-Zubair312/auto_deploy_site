@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Management | Hospital Management System</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#0ea5e9',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .prescription-card {
+            transition: all 0.3s ease;
+        }
+        .prescription-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .role-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        .doctor-badge { background-color: #dbeafe; color: #1e40af; }
+        .patient-badge { background-color: #dcfce7; color: #166534; }
+        .staff-badge { background-color: #fef3c7; color: #92400e; }
+        .hipaa-notice {
+            border-left: 4px solid #1e40af;
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointment-booking.html' class='px-3 py-2 hover:text-blue-400'>Appointment Booking</a>
+        <a href='appointment-management.html' class='px-3 py-2 hover:text-blue-400'>Appointment Management</a>
+        <a href='doctors-schedule.html' class='px-3 py-2 hover:text-blue-400'>Doctors Schedule</a>
+        <a href='doctor-profiles.html' class='px-3 py-2 hover:text-blue-400'>Doctor Profiles</a>
+        <a href='departments.html' class='px-3 py-2 hover:text-blue-400'>Departments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='billing-payments.html' class='px-3 py-2 hover:text-blue-400'>Billing & Payments</a>
+        <a href='prescription-management.html' class='px-3 py-2 hover:text-blue-400 text-blue-300 font-medium'>Prescription Management</a>
+        <a href='medical-history.html' class='px-3 py-2 hover:text-blue-400'>Medical History</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Prescription Management</h1>
+                <p class="text-gray-600 mt-2">Create, manage, and track patient prescriptions with HIPAA-compliant security</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <span class="role-badge doctor-badge mr-2"><i class="fas fa-user-md mr-1"></i> Doctor Access</span>
+                <span class="role-badge staff-badge mr-2"><i class="fas fa-user-nurse mr-1"></i> Staff Access</span>
+                <span class="role-badge patient-badge"><i class="fas fa-user mr-1"></i> Patient Access</span>
+            </div>
+        </div>
+
+        <!-- HIPAA Notice -->
+        <div class="hipaa-notice p-4 rounded-lg mb-8">
+            <div class="flex items-start">
+                <i class="fas fa-shield-alt text-primary text-xl mr-3 mt-1"></i>
+                <div>
+                    <h3 class="font-bold text-gray-800">HIPAA Compliance Notice</h3>
+                    <p class="text-gray-700 text-sm mt-1">All prescription data is encrypted and access is logged according to HIPAA regulations. Only authorized personnel with proper role-based permissions can view or modify prescription information.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Create New Prescription -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-file-prescription text-primary mr-3"></i> Create New Prescription
+                    </h2>
+                    
+                    <form id="prescriptionForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Patient Selection -->
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 font-medium mb-2" for="patientSelect">
+                                    Select Patient <span class="text-danger">*</span>
+                                </label>
+                                <div class="relative">
+                                    <select id="patientSelect" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                        <option value="">Choose a patient...</option>
+                                        <option value="P1001">John Smith (ID: P1001)</option>
+                                        <option value="P1002">Maria Garcia (ID: P1002)</option>
+                                        <option value="P1003">Robert Johnson (ID: P1003)</option>
+                                        <option value="P1004">Sarah Williams (ID: P1004)</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down absolute right-3 top-4 text-gray-400"></i>
+                                </div>
+                            </div>
+
+                            <!-- Medication Details -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="medication">
+                                    Medication Name <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="medication" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., Amoxicillin 500mg" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="dosage">
+                                    Dosage <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="dosage" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., 1 tablet twice daily" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="duration">
+                                    Duration <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="duration" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., 7 days" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="refills">
+                                    Refills Allowed
+                                </label>
+                                <select id="refills" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="0">No refills</option>
+                                    <option value="1">1 refill</option>
+                                    <option value="2">2 refills</option>
+                                    <option value="3">3 refills</option>
+                                    <option value="unlimited">Unlimited (with doctor approval)</option>
+                                </select>
+                            </div>
+
+                            <!-- Instructions -->
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 font-medium mb-2" for="instructions">
+                                    Special Instructions
+                                </label>
+                                <textarea id="instructions" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter any special instructions for the patient..."></textarea>
+                            </div>
+
+                            <!-- Doctor Information -->
+                            <div class="md:col-span-2 border-t pt-6">
+                                <h3 class="font-bold text-gray-800 mb-4">Prescribing Physician</h3>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-user-md text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Dr. Michael Chen</p>
+                                        <p class="text-gray-600 text-sm">Cardiology | License #MED123456</p>
+                                        <p class="text-gray-500 text-xs">Digital Signature will be applied upon submission</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="flex flex-wrap justify-end gap-4 mt-8 pt-6 border-t">
+                            <button type="button" id="saveDraftBtn" class="px-5 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
+                                <i class="far fa-save mr-2"></i> Save as Draft
+                            </button>
+                            <button type="submit" class="px-5 py-3 bg-primary text-white rounded-lg hover:bg-blue-800 transition">
+                                <i class="fas fa-paper-plane mr-2"></i> Issue Prescription
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Recent Prescriptions -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-history text-primary mr-3"></i> Recent Prescriptions
+                    </h2>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="text-left p-3 font-medium text-gray-700">Patient</th>
+                                    <th class="text-left p-3 font-medium text-gray-700">Medication</th>
+                                    <th class="text-left p-3 font-medium text-gray-700">Date</th>
+                                    <th class="text-left p-3 font-medium text-gray-700">Status</th>
+                                    <th class="text-left p-3 font-medium text-gray-700">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="p-3">John Smith</td>
+                                    <td class="p-3">Lisinopril 10mg</td>
+                                    <td class="p-3">Nov 15, 2023</td>
+                                    <td class="p-3"><span class="px-3 py-1 bg-success bg-opacity-10 text-success rounded-full text-sm">Active</span></td>
+                                    <td class="p-3">
+                                        <button class="text-primary hover:text-blue-800 mr-3 view-prescription" data-id="RX001">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-warning hover:text-yellow-700 mr-3">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-danger hover:text-red-700">
+                                            <i class="fas fa-print"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="p-3">Maria Garcia</td>
+                                    <td class="p-3">Metformin 500mg</td>
+                                    <td class="p-3">Nov 12, 2023</td>
+                                    <td class="p-3"><span class="px-3 py-1 bg-success bg-opacity-10 text-success rounded-full text-sm">Active</span></td>
+                                    <td class="p-3">
+                                        <button class="text-primary hover:text-blue-800 mr-3 view-prescription" data-id="RX002">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-warning hover:text-yellow-700 mr-3">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-danger hover:text-red-700">
+                                            <i class="fas fa-print"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="p-3">Robert Johnson</td>
+                                    <td class="p-3">Amoxicillin 500mg</td>
+                                    <td class="p-3">Nov 10, 2023</td>
+                                    <td class="p-3"><span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">Completed</span></td>
+                                    <td class="p-3">
+                                        <button class="text-primary hover:text-blue-800 mr-3 view-prescription" data-id="RX003">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-warning hover:text-yellow-700 mr-3">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-danger hover:text-red-700">
+                                            <i class="fas fa-print"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="p-3">Sarah Williams</td>
+                                    <td class="p-3">Atorvastatin 20mg</td>
+                                    <td class="p-3">Nov 8, 2023</td>
+                                    <td class="p-3"><span class="px-3 py-1 bg-warning bg-opacity-10 text-warning rounded-full text-sm">Pending Refill</span></td>
+                                    <td class="p-3">
+                                        <button class="text-primary hover:text-blue-800 mr-3 view-prescription" data-id="RX004">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-warning hover:text-yellow-700 mr-3">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-danger hover:text-red-700">
+                                            <i class="fas fa-print"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-primary hover:text-blue-800 font-medium">
+                            <i class="fas fa-list mr-2"></i> View All Prescriptions
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Prescription Details & Actions -->
+            <div>
+                <!-- Prescription Preview -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8 prescription-card">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-file-medical text-primary mr-3"></i> Prescription Preview
+                    </h2>
+                    
+                    <div id="prescriptionPreview" class="border-2 border-dashed border-gray-300 rounded-lg p-6 bg-gray-50">
+                        <div class="text-center text-gray-500">
+                            <i class="fas fa-file-prescription text-4xl mb-4"></i>
+                            <p>Select a patient and enter medication details to preview the prescription</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <button id="printPreviewBtn" class="w-full py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition flex items-center justify-center" disabled>
+                            <i class="fas fa-print mr-2"></i> Print Prescription
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-bolt text-warning mr-3"></i> Quick Actions
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <a href="patient-records.html" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                            <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user-injured text-primary"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Patient Records</p>
+                                <p class="text-gray-600 text-sm">Access full medical history</p>
+                            </div>
+                        </a>
+                        
+                        <a href="billing-payments.html" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                            <div class="w-10 h-10 bg-success bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-file-invoice-dollar text-success"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Billing Integration</p>
+                                <p class="text-gray-600 text-sm">Link prescription to billing</p>
+                            </div>
+                        </a>
+                        
+                        <a href="medical-history.html" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                            <div class="w-10 h-10 bg-secondary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-clipboard-list text-secondary"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Medical History</p>
+                                <p class="text-gray-600 text-sm">View past prescriptions</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Access Log -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-clipboard-check text-success mr-3"></i> Recent Access Log
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm mr-3 mt-1">
+                                DC
+                            </div>
+                            <div>
+                                <p class="font-medium">Dr. Michael Chen</p>
+                                <p class="text-gray-600 text-sm">Viewed prescription RX001 • 2 hours ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded-full bg-warning text-white flex items-center justify-center text-sm mr-3 mt-1">
+                                RN
+                            </div>
+                            <div>
+                                <p class="font-medium">Nurse Sarah Wilson</p>
+                                <p class="text-gray-600 text-sm">Updated prescription RX002 • 1 day ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded-full bg-gray-700 text-white flex items-center justify-center text-sm mr-3 mt-1">
+                                PH
+                            </div>
+                            <div>
+                                <p class="font-medium">Pharmacist James Lee</p>
+                                <p class="text-gray-600 text-sm">Filled prescription RX003 • 3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-4 border-t">
+                        <p class="text-gray-600 text-sm"><i class="fas fa-info-circle text-primary mr-2"></i> All access is logged for HIPAA compliance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold">Hospital Management System</h3>
+                    <p class="text-gray-400 mt-2">Secure • Compliant • Efficient</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">© 2023 Hospital Management System. All rights reserved.</p>
+                    <p class="text-gray-500 text-sm mt-2">HIPAA Compliant • Encrypted Data • Role-Based Access Control</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission
+            const prescriptionForm = document.getElementById('prescriptionForm');
+            const saveDraftBtn = document.getElementById('saveDraftBtn');
+            const printPreviewBtn = document.getElementById('printPreviewBtn');
+            const prescriptionPreview = document.getElementById('prescriptionPreview');
+            
+            // Update preview when form changes
+            const formInputs = prescriptionForm.querySelectorAll('input, select, textarea');
+            formInputs.forEach(input => {
+                input.addEventListener('input', updatePrescriptionPreview);
+                input.addEventListener('change', updatePrescriptionPreview);
+            });
+            
+            function updatePrescriptionPreview() {
+                const patientSelect = document.getElementById('patientSelect');
+                const medication = document.getElementById('medication').value;
+                const dosage = document.getElementById('dosage').value;
+                const duration = document.getElementById('duration').value;
+                const instructions = document.getElementById('instructions').value;
+                
+                if (patientSelect.value && medication && dosage && duration) {
+                    const patientText = patientSelect.options[patientSelect.selectedIndex].text;
+                    
+                    prescriptionPreview.innerHTML = `
+                        <div class="bg-white p-6 rounded-lg border">
+                            <div class="text-center border-b pb-4 mb-4">
+                                <h3 class="text-2xl font-bold text-primary">MEDICAL PRESCRIPTION</h3>
+                                <p class="text-gray-600">Hospital Management System</p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <div class="flex justify-between mb-4">
+                                    <div>
+                                        <p class="font-bold">Patient:</p>
+                                        <p>${patientText}</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="font-bold">Date:</p>
+                                        <p>${new Date().toLocaleDateString()}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <p class="font-bold">Medication:</p>
+                                    <p class="text-lg">${medication}</p>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <p class="font-bold">Dosage:</p>
+                                        <p>${dosage}</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">Duration:</p>
+                                        <p>${duration}</p>
+                                    </div>
+                                </div>
+                                
+                                ${instructions ? `
+                                <div class="mb-4">
+                                    <p class="font-bold">Instructions:</p>
+                                    <p>${instructions}</p>
+                                </div>
+                                ` : ''}
+                                
+                                <div class="mt-8 pt-6 border-t">
+                                    <div class="flex justify-between">
+                                        <div>
+                                            <p class="font-bold">Prescribing Physician:</p>
+                                            <p>Dr. Michael Chen</p>
+                                            <p class="text-sm text-gray-600">License #MED123456</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-gray-400 text-sm">Digital Signature</div>
+                                            <div class="text-xl">________________</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center text-gray-500 text-sm border-t pt-4">
+                                <p>This is a secure electronic prescription. Do not share with unauthorized persons.</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    printPreviewBtn.disabled = false;
+                    printPreviewBtn.classList.remove('bg-gray-800');
+                    printPreviewBtn.classList.add('bg-primary');
+                } else {
+                    prescriptionPreview.innerHTML = `
+                        <div class="text-center text-gray-500">
+                            <i class="fas fa-file-prescription text-4xl mb-4"></i>
+                            <p>Select a patient and enter medication details to preview the prescription</p>
+                        </div>
+                    `;
+                    printPreviewBtn.disabled = true;
+                    printPreviewBtn.classList.remove('bg-primary');
+                    printPreviewBtn.classList.add('bg-gray-800');
+                }
+            }
+            
+            // Form submission
+            prescriptionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real application, this would submit to a server
+                // For demo purposes, we'll show an alert
+                
+                const patientSelect = document.getElementById('patientSelect');
+                const patientName = patientSelect.options[patientSelect.selectedIndex].text;
+                
+                alert(`Prescription issued successfully for ${patientName}!\n\nThis prescription has been saved to the patient's medical records and logged for HIPAA compliance.`);
+                
+                // Reset form
+                prescriptionForm.reset();
+                updatePrescriptionPreview();
+            });
+            
+            // Save draft
+            saveDraftBtn.addEventListener('click', function() {
+                alert('Prescription draft saved successfully.\n\nDrafts are stored securely and can be accessed from your dashboard.');
+            });
+            
+            // Print preview
+            printPreviewBtn.addEventListener('click', function() {
+                if (!printPreviewBtn.disabled) {
+                    alert('Opening print dialog...\n\nIn a real application, this would generate a printable prescription document.');
+                    // window.print(); // Uncomment for actual print functionality
+                }
+            });
+            
+            // View prescription buttons
+            document.querySelectorAll('.view-prescription').forEach(button => {
+                button.addEventListener('click', function() {
+                    const prescriptionId = this.getAttribute('data-id');
+                    alert(`Viewing prescription ${prescriptionId}\n\nIn a real application, this would open a detailed view of the prescription with full history and access logs.`);
+                });
+            });
+            
+            // Initialize preview
+            updatePrescriptionPreview();
+        });
+    </script>
+</body>
+</html>

@@ -3,325 +3,545 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - Learning Platform</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Hospital Management System - Dashboard</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .stat-card {
+            border-left: 4px solid;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                z-index: 50;
+                height: 100vh;
+                overflow-y: auto;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 40;
+            }
+            .overlay.active {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
-        <a href='courses.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Courses</a>
-        <a href='lessons.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Lessons</a>
-        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
-        <a href='progress-tracking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Progress Tracking</a>
-        <a href='profile.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Profile</a>
-        <a href='assignments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Assignments</a>
-        <a href='grades.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Grades</a>
+    <!-- Navbar -->
+    <nav class='bg-gray-900 text-white p-4 flex justify-between items-center'>
+        <div class="flex items-center space-x-4">
+            <button id="sidebarToggle" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            <h1 class="text-xl font-bold">MediCare Hospital</h1>
+        </div>
+        <div class="hidden md:flex space-x-4 overflow-x-auto">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
+            <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Registration</a>
+            <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Records</a>
+            <a href='appointment-booking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Appointment Booking</a>
+            <a href='appointment-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Appointment Management</a>
+            <a href='doctors-schedule.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Doctors Schedule</a>
+            <a href='doctor-profiles.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Doctor Profiles</a>
+            <a href='departments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Departments</a>
+            <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Staff Management</a>
+            <a href='billing-payments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Billing & Payments</a>
+            <a href='prescription-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Prescription Management</a>
+            <a href='medical-history.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Medical History</a>
+            <a href='dashboard.html' class='px-3 py-2 bg-blue-600 rounded hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="relative">
+                <button id="userMenu" class="flex items-center space-x-2 focus:outline-none">
+                    <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-white"></i>
+                    </div>
+                    <span class="hidden md:inline">Dr. Smith</span>
+                    <i class="fas fa-chevron-down hidden md:inline"></i>
+                </button>
+                <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
+                    <a href="login.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <!-- Dashboard Header -->
-    <header class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="flex items-center justify-between">
+    <!-- Overlay for mobile sidebar -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Sidebar for mobile -->
+    <div class="sidebar bg-gray-800 text-white w-64 p-6 md:block md:relative fixed h-full">
+        <div class="mb-8 flex justify-between items-center">
+            <h2 class="text-xl font-bold">Dashboard</h2>
+            <button id="closeSidebar" class="md:hidden">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        
+        <div class="mb-6">
+            <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2">Main</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700 bg-blue-900"><i class="fas fa-tachometer-alt w-5"></i><span>Overview</span></a></li>
+                <li><a href="patient-records.html" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-user-injured w-5"></i><span>Patients</span></a></li>
+                <li><a href="appointment-management.html" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-calendar-check w-5"></i><span>Appointments</span></a></li>
+                <li><a href="doctors-schedule.html" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-user-md w-5"></i><span>Doctors</span></a></li>
+            </ul>
+        </div>
+        
+        <div class="mb-6">
+            <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2">Management</h3>
+            <ul class="space-y-2">
+                <li><a href="staff-management.html" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-users w-5"></i><span>Staff</span></a></li>
+                <li><a href="departments.html" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-building w-5"></i><span>Departments</span></a></li>
+                <li><a href="billing-payments.html" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-file-invoice-dollar w-5"></i><span>Billing</span></a></li>
+            </ul>
+        </div>
+        
+        <div class="mb-6">
+            <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2">Medical</h3>
+            <ul class="space-y-2">
+                <li><a href="prescription-management.html" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-prescription-bottle-alt w-5"></i><span>Prescriptions</span></a></li>
+                <li><a href="medical-history.html" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-file-medical w-5"></i><span>Medical Records</span></a></li>
+            </ul>
+        </div>
+        
+        <div class="mt-8 p-4 bg-gray-900 rounded-lg">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-900">Student Dashboard</h1>
-                    <p class="text-gray-600 mt-2">Welcome back, John! Here's your learning progress.</p>
+                    <p class="text-sm font-semibold">HIPAA Compliant</p>
+                    <p class="text-xs text-gray-400">Data secured & encrypted</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
-                        <i data-feather="user" class="w-4 h-4 inline mr-2"></i>
-                        Student
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="md:ml-64 p-4 md:p-6">
+        <!-- Header -->
+        <div class="mb-6">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Hospital Dashboard</h1>
+            <p class="text-gray-600">Real-time analytics and management overview</p>
+            <div class="mt-2 flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Role: Doctor</span>
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">HIPAA Compliant</span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Last updated: Today</span>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-lg shadow p-5 stat-card border-l-blue-500 card-hover">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-gray-500 text-sm">Total Patients</p>
+                        <p class="text-2xl font-bold text-gray-800">1,247</p>
+                        <p class="text-green-600 text-sm mt-1"><i class="fas fa-arrow-up mr-1"></i> 12% from last month</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-injured text-blue-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow p-5 stat-card border-l-green-500 card-hover">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-gray-500 text-sm">Today's Appointments</p>
+                        <p class="text-2xl font-bold text-gray-800">48</p>
+                        <p class="text-green-600 text-sm mt-1"><i class="fas fa-check-circle mr-1"></i> 32 completed</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-calendar-check text-green-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow p-5 stat-card border-l-purple-500 card-hover">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-gray-500 text-sm">Available Doctors</p>
+                        <p class="text-2xl font-bold text-gray-800">24</p>
+                        <p class="text-gray-600 text-sm mt-1">Across 8 departments</p>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-md text-purple-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow p-5 stat-card border-l-red-500 card-hover">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-gray-500 text-sm">Pending Bills</p>
+                        <p class="text-2xl font-bold text-gray-800">$42,580</p>
+                        <p class="text-red-600 text-sm mt-1"><i class="fas fa-exclamation-circle mr-1"></i> 18 overdue</p>
+                    </div>
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-file-invoice-dollar text-red-600 text-xl"></i>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
 
-    <!-- Main Dashboard Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Stats Overview -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-blue-100 text-blue-600">
-                        <i data-feather="book-open" class="w-6 h-6"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Enrolled Courses</p>
-                        <p class="text-2xl font-bold text-gray-900">5</p>
-                    </div>
+        <!-- Charts and Analytics -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <!-- Patient Admissions Chart -->
+            <div class="bg-white rounded-lg shadow p-5 card-hover">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Patient Admissions Trend</h3>
+                    <select class="border border-gray-300 rounded px-3 py-1 text-sm">
+                        <option>Last 7 days</option>
+                        <option>Last 30 days</option>
+                        <option>Last 3 months</option>
+                    </select>
+                </div>
+                <div class="h-64">
+                    <canvas id="admissionsChart"></canvas>
                 </div>
             </div>
-
-            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-green-100 text-green-600">
-                        <i data-feather="check-circle" class="w-6 h-6"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Completed Lessons</p>
-                        <p class="text-2xl font-bold text-gray-900">23</p>
-                    </div>
+            
+            <!-- Department Distribution -->
+            <div class="bg-white rounded-lg shadow p-5 card-hover">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Department Distribution</h3>
+                    <a href="departments.html" class="text-blue-600 hover:text-blue-800 text-sm">View All <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+                <div class="h-64">
+                    <canvas id="departmentChart"></canvas>
                 </div>
             </div>
+        </div>
 
-            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
-                        <i data-feather="award" class="w-6 h-6"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Average Grade</p>
-                        <p class="text-2xl font-bold text-gray-900">87%</p>
-                    </div>
+        <!-- Recent Activity and Upcoming Appointments -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <!-- Upcoming Appointments -->
+            <div class="bg-white rounded-lg shadow p-5 card-hover">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Upcoming Appointments</h3>
+                    <a href="appointment-management.html" class="text-blue-600 hover:text-blue-800 text-sm">Manage <i class="fas fa-external-link-alt ml-1"></i></a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-3 text-gray-600 font-medium">Patient</th>
+                                <th class="text-left py-3 text-gray-600 font-medium">Time</th>
+                                <th class="text-left py-3 text-gray-600 font-medium">Department</th>
+                                <th class="text-left py-3 text-gray-600 font-medium">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-3">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-user text-blue-600 text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">John Doe</p>
+                                            <p class="text-gray-500 text-sm">ID: P-1001</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3">
+                                    <p>10:30 AM</p>
+                                    <p class="text-gray-500 text-sm">Today</p>
+                                </td>
+                                <td class="py-3">Cardiology</td>
+                                <td class="py-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Scheduled</span></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-3">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-user text-blue-600 text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Sarah Johnson</p>
+                                            <p class="text-gray-500 text-sm">ID: P-1002</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3">
+                                    <p>2:15 PM</p>
+                                    <p class="text-gray-500 text-sm">Today</p>
+                                </td>
+                                <td class="py-3">Orthopedics</td>
+                                <td class="py-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Scheduled</span></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-3">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-user text-blue-600 text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Michael Chen</p>
+                                            <p class="text-gray-500 text-sm">ID: P-1003</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3">
+                                    <p>11:00 AM</p>
+                                    <p class="text-gray-500 text-sm">Tomorrow</p>
+                                </td>
+                                <td class="py-3">Neurology</td>
+                                <td class="py-3"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Confirmed</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-user text-blue-600 text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Emma Wilson</p>
+                                            <p class="text-gray-500 text-sm">ID: P-1004</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3">
+                                    <p>9:45 AM</p>
+                                    <p class="text-gray-500 text-sm">Tomorrow</p>
+                                </td>
+                                <td class="py-3">Pediatrics</td>
+                                <td class="py-3"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Confirmed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-purple-100 text-purple-600">
-                        <i data-feather="clock" class="w-6 h-6"></i>
+            
+            <!-- Recent Activity -->
+            <div class="bg-white rounded-lg shadow p-5 card-hover">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Recent Activity</h3>
+                    <button class="text-blue-600 hover:text-blue-800 text-sm">View All <i class="fas fa-arrow-right ml-1"></i></button>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i class="fas fa-user-plus text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">New patient registered</p>
+                            <p class="text-gray-600 text-sm">Robert Brown was registered in the system</p>
+                            <p class="text-gray-500 text-xs mt-1">10 minutes ago</p>
+                        </div>
                     </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Study Time</p>
-                        <p class="text-2xl font-bold text-gray-900">42h</p>
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i class="fas fa-file-medical-alt text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">Medical record updated</p>
+                            <p class="text-gray-600 text-sm">Dr. Smith updated medical history for patient ID: P-0987</p>
+                            <p class="text-gray-500 text-xs mt-1">45 minutes ago</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i class="fas fa-prescription-bottle-alt text-purple-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">Prescription issued</p>
+                            <p class="text-gray-600 text-sm">New prescription created for Lisa Taylor</p>
+                            <p class="text-gray-500 text-xs mt-1">2 hours ago</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i class="fas fa-exclamation-triangle text-red-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">HIPAA Compliance Alert</p>
+                            <p class="text-gray-600 text-sm">System audit completed - All records secure</p>
+                            <p class="text-gray-500 text-xs mt-1">5 hours ago</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Left Column -->
-            <div class="lg:col-span-2 space-y-8">
-                <!-- Current Courses -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-right">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Current Courses</h2>
+        <!-- Quick Actions -->
+        <div class="bg-white rounded-lg shadow p-5 mb-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="patient-registration.html" class="bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg p-4 text-center transition duration-200">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-user-plus text-blue-600 text-xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">
-                                        WD
-                                    </div>
-                                    <div class="ml-4">
-                                        <h3 class="font-medium text-gray-900">Web Development</h3>
-                                        <p class="text-sm text-gray-600">Progress: 75% • 12/16 lessons</p>
-                                    </div>
-                                </div>
-                                <button class="text-blue-600 hover:text-blue-800">
-                                    <i data-feather="play-circle" class="w-5 h-5"></i>
-                                </button>
-                            </div>
-
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold">
-                                        DS
-                                    </div>
-                                    <div class="ml-4">
-                                        <h3 class="font-medium text-gray-900">Data Science</h3>
-                                        <p class="text-sm text-gray-600">Progress: 45% • 9/20 lessons</p>
-                                    </div>
-                                </div>
-                                <button class="text-blue-600 hover:text-blue-800">
-                                    <i data-feather="play-circle" class="w-5 h-5"></i>
-                                </button>
-                            </div>
-
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center text-white font-bold">
-                                        ML
-                                    </div>
-                                    <div class="ml-4">
-                                        <h3 class="font-medium text-gray-900">Machine Learning</h3>
-                                        <p class="text-sm text-gray-600">Progress: 30% • 6/20 lessons</p>
-                                    </div>
-                                </div>
-                                <button class="text-blue-600 hover:text-blue-800">
-                                    <i data-feather="play-circle" class="w-5 h-5"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <p class="font-medium text-blue-800">Register Patient</p>
+                </a>
+                <a href="appointment-booking.html" class="bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg p-4 text-center transition duration-200">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-calendar-plus text-green-600 text-xl"></i>
                     </div>
-                </section>
-
-                <!-- Recent Activity -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-right" data-aos-delay="200">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Recent Activity</h2>
+                    <p class="font-medium text-green-800">Book Appointment</p>
+                </a>
+                <a href="prescription-management.html" class="bg-purple-50 hover:bg-purple-100 border border-purple-200 rounded-lg p-4 text-center transition duration-200">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-prescription text-purple-600 text-xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                    <i data-feather="check" class="w-4 h-4"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-900">Completed lesson: "React Hooks"</p>
-                                    <p class="text-xs text-gray-500">2 hours ago</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                                    <i data-feather="file-text" class="w-4 h-4"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-900">Submitted assignment: "Final Project Proposal"</p>
-                                    <p class="text-xs text-gray-500">1 day ago</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600">
-                                    <i data-feather="award" class="w-4 h-4"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-900">Earned badge: "Quiz Master"</p>
-                                    <p class="text-xs text-gray-500">2 days ago</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
-                                    <i data-feather="message-square" class="w-4 h-4"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-900">Posted in discussion: "CSS Grid vs Flexbox"</p>
-                                    <p class="text-xs text-gray-500">3 days ago</p>
-                                </div>
-                            </div>
-                        </div>
+                    <p class="font-medium text-purple-800">Create Prescription</p>
+                </a>
+                <a href="billing-payments.html" class="bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg p-4 text-center transition duration-200">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-file-invoice text-red-600 text-xl"></i>
                     </div>
-                </section>
-            </div>
-
-            <!-- Right Column -->
-            <div class="space-y-8">
-                <!-- Upcoming Deadlines -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-left">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Upcoming Deadlines</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div class="p-3 border border-orange-200 bg-orange-50 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm font-medium text-orange-800">Web Development</span>
-                                    <span class="text-xs text-orange-600">Tomorrow</span>
-                                </div>
-                                <p class="text-sm text-orange-700 mt-1">Final Project Submission</p>
-                            </div>
-
-                            <div class="p-3 border border-blue-200 bg-blue-50 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm font-medium text-blue-800">Data Science</span>
-                                    <span class="text-xs text-blue-600">In 3 days</span>
-                                </div>
-                                <p class="text-sm text-blue-700 mt-1">Quiz: Data Visualization</p>
-                            </div>
-
-                            <div class="p-3 border border-gray-200 bg-gray-50 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm font-medium text-gray-800">Machine Learning</span>
-                                    <span class="text-xs text-gray-600">Next week</span>
-                                </div>
-                                <p class="text-sm text-gray-700 mt-1">Assignment: Model Evaluation</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Quick Actions -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-left" data-aos-delay="200">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Quick Actions</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="grid grid-cols-2 gap-4">
-                            <a href="courses.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
-                                <i data-feather="book" class="w-6 h-6 text-blue-600 mb-2"></i>
-                                <span class="text-sm font-medium text-gray-700">Browse Courses</span>
-                            </a>
-
-                            <a href="assignments.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
-                                <i data-feather="file-text" class="w-6 h-6 text-green-600 mb-2"></i>
-                                <span class="text-sm font-medium text-gray-700">Assignments</span>
-                            </a>
-
-                            <a href="grades.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
-                                <i data-feather="award" class="w-6 h-6 text-yellow-600 mb-2"></i>
-                                <span class="text-sm font-medium text-gray-700">View Grades</span>
-                            </a>
-
-                            <a href="progress-tracking.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
-                                <i data-feather="trending-up" class="w-6 h-6 text-purple-600 mb-2"></i>
-                                <span class="text-sm font-medium text-gray-700">Progress</span>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Study Goals -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-left" data-aos-delay="400">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Study Goals</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                    <span>Complete Web Development</span>
-                                    <span>75%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                    <span>Study 10 hours this week</span>
-                                    <span>60%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-green-600 h-2 rounded-full" style="width: 60%"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                    <span>Complete 5 quizzes</span>
-                                    <span>40%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-purple-600 h-2 rounded-full" style="width: 40%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                    <p class="font-medium text-red-800">Generate Bill</p>
+                </a>
             </div>
         </div>
-    </main>
+
+        <!-- Footer -->
+        <div class="mt-8 pt-6 border-t border-gray-200 text-center text-gray-600 text-sm">
+            <p>© 2023 MediCare Hospital Management System. All rights reserved.</p>
+            <p class="mt-1">This system complies with HIPAA regulations for patient data security and privacy.</p>
+            <div class="mt-3 flex justify-center space-x-6">
+                <a href="#" class="hover:text-blue-600">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-600">Terms of Service</a>
+                <a href="#" class="hover:text-blue-600">Support</a>
+                <a href="#" class="hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            once: true
+        // Mobile sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
         });
-
-        // Initialize Feather Icons
-        feather.replace();
+        
+        document.getElementById('closeSidebar').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        });
+        
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.remove('active');
+            this.classList.remove('active');
+        });
+        
+        // User dropdown menu
+        document.getElementById('userMenu').addEventListener('click', function() {
+            document.getElementById('dropdownMenu').classList.toggle('hidden');
+        });
+        
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(e) {
+            if (!e.target.closest('#userMenu')) {
+                document.getElementById('dropdownMenu').classList.add('hidden');
+            }
+        });
+        
+        // Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Admissions Chart
+            const admissionsCtx = document.getElementById('admissionsChart').getContext('2d');
+            const admissionsChart = new Chart(admissionsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Patient Admissions',
+                        data: [12, 19, 15, 25, 22, 18, 10],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Department Chart
+            const departmentCtx = document.getElementById('departmentChart').getContext('2d');
+            const departmentChart = new Chart(departmentCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Cardiology', 'Orthopedics', 'Neurology', 'Pediatrics', 'Oncology', 'Other'],
+                    datasets: [{
+                        data: [22, 18, 15, 12, 10, 23],
+                        backgroundColor: [
+                            '#3b82f6',
+                            '#10b981',
+                            '#8b5cf6',
+                            '#f59e0b',
+                            '#ef4444',
+                            '#6b7280'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+        });
+        
+        // Role-based access simulation
+        const userRole = 'doctor'; // Can be 'patient', 'doctor', 'staff', 'admin'
+        
+        // Simulate HIPAA compliance notice
+        console.log('HIPAA Compliance: All patient data is encrypted and access is logged.');
+        console.log('User Role: ' + userRole + ' - Role-based access control active.');
     </script>
 </body>
 </html>

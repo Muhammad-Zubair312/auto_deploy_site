@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical History | Hospital Management System</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hospital-blue': '#1e40af',
+                        'hospital-teal': '#0d9488',
+                        'hospital-gray': '#374151'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .sidebar.collapsed {
+            width: 70px;
+        }
+        .sidebar.collapsed .sidebar-text {
+            display: none;
+        }
+        .sidebar.collapsed .sidebar-icon {
+            margin-right: 0;
+        }
+        .sidebar.collapsed .logo-text {
+            display: none;
+        }
+        .sidebar.collapsed .user-info {
+            display: none;
+        }
+        .sidebar.collapsed .expand-btn i {
+            transform: rotate(180deg);
+        }
+        .medical-record-card {
+            border-left: 4px solid #3b82f6;
+        }
+        .allergy-card {
+            border-left: 4px solid #ef4444;
+        }
+        .vaccination-card {
+            border-left: 4px solid #10b981;
+        }
+        .surgery-card {
+            border-left: 4px solid #8b5cf6;
+        }
+        .hipaa-banner {
+            background: repeating-linear-gradient(
+                45deg,
+                #1e40af,
+                #1e40af 10px,
+                #1d4ed8 10px,
+                #1d4ed8 20px
+            );
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-full {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- HIPAA Compliance Banner -->
+    <div class="hipaa-banner text-white text-center py-2 text-sm font-semibold">
+        <i class="fas fa-shield-alt mr-2"></i> HIPAA Compliant System - All medical records are encrypted and securely stored
+    </div>
+
+    <!-- Navbar -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-home mr-1"></i> Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-sign-in-alt mr-1"></i> Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-user-plus mr-1"></i> Signup</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-user-injured mr-1"></i> Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-folder mr-1"></i> Patient Records</a>
+        <a href='appointment-booking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-calendar-plus mr-1"></i> Appointment Booking</a>
+        <a href='appointment-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-calendar-check mr-1"></i> Appointment Management</a>
+        <a href='doctors-schedule.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-clock mr-1"></i> Doctors Schedule</a>
+        <a href='doctor-profiles.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-user-md mr-1"></i> Doctor Profiles</a>
+        <a href='departments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-building mr-1"></i> Departments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-users-cog mr-1"></i> Staff Management</a>
+        <a href='billing-payments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-file-invoice-dollar mr-1"></i> Billing & Payments</a>
+        <a href='prescription-management.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-prescription-bottle-alt mr-1"></i> Prescription Management</a>
+        <a href='medical-history.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap bg-blue-600 rounded'><i class="fas fa-history mr-1"></i> Medical History</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'><i class="fas fa-chart-bar mr-1"></i> Dashboard</a>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar bg-hospital-gray text-white h-screen sticky top-0 w-64 flex flex-col no-print" id="sidebar">
+            <div class="p-6 border-b border-gray-700 flex items-center">
+                <i class="fas fa-hospital text-2xl text-blue-400 sidebar-icon"></i>
+                <span class="ml-3 text-xl font-bold logo-text">MediCare HMS</span>
+            </div>
+            
+            <div class="p-6 border-b border-gray-700 user-info">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-md text-xl"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="font-semibold">Dr. Sarah Johnson</p>
+                        <p class="text-sm text-gray-300">Cardiologist</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="text-sm text-gray-300">Last login: Today, 09:42 AM</p>
+                </div>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-4">
+                <p class="text-gray-400 text-sm mb-2 sidebar-text">MEDICAL HISTORY</p>
+                <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700 mb-1 bg-gray-700">
+                    <i class="fas fa-search mr-3 sidebar-icon"></i>
+                    <span class="sidebar-text">Search Records</span>
+                </a>
+                <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700 mb-1">
+                    <i class="fas fa-plus-circle mr-3 sidebar-icon"></i>
+                    <span class="sidebar-text">Add New Entry</span>
+                </a>
+                <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700 mb-1">
+                    <i class="fas fa-print mr-3 sidebar-icon"></i>
+                    <span class="sidebar-text">Print History</span>
+                </a>
+                <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700 mb-1">
+                    <i class="fas fa-file-export mr-3 sidebar-icon"></i>
+                    <span class="sidebar-text">Export Data</span>
+                </a>
+                
+                <p class="text-gray-400 text-sm mt-6 mb-2 sidebar-text">FILTER BY</p>
+                <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700 mb-1">
+                    <i class="fas fa-allergies mr-3 sidebar-icon"></i>
+                    <span class="sidebar-text">Allergies</span>
+                </a>
+                <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700 mb-1">
+                    <i class="fas fa-syringe mr-3 sidebar-icon"></i>
+                    <span class="sidebar-text">Vaccinations</span>
+                </a>
+                <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700 mb-1">
+                    <i class="fas fa-procedures mr-3 sidebar-icon"></i>
+                    <span class="sidebar-text">Surgeries</span>
+                </a>
+                <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700 mb-1">
+                    <i class="fas fa-prescription mr-3 sidebar-icon"></i>
+                    <span class="sidebar-text">Chronic Conditions</span>
+                </a>
+                
+                <div class="mt-8 p-4 bg-gray-800 rounded-lg">
+                    <p class="text-sm sidebar-text"><i class="fas fa-info-circle mr-2 text-blue-400"></i> <span class="sidebar-text">HIPAA Compliance: All access to medical history is logged and monitored.</span></p>
+                </div>
+            </div>
+            
+            <button class="expand-btn p-4 border-t border-gray-700 text-left hover:bg-gray-700" id="toggleSidebar">
+                <i class="fas fa-chevron-left sidebar-icon"></i>
+                <span class="sidebar-text ml-3">Collapse Sidebar</span>
+            </button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6 print-full">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Medical History</h1>
+                <p class="text-gray-600">View and manage comprehensive patient medical records with HIPAA-compliant security</p>
+                
+                <!-- Role-based Access Alert -->
+                <div class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg flex items-start">
+                    <i class="fas fa-user-shield text-blue-500 text-xl mt-1 mr-3"></i>
+                    <div>
+                        <p class="font-semibold text-blue-800">Role-Based Access Control Active</p>
+                        <p class="text-blue-700 text-sm">You are viewing as: <span class="font-semibold">Doctor (Full Access)</span>. Patient view is limited to their own records. Staff view is restricted based on department.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patient Search and Selection -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 md:mb-0">Select Patient</h2>
+                    <div class="flex space-x-4">
+                        <button class="px-4 py-2 bg-hospital-blue text-white rounded-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-plus mr-2"></i> New Medical Entry
+                        </button>
+                        <button onclick="window.print()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition no-print">
+                            <i class="fas fa-print mr-2"></i> Print History
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2">
+                        <div class="relative">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                            <input type="text" id="patientSearch" placeholder="Search by Patient ID, Name, or Phone Number" 
+                                   class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                    <div>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Filter by Department</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="orthopedics">Orthopedics</option>
+                            <option value="pediatrics">Pediatrics</option>
+                            <option value="oncology">Oncology</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Selected Patient Info -->
+                <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <div class="flex items-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user-injured text-2xl text-blue-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold text-lg text-gray-800">Michael Rodriguez (Patient ID: P-7842)</h3>
+                            <div class="flex flex-wrap gap-4 mt-1">
+                                <p class="text-gray-600"><i class="fas fa-birthday-cake mr-1"></i> 42 years | <i class="fas fa-venus-mars ml-2 mr-1"></i> Male</p>
+                                <p class="text-gray-600"><i class="fas fa-phone mr-1"></i> (555) 123-4567</p>
+                                <p class="text-gray-600"><i class="fas fa-envelope mr-1"></i> m.rodriguez@email.com</p>
+                            </div>
+                            <div class="mt-2">
+                                <span class="inline-block bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded mr-2">Type 2 Diabetes</span>
+                                <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded mr-2">Hypertension</span>
+                                <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Asthma</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical History Timeline -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">Medical History Timeline</h2>
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-calendar-alt mr-1"></i> Last updated: Today, 10:30 AM
+                    </div>
+                </div>
+                
+                <!-- Timeline -->
+                <div class="border-l-2 border-blue-200 pl-8 ml-4 space-y-10">
+                    <!-- Recent Visit -->
+                    <div class="relative">
+                        <div class="absolute -left-11 mt-1 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-stethoscope text-white"></i>
+                        </div>
+                        <div class="medical-record-card bg-gray-50 p-5 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-lg text-gray-800">Cardiology Consultation</h3>
+                                    <p class="text-gray-600">Dr. Sarah Johnson • Cardiology Department</p>
+                                </div>
+                                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded">Oct 15, 2023</span>
+                            </div>
+                            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-gray-700"><span class="font-semibold">Diagnosis:</span> Stable angina, well-controlled with medication</p>
+                                    <p class="text-gray-700 mt-2"><span class="font-semibold">Treatment:</span> Continued aspirin 81mg daily, adjusted beta-blocker dosage</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-700"><span class="font-semibold">Vitals:</span> BP 128/82, HR 68, Weight 185 lbs</p>
+                                    <p class="text-gray-700 mt-2"><span class="font-semibold">Follow-up:</span> 3 months, or sooner if symptoms worsen</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <span class="text-sm bg-gray-200 text-gray-800 px-3 py-1 rounded">EKG Normal</span>
+                                <span class="text-sm bg-gray-200 text-gray-800 px-3 py-1 rounded">Bloodwork Pending</span>
+                                <button class="text-sm text-blue-600 hover:text-blue-800 ml-auto">
+                                    <i class="fas fa-paperclip mr-1"></i> View Attachments (2)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Allergy Record -->
+                    <div class="relative">
+                        <div class="absolute -left-11 mt-1 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-allergies text-white"></i>
+                        </div>
+                        <div class="allergy-card bg-gray-50 p-5 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-lg text-gray-800">Allergy Update</h3>
+                                    <p class="text-gray-600">Dr. James Wilson • Allergy & Immunology</p>
+                                </div>
+                                <span class="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">Sep 22, 2023</span>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-gray-700"><span class="font-semibold">Allergen:</span> Penicillin (Severe reaction - anaphylaxis)</p>
+                                <p class="text-gray-700 mt-2"><span class="font-semibold">Documented by:</span> Patient self-report confirmed by skin test</p>
+                                <p class="text-gray-700 mt-2"><span class="font-semibold">Action:</span> Added to patient's allergy profile. Alert flag activated in system.</p>
+                            </div>
+                            <div class="mt-4">
+                                <span class="inline-block bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded mr-2">HIGH PRIORITY</span>
+                                <span class="text-sm text-gray-600"><i class="fas fa-exclamation-triangle text-red-500 mr-1"></i> This allergy appears on all medical screens</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vaccination Record -->
+                    <div class="relative">
+                        <div class="absolute -left-11 mt-1 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-syringe text-white"></i>
+                        </div>
+                        <div class="vaccination-card bg-gray-50 p-5 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-lg text-gray-800">Influenza Vaccination</h3>
+                                    <p class="text-gray-600">Nurse Practitioner Lisa Chen • Primary Care</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded">Sep 10, 2023</span>
+                            </div>
+                            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-gray-700"><span class="font-semibold">Vaccine:</span> Fluzone High-Dose Quadrivalent</p>
+                                    <p class="text-gray-700 mt-2"><span class="font-semibold">Lot #:</span> FLU23H-4521</p>
+                                    <p class="text-gray-700 mt-2"><span class="font-semibold">Administration Site:</span> Left deltoid</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-700"><span class="font-semibold">Next Due:</span> September 2024</p>
+                                    <p class="text-gray-700 mt-2"><span class="font-semibold">Reaction:</span> Mild soreness at injection site, no fever</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Surgery Record -->
+                    <div class="relative">
+                        <div class="absolute -left-11 mt-1 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-procedures text-white"></i>
+                        </div>
+                        <div class="surgery-card bg-gray-50 p-5 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-lg text-gray-800">Appendectomy</h3>
+                                    <p class="text-gray-600">Dr. Robert Kim • General Surgery</p>
+                                </div>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-semibold px-3 py-1 rounded">Jun 5, 2020</span>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-gray-700"><span class="font-semibold">Procedure:</span> Laparoscopic appendectomy</p>
+                                <p class="text-gray-700 mt-2"><span class="font-semibold">Hospital:</span> City General Hospital</p>
+                                <p class="text-gray-700 mt-2"><span class="font-semibold">Outcome:</span> Successful, no complications. Patient discharged after 2 days.</p>
+                                <p class="text-gray-700 mt-2"><span class="font-semibold">Follow-up:</span> Wound healed properly, no further issues reported.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <button class="px-5 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
+                        <i class="fas fa-history mr-2"></i> Load More History
+                    </button>
+                </div>
+            </div>
+
+            <!-- Summary and Analytics -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <!-- Medical Summary -->
+                <div class="lg:col-span-2 bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Medical Summary</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-semibold text-gray-700 mb-3">Chronic Conditions</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-circle text-red-500 text-xs mr-2"></i>
+                                    <span>Type 2 Diabetes (Diagnosed 2018)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-circle text-yellow-500 text-xs mr-2"></i>
+                                    <span>Hypertension (Diagnosed 2019)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-circle text-green-500 text-xs mr-2"></i>
+                                    <span>Asthma (Childhood, well-controlled)</span>
+                                </li>
+                            </ul>
+                            
+                            <h3 class="font-semibold text-gray-700 mt-6 mb-3">Current Medications</h3>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between">
+                                    <span>Metformin 500mg</span>
+                                    <span class="text-gray-500">Twice daily</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Lisinopril 10mg</span>
+                                    <span class="text-gray-500">Once daily</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Aspirin 81mg</span>
+                                    <span class="text-gray-500">Once daily</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Albuterol inhaler</span>
+                                    <span class="text-gray-500">As needed</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-700 mb-3">Family History</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-male text-blue-500 mr-2"></i>
+                                    <span>Father: Heart disease (age 65)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-female text-pink-500 mr-2"></i>
+                                    <span>Mother: Type 2 Diabetes (age 68)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-male text-blue-500 mr-2"></i>
+                                    <span>Paternal grandfather: Stroke (age 72)</span>
+                                </li>
+                            </ul>
+                            
+                            <h3 class="font-semibold text-gray-700 mt-6 mb-3">Lifestyle Factors</h3>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between">
+                                    <span>Smoking Status</span>
+                                    <span class="text-green-600 font-semibold">Never smoked</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Alcohol Consumption</span>
+                                    <span class="text-yellow-600 font-semibold">Occasional</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Exercise Frequency</span>
+                                    <span class="text-blue-600 font-semibold">3-4 times/week</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Diet</span>
+                                    <span class="text-gray-600">Controlled carb, low sodium</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <h3 class="font-semibold text-gray-700 mb-3">Recent Lab Results</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Test</th>
+                                        <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Result</th>
+                                        <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Reference Range</th>
+                                        <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Date</th>
+                                        <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-3 px-4">HbA1c</td>
+                                        <td class="py-3 px-4 font-semibold">6.2%</td>
+                                        <td class="py-3 px-4 text-gray-600">4.0-5.6%</td>
+                                        <td class="py-3 px-4 text-gray-600">Oct 10, 2023</td>
+                                        <td class="py-3 px-4"><span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Elevated</span></td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-3 px-4">Cholesterol Total</td>
+                                        <td class="py-3 px-4 font-semibold">185 mg/dL</td>
+                                        <td class="py-3 px-4 text-gray-600"><200 mg/dL</td>
+                                        <td class="py-3 px-4 text-gray-600">Oct 10, 2023</td>
+                                        <td class="py-3 px-4"><span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Normal</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4">Blood Pressure</td>
+                                        <td class="py-3 px-4 font-semibold">128/82 mmHg</td>
+                                        <td class="py-3 px-4 text-gray-600"><120/80 mmHg</td>
+                                        <td class="py-3 px-4 text-gray-600">Oct 15, 2023</td>
+                                        <td class="py-3 px-4"><span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Normal</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Access Log and Alerts -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Access & Security</h2>
+                    
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-gray-700 mb-3">Recent Access Log</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user-md text-blue-600"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="font-medium">Dr. Sarah Johnson</p>
+                                    <p class="text-sm text-gray-500">Today, 10:30 AM • Cardiology</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user-nurse text-green-600"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="font-medium">Nurse Lisa Chen</p>
+                                    <p class="text-sm text-gray-500">Oct 18, 2:15 PM • Primary Care</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-purple-600"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="font-medium">Patient Self-Service</p>
+                                    <p class="text-sm text-gray-500">Oct 15, 7:30 PM • Portal Access</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full mt-4 text-center text-blue-600 hover:text-blue-800 text-sm font-medium">
+                            <i class="fas fa-list mr-1"></i> View Full Access Log
+                        </button>
+                    </div>
+                    
+                    <div class="pt-6 border-t border-gray-200">
+                        <h3 class="font-semibold text-gray-700 mb-3">HIPAA Compliance Status</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Data Encryption</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Active</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Audit Trail</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Enabled</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Access Controls</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Role-Based</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Data Retention</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">10 Years</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                            <p class="text-sm text-gray-700">
+                                <i class="fas fa-shield-alt text-blue-500 mr-2"></i>
+                                All medical history data is stored in encrypted format. Access is logged and monitored per HIPAA requirements.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-600 text-sm no-print">
+                <p>© 2023 MediCare Hospital Management System. All rights reserved.</p>
+                <p class="mt-2">This system complies with HIPAA regulations for protected health information (PHI).</p>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-700"><i class="fas fa-question-circle mr-1"></i> Help</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700"><i class="fas fa-lock mr-1"></i> Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700"><i class="fas fa-file-contract mr-1"></i> Terms of Use</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700"><i class="fas fa-phone
