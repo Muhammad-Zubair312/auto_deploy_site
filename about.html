@@ -3,180 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Basic Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <title>About Us | Professional Services</title>
+    <meta name="description" content="Learn about our company's mission, values, and the team behind our professional services. Discover our journey and commitment to excellence.">
+    <meta name="keywords" content="about us, company history, team, mission, values, professional services">
+    <meta name="author" content="Professional Services Inc.">
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e40af',
+                        accent: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
+<body class="font-sans">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-        <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
-        <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
-    </nav>
+    <header class="sticky top-0 z-50 shadow-lg">
+        <nav class='bg-gray-900 text-white p-4'>
+            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <a href="index.html" class="text-2xl font-bold text-white hover:text-blue-400 transition-colors">
+                        <i class="fas fa-cube mr-2"></i>ProServe
+                    </a>
+                </div>
+                <div class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                    <a href='index.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Home</a>
+                    <a href='about.html' class='px-3 py-2 bg-blue-600 rounded-md hover:bg-blue-700 transition-colors'>About</a>
+                    <a href='services.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Services</a>
+                    <a href='portfolio.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Portfolio</a>
+                    <a href='contact.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Contact</a>
+                    <a href='login.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Login</a>
+                    <a href='signup.html' class='px-3 py-2 bg-primary rounded-md hover:bg-secondary transition-colors'>Signup</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-    <!-- About Hero Section -->
-    <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">About Our Company</h1>
-            <p class="text-xl md:text-2xl max-w-3xl mx-auto">
-                Building innovative solutions for tomorrow's challenges
-            </p>
-        </div>
-    </section>
-
-    <!-- Mission & Vision -->
-    <section class="py-16 bg-white">
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 md:py-24">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="bg-blue-50 p-8 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-6">
-                        <i data-feather="target" class="text-blue-600 mr-4"></i>
-                        <h2 class="text-2xl font-bold text-gray-800">Our Mission</h2>
-                    </div>
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        To deliver exceptional value through innovative solutions that empower businesses 
-                        and individuals to achieve their full potential. We strive to create meaningful 
-                        impact through technology, collaboration, and unwavering commitment to excellence.
-                    </p>
-                </div>
-                
-                <div class="bg-purple-50 p-8 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-6">
-                        <i data-feather="eye" class="text-purple-600 mr-4"></i>
-                        <h2 class="text-2xl font-bold text-gray-800">Our Vision</h2>
-                    </div>
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        To be the leading force in digital transformation, recognized globally for our 
-                        innovative approach, exceptional service quality, and positive impact on the 
-                        communities we serve. We envision a future where technology enhances every 
-                        aspect of human experience.
-                    </p>
-                </div>
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Our Story & Mission</h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">Driving innovation and delivering excellence in professional services since 2010</p>
+                <a href="#contact" class="bg-accent text-gray-900 font-semibold px-8 py-3 rounded-lg hover:bg-yellow-500 transition-colors inline-block">
+                    Get In Touch <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Values Section -->
-    <section class="py-16 bg-gray-100">
+    <!-- About Content -->
+    <main class="py-16">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Core Values</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <i data-feather="users" class="text-blue-600 w-12 h-12 mx-auto mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Collaboration</h3>
-                        <p class="text-gray-600">Working together to achieve extraordinary results through shared knowledge and mutual respect.</p>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <i data-feather="zap" class="text-yellow-500 w-12 h-12 mx-auto mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Innovation</h3>
-                        <p class="text-gray-600">Constantly pushing boundaries and exploring new possibilities to create cutting-edge solutions.</p>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <i data-feather="award" class="text-green-500 w-12 h-12 mx-auto mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Excellence</h3>
-                        <p class="text-gray-600">Committed to delivering the highest quality in everything we do, exceeding expectations consistently.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Meet Our Leadership</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                        <i data-feather="user" class="w-16 h-16 text-gray-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Sarah Johnson</h3>
-                    <p class="text-blue-600 mb-2">CEO & Founder</p>
-                    <p class="text-gray-600 text-sm">Visionary leader with 15+ years in technology innovation</p>
-                </div>
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                        <i data-feather="user" class="w-16 h-16 text-gray-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Michael Chen</h3>
-                    <p class="text-blue-600 mb-2">CTO</p>
-                    <p class="text-gray-600 text-sm">Technical expert specializing in scalable architecture</p>
-                </div>
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                        <i data-feather="user" class="w-16 h-16 text-gray-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Emily Rodriguez</h3>
-                    <p class="text-blue-600 mb-2">COO</p>
-                    <p class="text-gray-600 text-sm">Operations specialist focused on efficiency and growth</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section class="py-16 bg-gray-900 text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
-                <form class="grid md:grid-cols-2 gap-6">
+            <!-- Company Overview -->
+            <section class="mb-20">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <label for="name" class="block text-sm font-medium mb-2">Full Name</label>
-                        <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Who We Are</h2>
+                        <p class="text-gray-600 mb-4 text-lg">
+                            Founded in 2010, Professional Services Inc. has grown from a small consultancy to a leading provider of comprehensive business solutions. Our journey began with a simple mission: to help businesses thrive through innovative strategies and expert guidance.
+                        </p>
+                        <p class="text-gray-600 mb-6 text-lg">
+                            Today, we serve clients across multiple industries, delivering tailored solutions that drive growth, efficiency, and competitive advantage. Our team of seasoned professionals brings decades of combined experience to every project.
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-semibold">
+                                <i class="fas fa-award mr-2"></i> Industry Leader
+                            </div>
+                            <div class="bg-green-100 text-green-800 px-4 py-2 rounded-lg font-semibold">
+                                <i class="fas fa-users mr-2"></i> 150+ Clients
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Our team collaborating in modern office" 
+                             class="rounded-xl shadow-2xl">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg max-w-xs">
+                            <h3 class="font-bold text-gray-800 text-lg mb-2">15+ Years Experience</h3>
+                            <p class="text-gray-600">Combined expertise across all departments</p>
+                        </div>
                     </div>
-                    <div class="md:col-span-2">
-                        <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
-                        <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required>
+                </div>
+            </section>
+
+            <!-- Mission & Values -->
+            <section class="mb-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Core Values</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">These principles guide everything we do and define our company culture</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-handshake text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Integrity</h3>
+                        <p class="text-gray-600 text-center">We believe in transparent, honest communication and ethical business practices that build lasting trust with our clients.</p>
                     </div>
-                    <div class="md:col-span-2">
-                        <label for="message" class="block text-sm font-medium mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required></textarea>
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-lightbulb text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Innovation</h3>
+                        <p class="text-gray-600 text-center">We continuously explore new approaches and technologies to deliver cutting-edge solutions that drive real results.</p>
                     </div>
-                    <div class="md:col-span-2 text-center">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300">
-                            Send Message
-                        </button>
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                        <div class="bg-accent bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-heart text-2xl text-accent"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Excellence</h3>
+                        <p class="text-gray-600 text-center">We're committed to delivering exceptional quality in every project, exceeding expectations through attention to detail.</p>
                     </div>
-                </form>
-            </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="mb-20 bg-gray-50 py-12 rounded-2xl">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="text-center stat-card">
+                            <div class="text-4xl font-bold text-primary mb-2">250+</div>
+                            <div class="text-gray-600">Projects Completed</div>
+                        </div>
+                        <div class="text-center stat-card">
+                            <div class="text-4xl font-bold text-primary mb-2">98%</div>
+                            <div class="text-gray-600">Client Satisfaction</div>
+                        </div>
+                        <div class="text-center stat-card">
+                            <div class="text-4xl font-bold text-primary mb-2">50+</div>
+                            <div class="text-gray-600">Team Members</div>
+                        </div>
+                        <div class="text-center stat-card">
+                            <div class="text-4xl font-bold text-primary mb-2">15</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leadership Team -->
+            <section class="mb-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Meet Our Leadership</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">The experienced professionals guiding our company's vision and strategy</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="team-card bg-white rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Sarah Johnson - CEO" 
+                             class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800">Sarah Johnson</h3>
+                            <p class="text-primary font-semibold mb-3">Chief Executive Officer</p>
+                            <p class="text-gray-600 mb-4">With 20+ years in the industry, Sarah leads our strategic vision and company growth initiatives.</p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-primary"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card bg-white rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80" 
+                             alt="Michael Chen - CTO" 
+                             class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800">Michael Chen</h3>
+                            <p class="text-primary font-semibold mb-3">Chief Technology Officer</p>
+                            <p class="text-gray-600 mb-4">Michael drives our technological innovation with 15 years of experience in software architecture.</p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-primary"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card bg-white rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Jessica Williams - COO" 
+                             class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800">Jessica Williams</h3>
+                            <p class="text-primary font-semibold mb-3">Chief Operations Officer</p>
+                            <p class="text-gray-600 mb-4">Jessica ensures operational excellence across all departments with her extensive management background.</p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-primary"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact CTA -->
+            <section id="contact" class="bg-primary text-white rounded-2xl p-8 md:p-12">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold mb-6">Ready to Work With Us?</h2>
+                    <p class="text-xl mb-8 opacity-90">Let's discuss how our team can help your business achieve its goals</p>
+                    <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                        <a href="contact.html" class="bg-white text-primary font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                            Contact Our Team
+                        </a>
+                        <a href="services.html" class="bg-transparent border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white hover:text-primary transition-colors">
+                            View Services
+                        </a>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Basic Website. All rights reserved.</p>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="facebook"></i>
-                </a>
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="twitter"></i>
-                </a>
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="linkedin"></i>
-                </a>
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="instagram"></i>
-                </a>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">ProServe</h3>
+                    <p class="text-gray-400">Delivering exceptional professional services since 2010. Your success is our mission.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Business Ave, Suite 100</li>
+                        <li><i class="fas fa-phone mr-2"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@proserve.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Stay Connected</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg flex-grow text-gray-900">
+                        <button type="submit" class="bg-primary px-4 py-2 rounded-r-lg hover:bg-secondary transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Professional Services Inc. All rights reserved. | <a href="#" class="hover:text-white transition-colors">Privacy Policy</a> | <a href="#" class="hover:text-white transition-colors">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
     <script>
-        feather.replace();
+        // Simple form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.querySelector('footer form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (email) {
+                        alert('Thank you for subscribing to our newsletter!');
+                        this.reset();
+                    }
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            window.scrollTo({
+                                top: target.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
