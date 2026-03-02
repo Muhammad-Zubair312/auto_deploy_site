@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - Hospital Management System</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .role-badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+        }
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        .appointment-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid;
+        }
+        .appointment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .calendar-day {
+            transition: all 0.2s ease;
+        }
+        .calendar-day:hover:not(.disabled) {
+            background-color: #e5e7eb;
+            cursor: pointer;
+        }
+        .calendar-day.selected {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .calendar-day.has-appointments {
+            position: relative;
+        }
+        .calendar-day.has-appointments::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+        }
+        .calendar-day.selected.has-appointments::after {
+            background-color: white;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex items-center space-x-2 mb-2 md:mb-0">
+            <i class="fas fa-hospital text-blue-400 text-xl"></i>
+            <span class="font-bold text-lg">MediCare HMS</span>
+        </div>
+        <div class="flex flex-wrap space-x-1 md:space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 rounded hover:bg-gray-800'>Home</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 rounded hover:bg-gray-800'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 rounded hover:bg-gray-800'>Signup</a>
+            <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 rounded hover:bg-gray-800'>Dashboard</a>
+            <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400 rounded hover:bg-gray-800'>Patient Registration</a>
+            <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400 rounded hover:bg-gray-800'>Patient Records</a>
+            <a href='appointments.html' class='px-3 py-2 bg-blue-700 text-white px-3 py-2 rounded hover:bg-blue-600'>Appointments</a>
+            <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400 rounded hover:bg-gray-800'>Staff Management</a>
+            <a href='billing.html' class='px-3 py-2 hover:text-blue-400 rounded hover:bg-gray-800'>Billing</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Appointment Management</h1>
+            <p class="text-gray-600">Schedule, manage, and track patient appointments. Ensure HIPAA compliance for all patient data handling.</p>
+            
+            <!-- Role Indicator -->
+            <div class="mt-4 flex items-center space-x-4">
+                <div class="flex items-center">
+                    <span class="text-gray-700 mr-2">Current Role:</span>
+                    <span id="currentRole" class="role-badge bg-blue-100 text-blue-800 font-medium">Administrator</span>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="switchRole('admin')" class="role-badge bg-blue-100 text-blue-800 hover:bg-blue-200">Admin</button>
+                    <button onclick="switchRole('staff')" class="role-badge bg-green-100 text-green-800 hover:bg-green-200">Staff</button>
+                    <button onclick="switchRole('patient')" class="role-badge bg-purple-100 text-purple-800 hover:bg-purple-200">Patient</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Management Dashboard -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Calendar & Quick Actions -->
+            <div class="lg:col-span-2">
+                <!-- Calendar Section -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800">Appointment Calendar</h2>
+                        <div class="flex space-x-2">
+                            <button id="prevMonth" class="p-2 rounded-full hover:bg-gray-100">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="nextMonth" class="p-2 rounded-full hover:bg-gray-100">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <button id="todayBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                Today
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 id="currentMonth" class="text-lg font-semibold text-gray-700">March 2023</h3>
+                    </div>
+                    
+                    <!-- Calendar Grid -->
+                    <div class="grid grid-cols-7 gap-1 mb-4">
+                        <div class="text-center font-medium text-gray-500 py-2">Sun</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Mon</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Tue</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Wed</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Thu</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Fri</div>
+                        <div class="text-center font-medium text-gray-500 py-2">Sat</div>
+                        
+                        <!-- Calendar days will be populated by JavaScript -->
+                        <div id="calendarDays" class="col-span-7 grid grid-cols-7 gap-1">
+                            <!-- JavaScript will populate this -->
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                            <span class="text-sm text-gray-600">Selected Date</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                            <span class="text-sm text-gray-600">Has Appointments</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-gray-300 rounded-full mr-2"></div>
+                            <span class="text-sm text-gray-600">No Appointments</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Appointment List -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800">Today's Appointments</h2>
+                        <div class="flex space-x-2">
+                            <select id="filterStatus" class="border border-gray-300 rounded px-3 py-1 text-sm">
+                                <option value="all">All Status</option>
+                                <option value="scheduled">Scheduled</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                            <button onclick="openNewAppointmentModal()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center">
+                                <i class="fas fa-plus mr-2"></i> New Appointment
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="appointmentsList" class="space-y-4">
+                        <!-- Appointment cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: Stats & Quick Actions -->
+            <div class="space-y-6">
+                <!-- Statistics -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Appointment Stats</h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Today's Appointments</span>
+                            <span class="font-bold text-blue-600">12</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Pending Confirmation</span>
+                            <span class="font-bold text-yellow-600">3</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Completed Today</span>
+                            <span class="font-bold text-green-600">8</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Cancelled Today</span>
+                            <span class="font-bold text-red-600">1</span>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600 font-medium">Total This Week</span>
+                                <span class="font-bold text-gray-800">42</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Quick Actions</h2>
+                    <div class="space-y-3">
+                        <button onclick="openNewAppointmentModal()" class="w-full flex items-center justify-between p-3 border border-gray-200 rounded hover:bg-blue-50 hover:border-blue-300">
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar-plus text-blue-500 mr-3"></i>
+                                <span>Schedule New Appointment</span>
+                            </div>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </button>
+                        
+                        <button onclick="viewUpcomingAppointments()" class="w-full flex items-center justify-between p-3 border border-gray-200 rounded hover:bg-green-50 hover:border-green-300">
+                            <div class="flex items-center">
+                                <i class="fas fa-list text-green-500 mr-3"></i>
+                                <span>View Upcoming Appointments</span>
+                            </div>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </button>
+                        
+                        <button onclick="sendReminders()" class="w-full flex items-center justify-between p-3 border border-gray-200 rounded hover:bg-yellow-50 hover:border-yellow-300">
+                            <div class="flex items-center">
+                                <i class="fas fa-bell text-yellow-500 mr-3"></i>
+                                <span>Send Appointment Reminders</span>
+                            </div>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </button>
+                        
+                        <button onclick="generateReport()" class="w-full flex items-center justify-between p-3 border border-gray-200 rounded hover:bg-purple-50 hover:border-purple-300">
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-bar text-purple-500 mr-3"></i>
+                                <span>Generate Appointment Report</span>
+                            </div>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- HIPAA Compliance Notice -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-shield-alt text-blue-500 mt-1 mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-blue-800 mb-1">HIPAA Compliance</h3>
+                            <p class="text-sm text-blue-700">
+                                All patient data is encrypted and access is restricted based on role permissions. 
+                                Audit logs track all appointment-related activities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Appointment Modal -->
+    <div id="newAppointmentModal" class="modal">
+        <div class="modal-content">
+            <div class="bg-blue-600 text-white p-4 rounded-t-lg flex justify-between items-center">
+                <h3 class="text-xl font-bold">Schedule New Appointment</h3>
+                <button onclick="closeModal()" class="text-white hover:text-gray-200 text-2xl">&times;</button>
+            </div>
+            <div class="p-6">
+                <form id="appointmentForm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="patientSelect">Patient</label>
+                            <select id="patientSelect" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <option value="">Select Patient</option>
+                                <option value="1">John Smith (ID: P-1001)</option>
+                                <option value="2">Maria Garcia (ID: P-1002)</option>
+                                <option value="3">Robert Johnson (ID: P-1003)</option>
+                                <option value="4">Sarah Williams (ID: P-1004)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="doctorSelect">Doctor/Staff</label>
+                            <select id="doctorSelect" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <option value="">Select Doctor</option>
+                                <option value="1">Dr. Emily Chen (Cardiology)</option>
+                                <option value="2">Dr. Michael Brown (Orthopedics)</option>
+                                <option value="3">Dr. Lisa Wilson (Pediatrics)</option>
+                                <option value="4">Dr. James Miller (Dermatology)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="appointmentDate">Date</label>
+                            <input type="date" id="appointmentDate" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="appointmentTime">Time</label>
+                            <select id="appointmentTime" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <option value="">Select Time</option>
+                                <option value="09:00">09:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="13:00">01:00 PM</option>
+                                <option value="14:00">02:00 PM</option>
+                                <option value="15:00">03:00 PM</option>
+                                <option value="16:00">04:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="appointmentType">Appointment Type</label>
+                        <select id="appointmentType" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="">Select Type</option>
+                            <option value="consultation">Consultation</option>
+                            <option value="follow-up">Follow-up</option>
+                            <option value="checkup">Routine Checkup</option>
+                            <option value="emergency">Emergency</option>
+                            <option value="procedure">Procedure</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2" for="appointmentNotes">Notes (Optional)</label>
+                        <textarea id="appointmentNotes" rows="3" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Any additional notes or instructions..."></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Schedule Appointment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointment Detail Modal -->
+    <div id="appointmentDetailModal" class="modal">
+        <div class="modal-content">
+            <div class="bg-blue-600 text-white p-4 rounded-t-lg flex justify-between items-center">
+                <h3 class="text-xl font-bold">Appointment Details</h3>
+                <button onclick="closeDetailModal()" class="text-white hover:text-gray-200 text-2xl">&times;</button>
+            </div>
+            <div class="p-6">
+                <div id="appointmentDetailContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button onclick="closeDetailModal()" class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50">Close</button>
+                    <button id="editAppointmentBtn" onclick="editAppointment()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Edit</button>
+                    <button id="cancelAppointmentBtn" onclick="cancelAppointment()" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Cancel Appointment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample appointment data
+        const appointments = [
+            {
+                id: 1,
+                patientName: "John Smith",
+                patientId: "P-1001",
+                doctorName: "Dr. Emily Chen",
+                department: "Cardiology",
+                date: "2023-03-15",
+                time: "10:00",
+                type: "Consultation",
+                status: "scheduled",
+                notes: "Follow-up for hypertension management."
+            },
+            {
+                id: 2,
+                patientName: "Maria Garcia",
+                patientId: "P-1002",
+                doctorName: "Dr. Michael Brown",
+                department: "Orthopedics",
+                date: "2023-03-15",
+                time: "11:00",
+                type: "Follow-up",
+                status: "confirmed",
+                notes: "Post-surgery checkup for knee replacement."
+            },
+            {
+                id: 3,
+                patientName: "Robert Johnson",
+                patientId: "P-1003",
+                doctorName: "Dr. Lisa Wilson",
+                department: "Pediatrics",
+                date: "2023-03-15",
+                time: "14:00",
+                type: "Routine Checkup",
+                status: "in-progress",
+                notes: "Annual pediatric checkup for 8-year-old."
+            },
+            {
+                id: 4,
+                patientName: "Sarah Williams",
+                patientId: "P-1004",
+                doctorName: "Dr. James Miller",
+                department: "Dermatology",
+                date: "2023-03-15",
+                time: "15:00",
+                type: "Consultation",
+                status: "completed",
+                notes: "Skin condition evaluation."
+            }
+        ];
+
+        // Calendar and appointment management
+        let currentDate = new Date();
+        let selectedDate = new Date();
+        let currentRole = 'admin';
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar(currentDate);
+            renderAppointments();
+            setupEventListeners();
+            
+            // Set today's date in the appointment form
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointmentDate').value = today;
+        });
+        
+        // Generate calendar for the given month
+        function generateCalendar(date) {
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+            
+            const year = date.getFullYear();
+            const month = date.getMonth();
+            
+            // Update month/year display
+            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+            
+            // Get first day of month and total days
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            
+            // Get day of week for first day (0 = Sunday, 1 = Monday, etc.)
+            const firstDayOfWeek = firstDay.getDay();
+            
+            // Clear previous calendar days
+            const calendarDays = document.getElementById('calendarDays');
+            calendarDays.innerHTML = '';
+            
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day disabled text-center py-2 text-gray-400';
+                emptyDay.textContent = '';
+                calendarDays.appendChild(emptyDay);
+            }
+            
+            // Add cells for each day of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day text-center py-2 rounded';
+                dayElement.textContent = day;
+                
+                // Create date object for this day
+                const dayDate = new Date(year, month, day);
+                const dayString = dayDate.toISOString().split('T')[0];
+                
+                // Check if this day has appointments
+                const hasAppointments = appointments.some(apt => apt.date === dayString);
+                if (hasAppointments) {
+                    dayElement.classList.add('has-appointments');
+                }
+                
+                // Check if this day is selected
+                if (dayDate.toDateString() === selectedDate.toDateString()) {
+                    dayElement.classList.add('selected');
+                    dayElement.classList.add('text-white');
+                }
+                
+                // Check if this day is today
+                const today = new Date();
+                if (dayDate.toDateString() === today.toDateString()) {
+                    dayElement.classList.add('font-bold');
+                    if (!dayElement.classList.contains('selected')) {
+                        dayElement.classList.add('text-blue-600');
+                    }
+                }
+                
+                // Add click event
+                dayElement.addEventListener('click', function() {
+                    selectDate(dayDate);
+                });
+                
+                calendarDays.appendChild(dayElement);
+            }
+        }
+        
+        // Select a date on the calendar
+        function selectDate(date) {
+            selectedDate = date;
+            generateCalendar(currentDate);
+            renderAppointments();
+        }
+        
+        // Render appointments for the selected date
+        function renderAppointments() {
+            const appointmentsList = document.getElementById('appointmentsList');
+            const filterStatus = document.getElementById('filterStatus').value;
+            
+            // Format selected date for comparison
+            const selectedDateString = selectedDate.toISOString().split('T')[0];
+            
+            // Filter appointments for selected date and status
+            let filteredAppointments = appointments.filter(apt => apt.date === selectedDateString);
+            
+            if (filterStatus !== 'all') {
+                filteredAppointments = filteredAppointments.filter(apt => apt.status === filterStatus);
+            }
+            
+            // Clear current list
+            appointmentsList.innerHTML = '';
+            
+            if (filteredAppointments.length === 0) {
+                appointmentsList.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        <i class="fas fa-calendar-times text-4xl mb-4"></i>
+                        <p>No appointments found for this date.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Render each appointment
+            filteredAppointments.forEach(appointment => {
+                const statusColors = {
+                    'scheduled': 'bg-yellow-100 text-yellow-800',
+                    'confirmed': 'bg-green-100 text-green-800',
+                    'in-progress': 'bg-blue-100 text-blue-800',
+                    'completed': 'bg-gray-100 text-gray-800',
+                    'cancelled': 'bg-red-100 text-red-800'
+                };
+                
+                const statusText = {
+                    'scheduled': 'Scheduled',
+                    'confirmed': 'Confirmed',
+                    'in-progress': 'In Progress',
+                    'completed': 'Completed',
+                    'cancelled': 'Cancelled'
+                };
+                
+                const borderColors = {
+                    'scheduled': 'border-yellow-500',
+                    'confirmed': 'border-green-500',
+                    'in-progress': 'border-blue-500',
+                    'completed': 'border-gray-500',
+                    'cancelled': 'border-red-500'
+                };
+                
+                const appointmentElement = document.createElement('div');
+                appointmentElement.className = `appointment-card bg-white border rounded-lg p-4 ${borderColors[appointment.status]}`;
+                appointmentElement.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-800">${appointment.patientName}</h3>
+                            <p class="text-gray-600 text-sm">Patient ID: ${appointment.patientId}</p>
+                            <div class="flex items-center mt-2">
+                                <i class="fas fa-user-md text-gray-400 mr-2"></i>
+                                <span class="text-gray-700">${appointment.doctorName} - ${appointment.department}</span>
+                            </div>
+                            <div class="flex items-center mt-1">
+                                <i class="far fa-clock text-gray-400 mr-2"></i>
+                                <span class="text-gray-700">${formatTime(appointment.time)} - ${appointment.type}</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <span class="status-badge ${statusColors[appointment.status]} mb-2">${statusText[appointment.status]}</span>
+                            <button onclick="viewAppointmentDetail(${appointment.id})" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                View Details <i class="fas fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                    ${appointment.notes ? `<div class="mt-3 pt-3 border-t border-gray-100">
+                        <p class="text-gray-600 text-sm"><i class="fas fa-sticky-note mr-2"></i>${appointment.notes}</p>
+                    </div>` : ''}
+                `;
+                
+                appointmentsList.appendChild(appointmentElement);
+            });
+        }
+        
+        // Format time from 24h to 12h format
+        function formatTime(time24) {
+            const [hours, minutes] = time24.split(':');
+            const hour = parseInt(hours);
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            const hour12 = hour % 12 || 12;
+            return `${hour12}:${minutes} ${ampm}`;
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Previous month button
+            document.getElementById('prevMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                generateCalendar(currentDate);
+            });
+            
+            // Next month button
+            document.getElementById('nextMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                generateCalendar(currentDate);
+            });
+            
+            // Today button
+            document.getElementById('todayBtn').addEventListener('click', function() {
+                currentDate = new Date();
+                selectedDate = new Date();
+                generateCalendar(currentDate);
+                renderAppointments();
+            });
+            
+            // Filter status change
+            document.getElementById('filterStatus').addEventListener('change', function() {
+                renderAppointments();
+            });
+            
+            // Appointment form submission
+            document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                scheduleAppointment();
+            });
+        }
+        
+        // Switch user role
+        function switchRole(role) {
+            currentRole = role;
+            const roleElement = document.getElementById('currentRole');
+            
+            const roleConfig = {
+                'admin': { text: 'Administrator', color: 'bg-blue-100 text-blue-800' },
+                'staff': { text: 'Staff Member', color: 'bg-green-100 text-green-800' },
+                'patient': { text: 'Patient', color: 'bg-purple-100 text-purple-800' }
+            };
+            
+            roleElement.textContent = roleConfig[role].text;
+            roleElement.className = `role-badge ${roleConfig[role].color} font-medium`;
+            
+            // Show/hide elements based on role
+            const adminOnlyElements = document.querySelectorAll('.admin-only');
+            const staffOnlyElements = document.querySelectorAll('.staff-only');
+            const patientOnlyElements = document.querySelectorAll('.patient-only');
+            
+            // Reset all
+            adminOnlyElements.forEach(el => el.style.display = 'none');
+            staffOnlyElements.forEach(el => el.style.display = 'none');
+            patientOnlyElements.forEach(el => el.style.display = 'none');
+            
+            // Show based on role
+            if (role === 'admin') {
+                adminOnlyElements.forEach(el => el.style.display = 'block');
+                staffOnlyElements.forEach(el => el.style.display = 'block');
+            } else if (role === 'staff') {
+                staffOnlyElements.forEach(el => el.style.display = 'block');
+            } else if (role === 'patient') {
+                patientOnlyElements.forEach(el => el.style.display = 'block');
+            }
+            
+            // Update UI based on role permissions
+            updateUIForRole();
+        }
+        
+        // Update UI based on current role
+        function updateUIForRole() {
+            const newAppointmentBtn = document.querySelector('button[onclick="openNewAppointmentModal()"]');
+            const editBtn = document.getElementById('editAppointmentBtn');
+            const cancelBtn = document.getElementById('cancelAppointmentBtn');
+            
+            if (currentRole === 'patient') {
+                // Patients can only view and cancel their own appointments
+                if (newAppointmentBtn) newAppointmentBtn.style.display = 'none';
+                if (editBtn) editBtn.style.display = 'none';
+                if (cancelBtn) cancelBtn.style.display = 'block';
+            } else if (currentRole === 'staff') {
+                // Staff can schedule and edit appointments
+                if (newAppointmentBtn) newAppointmentBtn.style.display = 'block';
+                if (editBtn) editBtn.style.display = 'block';
+                if (cancelBtn) cancelBtn.style.display = 'block';
+            } else {
+                // Admin can do everything
+                if (newAppointmentBtn) newAppointmentBtn.style.display = 'block';
+                if (editBtn) editBtn.style.display = 'block';
+                if (cancelBtn) cancelBtn.style.display = 'block';
+            }
+        }
+        
+        // Open new appointment modal
+        function openNewAppointmentModal() {
+            document.getElementById('newAppointmentModal').style.display = 'block';
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('newAppointmentModal').style.display = 'none';
+            document.getElementById('appointmentForm').reset();
+            
+            // Set today's date in the appointment form
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointmentDate').value = today;
+        }
+        
+        // Schedule a new appointment
+        function scheduleAppointment() {
+            // In a real application, this would send data to a server
+            alert('Appointment scheduled successfully! This would be saved to the database in a real application.');
+            closeModal();
+            
+            // Add to appointments array (in a real app, this would come from server)
+            const newAppointment = {
+                id: appointments.length + 1,
+                patientName: "New Patient",
+                patientId: "P-1005",
+                doctorName: document.getElementById('doctorSelect').options[document.getElementById('doctorSelect').selectedIndex].text,
+                department: "General",
+                date: document.getElementById('appointmentDate').value,
+                time: document.getElementById('appointmentTime').value,
+                type: document.getElementById('appointmentType').value,
+                status: "scheduled",
+                notes

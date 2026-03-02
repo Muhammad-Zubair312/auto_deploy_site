@@ -3,238 +3,590 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Hospital Management System - Signup</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        .password-strength {
+            height: 4px;
+            transition: all 0.3s ease;
+        }
+        .strength-0 { width: 0%; background-color: #ef4444; }
+        .strength-1 { width: 25%; background-color: #ef4444; }
+        .strength-2 { width: 50%; background-color: #f59e0b; }
+        .strength-3 { width: 75%; background-color: #3b82f6; }
+        .strength-4 { width: 100%; background-color: #10b981; }
+        
+        .hipaa-notice {
+            border-left: 4px solid #3b82f6;
+            background-color: #f0f9ff;
+        }
+        
+        input:focus {
+            outline: none;
+            ring: 2px solid #3b82f6;
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="font-bold text-xl">E-Shop</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
-        </div>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
     </nav>
 
-    <!-- Signup Section -->
-    <section class="py-12 px-4 md:px-8 lg:px-16">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Column: Benefits -->
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
-                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                            <i data-feather="shopping-cart" class="text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
-                            <p class="text-gray-600">Save your details for quicker purchases.</p>
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">Create Your Account</h1>
+                <p class="text-gray-600">Join our Hospital Management System with role-based access</p>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mt-4"></div>
+            </div>
+
+            <!-- HIPAA Compliance Notice -->
+            <div class="hipaa-notice p-4 rounded-lg mb-8">
+                <div class="flex items-start">
+                    <i class="fas fa-shield-alt text-blue-500 text-xl mt-1 mr-3"></i>
+                    <div>
+                        <h3 class="font-bold text-gray-800">HIPAA Compliance Notice</h3>
+                        <p class="text-gray-700 text-sm mt-1">Our system is designed to protect patient health information in compliance with HIPAA regulations. All data is encrypted and access is strictly controlled based on user roles.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Left Column - Form -->
+                <div class="lg:w-2/3">
+                    <div class="bg-white rounded-xl shadow-lg form-container p-6 md:p-8">
+                        <form id="signupForm" class="space-y-6">
+                            <!-- Role Selection -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Select Your Role <span class="text-red-500">*</span></label>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="role-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer hover:border-blue-400 transition" data-role="patient">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-user-injured text-blue-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-bold text-gray-800">Patient</h4>
+                                                <p class="text-xs text-gray-600">Access medical records, appointments</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="role-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer hover:border-blue-400 transition" data-role="staff">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-user-md text-green-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-bold text-gray-800">Medical Staff</h4>
+                                                <p class="text-xs text-gray-600">Manage patients, appointments, records</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="role-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer hover:border-blue-400 transition" data-role="admin">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-user-cog text-purple-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-bold text-gray-800">Administrator</h4>
+                                                <p class="text-xs text-gray-600">Full system access and management</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="selectedRole" name="role" required>
+                                <p class="text-red-500 text-sm mt-2 hidden" id="roleError">Please select a role</p>
+                            </div>
+
+                            <!-- Personal Information -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-gray-700 font-medium mb-2">First Name <span class="text-red-500">*</span></label>
+                                    <input type="text" id="firstName" name="firstName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-gray-700 font-medium mb-2">Last Name <span class="text-red-500">*</span></label>
+                                    <input type="text" id="lastName" name="lastName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                                <p class="text-gray-500 text-sm mt-1">This will be used for login and notifications</p>
+                            </div>
+
+                            <!-- Password Section -->
+                            <div>
+                                <label for="password" class="block text-gray-700 font-medium mb-2">Password <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <input type="password" id="password" name="password" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition pr-10">
+                                    <button type="button" id="togglePassword" class="absolute right-3 top-3 text-gray-500">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Password Strength Meter -->
+                                <div class="mt-3">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm text-gray-600">Password strength</span>
+                                        <span id="strengthText" class="text-sm font-medium">Weak</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="passwordStrength" class="password-strength rounded-full strength-0"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Password Requirements -->
+                                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <div class="flex items-center">
+                                        <i id="reqLength" class="fas fa-times text-red-500 mr-2"></i>
+                                        <span class="text-sm text-gray-700">At least 8 characters</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i id="reqUpper" class="fas fa-times text-red-500 mr-2"></i>
+                                        <span class="text-sm text-gray-700">One uppercase letter</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i id="reqLower" class="fas fa-times text-red-500 mr-2"></i>
+                                        <span class="text-sm text-gray-700">One lowercase letter</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i id="reqNumber" class="fas fa-times text-red-500 mr-2"></i>
+                                        <span class="text-sm text-gray-700">One number</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="confirmPassword" class="block text-gray-700 font-medium mb-2">Confirm Password <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <input type="password" id="confirmPassword" name="confirmPassword" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition pr-10">
+                                    <button type="button" id="toggleConfirmPassword" class="absolute right-3 top-3 text-gray-500">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <p id="passwordMatch" class="text-sm mt-1 hidden"></p>
+                            </div>
+
+                            <!-- Additional Fields Based on Role -->
+                            <div id="additionalFields" class="hidden">
+                                <!-- Patient Specific Fields -->
+                                <div id="patientFields" class="hidden space-y-6">
+                                    <h3 class="text-lg font-bold text-gray-800 border-b pb-2">Patient Information</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label for="dateOfBirth" class="block text-gray-700 font-medium mb-2">Date of Birth</label>
+                                            <input type="date" id="dateOfBirth" name="dateOfBirth" 
+                                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                                        </div>
+                                        <div>
+                                            <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                                            <input type="tel" id="phone" name="phone" 
+                                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="emergencyContact" class="block text-gray-700 font-medium mb-2">Emergency Contact</label>
+                                        <input type="text" id="emergencyContact" name="emergencyContact" 
+                                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                                    </div>
+                                </div>
+
+                                <!-- Staff Specific Fields -->
+                                <div id="staffFields" class="hidden space-y-6">
+                                    <h3 class="text-lg font-bold text-gray-800 border-b pb-2">Staff Information</h3>
+                                    <div>
+                                        <label for="staffId" class="block text-gray-700 font-medium mb-2">Staff ID</label>
+                                        <input type="text" id="staffId" name="staffId" 
+                                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                                    </div>
+                                    <div>
+                                        <label for="department" class="block text-gray-700 font-medium mb-2">Department</label>
+                                        <select id="department" name="department" 
+                                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                                            <option value="">Select Department</option>
+                                            <option value="cardiology">Cardiology</option>
+                                            <option value="neurology">Neurology</option>
+                                            <option value="orthopedics">Orthopedics</option>
+                                            <option value="pediatrics">Pediatrics</option>
+                                            <option value="emergency">Emergency</option>
+                                            <option value="administration">Administration</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Admin Specific Fields -->
+                                <div id="adminFields" class="hidden space-y-6">
+                                    <h3 class="text-lg font-bold text-gray-800 border-b pb-2">Administrator Information</h3>
+                                    <div>
+                                        <label for="adminCode" class="block text-gray-700 font-medium mb-2">Administration Code <span class="text-red-500">*</span></label>
+                                        <input type="password" id="adminCode" name="adminCode" 
+                                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                                        <p class="text-gray-500 text-sm mt-1">Requires special authorization code for admin access</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="flex items-start">
+                                <input type="checkbox" id="terms" name="terms" required 
+                                       class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                                <label for="terms" class="text-gray-700">
+                                    I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and 
+                                    <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>. I understand that my data 
+                                    will be handled in compliance with HIPAA regulations.
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="pt-4">
+                                <button type="submit" 
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
+                                    Create Account
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Login Link -->
+                        <div class="mt-8 text-center">
+                            <p class="text-gray-600">Already have an account? 
+                                <a href="login.html" class="text-blue-600 font-medium hover:underline">Login here</a>
+                            </p>
                         </div>
                     </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-2 rounded-full mr-4">
-                            <i data-feather="package" class="text-green-600"></i>
+                </div>
+
+                <!-- Right Column - Info -->
+                <div class="lg:w-1/3">
+                    <div class="bg-white rounded-xl shadow-lg p-6 sticky top-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Role-Based Access Features</h3>
+                        
+                        <div class="space-y-5">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3 flex-shrink-0">
+                                    <i class="fas fa-user-injured text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Patient Access</h4>
+                                    <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                        <li>• View medical records</li>
+                                        <li>• Schedule appointments</li>
+                                        <li>• Access test results</li>
+                                        <li>• Message healthcare providers</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3 flex-shrink-0">
+                                    <i class="fas fa-user-md text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Medical Staff Access</h4>
+                                    <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                        <li>• Manage patient records</li>
+                                        <li>• Schedule appointments</li>
+                                        <li>• Update EHRs</li>
+                                        <li>• Access analytics dashboard</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0">
+                                    <i class="fas fa-user-cog text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Administrator Access</h4>
+                                    <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                        <li>• Full system management</li>
+                                        <li>• Staff management</li>
+                                        <li>• Billing and reporting</li>
+                                        <li>• System configuration</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
-                            <p class="text-gray-600">Monitor your orders in real-time.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 p-2 rounded-full mr-4">
-                            <i data-feather="star" class="text-purple-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
-                            <p class="text-gray-600">Share and read authentic product reviews.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
-                            <i data-feather="credit-card" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
-                            <p class="text-gray-600">Multiple payment options with top security.</p>
+                        
+                        <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-lock mr-2"></i>Security Features</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• End-to-end encryption</li>
+                                <li>• Multi-factor authentication</li>
+                                <li>• Audit trail for all access</li>
+                                <li>• Regular security updates</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Right Column: Signup Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
-                
-                <form id="signupForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
-                            <input type="text" id="firstName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="password">Password</label>
-                        <input type="password" id="password" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="terms" required 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="terms" class="ml-3 text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                        </label>
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="newsletter" class="ml-3 text-gray-700">
-                            Subscribe to our newsletter for exclusive deals
-                        </label>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                        Create Account
-                    </button>
-                    
-                    <div class="text-center">
-                        <p class="text-gray-600">Already have an account? 
-                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
-                        </p>
-                    </div>
-                    
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            Facebook
-                        </button>
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
-                            Twitter
-                        </button>
-                    </div>
-                </form>
-            </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <i data-feather="shopping-bag" class="text-blue-400"></i>
-                    <span class="font-bold text-xl">E-Shop</span>
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">Hospital Management System</h3>
+                    <p class="text-gray-400 text-sm mt-1">Secure • Efficient • HIPAA Compliant</p>
                 </div>
-                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
-                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
-                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Account</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
-                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Contact</h3>
-                <p class="text-gray-400">support@eshop.com</p>
-                <p class="text-gray-400">+1 (555) 123-4567</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400 text-sm">© 2023 Hospital Management System. All rights reserved.</p>
+                    <p class="text-gray-400 text-sm mt-1">Designed for healthcare professionals and patients</p>
                 </div>
             </div>
-        </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
         </div>
     </footer>
 
     <script>
-        feather.replace();
-        
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Role selection
+            const roleOptions = document.querySelectorAll('.role-option');
+            const selectedRoleInput = document.getElementById('selectedRole');
+            const additionalFields = document.getElementById('additionalFields');
+            const patientFields = document.getElementById('patientFields');
+            const staffFields = document.getElementById('staffFields');
+            const adminFields = document.getElementById('adminFields');
+            const roleError = document.getElementById('roleError');
             
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
+            roleOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    roleOptions.forEach(opt => {
+                        opt.classList.remove('border-blue-500', 'bg-blue-50');
+                        opt.classList.add('border-gray-200');
+                    });
+                    
+                    // Add active class to selected option
+                    this.classList.remove('border-gray-200');
+                    this.classList.add('border-blue-500', 'bg-blue-50');
+                    
+                    // Set the selected role
+                    const role = this.getAttribute('data-role');
+                    selectedRoleInput.value = role;
+                    roleError.classList.add('hidden');
+                    
+                    // Show additional fields based on role
+                    additionalFields.classList.remove('hidden');
+                    patientFields.classList.add('hidden');
+                    staffFields.classList.add('hidden');
+                    adminFields.classList.add('hidden');
+                    
+                    if (role === 'patient') {
+                        patientFields.classList.remove('hidden');
+                    } else if (role === 'staff') {
+                        staffFields.classList.remove('hidden');
+                    } else if (role === 'admin') {
+                        adminFields.classList.remove('hidden');
+                    }
+                });
+            });
             
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
+            // Password visibility toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+            
+            toggleConfirmPassword.addEventListener('click', function() {
+                const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmPasswordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+            
+            // Password strength checker
+            const passwordStrength = document.getElementById('passwordStrength');
+            const strengthText = document.getElementById('strengthText');
+            const reqLength = document.getElementById('reqLength');
+            const reqUpper = document.getElementById('reqUpper');
+            const reqLower = document.getElementById('reqLower');
+            const reqNumber = document.getElementById('reqNumber');
+            const passwordMatch = document.getElementById('passwordMatch');
+            
+            function checkPasswordStrength(password) {
+                let strength = 0;
+                
+                // Check length
+                if (password.length >= 8) {
+                    strength++;
+                    reqLength.classList.remove('fa-times', 'text-red-500');
+                    reqLength.classList.add('fa-check', 'text-green-500');
+                } else {
+                    reqLength.classList.remove('fa-check', 'text-green-500');
+                    reqLength.classList.add('fa-times', 'text-red-500');
+                }
+                
+                // Check uppercase
+                if (/[A-Z]/.test(password)) {
+                    strength++;
+                    reqUpper.classList.remove('fa-times', 'text-red-500');
+                    reqUpper.classList.add('fa-check', 'text-green-500');
+                } else {
+                    reqUpper.classList.remove('fa-check', 'text-green-500');
+                    reqUpper.classList.add('fa-times', 'text-red-500');
+                }
+                
+                // Check lowercase
+                if (/[a-z]/.test(password)) {
+                    strength++;
+                    reqLower.classList.remove('fa-times', 'text-red-500');
+                    reqLower.classList.add('fa-check', 'text-green-500');
+                } else {
+                    reqLower.classList.remove('fa-check', 'text-green-500');
+                    reqLower.classList.add('fa-times', 'text-red-500');
+                }
+                
+                // Check numbers
+                if (/[0-9]/.test(password)) {
+                    strength++;
+                    reqNumber.classList.remove('fa-times', 'text-red-500');
+                    reqNumber.classList.add('fa-check', 'text-green-500');
+                } else {
+                    reqNumber.classList.remove('fa-check', 'text-green-500');
+                    reqNumber.classList.add('fa-times', 'text-red-500');
+                }
+                
+                // Update strength meter
+                passwordStrength.className = 'password-strength rounded-full strength-' + strength;
+                
+                // Update strength text
+                const strengthLabels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+                strengthText.textContent = strengthLabels[strength];
+                
+                // Update text color
+                const strengthColors = ['text-red-500', 'text-red-500', 'text-yellow-500', 'text-blue-500', 'text-green-500'];
+                strengthText.className = 'text-sm font-medium ' + strengthColors[strength];
+                
+                return strength;
             }
             
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to login...');
-            window.location.href = 'login.html';
+            // Check password match
+            function checkPasswordMatch() {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+                
+                if (confirmPassword === '') {
+                    passwordMatch.classList.add('hidden');
+                    return;
+                }
+                
+                if (password === confirmPassword) {
+                    passwordMatch.textContent = 'Passwords match';
+                    passwordMatch.classList.remove('hidden', 'text-red-500');
+                    passwordMatch.classList.add('text-green-500');
+                } else {
+                    passwordMatch.textContent = 'Passwords do not match';
+                    passwordMatch.classList.remove('hidden', 'text-green-500');
+                    passwordMatch.classList.add('text-red-500');
+                }
+            }
+            
+            // Event listeners for password validation
+            passwordInput.addEventListener('input', function() {
+                checkPasswordStrength(this.value);
+                checkPasswordMatch();
+            });
+            
+            confirmPasswordInput.addEventListener('input', checkPasswordMatch);
+            
+            // Form submission
+            document.getElementById('signupForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate role selection
+                if (!selectedRoleInput.value) {
+                    roleError.classList.remove('hidden');
+                    roleError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                
+                // Validate password strength
+                const strength = checkPasswordStrength(passwordInput.value);
+                if (strength < 2) {
+                    alert('Please choose a stronger password. Your password should meet at least 3 of the requirements.');
+                    passwordInput.focus();
+                    return;
+                }
+                
+                // Validate password match
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    alert('Passwords do not match. Please confirm your password.');
+                    confirmPasswordInput.focus();
+                    return;
+                }
+                
+                // Validate admin code if admin role
+                if (selectedRoleInput.value === 'admin') {
+                    const adminCode = document.getElementById('adminCode').value;
+                    if (!adminCode || adminCode.length < 6) {
+                        alert('Administrator access requires a valid authorization code.');
+                        document.getElementById('adminCode').focus();
+                        return;
+                    }
+                }
+                
+                // In a real application, this would send data to a server
+                // For demo purposes, we'll show a success message
+                alert('Account creation successful! You will be redirected to the login page.');
+                
+                // Reset form
+                this.reset();
+                roleOptions.forEach(opt => {
+                    opt.classList.remove('border-blue-500', 'bg-blue-50');
+                    opt.classList.add('border-gray-200');
+                });
+                selectedRoleInput.value = '';
+                additionalFields.classList.add('hidden');
+                passwordStrength.className = 'password-strength rounded-full strength-0';
+                strengthText.textContent = 'Weak';
+                strengthText.className = 'text-sm font-medium text-red-500';
+                
+                // Reset requirement icons
+                [reqLength, reqUpper, reqLower, reqNumber].forEach(icon => {
+                    icon.classList.remove('fa-check', 'text-green-500');
+                    icon.classList.add('fa-times', 'text-red-500');
+                });
+                
+                // Redirect to login after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            });
+            
+            // Initialize password strength display
+            checkPasswordStrength('');
         });
     </script>
 </body>

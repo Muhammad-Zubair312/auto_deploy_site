@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration | Hospital Management System</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .required:after {
+            content: " *";
+            color: #ef4444;
+        }
+        .form-section {
+            transition: all 0.3s ease;
+        }
+        .form-section:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .hipaa-notice {
+            border-left: 4px solid #3b82f6;
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-home mr-1"></i> Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-sign-in-alt mr-1"></i> Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-user-plus mr-1"></i> Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-tachometer-alt mr-1"></i> Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-user-plus mr-1"></i> Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-folder mr-1"></i> Patient Records</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-calendar-check mr-1"></i> Appointments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-users mr-1"></i> Staff Management</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'><i class="fas fa-file-invoice-dollar mr-1"></i> Billing</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="mb-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+                <i class="fas fa-user-plus text-blue-600 mr-3"></i>Patient Registration
+            </h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">
+                Register new patients into the hospital management system. All fields marked with * are required.
+                This form complies with HIPAA regulations for patient data security.
+            </p>
+        </div>
+
+        <!-- HIPAA Compliance Notice -->
+        <div class="hipaa-notice p-4 rounded-lg mb-8">
+            <div class="flex items-start">
+                <i class="fas fa-shield-alt text-blue-600 text-xl mt-1 mr-3"></i>
+                <div>
+                    <h3 class="font-bold text-gray-800">HIPAA Compliance Notice</h3>
+                    <p class="text-gray-700 text-sm mt-1">
+                        All patient information collected through this form is protected under the Health Insurance Portability and Accountability Act (HIPAA). 
+                        Data is encrypted and accessible only to authorized personnel based on role-based access controls.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="patientRegistrationForm" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <!-- Personal Information Section -->
+            <div class="form-section border border-gray-200 rounded-lg p-6 mb-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">
+                    <i class="fas fa-user-circle text-blue-600 mr-2"></i>Personal Information
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- First Name -->
+                    <div>
+                        <label for="firstName" class="block text-gray-700 font-medium mb-2 required">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Middle Name -->
+                    <div>
+                        <label for="middleName" class="block text-gray-700 font-medium mb-2">Middle Name</label>
+                        <input type="text" id="middleName" name="middleName"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Last Name -->
+                    <div>
+                        <label for="lastName" class="block text-gray-700 font-medium mb-2 required">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Date of Birth -->
+                    <div>
+                        <label for="dob" class="block text-gray-700 font-medium mb-2 required">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Gender -->
+                    <div>
+                        <label for="gender" class="block text-gray-700 font-medium mb-2 required">Gender</label>
+                        <select id="gender" name="gender" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Social Security Number -->
+                    <div>
+                        <label for="ssn" class="block text-gray-700 font-medium mb-2 required">SSN (Last 4 digits)</label>
+                        <input type="text" id="ssn" name="ssn" pattern="\d{4}" maxlength="4" placeholder="1234" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        <p class="text-xs text-gray-500 mt-1">For verification purposes only. Full SSN is encrypted in EHR.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information Section -->
+            <div class="form-section border border-gray-200 rounded-lg p-6 mb-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">
+                    <i class="fas fa-address-book text-blue-600 mr-2"></i>Contact Information
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Address -->
+                    <div class="md:col-span-2">
+                        <label for="address" class="block text-gray-700 font-medium mb-2 required">Address</label>
+                        <input type="text" id="address" name="address" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- City -->
+                    <div>
+                        <label for="city" class="block text-gray-700 font-medium mb-2 required">City</label>
+                        <input type="text" id="city" name="city" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- State -->
+                    <div>
+                        <label for="state" class="block text-gray-700 font-medium mb-2 required">State</label>
+                        <select id="state" name="state" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <option value="">Select State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <!-- More states would be included in a real application -->
+                        </select>
+                    </div>
+                    
+                    <!-- ZIP Code -->
+                    <div>
+                        <label for="zipCode" class="block text-gray-700 font-medium mb-2 required">ZIP Code</label>
+                        <input type="text" id="zipCode" name="zipCode" pattern="\d{5}" maxlength="5" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Phone Number -->
+                    <div>
+                        <label for="phone" class="block text-gray-700 font-medium mb-2 required">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-gray-700 font-medium mb-2 required">Email Address</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Contact Section -->
+            <div class="form-section border border-gray-200 rounded-lg p-6 mb-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">
+                    <i class="fas fa-exclamation-triangle text-blue-600 mr-2"></i>Emergency Contact
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Emergency Contact Name -->
+                    <div>
+                        <label for="emergencyName" class="block text-gray-700 font-medium mb-2 required">Emergency Contact Name</label>
+                        <input type="text" id="emergencyName" name="emergencyName" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Emergency Contact Relationship -->
+                    <div>
+                        <label for="emergencyRelationship" class="block text-gray-700 font-medium mb-2 required">Relationship</label>
+                        <select id="emergencyRelationship" name="emergencyRelationship" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <option value="">Select Relationship</option>
+                            <option value="spouse">Spouse</option>
+                            <option value="parent">Parent</option>
+                            <option value="child">Child</option>
+                            <option value="sibling">Sibling</option>
+                            <option value="friend">Friend</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Emergency Contact Phone -->
+                    <div>
+                        <label for="emergencyPhone" class="block text-gray-700 font-medium mb-2 required">Emergency Contact Phone</label>
+                        <input type="tel" id="emergencyPhone" name="emergencyPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Emergency Contact Email -->
+                    <div>
+                        <label for="emergencyEmail" class="block text-gray-700 font-medium mb-2">Emergency Contact Email</label>
+                        <input type="email" id="emergencyEmail" name="emergencyEmail"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insurance Information Section -->
+            <div class="form-section border border-gray-200 rounded-lg p-6 mb-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">
+                    <i class="fas fa-file-medical text-blue-600 mr-2"></i>Insurance Information
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Insurance Provider -->
+                    <div>
+                        <label for="insuranceProvider" class="block text-gray-700 font-medium mb-2 required">Insurance Provider</label>
+                        <input type="text" id="insuranceProvider" name="insuranceProvider" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Policy Number -->
+                    <div>
+                        <label for="policyNumber" class="block text-gray-700 font-medium mb-2 required">Policy Number</label>
+                        <input type="text" id="policyNumber" name="policyNumber" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Group Number -->
+                    <div>
+                        <label for="groupNumber" class="block text-gray-700 font-medium mb-2">Group Number</label>
+                        <input type="text" id="groupNumber" name="groupNumber"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Insurance Phone -->
+                    <div>
+                        <label for="insurancePhone" class="block text-gray-700 font-medium mb-2">Insurance Phone</label>
+                        <input type="tel" id="insurancePhone" name="insurancePhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical Information Section -->
+            <div class="form-section border border-gray-200 rounded-lg p-6 mb-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">
+                    <i class="fas fa-heartbeat text-blue-600 mr-2"></i>Medical Information
+                </h2>
+                
+                <div class="space-y-6">
+                    <!-- Primary Care Physician -->
+                    <div>
+                        <label for="primaryPhysician" class="block text-gray-700 font-medium mb-2">Primary Care Physician</label>
+                        <input type="text" id="primaryPhysician" name="primaryPhysician"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <!-- Allergies -->
+                    <div>
+                        <label for="allergies" class="block text-gray-700 font-medium mb-2">Allergies (if any)</label>
+                        <textarea id="allergies" name="allergies" rows="3"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                  placeholder="List any known allergies (medications, food, environmental, etc.)"></textarea>
+                    </div>
+                    
+                    <!-- Current Medications -->
+                    <div>
+                        <label for="medications" class="block text-gray-700 font-medium mb-2">Current Medications</label>
+                        <textarea id="medications" name="medications" rows="3"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                  placeholder="List current medications with dosages"></textarea>
+                    </div>
+                    
+                    <!-- Medical Conditions -->
+                    <div>
+                        <label for="conditions" class="block text-gray-700 font-medium mb-2">Existing Medical Conditions</label>
+                        <textarea id="conditions" name="conditions" rows="3"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                  placeholder="List any chronic or existing medical conditions"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consent and Authorization -->
+            <div class="form-section border border-gray-200 rounded-lg p-6 mb-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">
+                    <i class="fas fa-file-signature text-blue-600 mr-2"></i>Consent and Authorization
+                </h2>
+                
+                <div class="space-y-4">
+                    <!-- HIPAA Consent -->
+                    <div class="flex items-start">
+                        <input type="checkbox" id="hipaaConsent" name="hipaaConsent" required
+                               class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                        <label for="hipaaConsent" class="text-gray-700">
+                            I acknowledge that I have received and understand the hospital's 
+                            <a href="#" class="text-blue-600 hover:underline">Notice of Privacy Practices</a> 
+                            and consent to the use and disclosure of my protected health information for treatment, 
+                            payment, and healthcare operations as described in the notice.
+                            <span class="text-red-500">*</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Financial Responsibility -->
+                    <div class="flex items-start">
+                        <input type="checkbox" id="financialResponsibility" name="financialResponsibility" required
+                               class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                        <label for="financialResponsibility" class="text-gray-700">
+                            I accept financial responsibility for all services rendered, regardless of insurance coverage.
+                            I understand that I am responsible for any co-payments, deductibles, or non-covered services.
+                            <span class="text-red-500">*</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Assignment of Benefits -->
+                    <div class="flex items-start">
+                        <input type="checkbox" id="assignmentBenefits" name="assignmentBenefits" required
+                               class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                        <label for="assignmentBenefits" class="text-gray-700">
+                            I authorize payment of medical benefits to the hospital for services rendered. 
+                            I understand that I am financially responsible for any balance not covered by insurance.
+                            <span class="text-red-500">*</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Electronic Signature -->
+                    <div class="mt-6">
+                        <label for="signature" class="block text-gray-700 font-medium mb-2 required">Electronic Signature</label>
+                        <input type="text" id="signature" name="signature" placeholder="Type your full name as signature" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        <p class="text-sm text-gray-500 mt-1">By typing your name, you are signing this form electronically.</p>
+                    </div>
+                    
+                    <!-- Signature Date -->
+                    <div class="mt-4">
+                        <label for="signatureDate" class="block text-gray-700 font-medium mb-2 required">Date</label>
+                        <input type="date" id="signatureDate" name="signatureDate" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-gray-200">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-600 text-sm">
+                        <i class="fas fa-lock text-green-600 mr-1"></i>
+                        All data is encrypted and stored securely in compliance with HIPAA regulations.
+                    </p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button type="button" id="clearForm" 
+                            class="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition">
+                        <i class="fas fa-redo mr-2"></i>Clear Form
+                    </button>
+                    
+                    <button type="submit" 
+                            class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition focus:ring-4 focus:ring-blue-200">
+                        <i class="fas fa-save mr-2"></i>Submit Registration
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Success Modal (Hidden by default) -->
+        <div id="successModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="bg-white rounded-xl shadow-2xl p-8 max-w-md mx-4">
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                        <i class="fas fa-check text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Registration Successful!</h3>
+                    <p class="text-gray-600 mb-6">
+                        Patient has been successfully registered in the system. 
+                        A confirmation email has been sent to the provided email address.
+                    </p>
+                    <div class="space-y-3">
+                        <button id="closeModal" 
+                                class="w-full px-4 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-home mr-2"></i>Return to Dashboard
+                        </button>
+                        <button id="newRegistration" 
+                                class="w-full px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition">
+                            <i class="fas fa-user-plus mr-2"></i>Register Another Patient
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">Hospital Management System</h3>
+                    <p class="text-gray-400">Secure • Efficient • Compliant</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400 mb-2">
+                        <i class="fas fa-shield-alt mr-2"></i>HIPAA Compliant Patient Data Management
+                    </p>
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2023 Hospital Management System. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation and submission
+        document.getElementById('patientRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, this would submit to a server
+            // For demo purposes, we'll show the success modal
+            document.getElementById('successModal').classList.remove('hidden');
+        });
+        
+        // Clear form functionality
+        document.getElementById('clearForm').addEventListener('click', function() {
+            if (confirm('Are you sure you want to clear the form? All entered data will be lost.')) {
+                document.getElementById('patientRegistrationForm').reset();
+            }
+        });
+        
+        // Modal close functionality
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('successModal').classList.add('hidden');
+            window.location.href = 'dashboard.html';
+        });
+        
+        // New registration functionality
+        document.getElementById('newRegistration').addEventListener('click', function() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('patientRegistrationForm').reset();
+            window.scrollTo(0, 0);
+        });
+        
+        // Phone number formatting
+        const phoneInputs = document.querySelectorAll('input[type="tel"]');
+        phoneInputs.forEach(input => {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 3 && value.length <= 6) {
+                    value = value.replace(/(\d{3})(\d+)/, '$1-$2');
+                } else if (value.length > 6) {
+                    value = value.replace(/(\d{3})(\d{3})(\d+)/, '$1-$2-$3');
+                }
+                e.target.value = value.substring(0, 12);
+            });
+        });
+        
+        // Set today's date as default for signature date
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('signatureDate').value = today;
+        
+        // Set minimum date for date of birth (120 years ago)
+        const minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 120);
+        document.getElementById('dob').max = new Date().toISOString().split('T')[0];
+        document.getElementById('dob').min = minDate.toISOString().split('T')[0];
+    </script>
+</body>
+</html>

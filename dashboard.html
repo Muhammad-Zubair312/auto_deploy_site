@@ -3,325 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - Learning Platform</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Hospital Management System - Dashboard</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hospital-blue': '#1e40af',
+                        'hospital-green': '#10b981',
+                        'hospital-red': '#ef4444',
+                        'hospital-purple': '#8b5cf6',
+                        'hospital-teal': '#14b8a6',
+                        'hospital-orange': '#f97316'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                z-index: 50;
+                height: 100vh;
+                overflow-y: auto;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 40;
+            }
+            .overlay.active {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
-        <a href='courses.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Courses</a>
-        <a href='lessons.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Lessons</a>
-        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
-        <a href='progress-tracking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Progress Tracking</a>
-        <a href='profile.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Profile</a>
-        <a href='assignments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Assignments</a>
-        <a href='grades.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Grades</a>
+    <!-- Navbar -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
     </nav>
 
-    <!-- Dashboard Header -->
-    <header class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-3xl font-bold text-gray-900">Student Dashboard</h1>
-                    <p class="text-gray-600 mt-2">Welcome back, John! Here's your learning progress.</p>
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden bg-white p-4 flex justify-between items-center border-b">
+        <button id="menuToggle" class="text-gray-700 focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+        <h1 class="text-xl font-bold text-hospital-blue">Hospital Dashboard</h1>
+        <div class="w-8"></div> <!-- Spacer for balance -->
+    </div>
+
+    <!-- Overlay for mobile sidebar -->
+    <div id="overlay" class="overlay"></div>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar bg-white w-64 min-h-screen border-r border-gray-200 p-6">
+            <!-- User Profile -->
+            <div class="flex items-center mb-8">
+                <div class="w-12 h-12 rounded-full bg-hospital-blue flex items-center justify-center text-white font-bold text-xl">
+                    JD
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
-                        <i data-feather="user" class="w-4 h-4 inline mr-2"></i>
-                        Student
+                <div class="ml-4">
+                    <h3 class="font-bold text-gray-800">Dr. John Doe</h3>
+                    <p class="text-sm text-gray-600">Administrator</p>
+                </div>
+            </div>
+
+            <!-- Role Selector -->
+            <div class="mb-8">
+                <label class="block text-sm font-medium text-gray-700 mb-2">View As:</label>
+                <select class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-hospital-blue focus:border-transparent">
+                    <option value="admin">Administrator</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="nurse">Nurse</option>
+                    <option value="patient">Patient</option>
+                </select>
+            </div>
+
+            <!-- Navigation -->
+            <div class="space-y-2 mb-8">
+                <a href="#" class="flex items-center p-3 rounded-lg bg-hospital-blue text-white">
+                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="patient-records.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <i class="fas fa-user-injured mr-3"></i>
+                    <span>Patient Management</span>
+                </a>
+                <a href="appointments.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <i class="fas fa-calendar-check mr-3"></i>
+                    <span>Appointments</span>
+                </a>
+                <a href="staff-management.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <i class="fas fa-user-md mr-3"></i>
+                    <span>Staff Management</span>
+                </a>
+                <a href="billing.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <i class="fas fa-file-invoice-dollar mr-3"></i>
+                    <span>Billing & Payments</span>
+                </a>
+                <a href="patient-records.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <i class="fas fa-file-medical mr-3"></i>
+                    <span>EHR Records</span>
+                </a>
+            </div>
+
+            <!-- HIPAA Compliance Notice -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm">
+                <div class="flex items-center text-blue-800 mb-2">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    <span class="font-bold">HIPAA Compliance</span>
+                </div>
+                <p class="text-blue-700">All patient data is encrypted and access is logged. Ensure you only access records necessary for your role.</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-4 md:p-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Hospital Management Dashboard</h1>
+                <p class="text-gray-600 mt-2">Welcome back, Dr. Doe. Here's an overview of your hospital's operations.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Total Patients</p>
+                            <h3 class="text-3xl font-bold text-gray-800 mt-2">1,247</h3>
+                            <p class="text-green-600 text-sm mt-1"><i class="fas fa-arrow-up mr-1"></i> 12% from last month</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-user-injured text-hospital-blue text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Today's Appointments</p>
+                            <h3 class="text-3xl font-bold text-gray-800 mt-2">48</h3>
+                            <p class="text-green-600 text-sm mt-1"><i class="fas fa-check-circle mr-1"></i> 6 completed</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                            <i class="fas fa-calendar-check text-hospital-green text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Pending Bills</p>
+                            <h3 class="text-3xl font-bold text-gray-800 mt-2">$24,580</h3>
+                            <p class="text-red-600 text-sm mt-1"><i class="fas fa-exclamation-circle mr-1"></i> 15 overdue</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                            <i class="fas fa-file-invoice-dollar text-hospital-red text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Staff On Duty</p>
+                            <h3 class="text-3xl font-bold text-gray-800 mt-2">42</h3>
+                            <p class="text-blue-600 text-sm mt-1"><i class="fas fa-user-clock mr-1"></i> 8 doctors, 12 nurses</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                            <i class="fas fa-user-md text-hospital-purple text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Sections -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Recent Appointments -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800">Recent Appointments</h2>
+                        <a href="appointments.html" class="text-hospital-blue hover:underline text-sm">View All</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                    <i class="fas fa-user text-hospital-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Robert Johnson</h4>
+                                    <p class="text-sm text-gray-500">Cardiology Checkup</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">10:30 AM</p>
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Completed</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                    <i class="fas fa-user text-hospital-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Sarah Williams</h4>
+                                    <p class="text-sm text-gray-500">Annual Physical</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">2:15 PM</p>
+                                <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">In Progress</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                    <i class="fas fa-user text-hospital-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Michael Chen</h4>
+                                    <p class="text-sm text-gray-500">Follow-up Visit</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">4:45 PM</p>
+                                <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">Scheduled</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-6 py-3 bg-hospital-blue text-white rounded-lg hover:bg-blue-800 transition">
+                        <i class="fas fa-plus mr-2"></i> Schedule New Appointment
+                    </button>
+                </div>
+
+                <!-- Analytics Overview -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Analytics Overview</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">Patient Admissions</span>
+                                <span class="font-medium">78%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-hospital-blue h-2.5 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">Appointment Utilization</span>
+                                <span class="font-medium">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-hospital-green h-2.5 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">Revenue Collection</span>
+                                <span class="font-medium">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-hospital-purple h-2.5 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700">Staff Satisfaction</span>
+                                <span class="font-medium">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-hospital-teal h-2.5 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-sm text-gray-600"><i class="fas fa-lightbulb text-hospital-orange mr-2"></i> <strong>Insight:</strong> Appointment utilization is high. Consider expanding clinic hours to accommodate more patients.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="mt-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-6">Quick Actions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a href="patient-registration.html" class="bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-hospital-blue transition card-hover text-center">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-plus text-hospital-blue text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Register Patient</h3>
+                        <p class="text-gray-600 text-sm mt-2">Add new patient to system</p>
+                    </a>
+                    <a href="patient-records.html" class="bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-hospital-green transition card-hover text-center">
+                        <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-file-medical text-hospital-green text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Access EHR</h3>
+                        <p class="text-gray-600 text-sm mt-2">View electronic health records</p>
+                    </a>
+                    <a href="billing.html" class="bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-hospital-purple transition card-hover text-center">
+                        <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-credit-card text-hospital-purple text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Process Payment</h3>
+                        <p class="text-gray-600 text-sm mt-2">Handle billing transactions</p>
+                    </a>
+                    <a href="staff-management.html" class="bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-hospital-teal transition card-hover text-center">
+                        <div class="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-hospital-teal text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">Manage Staff</h3>
+                        <p class="text-gray-600 text-sm mt-2">Update staff assignments</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- System Alerts -->
+            <div class="mt-8 bg-white rounded-xl shadow-md p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">System Alerts & Notifications</h2>
+                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">3 New</span>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-start p-4 border border-red-200 bg-red-50 rounded-lg">
+                        <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-medium text-red-800">HIPAA Access Alert</h4>
+                            <p class="text-red-700 text-sm mt-1">Unauthorized access attempt detected on patient records at 2:30 PM. Logged for review.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 border border-yellow-200 bg-yellow-50 rounded-lg">
+                        <i class="fas fa-clock text-yellow-500 mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-medium text-yellow-800">System Backup Required</h4>
+                            <p class="text-yellow-700 text-sm mt-1">Weekly EHR backup is pending. Schedule before end of day.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 border border-blue-200 bg-blue-50 rounded-lg">
+                        <i class="fas fa-calendar-alt text-blue-500 mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-medium text-blue-800">Staff Meeting Reminder</h4>
+                            <p class="text-blue-700 text-sm mt-1">Monthly staff meeting tomorrow at 10 AM in Conference Room B.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
 
-    <!-- Main Dashboard Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Stats Overview -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-blue-100 text-blue-600">
-                        <i data-feather="book-open" class="w-6 h-6"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Enrolled Courses</p>
-                        <p class="text-2xl font-bold text-gray-900">5</p>
-                    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-6 mt-8">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">Hospital Management System</h3>
+                    <p class="text-gray-400 mt-2">Secure, compliant, and efficient healthcare management</p>
                 </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-green-100 text-green-600">
-                        <i data-feather="check-circle" class="w-6 h-6"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Completed Lessons</p>
-                        <p class="text-2xl font-bold text-gray-900">23</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
-                        <i data-feather="award" class="w-6 h-6"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Average Grade</p>
-                        <p class="text-2xl font-bold text-gray-900">87%</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-purple-100 text-purple-600">
-                        <i data-feather="clock" class="w-6 h-6"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Study Time</p>
-                        <p class="text-2xl font-bold text-gray-900">42h</p>
-                    </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400"><i class="fas fa-shield-alt mr-2"></i> HIPAA Compliant</p>
+                    <p class="text-gray-400 text-sm mt-2">© 2023 Hospital Management System. All rights reserved.</p>
                 </div>
             </div>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Left Column -->
-            <div class="lg:col-span-2 space-y-8">
-                <!-- Current Courses -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-right">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Current Courses</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">
-                                        WD
-                                    </div>
-                                    <div class="ml-4">
-                                        <h3 class="font-medium text-gray-900">Web Development</h3>
-                                        <p class="text-sm text-gray-600">Progress: 75% • 12/16 lessons</p>
-                                    </div>
-                                </div>
-                                <button class="text-blue-600 hover:text-blue-800">
-                                    <i data-feather="play-circle" class="w-5 h-5"></i>
-                                </button>
-                            </div>
-
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold">
-                                        DS
-                                    </div>
-                                    <div class="ml-4">
-                                        <h3 class="font-medium text-gray-900">Data Science</h3>
-                                        <p class="text-sm text-gray-600">Progress: 45% • 9/20 lessons</p>
-                                    </div>
-                                </div>
-                                <button class="text-blue-600 hover:text-blue-800">
-                                    <i data-feather="play-circle" class="w-5 h-5"></i>
-                                </button>
-                            </div>
-
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center text-white font-bold">
-                                        ML
-                                    </div>
-                                    <div class="ml-4">
-                                        <h3 class="font-medium text-gray-900">Machine Learning</h3>
-                                        <p class="text-sm text-gray-600">Progress: 30% • 6/20 lessons</p>
-                                    </div>
-                                </div>
-                                <button class="text-blue-600 hover:text-blue-800">
-                                    <i data-feather="play-circle" class="w-5 h-5"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Recent Activity -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-right" data-aos-delay="200">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Recent Activity</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                    <i data-feather="check" class="w-4 h-4"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-900">Completed lesson: "React Hooks"</p>
-                                    <p class="text-xs text-gray-500">2 hours ago</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                                    <i data-feather="file-text" class="w-4 h-4"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-900">Submitted assignment: "Final Project Proposal"</p>
-                                    <p class="text-xs text-gray-500">1 day ago</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600">
-                                    <i data-feather="award" class="w-4 h-4"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-900">Earned badge: "Quiz Master"</p>
-                                    <p class="text-xs text-gray-500">2 days ago</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
-                                    <i data-feather="message-square" class="w-4 h-4"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-900">Posted in discussion: "CSS Grid vs Flexbox"</p>
-                                    <p class="text-xs text-gray-500">3 days ago</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Right Column -->
-            <div class="space-y-8">
-                <!-- Upcoming Deadlines -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-left">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Upcoming Deadlines</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div class="p-3 border border-orange-200 bg-orange-50 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm font-medium text-orange-800">Web Development</span>
-                                    <span class="text-xs text-orange-600">Tomorrow</span>
-                                </div>
-                                <p class="text-sm text-orange-700 mt-1">Final Project Submission</p>
-                            </div>
-
-                            <div class="p-3 border border-blue-200 bg-blue-50 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm font-medium text-blue-800">Data Science</span>
-                                    <span class="text-xs text-blue-600">In 3 days</span>
-                                </div>
-                                <p class="text-sm text-blue-700 mt-1">Quiz: Data Visualization</p>
-                            </div>
-
-                            <div class="p-3 border border-gray-200 bg-gray-50 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm font-medium text-gray-800">Machine Learning</span>
-                                    <span class="text-xs text-gray-600">Next week</span>
-                                </div>
-                                <p class="text-sm text-gray-700 mt-1">Assignment: Model Evaluation</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Quick Actions -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-left" data-aos-delay="200">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Quick Actions</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="grid grid-cols-2 gap-4">
-                            <a href="courses.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
-                                <i data-feather="book" class="w-6 h-6 text-blue-600 mb-2"></i>
-                                <span class="text-sm font-medium text-gray-700">Browse Courses</span>
-                            </a>
-
-                            <a href="assignments.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
-                                <i data-feather="file-text" class="w-6 h-6 text-green-600 mb-2"></i>
-                                <span class="text-sm font-medium text-gray-700">Assignments</span>
-                            </a>
-
-                            <a href="grades.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
-                                <i data-feather="award" class="w-6 h-6 text-yellow-600 mb-2"></i>
-                                <span class="text-sm font-medium text-gray-700">View Grades</span>
-                            </a>
-
-                            <a href="progress-tracking.html" class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center">
-                                <i data-feather="trending-up" class="w-6 h-6 text-purple-600 mb-2"></i>
-                                <span class="text-sm font-medium text-gray-700">Progress</span>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Study Goals -->
-                <section class="bg-white rounded-lg shadow" data-aos="fade-left" data-aos-delay="400">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Study Goals</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                    <span>Complete Web Development</span>
-                                    <span>75%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                    <span>Study 10 hours this week</span>
-                                    <span>60%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-green-600 h-2 rounded-full" style="width: 60%"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                    <span>Complete 5 quizzes</span>
-                                    <span>40%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-purple-600 h-2 rounded-full" style="width: 40%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </main>
+    </footer>
 
     <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            once: true
+        // Mobile sidebar toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
         });
-
-        // Initialize Feather Icons
-        feather.replace();
+        
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        
+        // Role-based access simulation
+        const roleSelector = document.querySelector('select');
+        roleSelector.addEventListener('change', function() {
+            const role = this.value;
+            let message = `Switched to ${role} view. `;
+            
+            if(role === 'patient') {
+                message += 'Patient view shows limited information for privacy.';
+            } else if(role === 'doctor') {
+                message += 'Doctor view shows patient records and appointments.';
+            } else if(role === 'nurse') {
+                message += 'Nurse view shows assigned patients and tasks.';
+            } else {
+                message += 'Admin view shows all system functions.';
+            }
+            
+            // Show notification
+            showNotification(message);
+        });
+        
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-gray-800 text-white p-4 rounded-lg shadow-lg z-50 max-w-sm';
+            notification.innerHTML = `
+                <div class="flex items-start">
+                    <i class="fas fa-info-circle mr-3 mt-1 text-blue-400"></i>
+                    <div>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                    <button class="ml-4 text-gray-400 hover:text-white" onclick="this.parentElement.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if(notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+        
+        // Simulate real-time updates
+        setInterval(() => {
+            // Randomly update appointment count
+            const appointmentElement = document.querySelector('h3:contains("48")');
+            if(appointmentElement && Math.random() > 0.7) {
+                const current = parseInt(appointmentElement.textContent);
+                const change = Math.random() > 0.5 ? 1 : -1;
+                appointmentElement.textContent = current + change;
+            }
+        }, 10000);
     </script>
 </body>
 </html>

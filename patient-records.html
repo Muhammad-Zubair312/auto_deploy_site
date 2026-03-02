@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Records | Hospital Management System</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .data-protection-banner {
+            background: linear-gradient(90deg, #1e40af 0%, #1e3a8a 100%);
+        }
+        .patient-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #3b82f6;
+        }
+        .patient-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .status-active {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .status-inactive {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .tab-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+        }
+        .ehr-section {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+        }
+        .access-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+        }
+        .hipaa-notice {
+            border-left: 4px solid #ef4444;
+            background-color: #fef2f2;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+    </nav>
+
+    <!-- HIPAA Compliance Banner -->
+    <div class="data-protection-banner text-white py-3 px-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-shield-alt"></i>
+                <span class="font-medium">HIPAA Compliant Patient Data Management</span>
+            </div>
+            <div class="text-sm">
+                <i class="fas fa-lock"></i>
+                <span>All data is encrypted and access-controlled</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Patient Records</h1>
+            <p class="text-gray-600 mt-2">Manage and access electronic health records with role-based permissions</p>
+            
+            <!-- Role-based Access Indicator -->
+            <div class="mt-4 flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <span class="text-gray-700">Current Access Level:</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium" id="currentRole">Loading...</span>
+                </div>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-user-circle mr-1"></i>
+                    <span id="userName">Loading user...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- HIPAA Notice -->
+        <div class="hipaa-notice p-4 rounded-lg mb-8">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-exclamation-triangle text-red-500 mt-1"></i>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">Protected Health Information (PHI)</h3>
+                    <div class="mt-2 text-sm text-red-700">
+                        <p>This system contains confidential patient information protected under HIPAA regulations. Access is logged and monitored. Unauthorized access or disclosure may result in disciplinary action and legal penalties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Search -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Search Patients</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </div>
+                        <input type="text" id="patientSearch" class="pl-10 block w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Name, ID, or Phone">
+                    </div>
+                </div>
+                
+                <!-- Filter by Status -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Status</label>
+                    <select id="statusFilter" class="block w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="all">All Patients</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                
+                <!-- Date Range -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Visit Date Range</label>
+                    <div class="flex space-x-2">
+                        <input type="date" id="dateFrom" class="flex-1 border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <input type="date" id="dateTo" class="flex-1 border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex justify-between">
+                <button id="clearFilters" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                    <i class="fas fa-times mr-2"></i>Clear Filters
+                </button>
+                <button id="applyFilters" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    <i class="fas fa-filter mr-2"></i>Apply Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Patient Records Table -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-xl font-semibold text-gray-800">Patient Records</h2>
+                <div class="text-sm text-gray-500">
+                    <span id="recordCount">0</span> records found
+                </div>
+            </div>
+            
+            <!-- Tabs for Different Views -->
+            <div class="border-b border-gray-200">
+                <nav class="flex -mb-px">
+                    <button class="tab-active py-4 px-6 text-sm font-medium" data-tab="all-patients">
+                        All Patients
+                    </button>
+                    <button class="py-4 px-6 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="recent-visits">
+                        Recent Visits
+                    </button>
+                    <button class="py-4 px-6 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="ehr-access">
+                        EHR Access Log
+                    </button>
+                </nav>
+            </div>
+            
+            <!-- Table Container -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Patient ID
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Name & Details
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Last Visit
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Access Level Required
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientTableBody" class="bg-white divide-y divide-gray-200">
+                        <!-- Patient rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+                <div class="text-sm text-gray-700">
+                    Showing <span id="pageStart">1</span> to <span id="pageEnd">10</span> of <span id="totalRecords">0</span> results
+                </div>
+                <div class="flex space-x-2">
+                    <button id="prevPage" class="px-3 py-1 border border-gray-300 rounded text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Previous
+                    </button>
+                    <button id="nextPage" class="px-3 py-1 border border-gray-300 rounded text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Electronic Health Records (EHR) Section -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6">Electronic Health Records (EHR)</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Medical History -->
+                <div class="ehr-section p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-medium text-gray-800">Medical History</h3>
+                        <span class="access-badge bg-blue-100 text-blue-800 rounded-full">Staff+</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Complete patient medical history, allergies, and chronic conditions.</p>
+                    <button class="view-ehr-btn w-full py-2 px-4 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 text-sm font-medium" data-section="medical-history">
+                        <i class="fas fa-file-medical-alt mr-2"></i>View Medical History
+                    </button>
+                </div>
+                
+                <!-- Lab Results -->
+                <div class="ehr-section p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-medium text-gray-800">Lab Results</h3>
+                        <span class="access-badge bg-green-100 text-green-800 rounded-full">Staff+</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Blood tests, imaging reports, and diagnostic results.</p>
+                    <button class="view-ehr-btn w-full py-2 px-4 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 text-sm font-medium" data-section="lab-results">
+                        <i class="fas fa-vial mr-2"></i>View Lab Results
+                    </button>
+                </div>
+                
+                <!-- Treatment Plans -->
+                <div class="ehr-section p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-medium text-gray-800">Treatment Plans</h3>
+                        <span class="access-badge bg-purple-100 text-purple-800 rounded-full">Doctor+</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Prescriptions, therapy plans, and ongoing treatments.</p>
+                    <button class="view-ehr-btn w-full py-2 px-4 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 text-sm font-medium" data-section="treatment-plans">
+                        <i class="fas fa-pills mr-2"></i>View Treatment Plans
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Access Request Notice -->
+            <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-circle text-yellow-400 mt-0.5"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-yellow-800">Access Restrictions</h3>
+                        <div class="mt-2 text-sm text-yellow-700">
+                            <p>Some EHR sections require higher access levels. If you need access to restricted sections, please contact your system administrator.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Dashboard Preview -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6">Records Analytics</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <!-- Stats Cards -->
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-blue-100 rounded-lg mr-4">
+                            <i class="fas fa-user-injured text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-blue-700">Total Patients</p>
+                            <p class="text-2xl font-bold text-blue-900">1,247</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-green-100 rounded-lg mr-4">
+                            <i class="fas fa-calendar-check text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-green-700">Active This Month</p>
+                            <p class="text-2xl font-bold text-green-900">342</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-purple-100 rounded-lg mr-4">
+                            <i class="fas fa-file-medical text-purple-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-purple-700">EHR Updated Today</p>
+                            <p class="text-2xl font-bold text-purple-900">28</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-red-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-red-100 rounded-lg mr-4">
+                            <i class="fas fa-user-clock text-red-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-red-700">Pending Records</p>
+                            <p class="text-2xl font-bold text-red-900">12</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="border-t border-gray-200 pt-6">
+                <h3 class="font-medium text-gray-800 mb-4">Quick Actions</h3>
+                <div class="flex flex-wrap gap-3">
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+                        <i class="fas fa-plus mr-2"></i>Add New Patient Record
+                    </button>
+                    <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">
+                        <i class="fas fa-download mr-2"></i>Export Records (CSV)
+                    </button>
+                    <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">
+                        <i class="fas fa-print mr-2"></i>Print Summary
+                    </button>
+                    <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">
+                        <i class="fas fa-sync-alt mr-2"></i>Refresh Data
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">Hospital Management System</h3>
+                    <p class="text-gray-400 mt-2">Secure, HIPAA-compliant patient record management</p>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    <p><i class="fas fa-lock mr-2"></i>All data is encrypted and access-controlled</p>
+                    <p class="mt-1"><i class="fas fa-user-shield mr-2"></i>Role-based access control implemented</p>
+                    <p class="mt-1"><i class="fas fa-history mr-2"></i>Access logs maintained for compliance</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-500 text-sm">
+                <p>© 2023 Hospital Management System. All rights reserved. | HIPAA Compliance Verified</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Sample patient data
+        const patients = [
+            {
+                id: "P-1001",
+                name: "John Smith",
+                age: 45,
+                gender: "Male",
+                lastVisit: "2023-10-15",
+                status: "active",
+                accessLevel: "staff",
+                phone: "(555) 123-4567",
+                condition: "Hypertension"
+            },
+            {
+                id: "P-1002",
+                name: "Maria Garcia",
+                age: 32,
+                gender: "Female",
+                lastVisit: "2023-10-10",
+                status: "active",
+                accessLevel: "staff",
+                phone: "(555) 234-5678",
+                condition: "Diabetes Type 2"
+            },
+            {
+                id: "P-1003",
+                name: "Robert Johnson",
+                age: 68,
+                gender: "Male",
+                lastVisit: "2023-09-28",
+                status: "active",
+                accessLevel: "doctor",
+                phone: "(555) 345-6789",
+                condition: "Cardiac Care"
+            },
+            {
+                id: "P-1004",
+                name: "Sarah Williams",
+                age: 29,
+                gender: "Female",
+                lastVisit: "2023-08-15",
+                status: "inactive",
+                accessLevel: "staff",
+                phone: "(555) 456-7890",
+                condition: "Annual Checkup"
+            },
+            {
+                id: "P-1005",
+                name: "James Brown",
+                age: 52,
+                gender: "Male",
+                lastVisit: "2023-10-18",
+                status: "active",
+                accessLevel: "admin",
+                phone: "(555) 567-8901",
+                condition: "Physical Therapy"
+            },
+            {
+                id: "P-1006",
+                name: "Lisa Chen",
+                age: 41,
+                gender: "Female",
+                lastVisit: "2023-10-05",
+                status: "pending",
+                accessLevel: "staff",
+                phone: "(555) 678-9012",
+                condition: "Lab Results Review"
+            },
+            {
+                id: "P-1007",
+                name: "Michael Davis",
+                age: 37,
+                gender: "Male",
+                lastVisit: "2023-09-10",
+                status: "active",
+                accessLevel: "doctor",
+                phone: "(555) 789-0123",
+                condition: "Orthopedic Consultation"
+            },
+            {
+                id: "P-1008",
+                name: "Emily Wilson",
+                age: 24,
+                gender: "Female",
+                lastVisit: "2023-07-22",
+                status: "inactive",
+                accessLevel: "staff",
+                phone: "(555) 890-1234",
+                condition: "Vaccination"
+            }
+        ];
+
+        // Current user role (simulated - in real app this would come from auth system)
+        let currentUserRole = "staff"; // Can be "patient", "staff", "doctor", "admin"
+        let currentUserName = "Dr. Sarah Johnson";
+        
+        // Pagination variables
+        let currentPage = 1;
+        const recordsPerPage = 5;
+        let filteredPatients = [...patients];
+
+        // DOM Elements
+        const patientTableBody = document.getElementById('patientTableBody');
+        const currentRoleElement = document.getElementById('currentRole');
+        const userNameElement = document.getElementById('userName');
+        const recordCountElement = document.getElementById('recordCount');
+        const pageStartElement = document.getElementById('pageStart');
+        const pageEndElement = document.getElementById('pageEnd');
+        const totalRecordsElement = document.getElementById('totalRecords');
+        const prevPageButton = document.getElementById('prevPage');
+        const nextPageButton = document.getElementById('nextPage');
+        const patientSearch = document.getElementById('patientSearch');
+        const statusFilter = document.getElementById('statusFilter');
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+        const applyFiltersButton = document.getElementById('applyFilters');
+        const clearFiltersButton = document.getElementById('clearFilters');
+        const tabButtons = document.querySelectorAll('[data-tab]');
+        const viewEhrButtons = document.querySelectorAll('.view-ehr-btn');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+            renderPatientTable();
+            setupEventListeners();
+        });
+
+        function initializePage() {
+            // Set current user info
+            currentRoleElement.textContent = currentUserRole.charAt(0).toUpperCase() + currentUserRole.slice(1);
+            userNameElement.textContent = currentUserName;
+            
+            // Set default dates
+            const today = new Date();
+            const lastMonth = new Date();
+            lastMonth.setMonth(lastMonth.getMonth() - 1);
+            
+            dateFrom.valueAsDate = lastMonth;
+            dateTo.valueAsDate = today;
+            
+            // Update record count
+            updateRecordCount();
+        }
+
+        function renderPatientTable() {
+            patientTableBody.innerHTML = '';
+            
+            // Calculate pagination
+            const startIndex = (currentPage - 1) * recordsPerPage;
+            const endIndex = Math.min(startIndex + recordsPerPage, filteredPatients.length);
+            const pagePatients = filteredPatients.slice(startIndex, endIndex);
+            
+            // Update pagination info
+            pageStartElement.textContent = startIndex + 1;
+            pageEndElement.textContent = endIndex;
+            totalRecordsElement.textContent = filteredPatients.length;
+            
+            // Update button states
+            prevPageButton.disabled = currentPage === 1;
+            nextPageButton.disabled = endIndex >= filteredPatients.length;
+            
+            // Render patient rows
+            pagePatients.forEach(patient => {
+                const row = document.createElement('tr');
+                const statusClass = patient.status === 'active' ? 'status-active' : 
+                                  patient.status === 'inactive' ? 'status-inactive' : 'bg-yellow-100 text-yellow-800';
+                const statusText = patient.status.charAt(0).toUpperCase() + patient.status.slice(1);
+                
+                // Determine access badge color
+                let accessBadgeClass = 'bg-gray-100 text-gray-800';
+                if (patient.accessLevel === 'admin') accessBadgeClass = 'bg-red-100 text-red-800';
+                else if (patient.accessLevel === 'doctor') accessBadgeClass = 'bg-purple-100 text-purple-800';
+                else if (patient.accessLevel === 'staff') accessBadgeClass = 'bg-blue-100 text-blue-800';
+                
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">${patient.id}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <span class="text-blue-800 font-medium">${patient.name.charAt(0)}</span>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">${patient.name}</div>
+                                <div class="text-sm text-gray-500">${patient.age} yrs, ${patient.gender} • ${patient.condition}</div>
+                                <div class="text-xs text-gray-400 mt-1">${patient.phone}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${formatDate(patient.lastVisit)}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}">
+                            ${statusText}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${accessBadgeClass}">
+                            ${patient.accessLevel.charAt(0).toUpperCase() + patient.accessLevel.slice(1)}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button class="view-record-btn text-blue-600 hover:text-blue-900 mr-4" data-id="${patient.id}">
+                            <i class="fas fa-eye mr-1"></i>View
+                        </button>
+                        <button class="edit-record-btn text-green-600 hover:text-green-900 mr-4" data-id="${patient.id}">
+                            <i class="fas fa-edit mr-1"></i>Edit
+                        </button>
+                        <button class="ehr-access-btn text-purple-600 hover:text-purple-900" data-id="${patient.id}">
+                            <i class="fas fa-file-medical mr-1"></i>EHR
+                        </button>
+                    </td>
+                `;
+                patientTableBody.appendChild(row);
+            });
+            
+            // Add event listeners to action buttons
+            document.querySelectorAll('.view-record-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const patientId = this.getAttribute('data-id');
+                    viewPatientRecord(patientId);
+                });
+            });
+            
+            document.querySelectorAll('.edit-record-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const patientId = this.getAttribute('data-id');
+                    editPatientRecord(patientId);
+                });
+            });
+            
+            document.querySelectorAll('.ehr-access-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const patientId = this.getAttribute('data-id');
+                    accessEHR(patientId);
+                });
+            });
+        }
+
+        function setupEventListeners() {
+            // Pagination
+            prevPageButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderPatientTable();
+                }
+            });
+            
+            nextPageButton.addEventListener('click', () => {
+                const totalPages = Math.ceil(filteredPatients.length / recordsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderPatientTable();
+                }
+            });
+            
+            // Filter application
+            applyFiltersButton.addEventListener('click', applyFilters);
+            clearFiltersButton.addEventListener('click', clearFilters);
+            
+            // Search with debounce
+            let searchTimeout;
+            patientSearch.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(applyFilters, 300);
+            });
+            
+            // Tab switching
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('tab-active', 'text-blue-600');
+                        btn.classList.add('text-gray-500');
+                    });
+                    this.classList.add('tab-active', 'text-blue-600');
+                    this.classList.remove('text-gray-500');
+                    
+                    // Handle tab switching
+                    switchTab(tabId);
+                });
+            });
+            
+            // EHR section buttons
+            viewEhrButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    const requiredRole = this.closest('.ehr-section').querySelector('.access-badge').textContent;
+                    
+                    // Check access
+                    if (checkEhrAccess(requiredRole)) {
+                        alert(`Access granted to ${section.replace('-', ' ')}. Loading...`);
+                        // In real app, this would navigate to the specific EHR section
+                    } else {
+                        alert(`Access denied. ${requiredRole} access required for this section.`);
+                    }
+                });
+            });
+        }
+
+        function applyFilters() {
+            const searchTerm = patientSearch.value.toLowerCase();
+            const statusFilterValue = statusFilter.value;
+            const dateFromValue = dateFrom.value;
+            const dateToValue = dateTo.value;
+            
+            filteredPatients = patients.filter(patient => {
+                // Search filter
+                const matchesSearch = !searchTerm || 
+                    patient.name.toLowerCase().includes(searchTerm) ||
+                    patient.id.toLowerCase().includes(searchTerm) ||
+                    patient.phone.includes(searchTerm);
+                
+                // Status filter
+                const matchesStatus = statusFilterValue === 'all' || patient.status === statusFilterValue;
+                
+                // Date filter
+                let matchesDate = true;
+                if (dateFromValue && dateToValue) {
+                    const lastVisit = new Date(patient.lastVisit);
+                    const fromDate = new Date(dateFromValue);
+                    const toDate = new Date(dateToValue);
+                    
+                    matchesDate = lastVisit >= fromDate && lastVisit <= toDate;
+                }
+                
+                return matchesSearch && matchesStatus && matchesDate;
+            });
+            
+            currentPage = 1;
+            renderPatientTable();
+            updateRecordCount();
+        }
+
+        function clearFilters() {
+            patientSearch.value = '';
+            statusFilter.value = 'all';
+            
+            // Reset dates to default
+            const today = new Date();
+            const lastMonth = new Date();
+            lastMonth.setMonth(lastMonth.getMonth() - 1);
+            
+            dateFrom.valueAsDate = lastMonth;
+            dateTo.valueAsDate = today;
+            
+            applyFilters();
+        }
+
+        function switchTab(tabId) {
+            // In a real application, this would fetch different data or show different views
+            // For this demo, we'll just show an alert and adjust the filter
+            switch(tabId) {
+                case 'recent-visits':
+                    // Filter to show only patients with recent visits (last 30 days)
+                    const thirtyDaysAgo = new Date();
+                    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+                    
+                    dateFrom.valueAsDate = thirtyDaysAgo;
+                    dateTo.valueAsDate = new Date();
+                    applyFilters();
+                    break;
+                    
+                case 'ehr-access':
+                    // This would typically show an access log
+                    alert("Switching to EHR Access Log view. This would show who accessed which records and when.");
+                    break;
+                    
+                default:
+                    // 'all-patients' - show all
+                    clearFilters();
+                    break;
+            }
+        }
+
+        function checkEhrAccess(requiredRoleText) {
+            // Convert role text to role level
+            let requiredLevel = 0;
+            if (requiredRoleText.includes('Staff')) requiredLevel = 1;
+            if (requiredRoleText.includes('Doctor')) requiredLevel = 2;
+            if (requiredRoleText.includes('Admin')) requiredLevel = 3;
+            
+            // Convert current role to level
+            let currentLevel = 0;
+            if (currentUserRole === 'staff') currentLevel = 1;
+            if (currentUserRole === 'doctor') currentLevel = 2;
+            if (currentUserRole === 'admin') currentLevel = 3;
+            
+            return currentLevel >= requiredLevel;
+        }
+
+        function viewPatientRecord(patientId) {
+            const patient = patients.find(p => p.id === patientId);
+            if (patient) {
+                alert(`Viewing record for ${patient.name} (${patient.id})\n\nAge: ${patient.age}\nGender: ${patient.gender}\nLast Visit: ${formatDate(patient.lastVisit)}\nCondition: ${patient.condition}\nPhone: ${patient.phone}\n\nAccess Level Required: ${patient.accessLevel}`);
+            }
+        }
+
+        function editPatientRecord(patientId) {
+            // Check if user has permission to edit
+            if (currentUserRole === 'patient') {
+                alert("Access denied. You do not

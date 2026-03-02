@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management | Hospital Management System</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .role-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        .role-admin {
+            background-color: #dc2626;
+            color: white;
+        }
+        .role-doctor {
+            background-color: #2563eb;
+            color: white;
+        }
+        .role-nurse {
+            background-color: #059669;
+            color: white;
+        }
+        .role-staff {
+            background-color: #7c3aed;
+            color: white;
+        }
+        .role-reception {
+            background-color: #ea580c;
+            color: white;
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                z-index: 50;
+                height: 100vh;
+                overflow-y: auto;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 40;
+            }
+            .overlay.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden bg-white p-4 border-b flex justify-between items-center">
+        <h1 class="text-xl font-bold text-gray-800">Staff Management</h1>
+        <button id="menuToggle" class="text-gray-700 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Overlay for mobile sidebar -->
+    <div id="overlay" class="overlay"></div>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar w-64 bg-white border-r min-h-screen p-6">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Hospital Admin</h2>
+                <p class="text-gray-600 text-sm">Staff Management Portal</p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Quick Actions</h3>
+                <div class="space-y-3">
+                    <button id="addStaffBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-user-plus mr-2"></i> Add New Staff
+                    </button>
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-file-export mr-2"></i> Export Staff List
+                    </button>
+                    <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-bar mr-2"></i> Staff Analytics
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Filters</h3>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Department</label>
+                        <select class="w-full border border-gray-300 rounded-lg p-2">
+                            <option value="">All Departments</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="orthopedics">Orthopedics</option>
+                            <option value="pediatrics">Pediatrics</option>
+                            <option value="emergency">Emergency</option>
+                            <option value="administration">Administration</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                        <select class="w-full border border-gray-300 rounded-lg p-2">
+                            <option value="">All Roles</option>
+                            <option value="admin">Administrator</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="nurse">Nurse</option>
+                            <option value="reception">Receptionist</option>
+                            <option value="staff">Support Staff</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <select class="w-full border border-gray-300 rounded-lg p-2">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="on-leave">On Leave</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                <h4 class="font-semibold text-blue-800 mb-2">HIPAA Compliance</h4>
+                <p class="text-sm text-blue-700">All staff data is encrypted and access is logged. Only authorized personnel can view sensitive information.</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 hidden md:block">Staff Management</h1>
+                <p class="text-gray-600 mt-2">Manage hospital staff, roles, permissions, and access controls.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-blue-100 rounded-lg mr-4">
+                            <i class="fas fa-user-md text-blue-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Total Staff</p>
+                            <p class="text-3xl font-bold text-gray-800">142</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-green-100 rounded-lg mr-4">
+                            <i class="fas fa-stethoscope text-green-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Doctors</p>
+                            <p class="text-3xl font-bold text-gray-800">48</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-purple-100 rounded-lg mr-4">
+                            <i class="fas fa-user-nurse text-purple-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Nurses</p>
+                            <p class="text-3xl font-bold text-gray-800">67</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-orange-100 rounded-lg mr-4">
+                            <i class="fas fa-calendar-check text-orange-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">On Duty Today</p>
+                            <p class="text-3xl font-bold text-gray-800">89</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staff Table -->
+            <div class="bg-white rounded-xl shadow overflow-hidden mb-8">
+                <div class="px-6 py-4 border-b flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-gray-800">Staff Directory</h2>
+                    <div class="flex space-x-3">
+                        <div class="relative">
+                            <input type="text" placeholder="Search staff..." class="border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-lg">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Staff Member</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <span class="text-blue-800 font-semibold">DR</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Dr. Sarah Johnson</div>
+                                            <div class="text-sm text-gray-500">ID: STF-001</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="role-badge role-doctor">Doctor</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Cardiology</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">sarah.j@hospital.com</div>
+                                    <div class="text-sm text-gray-500">(555) 123-4567</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
+                                    <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
+                                    <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
+                                            <span class="text-green-800 font-semibold">NR</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Nurse Michael Chen</div>
+                                            <div class="text-sm text-gray-500">ID: STF-012</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="role-badge role-nurse">Nurse</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Emergency</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">michael.c@hospital.com</div>
+                                    <div class="text-sm text-gray-500">(555) 987-6543</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
+                                    <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
+                                    <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 bg-red-100 rounded-full flex items-center justify-center">
+                                            <span class="text-red-800 font-semibold">AD</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Admin Robert Davis</div>
+                                            <div class="text-sm text-gray-500">ID: STF-003</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="role-badge role-admin">Administrator</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Administration</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">robert.d@hospital.com</div>
+                                    <div class="text-sm text-gray-500">(555) 456-7890</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
+                                    <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
+                                    <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-full flex items-center justify-center">
+                                            <span class="text-orange-800 font-semibold">RC</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Receptionist Lisa Park</div>
+                                            <div class="text-sm text-gray-500">ID: STF-025</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="role-badge role-reception">Receptionist</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Front Desk</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">lisa.p@hospital.com</div>
+                                    <div class="text-sm text-gray-500">(555) 234-5678</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">On Leave</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
+                                    <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
+                                    <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <span class="text-purple-800 font-semibold">ST</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Support Tech James Wilson</div>
+                                            <div class="text-sm text-gray-500">ID: STF-038</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="role-badge role-staff">Support Staff</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">IT Department</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">james.w@hospital.com</div>
+                                    <div class="text-sm text-gray-500">(555) 876-5432</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
+                                    <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
+                                    <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="px-6 py-4 border-t flex justify-between items-center">
+                    <div class="text-sm text-gray-500">Showing 5 of 142 staff members</div>
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 border rounded-lg text-gray-700 hover:bg-gray-50">Previous</button>
+                        <button class="px-3 py-1 border rounded-lg bg-blue-600 text-white">1</button>
+                        <button class="px-3 py-1 border rounded-lg text-gray-700 hover:bg-gray-50">2</button>
+                        <button class="px-3 py-1 border rounded-lg text-gray-700 hover:bg-gray-50">3</button>
+                        <button class="px-3 py-1 border rounded-lg text-gray-700 hover:bg-gray-50">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Role Management Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Role Permissions -->
+                <div class="bg-white rounded-xl shadow p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Role-Based Access Control</h2>
+                    <div class="space-y-4">
+                        <div class="border rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-medium text-gray-800">Administrator</h3>
+                                <span class="text-sm text-gray-500">Full Access</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Can manage all system functions, staff, and patient data.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Patient Records</span>
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Staff Management</span>
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Billing</span>
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Analytics</span>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-medium text-gray-800">Doctor</h3>
+                                <span class="text-sm text-gray-500">Clinical Access</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Can view and update patient records, schedule appointments.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Patient Records</span>
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Appointments</span>
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">EHR Access</span>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-medium text-gray-800">Nurse</h3>
+                                <span class="text-sm text-gray-500">Limited Clinical Access</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Can view patient records, update vitals, schedule follow-ups.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Patient Records</span>
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Vitals Update</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Staff Form (Initially Hidden) -->
+                <div id="addStaffForm" class="bg-white rounded-xl shadow p-6 hidden">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Add New Staff Member</h2>
+                    <form id="staffForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input type="text" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input type="text" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                                <select class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <option value="">Select Role</option>
+                                    <option value="admin">Administrator</option>
+                                    <option value="doctor">Doctor</option>
+                                    <option value="nurse">Nurse</option>
+                                    <option value="reception">Receptionist</option>
+                                    <option value="staff">Support Staff</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Department</label>
+                                <select class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <option value="">Select Department</option>
+                                    <option value="cardiology">Cardiology</option>
+                                    <option value="neurology">Neurology</option>
+                                    <option value="orthopedics">Orthopedics</option>
+                                    <option value="pediatrics">Pediatrics</option>
+                                    <option value="emergency">Emergency</option>
+                                    <option value="administration">Administration</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Access Permissions</label>
+                            <div class="space-y-2 mt-2">
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
+                                    <label class="ml-2 text-sm text-gray-700">Patient Records Access</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
+                                    <label class="ml-2 text-sm text-gray-700">Appointment Scheduling</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
+                                    <label class="ml-2 text-sm text-gray-700">Billing Module Access</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
+                                    <label class="ml-2 text-sm text-gray-700">Staff Management</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end space-x-3">
+                            <button type="button" id="cancelFormBtn" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
+                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Add Staff Member</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Staff Analytics -->
+                <div class="bg-white rounded-xl shadow p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Staff Distribution</h2>
+                    <div class="h-64 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="relative w-48 h-48 mx-auto mb-4">
+                                <!-- Pie chart representation -->
+                                <div class="absolute inset-0 rounded-full border-8 border-blue-500"></div>
+                                <div class="absolute inset-0 rounded-full border-8 border-green-500" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);"></div>
+                                <div class="absolute inset-0 rounded-full border-8 border-purple-500" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);"></div>
+                                <div class="absolute inset-0 rounded-full border-8 border-orange-500" style="clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);"></div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-gray-800">142</div>
+                                        <div class="text-sm text-gray-600">Total Staff</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center">
+                                    <div class="h-3 w-3 bg-blue-500 rounded-full inline-block mr-2"></div>
+                                    <span class="text-sm">Doctors: 48</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-3 w-3 bg-green-500 rounded-full inline-block mr-2"></div>
+                                    <span class="text-sm">Nurses: 67</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-3 w-3 bg-purple-500 rounded-full inline-block mr-2"></div>
+                                    <span class="text-sm">Admin: 12</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-3 w-3 bg-orange-500 rounded-full inline-block mr-2"></div>
+                                    <span class="text-sm">Other: 15</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                        <h4 class="font-medium text-gray-800 mb-2">Access Logs</h4>
+                        <p class="text-sm text-gray-600">All staff access to patient data is logged for HIPAA compliance. Last audit: Today, 10:42 AM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-6 mt-8">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">Hospital Management System</h3>
+                    <p class="text-gray-400">Secure • Efficient • Compliant</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">© 2023 Hospital Management System. All rights reserved.</p>
+                    <p class="text-gray-500 text-sm mt-1">HIPAA Compliant • ISO 27001 Certified</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile sidebar toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+        
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        
+        // Add staff form toggle
+        const addStaffBtn = document.getElementById('addStaffBtn');
+        const addStaffForm = document.getElementById('addStaffForm');
+        const cancelFormBtn = document.getElementById('cancelFormBtn');
+        const staffForm = document.getElementById('staffForm');
+        
+        addStaffBtn.addEventListener('click', () => {
+            addStaffForm.classList.remove('hidden');
+            addStaffForm.scrollIntoView({ behavior: 'smooth' });

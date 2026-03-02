@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Billing</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#0ea5e9',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                z-index: 50;
+                height: 100vh;
+                overflow-y: auto;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 40;
+            }
+            .overlay.active {
+                display: block;
+            }
+        }
+        .role-badge {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+        }
+        .invoice-item:hover {
+            background-color: #f8fafc;
+        }
+        .payment-method:hover {
+            border-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400'>Dashboard</a>
+        <a href='patient-registration.html' class='px-3 py-2 hover:text-blue-400'>Patient Registration</a>
+        <a href='patient-records.html' class='px-3 py-2 hover:text-blue-400'>Patient Records</a>
+        <a href='appointments.html' class='px-3 py-2 hover:text-blue-400'>Appointments</a>
+        <a href='staff-management.html' class='px-3 py-2 hover:text-blue-400'>Staff Management</a>
+        <a href='billing.html' class='px-3 py-2 hover:text-blue-400'>Billing</a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <div class="lg:hidden bg-white p-4 flex items-center justify-between border-b">
+        <button id="menuToggle" class="text-gray-700">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+        <h1 class="text-xl font-bold text-gray-800">Billing & Payments</h1>
+        <div class="flex items-center space-x-2">
+            <span class="role-badge bg-primary text-white">Staff</span>
+            <i class="fas fa-user-circle text-2xl text-gray-600"></i>
+        </div>
+    </div>
+
+    <!-- Overlay for mobile sidebar -->
+    <div id="overlay" class="overlay"></div>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar w-64 bg-white border-r border-gray-200 min-h-screen p-6">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Hospital<span class="text-primary">MS</span></h2>
+                <p class="text-gray-500 text-sm">Billing Department</p>
+            </div>
+            
+            <div class="mb-6">
+                <div class="flex items-center space-x-3 mb-4 p-3 bg-blue-50 rounded-lg">
+                    <i class="fas fa-user-circle text-3xl text-primary"></i>
+                    <div>
+                        <p class="font-medium">John Smith</p>
+                        <span class="role-badge bg-primary text-white">Billing Staff</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="space-y-2">
+                <a href="dashboard.html" class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-blue-50 rounded-lg">
+                    <i class="fas fa-tachometer-alt w-5"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="patient-records.html" class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-blue-50 rounded-lg">
+                    <i class="fas fa-file-medical w-5"></i>
+                    <span>Patient Records</span>
+                </a>
+                <a href="billing.html" class="flex items-center space-x-3 p-3 bg-blue-50 text-primary font-medium rounded-lg">
+                    <i class="fas fa-file-invoice-dollar w-5"></i>
+                    <span>Billing & Payments</span>
+                </a>
+                <a href="appointments.html" class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-blue-50 rounded-lg">
+                    <i class="fas fa-calendar-check w-5"></i>
+                    <span>Appointments</span>
+                </a>
+                <div class="pt-4 border-t">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider mb-2">HIPAA Compliance</p>
+                    <div class="flex items-center space-x-2 p-3 bg-green-50 text-green-700 rounded-lg">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="text-sm">Data Secured</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-4 lg:p-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Billing & Payment Processing</h1>
+                <p class="text-gray-600">Manage patient invoices, process payments, and track financial records with HIPAA-compliant security.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Pending Invoices</p>
+                            <p class="text-3xl font-bold text-gray-800 mt-2">24</p>
+                        </div>
+                        <div class="p-3 bg-yellow-50 rounded-lg">
+                            <i class="fas fa-clock text-yellow-500 text-xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-green-600 text-sm mt-4"><i class="fas fa-arrow-up mr-1"></i> 12% from last month</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Total Revenue</p>
+                            <p class="text-3xl font-bold text-gray-800 mt-2">$42,580</p>
+                        </div>
+                        <div class="p-3 bg-green-50 rounded-lg">
+                            <i class="fas fa-dollar-sign text-green-500 text-xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-green-600 text-sm mt-4"><i class="fas fa-arrow-up mr-1"></i> 8% from last month</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Paid This Month</p>
+                            <p class="text-3xl font-bold text-gray-800 mt-2">156</p>
+                        </div>
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <i class="fas fa-check-circle text-blue-500 text-xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-green-600 text-sm mt-4"><i class="fas fa-arrow-up mr-1"></i> 5% from last month</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Overdue Payments</p>
+                            <p class="text-3xl font-bold text-gray-800 mt-2">7</p>
+                        </div>
+                        <div class="p-3 bg-red-50 rounded-lg">
+                            <i class="fas fa-exclamation-triangle text-red-500 text-xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-red-600 text-sm mt-4"><i class="fas fa-arrow-down mr-1"></i> 3% from last month</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column: Invoice List -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                        <div class="p-6 border-b">
+                            <div class="flex justify-between items-center">
+                                <h2 class="text-xl font-bold text-gray-800">Recent Invoices</h2>
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
+                                    <i class="fas fa-plus mr-2"></i> New Invoice
+                                </button>
+                            </div>
+                            <div class="flex space-x-4 mt-4">
+                                <button class="px-4 py-2 bg-blue-50 text-primary rounded-lg font-medium">All</button>
+                                <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Pending</button>
+                                <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Paid</button>
+                                <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Overdue</button>
+                            </div>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="text-left p-4 text-gray-600 font-medium">Patient</th>
+                                        <th class="text-left p-4 text-gray-600 font-medium">Invoice #</th>
+                                        <th class="text-left p-4 text-gray-600 font-medium">Date</th>
+                                        <th class="text-left p-4 text-gray-600 font-medium">Amount</th>
+                                        <th class="text-left p-4 text-gray-600 font-medium">Status</th>
+                                        <th class="text-left p-4 text-gray-600 font-medium">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="invoice-item border-t">
+                                        <td class="p-4">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                    <i class="fas fa-user text-blue-600"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="font-medium">Robert Johnson</p>
+                                                    <p class="text-gray-500 text-sm">ID: P-10023</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 font-medium">INV-2023-0456</td>
+                                        <td class="p-4">Nov 15, 2023</td>
+                                        <td class="p-4 font-bold">$1,250.00</td>
+                                        <td class="p-4">
+                                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Pending</span>
+                                        </td>
+                                        <td class="p-4">
+                                            <button class="text-primary hover:text-blue-700 mr-3">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-800">
+                                                <i class="fas fa-file-invoice"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr class="invoice-item border-t">
+                                        <td class="p-4">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                    <i class="fas fa-user text-blue-600"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="font-medium">Sarah Williams</p>
+                                                    <p class="text-gray-500 text-sm">ID: P-10045</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 font-medium">INV-2023-0455</td>
+                                        <td class="p-4">Nov 14, 2023</td>
+                                        <td class="p-4 font-bold">$850.00</td>
+                                        <td class="p-4">
+                                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Paid</span>
+                                        </td>
+                                        <td class="p-4">
+                                            <button class="text-primary hover:text-blue-700 mr-3">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-800">
+                                                <i class="fas fa-file-invoice"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr class="invoice-item border-t">
+                                        <td class="p-4">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                    <i class="fas fa-user text-blue-600"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="font-medium">Michael Chen</p>
+                                                    <p class="text-gray-500 text-sm">ID: P-10012</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 font-medium">INV-2023-0454</td>
+                                        <td class="p-4">Nov 10, 2023</td>
+                                        <td class="p-4 font-bold">$2,150.00</td>
+                                        <td class="p-4">
+                                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">Overdue</span>
+                                        </td>
+                                        <td class="p-4">
+                                            <button class="text-primary hover:text-blue-700 mr-3">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-800">
+                                                <i class="fas fa-file-invoice"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr class="invoice-item border-t">
+                                        <td class="p-4">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                    <i class="fas fa-user text-blue-600"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="font-medium">Jennifer Lopez</p>
+                                                    <p class="text-gray-500 text-sm">ID: P-10067</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 font-medium">INV-2023-0453</td>
+                                        <td class="p-4">Nov 8, 2023</td>
+                                        <td class="p-4 font-bold">$1,750.00</td>
+                                        <td class="p-4">
+                                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Paid</span>
+                                        </td>
+                                        <td class="p-4">
+                                            <button class="text-primary hover:text-blue-700 mr-3">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-800">
+                                                <i class="fas fa-file-invoice"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="p-6 border-t flex justify-between items-center">
+                            <p class="text-gray-600">Showing 4 of 24 pending invoices</p>
+                            <button class="text-primary font-medium hover:text-blue-700">
+                                View All Invoices <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Processing Section -->
+                    <div class="bg-white rounded-xl shadow-sm border p-6 mt-8">
+                        <h2 class="text-xl font-bold text-gray-800 mb-6">Process Payment</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Select Patient</label>
+                                <select class="w-full p-3 border border-gray-300 rounded-lg">
+                                    <option>Robert Johnson (P-10023)</option>
+                                    <option>Sarah Williams (P-10045)</option>
+                                    <option>Michael Chen (P-10012)</option>
+                                    <option>Jennifer Lopez (P-10067)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2">Invoice Amount</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-3 text-gray-500">$</span>
+                                    <input type="number" class="w-full p-3 pl-8 border border-gray-300 rounded-lg" placeholder="0.00" value="1250.00">
+                                </div>
+                            </div>
+                            
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 mb-2">Payment Method</label>
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                    <div class="payment-method border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer">
+                                        <i class="fas fa-credit-card text-3xl text-gray-600 mb-2"></i>
+                                        <p class="font-medium">Credit Card</p>
+                                    </div>
+                                    <div class="payment-method border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer">
+                                        <i class="fas fa-university text-3xl text-gray-600 mb-2"></i>
+                                        <p class="font-medium">Bank Transfer</p>
+                                    </div>
+                                    <div class="payment-method border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer">
+                                        <i class="fas fa-money-check-alt text-3xl text-gray-600 mb-2"></i>
+                                        <p class="font-medium">Insurance</p>
+                                    </div>
+                                    <div class="payment-method border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer">
+                                        <i class="fas fa-money-bill-wave text-3xl text-gray-600 mb-2"></i>
+                                        <p class="font-medium">Cash</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 mb-2">Notes (Optional)</label>
+                                <textarea class="w-full p-3 border border-gray-300 rounded-lg" rows="3" placeholder="Add any payment notes..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex justify-end">
+                            <button class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg mr-4 hover:bg-gray-300 transition">Cancel</button>
+                            <button class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i> Process Payment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Patient Info & Quick Actions -->
+                <div>
+                    <!-- Patient Information Card -->
+                    <div class="bg-white rounded-xl shadow-sm border p-6 mb-8">
+                        <h2 class="text-xl font-bold text-gray-800 mb-6">Selected Patient</h2>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-blue-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold">Robert Johnson</p>
+                                <p class="text-gray-600">Patient ID: P-10023</p>
+                                <span class="role-badge bg-blue-100 text-blue-800 mt-1">Self-Pay</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Date of Birth:</span>
+                                <span class="font-medium">05/12/1978</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Insurance:</span>
+                                <span class="font-medium">BlueCross PPO</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Last Visit:</span>
+                                <span class="font-medium">Nov 15, 2023</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Outstanding Balance:</span>
+                                <span class="font-bold text-red-600">$1,250.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t">
+                            <h3 class="font-bold text-gray-800 mb-4">Recent Services</h3>
+                            <ul class="space-y-3">
+                                <li class="flex justify-between">
+                                    <span>Consultation</span>
+                                    <span class="font-medium">$200.00</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Lab Tests</span>
+                                    <span class="font-medium">$450.00</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>MRI Scan</span>
+                                    <span class="font-medium">$600.00</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="bg-white rounded-xl shadow-sm border p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-6">Quick Actions</h2>
+                        
+                        <div class="space-y-4">
+                            <button class="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:bg-blue-50 transition">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-blue-100 rounded-lg mr-4">
+                                        <i class="fas fa-file-invoice text-blue-600"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <p class="font-medium">Generate Invoice</p>
+                                        <p class="text-sm text-gray-600">Create new patient invoice</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </button>
+                            
+                            <button class="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:bg-blue-50 transition">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-green-100 rounded-lg mr-4">
+                                        <i class="fas fa-receipt text-green-600"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <p class="font-medium">Payment Receipt</p>
+                                        <p class="text-sm text-gray-600">Print payment confirmation</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </button>
+                            
+                            <button class="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:bg-blue-50 transition">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-purple-100 rounded-lg mr-4">
+                                        <i class="fas fa-chart-bar text-purple-600"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <p class="font-medium">Financial Report</p>
+                                        <p class="text-sm text-gray-600">Generate monthly report</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </button>
+                            
+                            <button class="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:bg-blue-50 transition">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-red-100 rounded-lg mr-4">
+                                        <i class="fas fa-shield-alt text-red-600"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <p class="font-medium">HIPAA Compliance</p>
+                                        <p class="text-sm text-gray-600">View security logs</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- HIPAA Compliance Notice -->
+                    <div class="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-xl">
+                        <div class="flex items-start">
+                            <i class="fas fa-shield-alt text-blue-600 text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="font-bold text-blue-800 mb-2">HIPAA Compliance</h3>
+                                <p class="text-blue-700 text-sm">All patient billing data is encrypted and access is logged. Only authorized billing staff can view financial records. Patient health information is protected according to HIPAA regulations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-8 mt-12">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Hospital<span class="text-primary">MS</span></h3>
+                    <p class="text-gray-400">Comprehensive hospital management system with secure, HIPAA-compliant billing and patient data handling.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Departments</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Billing</a></li>
+                        <li><a href="#" class="hover:text-white">Patient Records</a></li>
+                        <li><a href="#" class="hover:text-white">Appointments</a></li>
+                        <li><a href="#" class="hover:text-white">Staff Management</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">HIPAA Compliance</a></li>
+                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Access Control</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-shield text-primary mr-2"></i>
+                            <span>Role-based access</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-lock text-primary mr-2"></i>
+                            <span>Encrypted data</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-history text-primary mr-2"></i>
+                            <span>Audit logs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Hospital Management System. All rights reserved. HIPAA Compliant.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        });
+        
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.remove('active');
+            this.classList.remove('active');
+        });
+        
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('border-primary', 'border-2');
+                    m.classList.add('border-gray-200');
+                });
+                this.classList.remove('border-gray-200');
+                this.classList.add('border-primary', 'border-2');
+            });
+        });
+        
+        // Role-based access simulation
+        const userRole = 'staff'; // Can be 'admin', 'staff', or 'patient'
+        
+        // Simulate HIPAA compliance notice
+        console.log('HIPAA Compliance: All patient billing data is encrypted and access-controlled.');
+        console.log('User role detected:', userRole);
+        console.log('Access level: ' + (userRole === 'admin' ? 'Full access' : userRole === 'staff' ? 'Billing access only' : 'Patient view only'));
+    </script>
+</body>
+</html>
