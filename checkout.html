@@ -3,367 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | E-Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Checkout | TechStore</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .form-input:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        .payment-method:hover {
+            border-color: #3b82f6;
+            background-color: #f8fafc;
+        }
+        .order-summary {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         .step-active {
             background-color: #3b82f6;
+            color: white;
+        }
+        .step-inactive {
+            background-color: #e5e7eb;
+            color: #6b7280;
+        }
+        .step-completed {
+            background-color: #10b981;
             color: white;
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-        <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-        <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-        <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-        <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex items-center space-x-4">
+            <a href='index.html' class='text-xl font-bold text-blue-400'>TechStore</a>
+            <div class="hidden md:flex space-x-4">
+                <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+                <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+                <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+                <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+                <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4 mt-2 md:mt-0">
+            <div class="relative">
+                <input type="text" placeholder="Search products..." class="bg-gray-800 text-white px-4 py-2 rounded-lg w-40 md:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button class="absolute right-3 top-2.5 text-gray-400">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg'>Signup</a>
+        </div>
     </nav>
 
-    <!-- Checkout Page Content -->
-    <div class="container mx-auto px-4 py-8" data-aos="fade-up">
+    <!-- Checkout Progress -->
+    <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">Checkout</h1>
         <p class="text-gray-600 mb-8">Complete your purchase securely</p>
-
-        <!-- Checkout Steps -->
-        <div class="flex flex-col md:flex-row justify-between items-center mb-10">
-            <div class="flex items-center mb-4 md:mb-0">
-                <div class="w-8 h-8 rounded-full step-active flex items-center justify-center">1</div>
-                <div class="ml-3">
-                    <p class="font-medium">Cart Review</p>
-                    <p class="text-sm text-gray-500">Items in your cart</p>
+        
+        <div class="flex justify-between items-center mb-10 max-w-3xl mx-auto">
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full step-completed flex items-center justify-center mb-2">
+                    <i class="fas fa-shopping-cart"></i>
                 </div>
+                <span class="text-sm font-medium">Cart</span>
             </div>
-            <div class="hidden md:block w-16 h-1 bg-blue-500"></div>
-            <div class="flex items-center mb-4 md:mb-0">
-                <div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center">2</div>
-                <div class="ml-3">
-                    <p class="font-medium">Shipping & Billing</p>
-                    <p class="text-sm text-gray-500">Your information</p>
+            <div class="h-1 w-20 bg-green-500"></div>
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full step-active flex items-center justify-center mb-2">
+                    <span>2</span>
                 </div>
+                <span class="text-sm font-medium">Checkout</span>
             </div>
-            <div class="hidden md:block w-16 h-1 bg-gray-300"></div>
-            <div class="flex items-center">
-                <div class="w-8 h-8 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center">3</div>
-                <div class="ml-3">
-                    <p class="font-medium">Payment</p>
-                    <p class="text-sm text-gray-500">Secure payment</p>
+            <div class="h-1 w-20 bg-gray-300"></div>
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full step-inactive flex items-center justify-center mb-2">
+                    <span>3</span>
                 </div>
+                <span class="text-sm font-medium">Payment</span>
+            </div>
+            <div class="h-1 w-20 bg-gray-300"></div>
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full step-inactive flex items-center justify-center mb-2">
+                    <span>4</span>
+                </div>
+                <span class="text-sm font-medium">Confirmation</span>
             </div>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-8">
-            <!-- Left Column - Order Summary & Shipping -->
+            <!-- Left Column: Forms -->
             <div class="lg:w-2/3">
                 <!-- Shipping Information -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="bg-white rounded-xl p-6 mb-6 shadow-md">
                     <h2 class="text-xl font-bold text-gray-800 mb-4">Shipping Information</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-gray-700 mb-2">First Name</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="John">
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="John">
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">Last Name</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="Doe">
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Doe">
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-gray-700 mb-2">Address</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="123 Main Street">
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="123 Main Street">
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">City</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="New York">
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="New York">
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">ZIP Code</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="10001">
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="10001">
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-gray-700 mb-2">Country</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg form-input">
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 <option>United States</option>
                                 <option>Canada</option>
                                 <option>United Kingdom</option>
                                 <option>Australia</option>
+                                <option>Germany</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
                 <!-- Payment Method -->
-                <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="bg-white rounded-xl p-6 mb-6 shadow-md">
                     <h2 class="text-xl font-bold text-gray-800 mb-4">Payment Method</h2>
                     <div class="space-y-4">
-                        <div class="flex items-center p-4 border border-gray-300 rounded-lg hover:border-blue-500 cursor-pointer">
-                            <input type="radio" name="payment" id="credit-card" checked class="mr-3">
-                            <label for="credit-card" class="flex-1 cursor-pointer">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="font-medium">Credit/Debit Card</p>
-                                        <p class="text-sm text-gray-500">Pay with your card securely</p>
-                                    </div>
-                                    <div class="flex space-x-2">
-                                        <i data-feather="credit-card" class="text-gray-400"></i>
-                                        <i data-feather="shield" class="text-green-500"></i>
-                                    </div>
+                        <div class="payment-method border-2 border-gray-300 rounded-lg p-4 cursor-pointer flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fab fa-cc-visa text-blue-600 text-xl"></i>
                                 </div>
-                            </label>
+                                <div>
+                                    <h3 class="font-medium">Credit/Debit Card</h3>
+                                    <p class="text-sm text-gray-600">Pay with Visa, Mastercard, or American Express</p>
+                                </div>
+                            </div>
+                            <div class="text-blue-600">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
                         </div>
-
-                        <div class="flex items-center p-4 border border-gray-300 rounded-lg hover:border-blue-500 cursor-pointer">
-                            <input type="radio" name="payment" id="paypal" class="mr-3">
-                            <label for="paypal" class="flex-1 cursor-pointer">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="font-medium">PayPal</p>
-                                        <p class="text-sm text-gray-500">Pay with your PayPal account</p>
-                                    </div>
-                                    <i data-feather="dollar-sign" class="text-blue-500"></i>
+                        
+                        <div class="payment-method border-2 border-gray-300 rounded-lg p-4 cursor-pointer flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fab fa-paypal text-blue-600 text-xl"></i>
                                 </div>
-                            </label>
+                                <div>
+                                    <h3 class="font-medium">PayPal</h3>
+                                    <p class="text-sm text-gray-600">Pay securely with your PayPal account</p>
+                                </div>
+                            </div>
+                            <div class="text-blue-600">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
                         </div>
-
-                        <div class="flex items-center p-4 border border-gray-300 rounded-lg hover:border-blue-500 cursor-pointer">
-                            <input type="radio" name="payment" id="apple-pay" class="mr-3">
-                            <label for="apple-pay" class="flex-1 cursor-pointer">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="font-medium">Apple Pay</p>
-                                        <p class="text-sm text-gray-500">Pay with Apple Pay</p>
-                                    </div>
-                                    <i data-feather="smartphone" class="text-gray-800"></i>
+                        
+                        <div class="payment-method border-2 border-gray-300 rounded-lg p-4 cursor-pointer flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-university text-green-600 text-xl"></i>
                                 </div>
-                            </label>
+                                <div>
+                                    <h3 class="font-medium">Bank Transfer</h3>
+                                    <p class="text-sm text-gray-600">Direct bank transfer</p>
+                                </div>
+                            </div>
+                            <div class="text-blue-600">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Card Details (shown when credit card selected) -->
-                    <div id="card-details" class="mt-6 p-4 bg-gray-50 rounded-lg">
+                    
+                    <!-- Card Details Form (shown when credit card selected) -->
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                        <h3 class="font-medium text-gray-800 mb-4">Card Details</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="md:col-span-2">
                                 <label class="block text-gray-700 mb-2">Card Number</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="1234 5678 9012 3456">
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="1234 5678 9012 3456">
                             </div>
                             <div>
                                 <label class="block text-gray-700 mb-2">Expiry Date</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="MM/YY">
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="MM/YY">
                             </div>
                             <div>
                                 <label class="block text-gray-700 mb-2">CVV</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="123">
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="123">
                             </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-gray-700 mb-2">Name on Card</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="John Doe">
-                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Tracking Note -->
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-6">
+                    <div class="flex items-start">
+                        <div class="text-blue-600 mr-4 mt-1">
+                            <i class="fas fa-shipping-fast text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 mb-2">Order Tracking</h3>
+                            <p class="text-gray-700 mb-3">After completing your purchase, you'll receive a tracking number to monitor your order in real-time. You can track your order status from your account dashboard.</p>
+                            <a href="#" class="text-blue-600 font-medium hover:underline">Learn more about our shipping policies</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column - Order Summary -->
+            <!-- Right Column: Order Summary -->
             <div class="lg:w-1/3">
-                <div class="bg-white rounded-lg shadow-md p-6 sticky top-6">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Order Summary</h2>
+                <div class="bg-white rounded-xl p-6 order-summary sticky top-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Order Summary</h2>
                     
                     <!-- Order Items -->
                     <div class="space-y-4 mb-6">
                         <div class="flex items-center">
-                            <div class="w-16 h-16 bg-gray-200 rounded-lg mr-4"></div>
-                            <div class="flex-1">
-                                <h3 class="font-medium">Wireless Headphones</h3>
-                                <p class="text-gray-500 text-sm">Quantity: 1</p>
-                                <p class="font-bold text-gray-800">$199.99</p>
+                            <div class="w-16 h-16 bg-gray-200 rounded-lg mr-4 flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Product" class="w-full h-full object-cover rounded-lg">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="font-medium text-gray-800">Wireless Bluetooth Headphones</h4>
+                                <p class="text-gray-600 text-sm">Color: Black</p>
+                                <div class="flex justify-between items-center mt-1">
+                                    <span class="text-gray-700">1 × $129.99</span>
+                                    <span class="font-medium">$129.99</span>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="flex items-center">
-                            <div class="w-16 h-16 bg-gray-200 rounded-lg mr-4"></div>
-                            <div class="flex-1">
-                                <h3 class="font-medium">Smart Watch</h3>
-                                <p class="text-gray-500 text-sm">Quantity: 1</p>
-                                <p class="font-bold text-gray-800">$299.99</p>
+                            <div class="w-16 h-16 bg-gray-200 rounded-lg mr-4 flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Product" class="w-full h-full object-cover rounded-lg">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="font-medium text-gray-800">Smartphone Case</h4>
+                                <p class="text-gray-600 text-sm">Model: iPhone 14</p>
+                                <div class="flex justify-between items-center mt-1">
+                                    <span class="text-gray-700">2 × $24.99</span>
+                                    <span class="font-medium">$49.98</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Price Breakdown -->
-                    <div class="border-t border-b border-gray-200 py-4 space-y-2">
-                        <div class="flex justify-between">
+                    
+                    <!-- Pricing Breakdown -->
+                    <div class="border-t border-b border-gray-200 py-4 mb-4">
+                        <div class="flex justify-between mb-2">
                             <span class="text-gray-600">Subtotal</span>
-                            <span class="font-medium">$499.98</span>
+                            <span class="font-medium">$179.97</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between mb-2">
                             <span class="text-gray-600">Shipping</span>
                             <span class="font-medium">$9.99</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Tax</span>
-                            <span class="font-medium">$35.00</span>
+                            <span class="font-medium">$14.40</span>
                         </div>
                     </div>
-
+                    
                     <!-- Total -->
-                    <div class="flex justify-between items-center mt-4 mb-6">
+                    <div class="flex justify-between items-center mb-6">
                         <span class="text-lg font-bold text-gray-800">Total</span>
-                        <span class="text-2xl font-bold text-blue-600">$544.97</span>
+                        <span class="text-2xl font-bold text-blue-600">$204.36</span>
                     </div>
-
-                    <!-- Promo Code -->
-                    <div class="mb-6">
-                        <label class="block text-gray-700 mb-2">Promo Code</label>
-                        <div class="flex">
-                            <input type="text" class="flex-1 p-3 border border-gray-300 rounded-l-lg form-input" placeholder="Enter code">
-                            <button class="bg-gray-800 text-white px-4 rounded-r-lg hover:bg-gray-700 transition">Apply</button>
-                        </div>
+                    
+                    <!-- Checkout Button -->
+                    <button id="placeOrderBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition duration-300 mb-4">
+                        Place Order
+                    </button>
+                    
+                    <!-- Security Note -->
+                    <div class="text-center text-gray-600 text-sm">
+                        <i class="fas fa-lock mr-1"></i>
+                        Your payment is secured with 256-bit SSL encryption
                     </div>
-
-                    <!-- Terms & Place Order -->
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <input type="checkbox" id="terms" class="mt-1 mr-3">
-                            <label for="terms" class="text-sm text-gray-600">
-                                I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                            </label>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <input type="checkbox" id="newsletter" class="mt-1 mr-3">
-                            <label for="newsletter" class="text-sm text-gray-600">
-                                Subscribe to our newsletter for updates and exclusive offers
-                            </label>
-                        </div>
-
-                        <button id="place-order" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition flex items-center justify-center">
-                            <i data-feather="lock" class="mr-2"></i>
-                            Place Order Securely
-                        </button>
-                        
-                        <p class="text-center text-sm text-gray-500">
-                            <i data-feather="shield" class="inline mr-1 text-green-500"></i>
-                            Your payment is secure and encrypted
-                        </p>
+                    
+                    <!-- Return Policy -->
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <h4 class="font-medium text-gray-800 mb-2">Return Policy</h4>
+                        <p class="text-gray-600 text-sm">You can return any item within 30 days of delivery for a full refund. <a href="#" class="text-blue-600 hover:underline">Learn more</a></p>
                     </div>
                 </div>
-
-                <!-- Support Info -->
-                <div class="mt-6 bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-start">
-                        <i data-feather="help-circle" class="text-blue-500 mr-3 mt-1"></i>
-                        <div>
-                            <h3 class="font-bold text-gray-800">Need Help?</h3>
-                            <p class="text-gray-600 text-sm mt-1">Contact our support team 24/7</p>
-                            <p class="text-blue-600 font-medium mt-2">support@ecommerce.com</p>
+                
+                <!-- User Reviews Preview -->
+                <div class="bg-white rounded-xl p-6 mt-6 shadow-md">
+                    <h3 class="font-bold text-gray-800 mb-4">What Our Customers Say</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4 py-1">
+                            <p class="text-gray-700 italic">"Fast shipping and excellent customer service. My order arrived a day early!"</p>
+                            <div class="flex items-center mt-2">
+                                <div class="text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">- Sarah M.</span>
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-4 py-1">
+                            <p class="text-gray-700 italic">"The checkout process was smooth and secure. Will definitely shop here again."</p>
+                            <div class="flex items-center mt-2">
+                                <div class="text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">- James L.</span>
+                            </div>
                         </div>
                     </div>
+                    <a href="product-details.html#reviews" class="block text-center text-blue-600 font-medium mt-4 hover:underline">View all reviews</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white mt-12 py-8">
+    <footer class="bg-gray-900 text-white py-8 mt-12">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h2 class="text-2xl font-bold">E-Commerce</h2>
-                    <p class="text-gray-400">Secure shopping experience</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">TechStore</h3>
+                    <p class="text-gray-400">Your one-stop shop for the latest tech gadgets and electronics.</p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
-                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
-                    <a href="#" class="text-gray-400 hover:text-white">Contact Us</a>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
+                        <li><a href="cart.html" class="text-gray-400 hover:text-white">Cart</a></li>
+                        <li><a href="checkout.html" class="text-gray-400 hover:text-white">Checkout</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Order Tracking</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Stay Connected</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg text-gray-900 w-full">
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg">Subscribe</button>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-400">
-                <p>&copy; 2024 E-Commerce. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 TechStore. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript for Interactive Elements -->
     <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        // Initialize Feather Icons
-        feather.replace();
-
-        // Payment method toggle
-        document.querySelectorAll('input[name="payment"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const cardDetails = document.getElementById('card-details');
-                if (this.id === 'credit-card') {
-                    cardDetails.classList.remove('hidden');
-                } else {
-                    cardDetails.classList.add('hidden');
-                }
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                // Remove active state from all methods
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('border-blue-500', 'bg-blue-50');
+                    m.classList.add('border-gray-300');
+                });
+                
+                // Add active state to clicked method
+                this.classList.remove('border-gray-300');
+                this.classList.add('border-blue-500', 'bg-blue-50');
             });
         });
-
-        // Place order button handler
-        document.getElementById('place-order').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Validate required fields
-            const requiredFields = document.querySelectorAll('input[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('border-red-500');
-                } else {
-                    field.classList.remove('border-red-500');
-                }
-            });
-            
-            if (!isValid) {
-                alert('Please fill in all required fields');
-                return;
-            }
-            
-            // Simulate order processing
-            this.innerHTML = '<i data-feather="loader" class="animate-spin mr-2"></i> Processing...';
+        
+        // Place order button
+        document.getElementById('placeOrderBtn').addEventListener('click', function() {
+            // In a real implementation, this would process the payment
+            // For demo purposes, we'll show a success message
+            this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
             this.disabled = true;
             
-            // Simulate API call
+            // Simulate payment processing
             setTimeout(() => {
-                alert('Order placed successfully! You will be redirected to order tracking.');
-                // In a real app, redirect to order confirmation page
+                alert('Order placed successfully! You will be redirected to the order confirmation page.');
+                // In a real implementation, redirect to confirmation page
                 // window.location.href = 'order-confirmation.html';
-                
-                this.innerHTML = '<i data-feather="check" class="mr-2"></i> Order Placed!';
-                setTimeout(() => {
-                    this.innerHTML = '<i data-feather="lock" class="mr-2"></i> Place Order Securely';
-                    this.disabled = false;
-                }, 2000);
             }, 2000);
         });
-
-        // Form validation styling
-        document.querySelectorAll('.form-input').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.classList.add('border-blue-500');
-            });
-            
+        
+        // Form validation
+        const formInputs = document.querySelectorAll('input, select');
+        formInputs.forEach(input => {
             input.addEventListener('blur', function() {
-                this.classList.remove('border-blue-500');
-                if (!this.value.trim() && this.hasAttribute('required')) {
+                if (this.value.trim() === '' && this.hasAttribute('required')) {
                     this.classList.add('border-red-500');
+                } else {
+                    this.classList.remove('border-red-500');
                 }
             });
         });
