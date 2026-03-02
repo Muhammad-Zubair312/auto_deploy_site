@@ -3,242 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Professional Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <meta name="description" content="Read our latest articles and insights on web development, design trends, and business strategies.">
+    <meta name="description" content="Professional blog with insights on industry trends, best practices, and expert advice.">
+    <meta name="keywords" content="blog, professional, industry insights, web development, design, business">
+    <meta name="author" content="Professional Solutions">
+    <title>Blog | Professional Insights & Industry Trends</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .category-tag:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-        <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
-        <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
-        <a href='services.html' class='px-3 py-2 hover:text-blue-400'>Services</a>
-        <a href='blog.html' class='px-3 py-2 hover:text-blue-400'>Blog</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
+        <div class="text-xl font-bold text-blue-400 mb-2 md:mb-0">ProSolutions</div>
+        <div class="flex flex-wrap space-x-2 md:space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='about-us.html' class='px-3 py-2 hover:text-blue-400'>About Us</a>
+            <a href='services.html' class='px-3 py-2 hover:text-blue-400'>Services</a>
+            <a href='portfolio.html' class='px-3 py-2 hover:text-blue-400'>Portfolio</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
+            <a href='blog.html' class='px-3 py-2 hover:text-blue-400 font-semibold text-blue-300'>Blog</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        </div>
     </nav>
 
     <!-- Blog Header -->
-    <header class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Blog</h1>
-            <p class="text-xl md:text-2xl opacity-90">Insights, tips, and industry news</p>
+    <header class="bg-gradient-to-r from-blue-900 to-gray-900 text-white py-16 px-4">
+        <div class="container mx-auto max-w-6xl text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Professional Insights Blog</h1>
+            <p class="text-xl text-blue-200 max-w-3xl mx-auto">Stay updated with the latest industry trends, best practices, and expert advice to grow your business and skills.</p>
+            <div class="mt-8">
+                <div class="inline-flex flex-wrap gap-2 justify-center">
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium">All Posts</span>
+                    <span class="bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-600 cursor-pointer category-tag">Web Development</span>
+                    <span class="bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-600 cursor-pointer category-tag">UI/UX Design</span>
+                    <span class="bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-600 cursor-pointer category-tag">Business Strategy</span>
+                    <span class="bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-600 cursor-pointer category-tag">Digital Marketing</span>
+                    <span class="bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-600 cursor-pointer category-tag">Technology</span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Blog Content -->
-    <main class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Main Content -->
-            <div class="lg:col-span-2">
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-6xl py-12 px-4">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Blog Posts Section -->
+            <div class="lg:w-2/3">
                 <!-- Featured Post -->
-                <article class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                         alt="Featured Blog Post" class="w-full h-64 object-cover">
-                    <div class="p-6">
-                        <span class="text-blue-600 font-semibold text-sm">FEATURED</span>
-                        <h2 class="text-2xl font-bold mt-2 mb-4">The Future of Web Development in 2024</h2>
-                        <p class="text-gray-600 mb-4">Explore the latest trends and technologies shaping the future of web development, from AI integration to progressive web apps.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-4">
-                                <span class="text-sm text-gray-500">May 15, 2024</span>
-                                <span class="text-sm text-gray-500">•</span>
-                                <span class="text-sm text-gray-500">8 min read</span>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 blog-card">
+                    <div class="md:flex">
+                        <div class="md:w-2/5">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Future of Web Development" 
+                                 class="w-full h-64 md:h-full object-cover">
+                        </div>
+                        <div class="p-8 md:w-3/5">
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">Featured</span>
+                                <span class="mx-4">•</span>
+                                <span>May 15, 2023</span>
+                                <span class="mx-4">•</span>
+                                <span>8 min read</span>
                             </div>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Read More →</a>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">The Future of Web Development: Trends to Watch in 2023</h2>
+                            <p class="text-gray-600 mb-6">Explore the emerging technologies and methodologies that are shaping the future of web development, from AI integration to progressive web apps and beyond.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Author" 
+                                         class="w-10 h-10 rounded-full mr-3">
+                                    <div>
+                                        <p class="font-medium text-gray-800">Alex Johnson</p>
+                                        <p class="text-sm text-gray-500">Lead Developer</p>
+                                    </div>
+                                </div>
+                                <a href="#" class="text-blue-600 font-medium hover:text-blue-800">Read More →</a>
+                            </div>
                         </div>
                     </div>
-                </article>
+                </div>
 
                 <!-- Blog Posts Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Post 1 -->
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                             alt="UI/UX Design Principles" class="w-full h-48 object-cover">
+                    <article class="bg-white rounded-xl shadow-md overflow-hidden blog-card">
+                        <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="UI/UX Design Principles" 
+                             class="w-full h-48 object-cover">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Essential UI/UX Design Principles for 2024</h3>
-                            <p class="text-gray-600 text-sm mb-4">Learn the fundamental design principles that will help you create intuitive and engaging user experiences.</p>
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">UI/UX Design</span>
+                                <span class="mx-3">•</span>
+                                <span>April 28, 2023</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">10 Essential UI/UX Design Principles for Modern Applications</h3>
+                            <p class="text-gray-600 mb-4">Learn the fundamental design principles that can transform your user interfaces and create exceptional user experiences.</p>
                             <div class="flex items-center justify-between">
-                                <span class="text-sm text-gray-500">May 12, 2024</span>
-                                <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">Read More</a>
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Author" 
+                                         class="w-8 h-8 rounded-full mr-2">
+                                    <span class="text-sm font-medium text-gray-700">Sarah Miller</span>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-medium hover:text-blue-800">Read More</a>
                             </div>
                         </div>
                     </article>
 
                     <!-- Post 2 -->
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                             alt="SEO Strategies" class="w-full h-48 object-cover">
+                    <article class="bg-white rounded-xl shadow-md overflow-hidden blog-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="SEO Strategies" 
+                             class="w-full h-48 object-cover">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Advanced SEO Strategies for Modern Websites</h3>
-                            <p class="text-gray-600 text-sm mb-4">Discover cutting-edge SEO techniques to improve your website's visibility and drive organic traffic.</p>
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">Digital Marketing</span>
+                                <span class="mx-3">•</span>
+                                <span>April 15, 2023</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Advanced SEO Strategies for 2023: Beyond Keywords</h3>
+                            <p class="text-gray-600 mb-4">Discover the latest SEO techniques that go beyond traditional keyword optimization to improve your website's visibility.</p>
                             <div class="flex items-center justify-between">
-                                <span class="text-sm text-gray-500">May 8, 2024</span>
-                                <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">Read More</a>
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Author" 
+                                         class="w-8 h-8 rounded-full mr-2">
+                                    <span class="text-sm font-medium text-gray-700">Michael Chen</span>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-medium hover:text-blue-800">Read More</a>
                             </div>
                         </div>
                     </article>
 
                     <!-- Post 3 -->
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                             alt="Business Growth" class="w-full h-48 object-cover">
+                    <article class="bg-white rounded-xl shadow-md overflow-hidden blog-card">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Remote Work Productivity" 
+                             class="w-full h-48 object-cover">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">How to Scale Your Business with Digital Marketing</h3>
-                            <p class="text-gray-600 text-sm mb-4">Effective digital marketing strategies to help your business grow and reach new customers online.</p>
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full font-medium">Business Strategy</span>
+                                <span class="mx-3">•</span>
+                                <span>March 30, 2023</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Maximizing Productivity in Remote Teams: Tools and Techniques</h3>
+                            <p class="text-gray-600 mb-4">Effective strategies and tools to maintain high productivity and collaboration in distributed work environments.</p>
                             <div class="flex items-center justify-between">
-                                <span class="text-sm text-gray-500">May 3, 2024</span>
-                                <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">Read More</a>
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Author" 
+                                         class="w-8 h-8 rounded-full mr-2">
+                                    <span class="text-sm font-medium text-gray-700">David Wilson</span>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-medium hover:text-blue-800">Read More</a>
                             </div>
                         </div>
                     </article>
 
                     <!-- Post 4 -->
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                             alt="Mobile Development" class="w-full h-48 object-cover">
+                    <article class="bg-white rounded-xl shadow-md overflow-hidden blog-card">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Mobile App Development" 
+                             class="w-full h-48 object-cover">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3">Mobile-First Development: Best Practices</h3>
-                            <p class="text-gray-600 text-sm mb-4">Why mobile-first approach is crucial and how to implement it effectively in your projects.</p>
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full font-medium">Technology</span>
+                                <span class="mx-3">•</span>
+                                <span>March 18, 2023</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Cross-Platform Mobile Development: React Native vs Flutter</h3>
+                            <p class="text-gray-600 mb-4">A comprehensive comparison of the two leading cross-platform frameworks for mobile app development in 2023.</p>
                             <div class="flex items-center justify-between">
-                                <span class="text-sm text-gray-500">April 28, 2024</span>
-                                <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">Read More</a>
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Author" 
+                                         class="w-8 h-8 rounded-full mr-2">
+                                    <span class="text-sm font-medium text-gray-700">Alex Johnson</span>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-medium hover:text-blue-800">Read More</a>
                             </div>
                         </div>
                     </article>
                 </div>
 
                 <!-- Pagination -->
-                <div class="flex justify-center mt-12 space-x-2">
-                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">1</button>
-                    <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">2</button>
-                    <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">3</button>
-                    <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Next →</button>
+                <div class="flex justify-center mt-12">
+                    <nav class="flex items-center space-x-2">
+                        <a href="#" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-blue-600 hover:text-white">Previous</a>
+                        <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg">1</a>
+                        <a href="#" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-blue-600 hover:text-white">2</a>
+                        <a href="#" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-blue-600 hover:text-white">3</a>
+                        <span class="px-2 text-gray-500">...</span>
+                        <a href="#" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-blue-600 hover:text-white">8</a>
+                        <a href="#" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-blue-600 hover:text-white">Next</a>
+                    </nav>
                 </div>
             </div>
 
             <!-- Sidebar -->
-            <div class="lg:col-span-1">
-                <!-- Search -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <h3 class="text-lg font-bold mb-4">Search Blog</h3>
+            <div class="lg:w-1/3">
+                <!-- Search Box -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Search Blog</h3>
                     <div class="flex">
-                        <input type="text" placeholder="Search articles..." class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700">
-                            <i data-feather="search" class="w-4 h-4"></i>
+                        <input type="text" placeholder="Search articles..." class="flex-grow border border-gray-300 rounded-l-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button class="bg-blue-600 text-white px-5 rounded-r-lg hover:bg-blue-700">
+                            <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- Categories -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <h3 class="text-lg font-bold mb-4">Categories</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 flex justify-between"><span>Web Development</span> <span class="bg-gray-100 px-2 rounded">12</span></a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 flex justify-between"><span>UI/UX Design</span> <span class="bg-gray-100 px-2 rounded">8</span></a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 flex justify-between"><span>Digital Marketing</span> <span class="bg-gray-100 px-2 rounded">15</span></a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 flex justify-between"><span>Business Strategy</span> <span class="bg-gray-100 px-2 rounded">6</span></a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 flex justify-between"><span>Technology</span> <span class="bg-gray-100 px-2 rounded">10</span></a></li>
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Categories</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:text-blue-600"><span>Web Development</span> <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">12</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:text-blue-600"><span>UI/UX Design</span> <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">8</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:text-blue-600"><span>Digital Marketing</span> <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">15</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:text-blue-600"><span>Business Strategy</span> <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">9</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-700 hover:text-blue-600"><span>Technology</span> <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">11</span></a></li>
                     </ul>
                 </div>
 
-                <!-- Recent Posts -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <h3 class="text-lg font-bold mb-4">Recent Posts</h3>
+                <!-- Popular Posts -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Popular Posts</h3>
                     <div class="space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                                 alt="Recent Post" class="w-16 h-16 object-cover rounded">
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                                 alt="Popular Post" 
+                                 class="w-16 h-16 object-cover rounded-lg mr-4">
                             <div>
-                                <h4 class="font-semibold text-sm">UI/UX Design Principles</h4>
-                                <p class="text-xs text-gray-500">May 12, 2024</p>
+                                <h4 class="font-medium text-gray-800 hover:text-blue-600 cursor-pointer">The Future of Web Development</h4>
+                                <p class="text-sm text-gray-500">May 15, 2023</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                                 alt="Recent Post" class="w-16 h-16 object-cover rounded">
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                                 alt="Popular Post" 
+                                 class="w-16 h-16 object-cover rounded-lg mr-4">
                             <div>
-                                <h4 class="font-semibold text-sm">SEO Strategies Guide</h4>
-                                <p class="text-xs text-gray-500">May 8, 2024</p>
+                                <h4 class="font-medium text-gray-800 hover:text-blue-600 cursor-pointer">10 Essential UI/UX Design Principles</h4>
+                                <p class="text-sm text-gray-500">April 28, 2023</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                                 alt="Popular Post" 
+                                 class="w-16 h-16 object-cover rounded-lg mr-4">
+                            <div>
+                                <h4 class="font-medium text-gray-800 hover:text-blue-600 cursor-pointer">Advanced SEO Strategies for 2023</h4>
+                                <p class="text-sm text-gray-500">April 15, 2023</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Newsletter -->
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-md p-6 text-white">
-                    <h3 class="text-lg font-bold mb-2">Subscribe to Newsletter</h3>
-                    <p class="text-sm opacity-90 mb-4">Get the latest articles and updates delivered to your inbox.</p>
-                    <form class="space-y-3">
-                        <input type="email" placeholder="Your email address" class="w-full px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
-                        <button type="submit" class="w-full bg-white text-blue-600 py-2 rounded-lg font-semibold hover:bg-gray-100 transition duration-200">Subscribe</button>
+                <!-- Newsletter Subscription -->
+                <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-md p-6 text-white">
+                    <h3 class="text-xl font-bold mb-3">Subscribe to Our Newsletter</h3>
+                    <p class="text-blue-100 mb-4">Get the latest articles and updates directly in your inbox.</p>
+                    <form id="newsletterForm" class="space-y-3">
+                        <input type="email" placeholder="Your email address" required class="w-full px-4 py-3 rounded-lg text-gray-800 focus:outline-none">
+                        <button type="submit" class="w-full bg-white text-blue-700 font-medium py-3 rounded-lg hover:bg-gray-100">Subscribe</button>
                     </form>
+                    <p class="text-xs text-blue-200 mt-3">We respect your privacy. Unsubscribe at any time.</p>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- Social Media Integration -->
+    <section class="bg-gray-100 py-12 px-4">
+        <div class="container mx-auto max-w-6xl text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Follow Us on Social Media</h2>
+            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Stay connected and get daily updates, tips, and industry news.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="bg-blue-600 text-white p-4 rounded-full hover:bg-blue-700 transform hover:-translate-y-1 transition duration-300">
+                    <i class="fab fa-facebook-f text-xl"></i>
+                </a>
+                <a href="#" class="bg-blue-400 text-white p-4 rounded-full hover:bg-blue-500 transform hover:-translate-y-1 transition duration-300">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="#" class="bg-pink-600 text-white p-4 rounded-full hover:bg-pink-700 transform hover:-translate-y-1 transition duration-300">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="bg-blue-700 text-white p-4 rounded-full hover:bg-blue-800 transform hover:-translate-y-1 transition duration-300">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="#" class="bg-gray-800 text-white p-4 rounded-full hover:bg-black transform hover:-translate-y-1 transition duration-300">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Company</h3>
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">ProSolutions</h3>
+                    <p class="text-gray-400">Providing professional solutions and insights to help businesses grow in the digital age.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
-                        <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="index.html" class="text-gray-400 hover:text-blue-400">Home</a></li>
+                        <li><a href="about-us.html" class="text-gray-400 hover:text-blue-400">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-blue-400">Services</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-blue-400">Blog</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Resources</h3>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Documentation</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Support</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">API Status</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Sitemap</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400">Tutorials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400">Case Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400">Support</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Legal</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    <h4 class="text-lg font-bold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-3 text-blue-400"></i> 123 Business Ave, Suite 100</li>
+                        <li class="flex items-center"><i class="fas fa-phone mr-3 text-blue-400"></i> (555) 123-4567</li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-3 text-blue-400"></i> info@prosolutions.com</li>
                     </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Connect</h3>
-                    <div class="flex space-x-4 mb-4">
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="facebook" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="twitter" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="linkedin" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i data-feather="instagram" class="w-5 h-5"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-400">contact@company.com</p>
-                    <p class="text-gray-400">+1 (555) 123-4567</p>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Professional Portfolio. All rights reserved.</p>
+                <p>&copy; 2023 ProSolutions. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        feather.replace();
+        // Newsletter form submission
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // In a real application, you would send this to a server
+            alert(`Thank you for subscribing with email: ${email}`);
+            this.reset();
+        });
+
+        // Category tag filtering (simplified example)
+        document.querySelectorAll('.category-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                const category = this.textContent.trim();
+                alert(`Filtering posts by category: ${category}`);
+                // In a real implementation, this would filter the blog posts
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>
