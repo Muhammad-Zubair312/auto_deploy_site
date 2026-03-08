@@ -3,166 +3,487 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Basic Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <title>Contact Us | Professional Services</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .auth-modal {
+            transition: all 0.3s ease;
+        }
+        .auth-modal.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+        .auth-modal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'><a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a><a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a><a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a><a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a><a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a></nav>
+    <nav class='bg-gray-900 text-white p-4 flex justify-between items-center'>
+        <div class="flex space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Home</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>About</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 transition-colors font-semibold text-blue-300'>Contact</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Signup</a>
+        </div>
+        <div class="flex items-center space-x-2">
+            <span id="userStatus" class="text-sm text-gray-300">Guest</span>
+            <button id="authToggle" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors">Login</button>
+        </div>
+    </nav>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="auth-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800" id="authTitle">Login</h2>
+                <button id="closeAuthModal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" id="loginEmail" required class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="loginPassword" required class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">Login</button>
+            </form>
+            
+            <form id="signupForm" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="signupName" required class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" id="signupEmail" required class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="signupPassword" required class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500">
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors">Create Account</button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <p class="text-gray-600" id="authSwitchText">Don't have an account? <button id="switchToSignup" class="text-blue-600 hover:text-blue-800 font-medium">Sign up</button></p>
+                <p class="text-gray-600 hidden" id="authSwitchText2">Already have an account? <button id="switchToLogin" class="text-blue-600 hover:text-blue-800 font-medium">Login</button></p>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-12">
-        <!-- Page Header -->
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">Get In Touch</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-            </p>
-        </div>
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get in Touch</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Have questions? We're here to help. Reach out to our team and we'll respond as soon as possible.</p>
+            </div>
 
-        <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <!-- Contact Information -->
-            <div class="space-y-8">
-                <div>
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 contact-form">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
                     
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i data-feather="mail" class="text-blue-600"></i>
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">First Name *</label>
+                                <input type="text" required class="w-full p-4 border border-gray-300 rounded-lg focus:border-blue-500">
                             </div>
                             <div>
-                                <h3 class="font-semibold text-gray-800">Email</h3>
-                                <p class="text-gray-600">info@basicwebsite.com</p>
-                                <p class="text-gray-600">support@basicwebsite.com</p>
+                                <label class="block text-gray-700 mb-2">Last Name *</label>
+                                <input type="text" required class="w-full p-4 border border-gray-300 rounded-lg focus:border-blue-500">
                             </div>
                         </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" required class="w-full p-4 border border-gray-300 rounded-lg focus:border-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2">Subject *</label>
+                            <input type="text" required class="w-full p-4 border border-gray-300 rounded-lg focus:border-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2">Message *</label>
+                            <textarea rows="6" required class="w-full p-4 border border-gray-300 rounded-lg focus:border-blue-500"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
 
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i data-feather="phone" class="text-blue-600"></i>
+                <!-- Contact Information & Auth Status -->
+                <div class="space-y-8">
+                    <!-- Authentication Status Card -->
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Account Status</h2>
+                        <div id="authStatus" class="space-y-4">
+                            <div class="flex items-center p-4 bg-white rounded-lg shadow-sm">
+                                <div class="mr-4">
+                                    <i class="fas fa-user text-2xl text-gray-400"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">You are currently browsing as a guest</p>
+                                    <p class="text-gray-600 text-sm">Log in to access personalized support and save your contact preferences.</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Phone</h3>
-                                <p class="text-gray-600">+1 (555) 123-4567</p>
-                                <p class="text-gray-600">+1 (555) 987-6543</p>
+                            <button id="showLoginBtn" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                                Log In for Enhanced Support
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Our Office</h3>
+                                    <p class="text-gray-600">123 Business Avenue<br>Suite 100<br>San Francisco, CA 94107</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="mr-4 mt-1">
+                                    <i class="fas fa-phone text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Phone Number</h3>
+                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                    <p class="text-gray-500 text-sm">Mon-Fri, 9am-6pm PST</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="mr-4 mt-1">
+                                    <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Email Address</h3>
+                                    <p class="text-gray-600">support@example.com</p>
+                                    <p class="text-gray-500 text-sm">We respond within 24 hours</p>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i data-feather="map-pin" class="text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Address</h3>
-                                <p class="text-gray-600">123 Business Street</p>
-                                <p class="text-gray-600">Suite 100, City, State 12345</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i data-feather="clock" class="text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Business Hours</h3>
-                                <p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                                <p class="text-gray-600">Saturday: 10:00 AM - 4:00 PM</p>
+                        
+                        <div class="mt-8 pt-8 border-t border-gray-200">
+                            <h3 class="font-semibold text-gray-900 mb-4">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
+                                    <i class="fab fa-twitter text-gray-600"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
+                                    <i class="fab fa-facebook-f text-gray-600"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
+                                    <i class="fab fa-linkedin-in text-gray-600"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
+                                    <i class="fab fa-instagram text-gray-600"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Contact Form -->
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Send Us a Message</h2>
+            <!-- FAQ Section -->
+            <div class="mt-16 bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
                 
-                <form class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                            <input type="text" id="firstName" name="firstName" 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                   placeholder="Enter your first name" required>
-                        </div>
-                        <div>
-                            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                   placeholder="Enter your last name" required>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-colors">
+                        <h3 class="font-bold text-gray-900 mb-2">How quickly do you respond to inquiries?</h3>
+                        <p class="text-gray-600">We typically respond within 24 hours during business days. Logged-in users receive priority support.</p>
                     </div>
-
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                               placeholder="Enter your email" required>
+                    
+                    <div class="border border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-colors">
+                        <h3 class="font-bold text-gray-900 mb-2">Do I need an account to contact support?</h3>
+                        <p class="text-gray-600">No, but creating an account allows us to provide personalized assistance and track your inquiry history.</p>
                     </div>
-
-                    <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                               placeholder="Enter your phone number">
+                    
+                    <div class="border border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-colors">
+                        <h3 class="font-bold text-gray-900 mb-2">What information should I include in my message?</h3>
+                        <p class="text-gray-600">Please include relevant details about your inquiry, any error messages, and your contact preferences.</p>
                     </div>
-
-                    <div>
-                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                        <select id="subject" name="subject" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                            <option value="">Select a subject</option>
-                            <option value="general">General Inquiry</option>
-                            <option value="support">Technical Support</option>
-                            <option value="billing">Billing Question</option>
-                            <option value="feedback">Feedback</option>
-                            <option value="other">Other</option>
-                        </select>
+                    
+                    <div class="border border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-colors">
+                        <h3 class="font-bold text-gray-900 mb-2">Can I schedule a call with your team?</h3>
+                        <p class="text-gray-600">Yes, after submitting your inquiry, our team can arrange a call at a time convenient for you.</p>
                     </div>
-
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" 
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                  placeholder="Enter your message" required></textarea>
-                    </div>
-
-                    <button type="submit" 
-                            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors font-semibold">
-                        Send Message
-                    </button>
-                </form>
+                </div>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-16">
+    <footer class="bg-gray-900 text-white py-12 mt-16">
         <div class="container mx-auto px-4">
-            <div class="text-center">
-                <p>&copy; 2024 Basic Website. All rights reserved.</p>
-                <div class="flex justify-center space-x-6 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="facebook"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="linkedin"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="instagram"></i>
-                    </a>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold">Professional Services</h2>
+                    <p class="text-gray-400 mt-2">Connecting you with excellence</p>
                 </div>
+                
+                <div class="flex space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="contact.html" class="text-blue-300 font-medium">Contact</a>
+                    <a href="login.html" class="text-gray-300 hover:text-white transition-colors">Login</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Professional Services. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        feather.replace();
+        // Authentication State
+        let isLoggedIn = false;
+        let currentUser = null;
+
+        // DOM Elements
+        const authModal = document.getElementById('authModal');
+        const authToggle = document.getElementById('authToggle');
+        const closeAuthModal = document.getElementById('closeAuthModal');
+        const showLoginBtn = document.getElementById('showLoginBtn');
+        const userStatus = document.getElementById('userStatus');
+        const authStatus = document.getElementById('authStatus');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const switchToSignup = document.getElementById('switchToSignup');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const authTitle = document.getElementById('authTitle');
+        const authSwitchText = document.getElementById('authSwitchText');
+        const authSwitchText2 = document.getElementById('authSwitchText2');
+
+        // Show Login Form
+        function showLoginForm() {
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+            authTitle.textContent = 'Login';
+            authSwitchText.classList.remove('hidden');
+            authSwitchText2.classList.add('hidden');
+        }
+
+        // Show Signup Form
+        function showSignupForm() {
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+            authTitle.textContent = 'Create Account';
+            authSwitchText.classList.add('hidden');
+            authSwitchText2.classList.remove('hidden');
+        }
+
+        // Open Auth Modal
+        function openAuthModal() {
+            authModal.classList.remove('hidden');
+            setTimeout(() => authModal.classList.add('active'), 10);
+            showLoginForm();
+        }
+
+        // Close Auth Modal
+        function closeAuthModalFunc() {
+            authModal.classList.remove('active');
+            setTimeout(() => authModal.classList.add('hidden'), 300);
+        }
+
+        // Update UI based on auth state
+        function updateAuthUI() {
+            if (isLoggedIn && currentUser) {
+                userStatus.textContent = currentUser.name;
+                authToggle.textContent = 'Logout';
+                authToggle.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                authToggle.classList.add('bg-red-600', 'hover:bg-red-700');
+                
+                // Update auth status card
+                authStatus.innerHTML = `
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-sm">
+                        <div class="mr-4">
+                            <i class="fas fa-user-check text-2xl text-green-500"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">Welcome back, ${currentUser.name}!</p>
+                            <p class="text-gray-600 text-sm">You're logged in and can access personalized support.</p>
+                        </div>
+                    </div>
+                    <button id="logoutBtn" class="w-full bg-gray-800 text-white py-3 rounded-lg hover:bg-gray-900 transition-colors font-medium">
+                        Log Out
+                    </button>
+                `;
+                
+                // Add logout event listener
+                document.getElementById('logoutBtn')?.addEventListener('click', logout);
+            } else {
+                userStatus.textContent = 'Guest';
+                authToggle.textContent = 'Login';
+                authToggle.classList.remove('bg-red-600', 'hover:bg-red-700');
+                authToggle.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                
+                // Reset auth status card
+                authStatus.innerHTML = `
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-sm">
+                        <div class="mr-4">
+                            <i class="fas fa-user text-2xl text-gray-400"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">You are currently browsing as a guest</p>
+                            <p class="text-gray-600 text-sm">Log in to access personalized support and save your contact preferences.</p>
+                        </div>
+                    </div>
+                    <button id="showLoginBtn" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                        Log In for Enhanced Support
+                    </button>
+                `;
+                
+                // Re-add event listener to login button
+                document.getElementById('showLoginBtn')?.addEventListener('click', openAuthModal);
+            }
+        }
+
+        // Login Function
+        function login(email, password) {
+            // Simulate API call
+            setTimeout(() => {
+                currentUser = {
+                    name: document.getElementById('loginEmail').value.split('@')[0],
+                    email: email
+                };
+                isLoggedIn = true;
+                updateAuthUI();
+                closeAuthModalFunc();
+                
+                // Show success message
+                alert('Login successful! Welcome back.');
+            }, 500);
+        }
+
+        // Signup Function
+        function signup(name, email, password) {
+            // Simulate API call
+            setTimeout(() => {
+                currentUser = { name, email };
+                isLoggedIn = true;
+                updateAuthUI();
+                closeAuthModalFunc();
+                
+                // Show success message
+                alert('Account created successfully! Welcome to our platform.');
+            }, 500);
+        }
+
+        // Logout Function
+        function logout() {
+            isLoggedIn = false;
+            currentUser = null;
+            updateAuthUI();
+            alert('You have been logged out.');
+        }
+
+        // Event Listeners
+        authToggle.addEventListener('click', function() {
+            if (isLoggedIn) {
+                logout();
+            } else {
+                openAuthModal();
+            }
+        });
+
+        closeAuthModal.addEventListener('click', closeAuthModalFunc);
+        showLoginBtn.addEventListener('click', openAuthModal);
+        
+        switchToSignup.addEventListener('click', showSignupForm);
+        switchToLogin.addEventListener('click', showLoginForm);
+
+        // Close modal when clicking outside
+        authModal.addEventListener('click', function(e) {
+            if (e.target === authModal) {
+                closeAuthModalFunc();
+            }
+        });
+
+        // Login Form Submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            login(email, password);
+        });
+
+        // Signup Form Submission
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            signup(name, email, password);
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!isLoggedIn) {
+                const proceed = confirm('You are not logged in. Would you like to log in or create an account to save your contact preferences and get priority support?');
+                if (proceed) {
+                    openAuthModal();
+                    return;
+                }
+            }
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent!';
+                submitBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                submitBtn.classList.add('bg-green-600');
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('bg-green-600');
+                    submitBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                    this.reset();
+                    
+                    alert(isLoggedIn 
+                        ? 'Thank you for your message, ' + currentUser.name + '! We\'ll respond to your inquiry shortly.' 
+                        : 'Thank you for your message! We\'ll respond to your inquiry shortly.');
+                }, 2000);
+            }, 1500);
+        });
+
+        // Initialize UI
+        updateAuthUI();
     </script>
 </body>
 </html>
