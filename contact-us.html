@@ -3,337 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Pitchpilot Medical</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Contact Us | TechShop</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .contact-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Header -->
-    <header>
-        <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
-            <a href='home-page.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home Page</a>
-            <a href='find-a-doctor.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Find a Doctor</a>
-            <a href='doctor-profile.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Doctor Profile</a>
-            <a href='services.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Services</a>
-            <a href='book-an-appointment.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Book an Appointment</a>
-            <a href='patient-portal.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Portal</a>
-            <a href='patient-dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Patient Dashboard</a>
-            <a href='contact-us.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Contact Us</a>
-        </nav>
-    </header>
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex items-center space-x-2 mb-2 md:mb-0">
+            <i class="fas fa-laptop-code text-blue-400 text-xl"></i>
+            <span class="font-bold text-xl">TechShop</span>
+        </div>
+        <div class="flex flex-wrap space-x-2 md:space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+            <a href='about-us.html' class='px-3 py-2 hover:text-blue-400'>About Us</a>
+            <a href='contact-us.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Contact Us</a>
+        </div>
+    </nav>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="bg-blue-600 text-white py-20">
-            <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-                <p class="text-xl md:text-2xl mb-8">We're here to help you with all your healthcare needs</p>
-                <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300">
-                    Book Appointment
-                </button>
+    <!-- Search Bar -->
+    <div class="bg-white shadow-sm py-3 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="w-full md:w-2/3 mb-4 md:mb-0">
+                <div class="relative">
+                    <input type="text" placeholder="Search products..." class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:border-blue-500">
+                    <i class="fas fa-search absolute left-3 top-3.5 text-gray-400"></i>
+                    <button class="absolute right-2 top-2 bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">
+                        Search
+                    </button>
+                </div>
             </div>
-        </section>
+            <div class="flex items-center space-x-6">
+                <a href="cart.html" class="relative">
+                    <i class="fas fa-shopping-cart text-2xl text-gray-700 hover:text-blue-600"></i>
+                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-2">
+                    <i class="fas fa-user-circle text-2xl text-gray-700"></i>
+                    <span class="text-gray-700">Welcome, Guest</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Contact Form & Location -->
-        <section class="py-16">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <!-- Contact Form -->
-                    <div data-aos="fade-right">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Get In Touch</h2>
-                        <form class="space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-gray-700 mb-2">First Name</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                </div>
-                                <div>
-                                    <label class="block text-gray-700 mb-2">Last Name</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                </div>
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Contact Us</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">Have questions about our products, orders, or services? We're here to help! Reach out to our team through any of the channels below.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Contact Information -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Get in Touch</h2>
+                <p class="text-gray-600 mb-8">Our customer support team is available Monday through Friday, 9am to 6pm EST. We typically respond within 24 hours.</p>
+                
+                <div class="space-y-6">
+                    <!-- Contact Cards -->
+                    <div class="contact-card bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
                             </div>
                             <div>
-                                <label class="block text-gray-700 mb-2">Email</label>
-                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">Visit Our Office</h3>
+                                <p class="text-gray-600">123 Tech Street, Silicon Valley, CA 94000, United States</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-phone-alt text-green-600 text-xl"></i>
                             </div>
                             <div>
-                                <label class="block text-gray-700 mb-2">Phone</label>
-                                <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">Call Us</h3>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                                <p class="text-sm text-gray-500">Available Mon-Fri, 9am-6pm EST</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-envelope text-purple-600 text-xl"></i>
                             </div>
                             <div>
-                                <label class="block text-gray-700 mb-2">Message</label>
-                                <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                            </div>
-                            <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 w-full">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Location Map & Address -->
-                    <div data-aos="fade-left">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Location</h2>
-                        <!-- Location Map -->
-                        <div class="bg-gray-200 h-64 rounded-lg mb-6 flex items-center justify-center">
-                            <div class="text-center">
-                                <i data-feather="map-pin" class="w-12 h-12 text-blue-600 mx-auto mb-2"></i>
-                                <p class="text-gray-600">Interactive Map Location</p>
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">Email Us</h3>
+                                <p class="text-gray-600">support@techshop.com</p>
+                                <p class="text-sm text-gray-500">For general inquiries and support</p>
                             </div>
                         </div>
-                        
-                        <!-- Address and Hours -->
-                        <div class="space-y-4">
-                            <div class="flex items-start space-x-3">
-                                <i data-feather="map-pin" class="w-5 h-5 text-blue-600 mt-1"></i>
-                                <div>
-                                    <h3 class="font-semibold text-gray-800">Main Office</h3>
-                                    <p class="text-gray-600">123 Medical Center Drive<br>Healthcare City, HC 12345</p>
-                                </div>
+                    </div>
+                    
+                    <div class="contact-card bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-comments text-yellow-600 text-xl"></i>
                             </div>
-                            <div class="flex items-start space-x-3">
-                                <i data-feather="clock" class="w-5 h-5 text-blue-600 mt-1"></i>
-                                <div>
-                                    <h3 class="font-semibold text-gray-800">Hours</h3>
-                                    <p class="text-gray-600">
-                                        Monday - Friday: 8:00 AM - 6:00 PM<br>
-                                        Saturday: 9:00 AM - 2:00 PM<br>
-                                        Sunday: Closed
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <i data-feather="phone" class="w-5 h-5 text-blue-600 mt-1"></i>
-                                <div>
-                                    <h3 class="font-semibold text-gray-800">Phone</h3>
-                                    <p class="text-gray-600">(555) 123-4567</p>
-                                </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">Live Chat</h3>
+                                <p class="text-gray-600">Available during business hours</p>
+                                <button class="mt-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Start Chat</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Doctor Highlights -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Meet Our Doctors</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Doctor 1 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden" data-aos="zoom-in">
-                        <div class="p-6">
-                            <div class="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                <i data-feather="user" class="w-12 h-12 text-blue-600"></i>
-                            </div>
-                            <h3 class="text-xl font-semibold text-center text-gray-800 mb-2">Dr. Sarah Johnson</h3>
-                            <p class="text-blue-600 text-center mb-4">Cardiologist</p>
-                            <p class="text-gray-600 text-center mb-4">15+ years of experience in cardiovascular health</p>
-                            <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 w-full">
-                                View Profile
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Doctor 2 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="p-6">
-                            <div class="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                <i data-feather="user" class="w-12 h-12 text-blue-600"></i>
-                            </div>
-                            <h3 class="text-xl font-semibold text-center text-gray-800 mb-2">Dr. Michael Chen</h3>
-                            <p class="text-blue-600 text-center mb-4">Neurologist</p>
-                            <p class="text-gray-600 text-center mb-4">Specialized in neurological disorders and treatment</p>
-                            <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 w-full">
-                                View Profile
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Doctor 3 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="p-6">
-                            <div class="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                <i data-feather="user" class="w-12 h-12 text-blue-600"></i>
-                            </div>
-                            <h3 class="text-xl font-semibold text-center text-gray-800 mb-2">Dr. Emily Rodriguez</h3>
-                            <p class="text-blue-600 text-center mb-4">Pediatrician</p>
-                            <p class="text-gray-600 text-center mb-4">Dedicated to children's health and wellness</p>
-                            <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 w-full">
-                                View Profile
-                            </button>
-                        </div>
+                
+                <!-- Social Media -->
+                <div class="mt-10">
+                    <h3 class="font-bold text-gray-800 text-lg mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 text-white p-3 rounded-full hover:bg-black"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Services Overview -->
-        <section class="py-16 bg-gray-100">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Services</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-up">
-                        <i data-feather="heart" class="w-12 h-12 text-blue-600 mx-auto mb-4"></i>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Cardiology</h3>
-                        <p class="text-gray-600">Comprehensive heart care and treatment</p>
+            
+            <!-- Contact Form -->
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
+                <form class="contact-form space-y-6">
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="name">Full Name *</label>
+                        <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500" placeholder="Enter your full name" required>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
-                        <i data-feather="brain" class="w-12 h-12 text-blue-600 mx-auto mb-4"></i>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Neurology</h3>
-                        <p class="text-gray-600">Expert care for neurological conditions</p>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="email">Email Address *</label>
+                        <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500" placeholder="Enter your email" required>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
-                        <i data-feather="activity" class="w-12 h-12 text-blue-600 mx-auto mb-4"></i>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Pediatrics</h3>
-                        <p class="text-gray-600">Specialized care for children of all ages</p>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="subject">Subject *</label>
+                        <select id="subject" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500">
+                            <option value="">Select a subject</option>
+                            <option value="order">Order Inquiry</option>
+                            <option value="product">Product Question</option>
+                            <option value="shipping">Shipping & Delivery</option>
+                            <option value="return">Returns & Refunds</option>
+                            <option value="technical">Technical Support</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="300">
-                        <i data-feather="eye" class="w-12 h-12 text-blue-600 mx-auto mb-4"></i>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Ophthalmology</h3>
-                        <p class="text-gray-600">Complete eye care and vision services</p>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="order">Order Number (Optional)</label>
+                        <input type="text" id="order" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500" placeholder="If related to an order">
                     </div>
-                </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="message">Message *</label>
+                        <textarea id="message" rows="6" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500" placeholder="Please describe your inquiry in detail..." required></textarea>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="newsletter" class="mr-2">
+                        <label for="newsletter" class="text-gray-700">Subscribe to our newsletter for updates and promotions</label>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                        Send Message
+                    </button>
+                </form>
             </div>
-        </section>
-
-        <!-- Patient Reviews -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">What Our Patients Say</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up">
-                        <div class="flex items-center mb-4">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"The care I received was exceptional. Dr. Johnson took the time to explain everything and made me feel comfortable throughout my treatment."</p>
-                        <p class="font-semibold text-gray-800">- Maria Gonzalez</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
-                        <div class="flex items-center mb-4">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"Outstanding medical facility with caring staff. The appointment scheduling was easy and the doctors were very knowledgeable."</p>
-                        <p class="font-semibold text-gray-800">- James Wilson</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
-                        <div class="flex items-center mb-4">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"I've been coming here for years and always receive top-notch care. The entire team is professional and compassionate."</p>
-                        <p class="font-semibold text-gray-800">- Robert Thompson</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        </div>
+        
         <!-- FAQ Section -->
-        <section class="py-16 bg-gray-100">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Frequently Asked Questions</h2>
-                <div class="max-w-3xl mx-auto space-y-6">
-                    <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">How do I schedule an appointment?</h3>
-                        <p class="text-gray-600">You can schedule an appointment by calling our office, using our online booking system, or filling out the contact form on this page.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What insurance do you accept?</h3>
-                        <p class="text-gray-600">We accept most major insurance providers. Please contact our billing department for specific information about your insurance coverage.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Do you offer telehealth appointments?</h3>
-                        <p class="text-gray-600">Yes, we offer telehealth appointments for many types of consultations. Please specify your preference when scheduling.</p>
-                    </div>
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-bold text-gray-800 text-lg mb-2">How can I track my order?</h3>
+                    <p class="text-gray-600">Once your order ships, you'll receive a tracking number via email. You can also check your order status in your account dashboard.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-bold text-gray-800 text-lg mb-2">What is your return policy?</h3>
+                    <p class="text-gray-600">We offer a 30-day return policy for most items. Products must be in original condition with all accessories. Some exclusions apply.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-bold text-gray-800 text-lg mb-2">Do you ship internationally?</h3>
+                    <p class="text-gray-600">Yes, we ship to over 50 countries. Shipping costs and delivery times vary by location. Calculate shipping at checkout.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-bold text-gray-800 text-lg mb-2">How secure is your payment system?</h3>
+                    <p class="text-gray-600">We use industry-standard SSL encryption and partner with trusted payment processors. We never store your full payment details.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Call to Action -->
-        <section class="py-16 bg-blue-600 text-white">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-                <p class="text-xl mb-8 max-w-2xl mx-auto">Contact us today to schedule your appointment or learn more about our services.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300">
-                        Book Appointment Now
-                    </button>
-                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition duration-300">
-                        Call Us: (555) 123-4567
-                    </button>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
+    <footer class="bg-gray-900 text-white mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Pitchpilot Medical</h3>
-                    <p class="text-gray-400">Providing exceptional healthcare services with compassion and expertise.</p>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-laptop-code text-blue-400 text-2xl"></i>
+                        <span class="font-bold text-xl">TechShop</span>
+                    </div>
+                    <p class="text-gray-400">Your one-stop shop for the latest tech gadgets and electronics.</p>
                 </div>
+                
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Find a Doctor</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li>123 Medical Center Drive</li>
-                        <li>Healthcare City, HC 12345</li>
-                        <li>(555) 123-4567</li>
-                        <li>info@pitchpilotmedical.com</li>
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="product-details.html" class="hover:text-white">Products</a></li>
+                        <li><a href="about-us.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="contact-us.html" class="hover:text-white">Contact Us</a></li>
                     </ul>
                 </div>
+                
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Patient Portal</h3>
-                    <div class="space-y-2">
-                        <a href="#" class="block text-gray-400 hover:text-white transition duration-300">Login</a>
-                        <a href="#" class="block text-gray-400 hover:text-white transition duration-300">Register</a>
-                        <a href="#" class="block text-gray-400 hover:text-white transition duration-300">Forgot Password</a>
+                    <h3 class="font-bold text-lg mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Return Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Subscribe for updates and exclusive offers.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="p-2 rounded-l-lg text-gray-800 w-full">
+                        <button class="bg-blue-600 p-2 rounded-r-lg hover:bg-blue-700">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
                 </div>
             </div>
+            
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Pitchpilot Medical. All rights reserved.</p>
+                <p>&copy; 2023 TechShop. All rights reserved. | <a href="#" class="hover:text-white">Terms of Service</a></p>
+                <div class="mt-4 flex justify-center space-x-4">
+                    <i class="fab fa-cc-visa text-2xl"></i>
+                    <i class="fab fa-cc-mastercard text-2xl"></i>
+                    <i class="fab fa-cc-amex text-2xl"></i>
+                    <i class="fab fa-cc-paypal text-2xl"></i>
+                    <i class="fab fa-cc-apple-pay text-2xl"></i>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize AOS and Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                once: true
-            });
-            feather.replace();
+        // Form submission handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // In a real application, you would send this data to a server
+            // For demo purposes, we'll just show a success message
+            alert('Thank you, ' + name + '! Your message has been sent. We will respond to ' + email + ' within 24 hours.');
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Live chat button functionality
+        document.querySelector('button.bg-blue-600.text-white.px-4').addEventListener('click', function() {
+            alert('Live chat is currently offline. Please email us at support@techshop.com or call +1 (555) 123-4567 for immediate assistance.');
         });
     </script>
 </body>
