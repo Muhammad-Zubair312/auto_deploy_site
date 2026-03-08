@@ -3,227 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sign Up | Corporate Solutions Inc.</title>
+    <meta name="description" content="Create an account with Corporate Solutions Inc. to access exclusive business resources and services.">
+    <meta name="keywords" content="business account, corporate signup, business services, account registration">
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        .password-strength {
+            height: 4px;
+            transition: all 0.3s ease;
         }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navbar -->
+    <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="font-bold text-xl">E-Shop</span>
+        <div class="flex items-center space-x-2 mb-2 md:mb-0">
+            <i class="fas fa-building text-blue-400 text-xl"></i>
+            <span class="font-bold text-lg">Corporate Solutions</span>
         </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
+        <div class="flex flex-wrap space-x-2 md:space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>Home</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>About</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>Contact</a>
+            <a href='blog.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>Blog</a>
+            <a href='services.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>Services</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded-md hover:bg-blue-700 transition duration-300'>Signup</a>
         </div>
     </nav>
 
-    <!-- Signup Section -->
-    <section class="py-12 px-4 md:px-8 lg:px-16">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Column: Benefits -->
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
-                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                            <i data-feather="shopping-cart" class="text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
-                            <p class="text-gray-600">Save your details for quicker purchases.</p>
-                        </div>
+    <!-- Main Content -->
+    <main class="min-h-screen py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header Section -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Create Your Business Account</h1>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Join thousands of businesses that trust Corporate Solutions for their growth and development needs.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Signup Form -->
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Sign Up Form</h2>
+                        
+                        <form id="signupForm" class="space-y-6">
+                            <!-- Name Fields -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-gray-700 mb-2">First Name *</label>
+                                    <input type="text" id="firstName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition duration-300">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-gray-700 mb-2">Last Name *</label>
+                                    <input type="text" id="lastName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition duration-300">
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">Business Email *</label>
+                                <input type="email" id="email" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition duration-300">
+                                <p class="text-gray-500 text-sm mt-1">We'll never share your email with anyone else.</p>
+                            </div>
+
+                            <!-- Company Info -->
+                            <div>
+                                <label for="company" class="block text-gray-700 mb-2">Company Name *</label>
+                                <input type="text" id="company" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition duration-300">
+                            </div>
+
+                            <!-- Password -->
+                            <div>
+                                <label for="password" class="block text-gray-700 mb-2">Password *</label>
+                                <div class="relative">
+                                    <input type="password" id="password" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition duration-300 pr-10">
+                                    <button type="button" id="togglePassword" class="absolute right-3 top-3 text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="flex space-x-1 mb-1">
+                                        <div id="strength1" class="password-strength w-1/4 bg-gray-200 rounded"></div>
+                                        <div id="strength2" class="password-strength w-1/4 bg-gray-200 rounded"></div>
+                                        <div id="strength3" class="password-strength w-1/4 bg-gray-200 rounded"></div>
+                                        <div id="strength4" class="password-strength w-1/4 bg-gray-200 rounded"></div>
+                                    </div>
+                                    <p id="passwordStrengthText" class="text-sm text-gray-500">Password strength: None</p>
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div>
+                                <label for="confirmPassword" class="block text-gray-700 mb-2">Confirm Password *</label>
+                                <input type="password" id="confirmPassword" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition duration-300">
+                                <p id="passwordMatch" class="text-sm mt-1 hidden"></p>
+                            </div>
+
+                            <!-- Terms -->
+                            <div class="flex items-start">
+                                <input type="checkbox" id="terms" required 
+                                       class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                                <label for="terms" class="text-gray-700">
+                                    I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> *
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" 
+                                    class="w-full gradient-bg text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition duration-300 transform hover:-translate-y-1">
+                                Create Account
+                            </button>
+
+                            <!-- Login Link -->
+                            <p class="text-center text-gray-600">
+                                Already have an account? 
+                                <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
+                            </p>
+                        </form>
                     </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-2 rounded-full mr-4">
-                            <i data-feather="package" class="text-green-600"></i>
+                </div>
+
+                <!-- Benefits Section -->
+                <div class="lg:w-1/2">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 md:p-8 h-full">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Why Join Corporate Solutions?</h2>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg mb-1">Business Analytics</h3>
+                                    <p class="text-gray-600">Access advanced analytics tools to track your business growth and performance.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-users text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg mb-1">Team Collaboration</h3>
+                                    <p class="text-gray-600">Invite team members and collaborate on projects with our integrated tools.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-shield-alt text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg mb-1">Enterprise Security</h3>
+                                    <p class="text-gray-600">Bank-level security to protect your business data and confidential information.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-headset text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg mb-1">Priority Support</h3>
+                                    <p class="text-gray-600">Get 24/7 priority support from our dedicated business customer service team.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-file-contract text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg mb-1">Legal Templates</h3>
+                                    <p class="text-gray-600">Access hundreds of business legal templates and contract documents.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
-                            <p class="text-gray-600">Monitor your orders in real-time.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 p-2 rounded-full mr-4">
-                            <i data-feather="star" class="text-purple-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
-                            <p class="text-gray-600">Share and read authentic product reviews.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
-                            <i data-feather="credit-card" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
-                            <p class="text-gray-600">Multiple payment options with top security.</p>
+
+                        <!-- Testimonial -->
+                        <div class="mt-10 bg-white rounded-xl p-6 shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                                    JD
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Jessica Davis</h4>
+                                    <p class="text-gray-600 text-sm">CEO, TechVision Inc.</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 italic">
+                                "Corporate Solutions transformed how we manage our business operations. The tools and resources available after signing up helped us scale 40% faster."
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Right Column: Signup Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
-                
-                <form id="signupForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
-                            <input type="text" id="firstName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="password">Password</label>
-                        <input type="password" id="password" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="terms" required 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="terms" class="ml-3 text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                        </label>
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="newsletter" class="ml-3 text-gray-700">
-                            Subscribe to our newsletter for exclusive deals
-                        </label>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                        Create Account
-                    </button>
-                    
-                    <div class="text-center">
-                        <p class="text-gray-600">Already have an account? 
-                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
-                        </p>
-                    </div>
-                    
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            Facebook
-                        </button>
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
-                            Twitter
-                        </button>
-                    </div>
-                </form>
-            </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <i data-feather="shopping-bag" class="text-blue-400"></i>
-                    <span class="font-bold text-xl">E-Shop</span>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-building text-blue-400 text-2xl"></i>
+                        <span class="font-bold text-xl">Corporate Solutions</span>
+                    </div>
+                    <p class="text-gray-400">Empowering businesses with innovative solutions since 2010.</p>
                 </div>
-                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
-                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
-                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Account</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
-                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Contact</h3>
-                <p class="text-gray-400">support@eshop.com</p>
-                <p class="text-gray-400">+1 (555) 123-4567</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Cookie Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Contact Info</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-3 text-blue-400"></i>
+                            123 Business Ave, Suite 100
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-blue-400"></i>
+                            +1 (555) 123-4567
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-blue-400"></i>
+                            info@corporatesolutions.com
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Corporate Solutions Inc. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        feather.replace();
-        
+        // Password visibility toggle
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+
+        // Password strength checker
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBars = [
+                document.getElementById('strength1'),
+                document.getElementById('strength2'),
+                document.getElementById('strength3'),
+                document.getElementById('strength4')
+            ];
+            const strengthText = document.getElementById('passwordStrengthText');
+            
+            let strength = 0;
+            
+            // Check password criteria
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            // Update strength bars
+            strengthBars.forEach((bar, index) => {
+                bar.classList.remove('bg-red-500', 'bg-yellow-500', 'bg-green-500', 'bg-emerald-500');
+                if (index < strength) {
+                    if (strength === 1) bar.classList.add('bg-red-500');
+                    else if (strength === 2) bar.classList.add('bg-yellow-500');
+                    else if (strength === 3) bar.classList.add('bg-green-500');
+                    else if (strength === 4) bar.classList.add('bg-emerald-500');
+                } else {
+                    bar.classList.add('bg-gray-200');
+                }
+            });
+            
+            // Update strength text
+            const strengthLabels = ['None', 'Weak', 'Fair', 'Good', 'Strong'];
+            strengthText.textContent = `Password strength: ${strengthLabels[strength]}`;
+        });
+
+        // Password confirmation check
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            const matchText = document.getElementById('passwordMatch');
+            
+            if (confirmPassword === '') {
+                matchText.classList.add('hidden');
+                return;
+            }
+            
+            matchText.classList.remove('hidden');
+            if (password === confirmPassword) {
+                matchText.textContent = 'Passwords match!';
+                matchText.classList.remove('text-red-500');
+                matchText.classList.add('text-green-500');
+            } else {
+                matchText.textContent = 'Passwords do not match';
+                matchText.classList.remove('text-green-500');
+                matchText.classList.add('text-red-500');
+            }
+        });
+
+        // Form submission
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Basic validation
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             
@@ -232,9 +362,28 @@
                 return;
             }
             
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to login...');
-            window.location.href = 'login.html';
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Creating Account...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert('Account created successfully! Welcome to Corporate Solutions.');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                this.reset();
+                
+                // Reset strength bars
+                document.querySelectorAll('.password-strength').forEach(bar => {
+                    bar.classList.remove('bg-red-500', 'bg-yellow-500', 'bg-green-500', 'bg-emerald-500');
+                    bar.classList.add('bg-gray-200');
+                });
+                document.getElementById('passwordStrengthText').textContent = 'Password strength: None';
+                document.getElementById('passwordMatch').classList.add('hidden');
+            }, 1500);
         });
     </script>
 </body>

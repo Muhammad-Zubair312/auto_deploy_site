@@ -3,281 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | E-Commerce Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Login | Corporate Solutions Inc.</title>
+    <meta name="description" content="Secure login portal for Corporate Solutions Inc. Access your account to manage services and view exclusive content.">
+    <meta name="keywords" content="login, corporate, secure, account, business, portal">
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-        .login-card {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         .input-focus:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        .shake {
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%, 100% {transform: translateX(0);}
+            10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
+            20%, 40%, 60%, 80% {transform: translateX(5px);}
         }
     </style>
 </head>
-<body class="font-sans">
-    <!-- Shared Navbar -->
+<body class="bg-gray-50">
+    <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex space-x-4">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <div class="flex items-center space-x-2 mb-2 md:mb-0">
+            <i class="fas fa-building text-blue-400 text-xl"></i>
+            <span class="font-bold text-xl">Corporate Solutions</span>
         </div>
-        <div class="text-sm text-gray-300 mt-2 md:mt-0">
-            Welcome back! Access your account
+        <div class="flex flex-wrap space-x-1 md:space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>Home</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>About</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>Contact</a>
+            <a href='blog.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>Blog</a>
+            <a href='services.html' class='px-3 py-2 hover:text-blue-400 transition duration-300'>Services</a>
+            <a href='login.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700 transition duration-300'>Login</a>
+            <a href='signup.html' class='px-3 py-2 border border-blue-400 rounded hover:bg-blue-400 hover:text-gray-900 transition duration-300'>Signup</a>
         </div>
     </nav>
 
-    <!-- Login Page Content -->
-    <main class="container mx-auto px-4 py-12">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" data-aos="fade-up">
-            <!-- Login Form Section -->
-            <div class="login-card rounded-2xl shadow-2xl p-8 md:p-12">
-                <div class="text-center mb-10">
-                    <h1 class="text-4xl font-bold text-gray-900 mb-3">Welcome Back</h1>
-                    <p class="text-gray-600">Sign in to your account to continue shopping</p>
+    <!-- Main Content -->
+    <main class="min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Column - Branding & Info -->
+            <div class="space-y-8">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Secure Client Portal</h1>
+                    <p class="text-gray-600 text-lg">Access your corporate account to manage services, view analytics, and collaborate with your team.</p>
                 </div>
-
-                <form id="loginForm" class="space-y-6">
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address
-                        </label>
-                        <div class="relative">
-                            <i data-feather="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                required
-                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="you@example.com"
-                            >
+                
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="gradient-bg rounded-full p-3">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">Enterprise Security</h3>
+                            <p class="text-gray-600">Bank-level encryption and multi-factor authentication to protect your data.</p>
                         </div>
                     </div>
-
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="gradient-bg rounded-full p-3">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">Real-time Analytics</h3>
+                            <p class="text-gray-600">Access detailed reports and performance metrics for your business.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="gradient-bg rounded-full p-3">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">Team Collaboration</h3>
+                            <p class="text-gray-600">Share documents and collaborate with team members in a secure environment.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r">
+                    <p class="text-gray-700"><i class="fas fa-info-circle text-blue-500 mr-2"></i>New to Corporate Solutions? <a href="signup.html" class="text-blue-600 font-semibold hover:underline">Create an account</a> to get started with our premium services.</p>
+                </div>
+            </div>
+            
+            <!-- Right Column - Login Form -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                <div class="text-center mb-10">
+                    <div class="gradient-bg inline-flex items-center justify-center w-16 h-16 rounded-full mb-4">
+                        <i class="fas fa-lock text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900">Account Login</h2>
+                    <p class="text-gray-500 mt-2">Enter your credentials to access your account</p>
+                </div>
+                
+                <form id="loginForm" class="space-y-6">
                     <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            Password
-                        </label>
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
                         <div class="relative">
-                            <i data-feather="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="password" 
-                                id="password" 
-                                required
-                                class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="Enter your password"
-                            >
-                            <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                <i data-feather="eye"></i>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-gray-400"></i>
+                            </div>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition duration-300"
+                                   placeholder="you@company.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label for="password" class="block text-gray-700 font-medium">Password</label>
+                            <a href="#" class="text-sm text-blue-600 hover:underline">Forgot password?</a>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-key text-gray-400"></i>
+                            </div>
+                            <input type="password" id="password" name="password" required 
+                                   class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition duration-300"
+                                   placeholder="Enter your password">
+                            <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <i class="fas fa-eye text-gray-400 hover:text-gray-600"></i>
                             </button>
                         </div>
                     </div>
-
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input 
-                                type="checkbox" 
-                                id="remember"
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                            >
-                            <label for="remember" class="ml-2 text-sm text-gray-700">
-                                Remember me
-                            </label>
-                        </div>
-                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800 hover:underline">
-                            Forgot password?
-                        </a>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember" name="remember" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                        <label for="remember" class="ml-2 text-gray-700">Remember me on this device</label>
                     </div>
-
-                    <button 
-                        type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-                    >
-                        Sign In
+                    
+                    <button type="submit" id="loginButton" 
+                            class="w-full gradient-bg text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Sign In to Account
                     </button>
-
-                    <div class="text-center">
-                        <p class="text-gray-600">
-                            Don't have an account? 
-                            <a href="signup.html" class="text-blue-600 hover:text-blue-800 font-semibold hover:underline">
-                                Sign up here
-                            </a>
-                        </p>
+                    
+                    <div class="relative my-6">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4 bg-white text-gray-500">Or continue with</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <button type="button" 
+                                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-300">
+                            <i class="fab fa-google text-red-500 mr-2"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" 
+                                class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-300">
+                            <i class="fab fa-microsoft text-blue-500 mr-2"></i>
+                            <span>Microsoft</span>
+                        </button>
                     </div>
                 </form>
-
-                <div class="mt-8 pt-8 border-t border-gray-200">
-                    <p class="text-center text-gray-600 mb-4">Or continue with</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            <span>Facebook</span>
-                        </button>
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="github" class="mr-2"></i>
-                            <span>GitHub</span>
-                        </button>
-                    </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-600">Don't have an account? <a href="signup.html" class="text-blue-600 font-semibold hover:underline">Sign up here</a></p>
                 </div>
-            </div>
-
-            <!-- Benefits Section -->
-            <div class="space-y-8">
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="200">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i data-feather="shopping-bag" class="text-blue-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Track Your Orders</h3>
-                            <p class="text-gray-600">Monitor your purchases from order to delivery with real-time updates.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="400">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-green-100 p-3 rounded-lg mr-4">
-                            <i data-feather="heart" class="text-green-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Personalized Experience</h3>
-                            <p class="text-gray-600">Get product recommendations based on your browsing and purchase history.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="600">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-purple-100 p-3 rounded-lg mr-4">
-                            <i data-feather="star" class="text-purple-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Write Reviews</h3>
-                            <p class="text-gray-600">Share your experience and help other customers make informed decisions.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-lg p-8 text-white" data-aos="fade-up" data-aos-delay="800">
-                    <h3 class="text-2xl font-bold mb-4">Secure Shopping</h3>
-                    <p class="mb-4">Your security is our priority. We use industry-standard encryption to protect your data.</p>
-                    <div class="flex items-center">
-                        <i data-feather="shield" class="mr-3"></i>
-                        <span class="font-semibold">256-bit SSL Encryption</span>
-                    </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <p class="text-xs text-gray-500 text-center">
+                        <i class="fas fa-lock mr-1"></i> Your login is secured with 256-bit SSL encryption. 
+                        By logging in, you agree to our <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>.
+                    </p>
                 </div>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-16">
-        <div class="container mx-auto px-4">
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">E-Commerce Store</h3>
-                    <p class="text-gray-400">Your one-stop shop for all your needs. Quality products, secure payments, fast delivery.</p>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-building text-blue-400 text-2xl"></i>
+                        <span class="font-bold text-2xl">Corporate Solutions</span>
+                    </div>
+                    <p class="text-gray-400">Providing enterprise solutions for modern businesses since 2010.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-xl"></i></a>
+                    </div>
                 </div>
+                
                 <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white transition">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white transition">Checkout</a></li>
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
                     </ul>
                 </div>
+                
                 <div>
-                    <h4 class="font-semibold mb-4">Account</h4>
+                    <h3 class="text-xl font-bold mb-4">Resources</h3>
                     <ul class="space-y-2">
-                        <li><a href="login.html" class="text-gray-400 hover:text-white transition">Login</a></li>
-                        <li><a href="signup.html" class="text-gray-400 hover:text-white transition">Sign Up</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Order Tracking</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
                     </ul>
                 </div>
+                
                 <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <p class="text-gray-400">support@ecommerce.com</p>
-                    <p class="text-gray-400">+1 (555) 123-4567</p>
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">123 Business Ave, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <span class="text-gray-400">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <span class="text-gray-400">info@corporatesolutions.com</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
+                <p>&copy; 2023 Corporate Solutions Inc. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        // Initialize Feather Icons
-        feather.replace();
-
         // Toggle password visibility
         document.getElementById('togglePassword').addEventListener('click', function() {
             const passwordInput = document.getElementById('password');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.querySelector('i').setAttribute('data-feather', type === 'password' ? 'eye' : 'eye-off');
-            feather.replace();
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
         });
-
-        // Form submission
+        
+        // Form submission handling
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+            const loginButton = document.getElementById('loginButton');
             
             // Simple validation
             if (!email || !password) {
-                alert('Please fill in all fields');
+                showError('Please fill in all fields');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showError('Please enter a valid email address');
                 return;
             }
             
             // Simulate login process
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
+            loginButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Signing In...';
+            loginButton.disabled = true;
             
-            submitBtn.textContent = 'Signing in...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
+            // Simulate API call delay
             setTimeout(() => {
-                alert('Login successful! Redirecting to homepage...');
-                window.location.href = 'index.html';
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+                // In a real application, this would be an API call to your backend
+                console.log('Login attempt with:', { email, password });
+                
+                // For demo purposes, simulate successful login
+                loginButton.innerHTML = '<i class="fas fa-check mr-2"></i> Login Successful!';
+                loginButton.classList.remove('gradient-bg');
+                loginButton.classList.add('bg-green-600');
+                
+                // Redirect after a short delay
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html'; // Redirect to dashboard
+                }, 1000);
+                
             }, 1500);
         });
-
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function showError(message) {
+            const form = document.getElementById('loginForm');
+            
+            // Remove any existing error message
+            const existingError = document.querySelector('.error-message');
+            if (existingError) existingError.remove();
+            
+            // Create error message element
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message bg-red-50 border-l-4 border-red-500 p-4 rounded-r shake';
+            errorDiv.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-circle text-red-500 mr-3"></i>
+                    <p class="text-red-700">${message}</p>
+                </div>
+            `;
+            
+            // Insert error message at the top of the form
+            form.insertBefore(errorDiv, form.firstChild);
+            
+            // Remove error after 5 seconds
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+        
         // Social login buttons
-        document.querySelectorAll('button:has(i[data-feather="facebook"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Facebook login would be implemented here');
-            });
-        });
-
-        document.querySelectorAll('button:has(i[data-feather="github"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('GitHub login would be implemented here');
-            });
+        document.querySelectorAll('button[type="button"]').forEach(button => {
+            if (button.textContent.includes('Google') || button.textContent.includes('Microsoft')) {
+                button.addEventListener('click', function() {
+                    const provider = this.textContent.trim();
+                    alert(`In a real application, this would redirect to ${provider} OAuth login.`);
+                });
+            }
         });
     </script>
 </body>
