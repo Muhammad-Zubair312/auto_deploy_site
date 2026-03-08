@@ -3,319 +3,573 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEasy - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Prime Solutions | Professional Business Services</title>
+    <meta name="description" content="Prime Solutions provides professional business services to help companies grow and succeed in today's competitive market.">
+    <meta name="keywords" content="business solutions, professional services, consulting, growth strategies">
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .product-card:hover { transform: translateY(-5px); transition: transform 0.3s ease; }
-        .category-icon { width: 64px; height: 64px; }
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
+    <nav class='bg-gray-900 text-white p-4 flex justify-between items-center sticky top-0 z-50'>
         <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="text-xl font-bold">ShopEasy</span>
+            <i class="fas fa-cube text-blue-400 text-xl"></i>
+            <a href='index.html' class='text-xl font-bold'>Prime<span class="text-blue-400">Solutions</span></a>
         </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
+        
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-button" class="md:hidden text-white">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+        
+        <!-- Desktop menu -->
+        <div class="hidden md:flex space-x-4">
             <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Checkout</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400 font-medium'>About</a>
+            <a href='services.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Services</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Contact</a>
             <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Signup</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-medium'>Signup</a>
         </div>
     </nav>
+    
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden bg-gray-800 text-white hidden">
+        <div class="flex flex-col p-4 space-y-3">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400 font-medium'>About</a>
+            <a href='services.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Services</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Contact</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-medium text-center'>Signup</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
-    <section class="hero-gradient text-white py-16 md:py-24 px-4">
-        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Discover Amazing Products</h1>
-            <p class="text-xl mb-10 max-w-2xl mx-auto">Shop the latest trends with secure checkout, fast delivery, and easy returns.</p>
-            
-            <!-- Search Bar -->
-            <div class="max-w-2xl mx-auto flex">
-                <input type="text" placeholder="Search for products, brands, categories..." 
-                       class="flex-grow p-4 rounded-l-lg text-gray-800 focus:outline-none">
-                <button class="bg-blue-600 hover:bg-blue-700 px-6 rounded-r-lg flex items-center">
-                    <i data-feather="search"></i>
-                    <span class="ml-2">Search</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Categories -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Shop by Category</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="smartphone" class="category-icon"></i>
+    <section class="hero-gradient text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Transform Your Business With <span class="text-yellow-300">Expert Solutions</span></h1>
+                    <p class="text-xl mb-8 text-gray-200">We provide cutting-edge business solutions tailored to help your company grow, innovate, and succeed in today's competitive market.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href='services.html' class="bg-white text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 text-center transition duration-300">Our Services</a>
+                        <a href='contact.html' class="bg-transparent border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-gray-900 text-center transition duration-300">Contact Us</a>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Electronics</h3>
-                    <p class="text-gray-600">Latest gadgets & devices</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shirt" class="category-icon"></i>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl max-w-md">
+                        <i class="fas fa-chart-line text-6xl text-yellow-300 mb-4 block text-center"></i>
+                        <h3 class="text-2xl font-bold mb-4 text-center">Growth Analytics</h3>
+                        <p class="text-gray-200 mb-4">Our data-driven approach helps identify opportunities and optimize performance for sustainable growth.</p>
+                        <div class="flex justify-center">
+                            <div class="bg-blue-500 text-white py-2 px-4 rounded-lg font-medium">+24% Avg. Client Growth</div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Fashion</h3>
-                    <p class="text-gray-600">Trendy clothing & accessories</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="bg-yellow-100 text-yellow-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="home" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Home & Living</h3>
-                    <p class="text-gray-600">Furniture & decor</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-red-100 text-red-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="heart" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Health & Beauty</h3>
-                    <p class="text-gray-600">Wellness & personal care</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="py-16 px-4 bg-gray-100">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl font-bold" data-aos="fade-right">Featured Products</h2>
-                <a href="products.html" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center" data-aos="fade-left">
-                    View All <i data-feather="arrow-right" class="ml-2"></i>
-                </a>
+    <!-- Services Preview -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">We offer a comprehensive suite of services designed to address the key challenges facing modern businesses.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Wireless Headphones" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Premium Wireless Headphones</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(128 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$199.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Smart Watch" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Fitness Smart Watch</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(256 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$249.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Bluetooth Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Portable Bluetooth Speaker</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(87 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$89.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Running Shoes" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Professional Running Shoes</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(312 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$129.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Why Shop With Us?</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center" data-aos="fade-up">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shield" class="w-12 h-12"></i>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md card-hover">
+                    <div class="bg-blue-100 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-blue-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Secure Payment</h3>
-                    <p class="text-gray-600">100% secure payment processing with SSL encryption and multiple payment options.</p>
+                    <h3 class="text-xl font-bold mb-4">Business Strategy</h3>
+                    <p class="text-gray-600 mb-4">Develop comprehensive growth strategies tailored to your unique business needs and market position.</p>
+                    <a href='services.html' class="text-blue-600 font-medium hover:text-blue-800">Learn more →</a>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="truck" class="w-12 h-12"></i>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md card-hover">
+                    <div class="bg-green-100 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-bar text-green-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Fast Delivery</h3>
-                    <p class="text-gray-600">Free shipping on orders over $50. Express delivery available in select areas.</p>
+                    <h3 class="text-xl font-bold mb-4">Performance Analytics</h3>
+                    <p class="text-gray-600 mb-4">Leverage data-driven insights to optimize operations, improve efficiency, and increase profitability.</p>
+                    <a href='services.html' class="text-blue-600 font-medium hover:text-blue-800">Learn more →</a>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-purple-100 text-purple-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="refresh-cw" class="w-12 h-12"></i>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md card-hover">
+                    <div class="bg-purple-100 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-purple-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Easy Returns</h3>
-                    <p class="text-gray-600">30-day return policy. No questions asked returns for all products.</p>
+                    <h3 class="text-xl font-bold mb-4">Team Development</h3>
+                    <p class="text-gray-600 mb-4">Build high-performing teams through targeted training, leadership development, and culture optimization.</p>
+                    <a href='services.html' class="text-blue-600 font-medium hover:text-blue-800">Learn more →</a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href='services.html' class="bg-gray-900 text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-800 inline-block transition duration-300">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Proven Results</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">Our track record speaks for itself. We've helped businesses of all sizes achieve remarkable growth.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-blue-400 mb-2">250+</div>
+                    <div class="text-gray-300">Satisfied Clients</div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-green-400 mb-2">98%</div>
+                    <div class="text-gray-300">Client Retention</div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-yellow-400 mb-2">45%</div>
+                    <div class="text-gray-300">Avg. Growth Increase</div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-purple-400 mb-2">15</div>
+                    <div class="text-gray-300">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Don't just take our word for it. Here's what some of our clients have to say about working with us.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold text-blue-800">JS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Jamie Smith</h4>
+                            <p class="text-gray-500 text-sm">CEO, TechVision Inc.</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Prime Solutions transformed our approach to market expansion. Their strategic insights helped us increase revenue by 40% in just one year."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold text-green-800">MR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Maria Rodriguez</h4>
+                            <p class="text-gray-500 text-sm">Founder, GreenLeaf Organics</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The team development program completely changed our company culture. Employee satisfaction is at an all-time high and productivity has soared."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold text-purple-800">TK</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Thomas Kim</h4>
+                            <p class="text-gray-500 text-sm">Operations Director, UrbanFit</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Their performance analytics identified inefficiencies we didn't even know existed. We've cut operational costs by 22% while improving service quality."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 px-4 bg-gray-900 text-white">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Ready to Start Shopping?</h2>
-            <p class="text-xl mb-10 text-gray-300" data-aos="fade-up" data-aos-delay="100">Join thousands of satisfied customers today.</p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="signup.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in">
-                    <i data-feather="user-plus" class="mr-3"></i> Create Free Account
-                </a>
-                <a href="products.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in" data-aos-delay="200">
-                    <i data-feather="shopping-bag" class="mr-3"></i> Browse Products
-                </a>
+    <section class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Transform Your Business?</h2>
+                        <p class="text-gray-600 mb-6">Schedule a free consultation with our experts to discuss your business challenges and explore how we can help you achieve your goals.</p>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>No obligation, 30-minute consultation</span>
+                        </div>
+                        <div class="flex items-center text-gray-700 mt-2">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Customized strategy recommendations</span>
+                        </div>
+                        <div class="flex items-center text-gray-700 mt-2">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Actionable insights for immediate implementation</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3 text-center">
+                        <a href='contact.html' class="bg-gray-900 text-white font-bold py-4 px-8 rounded-lg hover:bg-gray-800 inline-block text-lg transition duration-300 w-full">Get Started Today</a>
+                        <p class="text-gray-500 text-sm mt-4">Or call us at <span class="font-bold">(555) 123-4567</span></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-4">
-        <div class="container mx-auto max-w-6xl">
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-feather="shopping-bag" class="text-blue-400"></i>
-                        <span class="text-xl font-bold">ShopEasy</span>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <i class="fas fa-cube text-blue-400 text-xl"></i>
+                        <a href='index.html' class='text-xl font-bold'>Prime<span class="text-blue-400">Solutions</span></a>
                     </div>
-                    <p class="text-gray-400">Your trusted online shopping destination for quality products and exceptional service.</p>
+                    <p class="text-gray-400 mb-6">Helping businesses grow and succeed through innovative strategies and expert guidance since 2008.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-xl"></i></a>
+                    </div>
                 </div>
+                
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white">Checkout</a></li>
+                    <h3 class="text-lg font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href='index.html' class='text-gray-400 hover:text-blue-400'>Home</a></li>
+                        <li><a href='about.html' class='text-gray-400 hover:text-blue-400'>About Us</a></li>
+                        <li><a href='services.html' class='text-gray-400 hover:text-blue-400'>Services</a></li>
+                        <li><a href='contact.html' class='text-gray-400 hover:text-blue-400'>Contact</a></li>
                     </ul>
                 </div>
+                
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Order Tracking</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Refunds</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    <h3 class="text-lg font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href='services.html' class='text-gray-400 hover:text-blue-400'>Business Strategy</a></li>
+                        <li><a href='services.html' class='text-gray-400 hover:text-blue-400'>Performance Analytics</a></li>
+                        <li><a href='services.html' class='text-gray-400 hover:text-blue-400'>Team Development</a></li>
+                        <li><a href='services.html' class='text-gray-400 hover:text-blue-400'>Market Expansion</a></li>
                     </ul>
                 </div>
+                
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Stay Connected</h4>
-                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="flex-grow p-3 rounded-l-lg text-gray-800">
-                        <button class="bg-blue-600 hover:bg-blue-700 px-4 rounded-r-lg">
-                            <i data-feather="send"></i>
-                        </button>
-                    </div>
+                    <h3 class="text-lg font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-blue-400"></i>
+                            <span>123 Business Ave, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-blue-400"></i>
+                            <span>(555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-blue-400"></i>
+                            <span>info@primesolutions.com</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 Prime Solutions. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            once: true
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
         });
         
-        // Initialize Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = document.getElementById('mobile-menu-button');
+            
+            if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
         });
         
-        // Simple cart counter
-        let cartCount = 0;
-        document.querySelectorAll('button:contains("Add to Cart")').forEach(button => {
-            button.addEventListener('click', function() {
-                cartCount++;
-                // In a real app, this would update a cart badge
-                console.log(`Added to cart. Total items: ${cartCount}`);
-                alert('Product added to cart!');
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
+        });
+    </script>
+</body>
+</html>
+
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Prime Solutions</title>
+    <meta name="description" content="Learn about Prime Solutions, our mission, values, and the team dedicated to helping businesses succeed.">
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class='bg-gray-900 text-white p-4 flex justify-between items-center sticky top-0 z-50'>
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-cube text-blue-400 text-xl"></i>
+            <a href='index.html' class='text-xl font-bold'>Prime<span class="text-blue-400">Solutions</span></a>
+        </div>
+        <div class="hidden md:flex space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
+            <a href='about.html' class='px-3 py-2 text-blue-400 font-medium border-b-2 border-blue-400'>About</a>
+            <a href='services.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Services</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Contact</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-medium'>Signup</a>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden text-white">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </nav>
+    
+    <div id="mobile-menu" class="md:hidden bg-gray-800 text-white hidden">
+        <div class="flex flex-col p-4 space-y-3">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
+            <a href='about.html' class='px-3 py-2 text-blue-400 font-medium'>About</a>
+            <a href='services.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Services</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Contact</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-medium text-center'>Signup</a>
+        </div>
+    </div>
+
+    <section class="py-12 bg-gradient-to-r from-blue-900 to-gray-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">About Prime Solutions</h1>
+            <p class="text-xl max-w-3xl mx-auto">We're a team of passionate experts dedicated to helping businesses reach their full potential through innovative strategies and proven methodologies.</p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
+                    <p class="text-gray-700 mb-4">Founded in 2008, Prime Solutions began with a simple mission: to help businesses navigate the complexities of modern markets and achieve sustainable growth.</p>
+                    <p class="text-gray-700 mb-4">What started as a small consultancy has grown into a full-service business solutions provider, serving clients across multiple industries and continents.</p>
+                    <p class="text-gray-700">Our approach combines data-driven insights with human-centered design thinking to create strategies that work in the real world.</p>
+                </div>
+                <div class="bg-gray-100 p-8 rounded-2xl">
+                    <div class="text-6xl text-blue-600 mb-4">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+                    <p class="text-gray-700">To empower businesses with the tools, strategies, and insights needed to thrive in an ever-changing economic landscape, creating value for stakeholders and communities alike.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Values</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">These core principles guide everything we do at Prime Solutions.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-handshake text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Integrity</h3>
+                    <p class="text-gray-600 text-center">We believe in transparency, honesty, and doing what's right for our clients, even when it's not the easiest path.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-lightbulb text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Innovation</h3>
+                    <p class="text-gray-600 text-center">We constantly seek new approaches and technologies to solve business challenges in creative, effective ways.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-users text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Collaboration</h3>
+                    <p class="text-gray-600 text-center">We work as partners with our clients, combining our expertise with their industry knowledge for optimal results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Leadership Team</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Meet the experienced professionals guiding Prime Solutions.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 overflow-hidden">
+                        <div class="w-full h-full bg-blue-200 flex items-center justify-center">
+                            <i class="fas fa-user text-blue-600 text-6xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold">Alexandra Chen</h3>
+                    <p class="text-blue-600 font-medium mb-2">CEO & Founder</p>
+                    <p class="text-gray-600">20+ years in business strategy and consulting</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 overflow-hidden">
+                        <div class="w-full h-full bg-green-200 flex items-center justify-center">
+                            <i class="fas fa-user text-green-600 text-6xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold">Marcus Johnson</h3>
+                    <p class="text-blue-600 font-medium mb-2">Chief Operations Officer</p>
+                    <p class="text-gray-600">Operations expert with Fortune 500 experience</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 overflow-hidden">
+                        <div class="w-full h-full bg-purple-200 flex items-center justify-center">
+                            <i class="fas fa-user text-purple-600 text-6xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold">Sophia Williams</h3>
+                    <p class="text-blue-600 font-medium mb-2">Director of Client Success</p>
+                    <p class="text-gray-600">Dedicated to ensuring client satisfaction and results</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <i class="fas fa-cube text-blue-400 text-xl"></i>
+                        <a href='index.html' class='text-xl font-bold'>Prime<span class="text-blue-400">Solutions</span></a>
+                    </div>
+                    <p class="text-gray-400 mb-6">Helping businesses grow and succeed through innovative strategies and expert guidance since 2008.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href='index.html' class='text-gray-400 hover:text-blue-400'>Home</a></li>
+                        <li><a href='about.html' class='text-gray-400 hover:text-blue-400'>About Us</a></li>
+                        <li><a href='services.html' class='text-gray-400 hover:text-blue-400'>Services</a></li>
+                        <li><a href='contact.html' class='text-gray-400 hover:text-blue-400'>Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href='services.html' class='text-gray-400 hover:text-blue-400'>Business Strategy</a></li>
+                        <li><a href='services.html' class='text-gray-400 hover:text-blue-400'>Performance Analytics</a></li>
+                        <li><a href='services.html' class='text-gray-400 hover:text-blue-400'>Team Development</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-blue-400"></i>
+                            <span>123 Business Ave, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-blue-400"></i>
+                            <span>(555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 Prime Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
         });
     </script>
 </body>

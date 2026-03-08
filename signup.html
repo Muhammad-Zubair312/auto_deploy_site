@@ -3,238 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <meta name="description" content="Create an account to access exclusive features and services from our business.">
+    <title>Sign Up | Professional Business Solutions</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             font-family: 'Inter', sans-serif;
+        }
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navbar -->
+    <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="font-bold text-xl">E-Shop</span>
+        <div class="flex items-center space-x-2 mb-4 md:mb-0">
+            <i class="fas fa-cube text-blue-400 text-xl"></i>
+            <span class="font-bold text-lg">BusinessPro</span>
         </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
+        <div class="flex flex-wrap space-x-2 md:space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Home</a>
+            <a href='about.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>About</a>
+            <a href='contact.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Contact</a>
+            <a href='services.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Services</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded-md hover:bg-blue-700 transition-colors'>Signup</a>
         </div>
     </nav>
 
-    <!-- Signup Section -->
-    <section class="py-12 px-4 md:px-8 lg:px-16">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Column: Benefits -->
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
-                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
+    <!-- Main Content -->
+    <main class="min-h-screen py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Create Your Account</h1>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Join thousands of professionals who trust our platform for their business needs. Get started in just a few minutes.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Signup Form -->
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Sign Up Form</h2>
+                        
+                        <form id="signupForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-gray-700 font-medium mb-2">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition-colors"
+                                           placeholder="John">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-gray-700 font-medium mb-2">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition-colors"
+                                           placeholder="Doe">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address *</label>
+                                <input type="email" id="email" name="email" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition-colors"
+                                       placeholder="john.doe@example.com">
+                            </div>
+                            
+                            <div>
+                                <label for="password" class="block text-gray-700 font-medium mb-2">Password *</label>
+                                <input type="password" id="password" name="password" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition-colors"
+                                       placeholder="Create a strong password">
+                                <div class="mt-2 text-sm text-gray-500 flex items-center">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    Must be at least 8 characters with uppercase, lowercase, and a number
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="confirmPassword" class="block text-gray-700 font-medium mb-2">Confirm Password *</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition-colors"
+                                       placeholder="Re-enter your password">
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-blue-500 transition-colors"
+                                       placeholder="(123) 456-7890">
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <input type="checkbox" id="terms" name="terms" required 
+                                       class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                                <label for="terms" class="text-gray-700">
+                                    I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> *
+                                </label>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <input type="checkbox" id="newsletter" name="newsletter" 
+                                       class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                                <label for="newsletter" class="text-gray-700">
+                                    Subscribe to our newsletter for updates and offers
+                                </label>
+                            </div>
+                            
+                            <button type="submit" 
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                                <i class="fas fa-user-plus mr-2"></i>
+                                Create Account
+                            </button>
+                            
+                            <div class="text-center text-gray-600">
+                                Already have an account? 
+                                <a href="login.html" class="text-blue-600 font-medium hover:underline">Log In</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                            <i data-feather="shopping-cart" class="text-blue-600"></i>
+                <!-- Benefits Section -->
+                <div class="lg:w-1/2">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-10 h-full">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-8">Why Join Our Platform?</h2>
+                        
+                        <div class="space-y-8">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-shield-alt text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Secure & Reliable</h3>
+                                    <p class="text-gray-700">Enterprise-grade security with 99.9% uptime guarantee and data encryption.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-rocket text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Boost Productivity</h3>
+                                    <p class="text-gray-700">Streamline your workflow with our integrated tools and automation features.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-headset text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">24/7 Support</h3>
+                                    <p class="text-gray-700">Access to our dedicated support team via chat, email, or phone anytime.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Growth Insights</h3>
+                                    <p class="text-gray-700">Get actionable analytics and reports to help grow your business.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
-                            <p class="text-gray-600">Save your details for quicker purchases.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-2 rounded-full mr-4">
-                            <i data-feather="package" class="text-green-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
-                            <p class="text-gray-600">Monitor your orders in real-time.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 p-2 rounded-full mr-4">
-                            <i data-feather="star" class="text-purple-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
-                            <p class="text-gray-600">Share and read authentic product reviews.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
-                            <i data-feather="credit-card" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
-                            <p class="text-gray-600">Multiple payment options with top security.</p>
+                        
+                        <!-- Testimonials -->
+                        <div class="mt-12 pt-8 border-t border-blue-200">
+                            <h3 class="text-xl font-bold text-gray-900 mb-6">What Our Members Say</h3>
+                            
+                            <div class="bg-white rounded-xl p-6 shadow-md">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-user text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900">Sarah Johnson</h4>
+                                        <p class="text-gray-600 text-sm">Marketing Director</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 italic">"Since joining this platform, our team collaboration has improved by 40%. The onboarding process was seamless and the support team is exceptional."</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Right Column: Signup Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
-                
-                <form id="signupForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
-                            <input type="text" id="firstName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="password">Password</label>
-                        <input type="password" id="password" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="terms" required 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="terms" class="ml-3 text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                        </label>
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="newsletter" class="ml-3 text-gray-700">
-                            Subscribe to our newsletter for exclusive deals
-                        </label>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                        Create Account
-                    </button>
-                    
-                    <div class="text-center">
-                        <p class="text-gray-600">Already have an account? 
-                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
-                        </p>
-                    </div>
-                    
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            Facebook
-                        </button>
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
-                            Twitter
-                        </button>
-                    </div>
-                </form>
+            <!-- Trust Indicators -->
+            <div class="mt-16 text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8">Trusted by Industry Leaders</h3>
+                <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70">
+                    <div class="text-3xl font-bold text-gray-800">TechCorp</div>
+                    <div class="text-3xl font-bold text-gray-800">GlobalBiz</div>
+                    <div class="text-3xl font-bold text-gray-800">InnovateCo</div>
+                    <div class="text-3xl font-bold text-gray-800">PrimeSolutions</div>
+                </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <i data-feather="shopping-bag" class="text-blue-400"></i>
-                    <span class="font-bold text-xl">E-Shop</span>
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-cube text-blue-400 text-2xl"></i>
+                        <span class="font-bold text-xl">BusinessPro</span>
+                    </div>
+                    <p class="text-gray-400">Professional solutions for modern businesses. Empowering growth through innovation.</p>
                 </div>
-                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
-                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
-                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Account</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
-                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Contact</h3>
-                <p class="text-gray-400">support@eshop.com</p>
-                <p class="text-gray-400">+1 (555) 123-4567</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-blue-400 transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-blue-400 transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-blue-400 transition-colors">Services</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-blue-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Cookie Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-3 text-blue-400"></i>
+                            123 Business Ave, Suite 100
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-blue-400"></i>
+                            (555) 123-4567
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-blue-400"></i>
+                            info@businesspro.com
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 BusinessPro. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- JavaScript for Form Validation -->
     <script>
-        feather.replace();
-        
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
+            const phone = document.getElementById('phone').value;
+            const terms = document.getElementById('terms').checked;
             
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
+            // Basic validation
+            let isValid = true;
+            let errorMessage = '';
+            
+            // Check required fields
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                isValid = false;
+                errorMessage = 'Please fill in all required fields.';
             }
             
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to login...');
-            window.location.href = 'login.html';
+            // Check password match
+            if (password !== confirmPassword) {
+                isValid = false;
+                errorMessage = 'Passwords do not match.';
+            }
+            
+            // Check password strength (basic)
+            if (password.length < 8) {
+                isValid = false;
+                errorMessage = 'Password must be at least 8 characters long.';
+            }
+            
+            // Check terms agreement
+            if (!terms) {
+                isValid = false;
+                errorMessage = 'You must agree to the Terms of Service and Privacy Policy.';
+            }
+            
+            // Check email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address.';
+            }
+            
+            if (isValid) {
+                // In a real application, you would send data to a server here
+                // For demo purposes, we'll show a success message
+                alert(`Thank you for signing up, ${firstName}! Your account has been created successfully. You will receive a confirmation email shortly.`);
+                
+                // Reset form
+                document.getElementById('signupForm').reset();
+                
+                // In a real app, you would redirect to dashboard or login page
+                // window.location.href = 'dashboard.html';
+            } else {
+                alert(errorMessage);
+            }
+        });
+        
+        // Password strength indicator (optional enhancement)
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthIndicator = document.createElement('div');
+            strengthIndicator.id = 'passwordStrength';
+            
+            let strength = 0;
+            let strengthText = '';
+            let strengthColor = 'red';
+            
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            if (strength <= 2) {
+                strengthText = 'Weak';
+                strengthColor = 'red';
+            } else if (strength <= 4) {
+                strengthText = 'Medium';
+                strengthColor = 'orange';
+            } else {
+                strengthText = 'Strong';
+                strengthColor = 'green';
+            }
+            
+            // Update or create strength indicator
+            let existingIndicator = document.getElementById('passwordStrength');
+            if (existingIndicator) {
+                existingIndicator.textContent = `Password strength: ${strengthText}`;
+                existingIndicator.style.color = strengthColor;
+            } else if (password.length > 0) {
+                strengthIndicator.textContent = `Password strength: ${strengthText}`;
+                strengthIndicator.style.color = strengthColor;
+                strengthIndicator.className = 'text-sm mt-1';
+                this.parentNode.appendChild(strengthIndicator);
+            }
+            
+            // Remove indicator if password is empty
+            if (password.length === 0 && existingIndicator) {
+                existingIndicator.remove();
+            }
         });
     </script>
 </body>
