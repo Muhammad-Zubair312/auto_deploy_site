@@ -3,282 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | E-Commerce Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Login | Professional Portfolio</title>
+    <meta name="description" content="Access your portfolio dashboard. Manage projects, update case studies, and connect with clients.">
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-        .login-card {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
-        }
-        .input-focus:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
+        * { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="font-sans">
-    <!-- Shared Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex space-x-4">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
-        </div>
-        <div class="text-sm text-gray-300 mt-2 md:mt-0">
-            Welcome back! Access your account
-        </div>
-    </nav>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='projects.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Projects</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='blog.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Blog</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
 
-    <!-- Login Page Content -->
-    <main class="container mx-auto px-4 py-12">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" data-aos="fade-up">
-            <!-- Login Form Section -->
-            <div class="login-card rounded-2xl shadow-2xl p-8 md:p-12">
-                <div class="text-center mb-10">
-                    <h1 class="text-4xl font-bold text-gray-900 mb-3">Welcome Back</h1>
-                    <p class="text-gray-600">Sign in to your account to continue shopping</p>
-                </div>
+    <main>
+        <!-- Hero / Login Section -->
+        <section class="min-h-[70vh] flex items-center justify-center px-4 py-12 bg-gradient-to-br from-blue-50 to-gray-100">
+            <div class="w-full max-w-md">
+                <div class="rounded-xl shadow-2xl p-8 bg-white">
+                    <h1 class="text-3xl font-bold text-center text-gray-900 mb-2">Welcome Back</h1>
+                    <p class="text-gray-600 text-center mb-8">Sign in to access your portfolio dashboard</p>
 
-                <form id="loginForm" class="space-y-6">
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address
-                        </label>
-                        <div class="relative">
-                            <i data-feather="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                required
-                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="you@example.com"
-                            >
+                    <form class="space-y-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                         </div>
-                    </div>
-
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            Password
-                        </label>
-                        <div class="relative">
-                            <i data-feather="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="password" 
-                                id="password" 
-                                required
-                                class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="Enter your password"
-                            >
-                            <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                <i data-feather="eye"></i>
-                            </button>
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                            <input type="password" id="password" name="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                         </div>
-                    </div>
-
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input 
-                                type="checkbox" 
-                                id="remember"
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                            >
-                            <label for="remember" class="ml-2 text-sm text-gray-700">
-                                Remember me
-                            </label>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input id="remember" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
+                                <label for="remember" class="ml-2 text-sm text-gray-600">Remember me</label>
+                            </div>
+                            <a href="#" class="text-sm text-blue-700 hover:text-blue-800 font-medium">Forgot password?</a>
                         </div>
-                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800 hover:underline">
-                            Forgot password?
-                        </a>
+                        <button type="submit" class="w-full px-6 py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors duration-300 shadow-md">Sign In</button>
+                    </form>
+
+                    <div class="mt-6 text-center">
+                        <p class="text-gray-600">Don't have an account? <a href="signup.html" class="text-orange-500 font-semibold hover:text-orange-600">Sign up here</a></p>
                     </div>
 
-                    <button 
-                        type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-                    >
-                        Sign In
-                    </button>
-
-                    <div class="text-center">
-                        <p class="text-gray-600">
-                            Don't have an account? 
-                            <a href="signup.html" class="text-blue-600 hover:text-blue-800 font-semibold hover:underline">
-                                Sign up here
-                            </a>
-                        </p>
-                    </div>
-                </form>
-
-                <div class="mt-8 pt-8 border-t border-gray-200">
-                    <p class="text-center text-gray-600 mb-4">Or continue with</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            <span>Facebook</span>
-                        </button>
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="github" class="mr-2"></i>
-                            <span>GitHub</span>
-                        </button>
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-500 text-center">Or continue with</p>
+                        <div class="mt-4 flex justify-center space-x-4">
+                            <a href="#" aria-label="Sign in with Google" class="p-3 border border-gray-300 rounded-full hover:bg-gray-50 transition"><i class="fab fa-google text-gray-700"></i></a>
+                            <a href="#" aria-label="Sign in with GitHub" class="p-3 border border-gray-300 rounded-full hover:bg-gray-50 transition"><i class="fab fa-github text-gray-700"></i></a>
+                            <a href="#" aria-label="Sign in with LinkedIn" class="p-3 border border-gray-300 rounded-full hover:bg-gray-50 transition"><i class="fab fa-linkedin text-gray-700"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Benefits Section -->
-            <div class="space-y-8">
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="200">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i data-feather="shopping-bag" class="text-blue-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Track Your Orders</h3>
-                            <p class="text-gray-600">Monitor your purchases from order to delivery with real-time updates.</p>
-                        </div>
+        <!-- Project Gallery Preview -->
+        <section class="px-4 py-16 max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">Featured Project Case Studies</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">Log in to view and manage your complete portfolio, including detailed case studies, analytics, and client feedback.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="rounded-xl shadow-lg p-6 bg-white hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-r from-blue-100 to-blue-200 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-blue-700 font-bold text-xl">E‑Commerce Platform</span>
                     </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Global Retail Dashboard</h3>
+                    <p class="text-gray-600 mb-4">A comprehensive analytics dashboard built with React and Node.js, increasing client sales visibility by 45%.</p>
+                    <a href="#" class="inline-flex items-center text-blue-700 font-medium hover:text-blue-800">View Case Study <i class="ml-2 fas fa-arrow-right"></i></a>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="400">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-green-100 p-3 rounded-lg mr-4">
-                            <i data-feather="heart" class="text-green-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Personalized Experience</h3>
-                            <p class="text-gray-600">Get product recommendations based on your browsing and purchase history.</p>
-                        </div>
+                <!-- Project Card 2 -->
+                <div class="rounded-xl shadow-lg p-6 bg-white hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-r from-orange-100 to-orange-200 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-orange-700 font-bold text-xl">Health & Fitness App</span>
                     </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Wellness Tracker Mobile App</h3>
+                    <p class="text-gray-600 mb-4">Cross‑platform React Native application with real‑time sync, serving over 10k active users.</p>
+                    <a href="#" class="inline-flex items-center text-blue-700 font-medium hover:text-blue-800">View Case Study <i class="ml-2 fas fa-arrow-right"></i></a>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="600">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-purple-100 p-3 rounded-lg mr-4">
-                            <i data-feather="star" class="text-purple-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Write Reviews</h3>
-                            <p class="text-gray-600">Share your experience and help other customers make informed decisions.</p>
-                        </div>
+                <!-- Project Card 3 -->
+                <div class="rounded-xl shadow-lg p-6 bg-white hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-gray-700 font-bold text-xl">FinTech Solution</span>
                     </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Secure Banking Portal</h3>
+                    <p class="text-gray-600 mb-4">A full‑stack portal with advanced security features and user‑friendly interface, compliant with PCI DSS.</p>
+                    <a href="#" class="inline-flex items-center text-blue-700 font-medium hover:text-blue-800">View Case Study <i class="ml-2 fas fa-arrow-right"></i></a>
                 </div>
+            </div>
+        </section>
 
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-lg p-8 text-white" data-aos="fade-up" data-aos-delay="800">
-                    <h3 class="text-2xl font-bold mb-4">Secure Shopping</h3>
-                    <p class="mb-4">Your security is our priority. We use industry-standard encryption to protect your data.</p>
-                    <div class="flex items-center">
-                        <i data-feather="shield" class="mr-3"></i>
-                        <span class="font-semibold">256-bit SSL Encryption</span>
+        <!-- Testimonials -->
+        <section class="px-4 py-16 bg-gradient-to-r from-blue-50 to-gray-50">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">Client Testimonials</h2>
+                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">See what clients say about working together. Log in to read full testimonials and manage your reputation.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="rounded-xl shadow-lg p-6 bg-white">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center text-blue-700 font-bold text-lg">JS</div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-900">Jane Smith</h4>
+                                <p class="text-sm text-gray-500">CEO, TechVision Inc.</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"The dashboard transformed our decision‑making process. The attention to detail and post‑launch support were exceptional."</p>
+                    </div>
+                    <div class="rounded-xl shadow-lg p-6 bg-white">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-orange-200 flex items-center justify-center text-orange-700 font-bold text-lg">MR</div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-900">Michael Rodriguez</h4>
+                                <p class="text-sm text-gray-500">Founder, HealthPlus</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"A seamless development process from concept to deployment. Our user engagement increased by 60% after launch."</p>
+                    </div>
+                    <div class="rounded-xl shadow-lg p-6 bg-white">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 font-bold text-lg">AL</div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-900">Amanda Lee</h4>
+                                <p class="text-sm text-gray-500">Director, SecureBank</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"Professional, timely, and highly skilled. The security implementation gave our team complete confidence."</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Resume & Contact CTA -->
+        <section class="px-4 py-16 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="rounded-xl shadow-lg p-8 bg-white">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Download My Resume</h3>
+                    <p class="text-gray-600 mb-6">Access the latest version of my professional resume, including skills, experience, and certifications. Updated quarterly.</p>
+                    <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors duration-300">
+                        <i class="fas fa-download mr-2"></i> Download Resume (PDF)
+                    </a>
+                </div>
+
+                <div class="rounded-xl shadow-lg p-8 bg-white">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Get In Touch</h3>
+                    <p class="text-gray-600 mb-6">Have a project in mind? Use the contact form to send a direct message. I typically respond within 24 hours.</p>
+                    <a href="contact.html" class="inline-flex items-center px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors duration-300">
+                        Go to Contact Form <i class="ml-2 fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">E-Commerce Store</h3>
-                    <p class="text-gray-400">Your one-stop shop for all your needs. Quality products, secure payments, fast delivery.</p>
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold">Portfolio<span class="text-orange-500">.</span></h2>
+                    <p class="text-gray-400 mt-2">Crafting digital experiences that drive results.</p>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white transition">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white transition">Checkout</a></li>
-                    </ul>
+
+                <!-- Social Media Integration -->
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" aria-label="LinkedIn" class="text-gray-300 hover:text-white text-xl transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="GitHub" class="text-gray-300 hover:text-white text-xl transition"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Twitter" class="text-gray-300 hover:text-white text-xl transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Dribbble" class="text-gray-300 hover:text-white text-xl transition"><i class="fab fa-dribbble"></i></a>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Account</h4>
-                    <ul class="space-y-2">
-                        <li><a href="login.html" class="text-gray-400 hover:text-white transition">Login</a></li>
-                        <li><a href="signup.html" class="text-gray-400 hover:text-white transition">Sign Up</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Order Tracking</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <p class="text-gray-400">support@ecommerce.com</p>
-                    <p class="text-gray-400">+1 (555) 123-4567</p>
+
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">© <span id="currentYear"></span> Professional Portfolio. All rights reserved.</p>
+                    <p class="text-gray-500 text-sm mt-1">Designed with accessibility in mind.</p>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                <p><a href="#" class="hover:text-gray-300 transition">Privacy Policy</a> | <a href="#" class="hover:text-gray-300 transition">Terms of Service</a> | <a href="#" class="hover:text-gray-300 transition">Cookie Policy</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Initialize Feather Icons
-        feather.replace();
-
-        // Toggle password visibility
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.querySelector('i').setAttribute('data-feather', type === 'password' ? 'eye' : 'eye-off');
-            feather.replace();
-        });
-
-        // Form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Simple validation
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Simulate login process
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Signing in...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                alert('Login successful! Redirecting to homepage...');
-                window.location.href = 'index.html';
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
-
-        // Social login buttons
-        document.querySelectorAll('button:has(i[data-feather="facebook"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Facebook login would be implemented here');
-            });
-        });
-
-        document.querySelectorAll('button:has(i[data-feather="github"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('GitHub login would be implemented here');
-            });
-        });
-    </script>
-</body>
-</html>
+        // Simple form submission feedback (placeholder)
+        document.querySelector('form')?.addEventListener('submit',
