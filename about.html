@@ -3,180 +3,376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Basic Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <title>About | Zubair Portfolio</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #0ea5e9 50%, #10b981 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .timeline-connector {
+            position: relative;
+        }
+        .timeline-connector::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 2.5rem;
+            bottom: -2.5rem;
+            width: 2px;
+            background-color: #e2e8f0;
+            z-index: 0;
+        }
+        .last-timeline::before {
+            display: none;
+        }
+        .skill-bar {
+            transition: width 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .interest-tile:hover svg {
+            transform: rotate(12deg) scale(1.1);
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-        <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
-        <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
-    </nav>
+<body class="font-sans bg-slate-100 text-gray-800">
+<nav class='bg-gray-900 text-gray-200 px-6 py-3 flex flex-wrap items-center gap-1 shadow-xl sticky top-0 z-50 backdrop-blur'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Home</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>About</a><a href='projects.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Projects</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Signup</a></nav>
 
-    <!-- About Hero Section -->
-    <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">About Our Company</h1>
-            <p class="text-xl md:text-2xl max-w-3xl mx-auto">
-                Building innovative solutions for tomorrow's challenges
-            </p>
-        </div>
-    </section>
-
-    <!-- Mission & Vision -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="bg-blue-50 p-8 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-6">
-                        <i data-feather="target" class="text-blue-600 mr-4"></i>
-                        <h2 class="text-2xl font-bold text-gray-800">Our Mission</h2>
-                    </div>
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        To deliver exceptional value through innovative solutions that empower businesses 
-                        and individuals to achieve their full potential. We strive to create meaningful 
-                        impact through technology, collaboration, and unwavering commitment to excellence.
-                    </p>
-                </div>
-                
-                <div class="bg-purple-50 p-8 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-6">
-                        <i data-feather="eye" class="text-purple-600 mr-4"></i>
-                        <h2 class="text-2xl font-bold text-gray-800">Our Vision</h2>
-                    </div>
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        To be the leading force in digital transformation, recognized globally for our 
-                        innovative approach, exceptional service quality, and positive impact on the 
-                        communities we serve. We envision a future where technology enhances every 
-                        aspect of human experience.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Values Section -->
-    <section class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Core Values</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <i data-feather="users" class="text-blue-600 w-12 h-12 mx-auto mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Collaboration</h3>
-                        <p class="text-gray-600">Working together to achieve extraordinary results through shared knowledge and mutual respect.</p>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <i data-feather="zap" class="text-yellow-500 w-12 h-12 mx-auto mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Innovation</h3>
-                        <p class="text-gray-600">Constantly pushing boundaries and exploring new possibilities to create cutting-edge solutions.</p>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <i data-feather="award" class="text-green-500 w-12 h-12 mx-auto mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Excellence</h3>
-                        <p class="text-gray-600">Committed to delivering the highest quality in everything we do, exceeding expectations consistently.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Meet Our Leadership</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                        <i data-feather="user" class="w-16 h-16 text-gray-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Sarah Johnson</h3>
-                    <p class="text-blue-600 mb-2">CEO & Founder</p>
-                    <p class="text-gray-600 text-sm">Visionary leader with 15+ years in technology innovation</p>
-                </div>
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                        <i data-feather="user" class="w-16 h-16 text-gray-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Michael Chen</h3>
-                    <p class="text-blue-600 mb-2">CTO</p>
-                    <p class="text-gray-600 text-sm">Technical expert specializing in scalable architecture</p>
-                </div>
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                        <i data-feather="user" class="w-16 h-16 text-gray-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Emily Rodriguez</h3>
-                    <p class="text-blue-600 mb-2">COO</p>
-                    <p class="text-gray-600 text-sm">Operations specialist focused on efficiency and growth</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section class="py-16 bg-gray-900 text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
-                <form class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium mb-2">Full Name</label>
-                        <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required>
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
-                        <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label for="message" class="block text-sm font-medium mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required></textarea>
-                    </div>
-                    <div class="md:col-span-2 text-center">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300">
-                            Send Message
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Basic Website. All rights reserved.</p>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="facebook"></i>
-                </a>
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="twitter"></i>
-                </a>
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="linkedin"></i>
-                </a>
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="instagram"></i>
+    <!-- HERO SECTION -->
+    <section class="gradient-bg text-white py-20 md:py-28 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tight">Zubair Ahmed</h1>
+            <p class="text-2xl md:text-3xl font-semibold mb-6 text-emerald-300">Senior Full-Stack Developer & Tech Lead</p>
+            <p class="text-xl max-w-3xl mx-auto opacity-90">Crafting high-performance digital experiences with 8+ years of expertise in modern web stacks, cloud architecture, and scalable system design.</p>
+            <div class="mt-10">
+                <a href="Zubair_Ahmed_Resume.pdf" download class="inline-flex items-center gap-2 bg-white text-indigo-700 font-bold px-8 py-4 rounded-lg shadow-2xl hover:shadow-indigo-500/30 hover:scale-105 transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                    Download Resume
                 </a>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        feather.replace();
-    </script>
-</body>
-</html>
+    <!-- BIO SECTION -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12 items-center">
+                <div class="md:col-span-1 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 rounded-full overflow-hidden border-8 border-white shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Zubair Ahmed" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -inset-4 border-4 border-emerald-500/30 rounded-full -z-10 animate-pulse"></div>
+                    </div>
+                </div>
+                <div class="md:col-span-2">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Professional Profile</h2>
+                    <div class="space-y-4 text-gray-600">
+                        <p class="text-lg">I am a passionate technologist and problem-solver, specializing in building robust, user-centric web applications. My journey began at <strong class="text-indigo-700">PUCIT (Punjab University College of Information Technology)</strong>, where I earned my BS in Computer Science, laying a strong theoretical and practical foundation.</p>
+                        <p class="text-lg">I thrive in agile environments, leading cross-functional teams to deliver complex projects on time. My philosophy centers on clean code, scalable architecture, and continuous learning to stay ahead in the rapidly evolving tech landscape.</p>
+                    </div>
+                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-indigo-100 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Location</p>
+                                <p class="text-gray-500">Lahore, Pakistan</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-emerald-100 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Experience</p>
+                                <p class="text-gray-500">8+ Years</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-indigo-100 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Education</p>
+                                <p class="text-gray-500">BS CS, PUCIT</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-emerald-100 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Availability</p>
+                                <p class="text-gray-500">Open to Opportunities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section class="py-16 px-6 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Technical & Professional Skills</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                        Frontend
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">React / Next.js</span>
+                                <span class="text-emerald-500 font-bold">95%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-indigo-700 rounded-full skill-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">TypeScript</span>
+                                <span class="text-emerald-500 font-bold">90%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-indigo-700 rounded-full skill-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Tailwind CSS</span>
+                                <span class="text-emerald-500 font-bold">98%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-indigo-700 rounded-full skill-bar" style="width: 98%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                        </svg>
+                        Backend
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-indigo-100 text-indigo-800 font-semibold rounded-full">Node.js</span>
+                        <span class="px-3 py-1.5 bg-indigo-100 text-indigo-800 font-semibold rounded-full">Python (Django)</span>
+                        <span class="px-3 py-1.5 bg-indigo-100 text-indigo-800 font-semibold rounded-full">PostgreSQL</span>
+                        <span class="px-3 py-1.5 bg-indigo-100 text-indigo-800 font-semibold rounded-full">MongoDB</span>
+                        <span class="px-3 py-1.5 bg-indigo-100 text-indigo-800 font-semibold rounded-full">Redis</span>
+                        <span class="px-3 py-1.5 bg-indigo-100 text-indigo-800 font-semibold rounded-full">GraphQL</span>
+                        <span class="px-3 py-1.5 bg-indigo-100 text-indigo-800 font-semibold rounded-full">REST APIs</span>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                        </svg>
+                        DevOps & Cloud
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">AWS / GCP</span>
+                                <span class="text-emerald-500 font-bold">85%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-indigo-700 rounded-full skill-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Docker & Kubernetes</span>
+                                <span class="text-emerald-500 font-bold">80%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-indigo-700 rounded-full skill-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">CI/CD (GitHub Actions)</span>
+                                <span class="text-emerald-500 font-bold">88%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-indigo-700 rounded-full skill-bar" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                        </svg>
+                        Soft Skills
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-emerald-100 text-emerald-800 font-semibold rounded-full">Team Leadership</span>
+                        <span class="px-3 py-1.5 bg-emerald-100 text-emerald-800 font-semibold rounded-full">Agile/Scrum</span>
+                        <span class="px-3 py-1.5 bg-emerald-100 text-emerald-800 font-semibold rounded-full">Problem Solving</span>
+                        <span class="px-3 py-1.5 bg-emerald-100 text-emerald-800 font-semibold rounded-full">Client Communication</span>
+                        <span class="px-3 py-1.5 bg-emerald-100 text-emerald-800 font-semibold rounded-full">Mentoring</span>
+                        <span class="px-3 py-1.5 bg-emerald-100 text-emerald-800 font-semibold rounded-full">Project Planning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Professional Journey</h2>
+            <div class="space-y-12 relative">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-connector flex items-start">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center text-white font-bold mr-6 relative z-10">
+                        1
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl shadow-lg border-l-4 border-indigo-700 flex-1 hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-900">TechLead Solutions Inc.</h3>
+                            <span class="text-emerald-500 font-semibold">Jan 2021 – Present</span>
+                        </div>
+                        <p class="text-lg font-semibold text-indigo-700 mb-4">Senior Full-Stack Developer / Tech Lead</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Led a team of 6 developers to rebuild a legacy SaaS platform using Next.js & Node.js, improving performance by 40%.
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Architected and deployed a microservices-based backend on AWS ECS, reducing server costs by 25%.
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Implemented comprehensive CI/CD pipelines, cutting deployment time from 2 hours to 15 minutes.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Timeline Item 2 -->
+                <div class="timeline-connector flex items-start">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold mr-6 relative z-10">
+                        2
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl shadow-lg border-l-4 border-indigo-600 flex-1 hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-900">DigitalCraft Agency</h3>
+                            <span class="text-emerald-500 font-semibold">Mar 2018 – Dec 2020</span>
+                        </div>
+                        <p class="text-lg font-semibold text-indigo-700 mb-4">Full-Stack Developer</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Developed over 15 client websites and web applications using React, Django, and PostgreSQL.
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Integrated third-party APIs (payment gateways, maps, analytics) for enhanced functionality.
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Mentored 3 junior developers, improving team code quality and adoption of best practices.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Timeline Item 3 -->
+                <div class="timeline-connector last-timeline flex items-start">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold mr-6 relative z-10">
+                        3
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl shadow-lg border-l-4 border-indigo-500 flex-1 hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-900">StartUpLabs (Internship)</h3>
+                            <span class="text-emerald-500 font-semibold">Jun 2017 – Feb 2018</span>
+                        </div>
+                        <p class="text-lg font-semibold text-indigo-700 mb-4">Frontend Developer Intern</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Built responsive user interfaces for an internal project management tool using Vue.js.
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Collaborated with designers to implement pixel-perfect, accessible components.
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Gained foundational experience in Agile development and version control with Git.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="py-16 px-6 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Education & Academic Background</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-indigo-700">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">PUCIT</h3>
+                            <p class="text-lg text-gray-600">Punjab University College of Information Technology</p>
+                        </div>
+                        <div class="px-4 py-2 bg-indigo-100 text-indigo-800 font-bold rounded-lg">2013 – 2017</div>
+                    </div>
+                    <p class="
