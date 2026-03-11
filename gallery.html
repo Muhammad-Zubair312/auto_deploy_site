@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Gallery | Sport Website</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#1d4ed8',
+                        'brand-orange': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hover-overlay {
+            background: linear-gradient(to top, rgba(29, 78, 216, 0.95), transparent);
+        }
+        .star-rating i {
+            color: #fbbf24;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+<nav class='bg-gray-900 text-gray-200 px-6 py-3 flex flex-wrap items-center gap-1 shadow-xl sticky top-0 z-50'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Home</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Signup</a><a href='news.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>News</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Events</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Teams</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Gallery</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Contact</a></nav>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <!-- HERO SECTION -->
+    <section class="mb-12 lg:mb-16">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Sport Media Gallery</h1>
+                <p class="text-lg text-gray-600">A visual journey through the passion, drama, and triumph of global sports.</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="inline-flex items-center px-4 py-2 rounded-full bg-blue-700 text-white font-semibold text-sm">
+                    <i class="fas fa-images mr-2"></i> 247 Items
+                </span>
+                <button class="px-4 py-2 rounded-md text-sm font-semibold bg-white border border-gray-300 hover:bg-gray-50 transition-colors duration-200">
+                    <i class="fas fa-sliders-h mr-2"></i> Filter
+                </button>
+            </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mb-2">
+            <a href="#" class="px-4 py-2 rounded-full bg-orange-500 text-white font-medium text-sm hover:bg-orange-600 transition-colors duration-200">All Media</a>
+            <a href="#" class="px-4 py-2 rounded-full bg-white border border-gray-300 font-medium text-sm hover:bg-gray-50 hover:border-gray-400 transition-colors duration-200">Match Highlights</a>
+            <a href="#" class="px-4 py-2 rounded-full bg-white border border-gray-300 font-medium text-sm hover:bg-gray-50 hover:border-gray-400 transition-colors duration-200">Team Portraits</a>
+            <a href="#" class="px-4 py-2 rounded-full bg-white border border-gray-300 font-medium text-sm hover:bg-gray-50 hover:border-gray-400 transition-colors duration-200">Fan Moments</a>
+            <a href="#" class="px-4 py-2 rounded-full bg-white border border-gray-300 font-medium text-sm hover:bg-gray-50 hover:border-gray-400 transition-colors duration-200">Behind the Scenes</a>
+            <a href="#" class="px-4 py-2 rounded-full bg-white border border-gray-300 font-medium text-sm hover:bg-gray-50 hover:border-gray-400 transition-colors duration-200">Championship History</a>
+        </div>
+        <p class="text-sm text-gray-500">Use filters to explore our curated collection of photos and videos from events worldwide.</p>
+    </section>
+
+    <!-- FEATURED ITEM -->
+    <section class="mb-16">
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden md:flex">
+            <div class="md:w-1/2 relative">
+                <img src='https://source.unsplash.com/600x400/?analytics,dashboard,data' class='w-full h-72 md:h-full object-cover' alt='Featured: Live Score Analytics Dashboard' loading='lazy'>
+                <div class="absolute top-4 left-4">
+                    <span class="px-3 py-1 rounded-full bg-orange-500 text-white font-bold text-xs uppercase tracking-wide">Featured</span>
+                </div>
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center">
+                    <span class="px-3 py-1 rounded-md bg-black/70 text-white text-sm">4K Video Available</span>
+                    <button aria-label="Play video" class="w-12 h-12 rounded-full bg-blue-700 text-white flex items-center justify-center hover:bg-blue-800 transition-colors duration-200">
+                        <i class="fas fa-play text-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Global Championship Finals Dashboard</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">Our flagship real-time analytics dashboard captured during last season's world finals. This interface displays live scores, player biometrics, and predictive win probabilities, used by broadcasters and coaches alike. The system processes over 10,000 data points per second to deliver unparalleled insights. Experience the tension of the final moments through this interactive data visualization.</p>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">Live Scores</span>
+                    <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">Data Visualization</span>
+                    <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">Championship</span>
+                    <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">Real-time</span>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <button class="px-6 py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors duration-200 flex items-center gap-2">
+                        <i class="fas fa-expand"></i> View Fullscreen
+                    </button>
+                    <button class="px-6 py-3 bg-white border border-gray-300 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center gap-2">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                    <button class="px-6 py-3 bg-white border border-gray-300 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center gap-2">
+                        <i class="far fa-heart"></i> 422
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE SCORE UPDATE STRIP -->
+    <section class="mb-12 bg-white rounded-xl shadow-md p-4 border-l-4 border-orange-500">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center">
+                    <i class="fas fa-bolt text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-900">Live Match Update</h3>
+                    <p class="text-sm text-gray-600">Champions League Quarter-Finals</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-6 text-center">
+                <div>
+                    <div class="font-bold text-xl">FC Barcelona</div>
+                    <div class="text-sm text-gray-500">Home</div>
+                </div>
+                <div class="text-3xl font-bold bg-gray-100 px-6 py-2 rounded-lg">2 - 1</div>
+                <div>
+                    <div class="font-bold text-xl">Bayern Munich</div>
+                    <div class="text-sm text-gray-500">Away</div>
+                </div>
+            </div>
+            <div class="text-sm">
+                <span class="px-3 py-1 rounded-full bg-red-100 text-red-700 font-medium"><i class="fas fa-circle mr-1 animate-pulse"></i> 72' Live</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- GRID SECTION -->
+    <section class="mb-16">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Recent Additions</h2>
+        <p class="text-gray-600 mb-8">Explore the latest photos and videos uploaded by our global network of sports photographers.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Item 1 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                <div class="relative overflow-hidden">
+                    <img src='https://source.unsplash.com/600x400/?analytics,dashboard,data' class='w-full h-48 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500' alt='Team strategy session with tactical dashboard' loading='lazy'>
+                    <div class="absolute inset-0 hover-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="View details">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Share">
+                            <i class="fas fa-share"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Tactical Analysis Room</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Coaches reviewing real-time player positioning and heat maps during a timeout. This session led to a crucial second-half turnaround.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Strategy</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Coaching</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Data</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                <div class="relative overflow-hidden">
+                    <img src='https://source.unsplash.com/600x400/?collaboration,teamwork,remote' class='w-full h-48 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500' alt='Victory celebration with team lifting trophy' loading='lazy'>
+                    <div class="absolute inset-0 hover-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="View details">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Share">
+                            <i class="fas fa-share"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Championship Celebration</h3>
+                    <p class="text-gray-600 mb-4 text-sm">The moment the captain lifted the trophy after a nail-biting penalty shootout. Confetti fills the air as 80,000 fans roar in unison.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Victory</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Trophy</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Celebration</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                <div class="relative overflow-hidden">
+                    <img src='https://source.unsplash.com/600x400/?security,cloud,technology' class='w-full h-48 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500' alt='Advanced stadium security and access control systems' loading='lazy'>
+                    <div class="absolute inset-0 hover-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="View details">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Share">
+                            <i class="fas fa-share"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Stadium Command Center</h3>
+                    <p class="text-gray-600 mb-4 text-sm">The high-tech nerve center managing crowd flow, security, and facilities for a sold-out international fixture. Over 500 cameras monitored in real-time.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Security</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Operations</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Technology</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                <div class="relative overflow-hidden">
+                    <img src='https://source.unsplash.com/600x400/?automation,workflow,productivity' class='w-full h-48 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500' alt='Automated broadcast production control room' loading='lazy'>
+                    <div class="absolute inset-0 hover-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="View details">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Share">
+                            <i class="fas fa-share"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Broadcast Production Hub</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Where the live broadcast magic happens. Automated camera switching, instant replay sequencing, and graphics integration for a global audience of millions.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Broadcast</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Production</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Live TV</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Item 5 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                <div class="relative overflow-hidden">
+                    <img src='https://source.unsplash.com/600x400/?integration,api,development' class='w-full h-48 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500' alt='Developers integrating live stats API for mobile app' loading='lazy'>
+                    <div class="absolute inset-0 hover-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="View details">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Share">
+                            <i class="fas fa-share"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Live Stats API Integration</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Our development team working on the real-time statistics API that powers second-screen experiences for major networks and sports apps.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">API</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Development</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Integration</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Item 6 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+                <div class="relative overflow-hidden">
+                    <img src='https://source.unsplash.com/600x400/?mobile,app,interface' class='w-full h-48 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500' alt='Fan using mobile app with augmented reality features' loading='lazy'>
+                    <div class="absolute inset-0 hover-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="View details">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors duration-200" aria-label="Share">
+                            <i class="fas fa-share"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Augmented Reality Fan Experience</h3>
+                    <p class="text-gray-600 mb-4 text-sm">A fan using our mobile app's AR feature to view player stats overlaid on the live field view. This technology enhances stadium and broadcast viewing.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Mobile App</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">AR</span>
+                        <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium">Fan Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <button class="px-8 py-3 bg-white border-2 border-blue-700 text-blue-700 font-bold rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                Load More Media <i class="fas fa-arrow-down ml-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <section class="mb-16">
+        <div class="bg-gradient-to-r from-blue-700 to-blue-800 rounded-2xl shadow-xl p-8 text-white">
+            <h2 class="text-2xl font-bold mb-8 text-center">Sport Website in Numbers</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">15K+</div>
+                    <div class="text-blue-200">High-Quality Media Assets</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">42</div>
+                    <div class="text-blue-200">Live Sports Leagues Covered</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">3.2M</div>
+                    <div class="text-blue-200">Fan Comments & Interactions</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">24/7</div>
+                    <div class="text-blue-200">Live Score Updates</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="mb-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div class="flex-shrink-0">
+                    <img src="https://source.unsplash.com/150x150/?portrait,professional,woman" class="w-24 h-24 rounded-full object-cover border-4 border-blue-100" alt="Maria Rodriguez, Sports Network Director" loading="lazy">
+                </div>
+                <div>
+                    <div class="star-rating mb-4 text-2xl">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote class="text-xl italic text-gray-700 mb-6 leading-relaxed">
+                        "The Sport Website gallery has become an indispensable resource for our broadcast team. The quality and speed of access to key moments, combined with the rich statistical overlays, have elevated our storytelling. We used the championship celebration series across three prime-time segments."
+                    </blockquote>
+                    <div>
+                        <div class="font-bold text-gray-900 text-lg">Maria Rodriguez</div>
+                        <div class="text-gray-600">Sports Network Director, Global Sports Media</div>
+                    </div>
+                    <div class="flex gap-4 mt-6">
+                        <button class="text-blue-700 hover:text-blue-800 font-medium flex items-center gap-2">
+                            <i class="fab fa-twitter"></i> Share Quote
+                        </button>
+                        <button class="text-blue-700 hover:text-blue-800 font-medium flex items-center gap-2">
+                            <i class="fas fa-link"></i> Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="mb-16">
+        <div class="bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl overflow-hidden">
+            <div class="p-12 text-center text-white">
+                <h2 class="text-3xl font-bold mb-4">Contribute to the Gallery</h2>
+                <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">Are you a photographer, videographer, or a fan with incredible sports moments? Join our contributor network and share your perspective with millions of sports enthusiasts worldwide.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="px-8 py-3 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-600 transition-colors duration-200 flex items-center justify-center gap-2">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload Your Media
+                    </button>
+                    <button class="px-8 py-3 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                        Learn About Contributor Program
+                    </button>
+                </div>
+                <p class="text-sm text-gray-400 mt-6">All submissions are reviewed for quality and relevance. Royalties paid for licensed content.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-gray-300 pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h3 class="text-white font-bold text-lg mb-4">Sport Website</h3>
+                <p class="text-sm">The definitive digital destination for live scores, in-depth team profiles, breaking news, and the world's premier sports media gallery.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors duration-200">Media Licensing</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-200">API Documentation</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-200">Careers</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-200">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Connect</h4>
+                <div class="flex gap-4 mb-4">
+                    <a href="#" aria-label="Twitter" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-500 transition-colors duration-200">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-700 transition-colors duration-200">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition-colors duration-200">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-600 transition-colors duration-200">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                <p class="text-xs text-gray-500">Share gallery items directly to your social networks.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Newsletter</h4>
+                <p class="text-sm mb-4">Get weekly highlights and featured gallery collections.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Your email" class="flex-grow px-4 py-2 rounded-l-lg text-gray-900 focus:outline-none">
+                    <button class="px-4 py-2 bg-orange-500 text-white rounded-r-lg hover:bg-orange-600 transition-colors duration-200 font-medium">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+            <p>&copy; 2023 Sport Website. All rights reserved. Live scores powered by our proprietary real-time data network.</p>
+            <p class="mt-2">This site uses cookies to enhance user experience. All team and league logos are trademarks of their respective owners.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Simple filter pill activation
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterPills = document.querySelectorAll('.flex-wrap.gap-2 a');
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', function(e) {
+                e.preventDefault();
+                filterPills.forEach(p => {
+                    p.classList.remove('bg-orange-500', 'text-white', 'hover:bg-orange-600');
+                    p.classList.add('bg-white', 'border', 'border-gray-300', 'text-gray-700', 'hover:bg-gray-50');
+                });
+                this.classList.remove('bg-white', 'border', 'border-gray-300', 'text-gray-700', 'hover:bg-gray-50');
+                this.classList.add('bg-orange-500', 'text-white', 'hover:bg-orange-600');
+            });
+        });
+    });
+</script>
+</body>
+</html>

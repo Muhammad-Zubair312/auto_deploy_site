@@ -3,274 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket News - Latest Updates & Articles</title>
+    <title>News & Insights | Sport Website</title>
     <script src='https://cdn.tailwindcss.com'></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <style>
-        .article-card:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s ease;
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blue: {
+                            700: '#1d4ed8',
+                        },
+                        orange: {
+                            500: '#f97316',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
         }
-        .category-active {
-            border-bottom: 3px solid #3b82f6;
-            color: #3b82f6;
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Signup</a>
-        <a href='matches.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Matches</a>
-        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Teams</a>
-        <a href='players.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Players</a>
-        <a href='news.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base font-semibold text-blue-300'>News</a>
-        <a href='statistics.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Statistics</a>
-        <a href='livescores.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>LiveScores</a>
-        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Rankings</a>
-        <a href='tournaments.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Tournaments</a>
-    </nav>
+<body class="font-sans bg-gray-50 text-gray-800">
+<nav class='bg-gray-900 text-gray-200 px-6 py-3 flex flex-wrap items-center gap-1 shadow-xl sticky top-0 z-50'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Home</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Signup</a><a href='news.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>News</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Events</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Teams</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Gallery</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Contact</a></nav>
 
-    <!-- Main Content -->
-    <div class="container mx-auto px-4 py-8">
-        <!-- Page Header -->
-        <header class="mb-10 text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Cricket News</h1>
-            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Stay updated with the latest cricket news, match reports, player interviews, and expert analysis from around the world.</p>
-        </header>
-
-        <!-- News Categories -->
-        <div class="mb-10 overflow-x-auto">
-            <div class="flex space-x-6 pb-2 min-w-max md:min-w-0 md:justify-center">
-                <button class="category-active px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">All News</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Match Reports</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Player Interviews</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Tournament Updates</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Transfer News</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Analysis</button>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- 1. HERO -->
+    <section class="mb-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Sport Insights & News</h1>
+                <p class="text-gray-600 text-lg">Analysis, updates, and deep dives from the world of sports.</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex items-center space-x-4">
+                <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-blue-700 text-white">
+                    <i class="fas fa-newspaper mr-2"></i> 247 Articles
+                </span>
+                <div class="relative">
+                    <input type="search" placeholder="Search articles..." class="pl-10 pr-4 py-2 w-full md:w-64 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
             </div>
         </div>
-
-        <!-- Featured Article -->
-        <div class="mb-12" data-aos="fade-up">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-2/3">
-                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Featured Cricket Match" 
-                             class="w-full h-64 md:h-full object-cover">
+        <!-- Live Score Ticker -->
+        <div class="bg-white rounded-xl shadow-md p-4 mb-8 border-l-4 border-orange-500">
+            <div class="flex items-center justify-between flex-wrap">
+                <div class="flex items-center mb-2 sm:mb-0">
+                    <i class="fas fa-bolt text-orange-500 text-xl mr-3"></i>
+                    <h3 class="font-bold text-gray-900">Live Scores</h3>
+                </div>
+                <div class="text-sm text-gray-500 italic">Updates every 30 seconds</div>
+            </div>
+            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="p-3 bg-gray-50 rounded-lg">
+                    <div class="font-semibold">Premier League</div>
+                    <div class="flex justify-between items-center mt-1">
+                        <span>Arsenal</span>
+                        <span class="font-bold text-blue-700">2 - 1</span>
+                        <span>Man City</span>
                     </div>
-                    <div class="p-8 md:w-1/3">
-                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full mb-4">FEATURED</span>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4">World Cup Final: Historic Victory for Underdogs</h2>
-                        <p class="text-gray-600 mb-6">In a stunning turn of events, the underdog team clinched their first World Cup title with a last-ball victory. Read the full match report and analysis.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
-                                <div>
-                                    <p class="font-medium text-gray-800">Sarah Johnson</p>
-                                    <p class="text-sm text-gray-500">2 hours ago</p>
-                                </div>
-                            </div>
-                            <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
-                                Read More
-                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                            </a>
+                    <div class="text-xs text-gray-500 mt-1">72' | Live</div>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-lg">
+                    <div class="font-semibold">NBA Finals</div>
+                    <div class="flex justify-between items-center mt-1">
+                        <span>Celtics</span>
+                        <span class="font-bold text-blue-700">98 - 95</span>
+                        <span>Lakers</span>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-1">Q4 | 5:32</div>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-lg">
+                    <div class="font-semibold">Champions League</div>
+                    <div class="flex justify-between items-center mt-1">
+                        <span>Bayern</span>
+                        <span class="font-bold text-blue-700">0 - 0</span>
+                        <span>PSG</span>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-1">HT</div>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-lg">
+                    <div class="font-semibold">MLB</div>
+                    <div class="flex justify-between items-center mt-1">
+                        <span>Yankees</span>
+                        <span class="font-bold text-blue-700">4 - 3</span>
+                        <span>Red Sox</span>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-1">Bot 7th</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. FEATURED POST -->
+    <section class="mb-16">
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift">
+            <img src='https://source.unsplash.com/600x400/?analytics,dashboard,data' class='w-full h-72 object-cover' alt='Featured post: Advanced analytics dashboard showing player performance metrics' loading='lazy'>
+            <div class="p-8">
+                <div class="flex flex-wrap items-center justify-between mb-4">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-orange-500 text-white mb-2">Performance Analytics</span>
+                    <div class="flex space-x-4 text-gray-500 text-sm">
+                        <a href="#" class="hover:text-blue-700"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-blue-700"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-blue-700"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">How Data Science is Revolutionizing Player Scouting and Team Strategy</h2>
+                <p class="text-gray-600 text-lg mb-6">An in-depth look at the machine learning models teams are using to predict player potential, prevent injuries, and optimize in-game tactics. We interview three leading sports data scientists from the Premier League and NBA.</p>
+                <div class="flex items-center">
+                    <img src="https://source.unsplash.com/100x100/?portrait,professional,man" class="w-12 h-12 rounded-full object-cover mr-4" alt="Author Dr. Marcus Chen" loading="lazy">
+                    <div>
+                        <div class="font-semibold text-gray-900">Dr. Marcus Chen</div>
+                        <div class="text-sm text-gray-500">Lead Data Analyst • May 24, 2023 • 8 min read</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CATEGORY FILTER TABS -->
+    <section class="mb-10">
+        <div class="flex flex-wrap gap-2 mb-8">
+            <button class="px-5 py-2 rounded-full font-medium bg-blue-700 text-white hover:bg-blue-800 transition-colors">All News</button>
+            <button class="px-5 py-2 rounded-full font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-colors">Team Profiles</button>
+            <button class="px-5 py-2 rounded-full font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-colors">Event Schedules</button>
+            <button class="px-5 py-2 rounded-full font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-colors">Live Analysis</button>
+            <button class="px-5 py-2 rounded-full font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-colors">Injury Reports</button>
+            <button class="px-5 py-2 rounded-full font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-colors">Transfer Rumors</button>
+        </div>
+    </section>
+
+    <!-- 3. POSTS GRID -->
+    <section class="mb-16">
+        <h3 class="text-2xl font-bold text-gray-900 mb-8 border-l-4 border-blue-700 pl-4">Latest Stories</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden hover-lift">
+                <img src='https://source.unsplash.com/600x400/?collaboration,teamwork,remote' class='w-full h-48 object-cover' alt='Post image: Virtual team collaboration tools for remote coaching staff' loading='lazy'>
+                <div class="p-6">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800 mb-3">Team Dynamics</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Building Cohesion: How Modern Sports Teams Foster Chemistry On and Off the Field</h4>
+                    <p class="text-gray-600 mb-4">Exploring the psychological and technological tools coaches use to build unbreakable team bonds in a high-pressure environment.</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <img src="https://source.unsplash.com/40x40/?portrait,woman,coach" class="w-8 h-8 rounded-full object-cover mr-2" alt="Author Sarah Jones" loading="lazy">
+                            <span>Sarah Jones</span>
                         </div>
+                        <span>May 20 • 5 min</span>
                     </div>
                 </div>
+            </article>
+            <!-- Card 2 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden hover-lift">
+                <img src='https://source.unsplash.com/600x400/?security,cloud,technology' class='w-full h-48 object-cover' alt='Post image: Cybersecurity protocols for athlete data protection' loading='lazy'>
+                <div class="p-6">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800 mb-3">Technology</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">The New Frontier: Protecting Sensitive Player Data from Cyber Threats</h4>
+                    <p class="text-gray-600 mb-4">As sports organizations collect more biometric data, we examine the critical security measures needed to safeguard athlete privacy.</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <img src="https://source.unsplash.com/40x40/?portrait,man,security" class="w-8 h-8 rounded-full object-cover mr-2" alt="Author Alex Rivera" loading="lazy">
+                            <span>Alex Rivera</span>
+                        </div>
+                        <span>May 18 • 7 min</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Card 3 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden hover-lift">
+                <img src='https://source.unsplash.com/600x400/?automation,workflow,productivity' class='w-full h-48 object-cover' alt='Post image: Automated training and recovery scheduling systems' loading='lazy'>
+                <div class="p-6">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800 mb-3">Training</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Automated Training Regimens: How AI Customizes Workouts for Peak Athletic Performance</h4>
+                    <p class="text-gray-600 mb-4">A look at the software that creates personalized daily training plans based on real-time fatigue, nutrition, and performance data.</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <img src="https://source.unsplash.com/40x40/?portrait,woman,athlete" class="w-8 h-8 rounded-full object-cover mr-2" alt="Author Dr. Lena Schmidt" loading="lazy">
+                            <span>Dr. Lena Schmidt</span>
+                        </div>
+                        <span>May 15 • 6 min</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Card 4 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden hover-lift md:col-span-2 lg:col-span-1">
+                <img src='https://source.unsplash.com/600x400/?integration,api,development' class='w-full h-48 object-cover' alt='Post image: API integrations connecting various sports data platforms' loading='lazy'>
+                <div class="p-6">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800 mb-3">Development</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Unifying the Stack: API Integrations Powering Real-Time Fan Experiences</h4>
+                    <p class="text-gray-600 mb-4">How broadcasters and apps combine live stats, social feeds, and betting odds into a seamless second-screen experience for viewers.</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <img src="https://source.unsplash.com/40x40/?portrait,man,developer" class="w-8 h-8 rounded-full object-cover mr-2" alt="Author Michael Park" loading="lazy">
+                            <span>Michael Park</span>
+                        </div>
+                        <span>May 12 • 9 min</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Card 5 -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden hover-lift">
+                <img src='https://source.unsplash.com/600x400/?mobile,app,interface' class='w-full h-48 object-cover' alt='Post image: Mobile app interface for fan engagement and ticketing' loading='lazy'>
+                <div class="p-6">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800 mb-3">Fan Engagement</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">The Ultimate Fan App: Features That Keep Supporters Connected 24/7</h4>
+                    <p class="text-gray-600 mb-4">From AR stadium navigation to predictive highlight reels, we break down the next generation of team-branded mobile applications.</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <img src="https://source.unsplash.com/40x40/?portrait,woman,designer" class="w-8 h-8 rounded-full object-cover mr-2" alt="Author Chloe Williams" loading="lazy">
+                            <span>Chloe Williams</span>
+                        </div>
+                        <span>May 10 • 4 min</span>
+                    </div>
+                </div>
+            </article>
+            <!-- Card 6 - Extra Card -->
+            <article class="bg-white rounded-xl shadow-md overflow-hidden hover-lift">
+                <div class="p-6 border-l-4 border-blue-700">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700 mb-3">Interview</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Exclusive: A Legend's Take on the Evolution of Sports Media and Fan Interaction</h4>
+                    <p class="text-gray-600 mb-4">Hall of Famer discusses the shift from newspaper columns to instant social media reactions and its impact on athletes.</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <i class="fas fa-microphone text-orange-500 text-lg mr-2"></i>
+                            <span>Podcast Available</span>
+                        </div>
+                        <span>May 8 • 12 min</span>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <div class="flex items-center space-x-4 text-gray-700">
+                        <button class="flex items-center text-blue-700 hover:text-blue-800">
+                            <i class="far fa-comment mr-2"></i> 42 Comments
+                        </button>
+                        <button class="flex items-center text-orange-500 hover:text-orange-600">
+                            <i class="far fa-bookmark mr-2"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="text-center mt-12">
+            <button class="px-8 py-3 bg-white border border-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-50 hover:border-gray-400 hover-lift transition-all">Load More Articles <i class="fas fa-arrow-down ml-2"></i></button>
+        </div>
+    </section>
+
+    <!-- 5. NEWSLETTER BANNER -->
+    <section class="mb-16">
+        <div class="gradient-bg rounded-2xl shadow-xl p-8 md:p-12 text-white">
+            <div class="max-w-3xl mx-auto text-center">
+                <h3 class="text-3xl font-bold mb-4">Stay Ahead of the Game</h3>
+                <p class="text-blue-100 text-lg mb-8">Get the week's top stories, analysis, and live score alerts delivered directly to your inbox. Join <span class="font-bold text-orange-300">45,832</span> sports professionals and enthusiasts.</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-5 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-white focus:outline-none" required>
+                    <button type="submit" class="px-6 py-3 bg-orange-500 hover:bg-orange-600 font-semibold rounded-lg transition-colors whitespace-nowrap">Subscribe Now</button>
+                </form>
+                <p class="text-sm text-blue-200 mt-4">No spam. Unsubscribe anytime.</p>
             </div>
         </div>
+    </section>
+</main>
 
-        <!-- News Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <!-- Article 1 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1595435934247-5d33b7f92c60?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Player Profile" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">PLAYER INTERVIEW</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Exclusive: Star Batsman Reveals Training Secrets</h3>
-                    <p class="text-gray-600 mb-4">In an exclusive interview, the world's top-ranked batsman shares his rigorous training routine and mental preparation techniques.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">45 min ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 2 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Tournament Update" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">TOURNAMENT UPDATE</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">New Format Announced for Next Season</h3>
-                    <p class="text-gray-600 mb-4">Cricket governing body announces revolutionary changes to tournament structure, promising more competitive matches.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">3 hours ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 3 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Statistical Analysis" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">ANALYSIS</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Data Reveals Most Effective Bowling Strategy</h3>
-                    <p class="text-gray-600 mb-4">Statistical analysis of 1000+ matches shows surprising trends in modern bowling techniques and their success rates.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">5 hours ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 4 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Team News" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">TRANSFER NEWS</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Record-Breaking Transfer Confirmed</h3>
-                    <p class="text-gray-600 mb-4">All-rounder signs with new franchise in the biggest transfer deal in cricket history. Details of the contract revealed.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">1 day ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 5 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Match Report" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">MATCH REPORT</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Thrilling Tie in Day-Night Test Match</h3>
-                    <p class="text-gray-600 mb-4">An epic battle ends in a rare tie as both teams finish with identical scores. Relive the final moments of this historic match.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">2 days ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 6 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Injury Update" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">TEAM NEWS</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Captain Returns from Injury Ahead of Crucial Series</h3>
-                    <p class="text-gray-600 mb-4">Team captain cleared to play after successful recovery from injury. Coach expresses confidence in team's chances.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">3 days ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <!-- Load More Button -->
-        <div class="text-center mb-12" data-aos="fade-up">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
-                Load More Articles
-            </button>
-        </div>
-
-        <!-- Newsletter Subscription -->
-        <div class="bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl p-8 text-white mb-12" data-aos="fade-up">
-            <div class="max-w-2xl mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-4">Never Miss a Cricket Update</h2>
-                <p class="mb-6 text-blue-100">Subscribe to our newsletter and get the latest news delivered directly to your inbox.</p>
-                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                    <input type="email" 
-                           placeholder="Enter your email address" 
-                           class="flex-grow px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                    <button class="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition duration-300">
-                        Subscribe
-                    </button>
+<!-- 6. FOOTER -->
+<footer class="bg-gray-900 text-gray-300 pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+            <div>
+                <h5 class="text-white text-xl font-bold mb-4">Sport Website</h5>
+                <p class="mb-4">The premier SaaS platform for comprehensive sports management, analytics, and fan engagement.</p>
+                <div class="flex space-x-4">
+                    <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-lg"></i></a>
+                    <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-lg"></i></a>
+                    <a href="#" aria-label="YouTube" class="text-gray-400 hover:text-white"><i class="fab fa-youtube text-lg"></i></a>
+                    <a href="#" aria-label="LinkedIn" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-lg"></i></a>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-2">CricketHub</h3>
-                    <p class="text-gray-400">Your ultimate cricket companion</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="facebook" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="twitter" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="instagram" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="youtube" class="w-5 h-5"></i>
-                    </a>
-                </div>
+            <div>
+                <h6 class="text-white font-semibold mb-4">Platform</h6>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">Live Scores & Stats</a></li>
+                    <li><a href="#" class="hover:text-white">Team Management</a></li>
+                    <li><a href="#" class="hover:text-white">Event Scheduling</a></li>
+                    <li><a href="#" class="hover:text-white">Media Gallery</a></li>
+                    <li><a href="#" class="hover:text-white">API Documentation</a></li>
+                </ul>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-                <p>&copy; 2024 CricketHub. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        // Initialize Feather Icons
-        feather.replace();
-
-        // Category switching functionality
-        document.querySelectorAll('.flex button').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.flex button').forEach(btn => {
-                    btn.classList.remove('category-active');
-                });
-                this.classList.add('category-active');
-            });
-        });
-
-        // Load more articles functionality
-        document.querySelector('button.bg-blue-600').addEventListener('click', function() {
-            this.textContent = 'Loading...';
-            this.disabled = true;
-            
-            // Simulate loading delay
-            setTimeout(() => {
-                this.textContent = 'No More Articles';
-                this.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                this.classList.add('bg-gray-400', 'cursor-not-allowed');
-            }, 1500);
-        });
-    </script>
-</body>
-</html>
+            <div>
+                <h6 class="text-white font-semibold mb-4">Resources</h6>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">Blog & Insights</a></li>
+                    <li><a href="#" class="hover:text-white">Help Center</a></li

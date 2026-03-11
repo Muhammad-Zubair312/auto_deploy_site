@@ -3,199 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEasy - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Sport Website - The Ultimate Sports Management Platform</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .product-card:hover { transform: translateY(-5px); transition: transform 0.3s ease; }
-        .category-icon { width: 64px; height: 64px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+        .score-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="text-xl font-bold">ShopEasy</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Signup</a>
-        </div>
-    </nav>
+<body class="font-sans bg-gray-50 text-gray-800">
+<nav class='bg-gray-900 text-gray-200 px-6 py-3 flex flex-wrap items-center gap-1 shadow-xl sticky top-0 z-50'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Home</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Signup</a><a href='news.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>News</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Events</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Teams</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Gallery</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Contact</a></nav>
 
+<main>
     <!-- Hero Section -->
-    <section class="hero-gradient text-white py-16 md:py-24 px-4">
-        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Discover Amazing Products</h1>
-            <p class="text-xl mb-10 max-w-2xl mx-auto">Shop the latest trends with secure checkout, fast delivery, and easy returns.</p>
-            
-            <!-- Search Bar -->
-            <div class="max-w-2xl mx-auto flex">
-                <input type="text" placeholder="Search for products, brands, categories..." 
-                       class="flex-grow p-4 rounded-l-lg text-gray-800 focus:outline-none">
-                <button class="bg-blue-600 hover:bg-blue-700 px-6 rounded-r-lg flex items-center">
-                    <i data-feather="search"></i>
-                    <span class="ml-2">Search</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Categories -->
-    <section class="py-16 px-4">
+    <section class="gradient-bg text-white py-16 md:py-24 px-4 md:px-8">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Shop by Category</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="smartphone" class="category-icon"></i>
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">Manage Your Sports Universe in One Dashboard</h1>
+                    <p class="text-xl text-blue-100 mb-8">Real-time scores, team analytics, fan engagement, and event scheduling for leagues, clubs, and broadcasters.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                        <a href="signup.html" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg hover-lift transition duration-300 text-center">Start Free 14-Day Trial</a>
+                        <a href="#" class="bg-white hover:bg-gray-100 text-blue-700 font-bold py-4 px-8 rounded-lg text-lg border-2 border-white hover-lift transition duration-300 text-center"><i class="fas fa-play-circle mr-2"></i> Watch Product Demo</a>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Electronics</h3>
-                    <p class="text-gray-600">Latest gadgets & devices</p>
+                    <div class="flex items-center gap-4">
+                        <div class="flex -space-x-3">
+                            <img class="w-10 h-10 rounded-full border-2 border-blue-800" src="https://source.unsplash.com/100x100/?portrait,man,athlete" alt="User">
+                            <img class="w-10 h-10 rounded-full border-2 border-blue-800" src="https://source.unsplash.com/100x100/?portrait,woman,coach" alt="User">
+                            <img class="w-10 h-10 rounded-full border-2 border-blue-800" src="https://source.unsplash.com/100x100/?portrait,man,manager" alt="User">
+                        </div>
+                        <p class="text-blue-200"><span class="font-bold text-white">1,250+</span> sports organizations trust our platform</p>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shirt" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Fashion</h3>
-                    <p class="text-gray-600">Trendy clothing & accessories</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="bg-yellow-100 text-yellow-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="home" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Home & Living</h3>
-                    <p class="text-gray-600">Furniture & decor</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-red-100 text-red-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="heart" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Health & Beauty</h3>
-                    <p class="text-gray-600">Wellness & personal care</p>
+                <div class="lg:w-1/2">
+                    <img src='https://source.unsplash.com/1600x700/?software,dashboard,technology' class='w-full rounded-2xl shadow-2xl mt-8 border' alt='Sport Website dashboard showing live scores and team analytics' loading='lazy'>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="py-16 px-4 bg-gray-100">
+    <!-- Live Scores Banner -->
+    <section class="bg-white border-b py-4 px-4">
         <div class="container mx-auto max-w-6xl">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl font-bold" data-aos="fade-right">Featured Products</h2>
-                <a href="products.html" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center" data-aos="fade-left">
-                    View All <i data-feather="arrow-right" class="ml-2"></i>
-                </a>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Wireless Headphones" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Premium Wireless Headphones</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(128 reviews)</span>
-                        </div>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <h2 class="text-2xl font-bold text-blue-700 mb-4 md:mb-0"><i class="fas fa-broadcast-tower text-orange-500 mr-2"></i> LIVE SCORES</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full md:w-auto">
+                    <div class="bg-gray-50 p-4 rounded-lg border">
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$199.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
+                            <div>
+                                <p class="font-bold">Premier League</p>
+                                <p class="text-sm text-gray-600">Man City vs Arsenal</p>
+                            </div>
+                            <div class="text-2xl font-bold score-pulse text-orange-500">2 - 1 <span class="text-xs text-red-500">LIVE</span></div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Smart Watch" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Fitness Smart Watch</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(256 reviews)</span>
-                        </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border">
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$249.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
+                            <div>
+                                <p class="font-bold">NBA</p>
+                                <p class="text-sm text-gray-600">Lakers vs Celtics</p>
+                            </div>
+                            <div class="text-2xl font-bold">98 - 102 <span class="text-xs text-gray-500">Q4</span></div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Bluetooth Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Portable Bluetooth Speaker</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(87 reviews)</span>
-                        </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border">
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$89.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
+                            <div>
+                                <p class="font-bold">Champions League</p>
+                                <p class="text-sm text-gray-600">Bayern vs Real Madrid</p>
+                            </div>
+                            <div class="text-2xl font-bold score-pulse text-orange-500">1 - 1 <span class="text-xs text-red-500">LIVE</span></div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Running Shoes" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Professional Running Shoes</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(312 reviews)</span>
-                        </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border">
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$129.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
+                            <div>
+                                <p class="font-bold">MLB</p>
+                                <p class="text-sm text-gray-600">Yankees vs Red Sox</p>
+                            </div>
+                            <div class="text-2xl font-bold">5 - 3 <span class="text-xs text-gray-500">7th</span></div>
                         </div>
                     </div>
                 </div>
@@ -203,120 +116,257 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Why Shop With Us?</h2>
+    <!-- Trusted By Logos -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto max-w-6xl px-4">
+            <p class="text-center text-gray-500 mb-8 text-lg">Trusted by teams at:</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p class="text-xl font-bold text-gray-800">Premier League</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p class="text-xl font-bold text-gray-800">NBA</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p class="text-xl font-bold text-gray-800">FC Barcelona</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p class="text-xl font-bold text-gray-800">NFL</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p class="text-xl font-bold text-gray-800">ESPN</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p class="text-xl font-bold text-gray-800">UEFA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto max-w-6xl px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Everything You Need to Win</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">From grassroots clubs to professional leagues, our platform powers the modern sports experience.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border hover-lift hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Live Score Updates</h3>
+                    <p class="text-gray-600 mb-4">Push real-time scores, stats, and play-by-play to your website, app, and social media with sub-second latency.</p>
+                    <a href="#" class="text-blue-700 font-semibold hover:text-blue-800 inline-flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border hover-lift hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Dynamic Event Schedules</h3>
+                    <p class="text-gray-600 mb-4">Create, manage, and sync fixtures across multiple leagues. Automatic notifications for changes and delays.</p>
+                    <a href="#" class="text-blue-700 font-semibold hover:text-blue-800 inline-flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border hover-lift hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Rich Team Profiles</h3>
+                    <p class="text-gray-600 mb-4">Showcase rosters, stats, historical data, and media. Deep analytics for coaches and scouts.</p>
+                    <a href="#" class="text-blue-700 font-semibold hover:text-blue-800 inline-flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border hover-lift hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">News & Media Hub</h3>
+                    <p class="text-gray-600 mb-4">Publish articles, press releases, and video highlights. Integrated social sharing to boost engagement.</p>
+                    <a href="#" class="text-blue-700 font-semibold hover:text-blue-800 inline-flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                <!-- Feature 5 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border hover-lift hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Fan Comments & Forums</h3>
+                    <p class="text-gray-600 mb-4">Build community with moderated comment sections, live match threads, and fan polls.</p>
+                    <a href="#" class="text-blue-700 font-semibold hover:text-blue-800 inline-flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                <!-- Feature 6 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border hover-lift hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Media Gallery</h3>
+                    <p class="text-gray-600 mb-4">Organize and distribute high-resolution photos, videos, and graphics to partners and press.</p>
+                    <a href="#" class="text-blue-700 font-semibold hover:text-blue-800 inline-flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto max-w-6xl px-4">
+            <!-- Row 1 -->
+            <div class="flex flex-col lg:flex-row items-center gap-12 mb-20">
+                <div class="lg:w-1/2">
+                    <img src='https://source.unsplash.com/600x400/?analytics,dashboard,data' class='w-full h-64 md:h-80 object-cover rounded-xl shadow-lg hover-lift' alt='Advanced analytics dashboard showing player performance metrics' loading='lazy'>
+                </div>
+                <div class="lg:w-1/2">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Deep Performance Analytics</h3>
+                    <p class="text-gray-600 mb-6">Turn raw data into winning insights. Our dashboards provide coaches with real-time player tracking, injury risk analysis, and opponent scouting reports. Visualize trends with customizable charts and export data for further analysis.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Real-time player load monitoring</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Expected Goals (xG) and advanced metrics</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Custom report builder for staff</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Row 2 -->
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-12 mb-20">
+                <div class="lg:w-1/2">
+                    <img src='https://source.unsplash.com/600x400/?collaboration,teamwork,remote' class='w-full h-64 md:h-80 object-cover rounded-xl shadow-lg hover-lift' alt='Team collaboration interface for coaches and staff' loading='lazy'>
+                </div>
+                <div class="lg:w-1/2">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Seamless Team Collaboration</h3>
+                    <p class="text-gray-600 mb-6">Keep your entire organization in sync. Share training schedules, tactical videos, and medical updates securely. Role-based permissions ensure the right people see the right information, whether they're in the office or on the road.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Secure document and video sharing</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Integrated team messaging and alerts</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Mobile apps for staff and players</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Row 3 -->
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src='https://source.unsplash.com/600x400/?security,cloud,technology' class='w-full h-64 md:h-80 object-cover rounded-xl shadow-lg hover-lift' alt='Enterprise-grade security and cloud infrastructure' loading='lazy'>
+                </div>
+                <div class="lg:w-1/2">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Enterprise-Grade Security & Reliability</h3>
+                    <p class="text-gray-600 mb-6">Your data is protected by world-class security. We use end-to-end encryption, SOC 2 compliance, and global CDN for fast, reliable access. Our infrastructure guarantees 99.9% uptime, even during peak traffic like championship finals.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> GDPR & CCPA compliant data handling</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Automated backups and disaster recovery</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> DDoS protection and threat monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="p-8">
+                    <div class="text-5xl font-bold text-blue-700 mb-2">25K+</div>
+                    <p class="text-xl font-semibold text-gray-900">Active Users</p>
+                    <p class="text-gray-600">Coaches, analysts, and administrators</p>
+                </div>
+                <div class="p-8">
+                    <div class="text-5xl font-bold text-blue-700 mb-2">99.9%</div>
+                    <p class="text-xl font-semibold text-gray-900">Platform Uptime</p>
+                    <p class="text-gray-600">Guaranteed reliability SLA</p>
+                </div>
+                <div class="p-8">
+                    <div class="text-5xl font-bold text-blue-700 mb-2">24/7</div>
+                    <p class="text-xl font-semibold text-gray-900">Support Response</p>
+                    <p class="text-gray-600">Average reply time under 15 minutes</p>
+                </div>
+                <div class="p-8">
+                    <div class="text-5xl font-bold text-blue-700 mb-2">92</div>
+                    <p class="text-xl font-semibold text-gray-900">Net Promoter Score</p>
+                    <p class="text-gray-600">Industry-leading customer satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Preview -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto max-w-6xl px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Simple, Transparent Pricing</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">Scale from local club to global league with plans that grow with you.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Tier 1 -->
+                <div class="bg-white p-8 rounded-2xl border-2 hover:border-blue-700 hover-lift shadow-sm">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Club</h3>
+                    <p class="text-gray-600 mb-6">Perfect for amateur teams and local leagues.</p>
+                    <div class="text-4xl font-bold text-gray-900 mb-6">$49<span class="text-lg text-gray-500">/month</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Up to 5 team profiles</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Basic live scores & schedules</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> 10GB media storage</li>
+                        <li class="flex items-center"><i class="fas fa-times text-gray-300 mr-3"></i> <span class="text-gray-500">Advanced analytics</span></li>
+                    </ul>
+                    <a href="signup.html" class="block text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg transition duration-300">Start Free Trial</a>
+                </div>
+                <!-- Tier 2 -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-blue-700 shadow-lg relative hover-lift">
+                    <div class="absolute top-0 right-0 bg-orange-500 text-white text-sm font-bold px-4 py-1 rounded-bl-lg">MOST POPULAR</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro League</h3>
+                    <p class="text-gray-600 mb-6">For professional leagues and broadcast partners.</p>
+                    <div class="text-4xl font-bold text-gray-900 mb-6">$299<span class="text-lg text-gray-500">/month</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Unlimited teams & leagues</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Real-time API & data feeds</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> 500GB media storage</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Full analytics suite</li>
+                    </ul>
+                    <a href="signup.html" class="block text-center bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Start Free Trial</a>
+                </div>
+                <!-- Tier 3 -->
+                <div class="bg-white p-8 rounded-2xl border-2 hover:border-blue-700 hover-lift shadow-sm">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-6">Custom solutions for global federations.</p>
+                    <div class="text-4xl font-bold text-gray-900 mb-6">Custom</div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Everything in Pro League</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Dedicated account manager</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> On-premise deployment options</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Custom integration & branding</li>
+                    </ul>
+                    <a href="contact.html" class="block text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg transition duration-300">Contact Sales</a>
+                </div>
+            </div>
+            <p class="text-center"><a href="pricing.html" class="text-blue-700 hover:text-blue-800 font-semibold text-lg inline-flex items-center">See full pricing details and compare all features <i class="fas fa-arrow-right ml-2"></i></a></p>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto max-w-6xl px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Loved by Sports Leaders</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center" data-aos="fade-up">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shield" class="w-12 h-12"></i>
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border hover-lift">
+                    <div class="flex items-center mb-6">
+                        <img class="w-12 h-12 rounded-full mr-4" src="https://source.unsplash.com/100x100/?portrait,woman,executive" alt="Sarah Chen">
+                        <div>
+                            <p class="font-bold text-gray-900">Sarah Chen</p>
+                            <p class="text-gray-600">Head of Digital, NBA</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Secure Payment</h3>
-                    <p class="text-gray-600">100% secure payment processing with SSL encryption and multiple payment options.</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="truck" class="w-12 h-12"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Fast Delivery</h3>
-                    <p class="text-gray-600">Free shipping on orders over $50. Express delivery available in select areas.</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-purple-100 text-purple-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="refresh-cw" class="w-12 h-12"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Easy Returns</h3>
-                    <p class="text-gray-600">30-day return policy. No questions asked returns for all products.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16 px-4 bg-gray-900 text-white">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Ready to Start Shopping?</h2>
-            <p class="text-xl mb-10 text-gray-300" data-aos="fade-up" data-aos-delay="100">Join thousands of satisfied customers today.</p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="signup.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in">
-                    <i data-feather="user-plus" class="mr-3"></i> Create Free Account
-                </a>
-                <a href="products.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in" data-aos-delay="200">
-                    <i data-feather="shopping-bag" class="mr-3"></i> Browse Products
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-feather="shopping-bag" class="text-blue-400"></i>
-                        <span class="text-xl font-bold">ShopEasy</span>
-                    </div>
-                    <p class="text-gray-400">Your trusted online shopping destination for quality products and exceptional service.</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white">Checkout</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Order Tracking</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Refunds</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Stay Connected</h4>
-                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="flex-grow p-3 rounded-l-lg text-gray-800">
-                        <button class="bg-blue-600 hover:bg-blue-700 px-4 rounded-r-lg">
-                            <i data-feather="send"></i>
-                        </button>
+                    <p class="text-gray-700 italic mb-6">"Sport Website transformed how we deliver stats to fans. The live score API is rock-solid during playoffs, and our engagement metrics are up 40%."</p>
+                    <div class="flex text-orange-500">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                 </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 ShopEasy. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-        
-        // Initialize Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
-        });
-        
-        // Simple cart counter
-        let cartCount = 0;
-        document.querySelectorAll('button:contains("Add to Cart")').forEach(button => {
-            button.addEventListener('click', function() {
-                cartCount++;
-                // In a real app, this would update a cart badge
-                console.log(`Added to cart. Total items: ${cartCount}`);
-                alert('Product added to cart!');
-            });
-        });
-    </script>
-</body>
-</html>
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border hover-lift">
+                    <div class="flex items-center mb-6">
+                        <img class="w-12 h-12 rounded-full mr-4" src="https://source.unsplash.com/100x100/?portrait,man,coach" alt="Marcus Johnson">
+                        <div>
+                            <p class="font-bold text-gray-900">Marcus Johnson</p>
+                            <p class="text-gray-600">Technical Director, Manchester United</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"The player analytics dashboard is a game-changer for our scouting department. We've identified three key signings using their data visualization tools."</p>
+                    <div class="flex text-orange-500">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div
