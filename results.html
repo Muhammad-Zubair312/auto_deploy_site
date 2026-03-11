@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Results | Live Scores & Updates</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1d4ed8',
+                        secondary: '#dc2626',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Events</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Teams</a><a href='schedule.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Schedule</a><a href='results.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Results</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Gallery</a></nav>
+
+    <header class="bg-gradient-to-r from-primary to-blue-800 text-white py-8 px-4">
+        <div class="container mx-auto">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Match Results & Live Scores</h1>
+            <p class="text-blue-100">Real-time updates, final scores, and comprehensive match analysis</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Live Scores & Results -->
+            <div class="lg:col-span-2">
+                <section class="mb-10">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800"><i class="fas fa-bolt text-secondary mr-2"></i>Live Scores</h2>
+                        <div class="text-sm bg-green-100 text-green-800 px-3 py-1 rounded-full flex items-center">
+                            <span class="h-2 w-2 bg-green-600 rounded-full animate-pulse mr-2"></span> LIVE UPDATING
+                        </div>
+                    </div>
+                    <div id="liveScoresContainer" class="space-y-4">
+                        <!-- Live Match 1 -->
+                        <div class="bg-white rounded-xl shadow-md p-5 border-l-4 border-secondary">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="bg-secondary text-white text-xs font-bold px-3 py-1 rounded">LIVE 45'</span>
+                                <span class="text-gray-500 text-sm">Premier League</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                <div class="flex-1 flex items-center mb-4 md:mb-0">
+                                    <img src="https://via.placeholder.com/40/3b82f6/ffffff?text=MU" alt="Manchester United" class="w-10 h-10 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-bold">Manchester United</h3>
+                                        <p class="text-gray-500 text-sm">Home</p>
+                                    </div>
+                                </div>
+                                <div class="text-center mx-4">
+                                    <div class="text-3xl font-bold">2 - 1</div>
+                                    <div class="text-xs text-gray-500 mt-1">Half Time</div>
+                                </div>
+                                <div class="flex-1 flex items-center justify-end md:justify-start mt-4 md:mt-0">
+                                    <div class="text-right mr-4">
+                                        <h3 class="font-bold">Manchester City</h3>
+                                        <p class="text-gray-500 text-sm">Away</p>
+                                    </div>
+                                    <img src="https://via.placeholder.com/40/ef4444/ffffff?text=MC" alt="Manchester City" class="w-10 h-10 rounded-full">
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600">
+                                <i class="fas fa-info-circle mr-1"></i> Next update in <span id="countdown">30</span> seconds
+                            </div>
+                        </div>
+
+                        <!-- Live Match 2 -->
+                        <div class="bg-white rounded-xl shadow-md p-5 border-l-4 border-green-500">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded">LIVE 78'</span>
+                                <span class="text-gray-500 text-sm">Champions League</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                <div class="flex-1 flex items-center mb-4 md:mb-0">
+                                    <img src="https://via.placeholder.com/40/000000/ffffff?text=RM" alt="Real Madrid" class="w-10 h-10 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-bold">Real Madrid</h3>
+                                        <p class="text-gray-500 text-sm">Home</p>
+                                    </div>
+                                </div>
+                                <div class="text-center mx-4">
+                                    <div class="text-3xl font-bold">1 - 1</div>
+                                    <div class="text-xs text-gray-500 mt-1">Second Half</div>
+                                </div>
+                                <div class="flex-1 flex items-center justify-end md:justify-start mt-4 md:mt-0">
+                                    <div class="text-right mr-4">
+                                        <h3 class="font-bold">Bayern Munich</h3>
+                                        <p class="text-gray-500 text-sm">Away</p>
+                                    </div>
+                                    <img src="https://via.placeholder.com/40/dc2626/ffffff?text=BM" alt="Bayern Munich" class="w-10 h-10 rounded-full">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-trophy text-yellow-500 mr-2"></i>Recent Results</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full bg-white rounded-xl shadow-md overflow-hidden">
+                            <thead class="bg-gray-800 text-white">
+                                <tr>
+                                    <th class="py-3 px-4 text-left">Match</th>
+                                    <th class="py-3 px-4 text-left">Competition</th>
+                                    <th class="py-3 px-4 text-left">Score</th>
+                                    <th class="py-3 px-4 text-left">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <img src="https://via.placeholder.com/30/3b82f6/ffffff?text=L" alt="Liverpool" class="w-6 h-6 rounded-full mr-2">
+                                            Liverpool vs 
+                                            <img src="https://via.placeholder.com/30/000000/ffffff?text=A" alt="Arsenal" class="w-6 h-6 rounded-full ml-2 mr-2">
+                                            Arsenal
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">Premier League</td>
+                                    <td class="py-4 px-4 font-bold">3 - 2</td>
+                                    <td class="py-4 px-4 text-gray-500">May 12, 2023</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <img src="https://via.placeholder.com/30/0000ff/ffffff?text=C" alt="Chelsea" class="w-6 h-6 rounded-full mr-2">
+                                            Chelsea vs 
+                                            <img src="https://via.placeholder.com/30/ff0000/ffffff?text=T" alt="Tottenham" class="w-6 h-6 rounded-full ml-2 mr-2">
+                                            Tottenham
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">FA Cup</td>
+                                    <td class="py-4 px-4 font-bold">1 - 0</td>
+                                    <td class="py-4 px-4 text-gray-500">May 10, 2023</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <img src="https://via.placeholder.com/30/000000/ffffff?text=B" alt="Barcelona" class="w-6 h-6 rounded-full mr-2">
+                                            Barcelona vs 
+                                            <img src="https://via.placeholder.com/30/ff9900/ffffff?text=J" alt="Juventus" class="w-6 h-6 rounded-full ml-2 mr-2">
+                                            Juventus
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">Champions League</td>
+                                    <td class="py-4 px-4 font-bold">2 - 2</td>
+                                    <td class="py-4 px-4 text-gray-500">May 8, 2023</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-images text-primary mr-2"></i>Match Highlights Gallery</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <div class="h-40 bg-blue-100 flex items-center justify-center">
+                                <i class="fas fa-play-circle text-4xl text-primary"></i>
+                            </div>
+                            <div class="p-3">
+                                <p class="font-medium">United vs City Goal</p>
+                                <p class="text-sm text-gray-500">45' minute</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <div class="h-40 bg-red-100 flex items-center justify-center">
+                                <i class="fas fa-play-circle text-4xl text-secondary"></i>
+                            </div>
+                            <div class="p-3">
+                                <p class="font-medium">Champions League Final</p>
+                                <p class="text-sm text-gray-500">Highlights</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <div class="h-40 bg-green-100 flex items-center justify-center">
+                                <i class="fas fa-play-circle text-4xl text-green-600"></i>
+                            </div>
+                            <div class="p-3">
+                                <p class="font-medium">World Cup Moments</p>
+                                <p class="text-sm text-gray-500">Best goals</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Sidebar -->
+            <div class="lg:col-span-1">
+                <section class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-calendar-alt text-primary mr-2"></i>Upcoming Events</h2>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-primary pl-4 py-2">
+                            <h3 class="font-bold">Champions League Final</h3>
+                            <p class="text-sm text-gray-600">June 10, 2023 • 20:00</p>
+                            <p class="text-sm text-gray-500">Istanbul, Turkey</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4 py-2">
+                            <h3 class="font-bold">World Cup Qualifiers</h3>
+                            <p class="text-sm text-gray-600">June 15, 2023 • 18:30</p>
+                            <p class="text-sm text-gray-500">Various Locations</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                            <h3 class="font-bold">National Derby</h3>
+                            <p class="text-sm text-gray-600">June 18, 2023 • 16:00</p>
+                            <p class="text-sm text-gray-500">Local Stadium</p>
+                        </div>
+                    </div>
+                    <a href="events.html" class="mt-4 inline-block text-primary font-medium hover:underline">View Full Calendar <i class="fas fa-arrow-right ml-1"></i></a>
+                </section>
+
+                <section class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-newspaper text-secondary mr-2"></i>Latest News</h2>
+                    <div class="space-y-4">
+                        <div class="pb-4 border-b border-gray-100">
+                            <h3 class="font-bold hover:text-primary cursor-pointer">Injury Update: Star Player Returns</h3>
+                            <p class="text-sm text-gray-600 mt-1">Key midfielder expected to play in next match after recovery.</p>
+                            <span class="text-xs text-gray-500">2 hours ago</span>
+                        </div>
+                        <div class="pb-4 border-b border-gray-100">
+                            <h3 class="font-bold hover:text-primary cursor-pointer">Transfer Window Rumors</h3>
+                            <p class="text-sm text-gray-600 mt-1">Top clubs eyeing young talent from championship team.</p>
+                            <span class="text-xs text-gray-500">5 hours ago</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold hover:text-primary cursor-pointer">New Stadium Announcement</h3>
+                            <p class="text-sm text-gray-600 mt-1">City council approves plans for state-of-the-art arena.</p>
+                            <span class="text-xs text-gray-500">1 day ago</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-users text-green-600 mr-2"></i>Top Teams</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <img src="https://via.placeholder.com/40/3b82f6/ffffff?text=MU" alt="Manchester United" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <h3 class="font-bold">Manchester United</h3>
+                                <p class="text-sm text-gray-600">1st • Premier League</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <img src="https://via.placeholder.com/40/000000/ffffff?text=RM" alt="Real Madrid" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <h3 class="font-bold">Real Madrid</h3>
+                                <p class="text-sm text-gray-600">1st • La Liga</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <img src="https://via.placeholder.com/40/dc2626/ffffff?text=BM" alt="Bayern Munich" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <h3 class="font-bold">Bayern Munich</h3>
+                                <p class="text-sm text-gray-600">1st • Bundesliga</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="teams.html" class="mt-4 inline-block text-primary font-medium hover:underline">View All Teams <i class="fas fa-arrow-right ml-1"></i></a>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold">Sport<span class="text-primary">Hub</span></h2>
+                    <p class="text-gray-400 mt-2">Your ultimate sports results and updates destination</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 SportHub. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simulate real-time score updates
+        let countdown = 30;
+        const countdownElement = document.getElementById('countdown');
+        
+        function updateCountdown() {
+            countdown--;
+            if (countdown <= 0) {
+                countdown = 30;
+                // Simulate score change
+                const scoreElement = document.querySelector('.text-3xl.font-bold');
+                if (scoreElement && scoreElement.textContent.includes('2 - 1')) {
+                    scoreElement.textContent = '3 - 1';
+                    // Add visual feedback
+                    scoreElement.classList.add('text-green-600');
+                    setTimeout(() => scoreElement.classList.remove('text-green-600'), 1000);
+                }
+            }
+            countdownElement.textContent = countdown;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        
+        // Simulate live updates every 30 seconds
+        setInterval(() => {
+            // This would be replaced with actual API calls in production
+            console.log('Fetching live score updates...');
+        }, 30000);
+    </script>
+</body>
+</html>

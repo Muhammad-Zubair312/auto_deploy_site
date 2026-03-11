@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Website - Gallery</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1d4ed8',
+                        secondary: '#dc2626',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Events</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Teams</a><a href='schedule.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Schedule</a><a href='results.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Results</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Gallery</a></nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <header class="mb-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Media Gallery</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">Explore photos, videos, and highlights from our latest matches, events, and team activities. Relive the best moments!</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Live Scores & News Feed -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Live Scores Section -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800"><i class="fas fa-bolt text-secondary mr-2"></i> Live Scores</h2>
+                        <span class="px-3 py-1 bg-red-100 text-secondary text-sm font-semibold rounded-full animate-pulse">LIVE</span>
+                    </div>
+                    <div id="liveScoresContainer" class="space-y-4">
+                        <!-- Scores will update dynamically -->
+                        <div class="p-4 border border-gray-200 rounded-lg flex justify-between items-center hover:bg-blue-50 transition">
+                            <div class="flex items-center">
+                                <img src="https://via.placeholder.com/40/3b82f6/ffffff?text=T1" alt="Team A" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <p class="font-semibold">Team Phoenix</p>
+                                    <p class="text-sm text-gray-500">Basketball</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-3xl font-bold">84 - 79</p>
+                                <p class="text-sm text-gray-500">Q4 - 02:15</p>
+                            </div>
+                            <div class="flex items-center text-right">
+                                <div>
+                                    <p class="font-semibold">Team Titans</p>
+                                    <p class="text-sm text-gray-500">Basketball</p>
+                                </div>
+                                <img src="https://via.placeholder.com/40/ef4444/ffffff?text=T2" alt="Team B" class="w-10 h-10 rounded-full ml-3">
+                            </div>
+                        </div>
+                        <div class="p-4 border border-gray-200 rounded-lg flex justify-between items-center hover:bg-blue-50 transition">
+                            <div class="flex items-center">
+                                <img src="https://via.placeholder.com/40/10b981/ffffff?text=T3" alt="Team C" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <p class="font-semibold">United FC</p>
+                                    <p class="text-sm text-gray-500">Soccer</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-3xl font-bold">2 - 1</p>
+                                <p class="text-sm text-gray-500">65'</p>
+                            </div>
+                            <div class="flex items-center text-right">
+                                <div>
+                                    <p class="font-semibold">City Strikers</p>
+                                    <p class="text-sm text-gray-500">Soccer</p>
+                                </div>
+                                <img src="https://via.placeholder.com/40/8b5cf6/ffffff?text=T4" alt="Team D" class="w-10 h-10 rounded-full ml-3">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4 text-center"><i class="fas fa-sync-alt mr-1"></i> Scores update every 30 seconds</p>
+                </section>
+
+                <!-- Gallery Grid -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-images text-primary mr-2"></i> Photo Gallery</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="relative overflow-hidden rounded-lg group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Basketball game action" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <p class="text-white font-medium">Championship Finals - Game 7</p>
+                            </div>
+                        </div>
+                        <div class="relative overflow-hidden rounded-lg group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team celebration" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <p class="text-white font-medium">Victory Celebration</p>
+                            </div>
+                        </div>
+                        <div class="relative overflow-hidden rounded-lg group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Soccer match" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <p class="text-white font-medium">Derby Match Highlights</p>
+                            </div>
+                        </div>
+                        <div class="relative overflow-hidden rounded-lg group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Training session" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <p class="text-white font-medium">Morning Training</p>
+                            </div>
+                        </div>
+                        <div class="relative overflow-hidden rounded-lg group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fans cheering" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <p class="text-white font-medium">Fan Zone Atmosphere</p>
+                            </div>
+                        </div>
+                        <div class="relative overflow-hidden rounded-lg group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Award ceremony" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <p class="text-white font-medium">MVP Award Ceremony</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button class="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-images mr-2"></i> View All Photos
+                        </button>
+                    </div>
+                </section>
+
+                <!-- News Feed -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-newspaper text-secondary mr-2"></i> Latest News</h2>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-primary pl-4 py-1">
+                            <h3 class="font-bold text-lg text-gray-800">Team Phoenix Extends Winning Streak to 8 Games</h3>
+                            <p class="text-gray-600 mt-1">The basketball team continues their dominant season with another victory against the Titans.</p>
+                            <p class="text-sm text-gray-500 mt-2"><i class="far fa-clock mr-1"></i> 2 hours ago</p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4 py-1">
+                            <h3 class="font-bold text-lg text-gray-800">New Stadium Renovations Announced</h3>
+                            <p class="text-gray-600 mt-1">Major upgrades coming to the main arena, including new seating and enhanced facilities.</p>
+                            <p class="text-sm text-gray-500 mt-2"><i class="far fa-clock mr-1"></i> 1 day ago</p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4 py-1">
+                            <h3 class="font-bold text-lg text-gray-800">Youth Academy Tryouts Scheduled</h3>
+                            <p class="text-gray-600 mt-1">Open tryouts for the under-18 teams will be held next month. Registration now open.</p>
+                            <p class="text-sm text-gray-500 mt-2"><i class="far fa-clock mr-1"></i> 3 days ago</p>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="#" class="text-primary font-semibold hover:underline flex items-center">
+                            Read More News <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Event Calendar & Team Profiles -->
+            <div class="space-y-8">
+                <!-- Event Calendar -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="far fa-calendar-alt text-primary mr-2"></i> Event Calendar</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start p-3 bg-blue-50 rounded-lg">
+                            <div class="text-center mr-4">
+                                <p class="text-2xl font-bold text-primary">15</p>
+                                <p class="text-sm text-gray-600">OCT</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Home Game vs. Rivals</h3>
+                                <p class="text-sm text-gray-600">7:30 PM • Main Arena</p>
+                                <span class="inline-block mt-1 px-2 py-1 bg-primary text-white text-xs rounded">Basketball</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                            <div class="text-center mr-4">
+                                <p class="text-2xl font-bold text-gray-700">18</p>
+                                <p class="text-sm text-gray-600">OCT</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Community Fan Day</h3>
+                                <p class="text-sm text-gray-600">11:00 AM • Stadium Park</p>
+                                <span class="inline-block mt-1 px-2 py-1 bg-green-500 text-white text-xs rounded">Event</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-3 bg-blue-50 rounded-lg">
+                            <div class="text-center mr-4">
+                                <p class="text-2xl font-bold text-primary">22</p>
+                                <p class="text-sm text-gray-600">OCT</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Away Match: City Strikers</h3>
+                                <p class="text-sm text-gray-600">4:00 PM • City Stadium</p>
+                                <span class="inline-block mt-1 px-2 py-1 bg-secondary text-white text-xs rounded">Soccer</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                            <div class="text-center mr-4">
+                                <p class="text-2xl font-bold text-gray-700">25</p>
+                                <p class="text-sm text-gray-600">OCT</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Charity Gala Dinner</h3>
+                                <p class="text-sm text-gray-600">8:00 PM • Grand Hotel</p>
+                                <span class="inline-block mt-1 px-2 py-1 bg-purple-500 text-white text-xs rounded">Fundraiser</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="events.html" class="block text-center px-4 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors">
+                            <i class="far fa-calendar-plus mr-2"></i> View Full Calendar
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Team Profiles -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-users text-secondary mr-2"></i> Featured Teams</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-center p-4 bg-gradient-to-r from-blue-50 to-white rounded-lg border">
+                            <img src="https://via.placeholder.com/60/3b82f6/ffffff?text=TP" alt="Team Phoenix" class="w-16 h-16 rounded-full border-4 border-white shadow">
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-800">Team Phoenix</h3>
+                                <p class="text-sm text-gray-600">Basketball • 12-2 Record</p>
+                                <div class="flex mt-2">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded mr-2">1st Place</span>
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded">8 Wins Streak</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-gradient-to-r from-red-50 to-white rounded-lg border">
+                            <img src="https://via.placeholder.com/60/ef4444/ffffff?text=UFC" alt="United FC" class="w-16 h-16 rounded-full border-4 border-white shadow">
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-800">United FC</h3>
+                                <p class="text-sm text-gray-600">Soccer • 7-3-2 Record</p>
+                                <div class="flex mt-2">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-semibold rounded mr-2">3rd Place</span>
+                                    <span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded">Home: 5-0-1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-gradient-to-r from-gray-50 to-white rounded-lg border">
+                            <img src="https://via.placeholder.com/60/6b7280/ffffff?text=VA" alt="Volleyball Academy" class="w-16 h-16 rounded-full border-4 border-white shadow">
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-800">Volleyball Academy</h3>
+                                <p class="text-sm text-gray-600">Volleyball • 9-4 Record</p>
+                                <div class="flex mt-2">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded mr-2">2nd Place</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded">Rising</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="teams.html" class="block text-center px-4 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-900 transition-colors">
+                            <i class="fas fa-arrow-right mr-2"></i> Explore All Teams
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Quick Registration CTA -->
+                <section class="bg-gradient-to-r from-primary to-blue-600 rounded-xl shadow-lg p-6 text-white">
+                    <h2 class="text-2xl font-bold mb-4">Join Our Community</h2>
+                    <p class="mb-6">Register for free to get exclusive access to tickets, member discounts, and personalized updates.</p>
+                    <div class="space-y-3">
+                        <a href="signup.html" class="block text-center px-4 py-3 bg-white text-primary font-bold rounded-lg hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-user-plus mr-2"></i> Sign Up Free
+                        </a>
+                        <a href="login.html" class="block text-center px-4 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+                            <i class="fas fa-sign-in-alt mr-2"></i> Existing Member Login
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold">Sport<span class="text-primary">Hub</span></h2>
+                    <p class="text-gray-400 mt-2">Your ultimate sports destination</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 SportHub. All rights reserved. | <a href="#" class="hover:text-white transition-colors">Privacy Policy</a> | <a href="#" class="hover:text-white transition-colors">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simulate live score updates
+        function updateLiveScores() {
+            const scores = document.querySelectorAll('#liveScoresContainer .text-3xl');
+            scores.forEach(scoreElement => {
+                const scoreText = scoreElement.textContent;
+                const scores = scoreText.split(' - ').map(Number);
+                // Randomly increment one team's score
+                if (Math.random() > 0.7) {
+                    const teamIndex = Math.floor(Math.random() * 2);
+                    scores[teamIndex] += Math.floor(Math.random() * 3) + 1;
+                    scoreElement.textContent = `${scores[0]} - ${scores[1]}`;
+                    scoreElement.classList.add('text-secondary');
+                    setTimeout(() => scoreElement.classList.remove('text-secondary'), 1000);
+                }
+            });
+        }
+
+        // Update scores every 30 seconds
+        setInterval(updateLiveScores, 30000);
+
+        // Add hover effect to gallery images
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.group');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    // In a real app, this would open a modal or lightbox
+                    alert('Opening image viewer for: ' + this.querySelector('.text-white')?.textContent || 'Gallery Image');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
