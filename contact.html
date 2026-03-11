@@ -3,166 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Basic Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <title>Contact | Portfolio</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating { animation: float 5s ease-in-out infinite; }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'><a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a><a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a><a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a><a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a><a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a></nav>
+<body class="font-sans bg-gray-50">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='projects.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Projects</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-12">
-        <!-- Page Header -->
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">Get In Touch</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-            </p>
+    <header class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-gray-50 to-orange-50 px-4 py-16">
+        <div class="text-center max-w-4xl mx-auto">
+            <div class="relative inline-block mb-8">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Profile" class="w-40 h-40 rounded-full border-4 border-white shadow-xl floating">
+                <span class="absolute -bottom-2 -right-2 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">Available for Hire</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Let's Build Something Together</h1>
+            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">I'm currently open to new opportunities, collaborative projects, and interesting challenges. Reach out—I typically respond within 24 hours.</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#contact-form" class="px-6 py-3 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition duration-300 font-medium">
+                    <i class="fas fa-paper-plane mr-2"></i> Send a Message
+                </a>
+                <a href="mailto:hello@portfolio.dev" class="px-6 py-3 bg-white text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-300 font-medium">
+                    <i class="fas fa-envelope mr-2"></i> Email Directly
+                </a>
+            </div>
         </div>
+    </header>
 
-        <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <!-- Contact Information -->
+    <main class="max-w-7xl mx-auto px-4 py-12 md:py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            <div class="lg:col-span-2">
+                <section class="rounded-xl shadow-md p-6 bg-white hover:shadow-lg transition-shadow">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200">Get In Touch</h2>
+                    <p class="text-gray-600 mb-6">I believe great projects start with great conversations. Whether you have a question about my work, want to discuss a potential collaboration, or just want to say hello, I'd love to hear from you. Fill out the form below, and I'll get back to you as soon as possible.</p>
+
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-700 transition">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-700 transition">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject *</label>
+                            <input type="text" id="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-700 transition" placeholder="e.g., Project Inquiry, Speaking Engagement">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message *</label>
+                            <textarea id="message" rows="6" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-700 transition" placeholder="Tell me about your project, timeline, and budget..."></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition duration-300 font-medium w-full md:w-auto">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+                    </form>
+                </section>
+            </div>
+
             <div class="space-y-8">
-                <div>
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h2>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i data-feather="mail" class="text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Email</h3>
-                                <p class="text-gray-600">info@basicwebsite.com</p>
-                                <p class="text-gray-600">support@basicwebsite.com</p>
-                            </div>
-                        </div>
+                <div class="rounded-xl shadow-md p-6 bg-white hover:shadow-lg transition-shadow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-map-marker-alt text-orange-500 mr-3"></i> Location & Hours
+                    </h3>
+                    <p class="text-gray-700 mb-2"><strong>Based in:</strong> San Francisco, CA</p>
+                    <p class="text-gray-700 mb-2"><strong>Time Zone:</strong> Pacific (PT)</p>
+                    <p class="text-gray-700 mb-4"><strong>Best Hours:</strong> 9 AM - 5 PM Weekdays</p>
+                    <p class="text-sm text-gray-500">Available for remote work worldwide. Open to occasional on-site collaboration for key projects.</p>
+                </div>
 
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i data-feather="phone" class="text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Phone</h3>
-                                <p class="text-gray-600">+1 (555) 123-4567</p>
-                                <p class="text-gray-600">+1 (555) 987-6543</p>
-                            </div>
-                        </div>
+                <div class="rounded-xl shadow-md p-6 bg-white hover:shadow-lg transition-shadow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-phone-alt text-indigo-700 mr-3"></i> Direct Contact
+                    </h3>
+                    <p class="text-gray-700 mb-3"><i class="fas fa-envelope text-gray-400 mr-2"></i> <strong>Email:</strong> hello@portfolio.dev</p>
+                    <p class="text-gray-700 mb-3"><i class="fas fa-phone text-gray-400 mr-2"></i> <strong>Phone:</strong> +1 (555) 123-4567</p>
+                    <p class="text-gray-700 mb-4"><i class="fas fa-video text-gray-400 mr-2"></i> <strong>Calendly:</strong> portfolio.dev/calendar</p>
+                    <a href="#" class="inline-flex items-center text-indigo-700 hover:text-indigo-800 font-medium">
+                        <i class="fas fa-external-link-alt mr-2"></i> Schedule a video call
+                    </a>
+                </div>
 
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i data-feather="map-pin" class="text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Address</h3>
-                                <p class="text-gray-600">123 Business Street</p>
-                                <p class="text-gray-600">Suite 100, City, State 12345</p>
-                            </div>
+                <div class="rounded-xl shadow-md p-6 bg-white hover:shadow-lg transition-shadow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Response Time</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Initial Response:</span>
+                            <span class="font-medium text-gray-900">Within 24 hours</span>
                         </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i data-feather="clock" class="text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Business Hours</h3>
-                                <p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                                <p class="text-gray-600">Saturday: 10:00 AM - 4:00 PM</p>
-                            </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Project Inquiries:</span>
+                            <span class="font-medium text-gray-900">1-2 business days</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Urgent Requests:</span>
+                            <span class="font-medium text-gray-900">Mark email as "URGENT"</span>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Contact Form -->
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Send Us a Message</h2>
-                
-                <form class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                            <input type="text" id="firstName" name="firstName" 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                   placeholder="Enter your first name" required>
-                        </div>
-                        <div>
-                            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                   placeholder="Enter your last name" required>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                               placeholder="Enter your email" required>
-                    </div>
-
-                    <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                               placeholder="Enter your phone number">
-                    </div>
-
-                    <div>
-                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                        <select id="subject" name="subject" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                            <option value="">Select a subject</option>
-                            <option value="general">General Inquiry</option>
-                            <option value="support">Technical Support</option>
-                            <option value="billing">Billing Question</option>
-                            <option value="feedback">Feedback</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" 
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                  placeholder="Enter your message" required></textarea>
-                    </div>
-
-                    <button type="submit" 
-                            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors font-semibold">
-                        Send Message
-                    </button>
-                </form>
-            </div>
         </div>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Connect on Social</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="#" class="rounded-xl shadow-md p-6 bg-white hover:shadow-lg transition-shadow text-center group">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition">
+                        <i class="fab fa-linkedin-in text-blue-700 text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-1">LinkedIn</h3>
+                    <p class="text-sm text-gray-600">Professional network</p>
+                </a>
+                <a href="#" class="rounded-xl shadow-md p-6 bg-white hover:shadow-lg transition-shadow text-center group">
+                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gray-200 transition">
+                        <i class="fab fa-github text-gray-900 text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-1">GitHub</h3>
+                    <p class="text-sm text-gray-600">Code & projects</p>
+                </a>
+                <a href="#" class="rounded-xl shadow-md p-6 bg-white hover:shadow-lg transition-shadow text-center group">
+                    <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-pink-200 transition">
+                        <i class="fab fa-dribbble text-pink-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-1">Dribbble</h3>
+                    <p class="text-sm text-gray-600">Design portfolio</p>
+                </a>
+                <a href="#" class="rounded-xl shadow-md p-6 bg-white hover:shadow-lg transition-shadow text-center group">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition">
+                        <i class="fab fa-twitter text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-1">Twitter</h3>
+                    <p class="text-sm text-gray-600">Thoughts & updates</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="rounded-xl shadow-md p-8 bg-gradient-to-r from-indigo-700 to-indigo-800 text-white">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Prefer a Quick Chat?</h2>
+                <p class="text-lg mb-6 text-indigo-100">Sometimes a 15-minute conversation is worth a dozen emails. Book a slot on my calendar for a no-pressure introductory call.</p>
+                <a href="#" class="inline-flex items-center px-6 py-3 bg-white text-indigo-700 rounded-lg hover:bg-gray-100 transition duration-300 font-bold">
+                    <i class="fas fa-calendar-alt mr-3"></i> Book a Discovery Call
+                </a>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-16">
-        <div class="container mx-auto px-4">
-            <div class="text-center">
-                <p>&copy; 2024 Basic Website. All rights reserved.</p>
-                <div class="flex justify-center space-x-6 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="facebook"></i>
+    <footer class="bg-gray-900 text-white py-10 px-4 mt-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">Portfolio<span class="text-orange-500">.</span></h3>
+                    <p class="text-gray-400">Building digital experiences that matter.</p>
+                </div>
+                <div class="flex flex-wrap gap-6 mb-6 md:mb-0">
+                    <a href="index.html" class="text-gray-300 hover:text-white transition">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white transition">About</a>
+                    <a href="projects.html" class="text-gray-300 hover:text-white transition">Projects</a>
+                    <a href="contact.html" class="text-white font-medium">Contact</a>
+                    <a href="privacy.html" class="text-gray-300 hover:text-white transition">Privacy</a>
+                    <a href="terms.html" class="text-gray-300 hover:text-white transition">Terms</a>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                        <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="twitter"></i>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                        <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="linkedin"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="instagram"></i>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                        <i class="fab fa-github"></i>
                     </a>
                 </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 Portfolio. All rights reserved. Designed with passion in California.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        feather.replace();
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
     </script>
 </body>
 </html>
