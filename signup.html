@@ -3,238 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <title>Join My Creative Community | Sign Up</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <meta name="description" content="Sign up for exclusive access to my full portfolio, detailed case studies, project updates, and creative insights. Join a community of designers and developers.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+        * { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+        .profile-ring { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 30px rgba(79, 70, 229, 0.3); }
+        .masonry-grid { column-count: 3; column-gap: 1.5rem; }
+        @media (max-width: 1024px) { .masonry-grid { column-count: 2; } }
+        @media (max-width: 640px) { .masonry-grid { column-count: 1; } }
+        .masonry-item { break-inside: avoid; margin-bottom: 1.5rem; }
+        .lazy-load { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .lazy-load.loaded { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="font-bold text-xl">E-Shop</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
-        </div>
-    </nav>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='portfolio.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Portfolio</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='blog.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Blog</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
 
-    <!-- Signup Section -->
-    <section class="py-12 px-4 md:px-8 lg:px-16">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Column: Benefits -->
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
-                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                            <i data-feather="shopping-cart" class="text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
-                            <p class="text-gray-600">Save your details for quicker purchases.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-2 rounded-full mr-4">
-                            <i data-feather="package" class="text-green-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
-                            <p class="text-gray-600">Monitor your orders in real-time.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 p-2 rounded-full mr-4">
-                            <i data-feather="star" class="text-purple-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
-                            <p class="text-gray-600">Share and read authentic product reviews.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
-                            <i data-feather="credit-card" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
-                            <p class="text-gray-600">Multiple payment options with top security.</p>
-                        </div>
-                    </div>
+    <!-- Hero Section -->
+    <section class="py-12 md:py-20 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <div class="lg:w-1/2">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Unlock Full Access to My Creative World</h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl">Sign up for a free account to explore my complete portfolio, download exclusive case studies, receive project updates, and connect with a network of passionate designers and developers.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#signup-form" class="px-6 py-3 bg-indigo-700 text-white font-semibold rounded-lg hover:bg-indigo-800 transition shadow-md hover:shadow-lg">Create Your Account</a>
+                    <a href="portfolio.html" class="px-6 py-3 border-2 border-indigo-700 text-indigo-700 font-semibold rounded-lg hover:bg-indigo-700 hover:text-white transition">Browse Public Portfolio</a>
                 </div>
+                <p class="text-sm text-gray-500 mt-6"><span class="text-amber-500 font-medium">✓</span> No credit card required. Join 2,400+ members.</p>
             </div>
-            
-            <!-- Right Column: Signup Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
-                
-                <form id="signupForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
-                            <input type="text" id="firstName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="password">Password</label>
-                        <input type="password" id="password" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="terms" required 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="terms" class="ml-3 text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                        </label>
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="newsletter" class="ml-3 text-gray-700">
-                            Subscribe to our newsletter for exclusive deals
-                        </label>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                        Create Account
-                    </button>
-                    
-                    <div class="text-center">
-                        <p class="text-gray-600">Already have an account? 
-                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
-                        </p>
-                    </div>
-                    
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            Facebook
-                        </button>
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
-                            Twitter
-                        </button>
-                    </div>
-                </form>
+            <div class="lg:w-1/2 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <div class="absolute inset-0 gradient-bg rounded-full profile-ring"></div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         alt="Alex Morgan - Frontend Developer & UI Designer"
+                         class="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] object-cover rounded-full border-4 border-white lazy-load"
+                         loading="lazy"
+                         onload="this.classList.add('loaded')">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <i data-feather="shopping-bag" class="text-blue-400"></i>
-                    <span class="font-bold text-xl">E-Shop</span>
+    <!-- Main Content: Signup Form -->
+    <section id="signup-form" class="py-12 px-6 max-w-4xl mx-auto">
+        <div class="rounded-xl shadow-xl p-8 bg-white border border-gray-100">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">Create Your Member Account</h2>
+            <p class="text-gray-600 mb-8">Fill in your details to get started. All fields are required.</p>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="full-name" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                    <input type="text" id="full-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
                 </div>
-                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                    <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password *</label>
+                    <input type="password" id="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                    <p class="text-xs text-gray-500 mt-2">Minimum 8 characters with a number and symbol.</p>
+                </div>
+                <div>
+                    <label for="profession" class="block text-sm font-medium text-gray-700 mb-2">Profession / Role *</label>
+                    <select id="profession" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                        <option value="">Select your role</option>
+                        <option value="frontend">Frontend Developer</option>
+                        <option value="designer">UI/UX Designer</option>
+                        <option value="fullstack">Full Stack Developer</option>
+                        <option value="manager">Project Manager</option>
+                        <option value="student">Student</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="md:col-span-2">
+                    <label for="goals" class="block text-sm font-medium text-gray-700 mb-2">What are you hoping to gain by joining? *</label>
+                    <textarea id="goals" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="e.g., Learn React patterns, get design inspiration, network..."></textarea>
+                </div>
+                <div class="md:col-span-2 flex items-start">
+                    <input type="checkbox" id="terms" required class="mt-1 mr-3">
+                    <label for="terms" class="text-sm text-gray-700">I agree to the <a href="#" class="text-indigo-700 hover:underline">Terms of Service</a> and <a href="#" class="text-indigo-700 hover:underline">Privacy Policy</a>. I understand I will receive occasional updates about new projects and case studies.</label>
+                </div>
+                <div class="md:col-span-2">
+                    <button type="submit" class="px-8 py-4 bg-indigo-700 text-white font-semibold rounded-lg hover:bg-indigo-800 transition shadow-md hover:shadow-lg w-full md:w-auto">Create Account & Get Instant Access</button>
+                </div>
+            </form>
+            <p class="text-center text-gray-500 text-sm mt-8">Already have an account? <a href="login.html" class="text-indigo-700 font-medium hover:underline">Log in here</a>.</p>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section class="py-16 px-6 max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Exclusive Member Benefits</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div class="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Full Portfolio & Case Studies</h3>
+                <p class="text-gray-600">Access my complete project gallery with detailed 2-column case studies, including behind-the-scenes insights, challenges, tech stacks, and results.</p>
             </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
-                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
-                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
-                </ul>
+            <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div class="w-12 h-12 rounded-lg bg-amber-100 flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Video Tutorials & Walkthroughs</h3>
+                <p class="text-gray-600">Members get exclusive access to video showcases explaining my design process, code reviews, and interactive component breakdowns.</p>
             </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Account</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
-                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
-                </ul>
+            <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div class="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Network & Community</h3>
+                <p class="text-gray-600">Connect with other professionals, participate in feedback sessions, and get early invites to webinars and live Q&A events.</p>
             </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Contact</h3>
-                <p class="text-gray-400">support@eshop.com</p>
-                <p class="text-gray-400">+1 (555) 123-4567</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
+        </div>
+    </section>
+
+    <!-- Social Proof / Trust Badges -->
+    <section class="py-16 px-6 max-w-7xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Trusted by Industry Professionals</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center mb-12">
+            <div class="text-center">
+                <div class="text-4xl font-bold text-indigo-700">2.4K+</div>
+                <div class="text-gray-600">Active Members</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-indigo-700">98%</div>
+                <div class="text-gray-600">Satisfaction Rate</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-indigo-700">150+</div>
+                <div class="text-gray-600">Case Studies</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-indigo-700">12</div>
+                <div class="text-gray-600">Industry Awards</div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-6 bg-gray-50 rounded-xl">
+                <p class="text-gray-700 italic mb-4">"The detailed case studies helped our team improve our React architecture. The insights are practical and immediately applicable."</p>
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Sarah Chen" class="w-10 h-10 rounded-full mr-3" loading="lazy">
+                    <div>
+                        <div class="font-semibold">Sarah Chen</div>
+                        <div class="text-sm text-gray-500">Lead Developer, TechFlow Inc.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 bg-gray-50 rounded-xl">
+                <p class="text-gray-700 italic mb-4">"As a designer, the component breakdowns and accessibility notes have been invaluable for my daily work. Highly recommended."</p>
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Marcus Rivera" class="w-10 h-10 rounded-full mr-3" loading="lazy">
+                    <div>
+                        <div class="font-semibold">Marcus Rivera</div>
+                        <div class="text-sm text-gray-500">UI Designer, PixelCraft Studio</div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 bg-gray-50 rounded-xl">
+                <p class="text-gray-700 italic mb-4">"The community feedback sessions provided actionable insights that directly improved our product's user experience."</p>
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Jamila Patel" class="w-10 h-10 rounded-full mr-3" loading="lazy">
+                    <div>
+                        <div class="font-semibold">Jamila Patel</div>
+                        <div class="text-sm text-gray-500">Product Manager, InnovateCo</div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 max-w-5xl mx-auto text-center">
+        <div class="gradient-bg rounded-2xl p-12 text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Elevate Your Skills & Network?</h2>
+            <p class="text-xl mb-8 text-indigo-100 max-w-2xl mx-auto">Join thousands of developers and designers who are already accessing exclusive content, building connections, and advancing their careers.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#signup-form" class="px-8 py-4 bg-white text-indigo-700 font-bold rounded-lg hover:bg-gray-100 transition shadow-lg hover:shadow-xl">Sign Up Free — 30 Second Setup</a>
+                <a href="portfolio.html" class="px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-indigo-700 transition">View Public Portfolio First</a>
+            </div>
+            <p class="text-sm text-indigo-200 mt-8"><span class="font-semibold">✓ No risk, cancel anytime.</span> Full access to all current and future case studies included.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Alex Morgan</h3>
+                    <p class="text-gray-400">Frontend Developer & UI Designer specializing in modern, performant web experiences and design systems.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition">Portfolio Gallery</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About & Skills</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact Me</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Case Studies (Members)</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Resume Download</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog & Articles</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Design Kit</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Connect</h4>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" aria-label="GitHub" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Dribbble" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.326 4.103c2.387 1.425 4.18 3.834 4.854 6.639-.645-.234-2.253-.547-4.295-.547-1.359 0-2.841.183-3.953.426.045-.327.09-.653.119-.98 2.016-.404 4.043-.745 4.275-.538zM12 2.06c1.849 0 3.583.48 5.084 1.32-.225.225-2.729.957-5.445.957-1.74 0-3.374-.24-4.563-.505C8.213 2.88 10.032 2.06 12 2.06zM7.03 3.832c1.2.27 2.823.517 4.563.505 2.716 0 5.22-.732 5.445-.957a9.912 9.912 0 00-4.22-.957c-1.95 0-3.75.675-5.788 1.41zM4.822 5.7c1.189.27 2.823.505 4.563.505 2.716 0 5.22-.732 5.445-.957-.225-.225-2.729-.957-5.445-.957-1.74 0-3.374.24-4.563.505zM2.06 12c0-1.968.82-3.787 2.155-5.084.27 1.2.517 2.823.505 4.563 0 2.716-.732 5.22-.957 5.445A9.919 9.919 0 012.06 12zm2.155 5.084c.225-.225.957-2.729.957-5.445 0-1.74-.24-3.374-.505-4.563 1.2-.27 2.823-.517 4.563-.505 2.716 0 5.22.732 5.445.957a9.912 9.912 0 01-1.32 5.084A9.92 9.92 0 0112 19.94c-1.968 0-3.787-.82-5.084-2.155zm5.084 2.155a9.912 9.912 0 01-5.084-1.32c.225-.225 2.729-.957 5.445-.957 1.74 0 3.374.24 4.563.505A9.919 9.919 0 0112 19.94zm5.084-2.155a9.912 9.912 0 01-1.32-5.084c0-1.74.24-3.374.505-4.563 1.2.27 2.823.517 4.563.505 2.716 0 5.22.732 5.445.957a9.919 9.919 0 01-2.155 5.084 9.919 9.919 0 01-5.084 2.155 9.912 9.912 0 01-5.084-1.32zm5.084-2.155c.27-1.2.517-2.823.505-4.563 0-2.716-.732-5.22-.957-5.445.225.225.957 2.729.957 5.445 0 1.74-.24 3.374-.505 4.563z"/></svg>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">Subscribe to my newsletter for monthly insights:</p>
+                    <form class="mt-4 flex">
+                        <input type="email" placeholder="Your email" class="flex-grow px-4 py-2 rounded-l-lg text-gray-900">
+                        <button type="submit" class="px-4 py-2 bg-amber-500 text-gray-900 font-semibold rounded-r-lg hover:bg-amber-600 transition">Join</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 Alex Morgan. All rights reserved. | <a href="#" class="hover:text-white transition">Privacy Policy</a> | <a href="#" class="hover:text-white transition">Terms of Service</a></p>
+                <p class="mt-2">This site uses lazy loading for optimal performance. Portfolio images are optimized for fast delivery.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        feather.replace();
-        
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to login...');
-            window.location.href = 'login.html';
+        // Simple lazy load observer
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyImages = document.querySelectorAll('img.lazy-load');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.onload = () => img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            lazyImages.forEach(img => imageObserver.observe(img));
         });
     </script>
 </body>

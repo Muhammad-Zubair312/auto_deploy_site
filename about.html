@@ -3,180 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Basic Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <title>About Me | Alex Morgan - Senior Front-End Developer & UI/UX Designer</title>
+    <meta name="description" content="Learn about Alex Morgan, a Senior Front-End Developer with 8+ years of experience crafting high-performance web applications and award-winning digital experiences.">
+    <meta name="keywords" content="Front-End Developer, UI/UX Designer, Portfolio, Web Development, React, JavaScript, CSS">
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .circular-gradient-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+        .progress-bar-fill {
+            transition: width 1s ease-in-out;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            border: 3px solid #e0e7ff;
+        }
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-        <a href='about.html' class='px-3 py-2 hover:text-blue-400'>About</a>
-        <a href='contact.html' class='px-3 py-2 hover:text-blue-400'>Contact</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
-    </nav>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='portfolio.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Portfolio</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='blog.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Blog</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
 
-    <!-- About Hero Section -->
-    <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">About Our Company</h1>
-            <p class="text-xl md:text-2xl max-w-3xl mx-auto">
-                Building innovative solutions for tomorrow's challenges
-            </p>
-        </div>
-    </section>
-
-    <!-- Mission & Vision -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="bg-blue-50 p-8 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-6">
-                        <i data-feather="target" class="text-blue-600 mr-4"></i>
-                        <h2 class="text-2xl font-bold text-gray-800">Our Mission</h2>
+    <!-- 1. Hero Section -->
+    <header class="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-gray-50 to-indigo-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="lg:w-1/2">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">Alex Morgan</h1>
+                    <h2 class="text-2xl md:text-3xl text-indigo-700 font-semibold mb-6">Senior Front-End Developer & UI/UX Designer</h2>
+                    <p class="text-lg text-gray-600 mb-8 max-w-2xl">Crafting intuitive, high-performance digital experiences for over 8 years. Passionate about bridging the gap between elegant design and robust, scalable code. I've led projects for Fortune 500 companies and innovative startups alike.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="portfolio.html" class="px-6 py-3 bg-indigo-700 text-white font-semibold rounded-lg hover:bg-indigo-800 transition shadow-md hover:shadow-lg">View Portfolio</a>
+                        <a href="/resume-alex-morgan.pdf" download class="px-6 py-3 border-2 border-indigo-700 text-indigo-700 font-semibold rounded-lg hover:bg-indigo-700 hover:text-white transition">Download Resume</a>
                     </div>
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        To deliver exceptional value through innovative solutions that empower businesses 
-                        and individuals to achieve their full potential. We strive to create meaningful 
-                        impact through technology, collaboration, and unwavering commitment to excellence.
-                    </p>
                 </div>
-                
-                <div class="bg-purple-50 p-8 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-6">
-                        <i data-feather="eye" class="text-purple-600 mr-4"></i>
-                        <h2 class="text-2xl font-bold text-gray-800">Our Vision</h2>
+                <div class="lg:w-1/2 flex justify-center lg:justify-end">
+                    <div class="relative">
+                        <div class="circular-gradient-bg w-64 h-64 md:w-80 md:h-80 rounded-full flex items-center justify-center shadow-2xl">
+                            <!-- Placeholder for profile image. In production, replace with <img> with lazy loading -->
+                            <div class="w-60 h-60 md:w-72 md:h-72 rounded-full bg-gray-300 overflow-hidden">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='288' height='288' viewBox='0 0 288 288'%3E%3Crect width='288' height='288' fill='%23d1d5db'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, sans-serif' font-size='24' fill='%236b7280'%3EAlex Morgan%3C/text%3E%3C/svg%3E"
+                                     alt="Alex Morgan - Profile Photo"
+                                     class="lazy-image w-full h-full object-cover"
+                                     loading="lazy"
+                                     onload="this.classList.add('loaded')">
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-amber-500 text-gray-900 font-bold px-6 py-2 rounded-lg shadow-lg">
+                            <span>8+ Years Exp</span>
+                        </div>
                     </div>
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        To be the leading force in digital transformation, recognized globally for our 
-                        innovative approach, exceptional service quality, and positive impact on the 
-                        communities we serve. We envision a future where technology enhances every 
-                        aspect of human experience.
-                    </p>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Values Section -->
-    <section class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Core Values</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <i data-feather="users" class="text-blue-600 w-12 h-12 mx-auto mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Collaboration</h3>
-                        <p class="text-gray-600">Working together to achieve extraordinary results through shared knowledge and mutual respect.</p>
-                    </div>
+    <!-- 2. Bio Section -->
+    <section class="py-16 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-2/5">
+                    <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                         alt="Alex Morgan working in a modern office"
+                         class="lazy-image rounded-2xl shadow-xl w-full h-auto object-cover"
+                         loading="lazy"
+                         onload="this.classList.add('loaded')">
                 </div>
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <i data-feather="zap" class="text-yellow-500 w-12 h-12 mx-auto mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Innovation</h3>
-                        <p class="text-gray-600">Constantly pushing boundaries and exploring new possibilities to create cutting-edge solutions.</p>
+                <div class="lg:w-3/5">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">My Journey in Tech</h2>
+                    <div class="space-y-4 text-gray-700">
+                        <p>My career began with a Computer Science degree and a fascination for how pixels on a screen could solve real human problems. I started as a junior developer at a digital agency, where I cut my teeth on everything from responsive brochure sites to complex e-commerce platforms.</p>
+                        <p>Over the years, I've specialized in the React ecosystem and modern CSS frameworks like Tailwind, focusing on creating component libraries and design systems that scale. I believe great front-end development is equal parts art and engineering—meticulous attention to detail paired with clean, maintainable code.</p>
+                        <p>Currently, I lead the front-end practice at <strong class="text-indigo-700">Nexus Digital Solutions</strong>, where I mentor a team of 5 developers and collaborate closely with product and design to ship features used by millions of monthly active users.</p>
+                        <p>Outside of client work, I'm an active contributor to open-source projects, a occasional conference speaker, and I write about modern web development practices on my blog.</p>
                     </div>
-                </div>
-                <div class="text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <i data-feather="award" class="text-green-500 w-12 h-12 mx-auto mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-3">Excellence</h3>
-                        <p class="text-gray-600">Committed to delivering the highest quality in everything we do, exceeding expectations consistently.</p>
+                    <div class="mt-8 pt-8 border-t border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Core Philosophy</h3>
+                        <p class="text-gray-700 italic">"Build for the user first, optimize for performance always, and never stop learning. The web is a living platform, and our craft evolves every day."</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Meet Our Leadership</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                        <i data-feather="user" class="w-16 h-16 text-gray-400"></i>
+    <!-- 3. Skills Section -->
+    <section class="py-16 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Technical Skills & Expertise</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-700 mb-6">Front-End Technologies</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-800">React & Next.js</span>
+                                <span class="font-semibold text-indigo-700">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-indigo-700 h-3 rounded-full progress-bar-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-800">JavaScript / TypeScript</span>
+                                <span class="font-semibold text-indigo-700">98%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-indigo-700 h-3 rounded-full progress-bar-fill" style="width: 98%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-800">HTML5 & Semantic Markup</span>
+                                <span class="font-semibold text-indigo-700">99%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-indigo-700 h-3 rounded-full progress-bar-fill" style="width: 99%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-800">CSS3 / Tailwind / Sass</span>
+                                <span class="font-semibold text-indigo-700">97%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-indigo-700 h-3 rounded-full progress-bar-fill" style="width: 97%"></div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold">Sarah Johnson</h3>
-                    <p class="text-blue-600 mb-2">CEO & Founder</p>
-                    <p class="text-gray-600 text-sm">Visionary leader with 15+ years in technology innovation</p>
                 </div>
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                        <i data-feather="user" class="w-16 h-16 text-gray-400"></i>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-700 mb-6">Tools & Practices</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-800">UI/UX Design (Figma)</span>
+                                <span class="font-semibold text-indigo-700">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-indigo-700 h-3 rounded-full progress-bar-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-800">Performance Optimization</span>
+                                <span class="font-semibold text-indigo-700">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-indigo-700 h-3 rounded-full progress-bar-fill" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-800">Git / CI-CD</span>
+                                <span class="font-semibold text-indigo-700">94%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-indigo-700 h-3 rounded-full progress-bar-fill" style="width: 94%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-800">Accessibility (WCAG)</span>
+                                <span class="font-semibold text-indigo-700">96%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-indigo-700 h-3 rounded-full progress-bar-fill" style="width: 96%"></div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold">Michael Chen</h3>
-                    <p class="text-blue-600 mb-2">CTO</p>
-                    <p class="text-gray-600 text-sm">Technical expert specializing in scalable architecture</p>
                 </div>
-                <div class="text-center">
-                    <div class="bg-gray-100 rounded-full w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                        <i data-feather="user" class="w-16 h-16 text-gray-400"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Emily Rodriguez</h3>
-                    <p class="text-blue-600 mb-2">COO</p>
-                    <p class="text-gray-600 text-sm">Operations specialist focused on efficiency and growth</p>
+            </div>
+            <div class="mt-12 pt-12 border-t border-gray-200">
+                <h3 class="text-2xl font-semibold text-center text-gray-900 mb-8">Certifications & Badges</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full font-medium">Google Mobile Web Specialist</span>
+                    <span class="px-4 py-2 bg-amber-100 text-amber-800 rounded-full font-medium">AWS Certified Developer</span>
+                    <span class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full font-medium">React Professional Certification</span>
+                    <span class="px-4 py-2 bg-amber-100 text-amber-800 rounded-full font-medium">Accessibility Fundamentals</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Form Section -->
-    <section class="py-16 bg-gray-900 text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
-                <form class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium mb-2">Full Name</label>
-                        <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required>
+    <!-- 4. Experience Timeline -->
+    <section class="py-16 px-6 md:px-12 lg:px-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Professional Experience</h2>
+            <div class="relative">
+                <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-indigo-200"></div>
+                <div class="space-y-12">
+                    <div class="relative timeline-item pl-12 md:pl-0 md:flex md:items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                            <div class="text-sm font-semibold text-amber-500">2021 - Present</div>
+                            <h3 class="text-xl font-bold text-gray-900">Lead Front-End Developer</h3>
+                            <div class="text-lg text-indigo-700">Nexus Digital Solutions</div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+                                <p class="text-gray-700">Lead a team of 5 front-end developers. Architected and implemented a company-wide design system used across 12+ products. Improved core web vitals scores by 40% across key user flows.</p>
+                                <ul class="mt-4 space-y-2 text-gray-600">
+                                    <li class="flex items-start"><svg class="w-5 h-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Reduced page load times by 60% through code splitting and image optimization</span></li>
+                                    <li class="flex items-start"><svg class="w-5 h-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Mentored 3 junior developers to senior level positions</span></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required>
+                    <div class="relative timeline-item pl-12 md:pl-0 md:flex md:items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0 order-2 md:order-1">
+                            <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+                                <p class="text-gray-700">Built responsive web applications for clients in finance, healthcare, and e-commerce. Collaborated directly with UX designers to implement pixel-perfect interfaces. Introduced automated testing which reduced bug reports by 35%.</p>
+                                <ul class="mt-4 space-y-2 text-gray-600">
+                                    <li class="flex items-start"><svg class="w-5 h-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Developed a component library that accelerated project starts by 3 weeks</span></li>
+                                    <li class="flex items-start"><svg class="w-5 h-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Led migration of 5 legacy jQuery applications to React</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 order-1 md:order-2 mb-4 md:mb-0">
+                            <div class="text-sm font-semibold text-amber-500">2018 - 2021</div>
+                            <h3 class="text-xl font-bold text-gray-900">Senior Front-End Developer</h3>
+                            <div class="text-lg text-indigo-700">PixelCraft Studios</div>
+                        </div>
                     </div>
-                    <div class="md:col-span-2">
-                        <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
-                        <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required>
+                    <div class="relative timeline-item pl-12 md:pl-0 md:flex md:items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                            <div class="text-sm font-semibold text-amber-500">2016 - 2018</div>
+                            <h3 class="text-xl font-bold text-gray-900">Front-End Developer</h3>
+                            <div class="text-lg text-indigo-700">WebFlow Innovations</div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+                                <p class="text-gray-700">Developed and maintained client websites using HTML5, CSS3, and JavaScript. Worked in an agile team environment. Gained expertise in cross-browser compatibility and responsive design principles.</p>
+                                <ul class="mt-4 space-y-2 text-gray-600">
+                                    <li class="flex items-start"><svg class="w-5 h-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Built over 30 responsive websites for small to medium businesses</span></li>
+                                    <li class="flex items-start"><svg class="w-5 h-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Implemented SEO best practices that increased organic traffic by an average of 50%</span></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="md:col-span-2">
-                        <label for="message" class="block text-sm font-medium mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition-colors" required></textarea>
-                    </div>
-                    <div class="md:col-span-2 text-center">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300">
-                            Send Message
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Basic Website. All rights reserved.</p>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="facebook"></i>
-                </a>
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="twitter"></i>
-                </a>
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="linkedin"></i>
-                </a>
-                <a href="#" class="hover:text-blue-400 transition-colors">
-                    <i data-feather="instagram"></i>
-                </a>
+    <!-- 5. Education Section -->
+    <section class="py-16 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Education & Continuous Learning</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+                    <div class="text-amber-500 font-bold text-lg mb-2">M.Sc. Computer Science</div>
+                    <div class="text-indigo-700 font-semibold mb-2">Stanford University</div>
+                    <div class="text-gray-500 text-sm mb-4">2014 - 2016</div>
+                    <p class="text-gray-700">Specialized in Human-Computer Interaction and Web Technologies. Thesis on "Progressive Web App Performance in Low-Bandwidth Environments." Graduated with Honors.</p>
+                </div>
+                <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+                    <div class="text-amber-500 font-bold text-lg mb-2">B.Sc. Software Engineering</div>
+                    <div class="text-indigo-700 font-semibold mb-2">MIT</div>
+                    <div class="text-gray-500 text-sm mb-4">2010 - 2014</div>
+                    <p class="text-gray-700">Focused on software architecture and user interface design. President of the Web Development Club. Capstone project: A real-time collaborative design tool.</p>
+                </div>
+                <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+                    <div class="text-amber-500 font-bold text-lg mb-2">Professional Development</div>
+                    <div class="text-indigo-700 font-semibold mb-2">Various Institutions</div>
+                    <div class="text-gray-500 text-sm mb-4">Ongoing</div>
+                    <p class="text-gray-700">Regularly complete advanced courses on Frontend Masters, Udacity, and Coursera. Recent completions: "Advanced React Patterns," "Web Performance," and "Design Systems Architecture." Attend 3-4 tech conferences annually.</p>
+                </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        feather.replace();
-    </script>
-</body>
-</html>
+    <!-- 6. Achievements/Awards -->
+    <section class="py-16 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Awards & Recognition</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300 text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 text-indigo-700 mb-4">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Awwwards Site of the Day</h3>
+                    <p class="text-gray-700">2022 - For the "Nexus Design System Documentation" website, recognized for exceptional design and UX.</p>
+                </div>
+                <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300 text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 text-amber-700 mb-4">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">CSS Design Awards - Special Kudos</h3>
+                    <p class="text-gray-700">2021 - Awarded for innovative use of CSS Grid and animations in the "FinTech Dashboard" project.</p>
+                </div>
+                <div class="rounded-xl shadow-md p-6 bg-white border border-gray-100 hover:shadow-lg transition-all duration-300 text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 text-indigo-700 mb-4">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Open Source Contributor of the Month</h3>
+                    <p class="text-gray-700">2020 - Recognized by the React community for contributions to the React-Table library and documentation improvements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Personal Interests -->
+    <section class="py-16 px-6 md:px-12 lg:px-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Beyond the Code</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">A balanced life fuels creativity. When I'm not building for the web, you can find me exploring these passions.</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-full bg-white border-2 border-indigo-200 flex items-center justify-center mb-4 shadow-sm">
+                        <svg class="w-10 h-10 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold text-gray-900">Photography</h3>
+                    <p class="text-sm text-gray-600 mt-1">Street & landscape</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-full bg-white border-2 border-indigo-200 flex items-center justify-center mb-4 shadow-sm">
+                        <svg class="w-10 h-10 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4 4 0 003 15z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold text-gray-900">Hiking</h3>
+                    <p class="text-sm text-gray-600 mt-1">National parks explorer</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-full bg-white border-2 border-indigo-200 flex items-center justify-center mb-4 shadow-sm">
+                        <svg class="w-10 h-10 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.
