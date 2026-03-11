@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Sport Website</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gallery-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        .live-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Teams</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Events</a><a href='schedule.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Schedule</a><a href='news.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>News</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Gallery</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <header class="mb-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Sport Media Gallery</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">Explore high‑quality photos, videos, and highlights from live matches, team events, and behind‑the‑scenes moments. All content updates in real‑time.</p>
+        </header>
+
+        <!-- Live Scores & Real-time Section -->
+        <section class="mb-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                        <span class="live-pulse text-red-500"><i class="fas fa-circle"></i></span>
+                        Live Scores & Updates
+                    </h2>
+                    <p class="text-gray-600">Scores refresh automatically every 30 seconds.</p>
+                </div>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-sync-alt mr-2"></i>Last updated: <span id="update-time">Just now</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-gray-900">Championship Final</h3>
+                        <span class="bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full">LIVE</span>
+                    </div>
+                    <div class="flex justify-between items-center text-lg">
+                        <div class="text-center">
+                            <p class="font-bold">Team A</p>
+                            <p class="text-3xl font-black text-gray-900">3</p>
+                        </div>
+                        <div class="text-gray-400">vs</div>
+                        <div class="text-center">
+                            <p class="font-bold">Team B</p>
+                            <p class="text-3xl font-black text-gray-900">2</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4"><i class="far fa-clock mr-1"></i> 72' Minute</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
+                    <h3 class="font-bold text-gray-900 mb-2">League Match</h3>
+                    <div class="flex justify-between items-center text-lg">
+                        <div class="text-center">
+                            <p class="font-bold">Team C</p>
+                            <p class="text-3xl font-black text-gray-900">1</p>
+                        </div>
+                        <div class="text-gray-400">vs</div>
+                        <div class="text-center">
+                            <p class="font-bold">Team D</p>
+                            <p class="text-3xl font-black text-gray-900">1</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4"><i class="far fa-clock mr-1"></i> Half Time</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-gray-900 mb-2">Friendly</h3>
+                    <div class="flex justify-between items-center text-lg">
+                        <div class="text-center">
+                            <p class="font-bold">Team E</p>
+                            <p class="text-3xl font-black text-gray-900">0</p>
+                        </div>
+                        <div class="text-gray-400">vs</div>
+                        <div class="text-center">
+                            <p class="font-bold">Team F</p>
+                            <p class="text-3xl font-black text-gray-900">4</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4"><i class="far fa-clock mr-1"></i> Finished</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
+                    <h3 class="font-bold text-gray-900 mb-2">Upcoming</h3>
+                    <div class="flex justify-between items-center text-lg">
+                        <div class="text-center">
+                            <p class="font-bold">Team G</p>
+                            <p class="text-2xl font-black text-gray-900">-</p>
+                        </div>
+                        <div class="text-gray-400">vs</div>
+                        <div class="text-center">
+                            <p class="font-bold">Team H</p>
+                            <p class="text-2xl font-black text-gray-900">-</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4"><i class="far fa-calendar mr-1"></i> Tomorrow, 20:00</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Calendar & Team Rosters -->
+        <section class="mb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Event Calendar -->
+                <div class="lg:col-span-2">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <i class="far fa-calendar-alt text-blue-600"></i> Event Calendar
+                    </h2>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x">
+                            <div class="p-6">
+                                <h3 class="font-bold text-gray-900 text-lg mb-4">This Week</h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-3">
+                                        <div class="bg-blue-100 text-blue-800 rounded-lg p-3 text-center min-w-16">
+                                            <p class="text-sm font-bold">MON</p>
+                                            <p class="text-2xl font-black">15</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Training Session Open Day</p>
+                                            <p class="text-sm text-gray-500">10:00 AM • Main Stadium</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div class="bg-red-100 text-red-800 rounded-lg p-3 text-center min-w-16">
+                                            <p class="text-sm font-bold">WED</p>
+                                            <p class="text-2xl font-black">17</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Championship Semi‑Final</p>
+                                            <p class="text-sm text-gray-500">19:30 PM • National Arena</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div class="bg-green-100 text-green-800 rounded-lg p-3 text-center min-w-16">
+                                            <p class="text-sm font-bold">FRI</p>
+                                            <p class="text-2xl font-black">19</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Fan Meet & Greet</p>
+                                            <p class="text-sm text-gray-500">16:00 PM • Club House</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-bold text-gray-900 text-lg mb-4">Upcoming Highlights</h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                        <i class="fas fa-trophy text-yellow-500"></i>
+                                        <div>
+                                            <p class="font-semibold">Finals Trophy Ceremony</p>
+                                            <p class="text-sm text-gray-500">June 25 • 18:00</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                        <i class="fas fa-users text-blue-500"></i>
+                                        <div>
+                                            <p class="font-semibold">Youth Team Tryouts</p>
+                                            <p class="text-sm text-gray-500">July 2‑4 • 09:00‑16:00</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                        <i class="fas fa-star text-purple-500"></i>
+                                        <div>
+                                            <p class="font-semibold">Annual Awards Night</p>
+                                            <p class="text-sm text-gray-500">July 15 • 20:00</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <button class="w-full mt-6 bg-gray-900 text-white font-semibold py-3 rounded-lg hover:bg-gray-800 transition-colors">View Full Calendar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Rosters -->
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <i class="fas fa-users text-green-600"></i> Team Rosters
+                    </h2>
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-bold text-gray-900 text-lg">Top Teams</h3>
+                            <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Select Team</option>
+                                <option>Team A</option>
+                                <option>Team B</option>
+                                <option>Team C</option>
+                            </select>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+                                <img src="https://via.placeholder.com/40" alt="Player" class="w-10 h-10 rounded-full object-cover">
+                                <div class="flex-1">
+                                    <p class="font-semibold">Alex Morgan</p>
+                                    <p class="text-sm text-gray-500">Forward • #10</p>
+                                </div>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">Captain</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+                                <img src="https://via.placeholder.com/40" alt="Player" class="w-10 h-10 rounded-full object-cover">
+                                <div class="flex-1">
+                                    <p class="font-semibold">Jordan Lee</p>
+                                    <p class="text-sm text-gray-500">Midfielder • #8</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+                                <img src="https://via.placeholder.com/40" alt="Player" class="w-10 h-10 rounded-full object-cover">
+                                <div class="flex-1">
+                                    <p class="font-semibold">Sam Rivera</p>
+                                    <p class="text-sm text-gray-500">Goalkeeper • #1</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full mt-6 border-2 border-gray-900 text-gray-900 font-semibold py-3 rounded-lg hover:bg-gray-900 hover:text-white transition-colors">View All Rosters</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Gallery -->
+        <section class="mb-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Media Gallery</h2>
+                    <p class="text-gray-600">Photos and videos from recent matches, events, and training.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button class="px-4 py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">All Media</button>
+                    <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">Photos</button>
+                    <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">Videos</button>
+                    <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">Highlights</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300/3B82F6/FFFFFF?text=Match+Action" alt="Match Action" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-gray-900">Final Goal Celebration</h3>
+                            <span class="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">NEW</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Team A scores the winning goal in the 89th minute.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm"><i class="far fa-calendar mr-1"></i> 2 hours ago</span>
+                            <div class="flex gap-2">
+                                <button class="text-blue-600 hover:text-blue-800"><i class="fab fa-twitter"></i></button>
+                                <button class="text-blue-800 hover:text-blue-900"><i class="fab fa-facebook"></i></button>
+                                <button class="text-pink-600 hover:text-pink-800"><i class="fab fa-instagram"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300/10B981/FFFFFF?text=Training" alt="Training" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-900 mb-2">Morning Training Session</h3>
+                        <p class="text-gray-600 text-sm mb-4">Team B prepares for the upcoming derby match.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm"><i class="far fa-calendar mr-1"></i> 1 day ago</span>
+                            <div class="flex gap-2">
+                                <button class="text-blue-600 hover:text-blue-800"><i class="fab fa-twitter"></i></button>
+                                <button class="text-blue-800 hover:text-blue-900"><i class="fab fa-facebook"></i></button>
+                                <button class="text-pink-600 hover:text-pink-800"><i class="fab fa-instagram"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=Fans" alt="Fans" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-900 mb-2">Fan Zone Atmosphere</h3>
+                        <p class="text-gray-600 text-sm mb-4">Supporters creating an incredible atmosphere in the stadium.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm"><i class="far fa-calendar mr-1"></i> 3 days ago</span>
+                            <div class="flex gap-2">
+                                <button class="text-blue-600 hover:text-blue-800"><i class="fab fa-twitter"></i></button>
+                                <button class="text-blue-800 hover:text-blue-900"><i class="fab fa-facebook"></i></button>
+                                <button class="text-pink-600 hover:text-pink-800"><i class="fab fa-instagram"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=Trophy" alt="Trophy" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-gray-900 mb-2">Championship Trophy Lift</h3>
+                        <p class="text-gray-600 text-sm mb-4">Captain raising the trophy after a historic victory.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm"><i class="far fa-calendar mr-1"></i> 1 week ago</span>
+                            <div class="flex gap-2">
+                                <button class="text-blue-600 hover:text-blue-800"><i class="fab fa-twitter"></i></button>
+                                <button class="text-blue-800 hover:text-blue-900"><i class="fab fa-facebook"></i></button>
+                                <button class="text-pink-600 hover:text-pink-800"><i class="fab fa-instagram"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <button class="px-8 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">Load More Media</button>
+            </div>
+        </section>
+
+        <!-- News Feed & User Profiles -->
+        <section class="mb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- News Feed -->
+                <div class="lg:col-span-2">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <i class="far fa-newspaper text-red-600"></i> Latest News
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl shadow-md p-6 flex flex-col md:flex-row gap-6">
+                            <img src="https://via.placeholder.com/200x150/EF4444/FFFFFF?text=Breaking" alt="News" class="w-full md:w-48 h-48 md:h-auto object-cover rounded-lg">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full">BREAKING</span>
+                                    <span class="text-gray-500 text-sm">10 min ago</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">Historic Transfer Confirmed for Record Fee</h3>
+                                <p class="text-gray-600 mb-4">The club has announced the signing of an international star in a deal that breaks league records. The player is expected to join the squad immediately.</p>
+                                <div class="flex flex-wrap gap-4">
+                                    <button class="text-blue-600 font-semibold hover:text-blue-800">Read Full Story</button>
+                                    <div class="flex gap-3">
+                                        <button class="text-gray-500 hover:text-blue-600"><i class="fab fa-twitter"></i></button>
+                                        <button class="text-gray-500 hover:text-blue-800"><i class="fab fa-facebook"></i></button>
+                                        <button class="text-gray-500 hover:text-gray-700"><i class="fas fa-link"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Stadium Renovation Plans Unveiled</h3>
+                            <p class="text-gray-600 mb-4">The club has revealed ambitious plans to expand and modernize the home stadium, adding 10,000 seats and new fan amenities. Construction begins next season.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 text-sm"><i class="far fa-calendar mr-1"></i> 5 hours ago</span>
+                                <button class="text-blue-600 font-semibold hover:text-blue-800">Read More</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Youth Academy Produces Three New Signings</h3>
+                            <p class="text-gray-600 mb-4">Three talented players from the youth academy have signed their first professional contracts with the senior team, marking a success for the development program.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 text-sm"><i class="far fa-calendar mr-1"></i> 1 day ago</span>
+                                <button class="text-blue-600 font-semibold hover:text-blue-800">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Profiles -->
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <i class="fas fa-user-circle text-purple-600"></i> Fan Spotlight
+                    </h2>
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                        <div class="flex items-center gap-4 mb-6">
+                            <img src="https://via.placeholder.com/60" alt="User" class="w-16 h-16 rounded-full object-cover border-4 border-purple-100">
+                            <div>
+                                <p class="font-bold text-gray-900">Sarah Johnson</p>
+                                <p class="text-gray-500 text-sm">Ultimate Fan • 245 posts</p>
+                                <div class="flex gap-1 mt-1">
+                                    <i class="fas fa-star text-yellow-500"></i>
+                                    <i class="fas fa-star text-yellow-500"></i>
+                                    <i class="fas fa-star text-yellow-500"></i>
+                                    <i class="fas fa-star text-yellow-500"></i>
+                                    <i class="fas fa-star text-yellow-500"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">"Been supporting this team for 15 years! The atmosphere at yesterday's match was electric. So proud of the players!"</p>
+                        <div class="flex gap-4">
+                            <button class="flex-1 bg-purple-600 text-white font-semibold py-2 rounded-lg hover:bg-purple-700 transition-colors">Follow</button>
+                            <button class="flex-1 border border-gray-300 text-gray-800 font-semibold py-2 rounded-lg hover:bg-gray-100 transition-colors">Message</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="font-bold text-gray-900 mb-4">Top Fans This Month</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="font-bold text-gray-500">1</span>
+                                    <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full object-cover">
+                                    <div>
+                                        <p class="font-semibold">Mike Chen</p>
+                                        <p class="text-gray-500 text-xs">180 posts</p>
+                                    </div>
+                                </div>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full">Gold</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="font-bold text-gray-500">2</span>
+                                    <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full object-cover">
+                                    <div>
+                                        <p class="font-semibold">Lisa Rodriguez</p>
+                                        <p class="text-gray-500 text-xs">162 posts</p>
+                                    </div>
+                                </div>
+                                <span class="bg-gray-200 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">Silver</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <span class="font-bold text-gray-500">3</span>
+                                    <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full object-cover">
+                                    <div>
+                                        <p class="font-semibold">David Park</p>
+                                        <p class="text-gray-500 text-xs">148 posts</p>
+                                    </div>
+                                </div>
+                                <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">Bronze</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-6 border-2 border-gray-900 text-gray-900 font-semibold py-3 rounded-lg hover:bg-gray-900 hover:text-white transition-colors">View All Fans</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media & Real-time Updates -->
+        <section class="bg-gray-900 text-white rounded-2xl p-8 mb-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold mb-2">Stay Connected</h2>
+                    <p class="text-gray-300">Follow us on social media for real‑time updates, exclusive content, and live match reactions.</p>
+                </div>
+                <div class="flex gap-4 text-2xl">
+                    <a href="#" class="bg-blue-600 p-3 rounded-full hover:bg-blue-700 transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="bg-blue-800 p-3 rounded-full hover:bg-blue-900 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="bg-pink-600 p-3 rounded-full hover:bg-pink-700 transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="bg-red-600 p-3 rounded-full hover:bg-red-700 transition-colors"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="bg-blue-500 p-3 rounded-full hover:bg-blue-600 transition-colors"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <i class="fas fa-bolt text-yellow-400 text-2xl mb-4"></i>
+                    <h3 class="font-bold text-xl mb-2">Real‑time Updates</h3>
+                    <p class="text-gray-300">Live scores, player stats, and match events update automatically without refreshing the page.</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <i class="fas fa-mobile-alt text-blue-400 text-2xl mb-4"></i>
+                    <h3 class="font-bold text-xl mb-2">Mobile‑first Design</h3>
+                    <p class="text-gray-300">Optimized for fans on the go. Enjoy a seamless experience on any device.</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <i class="fas fa-share-alt text-green-400 text-2xl mb-4"></i>
+                    <h3 class="font-bold text-xl mb-2">Instant Sharing</h3>
+                    <p class="text-gray-300">Share your favorite moments directly to social media with one click.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <p class="text-2xl font-bold">Sport Website</p>
+                    <p class="text-gray-400 mt-2">The ultimate destination for live sports, news, and community.</p>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Terms of Service</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Contact</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Careers</a>
+                </div>
+            </div>
+            <hr class="border-gray-700 my-8">
+            <p class="text-center text-gray-400">© 2023 Sport Website. All rights reserved. Live data provided by official sports APIs.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulate real‑time update
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('update-time').textContent = timeString;
+        }
+        setInterval(updateTime, 30000);
+        updateTime();
+
+        // Simple gallery interaction
+        document.querySelectorAll('.gallery-item button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                alert('Content shared to your social media!');
+            });
+        });
+    </script>
+</body>
+</html>

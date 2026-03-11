@@ -3,318 +3,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEasy - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>SportZone - Home</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .product-card:hover { transform: translateY(-5px); transition: transform 0.3s ease; }
-        .category-icon { width: 64px; height: 64px; }
+        .live-pulse {
+            animation: pulse 2s infinite;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+        .score-card:hover {
+            transform: translateY(-4px);
+            transition: transform 0.3s ease;
+        }
+        .news-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="text-xl font-bold">ShopEasy</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Signup</a>
-        </div>
-    </nav>
+<body class="font-sans bg-gray-50">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Teams</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Events</a><a href='schedule.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Schedule</a><a href='news.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>News</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Gallery</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient text-white py-16 md:py-24 px-4">
-        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Discover Amazing Products</h1>
-            <p class="text-xl mb-10 max-w-2xl mx-auto">Shop the latest trends with secure checkout, fast delivery, and easy returns.</p>
-            
-            <!-- Search Bar -->
-            <div class="max-w-2xl mx-auto flex">
-                <input type="text" placeholder="Search for products, brands, categories..." 
-                       class="flex-grow p-4 rounded-l-lg text-gray-800 focus:outline-none">
-                <button class="bg-blue-600 hover:bg-blue-700 px-6 rounded-r-lg flex items-center">
-                    <i data-feather="search"></i>
-                    <span class="ml-2">Search</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Categories -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Shop by Category</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="smartphone" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Electronics</h3>
-                    <p class="text-gray-600">Latest gadgets & devices</p>
+    <header class="gradient-bg text-white py-8 md:py-12 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-2">SportZone <span class="text-yellow-400">Live</span></h1>
+                    <p class="text-lg md:text-xl text-gray-200">Your ultimate destination for real-time sports action</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shirt" class="category-icon"></i>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center bg-red-600 px-4 py-2 rounded-full">
+                        <span class="live-pulse h-3 w-3 rounded-full bg-white mr-2"></span>
+                        <span class="font-bold">LIVE NOW</span>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Fashion</h3>
-                    <p class="text-gray-600">Trendy clothing & accessories</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="bg-yellow-100 text-yellow-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="home" class="category-icon"></i>
+                    <div class="text-sm">
+                        <p>Last updated: <span id="current-time" class="font-semibold">--:--</span></p>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Home & Living</h3>
-                    <p class="text-gray-600">Furniture & decor</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-red-100 text-red-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="heart" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Health & Beauty</h3>
-                    <p class="text-gray-600">Wellness & personal care</p>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Featured Products -->
-    <section class="py-16 px-4 bg-gray-100">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl font-bold" data-aos="fade-right">Featured Products</h2>
-                <a href="products.html" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center" data-aos="fade-left">
-                    View All <i data-feather="arrow-right" class="ml-2"></i>
-                </a>
+    <main class="container mx-auto px-4 py-6 md:py-8">
+        <!-- LIVE SCORES SECTION -->
+        <section class="mb-10 md:mb-16">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Live Scores & Matches</h2>
+                <div class="text-sm text-blue-600 font-medium">
+                    <i class="fas fa-sync-alt mr-2"></i>
+                    <span>Auto-updating every 30s</span>
+                </div>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Wireless Headphones" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Premium Wireless Headphones</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="score-card bg-white rounded-xl shadow-md p-5 border-l-4 border-red-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full">LIVE</span>
+                        <span class="text-gray-500 text-sm">Football • 65'</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-futbol text-blue-600"></i>
                             </div>
-                            <span class="text-gray-600 text-sm ml-2">(128 reviews)</span>
+                            <div>
+                                <h3 class="font-bold">Manchester United</h3>
+                                <p class="text-sm text-gray-500">Premier League</p>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$199.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">2</div>
+                        </div>
+                    </div>
+                    <div class="text-center my-2 text-xl font-bold text-gray-400">-</div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-futbol text-red-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Liverpool FC</h3>
+                                <p class="text-sm text-gray-500">Premier League</p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">1</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                            <i class="fas fa-play-circle mr-1"></i> Watch Live
+                        </button>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-500 hover:text-blue-500">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-blue-700">
+                                <i class="fab fa-facebook"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Product 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Smart Watch" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Fitness Smart Watch</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+
+                <div class="score-card bg-white rounded-xl shadow-md p-5 border-l-4 border-green-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">FINAL</span>
+                        <span class="text-gray-500 text-sm">Basketball • Q4</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-basketball-ball text-purple-600"></i>
                             </div>
-                            <span class="text-gray-600 text-sm ml-2">(256 reviews)</span>
+                            <div>
+                                <h3 class="font-bold">LA Lakers</h3>
+                                <p class="text-sm text-gray-500">NBA</p>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$249.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">112</div>
+                        </div>
+                    </div>
+                    <div class="text-center my-2 text-xl font-bold text-gray-400">-</div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-basketball-ball text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Golden State</h3>
+                                <p class="text-sm text-gray-500">NBA</p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">108</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                            <i class="fas fa-chart-line mr-1"></i> Stats
+                        </button>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-500 hover:text-blue-500">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-blue-700">
+                                <i class="fab fa-facebook"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Product 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Bluetooth Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Portable Bluetooth Speaker</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
+
+                <div class="score-card bg-white rounded-xl shadow-md p-5 border-l-4 border-blue-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">UPCOMING</span>
+                        <span class="text-gray-500 text-sm">Tennis • 19:30</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-baseball-ball text-green-600"></i>
                             </div>
-                            <span class="text-gray-600 text-sm ml-2">(87 reviews)</span>
+                            <div>
+                                <h3 class="font-bold">Nadal</h3>
+                                <p class="text-sm text-gray-500">French Open</p>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$89.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-gray-400">-</div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Running Shoes" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Professional Running Shoes</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
+                    <div class="text-center my-2 text-xl font-bold text-gray-400">vs</div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-baseball-ball text-blue-600"></i>
                             </div>
-                            <span class="text-gray-600 text-sm ml-2">(312 reviews)</span>
+                            <div>
+                                <h3 class="font-bold">Djokovic</h3>
+                                <p class="text-sm text-gray-500">French Open</p>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$129.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-gray-400">-</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                            <i class="far fa-clock mr-1"></i> Set Reminder
+                        </button>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-500 hover:text-blue-500">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-blue-700">
+                                <i class="fab fa-facebook"></i>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Why Shop With Us?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center" data-aos="fade-up">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shield" class="w-12 h-12"></i>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- LEFT COLUMN: EVENT CALENDAR & TEAM ROSTERS -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- EVENT CALENDAR -->
+                <section class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Event Calendar</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Date & Time</th>
+                                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Event</th>
+                                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Sport</th>
+                                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr>
+                                    <td class="py-3 px-4">
+                                        <div class="font-medium">Today, 20:00</div>
+                                        <div class="text-sm text-gray-500">GMT+1</div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <div class="font-medium">Champions League Final</div>
+                                        <div class="text-sm text-gray-500">Real Madrid vs Bayern Munich</div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Football</span>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Get Tickets</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">
+                                        <div class="font-medium">Tomorrow, 15:30</div>
+                                        <div class="text-sm text-gray-500">GMT+1</div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <div class="font-medium">NBA Finals Game 7</div>
+                                        <div class="text-sm text-gray-500">Celtics vs Mavericks</div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Basketball</span>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Set Alert</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">
+                                        <div class="font-medium">Jun 15, 14:00</div>
+                                        <div class="text-sm text-gray-500">GMT+1</div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <div class="font-medium">Wimbledon Opening</div>
+                                        <div class="text-sm text-gray-500">Men's Singles Round 1</div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Tennis</span>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">View Details</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Secure Payment</h3>
-                    <p class="text-gray-600">100% secure payment processing with SSL encryption and multiple payment options.</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="truck" class="w-12 h-12"></i>
+                    <div class="mt-6 text-center">
+                        <a href="schedule.html" class="text-blue-600 hover:text-blue-800 font-medium">View Full Calendar <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Fast Delivery</h3>
-                    <p class="text-gray-600">Free shipping on orders over $50. Express delivery available in select areas.</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-purple-100 text-purple-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="refresh-cw" class="w-12 h-12"></i>
+                </section>
+
+                <!-- TEAM ROSTERS -->
+                <section class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Featured Team Rosters</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-futbol text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Manchester City FC</h3>
+                                    <p class="text-sm text-gray-500">Football • Premier League</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Goalkeeper</span>
+                                    <span class="font-medium">Ederson</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Top Scorer</span>
+                                    <span class="font-medium">Erling Haaland</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Captain</span>
+                                    <span class="font-medium">Kevin De Bruyne</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-100">
+                                <a href="teams.html" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Full Roster <i class="fas fa-chevron-right ml-1"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-basketball-ball text-purple-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Golden State Warriors</h3>
+                                    <p class="text-sm text-gray-500">Basketball • NBA</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Point Guard</span>
+                                    <span class="font-medium">Stephen Curry</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Top Scorer</span>
+                                    <span class="font-medium">Klay Thompson</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Coach</span>
+                                    <span class="font-medium">Steve Kerr</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-100">
+                                <a href="teams.html" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View Full Roster <i class="fas fa-chevron-right ml-1"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Easy Returns</h3>
-                    <p class="text-gray-600">30-day return policy. No questions asked returns for all products.</p>
-                </div>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN: NEWS FEED & USER PROFILES -->
+            <div class="space-y-8">
+                <!-- NEWS FEED -->
+                <section class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Latest News</h2>
+                        <span class="text-sm text-blue-600 font-medium">
+                            <i class="fas fa-rss mr-1"></i> Live Feed
+                        </span>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="news-card pb-6 border-b border-gray-100">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-newspaper text-red-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 mb-1">Historic Championship Win</h3>
+                                    <p class="text-sm text-gray-600 mb-3">Underdog team clinches title in overtime thriller with last-second shot.</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-gray-500">2 hours ago</span>
+                                        <div class="flex space-x-2">
+                                            <button class="text-gray-400 hover:text-blue-400">
+                                                <i class="fab fa-twitter"></i>
+                                            </button>
+                                            <button class="text-gray-400 hover:text-blue-600">
+                                                <i class="fab fa-facebook"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="news-card pb-6 border-b border-gray-100">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-video text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 mb-1">New Stadium Announcement</h3>
+                                    <p class="text-sm text-gray-600 mb-3">State-of-the-art facility to open next season with capacity of 75,000.</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-gray-500">5 hours ago</span>
+                                        <div class="flex space-x-2">
+                                            <button class="text-gray-400 hover:text-blue-400">
+                                                <i class="fab fa-twitter"></i>
+                                            </button>
+                                            <button class="text-gray-400 hover:text-blue-600">
+                                                <i class="fab fa-facebook"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="news-card">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 mb-1">Record Breaking Transfer</h3>
+                                    <p class="text-sm text-gray-600 mb-3">Star player moves clubs in deal worth over $200 million.</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-gray-500">1 day ago</span>
+                                        <div class="flex space-x-2">
+                                            <button class="text-gray-400 hover:text-blue-400">
+                                                <i class="fab fa-twitter"></i>
+                                            </button>
+                                            <button class="text-gray-400 hover:text-blue-600">
+                                                <i class="fab fa-facebook"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <a href="news.html" class="text-blue-600 hover:text-blue-800 font-medium">View All News <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </section>
+
+                <!-- USER PROFILES -->
+                <section class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Fan Spotlight</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                                AJ
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold">Alex Johnson</h4>
+                                <p class="text-sm text-gray-600">Football Superfan • 245 Posts</p>
+                            </div>
+                            <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                Follow
+                            </button>
+                        </div>
+
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                                MS
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold">Maria Sanchez</h4>
+                                <p class="text-sm text-gray-600">Basketball Expert • 189 Posts</p>
+                            </div>
+                            <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                Follow
+                            </button>
+                        </div>
+
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-gradient-to-r from-red-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                                TK
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold">Tom Kelly</h4>
+                                <p class="text-sm text-gray-600">Tennis Analyst • 312 Posts</p>
+                            </div>
+                            <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                Follow
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <a href="signup.html" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg">Join Our Community</a>
+                    </div>
+                </section>
             </div>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 px-4 bg-gray-900 text-white">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Ready to Start Shopping?</h2>
-            <p class="text-xl mb-10 text-gray-300" data-aos="fade-up" data-aos-delay="100">Join thousands of satisfied customers today.</p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="signup.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in">
-                    <i data-feather="user-plus" class="mr-3"></i> Create Free Account
-                </a>
-                <a href="products.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in" data-aos-delay="200">
-                    <i data-feather="shopping-bag" class="mr-3"></i> Browse Products
-                </a>
+        <!-- MEDIA GALLERY -->
+        <section class="mt-10 md:mt-16">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Media Gallery</h2>
+                <a href="gallery.html" class="text-blue-600 hover:text-blue-800 font-medium">View All <i class="fas fa-arrow-right ml-1"></i></a>
             </div>
-        </div>
-    </section>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="relative overflow-hidden rounded-lg h-48">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-play text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                        <p class="text-white font-medium">Championship Highlights</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg h-48">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-image text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                        <p class="text-white font-medium">Behind the Scenes</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg h-48">
+                    <div class="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-600 flex items-center justify-center">
+                        <i class="fas fa-trophy text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                        <p class="text-white font-medium">Award Ceremony</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg h-48">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                        <i class="fas fa-users text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                        <p class="text-white font-medium">Fan Zone Moments</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-4">
-        <div class="container mx-auto max-w-6xl">
+    <footer class="bg-gray-900 text-white mt-16 py-10 px-4">
+        <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-feather="shopping-bag" class="text-blue-400"></i>
-                        <span class="text-xl font-bold">ShopEasy</span>
+                    <h3 class="text-xl font-bold mb-4">SportZone Live</h3>
+                    <p class="text-gray-400">Your ultimate destination for real-time sports updates, scores, news, and community.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
                     </div>
-                    <p class="text-gray-400">Your trusted online shopping destination for quality products and exceptional service.</p>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white">Checkout</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Teams</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="schedule.html" class="text-gray-400 hover:text-white">Schedule</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-white">News</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+                    <h4 class="font-bold text-lg mb-4">Support</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Order Tracking</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Refunds</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Stay Connected</h4>
-                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
+                    <h4 class="font-bold text-lg mb-4">Stay Updated</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest sports news.</p>
                     <div class="flex">
-                        <input type="email" placeholder="Your email" class="flex-grow p-3 rounded-l-lg text-gray-800">
-                        <button class="bg-blue-600 hover:bg-blue-700 px-4 rounded-r-lg">
-                            <i data-feather="send"></i>
-                        </button>
+                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 rounded-l-lg text-gray-900">
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg font-medium">Subscribe</button>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 SportZone Live. All rights reserved. Live scores update automatically every 30 seconds.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            once: true
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // Initial call
+        updateTime();
+        
+        // Update every minute
+        setInterval(updateTime, 60000);
+        
+        // Simulate live updates for scores (in a real app, this would be via WebSocket)
+        setInterval(() => {
+            console.log('Checking for live updates...');
+            // This is where you would fetch new data from an API
+        }, 30000);
+        
+        // Social sharing buttons
+        document.querySelectorAll('button .fa-twitter').forEach(btn => {
+            btn.closest('button').addEventListener('click', function() {
+                const text = encodeURIComponent('Check out this awesome sports update on SportZone!');
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+            });
         });
         
-        // Initialize Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
-        });
-        
-        // Simple cart counter
-        let cartCount = 0;
-        document.querySelectorAll('button:contains("Add to Cart")').forEach(button => {
-            button.addEventListener('click', function() {
-                cartCount++;
-                // In a real app, this would update a cart badge
-                console.log(`Added to cart. Total items: ${cartCount}`);
-                alert('Product added to cart!');
+        document.querySelectorAll('button .fa-facebook').forEach(btn => {
+            btn.closest('button').addEventListener('click', function() {
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
             });
         });
     </script>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule | Sport Website</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Teams</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Events</a><a href='schedule.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Schedule</a><a href='news.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>News</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Gallery</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
+
+    <header class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-2">Event Schedule</h1>
+        <p class="text-center text-gray-600 max-w-2xl mx-auto">View live scores, upcoming matches, team rosters, and the latest news. All in one place, updated in real-time.</p>
+    </header>
+
+    <main class="container mx-auto px-4 pb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Left Column: Live Scores & News Feed -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- LIVE SCORES Section -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-900"><i class="fas fa-bolt text-red-500 mr-2"></i> LIVE SCORES</h2>
+                        <span class="px-3 py-1 bg-red-100 text-red-800 text-sm font-semibold rounded-full animate-pulse">LIVE</span>
+                    </div>
+                    <div id="liveScoresContainer" class="space-y-4">
+                        <!-- Score items will be updated via JS -->
+                        <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold">NBA: Lakers vs Celtics</p>
+                                    <p class="text-sm text-gray-600">Q3 - 08:45 remaining</p>
+                                </div>
+                                <div class="text-2xl font-bold">102 - 98</div>
+                            </div>
+                            <div class="mt-2 text-sm">
+                                <span class="font-semibold">Last Play:</span> James 3-pointer (Assist: Davis)
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold">UEFA: Barcelona vs Real Madrid</p>
+                                    <p class="text-sm text-gray-600">2nd Half - 67'</p>
+                                </div>
+                                <div class="text-2xl font-bold">1 - 1</div>
+                            </div>
+                            <div class="mt-2 text-sm">
+                                <span class="font-semibold">Last Play:</span> Goal! Lewandowski (67')
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4 text-center"><i class="fas fa-sync-alt mr-1"></i> Auto-updates every 30 seconds</p>
+                </section>
+
+                <!-- EVENT CALENDAR Section -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6"><i class="far fa-calendar-alt text-blue-500 mr-2"></i> EVENT CALENDAR</h2>
+                    <div class="mb-4">
+                        <input type="text" id="datePicker" placeholder="Select a date..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div id="calendarEvents" class="space-y-4">
+                        <div class="flex items-start p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
+                            <div class="text-center mr-4 bg-blue-100 text-blue-800 p-3 rounded-lg min-w-[70px]">
+                                <p class="text-2xl font-bold">15</p>
+                                <p class="text-sm">OCT</p>
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="font-bold text-lg">Champions League Final</h3>
+                                <p class="text-gray-600"><i class="far fa-clock mr-1"></i> 8:00 PM EST | <i class="fas fa-map-marker-alt mr-1"></i> Wembley Stadium</p>
+                                <p class="mt-1">Manchester City vs Bayern Munich. The ultimate European showdown.</p>
+                            </div>
+                            <button class="ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">Remind Me</button>
+                        </div>
+                        <div class="flex items-start p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
+                            <div class="text-center mr-4 bg-green-100 text-green-800 p-3 rounded-lg min-w-[70px]">
+                                <p class="text-2xl font-bold">18</p>
+                                <p class="text-sm">OCT</p>
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="font-bold text-lg">NBA Season Opener</h3>
+                                <p class="text-gray-600"><i class="far fa-clock mr-1"></i> 7:30 PM EST | <i class="fas fa-map-marker-alt mr-1"></i> Madison Square Garden</p>
+                                <p class="mt-1">New York Knicks vs Miami Heat. The new season kicks off with a rivalry game.</p>
+                            </div>
+                            <button class="ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">Remind Me</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NEWS FEED Section -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6"><i class="far fa-newspaper text-purple-500 mr-2"></i> NEWS FEED</h2>
+                    <div class="space-y-6">
+                        <article class="pb-6 border-b border-gray-200 last:border-0">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded mr-3">Breaking</span>
+                                <span><i class="far fa-clock mr-1"></i> 45 min ago</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Injury Update: Star Quarterback Expected to Return</h3>
+                            <p class="text-gray-700 mb-3">After a 6-week recovery, the team's MVP is cleared for practice and is likely to start in Sunday's crucial match against rivals.</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-blue-600 font-semibold hover:underline">Read Full Story <i class="fas fa-arrow-right ml-1"></i></a>
+                                <div class="flex space-x-2">
+                                    <button class="text-gray-500 hover:text-blue-500"><i class="fab fa-twitter"></i></button>
+                                    <button class="text-gray-500 hover:text-blue-700"><i class="fab fa-facebook"></i></button>
+                                    <button class="text-gray-500 hover:text-red-500"><i class="fab fa-pinterest"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="pb-6 border-b border-gray-200 last:border-0">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded mr-3">Analysis</span>
+                                <span><i class="far fa-clock mr-1"></i> 2 hours ago</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Trade Deadline: Major Moves Shake Up the League</h3>
+                            <p class="text-gray-700 mb-3">Three blockbuster trades finalized in the last 24 hours are set to redefine the playoff landscape. Experts weigh in on the winners and losers.</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-blue-600 font-semibold hover:underline">Read Full Story <i class="fas fa-arrow-right ml-1"></i></a>
+                                <div class="flex space-x-2">
+                                    <button class="text-gray-500 hover:text-blue-500"><i class="fab fa-twitter"></i></button>
+                                    <button class="text-gray-500 hover:text-blue-700"><i class="fab fa-facebook"></i></button>
+                                    <button class="text-gray-500 hover:text-red-500"><i class="fab fa-pinterest"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Team Rosters, Media, User Profiles -->
+            <div class="space-y-8">
+                <!-- TEAM ROSTERS Section -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6"><i class="fas fa-users text-green-500 mr-2"></i> TEAM ROSTERS</h2>
+                    <div class="mb-4">
+                        <select id="teamSelect" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                            <option value="lakers">Los Angeles Lakers (Basketball)</option>
+                            <option value="real">Real Madrid (Football)</option>
+                            <option value="yankees">New York Yankees (Baseball)</option>
+                            <option value="chiefs">Kansas City Chiefs (Football)</option>
+                        </select>
+                    </div>
+                    <div id="rosterList" class="space-y-3 max-h-96 overflow-y-auto pr-2">
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-3">23</div>
+                            <div>
+                                <p class="font-bold">LeBron James</p>
+                                <p class="text-sm text-gray-600">Forward | Captain</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-3">3</div>
+                            <div>
+                                <p class="font-bold">Anthony Davis</p>
+                                <p class="text-sm text-gray-600">Center | Vice-Captain</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <div class="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold mr-3">1</div>
+                            <div>
+                                <p class="font-bold">D'Angelo Russell</p>
+                                <p class="text-sm text-gray-600">Guard</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="teams.html" class="block text-center mt-4 text-blue-600 font-semibold hover:underline">View Full Team Details <i class="fas fa-arrow-right ml-1"></i></a>
+                </section>
+
+                <!-- MEDIA GALLERY Section -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6"><i class="fas fa-photo-video text-yellow-500 mr-2"></i> MEDIA GALLERY</h2>
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Game action" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Team celebration" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Stadium view" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Training session" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                    </div>
+                    <a href="gallery.html" class="block text-center mt-2 text-blue-600 font-semibold hover:underline">Browse Full Gallery <i class="fas fa-arrow-right ml-1"></i></a>
+                </section>
+
+                <!-- USER PROFILES / Community Section -->
+                <section class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6"><i class="fas fa-user-friends text-indigo-500 mr-2"></i> FAN SPOTLIGHT</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 bg-indigo-50 rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Fan" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-white shadow">
+                            <div>
+                                <p class="font-bold">Alex Morgan</p>
+                                <p class="text-sm text-gray-600">Prediction: Lakers win by 8+</p>
+                                <div class="flex text-yellow-400 text-sm mt-1">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Fan" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-white shadow">
+                            <div>
+                                <p class="font-bold">Marcus Chen</p>
+                                <p class="text-sm text-gray-600">Top Fantasy Player this week</p>
+                                <div class="flex text-yellow-400 text-sm mt-1">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-900 text-white rounded-lg">
+                        <p class="font-bold mb-2">Join the Community!</p>
+                        <p class="text-sm mb-4">Create your profile, make predictions, and climb the leaderboards.</p>
+                        <a href="signup.html" class="block w-full text-center bg-white text-gray-900 font-bold py-2 rounded-lg hover:bg-gray-100 transition-colors">Sign Up Free</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold">Sport<span class="text-blue-400">Hub</span></h3>
+                    <p class="text-gray-400 mt-2">Your ultimate destination for live sports.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-youtube text-xl"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 SportHub. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+                <p class="mt-2">Live data provided by our partners. Updates every 30 seconds.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize date picker
+        flatpickr("#datePicker", {
+            mode: "single",
+            dateFormat: "Y-m-d",
+            onChange: function(selectedDates, dateStr, instance) {
+                console.log("Selected date:", dateStr);
+                // In a real app, you would fetch events for this date
+                alert("Loading events for " + dateStr);
+            }
+        });
+
+        // Simulate live score updates
+        function updateLiveScores() {
+            const container = document.getElementById('liveScoresContainer');
+            // This is a simulation. In reality, you would fetch from an API.
+            console.log("Simulating live score update...");
+        }
+        setInterval(updateLiveScores, 30000); // Every 30 seconds
+
+        // Team roster selector
+        document.getElementById('teamSelect').addEventListener('change', function(e) {
+            alert("Loading roster for " + e.target.options[e.target.selectedIndex].text);
+            // In a real app, you would fetch the roster data for the selected team
+        });
+
+        // Social sharing buttons
+        document.querySelectorAll('.fa-twitter, .fa-facebook, .fa-pinterest').forEach(button => {
+            button.parentElement.addEventListener('click', function(e) {
+                const platform = e.target.classList[1];
+                alert(`Sharing to ${platform} (simulated)`);
+            });
+        });
+    </script>
+</body>
+</html>

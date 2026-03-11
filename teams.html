@@ -3,534 +3,482 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket Teams | Team Profiles & Analysis</title>
+    <title>Teams | Sport Website</title>
     <script src='https://cdn.tailwindcss.com'></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <style>
-        .team-card:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s ease;
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
         }
-        .stat-card {
-            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    </script>
+    <style>
+        .live-badge {
+            animation: pulse 2s infinite;
+        }
+        .refresh-animation {
+            transition: transform 0.3s;
+        }
+        .refresh-animation:hover {
+            transform: rotate(180deg);
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Signup</a>
-        <a href='matches.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Matches</a>
-        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base font-semibold text-blue-300'>Teams</a>
-        <a href='players.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Players</a>
-        <a href='news.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>News</a>
-        <a href='statistics.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Statistics</a>
-        <a href='livescores.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>LiveScores</a>
-        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Rankings</a>
-        <a href='tournaments.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Tournaments</a>
-    </nav>
+<body class="font-inter bg-gray-50">
+    <nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Teams</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Events</a><a href='schedule.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Schedule</a><a href='news.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>News</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Gallery</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
 
-    <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
-        <!-- Page Header -->
-        <header class="mb-10 text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Cricket Teams</h1>
-            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Explore detailed profiles of international and domestic cricket teams, including squad information, performance statistics, and recent match results.</p>
+        <header class="mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Teams</h1>
+            <p class="text-gray-600 text-lg">Explore professional teams, rosters, news, and live updates.</p>
         </header>
 
-        <!-- Live Score Updates Section -->
-        <section class="mb-12" data-aos="fade-up">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800">Live Score Updates</h2>
-                <a href="livescores.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                    View All
-                    <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                </a>
+        <!-- LIVE SCORES SECTION -->
+        <section class="mb-12 animate-fade-in">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 flex items-center gap-2">
+                    <span class="live-badge w-3 h-3 bg-red-500 rounded-full inline-block"></span>
+                    Live Scores
+                </h2>
+                <button id="refreshScores" class="refresh-animation mt-2 sm:mt-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium flex items-center gap-2">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="font-bold text-gray-900">IND vs AUS</h3>
-                            <p class="text-gray-600 text-sm">3rd ODI • Melbourne</p>
-                        </div>
-                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">LIVE</span>
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-red-600 uppercase">Live</span>
+                        <span class="text-sm text-gray-500">Q3 08:32</span>
                     </div>
-                    <div class="space-y-3">
-                        <div class="flex justify-between">
-                            <span class="font-medium">India</span>
-                            <span class="font-bold">287/6 (45.2)</span>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-basketball-ball text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Lakers</h3>
+                                <p class="text-sm text-gray-500">Home</p>
+                            </div>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="font-medium">Australia</span>
-                            <span class="font-bold">284/9 (50)</span>
+                        <div class="text-3xl font-bold">89</div>
+                    </div>
+                    <div class="my-4 border-t pt-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-basketball-ball text-red-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Celtics</h3>
+                                <p class="text-sm text-gray-500">Away</p>
+                            </div>
                         </div>
+                        <div class="text-3xl font-bold">84</div>
                     </div>
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <p class="text-sm text-gray-700">India need 12 runs from 28 balls</p>
-                    </div>
+                    <div class="text-center text-sm text-gray-600">Staples Center • 25,000 spectators</div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="font-bold text-gray-900">ENG vs PAK</h3>
-                            <p class="text-gray-600 text-sm">2nd Test • Day 3</p>
-                        </div>
-                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">IN PLAY</span>
+
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-green-600 uppercase">Final</span>
+                        <span class="text-sm text-gray-500">FT</span>
                     </div>
-                    <div class="space-y-3">
-                        <div class="flex justify-between">
-                            <span class="font-medium">England</span>
-                            <span class="font-bold">432 & 156/2</span>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-futbol text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">United</h3>
+                                <p class="text-sm text-gray-500">Home</p>
+                            </div>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="font-medium">Pakistan</span>
-                            <span class="font-bold">297</span>
+                        <div class="text-3xl font-bold">2</div>
+                    </div>
+                    <div class="my-4 border-t pt-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-futbol text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">City</h3>
+                                <p class="text-sm text-gray-500">Away</p>
+                            </div>
                         </div>
+                        <div class="text-3xl font-bold">1</div>
                     </div>
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <p class="text-sm text-gray-700">Lead by 291 runs</p>
-                    </div>
+                    <div class="text-center text-sm text-gray-600">Old Trafford • 74,879 spectators</div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-gray-400">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="font-bold text-gray-900">SA vs NZ</h3>
-                            <p class="text-gray-600 text-sm">T20I • Starts in 2h</p>
-                        </div>
-                        <span class="bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">UPCOMING</span>
+
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-blue-600 uppercase">Upcoming</span>
+                        <span class="text-sm text-gray-500">19:30 ET</span>
                     </div>
-                    <div class="space-y-3">
-                        <div class="flex justify-between">
-                            <span class="font-medium">South Africa</span>
-                            <span class="font-bold">-</span>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-football-ball text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Patriots</h3>
+                                <p class="text-sm text-gray-500">Home</p>
+                            </div>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="font-medium">New Zealand</span>
-                            <span class="font-bold">-</span>
+                        <div class="text-3xl font-bold text-gray-300">-</div>
+                    </div>
+                    <div class="my-4 border-t pt-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-football-ball text-red-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Chiefs</h3>
+                                <p class="text-sm text-gray-500">Away</p>
+                            </div>
                         </div>
+                        <div class="text-3xl font-bold text-gray-300">-</div>
                     </div>
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <p class="text-sm text-gray-700">Match starts at 18:30 GMT</p>
-                    </div>
+                    <div class="text-center text-sm text-gray-600">Gillette Stadium • Pre-game</div>
                 </div>
             </div>
         </section>
 
-        <!-- Team Profiles Grid -->
-        <section class="mb-12" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Team Profiles</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Team Card 1 -->
-                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                                <i data-feather="flag" class="text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-gray-900">India</h3>
-                                <p class="text-gray-600 text-sm">ICC Rank: 1</p>
-                            </div>
-                        </div>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Captain:</span>
-                                <span class="font-medium">Rohit Sharma</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Coach:</span>
-                                <span class="font-medium">Rahul Dravid</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Matches:</span>
-                                <span class="font-medium">1056</span>
-                            </div>
-                        </div>
-                        <a href="#" class="block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors">
-                            View Full Profile
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Team Card 2 -->
-                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
-                                <i data-feather="flag" class="text-green-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-gray-900">Australia</h3>
-                                <p class="text-gray-600 text-sm">ICC Rank: 2</p>
-                            </div>
-                        </div>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Captain:</span>
-                                <span class="font-medium">Pat Cummins</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Coach:</span>
-                                <span class="font-medium">Andrew McDonald</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Matches:</span>
-                                <span class="font-medium">978</span>
-                            </div>
-                        </div>
-                        <a href="#" class="block text-center bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition-colors">
-                            View Full Profile
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Team Card 3 -->
-                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
-                                <i data-feather="flag" class="text-red-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-gray-900">England</h3>
-                                <p class="text-gray-600 text-sm">ICC Rank: 3</p>
-                            </div>
-                        </div>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Captain:</span>
-                                <span class="font-medium">Jos Buttler</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Coach:</span>
-                                <span class="font-medium">Matthew Mott</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Matches:</span>
-                                <span class="font-medium">1023</span>
-                            </div>
-                        </div>
-                        <a href="#" class="block text-center bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-medium transition-colors">
-                            View Full Profile
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Team Card 4 -->
-                <div class="team-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
-                                <i data-feather="flag" class="text-yellow-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-gray-900">Pakistan</h3>
-                                <p class="text-gray-600 text-sm">ICC Rank: 4</p>
-                            </div>
-                        </div>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Captain:</span>
-                                <span class="font-medium">Babar Azam</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Coach:</span>
-                                <span class="font-medium">Grant Bradburn</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Matches:</span>
-                                <span class="font-medium">945</span>
-                            </div>
-                        </div>
-                        <a href="#" class="block text-center bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded-lg font-medium transition-colors">
-                            View Full Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Statistical Analysis & Tournament Standings -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            <!-- Statistical Analysis -->
-            <section data-aos="fade-right">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Team Statistics</h2>
-                <div class="space-y-4">
-                    <div class="stat-card rounded-xl p-6 text-white">
-                        <h3 class="font-bold text-xl mb-4">Highest Team Totals</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span>England</span>
-                                <span class="font-bold text-lg">498/4</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span>India</span>
-                                <span class="font-bold text-lg">481/6</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span>Australia</span>
-                                <span class="font-bold text-lg">434/4</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-lg p-6">
-                        <h3 class="font-bold text-xl mb-4 text-gray-800">Win/Loss Ratio (Last 12 Months)</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">India</span>
-                                    <span class="font-bold">78%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-green-600 h-2 rounded-full" style="width: 78%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Australia</span>
-                                    <span class="font-bold">72%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 72%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">England</span>
-                                    <span class="font-bold">65%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-red-600 h-2 rounded-full" style="width: 65%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Tournament Standings -->
-            <section data-aos="fade-left">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Tournament Standings</h2>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="p-6 border-b border-gray-200">
-                        <h3 class="font-bold text-lg text-gray-900">ICC World Test Championship</h3>
-                        <p class="text-gray-600 text-sm">Current Cycle 2023-2025</p>
-                    </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- LEFT COLUMN: TEAM ROSTERS & USER PROFILES -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- TEAM ROSTERS -->
+                <section class="bg-white rounded-2xl shadow-lg p-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Team Rosters</h2>
                     <div class="overflow-x-auto">
                         <table class="w-full">
-                            <thead class="bg-gray-50">
+                            <thead class="bg-gray-100">
                                 <tr>
                                     <th class="py-3 px-4 text-left text-gray-700 font-semibold">Team</th>
-                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">Pts</th>
-                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">PCT</th>
-                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">Matches</th>
+                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">Players</th>
+                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">Coach</th>
+                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">Record</th>
+                                    <th class="py-3 px-4 text-left text-gray-700 font-semibold">Action</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-medium">India</td>
-                                    <td class="py-3 px-4 font-bold">74</td>
-                                    <td class="py-3 px-4">
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-semibold">64.5%</span>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                                <i class="fas fa-basketball-ball text-purple-600"></i>
+                                            </div>
+                                            <span class="font-semibold">Lakers</span>
+                                        </div>
                                     </td>
-                                    <td class="py-3 px-4">9</td>
+                                    <td class="py-4 px-4">15 Active</td>
+                                    <td class="py-4 px-4">Darvin Ham</td>
+                                    <td class="py-4 px-4"><span class="font-bold text-green-600">42-30</span></td>
+                                    <td class="py-4 px-4">
+                                        <button class="px-3 py-1 bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-md text-sm font-medium">View Roster</button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                                <i class="fas fa-futbol text-green-600"></i>
+                                            </div>
+                                            <span class="font-semibold">Manchester United</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">28 Active</td>
+                                    <td class="py-4 px-4">Erik ten Hag</td>
+                                    <td class="py-4 px-4"><span class="font-bold text-blue-600">18-5-9</span></td>
+                                    <td class="py-4 px-4">
+                                        <button class="px-3 py-1 bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-md text-sm font-medium">View Roster</button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                                <i class="fas fa-football-ball text-red-600"></i>
+                                            </div>
+                                            <span class="font-semibold">Kansas City Chiefs</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">53 Active</td>
+                                    <td class="py-4 px-4">Andy Reid</td>
+                                    <td class="py-4 px-4"><span class="font-bold text-green-600">11-6</span></td>
+                                    <td class="py-4 px-4">
+                                        <button class="px-3 py-1 bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-md text-sm font-medium">View Roster</button>
+                                    </td>
                                 </tr>
                                 <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-medium">Australia</td>
-                                    <td class="py-3 px-4 font-bold">66</td>
-                                    <td class="py-3 px-4">
-                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-semibold">58.5%</span>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
+                                                <i class="fas fa-baseball-ball text-yellow-600"></i>
+                                            </div>
+                                            <span class="font-semibold">Yankees</span>
+                                        </div>
                                     </td>
-                                    <td class="py-3 px-4">10</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-medium">South Africa</td>
-                                    <td class="py-3 px-4 font-bold">50</td>
-                                    <td class="py-3 px-4">
-                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm font-semibold">50.0%</span>
+                                    <td class="py-4 px-4">26 Active</td>
+                                    <td class="py-4 px-4">Aaron Boone</td>
+                                    <td class="py-4 px-4"><span class="font-bold text-green-600">82-64</span></td>
+                                    <td class="py-4 px-4">
+                                        <button class="px-3 py-1 bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-md text-sm font-medium">View Roster</button>
                                     </td>
-                                    <td class="py-3 px-4">6</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-medium">New Zealand</td>
-                                    <td class="py-3 px-4 font-bold">36</td>
-                                    <td class="py-3 px-4">
-                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-semibold">40.0%</span>
-                                    </td>
-                                    <td class="py-3 px-4">6</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="p-4 border-t border-gray-200 text-center">
-                        <a href="tournaments.html" class="text-blue-600 hover:text-blue-800 font-medium">
-                            View Full Standings & Tournament Details
-                        </a>
+                </section>
+
+                <!-- MEDIA GALLERY -->
+                <section class="bg-white rounded-2xl shadow-lg p-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Media Gallery</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="aspect-square rounded-xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Team celebration" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="aspect-square rounded-xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Stadium aerial" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="aspect-square rounded-xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Player portrait" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="aspect-square rounded-xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Training session" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
                     </div>
-                </div>
-            </section>
+                    <div class="mt-6 flex justify-center">
+                        <button class="px-5 py-2.5 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-medium flex items-center gap-2">
+                            <i class="fas fa-images"></i> View All Media
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN: EVENT CALENDAR, NEWS FEED, USER PROFILES -->
+            <div class="space-y-8">
+                <!-- EVENT CALENDAR -->
+                <section class="bg-white rounded-2xl shadow-lg p-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Event Calendar</h2>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Lakers vs. Warriors</h3>
+                                    <p class="text-sm text-gray-600 mt-1">NBA Playoffs • Round 1</p>
+                                </div>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">Today</span>
+                            </div>
+                            <div class="mt-3 flex items-center text-gray-700">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span class="text-sm">Apr 15, 7:30 PM ET</span>
+                            </div>
+                            <div class="mt-2 flex items-center text-gray-700">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span class="text-sm">Crypto.com Arena</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-gray-900">United vs. Liverpool</h3>
+                                    <p class="text-sm text-gray-600 mt-1">Premier League Matchday 32</p>
+                                </div>
+                                <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-semibold">Apr 17</span>
+                            </div>
+                            <div class="mt-3 flex items-center text-gray-700">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span class="text-sm">Apr 17, 3:00 PM GMT</span>
+                            </div>
+                            <div class="mt-2 flex items-center text-gray-700">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span class="text-sm">Old Trafford</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Chiefs vs. Ravens</h3>
+                                    <p class="text-sm text-gray-600 mt-1">NFL Season Opener</p>
+                                </div>
+                                <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-semibold">Sep 8</span>
+                            </div>
+                            <div class="mt-3 flex items-center text-gray-700">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span class="text-sm">Sep 8, 8:20 PM ET</span>
+                            </div>
+                            <div class="mt-2 flex items-center text-gray-700">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span class="text-sm">Arrowhead Stadium</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-6 px-4 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-medium flex items-center justify-center gap-2">
+                        <i class="fas fa-calendar-plus"></i> Add to Calendar
+                    </button>
+                </section>
+
+                <!-- NEWS FEED -->
+                <section class="bg-white rounded-2xl shadow-lg p-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">News Feed</h2>
+                    <div class="space-y-5">
+                        <div class="pb-5 border-b">
+                            <h3 class="font-bold text-gray-900 hover:text-blue-600 cursor-pointer">Lakers Secure Playoff Berth With Overtime Win</h3>
+                            <p class="text-gray-600 text-sm mt-1">The Lakers clinched a playoff spot after a thrilling overtime victory against the Nuggets.</p>
+                            <div class="mt-3 flex justify-between items-center">
+                                <span class="text-xs text-gray-500">2 hours ago</span>
+                                <div class="flex gap-2">
+                                    <button class="text-gray-500 hover:text-blue-500"><i class="fab fa-twitter"></i></button>
+                                    <button class="text-gray-500 hover:text-blue-700"><i class="fab fa-facebook"></i></button>
+                                    <button class="text-gray-500 hover:text-red-500"><i class="fab fa-instagram"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pb-5 border-b">
+                            <h3 class="font-bold text-gray-900 hover:text-blue-600 cursor-pointer">United Announces New Kit Partnership</h3>
+                            <p class="text-gray-600 text-sm mt-1">Manchester United reveals a groundbreaking 5-year partnership with a leading sportswear brand.</p>
+                            <div class="mt-3 flex justify-between items-center">
+                                <span class="text-xs text-gray-500">1 day ago</span>
+                                <div class="flex gap-2">
+                                    <button class="text-gray-500 hover:text-blue-500"><i class="fab fa-twitter"></i></button>
+                                    <button class="text-gray-500 hover:text-blue-700"><i class="fab fa-facebook"></i></button>
+                                    <button class="text-gray-500 hover:text-red-500"><i class="fab fa-instagram"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 hover:text-blue-600 cursor-pointer">Chiefs Quarterback Sets New Record</h3>
+                            <p class="text-gray-600 text-sm mt-1">Patrick Mahomes breaks franchise record for passing yards in a single season.</p>
+                            <div class="mt-3 flex justify-between items-center">
+                                <span class="text-xs text-gray-500">3 days ago</span>
+                                <div class="flex gap-2">
+                                    <button class="text-gray-500 hover:text-blue-500"><i class="fab fa-twitter"></i></button>
+                                    <button class="text-gray-500 hover:text-blue-700"><i class="fab fa-facebook"></i></button>
+                                    <button class="text-gray-500 hover:text-red-500"><i class="fab fa-instagram"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-6 px-4 py-3 border border-gray-300 hover:bg-gray-50 text-gray-800 rounded-lg font-medium">
+                        Load More News
+                    </button>
+                </section>
+
+                <!-- USER PROFILES -->
+                <section class="bg-white rounded-2xl shadow-lg p-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Fan Profiles</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Alex Johnson</h4>
+                                <p class="text-sm text-gray-600">Lakers Superfan • 245 posts</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Maria Garcia</h4>
+                                <p class="text-sm text-gray-600">United Supporter • 189 posts</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">David Chen</h4>
+                                <p class="text-sm text-gray-600">Chiefs Fanatic • 312 posts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-6 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg font-medium">
+                        Connect With Fans
+                    </button>
+                </section>
+            </div>
         </div>
-
-        <!-- Match Schedules -->
-        <section class="mb-12" data-aos="fade-up">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800">Upcoming Match Schedules</h2>
-                <a href="matches.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                    View Full Schedule
-                    <i data-feather="calendar" class="ml-2 w-4 h-4"></i>
-                </a>
-            </div>
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Date & Time</th>
-                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Match</th>
-                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Venue</th>
-                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Format</th>
-                                <th class="py-3 px-4 text-left text-gray-700 font-semibold">Series</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200">
-                            <tr class="hover:bg-gray-50">
-                                <td class="py-3 px-4">Dec 15, 10:30 GMT</td>
-                                <td class="py-3 px-4 font-medium">India vs South Africa</td>
-                                <td class="py-3 px-4">Wanderers, Johannesburg</td>
-                                <td class="py-3 px-4">
-                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-semibold">Test</span>
-                                </td>
-                                <td class="py-3 px-4">Freedom Trophy</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="py-3 px-4">Dec 17, 14:00 GMT</td>
-                                <td class="py-3 px-4 font-medium">Australia vs Pakistan</td>
-                                <td class="py-3 px-4">MCG, Melbourne</td>
-                                <td class="py-3 px-4">
-                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">ODI</span>
-                                </td>
-                                <td class="py-3 px-4">Bilateral Series</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="py-3 px-4">Dec 20, 18:00 GMT</td>
-                                <td class="py-3 px-4 font-medium">England vs West Indies</td>
-                                <td class="py-3 px-4">Kennington Oval, London</td>
-                                <td class="py-3 px-4">
-                                    <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs font-semibold">T20I</span>
-                                </td>
-                                <td class="py-3 px-4">T20 Series</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="py-3 px-4">Dec 22, 08:30 GMT</td>
-                                <td class="py-3 px-4 font-medium">New Zealand vs Bangladesh</td>
-                                <td class="py-3 px-4">Bay Oval, Mount Maunganui</td>
-                                <td class="py-3 px-4">
-                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">ODI</span>
-                                </td>
-                                <td class="py-3 px-4">World Cup Super League</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- News Articles -->
-        <section data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Latest Team News</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">SQUAD</span>
-                            <span class="text-gray-500 text-sm ml-auto">2 hours ago</span>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-900 mb-3">India Announces Test Squad for South Africa Tour</h3>
-                        <p class="text-gray-600 mb-4">Rohit Sharma to lead 18-member squad with three new faces included for the challenging away series.</p>
-                        <a href="news.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                            Read More
-                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </article>
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">INJURY</span>
-                            <span class="text-gray-500 text-sm ml-auto">5 hours ago</span>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-900 mb-3">Australia's Starc Ruled Out of First Test</h3>
-                        <p class="text-gray-600 mb-4">Mitchell Starc suffers shoulder strain during training, likely to miss the opening match against Pakistan.</p>
-                        <a href="news.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                            Read More
-                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </article>
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">ANALYSIS</span>
-                            <span class="text-gray-500 text-sm ml-auto">1 day ago</span>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-900 mb-3">England's Bazball Approach: Statistical Breakdown</h3>
-                        <p class="text-gray-600 mb-4">Deep dive into how England's aggressive Test strategy has transformed their performance metrics since 2022.</p>
-                        <a href="news.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                            Read More
-                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </article>
-            </div>
-        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-12">
-        <div class="container mx-auto px-4">
+    <footer class="mt-12 bg-gray-900 text-white py-8 px-6">
+        <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-2">CricketHub</h3>
-                    <p class="text-gray-400">Your ultimate cricket companion</p>
+                    <h3 class="text-2xl font-bold">SportConnect</h3>
+                    <p class="text-gray-400 mt-2">Your ultimate destination for live sports, teams, and community.</p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="facebook" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="twitter" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="instagram" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="youtube" class="w-5 h-5"></i>
-                    </a>
+                <div class="flex gap-6">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube text-xl"></i></a>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-                <p>&copy; 2023 CricketHub. All rights reserved. | Live scores powered by official cricket boards.</p>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 SportConnect. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+                <p class="mt-2">Live scores update every 30 seconds. Data may be delayed.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
+        // Simulate live score refresh
+        document.getElementById('refreshScores').addEventListener('click', function() {
+            const button = this;
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
+            button.disabled = true;
+
+            // Simulate API call delay
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.disabled = false;
+                // In a real app, you would update the scores here
+                alert('Scores updated with latest data!');
+            }, 1500);
         });
 
-        // Initialize Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
+        // Social sharing buttons
+        document.querySelectorAll('.fa-twitter, .fa-facebook, .fa-instagram').forEach(button => {
+            button.parentElement.addEventListener('click', function(e) {
+                e.preventDefault();
+                const platform = this.querySelector('i').className.split('-')[1];
+                alert(`Sharing to ${platform} would open a share dialog.`);
+            });
         });
+
+        // Real-time update simulation
+        setInterval(() => {
+            const liveBadge = document.querySelector('.live-badge');
+            if (liveBadge) {
+                liveBadge.style.animation = 'none';
+                setTimeout(() => {
+                    liveBadge.style.animation = 'pulse 2s infinite';
+                }, 10);
+            }
+        }, 30000); // Every 30 seconds
     </script>
 </body>
 </html>

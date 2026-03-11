@@ -3,239 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sign Up | SportHub</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        .live-badge {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="font-bold text-xl">E-Shop</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
-        </div>
-    </nav>
+<body class="font-sans bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+<nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Teams</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Events</a><a href='schedule.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Schedule</a><a href='news.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>News</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Gallery</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
 
-    <!-- Signup Section -->
-    <section class="py-12 px-4 md:px-8 lg:px-16">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Column: Benefits -->
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
-                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                            <i data-feather="shopping-cart" class="text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
-                            <p class="text-gray-600">Save your details for quicker purchases.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-2 rounded-full mr-4">
-                            <i data-feather="package" class="text-green-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
-                            <p class="text-gray-600">Monitor your orders in real-time.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 p-2 rounded-full mr-4">
-                            <i data-feather="star" class="text-purple-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
-                            <p class="text-gray-600">Share and read authentic product reviews.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
-                            <i data-feather="credit-card" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
-                            <p class="text-gray-600">Multiple payment options with top security.</p>
-                        </div>
-                    </div>
+<main class="container mx-auto px-4 py-8 md:py-12">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <!-- Left Column: Signup Form & Features -->
+        <div class="lg:w-1/2 animate-fade-in">
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Create Your Fan Account</h1>
+                    <span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full live-badge">LIVE UPDATES</span>
                 </div>
-            </div>
-            
-            <!-- Right Column: Signup Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
-                
+                <p class="text-gray-600 mb-8">Join our community to get real-time scores, personalized news, and exclusive content.</p>
+
                 <form id="signupForm" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
-                            <input type="text" id="firstName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                         </div>
                         <div>
-                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                         </div>
                     </div>
-                    
+
                     <div>
-                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                     </div>
-                    
+
                     <div>
-                        <label class="block text-gray-700 mb-2" for="password">Password</label>
-                        <input type="password" id="password" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password *</label>
+                        <input type="password" id="password" name="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        <p class="text-xs text-gray-500 mt-1">At least 8 characters with a number and uppercase letter.</p>
                     </div>
-                    
+
                     <div>
-                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        <label for="favTeam" class="block text-sm font-medium text-gray-700 mb-1">Favorite Team (Optional)</label>
+                        <select id="favTeam" name="favTeam" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <option value="">Select a team</option>
+                            <option value="lakers">Los Angeles Lakers</option>
+                            <option value="warriors">Golden State Warriors</option>
+                            <option value="bucks">Milwaukee Bucks</option>
+                            <option value="realmadrid">Real Madrid</option>
+                            <option value="manutd">Manchester United</option>
+                        </select>
                     </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="terms" required 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="terms" class="ml-3 text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                        </label>
+
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" name="terms" required class="mt-1 mr-3">
+                        <label for="terms" class="text-sm text-gray-700">I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>. I want to receive updates about live scores and events.</label>
                     </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="newsletter" class="ml-3 text-gray-700">
-                            Subscribe to our newsletter for exclusive deals
-                        </label>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                        Create Account
-                    </button>
-                    
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-bold py-3 px-4 rounded-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 shadow-md hover:shadow-lg">Sign Up Now</button>
+
                     <div class="text-center">
-                        <p class="text-gray-600">Already have an account? 
-                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
-                        </p>
-                    </div>
-                    
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
+                        <p class="text-gray-600">Or sign up with</p>
+                        <div class="flex justify-center space-x-4 mt-4">
+                            <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-full transition"><i class="fab fa-google text-red-500"></i></a>
+                            <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-full transition"><i class="fab fa-facebook-f text-blue-600"></i></a>
+                            <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-full transition"><i class="fab fa-twitter text-sky-500"></i></a>
                         </div>
                     </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            Facebook
-                        </button>
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
-                            Twitter
-                        </button>
-                    </div>
+
+                    <p class="text-center text-gray-600">Already have an account? <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a></p>
                 </form>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <i data-feather="shopping-bag" class="text-blue-400"></i>
-                    <span class="font-bold text-xl">E-Shop</span>
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                    <div class="text-blue-600 text-2xl mb-3"><i class="fas fa-bolt"></i></div>
+                    <h3 class="font-bold text-gray-900 mb-1">LIVE SCORES</h3>
+                    <p class="text-sm text-gray-600">Real-time updates from all major games.</p>
                 </div>
-                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
-                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
-                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Account</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
-                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Contact</h3>
-                <p class="text-gray-400">support@eshop.com</p>
-                <p class="text-gray-400">+1 (555) 123-4567</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                    <div class="text-green-600 text-2xl mb-3"><i class="fas fa-calendar-alt"></i></div>
+                    <h3 class="font-bold text-gray-900 mb-1">EVENT CALENDAR</h3>
+                    <p class="text-sm text-gray-600">Never miss a game with personalized alerts.</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                    <div class="text-purple-600 text-2xl mb-3"><i class="fas fa-users"></i></div>
+                    <h3 class="font-bold text-gray-900 mb-1">TEAM ROSTERS</h3>
+                    <p class="text-sm text-gray-600">Detailed player stats and profiles.</p>
                 </div>
             </div>
         </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
-        </div>
-    </footer>
 
-    <script>
-        feather.replace();
-        
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to login...');
-            window.location.href = 'login.html';
-        });
-    </script>
+        <!-- Right Column: Live Updates & Social -->
+        <div class="lg:w-1/2 space-y-8">
+            <!-- Live Scores Widget -->
+            <div class="bg-gradient-to-br from-gray-900 to-black text-white rounded-2xl shadow-2xl p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold"><i class="fas fa-fire text-red-500 mr-2"></i> Live Scores</h2>
+                    <span class="flex items-center text-red-400"><span class="h-2 w-2 bg-red-500 rounded-full mr-2 animate-pulse"></span> LIVE</span>
+                </div>
+                <div class="space-y-4" id="liveScores">
+                    <div class="bg-gray-800/50 p-4 rounded-xl">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full mr-3"></div>
+                                <span class="font-semibold">Lakers</span>
+                            </div>
+                            <span class="text-2xl font-bold">112</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-yellow-500 rounded-full mr-3"></div>
+                                <span class="font-semibold">Warriors</span>
+                            </div>
+                            <span class="text-2xl font-bold">108</span>
+                        </div>
+                        <div class="text-center text-sm text-gray-300 mt-3">Q4 • 2:34 remaining</div>
+                    </div>
+                    <div class="bg-gray-800/50 p-4 rounded-xl">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-red-500 rounded-full mr-3"></div>
+                                <span class="font-semibold">Real Madrid</span>
+                            </div>
+                            <span class="text-2xl font-bold">2</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-blue-300 rounded-full mr-3"></div>
+                                <span class="font-semibold">Barcelona</span>
+                            </div>
+                            <span class="text-2xl font-bold">1</span>
+                        </div>
+                        <div class="text-center text-sm text-gray-300 mt-3">2nd Half • 67'</div>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mt-6"><i class="fas fa-sync-alt mr-2"></i> Scores update automatically every 30 seconds</p>
+            </div>
+
+            <!-- News Feed Preview -->
+            <div class="bg-white rounded-2xl shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Latest News <span class="text-sm font-normal text-blue-600">• Updated just now</span></h2>
+                <div class="space-y-4">
+                    <div class="flex items-start border-b pb-4">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Basketball" class="w-16 h-16 object-cover rounded-lg mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-900">Historic Comeback in Finals Game 5</h4>
+                            <p class="text-sm text-gray-600 mt-1">The underdogs rally from 20 points down to take the series lead.</p>
+                            <div class="flex items-center text-xs text-gray-500 mt-2">
+                                <span class="mr-3"><i class="far fa-clock mr-1"></i> 45 min ago</span>
+                                <button class="text-blue-600 hover:text-blue-800"><i class="fas fa-share-alt mr-1"></i> Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Soccer" class="w-16 h-16 object-cover rounded-lg mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-900">Transfer Window: Major Signing Confirmed</h4>
+                            <p class="text-sm text-gray-600 mt-1">Star striker moves to Premier League in record-breaking deal.</p>
+                            <div class="flex items-center text-xs text-gray-500 mt-2">
+                                <span class="mr-3"><i class="far fa-clock mr-1"></i> 2 hours ago</span>
+                                <button class="text-blue-600 hover:text-blue-800"><i class="fas fa-share-alt mr-1"></i> Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="news.html" class="block text-center mt-6 text-blue-600 font-semibold hover:underline">View All News <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <!-- Social Media & Gallery Teaser -->
+            <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl shadow-xl p-6 border border-blue-100">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Connect & Share</h2>
+                <p class="text-gray-700 mb-6">Join the conversation! Share highlights, discuss games, and connect with fans worldwide.</p>
+                <div class="flex flex-wrap gap-3 mb-6">
+                    <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center"><i class="fab fa-twitter mr-2"></i> #GameDay</a>
+                    <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center"><i class="fab fa-facebook-f mr-2"></i> Fan Group</a>
+                    <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg flex items-center"><i class="fab fa-instagram mr-2"></i> Highlights</a>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-900 mb-3">Media Gallery <i class="fas fa-images text-purple-600 ml-1"></i></h3>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="aspect-square bg-gradient-to-br from-orange-400 to-red-500 rounded-lg"></div>
+                        <div class="aspect-square bg-gradient-to-br from-green-400 to-blue-500 rounded-lg"></div>
+                        <div class="aspect-square bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg"></div>
+                    </div>
+                    <a href="gallery.html" class="inline-block mt-4 text-blue-600 font-semibold hover:underline">Explore 500+ photos & videos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-gray-900 text-white py-8 mt-12">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <h2 class="text-2xl font-bold">SportHub</h2>
+                <p class="text-gray-400 mt-2">Your ultimate sports destination.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f text-xl"></i></a>
+                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram text-xl"></i></a>
+                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-youtube text-xl"></i></a>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2023 SportHub. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+            <p class="mt-2">Live data provided by our real-time sports API. Scores update automatically.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for signing up! Check your email to verify your account and start receiving live updates.');
+        // In a real app, you would submit to a backend here
+    });
+
+    // Simulate live score updates
+    setInterval(() => {
+        const scores = document.querySelectorAll('#liveScores .text-2xl');
+        if(scores.length > 0) {
+            // Randomly increment one score to simulate live updates
+            const randomScore = scores[Math.floor(Math.random() * scores.length)];
+            const current = parseInt(randomScore.textContent);
+            randomScore.textContent = current + 1;
+            randomScore.classList.add('text-green-400');
+            setTimeout(() => randomScore.classList.remove('text-green-400'), 1000);
+        }
+    }, 10000); // Every 10 seconds
+</script>
 </body>
 </html>

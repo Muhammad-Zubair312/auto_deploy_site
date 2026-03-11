@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Events | Live Scores & Calendar</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 0.8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .live-badge { animation: pulse-fast 1.5s infinite; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-inter">
+<nav class='bg-gray-900 text-white px-6 py-3 flex flex-wrap gap-1 items-center shadow-lg'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Home</a><a href='teams.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Teams</a><a href='events.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Events</a><a href='schedule.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Schedule</a><a href='news.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>News</a><a href='gallery.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Gallery</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors'>Signup</a></nav>
+
+<main class="container mx-auto px-4 py-8">
+    <!-- Page Header -->
+    <header class="mb-10 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3">Sport Events Hub</h1>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">Follow live scores, explore the event calendar, view team rosters, and stay updated with the latest news and media.</p>
+    </header>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Left Column: Live Scores & News Feed -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- LIVE SCORES Section -->
+            <section class="bg-white rounded-2xl shadow-xl p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                        <span class="live-badge inline-block h-3 w-3 rounded-full bg-red-500"></span>
+                        LIVE SCORES
+                    </h2>
+                    <span class="text-xs font-semibold bg-red-100 text-red-800 px-3 py-1 rounded-full">UPDATING IN REAL-TIME</span>
+                </div>
+                <div class="space-y-4" id="liveScoresContainer">
+                    <!-- Live Match 1 -->
+                    <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium text-gray-500">Premier League • 2nd Half 67'</span>
+                            <button class="text-red-600 hover:text-red-800 text-sm font-semibold" onclick="refreshScores()">
+                                <i class="fas fa-sync-alt mr-1"></i> Refresh
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img src="https://via.placeholder.com/40/1e40af/ffffff?text=MU" alt="Manchester United" class="w-10 h-10 rounded-full">
+                                <span class="font-bold text-lg">Manchester United</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-black text-gray-900">2 - 1</div>
+                                <div class="text-sm text-gray-500">Live</div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="font-bold text-lg">Arsenal</span>
+                                <img src="https://via.placeholder.com/40/ef4444/ffffff?text=AR" alt="Arsenal" class="w-10 h-10 rounded-full">
+                            </div>
+                        </div>
+                        <div class="mt-4 text-sm text-gray-600">
+                            <i class="fas fa-info-circle mr-1"></i> Last Goal: Rashford (62')
+                        </div>
+                    </div>
+                    <!-- Live Match 2 -->
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded-r-lg">
+                        <div class="text-sm font-medium text-gray-500 mb-2">NBA Finals • Q3 8:32</div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img src="https://via.placeholder.com/40/0ea5e9/ffffff?text=LAL" alt="Lakers" class="w-10 h-10 rounded-full">
+                                <span class="font-bold text-lg">LA Lakers</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-black text-gray-900">89 - 85</div>
+                                <div class="text-sm text-gray-500">Live</div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="font-bold text-lg">Boston Celtics</span>
+                                <img src="https://via.placeholder.com/40/10b981/ffffff?text=BOS" alt="Celtics" class="w-10 h-10 rounded-full">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <h3 class="font-semibold text-gray-700 mb-3">Upcoming Matches Today</h3>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between py-2 border-b border-gray-100">
+                            <span>FC Barcelona vs Real Madrid</span>
+                            <span class="font-medium">20:00 CET</span>
+                        </li>
+                        <li class="flex justify-between py-2 border-b border-gray-100">
+                            <span>Golden State Warriors vs Miami Heat</span>
+                            <span class="font-medium">23:30 EST</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- NEWS FEED Section -->
+            <section class="bg-white rounded-2xl shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">LATEST NEWS FEED</h2>
+                <div class="space-y-6">
+                    <article class="flex flex-col sm:flex-row gap-4 pb-6 border-b border-gray-200">
+                        <img src="https://via.placeholder.com/150/3b82f6/ffffff?text=NEWS" alt="News" class="w-full sm:w-32 h-32 object-cover rounded-lg">
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-900 mb-2">Historic Championship Win for Underdogs</h3>
+                            <p class="text-gray-600 mb-3">The underdog team clinched the championship title in a stunning overtime victory, marking their first win in franchise history.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 45 min ago</span>
+                                <div class="flex gap-2">
+                                    <button class="text-blue-600 hover:text-blue-800" onclick="shareNews('news1')"><i class="fab fa-twitter"></i></button>
+                                    <button class="text-blue-700 hover:text-blue-900" onclick="shareNews('news1')"><i class="fab fa-facebook"></i></button>
+                                    <button class="text-red-500 hover:text-red-700" onclick="shareNews('news1')"><i class="fab fa-instagram"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="flex flex-col sm:flex-row gap-4">
+                        <img src="https://via.placeholder.com/150/10b981/ffffff?text=TRANSFER" alt="Transfer" class="w-full sm:w-32 h-32 object-cover rounded-lg">
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-900 mb-2">Star Player Announces Transfer</h3>
+                            <p class="text-gray-600 mb-3">After months of speculation, the league's top scorer confirms a record-breaking move to a European giant next season.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 2 hours ago</span>
+                                <div class="flex gap-2">
+                                    <button class="text-blue-600 hover:text-blue-800" onclick="shareNews('news2')"><i class="fab fa-twitter"></i></button>
+                                    <button class="text-blue-700 hover:text-blue-900" onclick="shareNews('news2')"><i class="fab fa-facebook"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <button class="mt-6 w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold rounded-lg transition-colors">
+                    Load More News <i class="fas fa-arrow-down ml-2"></i>
+                </button>
+            </section>
+        </div>
+
+        <!-- Right Column: Calendar, Rosters, Gallery, Profiles -->
+        <div class="space-y-8">
+            <!-- EVENT CALENDAR Section -->
+            <section class="bg-white rounded-2xl shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">EVENT CALENDAR</h2>
+                <div class="mb-4 flex justify-between items-center">
+                    <h3 class="font-semibold text-gray-700">June 2024</h3>
+                    <div class="flex gap-2">
+                        <button class="p-2 hover:bg-gray-100 rounded-full"><i class="fas fa-chevron-left"></i></button>
+                        <button class="p-2 hover:bg-gray-100 rounded-full"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-7 gap-1 mb-4 text-center text-sm font-medium text-gray-500">
+                    <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+                </div>
+                <div class="grid grid-cols-7 gap-1 text-center">
+                    <div class="p-2 text-gray-400">27</div><div class="p-2 text-gray-400">28</div><div class="p-2 text-gray-400">29</div><div class="p-2 text-gray-400">30</div>
+                    <div class="p-2">1</div><div class="p-2">2</div><div class="p-2 bg-blue-100 text-blue-800 font-bold rounded-lg">3</div>
+                    <div class="p-2">4</div><div class="p-2">5</div><div class="p-2 bg-red-100 text-red-800 font-bold rounded-lg">6</div>
+                    <div class="p-2">7</div><div class="p-2">8</div><div class="p-2">9</div><div class="p-2">10</div>
+                    <div class="p-2 bg-green-100 text-green-800 font-bold rounded-lg">11</div><div class="p-2">12</div><div class="p-2">13</div>
+                </div>
+                <div class="mt-6 space-y-3">
+                    <div class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
+                        <div class="text-center">
+                            <div class="font-bold text-blue-800">JUN 3</div>
+                            <div class="text-sm text-blue-600">Final</div>
+                        </div>
+                        <div>
+                            <div class="font-medium">Champions League Final</div>
+                            <div class="text-sm text-gray-600">Istanbul, 21:00 CET</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-red-50 rounded-lg">
+                        <div class="text-center">
+                            <div class="font-bold text-red-800">JUN 6</div>
+                            <div class="text-sm text-red-600">Semifinal</div>
+                        </div>
+                        <div>
+                            <div class="font-medium">NBA Playoffs Game 7</div>
+                            <div class="text-sm text-gray-600">Miami, 20:30 EST</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEAM ROSTERS Section -->
+            <section class="bg-white rounded-2xl shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">TEAM ROSTERS</h2>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Team</label>
+                    <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" onchange="updateRoster(this.value)">
+                        <option value="manutd">Manchester United</option>
+                        <option value="lakers">LA Lakers</option>
+                        <option value="yankees">New York Yankees</option>
+                    </select>
+                </div>
+                <div class="space-y-3" id="rosterList">
+                    <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-800">7</div>
+                            <div>
+                                <div class="font-medium">Cristiano Ronaldo</div>
+                                <div class="text-sm text-gray-500">Forward • Captain</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-medium text-gray-900">28 Goals</div>
+                            <div class="text-xs text-gray-500">This Season</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-800">1</div>
+                            <div>
+                                <div class="font-medium">David De Gea</div>
+                                <div class="text-sm text-gray-500">Goalkeeper</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-medium text-gray-900">18 Clean Sheets</div>
+                            <div class="text-xs text-gray-500">This Season</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="mt-6 w-full py-3 bg-gray-900 hover:bg-black text-white font-semibold rounded-lg transition-colors">
+                    View Full Roster <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </section>
+
+            <!-- MEDIA GALLERY Section -->
+            <section class="bg-white rounded-2xl shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">MEDIA GALLERY</h2>
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <img src="https://via.placeholder.com/200/8b5cf6/ffffff?text=GOAL" alt="Goal Celebration" class="w-full h-32 object-cover rounded-lg">
+                    <img src="https://via.placeholder.com/200/f59e0b/ffffff?text=TROPHY" alt="Trophy" class="w-full h-32 object-cover rounded-lg">
+                    <img src="https://via.placeholder.com/200/10b981/ffffff?text=FANS" alt="Fans" class="w-full h-32 object-cover rounded-lg">
+                    <img src="https://via.placeholder.com/200/ef4444/ffffff?text=ACTION" alt="Action Shot" class="w-full h-32 object-cover rounded-lg">
+                </div>
+                <button class="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors flex items-center justify-center">
+                    <i class="fas fa-images mr-2"></i> Browse All Media
+                </button>
+            </section>
+
+            <!-- USER PROFILES Section -->
+            <section class="bg-white rounded-2xl shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">FAN PROFILES</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <img src="https://via.placeholder.com/50/3b82f6/ffffff?text=JD" alt="John Doe" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="font-bold">Alex Rivera</div>
+                            <div class="text-sm text-gray-600">Ultimate Fan • 2,450 Points</div>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-800 font-medium text-sm">Follow</button>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <img src="https://via.placeholder.com/50/10b981/ffffff?text=MS" alt="Maria Silva" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="font-bold">Sarah Chen</div>
+                            <div class="text-sm text-gray-600">Super Fan • 1,980 Points</div>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-800 font-medium text-sm">Follow</button>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Join the Community!</h3>
+                    <p class="text-sm mb-4">Create your profile, earn points, and connect with fans worldwide.</p>
+                    <button class="w-full py-2 bg-white text-blue-700 font-bold rounded-lg hover:bg-gray-100 transition-colors">
+                        Sign Up Free
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Social Media & Real-Time Updates Banner -->
+    <div class="mt-12 bg-gradient-to-r from-gray-900 to-black text-white rounded-2xl p-6 md:p-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <h3 class="text-2xl font-bold mb-2">Never Miss a Moment</h3>
+                <p class="text-gray-300">Enable push notifications for real-time updates on live scores and breaking news.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button class="px-6 py-3 bg-blue-600 hover:bg-blue-700 font-semibold rounded-lg transition-colors flex items-center justify-center">
+                    <i class="fas fa-bell mr-2"></i> Enable Notifications
+                </button>
+                <div class="flex gap-4">
+                    <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-gray-900 text-white mt-12 py-8 px-6">
+    <div class="container mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <div class="text-2xl font-bold mb-2">SportEvents<span class="text-blue-500">.com</span></div>
+                <p class="text-gray-400">Your ultimate destination for live sports coverage.</p>
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+            </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            &copy; 2024 SportEvents.com. All rights reserved. Live data updates powered by real-time APIs.
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Simulate real-time updates for live scores
+    function refreshScores() {
+        const container = document.getElementById('liveScoresContainer');
+        container.classList.add('opacity-50');
+        setTimeout(() => {
+            container.classList.remove('opacity-50');
+            alert('Live scores refreshed! (Simulated real-time update)');
+        }, 300);
+    }
+
+    // Simulate roster update
+    function updateRoster(team) {
+        const rosterList = document.getElementById('rosterList');
+        rosterList.innerHTML = `
+            <div class="p-4 text-center text-gray-600">
+                <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                <p>Loading ${team} roster...</p>
+            </div>
+        `;
+        setTimeout(() => {
+            rosterList.innerHTML = `
+                <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-800">23</div>
+                        <div>
+                            <div class="font-medium">LeBron James</div>
+                            <div class="text-sm text-gray-500">Forward • Captain</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm font-medium text-gray-900">28.5 PPG</div>
+                        <div class="text-xs text-gray-500">This Season</div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-800">3</div>
+                        <div>
+                            <div class="font-medium">Anthony Davis</div>
+                            <div class="text-sm text-gray-500">Center</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm font-medium text-gray-900">12.8 RPG</div>
+                        <div class="text-xs text-gray-500">This Season</div>
+                    </div>
+                </div>
+            `;
+        }, 800);
+    }
+
+    // Social sharing simulation
+    function shareNews(newsId) {
+        const url = window.location.href;
+        const text = `Check out this sports news on SportEvents.com!`;
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    // Auto-refresh simulation every 30 seconds
+    setInterval(() => {
+        console.log('Simulating live data refresh...');
+    }, 30000);
+</script>
+</body>
+</html>
