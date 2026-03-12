@@ -3,221 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | E-Commerce Store</title>
+    <title>Login - Sport Website</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             min-height: 100vh;
         }
         .login-card {
+            background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .input-focus:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        .input-field {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .live-score {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
     </style>
 </head>
-<body class="font-sans">
-    <!-- Shared Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex space-x-4">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
-        </div>
-        <div class="text-sm text-gray-300 mt-2 md:mt-0">
-            Welcome back! Access your account
-        </div>
-    </nav>
+<body class="text-gray-100">
+    <!-- Navbar (copied exactly as provided) -->
+    <nav class='bg-gray-900 text-gray-300 px-6 py-3 flex items-center gap-2 shadow-lg sticky top-0 z-50 flex-wrap'><a href='index.html' class='flex items-center gap-2 mr-auto no-underline'><span style='display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#6366f1,#3b82f6);color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.5px;flex-shrink:0;'>S</span><span class='text-white font-bold text-lg tracking-tight'>Sport Website</span></a><a href='index.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Home</a><a href='events.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Events</a><a href='teams.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Teams</a><a href='schedule.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Schedule</a><a href='news.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>News</a><a href='gallery.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Gallery</a><a href='about.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>About</a><a href='contact.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Contact</a><a href='login.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Login</a><a href='signup.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Signup</a></nav>
 
-    <!-- Login Page Content -->
-    <main class="container mx-auto px-4 py-12">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" data-aos="fade-up">
-            <!-- Login Form Section -->
-            <div class="login-card rounded-2xl shadow-2xl p-8 md:p-12">
-                <div class="text-center mb-10">
-                    <h1 class="text-4xl font-bold text-gray-900 mb-3">Welcome Back</h1>
-                    <p class="text-gray-600">Sign in to your account to continue shopping</p>
-                </div>
-
-                <form id="loginForm" class="space-y-6">
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address
-                        </label>
-                        <div class="relative">
-                            <i data-feather="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                required
-                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="you@example.com"
-                            >
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <!-- Left Column: Live Scores & Features -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Live Scores Section -->
+                <section class="rounded-xl overflow-hidden shadow-2xl" data-aos="fade-up">
+                    <div class="live-score p-4 flex items-center justify-between">
+                        <h2 class="text-xl font-bold flex items-center gap-2">
+                            <i data-feather="activity"></i>
+                            LIVE SCORES
+                        </h2>
+                        <span class="px-3 py-1 bg-red-500 rounded-full text-xs font-bold animate-pulse">
+                            LIVE
+                        </span>
+                    </div>
+                    <div class="bg-gray-800 p-6">
+                        <div class="space-y-4" id="liveScores">
+                            <!-- Scores will be updated via JavaScript -->
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-gray-700">
+                            <p class="text-sm text-gray-400 flex items-center gap-2">
+                                <i data-feather="refresh-cw" class="w-4 h-4"></i>
+                                Updates every 30 seconds
+                            </p>
                         </div>
                     </div>
+                </section>
 
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            Password
-                        </label>
-                        <div class="relative">
-                            <i data-feather="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="password" 
-                                id="password" 
-                                required
-                                class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="Enter your password"
-                            >
-                            <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                <i data-feather="eye"></i>
-                            </button>
+                <!-- Event Calendar Preview -->
+                <section class="rounded-xl overflow-hidden shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 p-4">
+                        <h2 class="text-xl font-bold flex items-center gap-2">
+                            <i data-feather="calendar"></i>
+                            UPCOMING EVENTS
+                        </h2>
+                    </div>
+                    <div class="bg-gray-800 p-6">
+                        <div class="grid md:grid-cols-2 gap-4" id="eventCalendar">
+                            <!-- Events will be populated via JavaScript -->
                         </div>
                     </div>
+                </section>
 
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input 
-                                type="checkbox" 
-                                id="remember"
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                            >
-                            <label for="remember" class="ml-2 text-sm text-gray-700">
-                                Remember me
-                            </label>
+                <!-- Team Profiles Preview -->
+                <section class="rounded-xl overflow-hidden shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-gradient-to-r from-amber-600 to-amber-700 p-4">
+                        <h2 class="text-xl font-bold flex items-center gap-2">
+                            <i data-feather="users"></i>
+                            FEATURED TEAMS
+                        </h2>
+                    </div>
+                    <div class="bg-gray-800 p-6">
+                        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6" id="teamProfiles">
+                            <!-- Teams will be populated via JavaScript -->
                         </div>
-                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800 hover:underline">
-                            Forgot password?
-                        </a>
                     </div>
-
-                    <button 
-                        type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-                    >
-                        Sign In
-                    </button>
-
-                    <div class="text-center">
-                        <p class="text-gray-600">
-                            Don't have an account? 
-                            <a href="signup.html" class="text-blue-600 hover:text-blue-800 font-semibold hover:underline">
-                                Sign up here
-                            </a>
-                        </p>
-                    </div>
-                </form>
-
-                <div class="mt-8 pt-8 border-t border-gray-200">
-                    <p class="text-center text-gray-600 mb-4">Or continue with</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            <span>Facebook</span>
-                        </button>
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="github" class="mr-2"></i>
-                            <span>GitHub</span>
-                        </button>
-                    </div>
-                </div>
+                </section>
             </div>
 
-            <!-- Benefits Section -->
+            <!-- Right Column: Login Form -->
             <div class="space-y-8">
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="200">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i data-feather="shopping-bag" class="text-blue-600 w-6 h-6"></i>
+                <!-- Login Card -->
+                <section class="login-card rounded-2xl p-8 shadow-2xl" data-aos="zoom-in">
+                    <div class="text-center mb-8">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                            <i data-feather="user" class="w-10 h-10 text-white"></i>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Track Your Orders</h3>
-                            <p class="text-gray-600">Monitor your purchases from order to delivery with real-time updates.</p>
-                        </div>
+                        <h1 class="text-3xl font-bold mb-2">Welcome Back</h1>
+                        <p class="text-gray-400">Sign in to your Sport Website account</p>
                     </div>
-                </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="400">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-green-100 p-3 rounded-lg mr-4">
-                            <i data-feather="heart" class="text-green-600 w-6 h-6"></i>
-                        </div>
+                    <form id="loginForm" class="space-y-6">
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Personalized Experience</h3>
-                            <p class="text-gray-600">Get product recommendations based on your browsing and purchase history.</p>
+                            <label class="block text-sm font-medium mb-2">Email Address</label>
+                            <input type="email" required 
+                                   class="w-full px-4 py-3 rounded-lg input-field focus:outline-none"
+                                   placeholder="you@example.com">
                         </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="600">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-purple-100 p-3 rounded-lg mr-4">
-                            <i data-feather="star" class="text-purple-600 w-6 h-6"></i>
-                        </div>
+                        
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Write Reviews</h3>
-                            <p class="text-gray-600">Share your experience and help other customers make informed decisions.</p>
+                            <label class="block text-sm font-medium mb-2">Password</label>
+                            <input type="password" required 
+                                   class="w-full px-4 py-3 rounded-lg input-field focus:outline-none"
+                                   placeholder="••••••••">
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded bg-gray-700 border-gray-600">
+                                <span class="ml-2 text-sm">Remember me</span>
+                            </label>
+                            <a href="#" class="text-sm text-blue-400 hover:text-blue-300">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-lg font-semibold transition-all duration-300 transform hover:-translate-y-1">
+                            Sign In
+                        </button>
+
+                        <div class="text-center text-sm text-gray-400">
+                            Don't have an account? 
+                            <a href="signup.html" class="text-blue-400 hover:text-blue-300 font-medium">Sign up now</a>
+                        </div>
+                    </form>
+
+                    <div class="mt-8 pt-8 border-t border-gray-700">
+                        <p class="text-sm text-gray-400 text-center">
+                            By signing in, you agree to our 
+                            <a href="#" class="text-blue-400">Terms</a> and 
+                            <a href="#" class="text-blue-400">Privacy Policy</a>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Media Gallery Preview -->
+                <section class="rounded-xl overflow-hidden shadow-2xl" data-aos="fade-up">
+                    <div class="bg-gradient-to-r from-rose-600 to-rose-700 p-4">
+                        <h2 class="text-xl font-bold flex items-center gap-2">
+                            <i data-feather="image"></i>
+                            MEDIA GALLERY
+                        </h2>
+                    </div>
+                    <div class="bg-gray-800 p-6">
+                        <div class="grid grid-cols-3 gap-2" id="mediaGallery">
+                            <!-- Gallery items will be populated via JavaScript -->
+                        </div>
+                        <div class="mt-4 text-center">
+                            <a href="gallery.html" class="text-sm text-blue-400 hover:text-blue-300 inline-flex items-center gap-1">
+                                View Full Gallery <i data-feather="arrow-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-lg p-8 text-white" data-aos="fade-up" data-aos-delay="800">
-                    <h3 class="text-2xl font-bold mb-4">Secure Shopping</h3>
-                    <p class="mb-4">Your security is our priority. We use industry-standard encryption to protect your data.</p>
-                    <div class="flex items-center">
-                        <i data-feather="shield" class="mr-3"></i>
-                        <span class="font-semibold">256-bit SSL Encryption</span>
-                    </div>
-                </div>
+                </section>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">E-Commerce Store</h3>
-                    <p class="text-gray-400">Your one-stop shop for all your needs. Quality products, secure payments, fast delivery.</p>
+    <footer class="bg-gray-900 border-t border-gray-800 mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center gap-2">
+                        <span style='display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#6366f1,#3b82f6);color:#fff;font-weight:800;font-size:16px;letter-spacing:-0.5px;flex-shrink:0;'>S</span>
+                        <span class='text-white font-bold text-lg tracking-tight'>Sport Website</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mt-2">Your ultimate sports destination</p>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white transition">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white transition">Checkout</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Account</h4>
-                    <ul class="space-y-2">
-                        <li><a href="login.html" class="text-gray-400 hover:text-white transition">Login</a></li>
-                        <li><a href="signup.html" class="text-gray-400 hover:text-white transition">Sign Up</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Order Tracking</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <p class="text-gray-400">support@ecommerce.com</p>
-                    <p class="text-gray-400">+1 (555) 123-4567</p>
+                
+                <div class="flex flex-wrap gap-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                    <a href="contact.html" class="text-gray-400 hover:text-white text-sm">Contact Us</a>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Sport Website. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         // Initialize AOS
@@ -229,28 +216,98 @@
         // Initialize Feather Icons
         feather.replace();
 
-        // Toggle password visibility
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.querySelector('i').setAttribute('data-feather', type === 'password' ? 'eye' : 'eye-off');
-            feather.replace();
+        // Sample data for live scores
+        const liveScores = [
+            { home: "Lakers", away: "Warriors", homeScore: 98, awayScore: 102, period: "4th Q", time: "2:34" },
+            { home: "Real Madrid", away: "Barcelona", homeScore: 2, awayScore: 1, period: "2nd Half", time: "67'" },
+            { home: "Patriots", away: "Chiefs", homeScore: 21, awayScore: 17, period: "3rd Q", time: "8:12" },
+            { home: "Yankees", away: "Red Sox", homeScore: 4, awayScore: 3, period: "7th Inning", time: "Top" }
+        ];
+
+        // Sample events
+        const upcomingEvents = [
+            { date: "Tomorrow", time: "8:00 PM", event: "NBA Finals Game 7", location: "Madison Square Garden" },
+            { date: "Jun 15", time: "3:00 PM", event: "Champions League Final", location: "Wembley Stadium" },
+            { date: "Jun 20", time: "7:30 PM", event: "MLB All-Star Game", location: "Dodger Stadium" },
+            { date: "Jun 25", time: "1:00 PM", event: "Wimbledon Opening", location: "All England Club" }
+        ];
+
+        // Sample teams
+        const featuredTeams = [
+            { name: "Lakers", sport: "Basketball", color: "from-purple-600 to-yellow-500" },
+            { name: "Manchester Utd", sport: "Soccer", color: "from-red-600 to-white" },
+            { name: "Patriots", sport: "Football", color: "from-blue-600 to-red-600" }
+        ];
+
+        // Populate Live Scores
+        const scoresContainer = document.getElementById('liveScores');
+        liveScores.forEach(score => {
+            scoresContainer.innerHTML += `
+                <div class="flex items-center justify-between p-3 bg-gray-900 rounded-lg hover:bg-gray-850 transition-colors">
+                    <div class="flex-1">
+                        <div class="font-medium">${score.home}</div>
+                        <div class="text-sm text-gray-400">vs ${score.away}</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold">${score.homeScore} - ${score.awayScore}</div>
+                        <div class="text-xs text-gray-400">${score.period} ${score.time}</div>
+                    </div>
+                    <div class="flex-1 text-right">
+                        <div class="font-medium">${score.away}</div>
+                        <div class="text-sm text-gray-400">${score.period}</div>
+                    </div>
+                </div>
+            `;
         });
 
-        // Form submission
+        // Populate Events
+        const eventsContainer = document.getElementById('eventCalendar');
+        upcomingEvents.forEach(event => {
+            eventsContainer.innerHTML += `
+                <div class="p-4 bg-gray-900 rounded-lg hover:bg-gray-850 transition-colors">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <div class="text-lg font-semibold">${event.event}</div>
+                            <div class="text-sm text-gray-400 mt-1">${event.location}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-emerald-400">${event.date}</div>
+                            <div class="text-sm text-gray-400">${event.time}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Populate Teams
+        const teamsContainer = document.getElementById('teamProfiles');
+        featuredTeams.forEach(team => {
+            teamsContainer.innerHTML += `
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br ${team.color} flex items-center justify-center text-white font-bold">
+                        ${team.name.charAt(0)}
+                    </div>
+                    <div class="font-semibold">${team.name}</div>
+                    <div class="text-sm text-gray-400">${team.sport}</div>
+                </div>
+            `;
+        });
+
+        // Populate Media Gallery
+        const galleryContainer = document.getElementById('mediaGallery');
+        for (let i = 1; i <= 6; i++) {
+            galleryContainer.innerHTML += `
+                <div class="aspect-square bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg overflow-hidden hover:opacity-90 transition-opacity cursor-pointer">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <i data-feather="image" class="w-8 h-8 text-gray-500"></i>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Handle login form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Simple validation
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
             // Simulate login process
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
@@ -258,27 +315,39 @@
             submitBtn.textContent = 'Signing in...';
             submitBtn.disabled = true;
             
-            // Simulate API call
             setTimeout(() => {
-                alert('Login successful! Redirecting to homepage...');
-                window.location.href = 'index.html';
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+                submitBtn.textContent = 'Success! Redirecting...';
+                submitBtn.classList.remove('from-blue-600', 'to-blue-700');
+                submitBtn.classList.add('from-green-600', 'to-green-700');
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
             }, 1500);
         });
 
-        // Social login buttons
-        document.querySelectorAll('button:has(i[data-feather="facebook"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Facebook login would be implemented here');
+        // Simulate real-time updates
+        setInterval(() => {
+            const scoreElements = scoresContainer.querySelectorAll('.text-2xl');
+            scoreElements.forEach(el => {
+                const scores = el.textContent.split(' - ');
+                const homeScore = parseInt(scores[0]);
+                const awayScore = parseInt(scores[1]);
+                
+                // Randomly update scores
+                if (Math.random() > 0.7) {
+                    const newHomeScore = homeScore + Math.floor(Math.random() * 3);
+                    const newAwayScore = awayScore + Math.floor(Math.random() * 3);
+                    el.textContent = `${newHomeScore} - ${newAwayScore}`;
+                    
+                    // Add animation
+                    el.classList.add('scale-110');
+                    setTimeout(() => {
+                        el.classList.remove('scale-110');
+                    }, 300);
+                }
             });
-        });
-
-        document.querySelectorAll('button:has(i[data-feather="github"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('GitHub login would be implemented here');
-            });
-        });
+        }, 30000); // Update every 30 seconds
     </script>
 </body>
 </html>

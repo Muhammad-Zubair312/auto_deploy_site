@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule - Sport Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e40af',
+                        accent: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .live-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        .calendar-day.active {
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- NAVBAR (copied exactly as provided) -->
+    <nav class='bg-gray-900 text-gray-300 px-6 py-3 flex items-center gap-2 shadow-lg sticky top-0 z-50 flex-wrap'><a href='index.html' class='flex items-center gap-2 mr-auto no-underline'><span style='display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#6366f1,#3b82f6);color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.5px;flex-shrink:0;'>S</span><span class='text-white font-bold text-lg tracking-tight'>Sport Website</span></a><a href='index.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Home</a><a href='events.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Events</a><a href='teams.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Teams</a><a href='schedule.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Schedule</a><a href='news.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>News</a><a href='gallery.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Gallery</a><a href='about.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>About</a><a href='contact.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Contact</a><a href='login.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Login</a><a href='signup.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Signup</a></nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <header class="mb-10 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Match Schedule & Live Scores</h1>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Stay updated with real-time scores, upcoming events, and team schedules. Never miss a game with Sport Website.</p>
+        </header>
+
+        <!-- Live Scores Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <i data-feather="activity" class="text-red-500"></i>
+                    Live Scores
+                    <span class="live-pulse bg-red-500 text-white text-xs px-2 py-1 rounded-full">LIVE</span>
+                </h2>
+                <div class="text-sm text-gray-500">Updates every 30 seconds</div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Live Match 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">Basketball</span>
+                        <span class="text-red-600 font-bold flex items-center gap-1">
+                            <i data-feather="radio" class="w-4 h-4"></i>
+                            LIVE
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Lakers</div>
+                            <div class="text-sm text-gray-500">Los Angeles</div>
+                        </div>
+                        <div class="text-3xl font-bold mx-4">98 - 102</div>
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Warriors</div>
+                            <div class="text-sm text-gray-500">Golden State</div>
+                        </div>
+                    </div>
+                    <div class="text-center text-sm text-gray-600">Q4 • 08:24 remaining</div>
+                    <div class="mt-4 text-center">
+                        <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                            Follow Match
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Match 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Soccer</span>
+                        <span class="text-red-600 font-bold flex items-center gap-1">
+                            <i data-feather="radio" class="w-4 h-4"></i>
+                            LIVE
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-center">
+                            <div class="font-bold text-lg">United</div>
+                            <div class="text-sm text-gray-500">Manchester</div>
+                        </div>
+                        <div class="text-3xl font-bold mx-4">2 - 1</div>
+                        <div class="text-center">
+                            <div class="font-bold text-lg">City</div>
+                            <div class="text-sm text-gray-500">Manchester</div>
+                        </div>
+                    </div>
+                    <div class="text-center text-sm text-gray-600">2nd Half • 67'</div>
+                    <div class="mt-4 text-center">
+                        <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                            Follow Match
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Match 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Tennis</span>
+                        <span class="text-red-600 font-bold flex items-center gap-1">
+                            <i data-feather="radio" class="w-4 h-4"></i>
+                            LIVE
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Nadal</div>
+                            <div class="text-sm text-gray-500">Spain</div>
+                        </div>
+                        <div class="text-3xl font-bold mx-4">6-4, 3-2</div>
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Djokovic</div>
+                            <div class="text-sm text-gray-500">Serbia</div>
+                        </div>
+                    </div>
+                    <div class="text-center text-sm text-gray-600">Set 2 • 2nd Game</div>
+                    <div class="mt-4 text-center">
+                        <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                            Follow Match
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Calendar Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <i data-feather="calendar" class="text-primary"></i>
+                Event Calendar
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Calendar Widget -->
+                <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-900">November 2024</h3>
+                        <div class="flex gap-2">
+                            <button class="p-2 hover:bg-gray-100 rounded-lg">
+                                <i data-feather="chevron-left"></i>
+                            </button>
+                            <button class="p-2 hover:bg-gray-100 rounded-lg">
+                                <i data-feather="chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-2 mb-4">
+                        <div class="text-center font-semibold text-gray-600 py-2">Sun</div>
+                        <div class="text-center font-semibold text-gray-600 py-2">Mon</div>
+                        <div class="text-center font-semibold text-gray-600 py-2">Tue</div>
+                        <div class="text-center font-semibold text-gray-600 py-2">Wed</div>
+                        <div class="text-center font-semibold text-gray-600 py-2">Thu</div>
+                        <div class="text-center font-semibold text-gray-600 py-2">Fri</div>
+                        <div class="text-center font-semibold text-gray-600 py-2">Sat</div>
+                        
+                        <!-- Calendar Days -->
+                        <div class="text-center py-3 text-gray-400">28</div>
+                        <div class="text-center py-3 text-gray-400">29</div>
+                        <div class="text-center py-3 text-gray-400">30</div>
+                        <div class="text-center py-3 text-gray-400">31</div>
+                        <div class="text-center py-3">1</div>
+                        <div class="text-center py-3">2</div>
+                        <div class="text-center py-3 calendar-day active">3</div>
+                        <div class="text-center py-3">4</div>
+                        <div class="text-center py-3">5</div>
+                        <div class="text-center py-3">6</div>
+                        <div class="text-center py-3">7</div>
+                        <div class="text-center py-3">8</div>
+                        <div class="text-center py-3">9</div>
+                        <div class="text-center py-3">10</div>
+                        <div class="text-center py-3">11</div>
+                        <div class="text-center py-3">12</div>
+                        <div class="text-center py-3">13</div>
+                        <div class="text-center py-3">14</div>
+                        <div class="text-center py-3">15</div>
+                        <div class="text-center py-3">16</div>
+                        <div class="text-center py-3">17</div>
+                        <div class="text-center py-3">18</div>
+                        <div class="text-center py-3">19</div>
+                        <div class="text-center py-3">20</div>
+                        <div class="text-center py-3">21</div>
+                        <div class="text-center py-3">22</div>
+                        <div class="text-center py-3">23</div>
+                        <div class="text-center py-3">24</div>
+                        <div class="text-center py-3">25</div>
+                        <div class="text-center py-3">26</div>
+                        <div class="text-center py-3">27</div>
+                        <div class="text-center py-3">28</div>
+                        <div class="text-center py-3">29</div>
+                        <div class="text-center py-3">30</div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="font-bold text-gray-900 mb-3">Today's Events</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
+                                <div class="bg-primary text-white p-2 rounded-lg">
+                                    <i data-feather="clock" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">NBA: Lakers vs Warriors</div>
+                                    <div class="text-sm text-gray-600">8:00 PM • Staples Center</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                                <div class="bg-green-500 text-white p-2 rounded-lg">
+                                    <i data-feather="clock" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Premier League: United vs City</div>
+                                    <div class="text-sm text-gray-600">3:00 PM • Old Trafford</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events List -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Upcoming Events</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-primary pl-4 py-2">
+                            <div class="font-bold">Nov 5: Champions League</div>
+                            <div class="text-sm text-gray-600">Real Madrid vs PSG</div>
+                            <div class="text-xs text-gray-500">9:00 PM CET</div>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4 py-2">
+                            <div class="font-bold">Nov 7: NFL Thursday Night</div>
+                            <div class="text-sm text-gray-600">Chiefs vs Packers</div>
+                            <div class="text-xs text-gray-500">8:20 PM EST</div>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4 py-2">
+                            <div class="font-bold">Nov 9: Formula 1 GP</div>
+                            <div class="text-sm text-gray-600">Brazilian Grand Prix</div>
+                            <div class="text-xs text-gray-500">2:00 PM Local</div>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                            <div class="font-bold">Nov 12: NBA Regular Season</div>
+                            <div class="text-sm text-gray-600">Celtics vs Nets</div>
+                            <div class="text-xs text-gray-500">7:30 PM EST</div>
+                        </div>
+                        <div class="border-l-4 border-red-500 pl-4 py-2">
+                            <div class="font-bold">Nov 15: Tennis Masters</div>
+                            <div class="text-sm text-gray-600">ATP Finals - Day 3</div>
+                            <div class="text-xs text-gray-500">1:00 PM GMT</div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-6 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 rounded-lg transition-colors">
+                        View Full Calendar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Profiles Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <i data-feather="users" class="text-primary"></i>
+                Team Profiles
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Team 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-32 bg-gradient-to-r from-purple-600 to-blue-600"></div>
+                    <div class="p-6 -mt-12">
+                        <div class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-white shadow-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=200&h=200" alt="Lakers" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-center mt-4">Los Angeles Lakers</h3>
+                        <div class="text-center text-gray-600 mb-4">NBA • Basketball</div>
+                        <div class="flex justify-between text-sm text-gray-700 mb-2">
+                            <span>Next Match:</span>
+                            <span class="font-semibold">Nov 5, 8:00 PM</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-700 mb-4">
+                            <span>Record:</span>
+                            <span class="font-semibold">12-8 (W-L)</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg hover:bg-secondary transition-colors">
+                            View Schedule
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Team 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-32 bg-gradient-to-r from-red-600 to-red-800"></div>
+                    <div class="p-6 -mt-12">
+                        <div class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-white shadow-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?auto=format&fit=crop&w=200&h=200" alt="United" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-center mt-4">Manchester United</h3>
+                        <div class="text-center text-gray-600 mb-4">Premier League • Soccer</div>
+                        <div class="flex justify-between text-sm text-gray-700 mb-2">
+                            <span>Next Match:</span>
+                            <span class="font-semibold">Nov 6, 3:00 PM</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-700 mb-4">
+                            <span>Record:</span>
+                            <span class="font-semibold">8-2-3 (W-D-L)</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg hover:bg-secondary transition-colors">
+                            View Schedule
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Team 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-32 bg-gradient-to-r from-green-600 to-green-800"></div>
+                    <div class="p-6 -mt-12">
+                        <div class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-white shadow-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=200&h=200" alt="Yankees" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-center mt-4">New York Yankees</h3>
+                        <div class="text-center text-gray-600 mb-4">MLB • Baseball</div>
+                        <div class="flex justify-between text-sm text-gray-700 mb-2">
+                            <span>Next Match:</span>
+                            <span class="font-semibold">Nov 8, 7:05 PM</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-700 mb-4">
+                            <span>Record:</span>
+                            <span class="font-semibold">92-70 (W-L)</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg hover:bg-secondary transition-colors">
+                            View Schedule
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Team 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-32 bg-gradient-to-r from-yellow-600 to-orange-600"></div>
+                    <div class="p-6 -mt-12">
+                        <div class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-white shadow-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519861531473-920034658307?auto=format&fit=crop&w=200&h=200" alt="Chiefs" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-center mt-4">Kansas City Chiefs</h3>
+                        <div class="text-center text-gray-600 mb-4">NFL • Football</div>
+                        <div class="flex justify-between text-sm text-gray-700 mb-2">
+                            <span>Next Match:</span>
+                            <span class="font-semibold">Nov 7, 8:20 PM</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-700 mb-4">
+                            <span>Record:</span>
+                            <span class="font-semibold">7-2 (W-L)</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg hover:bg-secondary transition-colors">
+                            View Schedule
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Registration Section -->
+        <section class="mb-12" data-aos="fade-up">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl shadow-xl p-8 text-white">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-4">Never Miss a Game!</h2>
+                        <p class="mb-6 text-blue-100">Register for free and get personalized schedule alerts, live score notifications, and exclusive access to Sport Website features.</p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center gap-2">
+                                <i data-feather="check-circle" class="w-5 h-5"></i>
+                                Real-time score updates
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-feather="check-circle" class="w-5 h-5"></i>
+                                Personalized team alerts
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-feather="check-circle" class="w-5 h-5"></i>
+                                Calendar sync with your schedule
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-feather="check-circle" class="w-5 h-5"></i>
+                                Exclusive content and analysis
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <h3 class="text-xl font-bold mb-4">Create Your Free Account</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <input type="text" placeholder="Full Name" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white">
+                            </div>
+                            <div>
+                                <input type="email" placeholder="Email Address" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white">
+                            </div>
+                            <div>
+                                <input type="password" placeholder="Password" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white">
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" id="notifications" class="rounded">
+                                <label for="notifications" class="text-sm">Send me score alerts and updates</label>
+                            </div>
+                            <button type="submit" class="w-full bg-white text-primary font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                                Sign Up Now
+                            </button>
+                            <p class="text-sm text-center text-blue-200">Already have an account? <a href="login.html" class="font-semibold underline">Login here</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Gallery Preview -->
+        <section data-aos="fade-up">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <i data-feather="image" class="text-primary"></i>
+                    Media Gallery
+                </h2>
+                <a href="gallery.html" class="text-primary font-semibold hover:underline flex items-center gap-1">
+                    View All
+                    <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="relative overflow-hidden rounded-lg group">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=400&h-300" alt="Basketball" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">NBA Action</span>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg group">
+                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?auto=format&fit=crop&w=400&h=300" alt="Soccer" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">Soccer Goals</span>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg group">
+                    <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=400&h=300" alt="Baseball" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">MLB Highlights</span>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg group">
+                    <img src="https://images.unsplash.com/photo-1519861531473-920034658307?auto=format&fit=crop&w=400&h=300" alt="Football" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">NFL Moments</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 mt-16">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <span style='display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#6366f1,#3b82f6);color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.5px;flex-shrink:0;'>S</span>
+                        <span class='text-white font-bold text-lg tracking-tight'>Sport Website</span>
+                    </div>
+                    <p class="text-gray-400">Your ultimate destination for live scores, schedules, and sports coverage. Never miss a moment with Sport Website.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="schedule.html" class="hover:text-white transition-colors">Schedule</a></li>
+                        <li><a href="teams.html" class="hover:text-white transition-colors">Teams</a></li>
+                        <li><a href="news.html" class="hover:text-white transition-colors">News</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Sports</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-colors">Basketball</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Soccer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Football</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Baseball</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Connect</h4>
+                    <div class="flex gap-4 mb-4">
+                        <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-primary transition-colors">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-primary transition-colors">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-primary transition-colors">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-primary transition-colors">
+                            <i data-feather="youtube" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-400">Subscribe to our newsletter for updates</p>
+                    <div class="mt-3 flex">
+                        <input type="email" placeholder="Your email" class="flex-grow p-2 rounded-l-lg bg-gray-800 text-white focus:outline-none">
+                        <button class="bg-primary text-white px-4 rounded-r-lg hover:bg-secondary transition-colors">
+                            <i data-feather="send" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Sport Website. All rights reserved. | <a href="#" class="hover:text-white transition-colors">Privacy Policy</a> | <a href="#" class="hover:text-white transition-colors">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Simulate live score updates
+        function updateLiveScores() {
+            const scores = document.querySelectorAll('.live-score');
+            scores.forEach(score => {
+                const current = parseInt(score.textContent);
+                if (Math.random() > 0.7) {
+                    score.textContent = current + 1;
+                }
+            });
+        }
+
+        // Update scores every 30 seconds
+        setInterval(updateLiveScores, 30000);
+
+        // Calendar day selection
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            day.addEventListener('click', function() {
+                document.querySelectorAll('.calendar-day').forEach(d => d.classList
