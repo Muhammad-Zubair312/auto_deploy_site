@@ -3,301 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Profile - Learning Platform</title>
-    <script src='https://cdn.tailwindcss.com'></script>
+    <title>Profile - GameSphere</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e293b 0%, #111827 100%);
+        }
+        .profile-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .stat-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+        }
+        .game-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+        }
+        .stream-card {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .achievement-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+        .controller-icon {
+            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4 overflow-x-auto'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Signup</a>
-        <a href='courses.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Courses</a>
-        <a href='lessons.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Lessons</a>
-        <a href='dashboard.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Dashboard</a>
-        <a href='progress-tracking.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Progress Tracking</a>
-        <a href='profile.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Profile</a>
-        <a href='assignments.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Assignments</a>
-        <a href='grades.html' class='px-3 py-2 hover:text-blue-400 whitespace-nowrap'>Grades</a>
-    </nav>
+<body class="gradient-bg text-gray-100 min-h-screen">
+    <!-- Navbar (copied exactly as provided) -->
+    <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🎮</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>GameSphere</span></a><span style='width:1px;height:22px;background:#374151;margin:0 6px;flex-shrink:0;'></span><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='games-library.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Games Library</a><a href='leaderboards.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Leaderboards</a><a href='tournaments.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Tournaments</a><a href='profile.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Profile</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a></div></nav>
 
-    <!-- Profile Header -->
-    <div class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="py-6">
-                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-                    <div class="w-24 h-24 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                        JD
-                    </div>
-                    <div class="text-center md:text-left">
-                        <h1 class="text-3xl font-bold text-gray-900">John Doe</h1>
-                        <p class="text-gray-600">Computer Science Student</p>
-                        <div class="flex items-center space-x-2 mt-2 justify-center md:justify-start">
-                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Active</span>
-                            <span class="text-gray-500 text-sm">Member since 2023</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Profile Hero Section -->
+    <section class="relative py-12 px-4 md:px-8 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1920&q=80" 
+                 alt="Gaming Setup Background" 
+                 style="width:100%;height:100%;object-fit:cover;opacity:0.2;">
         </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            <!-- Left Column - Profile Info -->
-            <div class="lg:col-span-1 space-y-6">
-                <!-- Personal Information -->
-                <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Personal Information</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="text-sm font-medium text-gray-500">Email</label>
-                            <p class="text-gray-900">john.doe@student.edu</p>
+        <div class="container mx-auto relative z-10">
+            <div class="profile-card rounded-2xl p-6 md:p-8 max-w-6xl mx-auto" data-aos="fade-up">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                    <div class="flex-shrink-0">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80" 
+                                 alt="Player Avatar" 
+                                 class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-indigo-500 object-cover">
+                            <div class="absolute bottom-2 right-2 bg-green-500 w-6 h-6 rounded-full border-2 border-gray-900"></div>
                         </div>
-                        <div>
-                            <label class="text-sm font-medium text-gray-500">Phone</label>
-                            <p class="text-gray-900">+1 (555) 123-4567</p>
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium text-gray-500">Location</label>
-                            <p class="text-gray-900">New York, NY</p>
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium text-gray-500">Bio</label>
-                            <p class="text-gray-900">Passionate computer science student with interest in web development and machine learning.</p>
+                        <div class="mt-4 flex justify-center space-x-4">
+                            <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition duration-300">
+                                Edit Profile
+                            </button>
+                            <button class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-semibold transition duration-300">
+                                Share Profile
+                            </button>
                         </div>
                     </div>
-                    <button class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
-                        Edit Profile
-                    </button>
-                </div>
-
-                <!-- Quick Stats -->
-                <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="100">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Learning Stats</h2>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="text-center p-4 bg-blue-50 rounded-lg">
-                            <div class="text-2xl font-bold text-blue-600">12</div>
-                            <div class="text-sm text-gray-600">Courses</div>
-                        </div>
-                        <div class="text-center p-4 bg-green-50 rounded-lg">
-                            <div class="text-2xl font-bold text-green-600">85%</div>
-                            <div class="text-sm text-gray-600">Avg. Grade</div>
-                        </div>
-                        <div class="text-center p-4 bg-purple-50 rounded-lg">
-                            <div class="text-2xl font-bold text-purple-600">45</div>
-                            <div class="text-sm text-gray-600">Lessons</div>
-                        </div>
-                        <div class="text-center p-4 bg-orange-50 rounded-lg">
-                            <div class="text-2xl font-bold text-orange-600">8</div>
-                            <div class="text-sm text-gray-600">Certificates</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column - Main Content -->
-            <div class="lg:col-span-2 space-y-6">
-                <!-- Enrolled Courses -->
-                <div class="bg-white rounded-lg shadow" data-aos="fade-up">
-                    <div class="p-6 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Enrolled Courses</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <!-- Course 1 -->
-                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                        <i data-feather="code" class="text-blue-600"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Web Development</h3>
-                                        <p class="text-sm text-gray-600">Progress: 75%</p>
-                                    </div>
-                                </div>
-                                <div class="mt-3 bg-gray-200 rounded-full h-2">
-                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                    <div class="flex-grow text-center md:text-left">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                            <div>
+                                <h1 class="text-3xl md:text-4xl font-bold mb-2">Alex "Vortex" Chen</h1>
+                                <div class="flex items-center justify-center md:justify-start space-x-4 mb-4">
+                                    <span class="bg-indigo-900 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium">
+                                        Elite Rank
+                                    </span>
+                                    <span class="flex items-center text-yellow-400">
+                                        <i data-feather="star" class="w-4 h-4 mr-1"></i>
+                                        4.8 Rating
+                                    </span>
                                 </div>
                             </div>
-
-                            <!-- Course 2 -->
-                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                                        <i data-feather="database" class="text-green-600"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Data Structures</h3>
-                                        <p class="text-sm text-gray-600">Progress: 60%</p>
-                                    </div>
-                                </div>
-                                <div class="mt-3 bg-gray-200 rounded-full h-2">
-                                    <div class="bg-green-600 h-2 rounded-full" style="width: 60%"></div>
-                                </div>
-                            </div>
-
-                            <!-- Course 3 -->
-                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                                        <i data-feather="cpu" class="text-purple-600"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Machine Learning</h3>
-                                        <p class="text-sm text-gray-600">Progress: 40%</p>
-                                    </div>
-                                </div>
-                                <div class="mt-3 bg-gray-200 rounded-full h-2">
-                                    <div class="bg-purple-600 h-2 rounded-full" style="width: 40%"></div>
-                                </div>
-                            </div>
-
-                            <!-- Course 4 -->
-                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                        <i data-feather="shield" class="text-orange-600"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Cybersecurity</h3>
-                                        <p class="text-sm text-gray-600">Progress: 25%</p>
-                                    </div>
-                                </div>
-                                <div class="mt-3 bg-gray-200 rounded-full h-2">
-                                    <div class="bg-orange-600 h-2 rounded-full" style="width: 25%"></div>
-                                </div>
+                            <div class="achievement-badge w-16 h-16 rounded-full flex items-center justify-center mx-auto md:mx-0">
+                                <i data-feather="award" class="w-8 h-8 text-white"></i>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="bg-white rounded-lg shadow" data-aos="fade-up" data-aos-delay="100">
-                    <div class="p-6 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Recent Activity</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <!-- Activity 1 -->
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                    <i data-feather="check-circle" class="text-green-600"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-gray-900">Completed quiz: <span class="font-semibold">JavaScript Basics</span></p>
-                                    <p class="text-sm text-gray-500">2 hours ago • Score: 92%</p>
-                                </div>
+                        <p class="text-gray-300 mb-6 max-w-2xl">
+                            Competitive FPS specialist with over 2,000 hours across multiple titles. Currently streaming daily on GameSphere with low-latency gameplay. Always looking for squad members!
+                        </p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="stat-card rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-white">1,247</div>
+                                <div class="text-sm text-gray-400">Matches Played</div>
                             </div>
-
-                            <!-- Activity 2 -->
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i data-feather="play" class="text-blue-600"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-gray-900">Watched video: <span class="font-semibold">React Hooks Tutorial</span></p>
-                                    <p class="text-sm text-gray-500">Yesterday • 45 minutes</p>
-                                </div>
+                            <div class="stat-card rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-white">84%</div>
+                                <div class="text-sm text-gray-400">Win Rate</div>
                             </div>
-
-                            <!-- Activity 3 -->
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                                    <i data-feather="message-square" class="text-purple-600"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-gray-900">Posted in discussion: <span class="font-semibold">Algorithm Optimization</span></p>
-                                    <p class="text-sm text-gray-500">2 days ago • 3 replies</p>
-                                </div>
+                            <div class="stat-card rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-white">42</div>
+                                <div class="text-sm text-gray-400">Tournaments</div>
                             </div>
-
-                            <!-- Activity 4 -->
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
-                                    <i data-feather="award" class="text-orange-600"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-gray-900">Earned certificate: <span class="font-semibold">Web Development Fundamentals</span></p>
-                                    <p class="text-sm text-gray-500">3 days ago</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Upcoming Deadlines -->
-                <div class="bg-white rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
-                    <div class="p-6 border-b border-gray-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Upcoming Deadlines</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <!-- Deadline 1 -->
-                            <div class="flex items-center justify-between p-4 bg-red-50 rounded-lg">
-                                <div class="flex items-center space-x-3">
-                                    <i data-feather="file-text" class="text-red-600"></i>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Final Project Submission</h3>
-                                        <p class="text-sm text-gray-600">Web Development Course</p>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-red-600 font-semibold">Due in 3 days</p>
-                                    <p class="text-sm text-gray-500">Dec 15, 2023</p>
-                                </div>
-                            </div>
-
-                            <!-- Deadline 2 -->
-                            <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
-                                <div class="flex items-center space-x-3">
-                                    <i data-feather="clipboard" class="text-yellow-600"></i>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Midterm Exam</h3>
-                                        <p class="text-sm text-gray-600">Data Structures Course</p>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-yellow-600 font-semibold">Due in 1 week</p>
-                                    <p class="text-sm text-gray-500">Dec 20, 2023</p>
-                                </div>
-                            </div>
-
-                            <!-- Deadline 3 -->
-                            <div class="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
-                                <div class="flex items-center space-x-3">
-                                    <i data-feather="edit" class="text-blue-600"></i>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Assignment #5</h3>
-                                        <p class="text-sm text-gray-600">Machine Learning Course</p>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-blue-600 font-semibold">Due in 2 weeks</p>
-                                    <p class="text-sm text-gray-500">Dec 28, 2023</p>
-                                </div>
+                            <div class="stat-card rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-white">5.2K</div>
+                                <div class="text-sm text-gray-400">Followers</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Multiplayer Lobby System -->
+    <section class="py-12 px-4 md:px-8">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">Multiplayer Lobby</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="stream-card rounded-2xl overflow-hidden" data-aos="fade-right">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80" 
+                                 alt="Live Game Streaming" 
+                                 style="width:100%;height:300px;object-fit:cover;">
+                            <div class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full flex items-center">
+                                <span class="animate-pulse mr-2">●</span> LIVE
+                            </div>
+                            <div class="absolute bottom-4 left-4">
+                                <div class="text-xl font-bold">Battle Royale Squad Match</div>
+                                <div class="text-gray-300">Playing with 3 friends</div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Current Session</h3>
+                                <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition duration-300">
+                                    Join Lobby
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="text-center p-3 bg-gray-800 rounded-lg">
+                                    <div class="font-bold">4/4</div>
+                                    <div class="text-sm text-gray-400">Players</div>
+                                </div>
+                                <div class="text-center p-3 bg-gray-800 rounded-lg">
+                                    <div class="font-bold">28ms</div>
+                                    <div class="text-sm text-gray-400">Ping</div>
+                                </div>
+                                <div class="text-center p-3 bg-gray-800 rounded-lg">
+                                    <div class="font-bold">FPS</div>
+                                    <div class="text-sm text-gray-400">144Hz</div>
+                                </div>
+                                <div class="text-center p-3 bg-gray-800 rounded-lg">
+                                    <div class="font-bold">Voice</div>
+                                    <div class="text-sm text-gray-400">Active</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="bg-gray-900 rounded-2xl p-6 h-full">
+                        <h3 class="text-xl font-semibold mb-4">Active Friends</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center p-3 bg-gray-800 rounded-lg">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" 
+                                     alt="Friend Avatar" 
+                                     class="w-10 h-10 rounded-full mr-3 object-cover">
+                                <div class="flex-grow">
+                                    <div class="font-medium">Mike "Shroud"</div>
+                                    <div class="text-sm text-green-400">In Game</div>
+                                </div>
+                                <button class="text-indigo-400 hover:text-indigo-300">
+                                    <i data-feather="message-square" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-800 rounded-lg">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" 
+                                     alt="Friend Avatar" 
+                                     class="w-10 h-10 rounded-full mr-3 object-cover">
+                                <div class="flex-grow">
+                                    <div class="font-medium">Sarah "Valkyrie"</div>
+                                    <div class="text-sm text-yellow-400">In Lobby</div>
+                                </div>
+                                <button class="text-indigo-400 hover:text-indigo-300">
+                                    <i data-feather="message-square" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-800 rounded-lg">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" 
+                                     alt="Friend Avatar" 
+                                     class="w-10 h-10 rounded-full mr-3 object-cover">
+                                <div class="flex-grow">
+                                    <div class="font-medium">Chris "Titan"</div>
+                                    <div class="text-sm text-gray-400">Offline</div>
+                                </div>
+                                <button class="text-gray-500">
+                                    <i data-feather="message-square" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="w-full mt-6 bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-lg font-semibold transition duration-300">
+                            Invite More Friends
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement Tracking -->
+    <section class="py-12 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold" data-aos="fade-up">Achievements</h2>
+                <div class="text-gray-400" data-aos="fade-up">
+                    <span class="text-green-400 font-bold">87</span> of 120 Unlocked
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="game-card rounded-xl p-6" data-aos="zoom-in">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-yellow-900 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="target" class="w-6 h-6 text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Sharpshooter</h3>
+                            <div class="text-sm text-gray-400">1000 headshots</div>
+                        </div>
+                    </div>
+                    <div class="text-green-400 font-bold">Completed</div>
+                </div>
+                <div class="game-card rounded-xl p-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-900 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="users" class="w-6 h-6 text-purple-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Team Player</h3>
+                            <div class="text-sm text-gray-400">500 squad wins</div>
+                        </div>
+                    </div>
+                    <div class="text-blue-400 font-bold">In Progress: 427/500</div>
+                </div>
+                <div class="game-card rounded-xl p-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-900 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="zap" class="w-6 h-6 text-red-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Speed Demon</h3>
+                            <div class="text-sm text-gray-400">Complete in under 2min</div>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 font-bold">New!</div>
+                </div>
+                <div class="game-card rounded-xl p-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="trending-up" class="w-6 h-6 text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Rank Climber</h3>
+                            <div class="text-sm text-gray-400">Reach Elite rank</div>
+                        </div>
+                    </div>
+                    <div class="text-green-400 font-bold">Completed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tournament Registration & Gamepad Compatibility -->
+    <section class="py-12 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div data-aos="fade-right">
+                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold mb-6">Upcoming Tournament</h2>
+                        <div class="mb-6">
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Tournament Banner" 
+                                 class="w-full h-48 rounded-lg object-cover mb-4">
+                            <h3 class="text-xl font-bold mb-2">GameSphere Winter Championship</h3>
+                            <p class="text-gray-300 mb-4">$25,000 prize pool • 128 teams • Double elimination</p>
+                            <div class="flex items-center text-gray-400 mb-6">
+                                <i data-feather="calendar" class="w-5 h-5 mr-2"></i>
+                                <span>Starts: Dec 15, 2024 • 18:00 UTC</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-4 bg-gray-800 rounded-lg">
+                                <div>
+                                    <div class="font-semibold">Your Team</div>
+                                    <div class="text-sm text-gray-400">Vortex Gaming</div>
+                                </div>
+                                <span class="bg-green-900 text-green-300 px-3 py-1 rounded-full text-sm">Registered</span>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-gray-800 rounded-lg">
+                                <div>
+                                    <div class="font-semibold">Next Match</div>
+                                    <div class="text-sm text-gray-400">Round of 64</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-semibold">2 days</div>
+                                    <div class="text-sm text-gray-400">until start</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold transition duration-300">
+                            View Tournament Bracket
+                        </button>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="bg-gradient-to-br from-gray-900 to-blue-900/20 rounded-2xl p-8 h-full">
+                        <h2 class="text-2xl font-bold mb-6">Controller Compatibility</h2>
+                        <div class="flex justify-center mb-6">
+                            <div class="controller-icon relative">
+                                <img src="https://images.unsplash.com/photo-1586816879360-004f5b0c51e5?auto=format&fit=crop&w=400&q=80" 
+                                     alt="Gamepad Controller" 
+                                     class="w-64 h-48 object-contain">
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center p-4 bg-gray-800 rounded-lg">
+                                <i data-feather="check-circle" class="w-6 h-6 text-green-400 mr-4"></i>
+                                <div>
+                                    <div class="font-semibold">Gamepad Detected</div>
+                                    <div class="text-sm text-gray-400">Xbox Elite Series 2</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-4 bg-gray-800 rounded-lg">
+                                <i data-feather="settings" class="w-6 h-6 text-blue-400 mr-4"></i>
+                                <div>
+                                    <div class="font-semibold">Custom Layout</div>
+                                    <div class="text-sm text-gray-400">Profile: Vortex-FPS</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-4 bg-gray-800 rounded-lg">
+                                <i data-feather="activity" class="w-6 h-6 text-purple-400 mr-4"></i>
+                                <div>
+                                    <div class="font-semibold">Response Time</div>
+                                    <div class="text-sm text-gray-400">4ms • Optimized</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition duration-300">
+                            Configure Controls
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Generated Content & Social Sharing -->
+    <section class="py-12 px-4 md:px-8">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">Recent Content & Activity</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="game-card rounded-xl overflow-hidden" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=600&q=80" 
+                         alt="Game Clip Thumbnail" 
+                         style="width:100%;height:200px;object-fit:cover;">
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2">Epic 1v4 Clutch</h3>
+                        <p class="text-gray-300 mb-4">Just uploaded a new highlight from yesterday's tournament match.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-4">
+                                <button class="text-gray-400 hover:text-red-400">
+                                    <i data-feather="heart" class="w-5 h-5"></i>
+                                    <span class="ml-1">248</span>
+                                </button>
+                                <button class="text-gray-400 hover:text-blue-400">
+                                    <i data-feather="share-2" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <span class="text-sm text-gray-400">2 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=600&q=80" 
+                         alt="Strategy Guide" 
+                         style="width:100%;height:200px;object-fit:cover;">
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2">Map Strategy Guide</h3>
+                        <p class="text-gray-300 mb-4">Created a detailed guide for the new Desert Oasis map.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-4">
+                                <button class="text-gray-400 hover:text-red-400">
+                                    <i data-feather="heart" class="w-5 h-5"></i>
+                                    <span class="ml-1">156</span>
+                                </button>
+                                <button class="text-gray-400 hover:text-blue-400">
+                                    <i data-feather="share-2" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <span class="text-sm text-gray-400">1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80" 
+                         alt="Setup Tour" 
+                         style="width:100%;height:200px;object-fit:cover;">
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2">Gaming Setup 2024</h3>
+                        <p class="text-gray-300 mb-4">Tour of my new low-latency streaming setup optimized for GameSphere.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-4">
+                                <button class="text-gray-400 hover:text-red-400">
+                                    <i data-feather="heart" class="w-5 h-5"></i>
+                                    <span class="ml-1">512</span>
+                                </button>
+                                <button class="text-gray-400 hover:text-blue-400">
+                                    <i data-feather="share-2" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <span class="text-sm text-gray-400">3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold transition duration-300">
+                    View All Content
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-blue-600 mr-3">
+                        🎮
+                    </span>
+                    <span class="text-white font-bold text-xl">GameSphere</span>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="youtube" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="twitch" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="discord" class="w-5 h-5"></i>
+                    </a>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    &copy; 2024 GameSphere. All rights reserved. Built for gamers.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS animations
         AOS.init({
             duration: 800,
-            once: true
+            once: true,
+            offset: 100
         });
-
-        // Initialize Feather Icons
+        
         feather.replace();
+        
+        // Simple interactivity for achievement badges
+        document.querySelectorAll('.achievement-badge').forEach(badge => {
+            badge.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            badge.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+        
+        // Join lobby button animation
+        const joinButton = document.querySelector('button.bg-green-600');
+        if (joinButton) {
+            joinButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 10px 20px rgba(22, 163, 74, 0.3)';
+            });
+            joinButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        }
     </script>
 </body>
 </html>

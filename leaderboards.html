@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboards - GameSphere</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .rank-1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+        .rank-2 { background: linear-gradient(135deg, #d1d5db, #9ca3af); }
+        .rank-3 { background: linear-gradient(135deg, #92400e, #78350f); }
+        .game-card:hover { transform: translateY(-4px); }
+        .leaderboard-row:hover { background-color: rgba(55, 65, 81, 0.3); }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- Navbar (copied exactly) -->
+    <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🎮</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>GameSphere</span></a><span style='width:1px;height:22px;background:#374151;margin:0 6px;flex-shrink:0;'></span><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='games-library.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Games Library</a><a href='leaderboards.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Leaderboards</a><a href='tournaments.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Tournaments</a><a href='profile.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Profile</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a></div></nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1920&q=80" 
+             alt="Competitive gaming arena" 
+             class="w-full h-96 object-cover opacity-60">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center px-4" data-aos="fade-up">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4">Global Leaderboards</h1>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">Compete with players worldwide. Track your rank, achievements, and climb to the top.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Game Selection -->
+        <section class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl font-bold mb-8 text-center">Top Games</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Game Card 1 -->
+                <div class="game-card bg-gray-800 rounded-xl p-4 cursor-pointer transition-all duration-300 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80" 
+                         alt="Racing Game" 
+                         class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Neon Racer</h3>
+                    <p class="text-gray-400 text-sm">2.4M players</p>
+                </div>
+                <!-- Game Card 2 -->
+                <div class="game-card bg-gray-800 rounded-xl p-4 cursor-pointer transition-all duration-300 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=400&q=80" 
+                         alt="Battle Royale" 
+                         class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Battlefront Zero</h3>
+                    <p class="text-gray-400 text-sm">5.1M players</p>
+                </div>
+                <!-- Game Card 3 -->
+                <div class="game-card bg-gray-800 rounded-xl p-4 cursor-pointer transition-all duration-300 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=400&q=80" 
+                         alt="Fantasy RPG" 
+                         class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Realm of Legends</h3>
+                    <p class="text-gray-400 text-sm">3.8M players</p>
+                </div>
+                <!-- Game Card 4 -->
+                <div class="game-card bg-gray-800 rounded-xl p-4 cursor-pointer transition-all duration-300 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80" 
+                         alt="Sports Game" 
+                         class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Ultimate Striker</h3>
+                    <p class="text-gray-400 text-sm">1.9M players</p>
+                </div>
+                <!-- Game Card 5 -->
+                <div class="game-card bg-gray-800 rounded-xl p-4 cursor-pointer transition-all duration-300 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?auto=format&fit=crop&w=400&q=80" 
+                         alt="Strategy Game" 
+                         class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Cosmic Command</h3>
+                    <p class="text-gray-400 text-sm">1.2M players</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard Table -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Global Rankings</h2>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <select class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2">
+                        <option>All Games</option>
+                        <option>Neon Racer</option>
+                        <option>Battlefront Zero</option>
+                        <option>Realm of Legends</option>
+                    </select>
+                    <select class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2">
+                        <option>This Month</option>
+                        <option>This Week</option>
+                        <option>All Time</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-900">
+                            <tr>
+                                <th class="py-4 px-6 text-left">Rank</th>
+                                <th class="py-4 px-6 text-left">Player</th>
+                                <th class="py-4 px-6 text-left">Game</th>
+                                <th class="py-4 px-6 text-left">Score</th>
+                                <th class="py-4 px-6 text-left">Achievements</th>
+                                <th class="py-4 px-6 text-left">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rank 1 -->
+                            <tr class="leaderboard-row border-b border-gray-700 transition-colors">
+                                <td class="py-4 px-6">
+                                    <div class="rank-1 w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-900">1</div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-4">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" 
+                                             alt="ProPlayer1" 
+                                             class="w-12 h-12 rounded-full object-cover">
+                                        <div>
+                                            <div class="font-bold">ShadowNinja</div>
+                                            <div class="text-sm text-gray-400">Level 99</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=50&q=80" 
+                                             alt="Neon Racer" 
+                                             class="w-8 h-8 rounded object-cover">
+                                        <span>Neon Racer</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 font-bold text-2xl">9,847,302</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex gap-2">
+                                        <span class="bg-yellow-900 text-yellow-200 px-3 py-1 rounded-full text-sm">Platinum</span>
+                                        <span class="bg-purple-900 text-purple-200 px-3 py-1 rounded-full text-sm">Legend</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="flex items-center gap-2 text-green-400">
+                                        <i data-feather="activity" class="w-4 h-4"></i> Live Streaming
+                                    </span>
+                                </td>
+                            </tr>
+                            <!-- Rank 2 -->
+                            <tr class="leaderboard-row border-b border-gray-700 transition-colors">
+                                <td class="py-4 px-6">
+                                    <div class="rank-2 w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-900">2</div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-4">
+                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" 
+                                             alt="ProPlayer2" 
+                                             class="w-12 h-12 rounded-full object-cover">
+                                        <div>
+                                            <div class="font-bold">ValkyrieQueen</div>
+                                            <div class="text-sm text-gray-400">Level 97</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=50&q=80" 
+                                             alt="Battlefront Zero" 
+                                             class="w-8 h-8 rounded object-cover">
+                                        <span>Battlefront Zero</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 font-bold text-2xl">8,921,455</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex gap-2">
+                                        <span class="bg-yellow-900 text-yellow-200 px-3 py-1 rounded-full text-sm">Platinum</span>
+                                        <span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">Master</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="flex items-center gap-2 text-blue-400">
+                                        <i data-feather="users" class="w-4 h-4"></i> In Lobby
+                                    </span>
+                                </td>
+                            </tr>
+                            <!-- Rank 3 -->
+                            <tr class="leaderboard-row border-b border-gray-700 transition-colors">
+                                <td class="py-4 px-6">
+                                    <div class="rank-3 w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-100">3</div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-4">
+                                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" 
+                                             alt="ProPlayer3" 
+                                             class="w-12 h-12 rounded-full object-cover">
+                                        <div>
+                                            <div class="font-bold">CyberWarlord</div>
+                                            <div class="text-sm text-gray-400">Level 95</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=50&q=80" 
+                                             alt="Realm of Legends" 
+                                             class="w-8 h-8 rounded object-cover">
+                                        <span>Realm of Legends</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 font-bold text-2xl">7,834,112</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex gap-2">
+                                        <span class="bg-yellow-900 text-yellow-200 px-3 py-1 rounded-full text-sm">Platinum</span>
+                                        <span class="bg-red-900 text-red-200 px-3 py-1 rounded-full text-sm">Champion</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="flex items-center gap-2 text-gray-400">
+                                        <i data-feather="clock" class="w-4 h-4"></i> Online 2h ago
+                                    </span>
+                                </td>
+                            </tr>
+                            <!-- Additional rows (4-10) -->
+                            <tr class="leaderboard-row border-b border-gray-700 transition-colors">
+                                <td class="py-4 px-6 font-bold text-xl">4</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-4">
+                                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80" 
+                                             alt="Player4" 
+                                             class="w-10 h-10 rounded-full object-cover">
+                                        <div class="font-bold">NeonGhost</div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">Neon Racer</td>
+                                <td class="py-4 px-6 font-bold">6,543,210</td>
+                                <td class="py-4 px-6">
+                                    <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">Gold</span>
+                                </td>
+                                <td class="py-4 px-6 text-green-400">Online</td>
+                            </tr>
+                            <tr class="leaderboard-row border-b border-gray-700 transition-colors">
+                                <td class="py-4 px-6 font-bold text-xl">5</td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-4">
+                                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=100&q=80" 
+                                             alt="Player5" 
+                                             class="w-10 h-10 rounded-full object-cover">
+                                        <div class="font-bold">PixelHunter</div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">Battlefront Zero</td>
+                                <td class="py-4 px-6 font-bold">5,987,654</td>
+                                <td class="py-4 px-6">
+                                    <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">Gold</span>
+                                </td>
+                                <td class="py-4 px-6 text-blue-400">In Game</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl font-bold mb-12 text-center">Leaderboard Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="w-14 h-14 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
+                        <i data-feather="award" class="w-7 h-7 text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Achievement Tracking</h3>
+                    <p class="text-gray-400">Unlock badges, trophies, and special recognition as you progress through games and climb the ranks.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="w-14 h-14 rounded-lg bg-purple-900 flex items-center justify-center mb-4">
+                        <i data-feather="radio" class="w-7 h-7 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Live Game Streaming</h3>
+                    <p class="text-gray-400">Watch top players compete in real-time with low-latency streaming integrated directly into GameSphere.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="w-14 h-14 rounded-lg bg-green-900 flex items-center justify-center mb-4">
+                        <i data-feather="users" class="w-7 h-7 text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Multiplayer Lobby System</h3>
+                    <p class="text-gray-400">Form teams, join public lobbies, or create private matches with seamless voice chat and matchmaking.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="w-14 h-14 rounded-lg bg-blue-900 flex items-center justify-center mb-4">
+                        <i data-feather="share-2" class="w-7 h-7 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Social Sharing</h3>
+                    <p class="text-gray-400">Share your rankings, achievements, and gameplay highlights across social platforms with one click.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="w-14 h-14 rounded-lg bg-yellow-900 flex items-center justify-center mb-4">
+                        <i data-feather="box" class="w-7 h-7 text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">User-Generated Content</h3>
+                    <p class="text-gray-400">Create custom tournaments, challenges, and mods that appear on community leaderboards.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="w-14 h-14 rounded-lg bg-red-900 flex items-center justify-center mb-4">
+                        <i data-feather="cpu" class="w-7 h-7 text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Gamepad Optimized</h3>
+                    <p class="text-gray-400">Full compatibility with Xbox, PlayStation, and custom controllers with responsive control mapping.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tournament Registration Banner -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="bg-gradient-to-r from-purple-900/50 to-indigo-900/50 rounded-2xl overflow-hidden">
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-2/3 p-8 lg:p-12">
+                        <h2 class="text-3xl font-bold mb-4">Join the Next Tournament</h2>
+                        <p class="text-gray-300 mb-6">Compete for cash prizes, exclusive skins, and the championship title. Registration closes in 3 days.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg font-bold transition-colors">
+                                Register Now
+                            </button>
+                            <button class="bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-lg font-bold transition-colors">
+                                View Rules
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/3">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" 
+                             alt="Tournament Arena" 
+                             class="w-full h-64 lg:h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Stream Preview -->
+        <section data-aos="fade-up">
+            <h2 class="text-3xl font-bold mb-8">Live Now</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Stream 1 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80" 
+                             alt="Live Stream 1" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-red-600 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> LIVE
+                        </div>
+                        <div class="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
+                            12.4K viewers
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-3 mb-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=50&q=80" 
+                                 alt="Streamer" 
+                                 class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <div class="font-bold">ShadowNinja</div>
+                                <div class="text-sm text-gray-400">Neon Racer • Rank #1</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">Championship qualifier - Going for world record!</p>
+                    </div>
+                </div>
+                <!-- Stream 2 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?auto=format&fit=crop&w=600&q=80" 
+                             alt="Live Stream 2" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-red-600 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> LIVE
+                        </div>
+                        <div class="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
+                            8.7K viewers
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-3 mb-3">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=50&q=80" 
+                                 alt="Streamer" 
+                                 class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <div class="font-bold">ValkyrieQueen</div>
+                                <div class="text-sm text-gray-400">Battlefront Zero • Rank #2</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">Squad tournament finals - Watch us dominate!</p>
+                    </div>
+                </div>
+                <!-- Stream 3 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=600&q=80" 
+                             alt="Live Stream 3" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-red-600 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> LIVE
+                        </div>
+                        <div class="absolute bottom-4 right-4 bg-black/70 px-3 py-1 rounded-full text-sm">
+                            5.2K viewers
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-3 mb-3">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=50&q=80" 
+                                 alt="Streamer" 
+                                 class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <div class="font-bold">CyberWarlord</div>
+                                <div class="text-sm text-gray-400">Realm of Legends • Rank #3</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">New expansion gameplay - First look at raid mechanics</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 mt-20 py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center gap-3 mb-6 md:mb-0">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-blue-500 flex items-center justify-center">
+                        <span class="text-xl">🎮</span>
+                    </div>
+                    <span class="text-2xl font-bold">GameSphere</span>
+                </div>
+                <div class="flex gap-6 mb-6 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Support</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                        <i data-feather="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                        <i data-feather="youtube" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                        <i data-feather="twitch" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                        <i data-feather="discord" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 GameSphere. All rights reserved. All game titles and associated content are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800 });
+        feather.replace();
+    </script>
+</body>
+</html>
