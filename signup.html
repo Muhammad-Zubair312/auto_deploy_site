@@ -3,239 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Join Sprot - Create Your Account</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#2563eb',
+                        'brand-orange': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        .password-strength-bar {
+            transition: width 0.3s ease;
+        }
+        .input-focus:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="font-bold text-xl">E-Shop</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
-        </div>
-    </nav>
+<body class="font-sans bg-gray-50 text-gray-800">
+<nav class='bg-gray-900 text-gray-200 px-6 py-3 flex flex-wrap items-center gap-1 shadow-xl sticky top-0 z-50'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Home</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Signup</a><a href='training-programs.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Training Programs</a><a href='athlete-profiles.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Athlete Profiles</a><a href='events-schedule.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Events Schedule</a></nav>
 
-    <!-- Signup Section -->
-    <section class="py-12 px-4 md:px-8 lg:px-16">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Column: Benefits -->
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
-                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                            <i data-feather="shopping-cart" class="text-blue-600"></i>
+<main class="min-h-screen">
+    <div class="flex flex-col lg:flex-row min-h-[calc(100vh-73px)]">
+        <!-- Left Panel - Benefits -->
+        <div class="lg:w-1/2 bg-gradient-to-br from-blue-900 to-indigo-800 text-white p-8 lg:p-12 relative hidden lg:flex flex-col justify-center">
+            <div class="absolute inset-0 bg-black/30 z-0"></div>
+            <img src='https://source.unsplash.com/800x900/?sports,athlete,training' class='absolute w-full h-full object-cover z-0' alt='Athlete training on a track' loading='lazy'>
+            <div class="relative z-10 max-w-lg mx-auto space-y-10">
+                <div>
+                    <h2 class="text-4xl font-bold mb-4">Join the Sprot Community</h2>
+                    <p class="text-xl text-blue-100">Connect with athletes, track your progress, and achieve your personal best.</p>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="flex items-start space-x-4 group">
+                        <div class="bg-blue-600 p-3 rounded-xl group-hover:bg-orange-500 transition-colors duration-300 flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
-                            <p class="text-gray-600">Save your details for quicker purchases.</p>
+                            <h3 class="text-xl font-semibold mb-2">Register for Events</h3>
+                            <p class="text-blue-100">Sign up for local marathons, tournaments, and workshops. Get automated reminders and performance tracking for every event.</p>
                         </div>
                     </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-2 rounded-full mr-4">
-                            <i data-feather="package" class="text-green-600"></i>
+
+                    <div class="flex items-start space-x-4 group">
+                        <div class="bg-blue-600 p-3 rounded-xl group-hover:bg-orange-500 transition-colors duration-300 flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
-                            <p class="text-gray-600">Monitor your orders in real-time.</p>
+                            <h3 class="text-xl font-semibold mb-2">Build Your Athlete Profile</h3>
+                            <p class="text-blue-100">Showcase your achievements, personal records, and training history. Connect and compete with athletes worldwide.</p>
                         </div>
                     </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 p-2 rounded-full mr-4">
-                            <i data-feather="star" class="text-purple-600"></i>
+
+                    <div class="flex items-start space-x-4 group">
+                        <div class="bg-blue-600 p-3 rounded-xl group-hover:bg-orange-500 transition-colors duration-300 flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
-                            <p class="text-gray-600">Share and read authentic product reviews.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
-                            <i data-feather="credit-card" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
-                            <p class="text-gray-600">Multiple payment options with top security.</p>
+                            <h3 class="text-xl font-semibold mb-2">Personalized Training Plans</h3>
+                            <p class="text-blue-100">Access AI-generated workout schedules tailored to your sport, fitness level, and goals. Adjust and share your plans.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Right Column: Signup Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
-                
-                <form id="signupForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
-                            <input type="text" id="firstName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="password">Password</label>
-                        <input type="password" id="password" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="terms" required 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="terms" class="ml-3 text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                        </label>
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="newsletter" class="ml-3 text-gray-700">
-                            Subscribe to our newsletter for exclusive deals
-                        </label>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                        Create Account
-                    </button>
-                    
-                    <div class="text-center">
-                        <p class="text-gray-600">Already have an account? 
-                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
-                        </p>
-                    </div>
-                    
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            Facebook
-                        </button>
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
-                            Twitter
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <i data-feather="shopping-bag" class="text-blue-400"></i>
-                    <span class="font-bold text-xl">E-Shop</span>
-                </div>
-                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
-                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
-                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Account</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
-                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Contact</h3>
-                <p class="text-gray-400">support@eshop.com</p>
-                <p class="text-gray-400">+1 (555) 123-4567</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
+                <div class="pt-6 border-t border-blue-400/30">
+                    <p class="text-lg"><span class="font-bold">12,847 athletes</span> are already training smarter with Sprot.</p>
                 </div>
             </div>
         </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
-        </div>
-    </footer>
 
-    <script>
-        feather.replace();
-        
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to login...');
-            window.location.href = 'login.html';
-        });
-    </script>
-</body>
-</html>
+        <!-- Right Panel - Signup Form -->
+        <div class="lg:w-1/2 bg-white p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+            <div class="max-w-md w-full mx-auto">
+                <!-- Logo & Heading -->
+                <div class="text-center mb-10">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl shadow-lg mb-6">
+                        <span class="text-2xl font-bold text-white">S</span>
+                    </div>
+                    <h1 class="text-3xl font-bold text-gray-900 mt-4">Create Your Sprot Account</h1>
+                    <p class="text-gray-600 mt-2">Start your journey to peak performance today.</p>
+                </div>
+
+                <!-- Form -->
+                <form class="space-y-6" id="signupForm">
+                    <!-- Full Name -->
+                    <div>
+                        <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                            <input type="text" id="fullName" name="fullName" placeholder="Alex Morgan" required class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition duration-200">
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">As it will appear on your athlete profile.</p>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-gray-400"></i>
+                            </div>
+                            <input type="email" id="email" name="email" placeholder="alex@example.com" required class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition duration-200">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input type="password" id="password" name="password" placeholder="Create a strong password" required class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition duration-200">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <button type="button" id="togglePassword" class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Password Strength Indicator -->
+                        <div class="mt-3">
+                            <div class="flex justify-between text-xs text-gray-600 mb-1">
+                                <span>Password strength</span>
+                                <span id="strengthText" class="font-medium">Weak</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div id="strengthBar" class="password-strength-bar h-2 rounded-full bg-red-500" style="width: 20%;"></div>
+                            </div>
+                            <ul class="text-xs text-gray-500 mt-2 space-y-1">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 opacity-0" id="check1"></i> At least 8 characters</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 opacity-0" id="check2"></i> Contains a number</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 opacity-0" id="check3"></i> Contains a special character</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" required class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition duration-200">
+                        </div>
+                        <p id="confirmMessage" class="text-xs mt-1 hidden"></p>
+                    </div>
+
+                    <!-- Terms & Privacy -->
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="terms" name="terms" type="checkbox" required class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="terms" class="text-gray-700">I agree to the <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Terms of Service</a> and <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Privacy Policy</a>. I understand my data will be used to personalize my training experience.</label>
+                        </div>
+                    </div>
+
+                    <!-- Primary CTA -->
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover

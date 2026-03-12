@@ -3,320 +3,470 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEasy - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Sprot Website - Home</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        accent: '#f97316',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .product-card:hover { transform: translateY(-5px); transition: transform 0.3s ease; }
-        .category-icon { width: 64px; height: 64px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        html {
+            scroll-behavior: smooth;
+        }
+        .stat-card:hover .stat-icon {
+            transform: scale(1.1);
+        }
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+        }
+        .testimonial-card:hover {
+            box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.1);
+        }
+        .instructor-card:hover img {
+            transform: scale(1.05);
+        }
+        .step-card:hover .step-number {
+            background-color: #f97316;
+            color: white;
+        }
+        .faq-question:hover {
+            color: #2563eb;
+        }
+        .skill-bar-inner {
+            transition: width 1.5s ease-in-out;
+        }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="text-xl font-bold">ShopEasy</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Signup</a>
-        </div>
-    </nav>
+<body class="font-sans bg-gray-50 text-gray-800">
+<nav class='bg-gray-900 text-gray-200 px-6 py-3 flex flex-wrap items-center gap-1 shadow-xl sticky top-0 z-50'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Home</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Signup</a><a href='training-programs.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Training Programs</a><a href='athlete-profiles.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Athlete Profiles</a><a href='events-schedule.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Events Schedule</a></nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient text-white py-16 md:py-24 px-4">
-        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Discover Amazing Products</h1>
-            <p class="text-xl mb-10 max-w-2xl mx-auto">Shop the latest trends with secure checkout, fast delivery, and easy returns.</p>
-            
-            <!-- Search Bar -->
-            <div class="max-w-2xl mx-auto flex">
-                <input type="text" placeholder="Search for products, brands, categories..." 
-                       class="flex-grow p-4 rounded-l-lg text-gray-800 focus:outline-none">
-                <button class="bg-blue-600 hover:bg-blue-700 px-6 rounded-r-lg flex items-center">
-                    <i data-feather="search"></i>
-                    <span class="ml-2">Search</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Categories -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Shop by Category</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="smartphone" class="category-icon"></i>
+    <section class="relative">
+        <img src='https://source.unsplash.com/1600x700/?education,learning,classroom' class='w-full h-[500px] object-cover' alt='Students collaborating in a modern classroom' loading='lazy'>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-transparent flex items-center">
+            <div class="container mx-auto px-4 md:px-8 lg:px-16">
+                <div class="max-w-2xl text-white">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">Master Your Future with Expert-Led Courses</h1>
+                    <p class="text-xl mb-8 text-gray-200">Join over 250,000 learners worldwide. Build in-demand skills through interactive projects and personalized feedback.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#courses" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg text-center transition duration-300 shadow-lg hover:shadow-xl">Explore Courses</a>
+                        <a href="#how-it-works" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold py-3 px-8 rounded-lg text-center border border-white/40 transition duration-300">Start Learning Free</a>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Electronics</h3>
-                    <p class="text-gray-600">Latest gadgets & devices</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shirt" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Fashion</h3>
-                    <p class="text-gray-600">Trendy clothing & accessories</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="bg-yellow-100 text-yellow-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="home" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Home & Living</h3>
-                    <p class="text-gray-600">Furniture & decor</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-red-100 text-red-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="heart" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Health & Beauty</h3>
-                    <p class="text-gray-600">Wellness & personal care</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="py-16 px-4 bg-gray-100">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl font-bold" data-aos="fade-right">Featured Products</h2>
-                <a href="products.html" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center" data-aos="fade-left">
-                    View All <i data-feather="arrow-right" class="ml-2"></i>
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stat-card p-6">
+                    <div class="stat-icon text-blue-600 text-5xl mb-4 transition-transform duration-300">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-900 mb-2">1,850+</div>
+                    <div class="text-gray-600 font-medium">Courses</div>
+                    <p class="text-gray-500 text-sm mt-2">From coding to creative arts</p>
+                </div>
+                <div class="stat-card p-6">
+                    <div class="stat-icon text-blue-600 text-5xl mb-4 transition-transform duration-300">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-900 mb-2">254,300+</div>
+                    <div class="text-gray-600 font-medium">Students</div>
+                    <p class="text-gray-500 text-sm mt-2">Active learners worldwide</p>
+                </div>
+                <div class="stat-card p-6">
+                    <div class="stat-icon text-blue-600 text-5xl mb-4 transition-transform duration-300">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-900 mb-2">420+</div>
+                    <div class="text-gray-600 font-medium">Instructors</div>
+                    <p class="text-gray-500 text-sm mt-2">Industry experts & professors</p>
+                </div>
+                <div class="stat-card p-6">
+                    <div class="stat-icon text-blue-600 text-5xl mb-4 transition-transform duration-300">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-900 mb-2">94%</div>
+                    <div class="text-gray-600 font-medium">Completion Rate</div>
+                    <p class="text-gray-500 text-sm mt-2">Highest in online education</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses -->
+    <section id="courses" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Courses</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Hand-picked by our editors. Master new skills with project-based learning and peer reviews.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course 1 -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500">
+                    <div class="relative">
+                        <img src='https://source.unsplash.com/800x500/?programming,course,learning' class='w-full h-48 object-cover' alt='Full Stack Web Development course project on laptop screen' loading='lazy'>
+                        <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Development</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Full Stack Web Development Bootcamp</h3>
+                        <p class="text-gray-600 text-sm mb-4">Build 12+ real projects with React, Node.js, and MongoDB.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="https://source.unsplash.com/40x40/?portrait,developer,man" class="w-8 h-8 rounded-full mr-2" alt="Instructor Alex Chen" loading='lazy'>
+                                <span class="text-sm font-medium">Alex Chen</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-semibold">4.8</span>
+                                <span class="text-gray-500 text-sm ml-1">(2,140)</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-gray-900">$89.99</span>
+                                <span class="text-gray-500 line-through text-sm ml-2">$129.99</span>
+                            </div>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Course 2 -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500">
+                    <div class="relative">
+                        <img src='https://source.unsplash.com/800x500/?design,course,creative' class='w-full h-48 object-cover' alt='UI/UX Design course workspace with sketches and tablet' loading='lazy'>
+                        <span class="absolute top-4 left-4 bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Design</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">UI/UX Design Masterclass: Figma & Prototyping</h3>
+                        <p class="text-gray-600 text-sm mb-4">From wireframes to interactive prototypes for web and mobile.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="https://source.unsplash.com/40x40/?portrait,designer,woman" class="w-8 h-8 rounded-full mr-2" alt="Instructor Maya Rodriguez" loading='lazy'>
+                                <span class="text-sm font-medium">Maya Rodriguez</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-semibold">4.9</span>
+                                <span class="text-gray-500 text-sm ml-1">(1,873)</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-gray-900">$74.99</span>
+                                <span class="text-gray-500 line-through text-sm ml-2">$99.99</span>
+                            </div>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Course 3 -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500">
+                    <div class="relative">
+                        <img src='https://source.unsplash.com/800x500/?business,course,finance' class='w-full h-48 object-cover' alt='Data Analysis course with charts and graphs on monitor' loading='lazy'>
+                        <span class="absolute top-4 left-4 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Business</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Data Analysis & Visualization with Python</h3>
+                        <p class="text-gray-600 text-sm mb-4">Transform raw data into actionable insights using Pandas and Matplotlib.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="https://source.unsplash.com/40x40/?portrait,analyst,man" class="w-8 h-8 rounded-full mr-2" alt="Instructor David Park" loading='lazy'>
+                                <span class="text-sm font-medium">David Park</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-semibold">4.7</span>
+                                <span class="text-gray-500 text-sm ml-1">(3,022)</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-gray-900">$94.99</span>
+                            </div>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Course 4 -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500">
+                    <div class="relative">
+                        <img src='https://source.unsplash.com/800x500/?language,learning,books' class='w-full h-48 object-cover' alt='Spanish language learning materials and notebook' loading='lazy'>
+                        <span class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Language</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Conversational Spanish: Beginner to Intermediate</h3>
+                        <p class="text-gray-600 text-sm mb-4">Master daily conversations with native speakers through immersive exercises.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="https://source.unsplash.com/40x40/?portrait,teacher,woman" class="w-8 h-8 rounded-full mr-2" alt="Instructor Sofia Martinez" loading='lazy'>
+                                <span class="text-sm font-medium">Sofia Martinez</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-semibold">4.8</span>
+                                <span class="text-gray-500 text-sm ml-1">(1,540)</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-gray-900">$59.99</span>
+                            </div>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Course 5 -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500">
+                    <div class="relative">
+                        <img src='https://source.unsplash.com/800x500/?photography,course,camera' class='w-full h-48 object-cover' alt='Photography course with DSLR camera and lens' loading='lazy'>
+                        <span class="absolute top-4 left-4 bg-pink-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Photography</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Digital Photography: Composition & Lighting</h3>
+                        <p class="text-gray-600 text-sm mb-4">Learn professional techniques for portrait, landscape, and street photography.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="https://source.unsplash.com/40x40/?portrait,photographer,man" class="w-8 h-8 rounded-full mr-2" alt="Instructor James Wilson" loading='lazy'>
+                                <span class="text-sm font-medium">James Wilson</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-semibold">4.9</span>
+                                <span class="text-gray-500 text-sm ml-1">(892)</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-gray-900">$69.99</span>
+                                <span class="text-gray-500 line-through text-sm ml-2">$89.99</span>
+                            </div>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Course 6 -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500">
+                    <div class="relative">
+                        <img src='https://source.unsplash.com/800x500/?music,course,instrument' class='w-full h-48 object-cover' alt='Piano keyboard and sheet music for music course' loading='lazy'>
+                        <span class="absolute top-4 left-4 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Music</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Piano for Beginners: Read Music & Play Songs</h3>
+                        <p class="text-gray-600 text-sm mb-4">No prior experience needed. Learn chords, scales, and 10 popular songs.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img src="https://source.unsplash.com/40x40/?portrait,musician,woman" class="w-8 h-8 rounded-full mr-2" alt="Instructor Elena Petrova" loading='lazy'>
+                                <span class="text-sm font-medium">Elena Petrova</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-semibold">4.6</span>
+                                <span class="text-gray-500 text-sm ml-1">(1,205)</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-gray-900">$49.99</span>
+                            </div>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="training-programs.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-lg">
+                    View All Courses <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Wireless Headphones" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Premium Wireless Headphones</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(128 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$199.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How Sprot Learning Works</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">A simple, effective path to skill mastery designed for busy schedules.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="step-card text-center p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition duration-300">
+                    <div class="step-number w-16 h-16 rounded-full bg-blue-100 text-blue-600 text-2xl font-bold flex items-center justify-center mx-auto mb-6 transition duration-300">1</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Choose Your Course</h3>
+                    <p class="text-gray-600">Browse our catalog and select a course that matches your goals. Filter by skill level, duration, and topic.</p>
                 </div>
-                
-                <!-- Product 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Smart Watch" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Fitness Smart Watch</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(256 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$249.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
+                <div class="step-card text-center p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition duration-300">
+                    <div class="step-number w-16 h-16 rounded-full bg-blue-100 text-blue-600 text-2xl font-bold flex items-center justify-center mx-auto mb-6 transition duration-300">2</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Learn by Doing</h3>
+                    <p class="text-gray-600">Watch concise video lessons and immediately apply knowledge with interactive coding exercises and projects.</p>
                 </div>
-                
-                <!-- Product 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Bluetooth Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Portable Bluetooth Speaker</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(87 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$89.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
+                <div class="step-card text-center p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition duration-300">
+                    <div class="step-number w-16 h-16 rounded-full bg-blue-100 text-blue-600 text-2xl font-bold flex items-center justify-center mx-auto mb-6 transition duration-300">3</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Get Personalized Feedback</h3>
+                    <p class="text-gray-600">Submit projects for review by instructors and peers. Receive detailed critiques to improve your work.</p>
                 </div>
-                
-                <!-- Product 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Running Shoes" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Professional Running Shoes</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(312 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$129.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
+                <div class="step-card text-center p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition duration-300">
+                    <div class="step-number w-16 h-16 rounded-full bg-blue-100 text-blue-600 text-2xl font-bold flex items-center justify-center mx-auto mb-6 transition duration-300">4</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Earn Your Certificate</h3>
+                    <p class="text-gray-600">Complete the course requirements to earn a shareable certificate that validates your new skills to employers.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Why Shop With Us?</h2>
+    <!-- Instructor Spotlight -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet Our Expert Instructors</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Learn from industry leaders, published authors, and award-winning educators.</p>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center" data-aos="fade-up">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shield" class="w-12 h-12"></i>
+                <div class="instructor-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <div class="overflow-hidden">
+                        <img src="https://source.unsplash.com/600x400/?portrait,professor,man" class="w-full h-64 object-cover transition-transform duration-500" alt="Dr. Marcus Lee, Computer Science Professor" loading='lazy'>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Secure Payment</h3>
-                    <p class="text-gray-600">100% secure payment processing with SSL encryption and multiple payment options.</p>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Dr. Marcus Lee</h3>
+                        <p class="text-orange-500 font-semibold mb-3">Machine Learning & AI Specialist</p>
+                        <p class="text-gray-600 text-sm mb-4">Former Google AI researcher with 15+ publications. Focuses on making complex concepts accessible.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span class="ml-2 font-semibold text-gray-900">4.9</span>
+                            </div>
+                            <span class="text-blue-600 text-sm font-medium">12 Courses</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="truck" class="w-12 h-12"></i>
+                <div class="instructor-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <div class="overflow-hidden">
+                        <img src="https://source.unsplash.com/600x400/?portrait,designer,woman" class="w-full h-64 object-cover transition-transform duration-500" alt="Sarah Johnson, UX Design Director" loading='lazy'>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Fast Delivery</h3>
-                    <p class="text-gray-600">Free shipping on orders over $50. Express delivery available in select areas.</p>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Sarah Johnson</h3>
+                        <p class="text-orange-500 font-semibold mb-3">UX Design Director</p>
+                        <p class="text-gray-600 text-sm mb-4">Led design teams at Airbnb and Spotify. Passionate about user-centered design and accessibility.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="ml-2 font-semibold text-gray-900">5.0</span>
+                            </div>
+                            <span class="text-blue-600 text-sm font-medium">8 Courses</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-purple-100 text-purple-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="refresh-cw" class="w-12 h-12"></i>
+                <div class="instructor-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <div class="overflow-hidden">
+                        <img src="https://source.unsplash.com/600x400/?portrait,business,man" class="w-full h-64 object-cover transition-transform duration-500" alt="Michael Torres, Financial Analyst" loading='lazy'>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Easy Returns</h3>
-                    <p class="text-gray-600">30-day return policy. No questions asked returns for all products.</p>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Michael Torres</h3>
+                        <p class="text-orange-500 font-semibold mb-3">Financial Analysis & Strategy</p>
+                        <p class="text-gray-600 text-sm mb-4">Ex-McKinsey consultant with expertise in corporate finance and data-driven decision making.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="ml-2 font-semibold text-gray-900">4.9</span>
+                            </div>
+                            <span class="text-blue-600 text-sm font-medium">6 Courses</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="athlete-profiles.html" class="bg-gray-900 hover:bg-black text-white font-semibold py-3 px-8 rounded-lg transition duration-300">View All Instructors</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Student Success Stories</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">See how Sprot learners have transformed their careers and unlocked new opportunities.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-gray-50 rounded-xl p-8 border border-gray-200 transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <img src="https://source.unsplash.com/80x80/?portrait,student,woman" class="w-16 h-16 rounded-full mr-4" alt="Priya Sharma, former marketing manager" loading='lazy'>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Priya Sharma</h4>
+                            <p class="text-gray-600 text-sm">Data Analyst at TechFlow Inc.</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"The Data Analysis course completely changed my career trajectory. I went from a marketing manager to a data analyst role with a 40% salary increase within 6 months. The projects were so relevant to real-world problems."</p>
+                    <div class="flex items-center text-amber-500">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-gray-50 rounded-xl p-8 border border-gray-200 transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <img src="https://source.unsplash.com/80x80/?portrait,student,man" class="w-16 h-16 rounded-full mr-4" alt="Carlos Mendez, freelance developer" loading='lazy'>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Carlos Mendez</h4>
+                            <p class="text-gray-600 text-sm">Freelance Web Developer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"As a complete beginner, the Full Stack Bootcamp gave me the confidence and portfolio to start freelancing. I now have 5 steady clients and work remotely from anywhere. The instructor feedback was invaluable."</p>
+                    <div class="flex items-center text-amber-500">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-gray-50 rounded-xl p-8 border border-gray-200 transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <img src="https://source.unsplash.com/80x80/?portrait,student,woman,glasses" class="w-16 h-16 rounded-full mr-4" alt="Aisha Johnson, teacher turned UX designer" loading='lazy'>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Aisha Johnson</h4>
+                            <p class="text-gray-600 text-sm">UX Designer at EduTech Solutions</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"Transitioning from teaching to UX design seemed impossible, but the Design Masterclass provided the perfect bridge. The portfolio I built during the course directly led to my current job offer. The community support was amazing."</p>
+                    <div class="flex items-center text-amber-500">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 px-4 bg-gray-900 text-white">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Ready to Start Shopping?</h2>
-            <p class="text-xl mb-10 text-gray-300" data-aos="fade-up" data-aos-delay="100">Join thousands of satisfied customers today.</p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="signup.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in">
-                    <i data-feather="user-plus" class="mr-3"></i> Create Free Account
-                </a>
-                <a href="products.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in" data-aos-delay="200">
-                    <i data-feather="shopping-bag" class="mr-3"></i> Browse Products
-                </a>
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-blue-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Start Learning Today. No Risk.</h2>
+            <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-10">Get 7-day free access to any course. Cancel anytime. No credit card required for the trial.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="signup.html" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-10 rounded-lg text-lg transition duration-300 shadow-xl">Start Free Trial</a>
+                <a href="#courses" class="bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold py-4 px-10 rounded-lg text-lg transition duration-300">Browse Courses</a>
             </div>
+            <p class="text-blue-200 text-sm mt-8">Join 254,300+ learners already on Sprot</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-feather="shopping-bag" class="text-blue-400"></i>
-                        <span class="text-xl font-bold">ShopEasy</span>
-                    </div>
-                    <p class="text-gray-400">Your trusted online shopping destination for quality products and exceptional service.</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white">Checkout</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Order Tracking</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Refunds</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Stay Connected</h4>
-                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="flex-grow p-3 rounded-l-lg text-gray-800">
-                        <button class="bg-blue-600 hover:bg-blue-700 px-4 rounded-r-lg">
-                            <i data-feather="send"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 ShopEasy. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-        
-        // Initialize Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
-        });
-        
-        // Simple cart counter
-        let cartCount = 0;
-        document.querySelectorAll('button:contains("Add to Cart")').forEach(button => {
-            button.addEventListener('click', function() {
-                cartCount++;
-                // In a real app, this would update a cart badge
-                console.log(`Added to cart. Total items: ${cartCount}`);
-                alert('Product added to cart!');
-            });
-        });
-    </script>
-</body>
-</html>
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+                <div class="lg:col-span-2">
+                    <h3 class="text-2xl font-bold text-white mb-4">Sprot Website</h3>
+                    <p class="mb-6 max-w-md">The world's leading platform for skill-based education. We connect learners with expert instructors and transformative learning experiences.</p>
+                    <div class="flex space-x-4">
+                        <a

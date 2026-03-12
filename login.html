@@ -3,282 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | E-Commerce Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Login | Sprot Website</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#2563eb',
+                        'brand-orange': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+        .toggle-password {
+            cursor: pointer;
         }
-        .login-card {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
+        .social-btn {
+            transition: all 0.3s ease;
         }
-        .input-focus:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
     </style>
 </head>
-<body class="font-sans">
-    <!-- Shared Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex space-x-4">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
-        </div>
-        <div class="text-sm text-gray-300 mt-2 md:mt-0">
-            Welcome back! Access your account
-        </div>
-    </nav>
+<body class="font-sans bg-gray-50">
+<nav class='bg-gray-900 text-gray-200 px-6 py-3 flex flex-wrap items-center gap-1 shadow-xl sticky top-0 z-50'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Home</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Signup</a><a href='training-programs.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Training Programs</a><a href='athlete-profiles.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Athlete Profiles</a><a href='events-schedule.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Events Schedule</a></nav>
 
-    <!-- Login Page Content -->
-    <main class="container mx-auto px-4 py-12">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" data-aos="fade-up">
-            <!-- Login Form Section -->
-            <div class="login-card rounded-2xl shadow-2xl p-8 md:p-12">
-                <div class="text-center mb-10">
-                    <h1 class="text-4xl font-bold text-gray-900 mb-3">Welcome Back</h1>
-                    <p class="text-gray-600">Sign in to your account to continue shopping</p>
+    <main class="min-h-screen flex flex-col lg:flex-row">
+        <!-- Left Panel -->
+        <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+            <img src='https://source.unsplash.com/800x900/?education,study,learning' class='w-full h-full object-cover' alt='Students collaborating on a sports science project' loading='lazy'>
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/60 to-transparent flex flex-col justify-end p-12">
+                <div class="max-w-md">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-brand-blue flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-3xl font-bold text-white tracking-tight">SPROT</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-white mb-4 leading-tight">Elevate Your Game. Master Your Mind.</h2>
+                    <p class="text-gray-300 text-lg mb-8">Connect with elite training plans, track athlete development, and register for premier sporting events. Your journey to peak performance starts here.</p>
+                    <div class="flex items-center space-x-4 text-gray-300">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-brand-orange mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            <span>Personalized Training Modules</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-brand-orange mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            <span>Live Event Registration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-8 md:p-12 lg:p-16">
+            <div class="w-full max-w-md">
+                <!-- Logo -->
+                <div class="flex justify-center lg:justify-start mb-8">
+                    <a href="index.html" class="flex items-center space-x-3 group">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900">Sprot</h1>
+                            <p class="text-sm text-gray-500">Sports Education Platform</p>
+                        </div>
+                    </a>
                 </div>
 
-                <form id="loginForm" class="space-y-6">
+                <!-- Welcome -->
+                <div class="text-center lg:text-left mb-10">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Welcome back, Athlete</h2>
+                    <p class="text-gray-600">Sign in to access your personalized training dashboard, upcoming event registrations, and athlete network.</p>
+                </div>
+
+                <!-- Form -->
+                <form class="space-y-6">
+                    <!-- Email -->
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address
-                        </label>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                         <div class="relative">
-                            <i data-feather="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                required
-                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="you@example.com"
-                            >
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                            </div>
+                            <input id="email" name="email" type="email" autocomplete="email" required class="form-input pl-10 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200" placeholder="coach.jordan@sprot.com">
                         </div>
                     </div>
 
+                    <!-- Password -->
                     <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            Password
-                        </label>
+                        <div class="flex items-center justify-between mb-2">
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200">Forgot password?</a>
+                        </div>
                         <div class="relative">
-                            <i data-feather="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="password" 
-                                id="password" 
-                                required
-                                class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="Enter your password"
-                            >
-                            <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                <i data-feather="eye"></i>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input id="password" name="password" type="password" autocomplete="current-password" required class="form-input pl-10 pr-10 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200" placeholder="••••••••">
+                            <button type="button" id="togglePassword" class="toggle-password absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg id="eyeIcon" class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
                             </button>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input 
-                                type="checkbox" 
-                                id="remember"
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                            >
-                            <label for="remember" class="ml-2 text-sm text-gray-700">
-                                Remember me
-                            </label>
-                        </div>
-                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800 hover:underline">
-                            Forgot password?
-                        </a>
+                    <!-- Remember Me -->
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember this device for 30 days</label>
                     </div>
 
-                    <button 
-                        type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-                    >
-                        Sign In
+                    <!-- Sign In Button -->
+                    <button type="submit" class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-lg shadow-sm text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:-translate-y-0.5">
+                        Sign in to Dashboard
                     </button>
-
-                    <div class="text-center">
-                        <p class="text-gray-600">
-                            Don't have an account? 
-                            <a href="signup.html" class="text-blue-600 hover:text-blue-800 font-semibold hover:underline">
-                                Sign up here
-                            </a>
-                        </p>
-                    </div>
                 </form>
 
-                <div class="mt-8 pt-8 border-t border-gray-200">
-                    <p class="text-center text-gray-600 mb-4">Or continue with</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            <span>Facebook</span>
-                        </button>
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="github" class="mr-2"></i>
-                            <span>GitHub</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Benefits Section -->
-            <div class="space-y-8">
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="200">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i data-feather="shopping-bag" class="text-blue-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Track Your Orders</h3>
-                            <p class="text-gray-600">Monitor your purchases from order to delivery with real-time updates.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="400">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-green-100 p-3 rounded-lg mr-4">
-                            <i data-feather="heart" class="text-green-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Personalized Experience</h3>
-                            <p class="text-gray-600">Get product recommendations based on your browsing and purchase history.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="600">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-purple-100 p-3 rounded-lg mr-4">
-                            <i data-feather="star" class="text-purple-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Write Reviews</h3>
-                            <p class="text-gray-600">Share your experience and help other customers make informed decisions.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-lg p-8 text-white" data-aos="fade-up" data-aos-delay="800">
-                    <h3 class="text-2xl font-bold mb-4">Secure Shopping</h3>
-                    <p class="mb-4">Your security is our priority. We use industry-standard encryption to protect your data.</p>
-                    <div class="flex items-center">
-                        <i data-feather="shield" class="mr-3"></i>
-                        <span class="font-semibold">256-bit SSL Encryption</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">E-Commerce Store</h3>
-                    <p class="text-gray-400">Your one-stop shop for all your needs. Quality products, secure payments, fast delivery.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white transition">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white transition">Checkout</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Account</h4>
-                    <ul class="space-y-2">
-                        <li><a href="login.html" class="text-gray-400 hover:text-white transition">Login</a></li>
-                        <li><a href="signup.html" class="text-gray-400 hover:text-white transition">Sign Up</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Order Tracking</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <p class="text-gray-400">support@ecommerce.com</p>
-                    <p class="text-gray-400">+1 (555) 123-4567</p>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        // Initialize Feather Icons
-        feather.replace();
-
-        // Toggle password visibility
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.querySelector('i').setAttribute('data-feather', type === 'password' ? 'eye' : 'eye-off');
-            feather.replace();
-        });
-
-        // Form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Simple validation
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Simulate login process
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Signing in...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                alert('Login successful! Redirecting to homepage...');
-                window.location.href = 'index.html';
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
-
-        // Social login buttons
-        document.querySelectorAll('button:has(i[data-feather="facebook"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Facebook login would be implemented here');
-            });
-        });
-
-        document.querySelectorAll('button:has(i[data-feather="github"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('GitHub login would be implemented here');
-            });
-        });
-    </script>
-</body>
-</html>
+                <!-- Div

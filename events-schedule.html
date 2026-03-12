@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Schedule | Sprot Website</title>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#2563eb',
+                        'brand-orange': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .skill-bar-fill {
+            width: 0%;
+            transition: width 1.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class='font-sans bg-gray-50 text-gray-800'>
+<nav class='bg-gray-900 text-gray-200 px-6 py-3 flex flex-wrap items-center gap-1 shadow-xl sticky top-0 z-50'><a href='index.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Home</a><a href='about.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>About</a><a href='contact.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Contact</a><a href='login.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Login</a><a href='signup.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Signup</a><a href='training-programs.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Training Programs</a><a href='athlete-profiles.html' class='px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Athlete Profiles</a><a href='events-schedule.html' class='px-4 py-2 rounded-md text-sm fontibold hover:bg-indigo-600 hover:text-white transition-colors duration-200'>Events Schedule</a></nav>
+
+    <!-- Hero -->
+    <section class="relative">
+        <img src='https://source.unsplash.com/1200x500/?stadium,marathon,starting-line' class='w-full h-96 object-cover' alt='Crowd at a sports stadium starting line' loading='lazy'>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-orange-600/50 flex items-center justify-center">
+            <div class="text-center text-white px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">Events Schedule</h1>
+                <p class="text-xl md:text-2xl max-w-3xl mx-auto drop-shadow-md">Register for upcoming competitions, track live results, and connect with athletes. Your journey to the podium starts here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content & Calendar -->
+    <main class="max-w-7xl mx-auto px-4 py-12 lg:px-8">
+        <div class="grid lg:grid-cols-3 gap-12">
+            <!-- Calendar & Live Feed -->
+            <div class="lg:col-span-2 space-y-12">
+                <!-- Interactive Calendar -->
+                <section class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+                        <h2 class="text-3xl font-bold text-gray-900">Upcoming Events Calendar</h2>
+                        <div class="flex gap-2">
+                            <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">Filter by Sport</button>
+                            <button class="px-4 py-2 border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors">Sync to Calendar</button>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-7 gap-2 mb-6 text-center font-semibold text-gray-600">
+                        <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+                    </div>
+                    <div class="grid md:grid-cols-7 gap-2">
+                        <!-- Calendar Days - Example Week -->
+                        <div class="h-24 p-2 border rounded-lg bg-gray-50">28</div>
+                        <div class="h-24 p-2 border rounded-lg bg-gray-50">29</div>
+                        <div class="h-24 p-2 border rounded-lg bg-gray-50">30</div>
+                        <div class="h-24 p-2 border rounded-lg relative overflow-hidden group">
+                            <span class="font-semibold">1</span>
+                            <div class="absolute inset-1 bg-orange-100 border-l-4 border-orange-500 p-2 rounded-r text-xs">
+                                <p class="font-bold text-orange-700">Regional Swim Meet</p>
+                                <p class="text-gray-600">9:00 AM</p>
+                            </div>
+                        </div>
+                        <div class="h-24 p-2 border rounded-lg relative overflow-hidden group">
+                            <span class="font-semibold">2</span>
+                            <div class="absolute inset-1 bg-blue-100 border-l-4 border-blue-600 p-2 rounded-r text-xs">
+                                <p class="font-bold text-blue-700">Youth Athletics Championship</p>
+                                <p class="text-gray-600">All Day</p>
+                            </div>
+                        </div>
+                        <div class="h-24 p-2 border rounded-lg bg-gray-50">3</div>
+                        <div class="h-24 p-2 border rounded-lg bg-gray-50">4</div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t">
+                        <h3 class="text-xl font-bold mb-4">Featured Event: National Junior Marathon</h3>
+                        <div class="flex flex-col md:flex-row gap-6 items-start md:items-center bg-gradient-to-r from-blue-50 to-orange-50 p-6 rounded-xl">
+                            <img src='https://source.unsplash.com/300x200/?marathon,runners' class='w-full md:w-48 rounded-lg object-cover' alt='Runners in a marathon' loading='lazy'>
+                            <div class="flex-1">
+                                <p class="text-gray-700 mb-2"><i class="fas fa-calendar-day text-orange-500 mr-2"></i><strong>Date:</strong> May 15, 2024 | <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i><strong>Location:</strong> Central City Park</p>
+                                <p class="mb-4">A 10k race for athletes under 18. Features timing chips, professional coaching workshops, and scholarship opportunities for top finishers.</p>
+                                <button class="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all hover:scale-105 shadow-md">Register Now</button>
+                                <span class="ml-4 text-sm text-gray-600"><i class="far fa-user"></i> 247 Registered</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Live Scores / Results -->
+                <section class="bg-gradient-to-br from-gray-900 to-blue-900 text-white rounded-2xl shadow-2xl p-6 md:p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-3xl font-bold"><i class="fas fa-broadcast-tower text-orange-500 mr-3"></i>Live Results Dashboard</h2>
+                        <span class="px-3 py-1 bg-red-600 rounded-full text-sm font-bold animate-pulse">LIVE</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 bg-white/10 rounded-xl backdrop-blur-sm hover:bg-white/15 transition-colors">
+                            <div>
+                                <h4 class="font-bold">U19 Basketball Finals: Ravens vs. Hawks</h4>
+                                <p class="text-sm text-gray-300">Quarter 3 | 8:24 remaining</p>
+                            </div>
+                            <div class="text-3xl font-mono font-bold">
+                                <span class="text-blue-300">62</span> - <span class="text-orange-300">58</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-4 bg-white/10 rounded-xl backdrop-blur-sm hover:bg-white/15 transition-colors">
+                            <div>
+                                <h4 class="font-bold">Regional Swimming 200m Freestyle</h4>
+                                <p class="text-sm text-gray-300">Heat 4 completed</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold">Leader: M. Chen <span class="text-orange-300">1:48.32</span></p>
+                                <p class="text-sm">+0.45s ahead</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center mt-6 text-gray-300"><i class="fas fa-rotate mr-2"></i>Updates every 30 seconds</p>
+                </section>
+            </div>
+
+            <!-- Sidebar: Registration & Features -->
+            <div class="space-y-8">
+                <!-- Quick Registration Card -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 sticky top-24">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b">Quick Event Registration</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Select Event</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option>National Junior Marathon (May 15)</option>
+                                <option>Regional Swim Meet (May 1)</option>
+                                <option>Youth Athletics Championship (May 2)</option>
+                                <option>Spring Cycling Classic (May 22)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Athlete Profile</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option>Link to your profile</option>
+                                <option>Create new profile</option>
+                            </select>
+                        </div>
+                        <button type="button" class="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl">Proceed to Secure Checkout</button>
+                    </form>
+                    <p class="text-xs text-gray-500 mt-4 text-center"><i class="fas fa-shield-alt text-green-500 mr-1"></i> Secure payment & 24/7 support</p>
+                </div>
+
+                <!-- Feature Cards -->
+                <div class="space-y-6">
+                    <div class="bg-gradient-to-br from-white to-blue-50 p-6 rounded-xl border border-blue-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-lg mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Certified Results</h4>
+                        <p class="text-gray-700">All events are officially timed and recorded. Results are uploaded to your athlete profile for scouts and recruiters.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-white to-orange-50 p-6 rounded-xl border border-orange-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-orange-100 text-orange-500 rounded-lg mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Community Networking</h4>
+                        <p class="text-gray-700">Connect with other participants before and after events. Share training tips and form practice groups.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-white to-gray-50 p-6 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-gray-100 text-gray-600 rounded-lg mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Performance Analytics</h4>
+                        <p class="text-gray-700">Get post-event breakdowns comparing your splits, times, and rankings to your personal bests and peers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Social Proof / Testimonials -->
+    <section class="bg-white py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Trusted by Athletes & Coaches</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-blue-300 transition-colors">
+                    <div class="flex items-center mb-6">
+                        <img src='https://source.unsplash.com/100x100/?portrait,woman,athlete' class='w-14 h-14 rounded-full object-cover mr-4' alt='Sarah Chen portrait' loading='lazy'>
+                        <div>
+                            <h4 class="font-bold text-lg">Sarah Chen</h4>
+                            <p class="text-blue-600 font-semibold">National Swim Team</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The event registration is seamless, and the live results page kept my family updated during the entire meet. It's an essential tool for any serious athlete."</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-orange-300 transition-colors">
+                    <div class="flex items-center mb-6">
+                        <img src='https://source.unsplash.com/100x100/?portrait,man,coach' class='w-14 h-14 rounded-full object-cover mr-4' alt='Coach Marcus Rivera portrait' loading='lazy'>
+                        <div>
+                            <h4 class="font-bold text-lg">Marcus Rivera</h4>
+                            <p class="text-orange-500 font-semibold">Head Coach, Velocity Track Club</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Managing my team's entries for multiple events used to be a nightmare. Sprot's schedule and bulk registration features save me 10 hours a month."</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-blue-300 transition-colors">
+                    <div class="flex items-center mb-6">
+                        <div class="text-3xl font-bold text-gray-300 mr-4">1200+</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Events Hosted</h4>
+                            <p class="text-gray-600">On our platform</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">From local 5Ks to national youth championships, our platform reliably handles timing, registration, and communication for organizations of all sizes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-4 bg-gradient-to-r from-blue-600 to-blue-800">
+        <div class="max-w-4xl mx-auto text-center text-white">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready for Your Next Challenge?</h2>
+            <p class="text-xl mb-10 text-blue-100">Browse our full calendar, set personal reminders, and join a community of thousands of athletes improving every day.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href='signup.html' class="px-8 py-4 bg-white text-blue-700 font-bold text-lg rounded-xl hover:bg-gray-100 hover:scale-105 transition-all shadow-2xl">Create Free Account</a>
+                <a href='training-programs.html' class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold text-lg rounded-xl hover:bg-white/10 transition-all">Find a Training Plan</a>
+            </div>
+            <p class="mt-8 text-blue-200"><i class="fas fa-star mr-2"></i> All registered athletes get a free 30-day premium trial.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Sprot<span class="text-orange-500">.</span></h3>
+                    <p class="mb-4">Empowering the next generation of athletes through technology, education, and community.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-700 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-500 transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-
