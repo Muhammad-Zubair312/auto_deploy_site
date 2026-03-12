@@ -3,241 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket News - Latest Updates & Articles</title>
+    <title>Sports News | Latest Updates & Articles</title>
     <script src='https://cdn.tailwindcss.com'></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-        .article-card:hover {
+        .news-card:hover {
             transform: translateY(-5px);
             transition: transform 0.3s ease;
         }
-        .category-active {
-            border-bottom: 3px solid #3b82f6;
-            color: #3b82f6;
+        .calendar-day:hover {
+            background-color: #3b82f6;
+            color: white;
+            cursor: pointer;
+        }
+        .score-update {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Home</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Signup</a>
-        <a href='matches.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Matches</a>
-        <a href='teams.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Teams</a>
-        <a href='players.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Players</a>
-        <a href='news.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base font-semibold text-blue-300'>News</a>
-        <a href='statistics.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Statistics</a>
-        <a href='livescores.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>LiveScores</a>
-        <a href='rankings.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Rankings</a>
-        <a href='tournaments.html' class='px-3 py-2 hover:text-blue-400 text-sm md:text-base'>Tournaments</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex space-x-4 flex-wrap">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='events.html' class='px-3 py-2 hover:text-blue-400'>Events</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400 font-semibold text-blue-300'>News</a>
+            <a href='gallery.html' class='px-3 py-2 hover:text-blue-400'>Gallery</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        </div>
+        <div class="mt-2 md:mt-0">
+            <div class="flex items-center space-x-2 bg-gray-800 px-3 py-1 rounded-lg">
+                <i data-feather="radio" class="w-4 h-4"></i>
+                <span class="text-sm">Live Scores: </span>
+                <div class="score-update text-yellow-300 font-bold" id="liveScore">Loading...</div>
+            </div>
+        </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-8">
         <!-- Page Header -->
-        <header class="mb-10 text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Cricket News</h1>
-            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Stay updated with the latest cricket news, match reports, player interviews, and expert analysis from around the world.</p>
+        <header class="mb-10 text-center" data-aos="fade-down">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Sports News & Updates</h1>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Stay updated with the latest news, team rosters, event calendars, and exclusive articles from the world of sports.</p>
         </header>
 
-        <!-- News Categories -->
-        <div class="mb-10 overflow-x-auto">
-            <div class="flex space-x-6 pb-2 min-w-max md:min-w-0 md:justify-center">
-                <button class="category-active px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">All News</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Match Reports</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Player Interviews</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Tournament Updates</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Transfer News</button>
-                <button class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200">Analysis</button>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: News Articles -->
+            <div class="lg:col-span-2">
+                <section class="mb-12" data-aos="fade-right">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-3xl font-bold text-gray-800">Latest News Articles</h2>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            View All <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Featured Article -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card md:col-span-2">
+                            <div class="md:flex">
+                                <div class="md:w-2/5">
+                                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                         alt="Championship Game" class="w-full h-64 md:h-full object-cover">
+                                </div>
+                                <div class="p-6 md:w-3/5">
+                                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">BREAKING</span>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Historic Championship Victory Sets New Records</h3>
+                                    <p class="text-gray-600 mb-4">The team secured their third consecutive championship title with a stunning last-minute victory that will be remembered for years to come.</p>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center text-gray-500">
+                                            <i data-feather="calendar" class="w-4 h-4 mr-2"></i>
+                                            <span>2 hours ago</span>
+                                        </div>
+                                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800">Read Full Story →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Regular Articles -->
+                        <article class="bg-white rounded-xl shadow-md overflow-hidden news-card">
+                            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Team Training" class="w-full h-48 object-cover">
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">New Training Facility Opens Next Month</h4>
+                                <p class="text-gray-600 mb-4">State-of-the-art facility promises to revolutionize athlete preparation and recovery.</p>
+                                <div class="flex items-center text-gray-500 text-sm">
+                                    <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                    <span>5 hours ago</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="bg-white rounded-xl shadow-md overflow-hidden news-card">
+                            <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Merchandise" class="w-full h-48 object-cover">
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Exclusive Merchandise Collection Launch</h4>
+                                <p class="text-gray-600 mb-4">New limited edition jerseys and accessories now available in our online store.</p>
+                                <div class="flex items-center text-gray-500 text-sm">
+                                    <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                    <span>1 day ago</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Image Gallery Section -->
+                <section class="mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Photo Gallery</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                                 alt="Action Shot 1" class="w-full h-40 object-cover hover:scale-110 transition duration-300">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                                 alt="Action Shot 2" class="w-full h-40 object-cover hover:scale-110 transition duration-300">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                                 alt="Action Shot 3" class="w-full h-40 object-cover hover:scale-110 transition duration-300">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                                 alt="Action Shot 4" class="w-full h-40 object-cover hover:scale-110 transition duration-300">
+                        </div>
+                    </div>
+                    <div class="text-center mt-6">
+                        <a href="gallery.html" class="inline-flex items-center px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition">
+                            <i data-feather="image" class="mr-2 w-5 h-5"></i>
+                            View Full Gallery
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Sidebar -->
+            <div class="lg:col-span-1">
+                <!-- Event Calendar -->
+                <section class="bg-white rounded-xl shadow-lg p-6 mb-8" data-aos="fade-left">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="calendar" class="mr-3 w-6 h-6 text-blue-600"></i>
+                        Event Calendar
+                    </h2>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold text-gray-700">November 2024</h3>
+                            <div class="flex space-x-2">
+                                <button class="p-1 hover:bg-gray-100 rounded"><i data-feather="chevron-left" class="w-5 h-5"></i></button>
+                                <button class="p-1 hover:bg-gray-100 rounded"><i data-feather="chevron-right" class="w-5 h-5"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-7 gap-2 text-center mb-4">
+                            <div class="font-semibold text-gray-500 py-2">Sun</div>
+                            <div class="font-semibold text-gray-500 py-2">Mon</div>
+                            <div class="font-semibold text-gray-500 py-2">Tue</div>
+                            <div class="font-semibold text-gray-500 py-2">Wed</div>
+                            <div class="font-semibold text-gray-500 py-2">Thu</div>
+                            <div class="font-semibold text-gray-500 py-2">Fri</div>
+                            <div class="font-semibold text-gray-500 py-2">Sat</div>
+                            
+                            <!-- Calendar Days -->
+                            <div class="calendar-day py-2 rounded">27</div>
+                            <div class="calendar-day py-2 rounded">28</div>
+                            <div class="calendar-day py-2 rounded">29</div>
+                            <div class="calendar-day py-2 rounded">30</div>
+                            <div class="calendar-day py-2 rounded">31</div>
+                            <div class="calendar-day py-2 rounded bg-blue-50 text-blue-600 font-semibold">1</div>
+                            <div class="calendar-day py-2 rounded">2</div>
+                            
+                            <div class="calendar-day py-2 rounded">3</div>
+                            <div class="calendar-day py-2 rounded">4</div>
+                            <div class="calendar-day py-2 rounded bg-blue-100 text-blue-800 font-semibold">5</div>
+                            <div class="calendar-day py-2 rounded">6</div>
+                            <div class="calendar-day py-2 rounded">7</div>
+                            <div class="calendar-day py-2 rounded bg-red-100 text-red-800 font-semibold">8</div>
+                            <div class="calendar-day py-2 rounded">9</div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <h4 class="font-semibold text-gray-900">League Match: Team A vs Team B</h4>
+                            <p class="text-sm text-gray-600">Nov 5, 7:00 PM • Stadium Arena</p>
+                        </div>
+                        <div class="border-l-4 border-red-500 pl-4 py-2">
+                            <h4 class="font-semibold text-gray-900">Championship Finals</h4>
+                            <p class="text-sm text-gray-600">Nov 8, 6:30 PM • National Stadium</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4 py-2">
+                            <h4 class="font-semibold text-gray-900">Youth Tournament</h4>
+                            <p class="text-sm text-gray-600">Nov 15, 9:00 AM • Community Center</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Team Rosters -->
+                <section class="bg-white rounded-xl shadow-lg p-6 mb-8" data-aos="fade-left" data-aos-delay="100">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i data-feather="users" class="mr-3 w-6 h-6 text-blue-600"></i>
+                        Team Rosters
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                                A
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Team Alpha</h4>
+                                <p class="text-sm text-gray-600">22 Players • Coach: Smith</p>
+                            </div>
+                            <i data-feather="chevron-right" class="ml-auto w-5 h-5 text-gray-400"></i>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
+                            <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                                B
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Team Bravo</h4>
+                                <p class="text-sm text-gray-600">24 Players • Coach: Johnson</p>
+                            </div>
+                            <i data-feather="chevron-right" class="ml-auto w-5 h-5 text-gray-400"></i>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
+                            <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                                C
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Team Charlie</h4>
+                                <p class="text-sm text-gray-600">20 Players • Coach: Williams</p>
+                            </div>
+                            <i data-feather="chevron-right" class="ml-auto w-5 h-5 text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <a href="teams.html" class="mt-6 inline-flex items-center justify-center w-full py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition">
+                        <i data-feather="list" class="mr-2 w-5 h-5"></i>
+                        View All Teams
+                    </a>
+                </section>
+
+                <!-- User Registration Promo -->
+                <section class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-lg p-6 text-white" data-aos="fade-left" data-aos-delay="200">
+                    <h2 class="text-2xl font-bold mb-4">Join Our Community</h2>
+                    <p class="mb-6">Register now to get exclusive access to premium content, personalized news feeds, and special merchandise discounts.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i data-feather="check-circle" class="w-5 h-5 mr-3 text-green-300"></i>
+                            <span>Personalized news alerts</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check-circle" class="w-5 h-5 mr-3 text-green-300"></i>
+                            <span>Exclusive merchandise offers</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check-circle" class="w-5 h-5 mr-3 text-green-300"></i>
+                            <span>Early ticket access</span>
+                        </div>
+                    </div>
+                    
+                    <a href="signup.html" class="mt-6 inline-flex items-center justify-center w-full py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition">
+                        <i data-feather="user-plus" class="mr-2 w-5 h-5"></i>
+                        Register Now
+                    </a>
+                </section>
+
+                <!-- Merchandise Shop Teaser -->
+                <section class="bg-white rounded-xl shadow-lg p-6 mt-8" data-aos="fade-left" data-aos-delay="300">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i data-feather="shopping-bag" class="mr-3 w-6 h-6 text-red-600"></i>
+                        Official Store
+                    </h2>
+                    <p class="text-gray-600 mb-4">Check out our latest merchandise collection featuring exclusive team apparel and accessories.</p>
+                    <div class="relative rounded-lg overflow-hidden mb-4">
+                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                             alt="Merchandise" class="w-full h-40 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="text-sm font-semibold">NEW COLLECTION</div>
+                            <div class="text-lg font-bold">Limited Edition Jerseys</div>
+                        </div>
+                    </div>
+                    <button class="w-full py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center justify-center">
+                        <i data-feather="shopping-cart" class="mr-2 w-5 h-5"></i>
+                        Shop Now
+                    </button>
+                </section>
             </div>
         </div>
 
-        <!-- Featured Article -->
-        <div class="mb-12" data-aos="fade-up">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-2/3">
-                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Featured Cricket Match" 
-                             class="w-full h-64 md:h-full object-cover">
+        <!-- Live Score Integration Section -->
+        <section class="mt-16 bg-gray-900 text-white rounded-2xl p-8" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Live Score Updates</h2>
+                    <p class="text-gray-300">Real-time scores from ongoing matches. API integration ready for live data feed.</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <span class="inline-flex items-center px-4 py-2 bg-red-600 rounded-full">
+                        <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 mr-2"></span>
+                        LIVE
+                    </span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg">Basketball</h3>
+                        <span class="text-sm text-yellow-300">Q3 08:32</span>
                     </div>
-                    <div class="p-8 md:w-1/3">
-                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full mb-4">FEATURED</span>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4">World Cup Final: Historic Victory for Underdogs</h2>
-                        <p class="text-gray-600 mb-6">In a stunning turn of events, the underdog team clinched their first World Cup title with a last-ball victory. Read the full match report and analysis.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
-                                <div>
-                                    <p class="font-medium text-gray-800">Sarah Johnson</p>
-                                    <p class="text-sm text-gray-500">2 hours ago</p>
-                                </div>
-                            </div>
-                            <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
-                                Read More
-                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                            </a>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span>Lakers</span>
+                            <span class="font-bold text-xl">89</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Celtics</span>
+                            <span class="font-bold text-xl">85</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg">Soccer</h3>
+                        <span class="text-sm text-yellow-300">2nd Half 67'</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span>United</span>
+                            <span class="font-bold text-xl">2</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>City</span>
+                            <span class="font-bold text-xl">1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg">Baseball</h3>
+                        <span class="text-sm text-yellow-300">7th Inning</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span>Yankees</span>
+                            <span class="font-bold text-xl">5</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Red Sox</span>
+                            <span class="font-bold text-xl">3</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- News Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <!-- Article 1 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1595435934247-5d33b7f92c60?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Player Profile" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">PLAYER INTERVIEW</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Exclusive: Star Batsman Reveals Training Secrets</h3>
-                    <p class="text-gray-600 mb-4">In an exclusive interview, the world's top-ranked batsman shares his rigorous training routine and mental preparation techniques.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">45 min ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 2 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Tournament Update" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">TOURNAMENT UPDATE</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">New Format Announced for Next Season</h3>
-                    <p class="text-gray-600 mb-4">Cricket governing body announces revolutionary changes to tournament structure, promising more competitive matches.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">3 hours ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 3 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Statistical Analysis" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">ANALYSIS</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Data Reveals Most Effective Bowling Strategy</h3>
-                    <p class="text-gray-600 mb-4">Statistical analysis of 1000+ matches shows surprising trends in modern bowling techniques and their success rates.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">5 hours ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 4 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Team News" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">TRANSFER NEWS</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Record-Breaking Transfer Confirmed</h3>
-                    <p class="text-gray-600 mb-4">All-rounder signs with new franchise in the biggest transfer deal in cricket history. Details of the contract revealed.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">1 day ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 5 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Match Report" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">MATCH REPORT</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Thrilling Tie in Day-Night Test Match</h3>
-                    <p class="text-gray-600 mb-4">An epic battle ends in a rare tie as both teams finish with identical scores. Relive the final moments of this historic match.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">2 days ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Article 6 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden article-card" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="Injury Update" 
-                     class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">TEAM NEWS</span>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Captain Returns from Injury Ahead of Crucial Series</h3>
-                    <p class="text-gray-600 mb-4">Team captain cleared to play after successful recovery from injury. Coach expresses confidence in team's chances.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-500">3 days ago</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read</a>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <!-- Load More Button -->
-        <div class="text-center mb-12" data-aos="fade-up">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
-                Load More Articles
-            </button>
-        </div>
-
-        <!-- Newsletter Subscription -->
-        <div class="bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl p-8 text-white mb-12" data-aos="fade-up">
-            <div class="max-w-2xl mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-4">Never Miss a Cricket Update</h2>
-                <p class="mb-6 text-blue-100">Subscribe to our newsletter and get the latest news delivered directly to your inbox.</p>
-                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                    <input type="email" 
-                           placeholder="Enter your email address" 
-                           class="flex-grow px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                    <button class="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition duration-300">
-                        Subscribe
-                    </button>
-                </div>
+            
+            <div class="mt-8 text-center">
+                <p class="text-gray-400 text-sm">Live score API integration available. Connect to your preferred sports data provider for real-time updates.</p>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-gray-900 text-white py-12 mt-16">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-2">CricketHub</h3>
-                    <p class="text-gray-400">Your ultimate cricket companion</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sports Network</h3>
+                    <p class="text-gray-400">Bringing you the latest in sports news, events, and community updates.</p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="facebook" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="twitter" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="instagram" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i data-feather="youtube" class="w-5 h-5"></i>
-                    </a>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="news.html" class="text-gray-400 hover:text-white">News</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Teams</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="youtube" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-3">Subscribe for weekly updates</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg flex-grow text-gray-900">
+                        <button class="bg-blue-600 px-4 py-2 rounded-r-lg hover:bg-blue-700">Subscribe</button>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-                <p>&copy; 2024 CricketHub. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Sports Network. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         // Initialize AOS
@@ -245,31 +431,37 @@
             duration: 800,
             once: true
         });
-
+        
         // Initialize Feather Icons
         feather.replace();
-
-        // Category switching functionality
-        document.querySelectorAll('.flex button').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.flex button').forEach(btn => {
-                    btn.classList.remove('category-active');
-                });
-                this.classList.add('category-active');
+        
+        // Simulate live score updates
+        const scores = [
+            "Basketball: Lakers 89-85 Celtics",
+            "Soccer: United 2-1 City",
+            "Baseball: Yankees 5-3 Red Sox",
+            "Tennis: Player A 6-4 Player B"
+        ];
+        
+        let scoreIndex = 0;
+        const liveScoreElement = document.getElementById('liveScore');
+        
+        function updateLiveScore() {
+            liveScoreElement.textContent = scores[scoreIndex];
+            scoreIndex = (scoreIndex + 1) % scores.length;
+        }
+        
+        // Initial update
+        updateLiveScore();
+        
+        // Update every 5 seconds
+        setInterval(updateLiveScore, 5000);
+        
+        // Calendar day click handler
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            day.addEventListener('click', function() {
+                alert(`Event details for November ${this.textContent} would appear here.`);
             });
-        });
-
-        // Load more articles functionality
-        document.querySelector('button.bg-blue-600').addEventListener('click', function() {
-            this.textContent = 'Loading...';
-            this.disabled = true;
-            
-            // Simulate loading delay
-            setTimeout(() => {
-                this.textContent = 'No More Articles';
-                this.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                this.classList.add('bg-gray-400', 'cursor-not-allowed');
-            }, 1500);
         });
     </script>
 </body>

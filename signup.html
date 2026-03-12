@@ -3,238 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E Commerce</title>
+    <title>Sign Up | SportHub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+        }
+        .form-shadow {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
         <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="font-bold text-xl">E-Shop</span>
+            <i data-feather="activity" class="text-blue-400"></i>
+            <span class="font-bold text-xl">SportHub</span>
         </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
+        <div class="flex space-x-4 mt-2 md:mt-0">
             <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+            <a href='events.html' class='px-3 py-2 hover:text-blue-400'>Events</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+            <a href='gallery.html' class='px-3 py-2 hover:text-blue-400'>Gallery</a>
             <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded-md hover:bg-blue-700'>Signup</a>
         </div>
     </nav>
 
-    <!-- Signup Section -->
-    <section class="py-12 px-4 md:px-8 lg:px-16">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Column: Benefits -->
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
-                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                            <i data-feather="shopping-cart" class="text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
-                            <p class="text-gray-600">Save your details for quicker purchases.</p>
-                        </div>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="gradient-bg text-white py-16 px-4">
+            <div class="container mx-auto text-center" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Join Our Sports Community</h1>
+                <p class="text-xl text-blue-200 max-w-2xl mx-auto">Create your account to access event calendars, team rosters, news updates, and exclusive member benefits.</p>
+            </div>
+        </section>
+
+        <!-- Registration Form -->
+        <section class="py-16 px-4">
+            <div class="container mx-auto max-w-4xl">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Registration Form -->
+                    <div class="bg-white rounded-2xl p-8 form-shadow" data-aos="fade-right">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h2>
+                        <p class="text-gray-600 mb-8">Fill in your details to get started</p>
+                        
+                        <form id="signupForm" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">First Name</label>
+                                    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Last Name</label>
+                                    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2">Email Address</label>
+                                <input type="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2">Password</label>
+                                <input type="password" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2">Confirm Password</label>
+                                <input type="password" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2">Favorite Sport</label>
+                                <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option>Football</option>
+                                    <option>Basketball</option>
+                                    <option>Tennis</option>
+                                    <option>Cricket</option>
+                                    <option>Rugby</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" id="terms" required class="mr-3">
+                                <label for="terms" class="text-gray-700">I agree to the <a href="#" class="text-blue-600 hover:underline">Terms & Conditions</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a></label>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                                Create Account
+                            </button>
+                            
+                            <p class="text-center text-gray-600">
+                                Already have an account? <a href="login.html" class="text-blue-600 font-semibold hover:underline">Login here</a>
+                            </p>
+                        </form>
                     </div>
                     
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-2 rounded-full mr-4">
-                            <i data-feather="package" class="text-green-600"></i>
+                    <!-- Benefits Section -->
+                    <div class="space-y-8" data-aos="fade-left">
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i data-feather="calendar" class="text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">Event Calendar Access</h3>
+                                    <p class="text-gray-600">Get personalized event notifications and calendar integration for all upcoming sports events.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
-                            <p class="text-gray-600">Monitor your orders in real-time.</p>
+                        
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i data-feather="users" class="text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">Team Rosters & Stats</h3>
+                                    <p class="text-gray-600">Access detailed team rosters, player statistics, and performance analytics for all major teams.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 p-2 rounded-full mr-4">
-                            <i data-feather="star" class="text-purple-600"></i>
+                        
+                        <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                    <i data-feather="bell" class="text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">Live Score Updates</h3>
+                                    <p class="text-gray-600">Real-time score updates and match notifications for your favorite teams and sports.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
-                            <p class="text-gray-600">Share and read authentic product reviews.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
-                            <i data-feather="credit-card" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
-                            <p class="text-gray-600">Multiple payment options with top security.</p>
+                        
+                        <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-8">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-amber-100 p-3 rounded-lg mr-4">
+                                    <i data-feather="shopping-bag" class="text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">Exclusive Merchandise</h3>
+                                    <p class="text-gray-600">Member-only access to team merchandise, discounts, and early product releases.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Right Column: Signup Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
+        </section>
+
+        <!-- Features Preview -->
+        <section class="py-16 px-4 bg-gray-100">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">What You'll Get Access To</h2>
                 
-                <form id="signupForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
-                            <input type="text" id="firstName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white rounded-xl p-6 text-center shadow-lg" data-aos="zoom-in">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-feather="calendar" class="text-blue-600 text-2xl"></i>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Event Calendar</h3>
+                        <p class="text-gray-600">Never miss a game with our interactive sports calendar</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 text-center shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-feather="users" class="text-green-600 text-2xl"></i>
                         </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Team Rosters</h3>
+                        <p class="text-gray-600">Detailed player profiles and team statistics</p>
                     </div>
                     
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="password">Password</label>
-                        <input type="password" id="password" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="terms" required 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="terms" class="ml-3 text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                        </label>
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="newsletter" class="ml-3 text-gray-700">
-                            Subscribe to our newsletter for exclusive deals
-                        </label>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                        Create Account
-                    </button>
-                    
-                    <div class="text-center">
-                        <p class="text-gray-600">Already have an account? 
-                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
-                        </p>
-                    </div>
-                    
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-feather="file-text" class="text-purple-600 text-2xl"></i>
                         </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
-                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">News Articles</h3>
+                        <p class="text-gray-600">Latest sports news and exclusive interviews</p>
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            Facebook
-                        </button>
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
-                            Twitter
-                        </button>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-lg" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-feather="image" class="text-amber-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Image Gallery</h3>
+                        <p class="text-gray-600">High-quality photos from games and events</p>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <i data-feather="shopping-bag" class="text-blue-400"></i>
-                    <span class="font-bold text-xl">E-Shop</span>
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="activity" class="text-blue-400"></i>
+                        <span class="font-bold text-xl">SportHub</span>
+                    </div>
+                    <p class="text-gray-400">Your ultimate sports community platform for events, teams, news, and more.</p>
                 </div>
-                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
-                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
-                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Account</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
-                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Contact</h3>
-                <p class="text-gray-400">support@eshop.com</p>
-                <p class="text-gray-400">+1 (555) 123-4567</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events Calendar</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Team Rosters</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-white">News Articles</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Image Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Account</h4>
+                    <ul class="space-y-2">
+                        <li><a href="login.html" class="text-gray-400 hover:text-white">Login</a></li>
+                        <li><a href="signup.html" class="text-gray-400 hover:text-white">Sign Up</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">My Profile</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Settings</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Stay Connected</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="flex-grow p-2 rounded-l-lg text-gray-900">
+                        <button class="bg-blue-600 px-4 rounded-r-lg hover:bg-blue-700">
+                            <i data-feather="send"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 SportHub. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        feather.replace();
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
         
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
             
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to login...');
-            window.location.href = 'login.html';
+            // Form submission
+            document.getElementById('signupForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // In a real app, you would handle form submission here
+                alert('Account created successfully! Redirecting to dashboard...');
+                // window.location.href = 'dashboard.html';
+            });
         });
     </script>
 </body>

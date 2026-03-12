@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Sport Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .gallery-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .calendar-day.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .news-card {
+            border-left: 4px solid #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
+        <div class="text-xl font-bold px-3">SportSite</div>
+        <div class="flex space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='events.html' class='px-3 py-2 hover:text-blue-400'>Events</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+            <a href='gallery.html' class='px-3 py-2 hover:text-blue-400 text-blue-400 font-semibold'>Gallery</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <header class="text-center mb-12" data-aos="fade-down">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Sports Gallery</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">Explore our collection of event photos, team rosters, news articles, and upcoming events. Stay updated with live scores and team information.</p>
+        </header>
+
+        <!-- Live Score Updates Section -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">Live Score Updates</h2>
+                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm flex items-center">
+                    <i data-feather="radio" class="w-4 h-4 mr-2"></i> LIVE
+                </span>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h3 class="font-bold text-lg">Basketball: Lakers vs Celtics</h3>
+                        <p class="text-gray-700">Q3: 78 - 72</p>
+                        <p class="text-sm text-gray-500">Last update: 2 min ago</p>
+                    </div>
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <h3 class="font-bold text-lg">Soccer: United vs City</h3>
+                        <p class="text-gray-700">Half Time: 1 - 0</p>
+                        <p class="text-sm text-gray-500">Last update: 5 min ago</p>
+                    </div>
+                    <div class="border-l-4 border-purple-500 pl-4">
+                        <h3 class="font-bold text-lg">Tennis: Championship Final</h3>
+                        <p class="text-gray-700">Set 2: 4 - 3</p>
+                        <p class="text-sm text-gray-500">Last update: 1 min ago</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
+                        View All Live Scores
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery Section -->
+        <section class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Photo Gallery</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Basketball Action" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold">Championship Game</h3>
+                        <p class="text-gray-600 text-sm">April 15, 2023</p>
+                    </div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Soccer Match" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold">Cup Final Victory</h3>
+                        <p class="text-gray-600 text-sm">March 22, 2023</p>
+                    </div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Team Celebration" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold">Team Celebration</h3>
+                        <p class="text-gray-600 text-sm">February 10, 2023</p>
+                    </div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Stadium View" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold">New Stadium</h3>
+                        <p class="text-gray-600 text-sm">January 5, 2023</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button class="bg-gray-800 hover:bg-gray-900 text-white px-8 py-3 rounded-lg font-medium transition">
+                    View More Photos
+                </button>
+            </div>
+        </section>
+
+        <!-- Event Calendar & Team Rosters -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <!-- Event Calendar -->
+            <section data-aos="fade-right">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800">Event Calendar</h2>
+                    <i data-feather="calendar" class="text-blue-500 w-8 h-8"></i>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold">November 2023</h3>
+                        <div class="flex space-x-2">
+                            <button class="p-2 hover:bg-gray-100 rounded"><i data-feather="chevron-left"></i></button>
+                            <button class="p-2 hover:bg-gray-100 rounded"><i data-feather="chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-2 mb-4">
+                        <div class="text-center font-medium text-gray-500">Sun</div>
+                        <div class="text-center font-medium text-gray-500">Mon</div>
+                        <div class="text-center font-medium text-gray-500">Tue</div>
+                        <div class="text-center font-medium text-gray-500">Wed</div>
+                        <div class="text-center font-medium text-gray-500">Thu</div>
+                        <div class="text-center font-medium text-gray-500">Fri</div>
+                        <div class="text-center font-medium text-gray-500">Sat</div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-2">
+                        <!-- Calendar days - simplified version -->
+                        <div class="text-center p-2">29</div>
+                        <div class="text-center p-2">30</div>
+                        <div class="text-center p-2">31</div>
+                        <div class="text-center p-2">1</div>
+                        <div class="text-center p-2">2</div>
+                        <div class="text-center p-2">3</div>
+                        <div class="text-center p-2">4</div>
+                        <div class="text-center p-2">5</div>
+                        <div class="text-center p-2 active rounded-full cursor-pointer">6</div>
+                        <div class="text-center p-2">7</div>
+                        <div class="text-center p-2">8</div>
+                        <div class="text-center p-2">9</div>
+                        <div class="text-center p-2">10</div>
+                        <div class="text-center p-2">11</div>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="font-bold text-lg mb-4">Upcoming Events</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <div class="bg-blue-100 text-blue-800 rounded-lg p-2 mr-3">
+                                    <i data-feather="flag" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">National Championship</p>
+                                    <p class="text-sm text-gray-600">Nov 15, 2023 • 7:00 PM</p>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="bg-green-100 text-green-800 rounded-lg p-2 mr-3">
+                                    <i data-feather="users" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Team Tryouts</p>
+                                    <p class="text-sm text-gray-600">Nov 20, 2023 • 9:00 AM</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Rosters -->
+            <section data-aos="fade-left">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800">Team Rosters</h2>
+                    <i data-feather="users" class="text-green-500 w-8 h-8"></i>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex space-x-4 mb-6">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">Basketball</button>
+                        <button class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg font-medium">Soccer</button>
+                        <button class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg font-medium">Tennis</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="text-left py-3">Player</th>
+                                    <th class="text-left py-3">Position</th>
+                                    <th class="text-left py-3">Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 font-medium">Alex Johnson</td>
+                                    <td class="py-3">Point Guard</td>
+                                    <td class="py-3">#10</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 font-medium">Marcus Lee</td>
+                                    <td class="py-3">Shooting Guard</td>
+                                    <td class="py-3">#24</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 font-medium">David Chen</td>
+                                    <td class="py-3">Center</td>
+                                    <td class="py-3">#33</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 font-medium">Jordan Smith</td>
+                                    <td class="py-3">Forward</td>
+                                    <td class="py-3">#7</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 font-medium">Taylor Brown</td>
+                                    <td class="py-3">Forward</td>
+                                    <td class="py-3">#15</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="font-bold text-lg mb-4">Team Stats</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <p class="text-sm text-gray-600">Season Wins</p>
+                                <p class="text-2xl font-bold">12</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <p class="text-sm text-gray-600">Points Avg</p>
+                                <p class="text-2xl font-bold">98.5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- News Articles -->
+        <section class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Latest News</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="news-card bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 text-red-800 rounded-full p-2 mr-3">
+                            <i data-feather="award" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">Nov 5, 2023</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Team Wins Championship Title</h3>
+                    <p class="text-gray-600 mb-4">Our basketball team secured the national championship with an incredible overtime victory...</p>
+                    <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                        Read More <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </article>
+                <article class="news-card bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-3">
+                            <i data-feather="user-plus" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">Nov 2, 2023</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">New Coach Appointment</h3>
+                    <p class="text-gray-600 mb-4">We're excited to announce the appointment of our new head coach, bringing years of professional experience...</p>
+                    <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                        Read More <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </article>
+                <article class="news-card bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 text-green-800 rounded-full p-2 mr-3">
+                            <i data-feather="shopping-bag" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">Oct 28, 2023</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">New Merchandise Launch</h3>
+                    <p class="text-gray-600 mb-4">Check out our new team merchandise collection, featuring limited edition jerseys and accessories...</p>
+                    <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">
+                        Read More <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Merchandise Shop Teaser -->
+        <section class="bg-gradient-to-r from-blue-900 to-gray-900 rounded-2xl p-8 text-white mb-16" data-aos="zoom-in">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-2/3 mb-6 md:mb-0">
+                    <h2 class="text-3xl font-bold mb-4">Official Team Store</h2>
+                    <p class="text-blue-200 mb-6">Get your official team merchandise. Jerseys, hats, and exclusive collectibles available now.</p>
+                    <button class="bg-white text-blue-900 hover:bg-blue-100 px-8 py-3 rounded-lg font-bold transition">
+                        Shop Now <i data-feather="shopping-cart" class="inline w-5 h-5 ml-2"></i>
+                    </button>
+                </div>
+                <div class="md:w-1/3 flex justify-center">
+                    <div class="bg-white rounded-xl p-4 shadow-2xl transform rotate-3">
+                        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                             alt="Team Jersey" class="rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Registration CTA -->
+        <section class="text-center py-12" data-aos="fade-up">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Join Our Community</h2>
+                <p class="text-gray-600 mb-8">Register for free to get exclusive access to ticket pre-sales, member discounts, and personalized updates.</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="signup.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold text-lg transition">
+                        Create Account
+                    </a>
+                    <a href="login.html" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-8 py-3 rounded-lg font-bold text-lg transition">
+                        Member Login
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SportSite</h3>
+                    <p class="text-gray-400">Your premier destination for sports news, events, and community.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Teams</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="youtube" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 SportSite. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+
+        // Simple calendar interaction
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            day.addEventListener('click', function() {
+                document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

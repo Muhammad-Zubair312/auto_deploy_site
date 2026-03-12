@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Sport Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .event-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .roster-item:hover {
+            background-color: #f7fafc;
+        }
+        .news-article:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='events.html' class='px-3 py-2 hover:text-blue-400 font-semibold text-blue-300'>Events</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400'>Teams</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400'>News</a>
+            <a href='gallery.html' class='px-3 py-2 hover:text-blue-400'>Gallery</a>
+        </div>
+        <div class="flex space-x-4 mt-2 md:mt-0">
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded-md'>Signup</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <header class="mb-12 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Upcoming Events & Calendar</h1>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Stay updated with all sporting events, team rosters, news, and register for upcoming tournaments.</p>
+        </header>
+
+        <!-- Live Score Updates Section -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="bg-gradient-to-r from-blue-900 to-gray-900 rounded-xl p-6 text-white shadow-2xl">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold flex items-center">
+                        <i data-feather="activity" class="mr-3"></i> Live Score Updates
+                    </h2>
+                    <span class="bg-red-500 animate-pulse px-3 py-1 rounded-full text-sm">LIVE</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold">Basketball</span>
+                            <span class="text-sm">Q3 08:32</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xl">
+                            <div>
+                                <span class="font-bold">Lakers</span>
+                                <span class="ml-2">87</span>
+                            </div>
+                            <div class="text-gray-400">-</div>
+                            <div>
+                                <span class="font-bold">Celtics</span>
+                                <span class="ml-2">82</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold">Soccer</span>
+                            <span class="text-sm">2nd Half 67'</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xl">
+                            <div>
+                                <span class="font-bold">United</span>
+                                <span class="ml-2">2</span>
+                            </div>
+                            <div class="text-gray-400">-</div>
+                            <div>
+                                <span class="font-bold">City</span>
+                                <span class="ml-2">1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold">Tennis</span>
+                            <span class="text-sm">Set 2</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xl">
+                            <div>
+                                <span class="font-bold">Nadal</span>
+                                <span class="ml-2">6-4, 3-2</span>
+                            </div>
+                            <div class="text-gray-400">vs</div>
+                            <div>
+                                <span class="font-bold">Federer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-sm mt-4 text-center">Live scores update every 30 seconds. API integration ready for real‑time data.</p>
+            </div>
+        </section>
+
+        <!-- Event Calendar & Team Rosters -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <!-- Event Calendar -->
+            <section data-aos="fade-right">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-3xl font-bold text-gray-900 flex items-center">
+                        <i data-feather="calendar" class="mr-3"></i> Event Calendar
+                    </h2>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
+                        <i data-feather="plus" class="mr-2"></i> Add to Calendar
+                    </button>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6 border-b">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold">October 2024</h3>
+                            <div class="flex space-x-2">
+                                <button class="p-2 hover:bg-gray-100 rounded"><i data-feather="chevron-left"></i></button>
+                                <button class="p-2 hover:bg-gray-100 rounded"><i data-feather="chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-7 gap-2 mt-4 text-center">
+                            <div class="font-semibold text-gray-500 py-2">Sun</div>
+                            <div class="font-semibold text-gray-500 py-2">Mon</div>
+                            <div class="font-semibold text-gray-500 py-2">Tue</div>
+                            <div class="font-semibold text-gray-500 py-2">Wed</div>
+                            <div class="font-semibold text-gray-500 py-2">Thu</div>
+                            <div class="font-semibold text-gray-500 py-2">Fri</div>
+                            <div class="font-semibold text-gray-500 py-2">Sat</div>
+                            <!-- Calendar days -->
+                            <div class="py-2 text-gray-400">29</div>
+                            <div class="py-2 text-gray-400">30</div>
+                            <div class="py-2">1</div>
+                            <div class="py-2">2</div>
+                            <div class="py-2">3</div>
+                            <div class="py-2">4</div>
+                            <div class="py-2 bg-blue-50 text-blue-600 font-bold rounded-lg">5</div>
+                            <div class="py-2">6</div>
+                            <div class="py-2">7</div>
+                            <div class="py-2 bg-red-50 text-red-600 font-bold rounded-lg">8</div>
+                            <div class="py-2">9</div>
+                            <div class="py-2">10</div>
+                            <div class="py-2">11</div>
+                            <div class="py-2">12</div>
+                            <div class="py-2">13</div>
+                            <div class="py-2">14</div>
+                            <div class="py-2 bg-green-50 text-green-600 font-bold rounded-lg">15</div>
+                            <div class="py-2">16</div>
+                            <div class="py-2">17</div>
+                            <div class="py-2">18</div>
+                            <div class="py-2">19</div>
+                            <div class="py-2">20</div>
+                            <div class="py-2">21</div>
+                            <div class="py-2">22</div>
+                            <div class="py-2 bg-purple-50 text-purple-600 font-bold rounded-lg">23</div>
+                            <div class="py-2">24</div>
+                            <div class="py-2">25</div>
+                            <div class="py-2">26</div>
+                            <div class="py-2">27</div>
+                            <div class="py-2">28</div>
+                            <div class="py-2">29</div>
+                            <div class="py-2">30</div>
+                            <div class="py-2">31</div>
+                            <div class="py-2 text-gray-400">1</div>
+                            <div class="py-2 text-gray-400">2</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-4">Upcoming Events</h4>
+                        <div class="space-y-4">
+                            <div class="event-card border-l-4 border-blue-500 pl-4 py-3 bg-gray-50 rounded-r-lg">
+                                <div class="flex justify-between">
+                                    <h5 class="font-bold">National Basketball Finals</h5>
+                                    <span class="text-blue-600 font-semibold">Oct 5</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">Madison Square Garden, 7:00 PM</p>
+                            </div>
+                            <div class="event-card border-l-4 border-red-500 pl-4 py-3 bg-gray-50 rounded-r-lg">
+                                <div class="flex justify-between">
+                                    <h5 class="font-bold">Soccer Championship</h5>
+                                    <span class="text-red-600 font-semibold">Oct 8</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">National Stadium, 3:00 PM</p>
+                            </div>
+                            <div class="event-card border-l-4 border-green-500 pl-4 py-3 bg-gray-50 rounded-r-lg">
+                                <div class="flex justify-between">
+                                    <h5 class="font-bold">Tennis Open Tournament</h5>
+                                    <span class="text-green-600 font-semibold">Oct 15</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">Central Court, 10:00 AM</p>
+                            </div>
+                            <div class="event-card border-l-4 border-purple-500 pl-4 py-3 bg-gray-50 rounded-r-lg">
+                                <div class="flex justify-between">
+                                    <h5 class="font-bold">Marathon City Run</h5>
+                                    <span class="text-purple-600 font-semibold">Oct 23</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">City Center, 6:30 AM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Rosters -->
+            <section data-aos="fade-left">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-3xl font-bold text-gray-900 flex items-center">
+                        <i data-feather="users" class="mr-3"></i> Team Rosters
+                    </h2>
+                    <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>Select Team</option>
+                        <option>Basketball - Lakers</option>
+                        <option>Soccer - United</option>
+                        <option>Tennis - National Team</option>
+                        <option>Athletics - Marathon</option>
+                    </select>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6 border-b">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <i data-feather="target" class="text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">Lakers Basketball Team</h3>
+                                <p class="text-gray-600">Professional Basketball Roster 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="text-left p-4">Player</th>
+                                    <th class="text-left p-4">Position</th>
+                                    <th class="text-left p-4">Number</th>
+                                    <th class="text-left p-4">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="roster-item border-b hover:bg-gray-50">
+                                    <td class="p-4 font-medium">LeBron James</td>
+                                    <td class="p-4">Forward</td>
+                                    <td class="p-4">23</td>
+                                    <td class="p-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                </tr>
+                                <tr class="roster-item border-b hover:bg-gray-50">
+                                    <td class="p-4 font-medium">Anthony Davis</td>
+                                    <td class="p-4">Center</td>
+                                    <td class="p-4">3</td>
+                                    <td class="p-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                </tr>
+                                <tr class="roster-item border-b hover:bg-gray-50">
+                                    <td class="p-4 font-medium">Russell Westbrook</td>
+                                    <td class="p-4">Guard</td>
+                                    <td class="p-4">0</td>
+                                    <td class="p-4"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Injured</span></td>
+                                </tr>
+                                <tr class="roster-item border-b hover:bg-gray-50">
+                                    <td class="p-4 font-medium">Carmelo Anthony</td>
+                                    <td class="p-4">Forward</td>
+                                    <td class="p-4">7</td>
+                                    <td class="p-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                </tr>
+                                <tr class="roster-item hover:bg-gray-50">
+                                    <td class="p-4 font-medium">Dwight Howard</td>
+                                    <td class="p-4">Center</td>
+                                    <td class="p-4">39</td>
+                                    <td class="p-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="p-4 bg-gray-50 text-center">
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">View Full Roster →</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- News Articles -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 flex items-center">
+                    <i data-feather="file-text" class="mr-3"></i> Latest News Articles
+                </h2>
+                <a href="news.html" class="text-blue-600 hover:text-blue-800 font-medium">View All News →</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <article class="news-article bg-white rounded-xl shadow-lg overflow-hidden transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Basketball game" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                            <span>Oct 2, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>Basketball</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Lakers Secure Playoff Spot with Stunning Victory</h3>
+                        <p class="text-gray-600 mb-4">The Lakers dominated the court last night, securing their playoff position with a 15-point lead in the final quarter.</p>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i></a>
+                    </div>
+                </article>
+                <article class="news-article bg-white rounded-xl shadow-lg overflow-hidden transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Soccer match" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                            <span>Oct 1, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>Soccer</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">United Announces New Coach for 2025 Season</h3>
+                        <p class="text-gray-600 mb-4">Manchester United has officially announced the appointment of a new head coach, bringing fresh tactics to the team.</p>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i></a>
+                    </div>
+                </article>
+                <article class="news-article bg-white rounded-xl shadow-lg overflow-hidden transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1595435934247-5d33b7f92c0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tennis player" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                            <span>Sep 29, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>Tennis</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Nadal Returns to Clay Court After Injury Recovery</h3>
+                        <p class="text-gray-600 mb-4">Rafael Nadal makes a triumphant return to clay court tournaments after a successful recovery from his recent injury.</p>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 flex items-center">Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Image Gallery -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 flex items-center">
+                    <i data-feather="image" class="mr-3"></i> Event Gallery
+                </h2>
+                <a href="gallery.html" class="text-blue-600 hover:text-blue-800 font-medium">View Full Gallery →</a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Basketball action" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Soccer celebration" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tennis match" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1552674605-db6ffd8facb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Marathon runners" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+        </section>
+
+        <!-- User Registration & Merchandise -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <!-- User Registration -->
+            <section data-aos="fade-right">
+                <div class="bg-gradient-to-br from-blue-50 to-white rounded-xl shadow-xl p-8">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2 flex items-center">
+                        <i data-feather="edit-3" class="mr-3"></i> Event Registration
+                    </h2>
+                    <p class="text-gray-600 mb-6">Register for upcoming tournaments, workshops, and fan events. Secure your spot today!</p>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Full Name</label>
+                            <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Select Event</label>
+                            <select class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Choose an event</option>
+                                <option>National Basketball Finals (Oct 5)</option>
+                                <option>Soccer Championship (Oct 8)</option>
+                                <option>Tennis Open Tournament (Oct 15)</option>
+                                <option>Marathon City Run (Oct 23)</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="terms" class="mr-3">
+                            <label for="terms" class="text-gray-700">I agree to the terms and conditions</label>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg flex items-center justify-center">
+                            <i data-feather="check-circle" class="mr-2"></i> Register Now
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Merchandise Shop -->
+            <section data-aos="fade-left">
+                <div class="bg-gradient-to-br from-gray-900 to-black rounded-xl shadow-xl p-8 text-white">
+                    <h2 class="text-3xl font-bold mb-2 flex items-center">
+                        <i data-feather="shopping-bag" class="mr-3"></i> Team Merchandise
+                    </h2>
+                    <p class="text-gray-300 mb-6">Show your support with official team jerseys, caps, and accessories. Limited edition items available.</p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-gray-800 rounded-lg p-4 text-center">
+                            <div class="w-16 h-16 bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i data-feather="shirt" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="font-bold">Jerseys</h4>
+                            <p class="text-gray-400 text-sm">From $89.99</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 text-center">
+                            <div class="w-16 h-16 bg-red-900 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i data-feather="cap" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="font-bold">Caps & Hats</h4>
+                            <p class="text-gray-400 text-sm">From $24.99</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg p-4 mb-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-yellow-900 rounded-lg flex items-center justify-center mr-4">
+                                <i data-feather="star" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Limited Edition 2024 Collection</h4>
+                                <p class="text-gray-400 text-sm">Available until Oct 31</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 rounded-lg flex items-center justify-center">
+                        <i data-feather="shopping-cart" class="mr-2"></i> Visit Merchandise Shop
+                    </button>
+                    <p class="text-gray-400 text-sm mt-4 text-center">Shop section can be expanded with full e‑commerce integration.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sport Website</h3>
+                    <p class="text-gray-400">Your premier destination for sports events, news, and community.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="events.html" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="teams.html" class="text-gray-400 hover:text-white">Teams</a></li>
+                        <li><a href="news.html" class="text-gray-400 hover:text-white">News</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center">
+                            <i data-feather="facebook"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-blue-400 w-10 h-10 rounded-full flex items-center justify-center">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-pink-600 w-10 h-10 rounded-full flex items-center justify-center">
+                            <i data-feather="instagram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center">
+                            <i data-feather="youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Sport Website. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons and AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3,221 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | E-Commerce Store</title>
+    <title>SportHub | Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
         }
-        .login-card {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
+        .card-shadow {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         .input-focus:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
         }
     </style>
 </head>
-<body class="font-sans">
-    <!-- Shared Navbar -->
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex space-x-4">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <div class="flex items-center space-x-2 mb-4 md:mb-0">
+            <i data-feather="activity" class="text-blue-400"></i>
+            <span class="text-xl font-bold">SportHub</span>
         </div>
-        <div class="text-sm text-gray-300 mt-2 md:mt-0">
-            Welcome back! Access your account
+        <div class="flex space-x-4">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Home</a>
+            <a href='events.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Events</a>
+            <a href='teams.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Teams</a>
+            <a href='news.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>News</a>
+            <a href='gallery.html' class='px-3 py-2 hover:text-blue-400 transition-colors'>Gallery</a>
+            <a href='login.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700 transition-colors'>Login</a>
+            <a href='signup.html' class='px-3 py-2 border border-blue-400 rounded hover:bg-blue-400 hover:text-gray-900 transition-colors'>Signup</a>
         </div>
     </nav>
 
-    <!-- Login Page Content -->
+    <!-- Main Content -->
     <main class="container mx-auto px-4 py-12">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" data-aos="fade-up">
-            <!-- Login Form Section -->
-            <div class="login-card rounded-2xl shadow-2xl p-8 md:p-12">
-                <div class="text-center mb-10">
-                    <h1 class="text-4xl font-bold text-gray-900 mb-3">Welcome Back</h1>
-                    <p class="text-gray-600">Sign in to your account to continue shopping</p>
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12" data-aos="fade-down">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Welcome Back to SportHub</h1>
+                <p class="text-gray-300 text-lg max-w-2xl mx-auto">Access your personalized dashboard, track favorite teams, and manage your sport experience.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Login Form -->
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <div class="bg-gray-800 rounded-2xl p-8 card-shadow">
+                        <div class="flex items-center mb-8">
+                            <i data-feather="log-in" class="text-blue-400 mr-3" style="width: 32px; height: 32px;"></i>
+                            <h2 class="text-2xl font-bold text-white">Member Login</h2>
+                        </div>
+
+                        <form id="loginForm" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-300 mb-2">Email Address</label>
+                                <input type="email" 
+                                       required 
+                                       class="w-full bg-gray-700 text-white rounded-lg px-4 py-3 input-focus focus:outline-none transition-all"
+                                       placeholder="sportsfan@example.com">
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-300 mb-2">Password</label>
+                                <input type="password" 
+                                       required 
+                                       class="w-full bg-gray-700 text-white rounded-lg px-4 py-3 input-focus focus:outline-none transition-all"
+                                       placeholder="••••••••">
+                                <div class="text-right mt-2">
+                                    <a href="#" class="text-blue-400 hover:text-blue-300 text-sm">Forgot Password?</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="remember" class="mr-2">
+                                <label for="remember" class="text-gray-300">Remember me</label>
+                            </div>
+
+                            <button type="submit" 
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                                <i data-feather="key" class="mr-2"></i>
+                                Sign In to Your Account
+                            </button>
+
+                            <div class="text-center text-gray-400">
+                                Don't have an account? 
+                                <a href="signup.html" class="text-blue-400 hover:text-blue-300 ml-1">Create one now</a>
+                            </div>
+                        </form>
+
+                        <div class="mt-8 pt-8 border-t border-gray-700">
+                            <p class="text-gray-400 text-sm">By logging in, you agree to our Terms of Service and Privacy Policy.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <form id="loginForm" class="space-y-6">
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address
-                        </label>
-                        <div class="relative">
-                            <i data-feather="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                required
-                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="you@example.com"
-                            >
+                <!-- Features Preview -->
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <div class="bg-gray-800 rounded-2xl p-8 h-full card-shadow">
+                        <h3 class="text-2xl font-bold text-white mb-6">Unlock Your SportHub Experience</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Live Scores -->
+                            <div class="flex items-start">
+                                <div class="bg-blue-900 p-3 rounded-lg mr-4">
+                                    <i data-feather="bar-chart-2" class="text-blue-300"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold text-white mb-2">Live Score Updates</h4>
+                                    <p class="text-gray-300">Get real-time scores and statistics from ongoing matches. Customize notifications for your favorite teams.</p>
+                                </div>
+                            </div>
+
+                            <!-- Event Calendar -->
+                            <div class="flex items-start">
+                                <div class="bg-green-900 p-3 rounded-lg mr-4">
+                                    <i data-feather="calendar" class="text-green-300"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold text-white mb-2">Personalized Event Calendar</h4>
+                                    <p class="text-gray-300">Sync upcoming games, tournaments, and events with your personal calendar. Never miss a match again.</p>
+                                </div>
+                            </div>
+
+                            <!-- Team Rosters -->
+                            <div class="flex items-start">
+                                <div class="bg-purple-900 p-3 rounded-lg mr-4">
+                                    <i data-feather="users" class="text-purple-300"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold text-white mb-2">Team Rosters & Stats</h4>
+                                    <p class="text-gray-300">Access detailed player profiles, team statistics, and performance analytics for all your favorite teams.</p>
+                                </div>
+                            </div>
+
+                            <!-- News & Gallery -->
+                            <div class="flex items-start">
+                                <div class="bg-yellow-900 p-3 rounded-lg mr-4">
+                                    <i data-feather="image" class="text-yellow-300"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold text-white mb-2">Exclusive Content</h4>
+                                    <p class="text-gray-300">Premium news articles, high-resolution galleries, and behind-the-scenes content available only to members.</p>
+                                </div>
+                            </div>
+
+                            <!-- Future Shop -->
+                            <div class="flex items-start">
+                                <div class="bg-red-900 p-3 rounded-lg mr-4">
+                                    <i data-feather="shopping-bag" class="text-red-300"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold text-white mb-2">Merchandise Shop (Coming Soon)</h4>
+                                    <p class="text-gray-300">Exclusive access to team merchandise, early releases, and member-only discounts on sport gear.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            Password
-                        </label>
-                        <div class="relative">
-                            <i data-feather="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="password" 
-                                id="password" 
-                                required
-                                class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="Enter your password"
-                            >
-                            <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                <i data-feather="eye"></i>
-                            </button>
+                        <!-- Demo Credentials -->
+                        <div class="mt-8 p-4 bg-gray-900 rounded-lg">
+                            <h4 class="text-white font-semibold mb-2">Demo Access</h4>
+                            <p class="text-gray-400 text-sm">Try with demo credentials: <code class="bg-gray-800 px-2 py-1 rounded">demo@sportshub.com</code> / <code class="bg-gray-800 px-2 py-1 rounded">demo123</code></p>
                         </div>
-                    </div>
-
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input 
-                                type="checkbox" 
-                                id="remember"
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                            >
-                            <label for="remember" class="ml-2 text-sm text-gray-700">
-                                Remember me
-                            </label>
-                        </div>
-                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800 hover:underline">
-                            Forgot password?
-                        </a>
-                    </div>
-
-                    <button 
-                        type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-                    >
-                        Sign In
-                    </button>
-
-                    <div class="text-center">
-                        <p class="text-gray-600">
-                            Don't have an account? 
-                            <a href="signup.html" class="text-blue-600 hover:text-blue-800 font-semibold hover:underline">
-                                Sign up here
-                            </a>
-                        </p>
-                    </div>
-                </form>
-
-                <div class="mt-8 pt-8 border-t border-gray-200">
-                    <p class="text-center text-gray-600 mb-4">Or continue with</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            <span>Facebook</span>
-                        </button>
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="github" class="mr-2"></i>
-                            <span>GitHub</span>
-                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Benefits Section -->
-            <div class="space-y-8">
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="200">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i data-feather="shopping-bag" class="text-blue-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Track Your Orders</h3>
-                            <p class="text-gray-600">Monitor your purchases from order to delivery with real-time updates.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="400">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-green-100 p-3 rounded-lg mr-4">
-                            <i data-feather="heart" class="text-green-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Personalized Experience</h3>
-                            <p class="text-gray-600">Get product recommendations based on your browsing and purchase history.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="600">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-purple-100 p-3 rounded-lg mr-4">
-                            <i data-feather="star" class="text-purple-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Write Reviews</h3>
-                            <p class="text-gray-600">Share your experience and help other customers make informed decisions.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-lg p-8 text-white" data-aos="fade-up" data-aos-delay="800">
-                    <h3 class="text-2xl font-bold mb-4">Secure Shopping</h3>
-                    <p class="mb-4">Your security is our priority. We use industry-standard encryption to protect your data.</p>
-                    <div class="flex items-center">
-                        <i data-feather="shield" class="mr-3"></i>
-                        <span class="font-semibold">256-bit SSL Encryption</span>
-                    </div>
+            <!-- Integration Note -->
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <div class="inline-flex items-center bg-gray-800 rounded-full px-6 py-3">
+                    <i data-feather="zap" class="text-yellow-400 mr-2"></i>
+                    <span class="text-gray-300">Live score API integration ready for implementation</span>
                 </div>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-16">
+    <footer class="bg-gray-900 text-white py-8 mt-12">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">E-Commerce Store</h3>
-                    <p class="text-gray-400">Your one-stop shop for all your needs. Quality products, secure payments, fast delivery.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="activity" class="text-blue-400"></i>
+                        <span class="text-xl font-bold">SportHub</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">Your ultimate sports destination</p>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white transition">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white transition">Checkout</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Account</h4>
-                    <ul class="space-y-2">
-                        <li><a href="login.html" class="text-gray-400 hover:text-white transition">Login</a></li>
-                        <li><a href="signup.html" class="text-gray-400 hover:text-white transition">Sign Up</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Order Tracking</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <p class="text-gray-400">support@ecommerce.com</p>
-                    <p class="text-gray-400">+1 (555) 123-4567</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
+            <div class="text-center text-gray-500 mt-8 pt-8 border-t border-gray-800">
+                <p>&copy; 2024 SportHub. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         // Initialize AOS
@@ -229,55 +214,24 @@
         // Initialize Feather Icons
         feather.replace();
 
-        // Toggle password visibility
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.querySelector('i').setAttribute('data-feather', type === 'password' ? 'eye' : 'eye-off');
-            feather.replace();
-        });
-
-        // Form submission
+        // Form Submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Simple validation
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
             // Simulate login process
             const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
+            const originalText = submitBtn.innerHTML;
             
-            submitBtn.textContent = 'Signing in...';
-            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i data-feather="loader" class="animate-spin mr-2"></i>Signing In...';
+            feather.replace();
             
             // Simulate API call
             setTimeout(() => {
-                alert('Login successful! Redirecting to homepage...');
-                window.location.href = 'index.html';
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+                alert('Login successful! Redirecting to dashboard...');
+                submitBtn.innerHTML = originalText;
+                feather.replace();
+                // In real implementation: window.location.href = 'dashboard.html';
             }, 1500);
-        });
-
-        // Social login buttons
-        document.querySelectorAll('button:has(i[data-feather="facebook"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Facebook login would be implemented here');
-            });
-        });
-
-        document.querySelectorAll('button:has(i[data-feather="github"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('GitHub login would be implemented here');
-            });
         });
     </script>
 </body>
