@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Scheduling - Hospital Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <style>
+        .calendar-day:hover {
+            background-color: #e0f2fe;
+            cursor: pointer;
+        }
+        .calendar-day.selected {
+            background-color: #0ea5e9;
+            color: white;
+        }
+        .time-slot {
+            transition: all 0.2s;
+        }
+        .time-slot:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .time-slot.selected {
+            background-color: #0ea5e9;
+            color: white;
+            border-color: #0ea5e9;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- NAVBAR (copied exactly as provided) -->
+    <nav class='bg-gray-900 text-gray-300 px-6 py-3 flex items-center gap-2 shadow-lg sticky top-0 z-50 flex-wrap'><span class='text-white font-bold text-xl tracking-tight mr-auto'>Hospital Management System</span><a href='index.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Home</a><a href='login.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Login</a><a href='signup.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Signup</a><a href='patient-registration.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Patient Registration</a><a href='doctor-dashboard.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Doctor Dashboard</a><a href='appointment-scheduling.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Appointment Scheduling</a><a href='patient-records.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Patient Records</a><a href='billing.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Billing</a></nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-10 text-center" data-aos="fade-up">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Appointment Scheduling</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">Schedule, manage, and track medical appointments with secure, role-based access. All data is encrypted and HIPAA compliant.</p>
+        </div>
+
+        <!-- Role-Based Access Notice -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 rounded-r" data-aos="fade-up">
+            <div class="flex items-start">
+                <i data-feather="shield" class="text-blue-500 mr-3 mt-1"></i>
+                <div>
+                    <p class="font-medium text-blue-800">Role-Based Access Active</p>
+                    <p class="text-blue-700 text-sm">Your access level determines available functions. Patient data is protected with end-to-end encryption.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Appointment Form -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Appointment Booking Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <i data-feather="calendar" class="text-blue-600 mr-3"></i>
+                        <h2 class="text-2xl font-bold text-gray-800">Book New Appointment</h2>
+                    </div>
+
+                    <form id="appointmentForm" class="space-y-6">
+                        <!-- Patient Selection -->
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Select Patient</label>
+                            <div class="relative">
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white">
+                                    <option value="">Search or select patient...</option>
+                                    <option value="patient1">John Smith (MRN: P-2024-001)</option>
+                                    <option value="patient2">Sarah Johnson (MRN: P-2024-002)</option>
+                                    <option value="patient3">Robert Chen (MRN: P-2024-003)</option>
+                                    <option value="patient4">Maria Garcia (MRN: P-2024-004)</option>
+                                </select>
+                                <i data-feather="chevron-down" class="absolute right-3 top-4 text-gray-400"></i>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Only patients with active records can be selected.</p>
+                        </div>
+
+                        <!-- Doctor Selection -->
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Select Doctor/Specialist</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                            <i data-feather="user" class="text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Dr. Amanda Wilson</p>
+                                            <p class="text-sm text-gray-600">Cardiology</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                            <i data-feather="user" class="text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Dr. Michael Torres</p>
+                                            <p class="text-sm text-gray-600">Orthopedics</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Date Selection -->
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Select Date</label>
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="grid grid-cols-7 gap-2 mb-4">
+                                    <div class="text-center font-medium text-gray-500 py-2">Mon</div>
+                                    <div class="text-center font-medium text-gray-500 py-2">Tue</div>
+                                    <div class="text-center font-medium text-gray-500 py-2">Wed</div>
+                                    <div class="text-center font-medium text-gray-500 py-2">Thu</div>
+                                    <div class="text-center font-medium text-gray-500 py-2">Fri</div>
+                                    <div class="text-center font-medium text-gray-500 py-2">Sat</div>
+                                    <div class="text-center font-medium text-gray-500 py-2">Sun</div>
+                                    
+                                    <!-- Calendar Days -->
+                                    <template id="calendarDayTemplate">
+                                        <div class="calendar-day text-center py-3 rounded-lg border border-transparent">
+                                            <span class="day-number"></span>
+                                        </div>
+                                    </template>
+                                </div>
+                                <div id="calendarDays" class="grid grid-cols-7 gap-2">
+                                    <!-- JavaScript will populate calendar days -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Time Slot Selection -->
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Select Time Slot</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div class="time-slot border border-gray-300 rounded-lg py-3 text-center cursor-pointer hover:border-blue-400">
+                                    9:00 AM
+                                </div>
+                                <div class="time-slot border border-gray-300 rounded-lg py-3 text-center cursor-pointer hover:border-blue-400">
+                                    10:30 AM
+                                </div>
+                                <div class="time-slot border border-gray-300 rounded-lg py-3 text-center cursor-pointer hover:border-blue-400">
+                                    1:00 PM
+                                </div>
+                                <div class="time-slot border border-gray-300 rounded-lg py-3 text-center cursor-pointer hover:border-blue-400">
+                                    2:30 PM
+                                </div>
+                                <div class="time-slot border border-gray-300 rounded-lg py-3 text-center cursor-pointer hover:border-blue-400">
+                                    4:00 PM
+                                </div>
+                                <div class="time-slot border border-gray-300 rounded-lg py-3 text-center cursor-pointer hover:border-blue-400">
+                                    5:30 PM
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Appointment Type -->
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Appointment Type</label>
+                            <div class="flex flex-wrap gap-3">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="appointmentType" value="consultation" class="text-blue-600" checked>
+                                    <span class="ml-2">Consultation</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="appointmentType" value="followup" class="text-blue-600">
+                                    <span class="ml-2">Follow-up</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="appointmentType" value="emergency" class="text-blue-600">
+                                    <span class="ml-2">Emergency</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="appointmentType" value="procedure" class="text-blue-600">
+                                    <span class="ml-2">Procedure</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Notes (Optional)</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="3" placeholder="Any special requirements or notes..."></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-4">
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center">
+                                <i data-feather="check-circle" class="mr-2"></i>
+                                Schedule Appointment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Upcoming Appointments -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-right" data-aos-delay="100">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <i data-feather="clock" class="text-green-600 mr-3"></i>
+                            <h2 class="text-2xl font-bold text-gray-800">Upcoming Appointments</h2>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Today: 3 appointments</span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-200">
+                                    <th class="text-left py-3 px-4 text-gray-600 font-medium">Time</th>
+                                    <th class="text-left py-3 px-4 text-gray-600 font-medium">Patient</th>
+                                    <th class="text-left py-3 px-4 text-gray-600 font-medium">Doctor</th>
+                                    <th class="text-left py-3 px-4 text-gray-600 font-medium">Type</th>
+                                    <th class="text-left py-3 px-4 text-gray-600 font-medium">Status</th>
+                                    <th class="text-left py-3 px-4 text-gray-600 font-medium">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">10:30 AM</div>
+                                        <div class="text-sm text-gray-500">Today</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">John Smith</div>
+                                        <div class="text-sm text-gray-500">MRN: P-2024-001</div>
+                                    </td>
+                                    <td class="py-4 px-4">Dr. Amanda Wilson</td>
+                                    <td class="py-4 px-4">
+                                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded">Consultation</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">Confirmed</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                                            <i data-feather="edit-2" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2" class="w-4 h-4"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">2:00 PM</div>
+                                        <div class="text-sm text-gray-500">Today</div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="font-medium">Sarah Johnson</div>
+                                        <div class="text-sm text-gray-500">MRN: P-2024-002</div>
+                                    </td>
+                                    <td class="py-4 px-4">Dr. Michael Torres</td>
+                                    <td class="py-4 px-4">
+                                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded">Follow-up</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-1 rounded">Pending</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                                            <i data-feather="edit-2" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-feather="trash-2" class="w-4 h-4"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Stats & Notifications -->
+            <div class="space-y-8">
+                <!-- Statistics Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-left">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Appointment Statistics</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="calendar" class="text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Today's Appointments</p>
+                                    <p class="text-2xl font-bold">8</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="check-circle" class="text-green-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Completed This Week</p>
+                                    <p class="text-2xl font-bold">42</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="clock" class="text-yellow-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Pending Confirmation</p>
+                                    <p class="text-2xl font-bold">5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-left" data-aos-delay="100">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold text-gray-800">Notifications</h3>
+                        <span class="bg-red-100 text-red-800 text-xs font-medium px-2 py-1 rounded-full">3 new</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start p-3 bg-blue-50 rounded-lg">
+                            <i data-feather="bell" class="text-blue-600 mr-3 mt-1"></i>
+                            <div>
+                                <p class="font-medium text-sm">New appointment request</p>
+                                <p class="text-xs text-gray-600">From: Robert Chen • 2 min ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-3 bg-yellow-50 rounded-lg">
+                            <i data-feather="alert-circle" class="text-yellow-600 mr-3 mt-1"></i>
+                            <div>
+                                <p class="font-medium text-sm">Appointment reminder</p>
+                                <p class="text-xs text-gray-600">Dr. Wilson at 10:30 AM today</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-3 bg-green-50 rounded-lg">
+                            <i data-feather="check-circle" class="text-green-600 mr-3 mt-1"></i>
+                            <div>
+                                <p class="font-medium text-sm">Appointment confirmed</p>
+                                <p class="text-xs text-gray-600">Sarah Johnson for tomorrow</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-left" data-aos-delay="200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Quick Actions</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="patient-records.html" class="bg-gray-50 hover:bg-gray-100 rounded-lg p-4 text-center transition-colors">
+                            <i data-feather="file-text" class="w-6 h-6 text-gray-600 mx-auto mb-2"></i>
+                            <span class="text-sm font-medium">View Records</span>
+                        </a>
+                        <button class="bg-gray-50 hover:bg-gray-100 rounded-lg p-4 text-center transition-colors">
+                            <i data-feather="printer" class="w-6 h-6 text-gray-600 mx-auto mb-2"></i>
+                            <span class="text-sm font-medium">Print Schedule</span>
+                        </button>
+                        <button class="bg-gray-50 hover:bg-gray-100 rounded-lg p-4 text-center transition-colors">
+                            <i data-feather="send" class="w-6 h-6 text-gray-600 mx-auto mb-2"></i>
+                            <span class="text-sm font-medium">Send Reminders</span>
+                        </button>
+                        <a href="billing.html" class="bg-gray-50 hover:bg-gray-100 rounded-lg p-4 text-center transition-colors">
+                            <i data-feather="dollar-sign" class="w-6 h-6 text-gray-600 mx-auto mb-2"></i>
+                            <span class="text-sm font-medium">Generate Bill</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Security Notice -->
+                <div class="bg-gray-900 text-white rounded-xl shadow-lg p-6" data-aos="fade-left" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <i data-feather="lock" class="mr-3"></i>
+                        <h3 class="text-xl font-bold">Data Security</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm mb-4">All appointment data is encrypted and stored in compliance with HIPAA regulations. Access is logged and monitored.</p>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i data-feather="shield" class="mr-2"></i>
+                        <span>Last audit: Today, 08:45 AM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 mt-12 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-white font-bold text-xl tracking-tight">Hospital Management System</span>
+                    <p class="text-sm mt-2">Secure • Compliant • Efficient</p>
+                </div>
+                <div class="text-sm">
+                    <p>© 2024 Hospital Management System. All rights reserved.</p>
+                    <p class="mt-1">HIPAA Compliant • ISO 27001 Certified</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            
+            // Generate calendar days
+            const calendarDays = document.getElementById('calendarDays');
+            const today = new Date();
+            
+            for (let i = 0; i < 35; i++) {
+                const day = new Date(today);
+                day.setDate(today.getDate() + i);
+                
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day text-center py-3 rounded-lg border border-transparent';
+                dayElement.innerHTML = `<span class="day-number">${day.getDate()}</span>`;
+                
+                if (i === 0) {
+                    dayElement.classList.add('selected');
+                    dayElement.innerHTML += '<div class="text-xs mt-1">Today</div>';
+                }
+                
+                dayElement.addEventListener('click', function() {
+                    document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+                
+                calendarDays.appendChild(dayElement);
+            }
+            
+            // Time slot selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.addEventListener('click', function() {
+                    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Form submission
+            document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.innerHTML;
+                
+                button.innerHTML = '<i data-feather="check" class="mr-2"></i>Appointment Scheduled!';
+                button.classList.remove('bg-blue-600');
+                button.classList.add('bg-green-600');
+                
+                // Refresh icons
+                feather.replace();
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-green-600');
+                    button.classList.add('bg-blue-600');
+                    feather.replace();
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>

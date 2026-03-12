@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration - Hospital Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .form-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        .required:after {
+            content: " *";
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- NAVBAR (copied exactly as provided) -->
+    <nav class='bg-gray-900 text-gray-300 px-6 py-3 flex items-center gap-2 shadow-lg sticky top-0 z-50 flex-wrap'><span class='text-white font-bold text-xl tracking-tight mr-auto'>Hospital Management System</span><a href='index.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Home</a><a href='login.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Login</a><a href='signup.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Signup</a><a href='patient-registration.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Patient Registration</a><a href='doctor-dashboard.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Doctor Dashboard</a><a href='appointment-scheduling.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Appointment Scheduling</a><a href='patient-records.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Patient Records</a><a href='billing.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Billing</a></nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="text-center mb-10" data-aos="fade-down">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">Patient Registration</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">Register new patients securely with our HIPAA-compliant system. All fields marked with * are required. Patient data is encrypted and protected.</p>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column - Personal Information -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8 form-section" data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <i data-feather="user" class="text-blue-600 mr-3"></i>
+                        <h2 class="text-2xl font-bold text-gray-800">Personal Information</h2>
+                    </div>
+                    
+                    <form id="patientRegistrationForm" class="space-y-6">
+                        <!-- Basic Information -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2 required">First Name</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Enter first name">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 required">Last Name</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Enter last name">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2 required">Date of Birth</label>
+                                <input type="date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 required">Gender</label>
+                                <select required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                    <option value="">Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 required">Blood Type</label>
+                                <select required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                    <option value="">Select blood type</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="pt-4 border-t border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-700 mb-4">Contact Information</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 mb-2 required">Email Address</label>
+                                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="patient@example.com">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2 required">Phone Number</label>
+                                    <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="(123) 456-7890">
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <label class="block text-gray-700 mb-2 required">Address</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Street address">
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                                <div>
+                                    <label class="block text-gray-700 mb-2 required">City</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="City">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2 required">State</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="State">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2 required">ZIP Code</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ZIP code">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emergency Contact -->
+                        <div class="pt-4 border-t border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-700 mb-4">Emergency Contact</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 mb-2 required">Emergency Contact Name</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Full name">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2 required">Emergency Contact Phone</label>
+                                    <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="(123) 456-7890">
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <label class="block text-gray-700 mb-2">Relationship</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Spouse, parent, etc.">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Medical Information -->
+                <div class="bg-white rounded-xl shadow-lg p-6 form-section" data-aos="fade-right" data-aos-delay="100">
+                    <div class="flex items-center mb-6">
+                        <i data-feather="activity" class="text-green-600 mr-3"></i>
+                        <h2 class="text-2xl font-bold text-gray-800">Medical Information</h2>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Primary Care Physician</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                <option value="">Select physician (optional)</option>
+                                <option value="dr-smith">Dr. Smith - Cardiology</option>
+                                <option value="dr-johnson">Dr. Johnson - Internal Medicine</option>
+                                <option value="dr-williams">Dr. Williams - Family Medicine</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2">Medical History</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition h-32" placeholder="List any pre-existing conditions, surgeries, or chronic illnesses"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2">Current Medications</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition h-32" placeholder="List all current medications and dosages"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2">Allergies</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition h-32" placeholder="List any known allergies (medication, food, environmental)"></textarea>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input type="checkbox" id="insurance" class="h-5 w-5 text-blue-600 rounded">
+                            <label for="insurance" class="ml-2 text-gray-700">Patient has medical insurance</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Actions & Information -->
+            <div class="space-y-8">
+                <!-- Registration Actions -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <i data-feather="clipboard" class="text-purple-600 mr-3"></i>
+                        <h2 class="text-2xl font-bold text-gray-800">Registration Actions</h2>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <button id="submitRegistration" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center">
+                            <i data-feather="save" class="mr-2"></i>
+                            Submit Registration
+                        </button>
+                        
+                        <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center">
+                            <i data-feather="calendar" class="mr-2"></i>
+                            Register & Schedule Appointment
+                        </button>
+                        
+                        <button class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center">
+                            <i data-feather="refresh-cw" class="mr-2"></i>
+                            Clear Form
+                        </button>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <h3 class="font-semibold text-gray-700 mb-3">Upload Documents</h3>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                            <i data-feather="upload" class="mx-auto text-gray-400 mb-2"></i>
+                            <p class="text-gray-600 mb-2">Drag & drop files or click to browse</p>
+                            <p class="text-sm text-gray-500">ID, Insurance Card, Medical Records (Max 10MB each)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security & Compliance -->
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-6" data-aos="fade-left" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <i data-feather="shield" class="text-blue-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-800">Data Security</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i data-feather="check-circle" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>HIPAA compliant data encryption</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check-circle" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Secure SSL/TLS transmission</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check-circle" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Role-based access control</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check-circle" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Audit trail for all access</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Recent Registrations -->
+                <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-left" data-aos-delay="200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Recent Registrations</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div>
+                                <p class="font-medium">John Smith</p>
+                                <p class="text-sm text-gray-600">Registered: Today, 10:30 AM</p>
+                            </div>
+                            <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Completed</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div>
+                                <p class="font-medium">Maria Garcia</p>
+                                <p class="text-sm text-gray-600">Registered: Yesterday, 3:15 PM</p>
+                            </div>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Pending</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-white font-bold text-xl tracking-tight">Hospital Management System</h3>
+                    <p class="mt-2 text-sm">Secure, compliant patient management since 2024</p>
+                </div>
+                <div class="flex flex-wrap gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">HIPAA Compliance</a>
+                    <a href="#" class="hover:text-white transition-colors">Contact Support</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center text-sm">
+                <p>© 2024 Hospital Management System. All rights reserved. Protected Health Information (PHI) handled in compliance with HIPAA regulations.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            
+            // Form submission handler
+            document.getElementById('submitRegistration').addEventListener('click', function(e) {
+                e.preventDefault();
+                const form = document.getElementById('patientRegistrationForm');
+                if (form.checkValidity()) {
+                    // Show success message
+                    alert('Patient registration submitted successfully! Data has been securely encrypted.');
+                    // In a real application, this would submit to a secure backend
+                } else {
+                    form.reportValidity();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

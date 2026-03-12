@@ -3,227 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E Commerce</title>
+    <title>Signup - Hospital Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            min-height: 100vh;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .role-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .role-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+        }
+        .role-card.selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        input:focus, select:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="font-bold text-xl">E-Shop</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
-        </div>
-    </nav>
+<body>
+    <!-- NAVBAR (copied exactly as provided) -->
+    <nav class='bg-gray-900 text-gray-300 px-6 py-3 flex items-center gap-2 shadow-lg sticky top-0 z-50 flex-wrap'><span class='text-white font-bold text-xl tracking-tight mr-auto'>Hospital Management System</span><a href='index.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Home</a><a href='login.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Login</a><a href='signup.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Signup</a><a href='patient-registration.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Patient Registration</a><a href='doctor-dashboard.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Doctor Dashboard</a><a href='appointment-scheduling.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Appointment Scheduling</a><a href='patient-records.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Patient Records</a><a href='billing.html' class='px-3 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors'>Billing</a></nav>
 
-    <!-- Signup Section -->
-    <section class="py-12 px-4 md:px-8 lg:px-16">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Column: Benefits -->
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
-                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                            <i data-feather="shopping-cart" class="text-blue-600"></i>
+    <!-- PAGE CONTENT -->
+    <main class="container mx-auto px-4 py-8 max-w-6xl">
+        <div class="text-center mb-10" data-aos="fade-down">
+            <h1 class="text-4xl font-bold text-gray-800 mb-3">Create Your Account</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">Join the Hospital Management System with role-based access. Your data security is our top priority, compliant with medical regulations.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Left Column: Role Selection -->
+            <div class="lg:col-span-1" data-aos="fade-right">
+                <div class="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                        <i data-feather="shield"></i>
+                        Select Your Role
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="role-card p-4 rounded-lg border cursor-pointer bg-white" onclick="selectRole('patient')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                    <i data-feather="user" class="text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Patient</h3>
+                                    <p class="text-sm text-gray-600">Book appointments, view records, manage health data</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
-                            <p class="text-gray-600">Save your details for quicker purchases.</p>
+                        
+                        <div class="role-card p-4 rounded-lg border cursor-pointer bg-white" onclick="selectRole('doctor')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                                    <i data-feather="activity" class="text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Doctor</h3>
+                                    <p class="text-sm text-gray-600">Access patient records, manage appointments, e-prescriptions</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="role-card p-4 rounded-lg border cursor-pointer bg-white" onclick="selectRole('staff')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                                    <i data-feather="users" class="text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Hospital Staff</h3>
+                                    <p class="text-sm text-gray-600">Administrative access, billing, appointment management</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-2 rounded-full mr-4">
-                            <i data-feather="package" class="text-green-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
-                            <p class="text-gray-600">Monitor your orders in real-time.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 p-2 rounded-full mr-4">
-                            <i data-feather="star" class="text-purple-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
-                            <p class="text-gray-600">Share and read authentic product reviews.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
-                            <i data-feather="credit-card" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
-                            <p class="text-gray-600">Multiple payment options with top security.</p>
-                        </div>
+                    <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                        <h4 class="font-semibold text-blue-800 mb-2 flex items-center gap-2">
+                            <i data-feather="lock"></i>
+                            Data Security
+                        </h4>
+                        <p class="text-sm text-blue-700">All accounts comply with HIPAA and medical data protection regulations. End-to-end encryption ensures patient data security.</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- Right Column: Signup Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
-                
-                <form id="signupForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
-                            <input type="text" id="firstName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+
+            <!-- Right Column: Registration Form -->
+            <div class="lg:col-span-2" data-aos="fade-left">
+                <div class="form-container rounded-xl shadow-2xl p-8">
+                    <form id="signupForm" class="space-y-6">
+                        <!-- Role Selection (Hidden) -->
+                        <input type="hidden" id="selectedRole" name="role" value="patient" required>
+                        
+                        <!-- Personal Information -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="firstName">
+                                    First Name *
+                                </label>
+                                <input type="text" id="firstName" name="firstName" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="lastName">
+                                    Last Name *
+                                </label>
+                                <input type="text" id="lastName" name="lastName" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="email">
+                                    Email Address *
+                                </label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="phone">
+                                    Phone Number *
+                                </label>
+                                <input type="tel" id="phone" name="phone" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="password">Password</label>
-                        <input type="password" id="password" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="terms" required 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="terms" class="ml-3 text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                        </label>
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="newsletter" class="ml-3 text-gray-700">
-                            Subscribe to our newsletter for exclusive deals
-                        </label>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                        Create Account
-                    </button>
-                    
-                    <div class="text-center">
-                        <p class="text-gray-600">Already have an account? 
-                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
-                        </p>
-                    </div>
-                    
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
+
+                        <!-- Role-Specific Fields -->
+                        <div id="roleSpecificFields">
+                            <!-- Patient Fields -->
+                            <div class="role-fields patient-fields space-y-6">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-gray-700 font-medium mb-2" for="dateOfBirth">
+                                            Date of Birth *
+                                        </label>
+                                        <input type="date" id="dateOfBirth" name="dateOfBirth"
+                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 font-medium mb-2" for="bloodGroup">
+                                            Blood Group
+                                        </label>
+                                        <select id="bloodGroup" name="bloodGroup"
+                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                                            <option value="">Select</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
+
+                        <!-- Security Information -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="password">
+                                    Password *
+                                </label>
+                                <div class="relative">
+                                    <input type="password" id="password" name="password" required minlength="8"
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                                    <button type="button" onclick="togglePassword('password')" class="absolute right-3 top-3 text-gray-500">
+                                        <i data-feather="eye"></i>
+                                    </button>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">Minimum 8 characters with letters and numbers</p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="confirmPassword">
+                                    Confirm Password *
+                                </label>
+                                <div class="relative">
+                                    <input type="password" id="confirmPassword" name="confirmPassword" required
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                                    <button type="button" onclick="togglePassword('confirmPassword')" class="absolute right-3 top-3 text-gray-500">
+                                        <i data-feather="eye"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            Facebook
-                        </button>
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
-                            Twitter
-                        </button>
-                    </div>
-                </form>
+
+                        <!-- Terms and Conditions -->
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <input type="checkbox" id="terms" name="terms" required
+                                    class="mt-1 mr-3 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <label for="terms" class="text-gray-700">
+                                    I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> 
+                                    and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>. 
+                                    I understand that my medical data will be protected in compliance with healthcare regulations.
+                                </label>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <input type="checkbox" id="consent" name="consent" required
+                                    class="mt-1 mr-3 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <label for="consent" class="text-gray-700">
+                                    I consent to the collection and processing of my personal and medical data 
+                                    for healthcare purposes as outlined in the HIPAA compliance documentation.
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-4">
+                            <button type="submit"
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2">
+                                <i data-feather="user-plus"></i>
+                                Create Account
+                            </button>
+                        </div>
+
+                        <!-- Login Link -->
+                        <div class="text-center pt-4">
+                            <p class="text-gray-600">
+                                Already have an account? 
+                                <a href="login.html" class="text-blue-600 font-semibold hover:underline">Login here</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <i data-feather="shopping-bag" class="text-blue-400"></i>
-                    <span class="font-bold text-xl">E-Shop</span>
+    <footer class="bg-gray-900 text-gray-300 mt-16">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-white font-bold text-xl">Hospital Management System</span>
+                    <p class="text-sm mt-2">Secure • Compliant • Efficient</p>
                 </div>
-                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
-                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
-                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Account</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
-                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Contact</h3>
-                <p class="text-gray-400">support@eshop.com</p>
-                <p class="text-gray-400">+1 (555) 123-4567</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
+                <div class="text-center md:text-right">
+                    <p class="text-sm">© 2024 Hospital Management System. All rights reserved.</p>
+                    <p class="text-xs mt-1">HIPAA Compliant • GDPR Ready • Medical Data Protected</p>
                 </div>
             </div>
-        </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        feather.replace();
-        
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+
+        // Role Selection
+        function selectRole(role) {
+            // Update hidden input
+            document.getElementById('selectedRole').value = role;
+            
+            // Update card selection
+            document.querySelectorAll('.role-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Update role-specific fields
+            updateRoleFields(role);
+        }
+
+        // Update role-specific fields
+        function updateRoleFields(role) {
+            const fieldsContainer = document.getElementById('roleSpecificFields');
+            
+            // Clear existing fields
+            fieldsContainer.innerHTML = '';
+            
+            // Add role-specific fields
+            if (role === 'patient') {
+                fieldsContainer.innerHTML = `
+                    <div class="role-fields patient-fields space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="dateOfBirth">
+                                    Date of Birth *
+                                </label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="bloodGroup">
+                                    Blood Group
+                                </label>
+                                <select id="bloodGroup" name="bloodGroup"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                                    <option value="">Select</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2" for="emergencyContact">
+                                Emergency Contact
+                            </label>
+                            <input type="tel" id="emergencyContact" name="emergencyContact"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                        </div>
+                    </div>
+                `;
+            } else if (role === 'doctor') {
+                fieldsContainer.innerHTML = `
+                    <div class="role-fields doctor-fields space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="licenseNumber">
+                                    Medical License Number *
+                                </label>
+                                <input type="text" id="licenseNumber" name="licenseNumber"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="specialization">
+                                    Specialization *
+                                </label>
+                                <select id="specialization" name="specialization"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                                    <option value="">Select Specialization</option>
+                                    <option value="cardiology">Cardiology</option>
+                                    <option value="neurology">Neurology</option>
+                                    <option value="orthopedics">Orthopedics</option>
+                                    <option value="pediatrics">Pediatrics</option>
+                                    <option value="surgery">Surgery</option>
+                                    <option value="radiology">Radiology</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (role === 'staff') {
+                fieldsContainer.innerHTML = `
+                    <div class="role-fields staff-fields space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="employeeId">
+                                    Employee ID *
+                                </label>
+                                <input type="text" id="employeeId" name="employeeId"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2" for="department">
+                                    Department *
+                                </label>
+                                <select id="department" name="department"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 transition-colors">
+                                    <option value="">Select Department</option>
+                                    <option value="administration">Administration</option>
+                                    <option value="billing">Billing</option>
+                                    <option value="reception">Reception</option>
+                                    <option value="nursing">Nursing</option>
+                                    <option value="lab">Laboratory</option>
+                                    <option value="pharmacy">Pharmacy</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Reinitialize Feather Icons for new content
+            feather.replace();
+        }
+
+        // Toggle password visibility
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            const type = field.getAttribute('type') === 'password' ? 'text' : 'password';
+            field.setAttribute('type', type);
+            
+            // Update icon
+            const icon = field.parentNode.querySelector('i');
+            if (type === 'text') {
+                icon.setAttribute('data-feather', 'eye-off');
+            } else {
+                icon.setAttribute('data-feather', 'eye');
+            }
+            feather.replace();
+        }
+
+        // Form submission
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Basic validation
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             
@@ -232,9 +434,26 @@
                 return;
             }
             
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to login...');
-            window.location.href = 'login.html';
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long!');
+                return;
+            }
+            
+            // In a real application, this would send data to a server
+            alert('Account creation request submitted! You will receive a verification email shortly.');
+            this.reset();
+            
+            // Reset role selection
+            document.querySelectorAll('.role-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector('.role-card').classList.add('selected');
+            updateRoleFields('patient');
+        });
+
+        // Initialize with patient role selected
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.role-card').classList.add('selected');
         });
     </script>
 </body>
