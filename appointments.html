@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - VitaCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .emergency-critical { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .emergency-high { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .emergency-medium { background: linear-gradient(135deg, #eab308, #ca8a04); }
+        .emergency-low { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .prescription-pending { border-left: 4px solid #eab308; }
+        .prescription-filled { border-left: 4px solid #22c55e; }
+        .prescription-expired { border-left: 4px solid #ef4444; }
+        .role-patient { background-color: #dbeafe; color: #1e40af; }
+        .role-staff { background-color: #f0f9ff; color: #0c4a6e; }
+        .role-admin { background-color: #fef3c7; color: #92400e; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar (copied exactly as provided) -->
+    <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;gap:8px;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🏥</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>VitaCare</span></a><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='dashboard.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Dashboard</a><a href='patient-management.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Patient Management</a><a href='doctor-schedules.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Doctor Schedules</a><a href='appointments.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Appointments</a><a href='medical-records.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Medical Records</a><a href='billing.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Billing</a></div></nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Appointments Management</h1>
+            <p class="text-gray-600 mt-2">Schedule, manage, and track patient appointments with integrated EHR and emergency monitoring</p>
+        </div>
+
+        <!-- Emergency Room Status Banner -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8 border-l-8 border-red-500" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                        <i data-feather="alert-triangle" class="text-red-500"></i>
+                        Emergency Room Status
+                    </h2>
+                    <p class="text-gray-600 mt-1">Real-time emergency department capacity and wait times</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <div class="flex items-center gap-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-red-600">12</div>
+                            <div class="text-sm text-gray-500">Critical Cases</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-orange-500">45</div>
+                            <div class="text-sm text-gray-500">Avg Wait (mins)</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-blue-600">78%</div>
+                            <div class="text-sm text-gray-500">Capacity</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+                <div class="emergency-critical text-white rounded-lg p-4 text-center">
+                    <div class="text-2xl font-bold">4</div>
+                    <div class="text-sm">Level 1 (Critical)</div>
+                </div>
+                <div class="emergency-high text-white rounded-lg p-4 text-center">
+                    <div class="text-2xl font-bold">8</div>
+                    <div class="text-sm">Level 2 (High)</div>
+                </div>
+                <div class="emergency-medium text-white rounded-lg p-4 text-center">
+                    <div class="text-2xl font-bold">15</div>
+                    <div class="text-sm">Level 3 (Medium)</div>
+                </div>
+                <div class="emergency-low text-white rounded-lg p-4 text-center">
+                    <div class="text-2xl font-bold">23</div>
+                    <div class="text-sm">Level 4 (Low)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Appointment Scheduling & Patient Registration -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Patient Registration -->
+                <div class="bg-white rounded-xl shadow-md p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-feather="user-plus"></i>
+                        Patient Registration
+                    </h2>
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                                <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
+                                <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Insurance Provider</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option>Select Provider</option>
+                                    <option>Blue Cross Blue Shield</option>
+                                    <option>Aetna</option>
+                                    <option>UnitedHealthcare</option>
+                                    <option>Cigna</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Medical History Notes</label>
+                            <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-200">
+                            Register Patient & Create EHR
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Appointment Scheduling -->
+                <div class="bg-white rounded-xl shadow-md p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-feather="calendar"></i>
+                        Schedule New Appointment
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Select Patient</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option>Search patient by name or ID</option>
+                                    <option>John Smith (ID: P-78901)</option>
+                                    <option>Maria Garcia (ID: P-78902)</option>
+                                    <option>Robert Chen (ID: P-78903)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Select Doctor</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option>Choose specialist</option>
+                                    <option>Dr. Sarah Johnson (Cardiology)</option>
+                                    <option>Dr. Michael Brown (Pediatrics)</option>
+                                    <option>Dr. Lisa Wang (Orthopedics)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Appointment Date</label>
+                                <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Appointment Time</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option>Select time slot</option>
+                                    <option>09:00 AM</option>
+                                    <option>10:30 AM</option>
+                                    <option>02:00 PM</option>
+                                    <option>03:30 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Reason for Visit</label>
+                            <textarea rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Describe symptoms or reason for appointment"></textarea>
+                        </div>
+                        <div class="flex gap-4">
+                            <button class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-200">
+                                Schedule Appointment
+                            </button>
+                            <button class="flex-1 border border-blue-600 text-blue-600 py-3 rounded-lg font-medium hover:bg-blue-50 transition duration-200">
+                                Check Availability
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today's Appointments -->
+                <div class="bg-white rounded-xl shadow-md p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-feather="clock"></i>
+                        Today's Appointments
+                    </h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-200">
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Time</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Patient</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Doctor</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-3 px-4">09:00 AM</td>
+                                    <td class="py-3 px-4 font-medium">John Smith</td>
+                                    <td class="py-3 px-4">Dr. Sarah Johnson</td>
+                                    <td class="py-3 px-4"><span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Checked In</span></td>
+                                </tr>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-3 px-4">10:30 AM</td>
+                                    <td class="py-3 px-4 font-medium">Maria Garcia</td>
+                                    <td class="py-3 px-4">Dr. Michael Brown</td>
+                                    <td class="py-3 px-4"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Scheduled</span></td>
+                                </tr>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-3 px-4">02:00 PM</td>
+                                    <td class="py-3 px-4 font-medium">Robert Chen</td>
+                                    <td class="py-3 px-4">Dr. Lisa Wang</td>
+                                    <td class="py-3 px-4"><span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Prescription & Lab Results -->
+            <div class="space-y-8">
+                <!-- Prescription Management -->
+                <div class="bg-white rounded-xl shadow-md p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-feather="file-text"></i>
+                        Prescription Tracking
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="prescription-pending bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Lisinopril 10mg</h3>
+                                    <p class="text-sm text-gray-600">For: John Smith</p>
+                                    <p class="text-xs text-gray-500 mt-1">Prescribed: 03/15/2024</p>
+                                </div>
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-medium">Pending</span>
+                            </div>
+                        </div>
+                        <div class="prescription-filled bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Amoxicillin 500mg</h3>
+                                    <p class="text-sm text-gray-600">For: Maria Garcia</p>
+                                    <p class="text-xs text-gray-500 mt-1">Filled: 03/14/2024</p>
+                                </div>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-medium">Filled</span>
+                            </div>
+                        </div>
+                        <div class="prescription-expired bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Metformin 850mg</h3>
+                                    <p class="text-sm text-gray-600">For: Robert Chen</p>
+                                    <p class="text-xs text-gray-500 mt-1">Expired: 03/10/2024</p>
+                                </div>
+                                <span class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-medium">Expired</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 border border-blue-600 text-blue-600 py-2 rounded-lg font-medium hover:bg-blue-50 transition duration-200">
+                        View All Prescriptions
+                    </button>
+                </div>
+
+                <!-- Lab Results Portal -->
+                <div class="bg-white rounded-xl shadow-md p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-feather="activity"></i>
+                        Lab Results
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                    <i data-feather="droplet" class="text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Blood Test</h3>
+                                    <p class="text-sm text-gray-600">Completed: 03/14/2024</p>
+                                </div>
+                            </div>
+                            <button class="text-blue-600 hover:text-blue-800">
+                                <i data-feather="download"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                                    <i data-feather="bar-chart" class="text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Cholesterol Panel</h3>
+                                    <p class="text-sm text-gray-600">Completed: 03/12/2024</p>
+                                </div>
+                            </div>
+                            <button class="text-green-600 hover:text-green-800">
+                                <i data-feather="download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-200">
+                        Upload New Results
+                    </button>
+                </div>
+
+                <!-- Staff Shift Planner -->
+                <div class="bg-white rounded-xl shadow-md p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-feather="users"></i>
+                        Staff Shift Planner
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                            <div>
+                                <h3 class="font-medium text-gray-900">Dr. Sarah Johnson</h3>
+                                <p class="text-sm text-gray-600">Cardiology • 8:00 AM - 4:00 PM</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-medium">On Duty</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                            <div>
+                                <h3 class="font-medium text-gray-900">Nurse Emily Chen</h3>
+                                <p class="text-sm text-gray-600">ER • 12:00 PM - 8:00 PM</p>
+                            </div>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-medium">Scheduled</span>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 border border-gray-300 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-50 transition duration-200">
+                        Manage Shifts
+                    </button>
+                </div>
+
+                <!-- Role-Based Access -->
+                <div class="bg-white rounded-xl shadow-md p-6" data-aos="fade-up">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <i data-feather="shield"></i>
+                        Role-Based Access
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="role-patient px-3 py-2 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium">Patient Access</span>
+                                <i data-feather="check-circle" class="text-green-500"></i>
+                            </div>
+                            <p class="text-sm mt-1">View appointments, prescriptions, lab results</p>
+                        </div>
+                        <div class="role-staff px-3 py-2 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium">Staff Access</span>
+                                <i data-feather="check-circle" class="text-green-500"></i>
+                            </div>
+                            <p class="text-sm mt-1">Schedule appointments, view EHR, manage shifts</p>
+                        </div>
+                        <div class="role-admin px-3 py-2 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium">Admin Access</span>
+                                <i data-feather="check-circle" class="text-green-500"></i>
+                            </div>
+                            <p class="text-sm mt-1">Full system access, user management, reports</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                            <span class="text-lg">🏥</span>
+                        </div>
+                        <span class="text-xl font-bold">VitaCare</span>
+                    </div>
+                    <p class="text-gray-400 mt-2 text-sm">HIPAA-compliant healthcare management system</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400 text-sm">© 2024 VitaCare. All rights reserved.</p>
+                    <p class="text-gray-500 text-xs mt-1">Secure • Compliant • Reliable</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Emergency alert simulation
+        function simulateEmergencyAlert() {
+            const alertSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3');
+            alertSound.volume = 0.3;
+            alertSound.play().catch(e => console.log("Audio play failed:", e));
+            
+            // Create alert banner
+            const alertBanner = document.createElement('div');
+            alertBanner.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-3 animate-pulse';
+            alertBanner.innerHTML = `
+                <i data-feather="alert-octagon"></i>
+                <div>
+                    <strong>EMERGENCY ALERT:</strong> Critical patient arriving in 5 minutes
+                </div>
+                <button onclick="this.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+                    <i data-feather="x"></i>
+                </button>
+            `;
+            document.body.appendChild(alertBanner);
+            feather.replace();
+            
+            // Remove after 10 seconds
+            setTimeout(() => {
+                if (alertBanner.parentElement) {
+                    alertBanner.remove();
+                }
+            }, 10000);
+        }
+        
+        // Simulate emergency alert every 2 minutes (for demo)
+        // setInterval(simulateEmergencyAlert, 120000);
+        
+        // Demo: Trigger emergency alert on button click (for testing)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add emergency alert button for demo
+            const demoButton = document.createElement('button');
+            demoButton.className = 'fixed bottom-4 right-4 bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg z-40 text-sm font-medium';
+            demoButton.textContent = 'Test Emergency Alert';
+            demoButton.onclick = simulateEmergencyAlert;
+            document.body.appendChild(demoButton);
+        });
+    </script>
+</body>
+</html>

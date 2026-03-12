@@ -3,238 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - E Commerce</title>
+    <title>Signup - VitaCare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #fef2f2 100%);
+        }
+        .form-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+        .emergency-badge {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .hipaa-notice {
+            border-left: 4px solid #3b82f6;
+            background: #eff6ff;
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="font-bold text-xl">E-Shop</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 bg-blue-600 rounded hover:bg-blue-700'>Signup</a>
-        </div>
-    </nav>
+<body class="min-h-screen gradient-bg">
+    <!-- Navbar (copied exactly as provided) -->
+    <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;gap:8px;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🏥</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>VitaCare</span></a><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='dashboard.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Dashboard</a><a href='patient-management.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Patient Management</a><a href='doctor-schedules.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Doctor Schedules</a><a href='appointments.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Appointments</a><a href='medical-records.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Medical Records</a><a href='billing.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Billing</a></div></nav>
 
-    <!-- Signup Section -->
-    <section class="py-12 px-4 md:px-8 lg:px-16">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Column: Benefits -->
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Create Your Account</h1>
-                <p class="text-gray-600 mb-8">Join thousands of satisfied customers and enjoy a seamless shopping experience.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                            <i data-feather="shopping-cart" class="text-blue-600"></i>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Emergency Status Banner -->
+        <div class="mb-8" data-aos="fade-down">
+            <div class="bg-white rounded-xl shadow-lg p-4 border border-red-200">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="emergency-badge bg-red-100 p-2 rounded-full">
+                            <i data-feather="alert-circle" class="w-6 h-6 text-red-600"></i>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-gray-800">Fast Checkout</h3>
-                            <p class="text-gray-600">Save your details for quicker purchases.</p>
+                            <h3 class="font-bold text-lg text-gray-800">Emergency Room Status</h3>
+                            <p class="text-gray-600 text-sm">Real-time updates for emergency services</p>
                         </div>
                     </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-2 rounded-full mr-4">
-                            <i data-feather="package" class="text-green-600"></i>
+                    <div class="flex items-center gap-6">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-green-600">LOW</div>
+                            <div class="text-xs text-gray-500">Wait Time</div>
                         </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Order Tracking</h3>
-                            <p class="text-gray-600">Monitor your orders in real-time.</p>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-blue-600">12</div>
+                            <div class="text-xs text-gray-500">Available Beds</div>
                         </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 p-2 rounded-full mr-4">
-                            <i data-feather="star" class="text-purple-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Exclusive Reviews</h3>
-                            <p class="text-gray-600">Share and read authentic product reviews.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="bg-yellow-100 p-2 rounded-full mr-4">
-                            <i data-feather="credit-card" class="text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Secure Payments</h3>
-                            <p class="text-gray-600">Multiple payment options with top security.</p>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-amber-600">3</div>
+                            <div class="text-xs text-gray-500">Critical Cases</div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Right Column: Signup Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign Up Now</h2>
-                
-                <form id="signupForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="firstName">First Name</label>
-                            <input type="text" id="firstName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Left Column: Registration Form -->
+            <div class="lg:col-span-2" data-aos="fade-right">
+                <div class="form-card rounded-2xl shadow-xl p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="bg-blue-100 p-2 rounded-lg">
+                            <i data-feather="user-plus" class="w-6 h-6 text-blue-600"></i>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" required 
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Create Your VitaCare Account</h1>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-8">Join VitaCare's secure healthcare platform. Select your role to get started with personalized features.</p>
+                    
+                    <!-- Role Selection -->
+                    <div class="mb-8">
+                        <label class="block text-sm font-medium text-gray-700 mb-3">I am registering as:</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button class="role-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-blue-500 hover:bg-blue-50 transition-all" data-role="patient">
+                                <i data-feather="user" class="w-8 h-8 text-blue-600 mx-auto mb-2"></i>
+                                <div class="font-semibold text-gray-800">Patient</div>
+                                <div class="text-xs text-gray-500 mt-1">Access medical records, appointments, prescriptions</div>
+                            </button>
+                            <button class="role-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-green-500 hover:bg-green-50 transition-all" data-role="staff">
+                                <i data-feather="briefcase" class="w-8 h-8 text-green-600 mx-auto mb-2"></i>
+                                <div class="font-semibold text-gray-800">Medical Staff</div>
+                                <div class="text-xs text-gray-500 mt-1">Patient management, shift planning, EHR access</div>
+                            </button>
+                            <button class="role-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-500 hover:bg-purple-50 transition-all" data-role="admin">
+                                <i data-feather="shield" class="w-8 h-8 text-purple-600 mx-auto mb-2"></i>
+                                <div class="font-semibold text-gray-800">Administrator</div>
+                                <div class="text-xs text-gray-500 mt-1">System management, analytics, user administration</div>
+                            </button>
                         </div>
                     </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                        <input type="email" id="email" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="password">Password</label>
-                        <input type="password" id="password" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <p class="text-sm text-gray-500 mt-2">Must be at least 8 characters with a number and symbol.</p>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="terms" required 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="terms" class="ml-3 text-gray-700">
-                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                        </label>
-                    </div>
-                    
-                    <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" 
-                               class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="newsletter" class="ml-3 text-gray-700">
-                            Subscribe to our newsletter for exclusive deals
-                        </label>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                        Create Account
-                    </button>
-                    
-                    <div class="text-center">
-                        <p class="text-gray-600">Already have an account? 
-                            <a href="login.html" class="text-blue-600 font-semibold hover:underline">Log In</a>
+
+                    <!-- Registration Form -->
+                    <form id="registrationForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Date of Birth *</label>
+                                <input type="date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Emergency Contact</label>
+                                <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Create Password *</label>
+                                <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password *</label>
+                                <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            </div>
+                        </div>
+
+                        <!-- Insurance Information -->
+                        <div class="border-t pt-6">
+                            <h3 class="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                                <i data-feather="credit-card" class="w-5 h-5"></i>
+                                Insurance Information
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Insurance Provider</label>
+                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                        <option value="">Select Provider</option>
+                                        <option>Blue Cross Blue Shield</option>
+                                        <option>Aetna</option>
+                                        <option>UnitedHealthcare</option>
+                                        <option>Cigna</option>
+                                        <option>Medicare</option>
+                                        <option>Medicaid</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Policy Number</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HIPAA Compliance Notice -->
+                        <div class="hipaa-notice p-4 rounded-lg">
+                            <div class="flex items-start gap-3">
+                                <i data-feather="shield" class="w-5 h-5 text-blue-600 mt-0.5"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">HIPAA Compliance Notice</h4>
+                                    <p class="text-sm text-gray-600">VitaCare adheres to strict HIPAA regulations. All personal health information is encrypted and protected. By creating an account, you acknowledge our Privacy Policy and consent to secure data handling.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <input type="checkbox" id="terms" required class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="terms" class="ml-2 text-sm text-gray-600">
+                                I agree to VitaCare's <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-semibold py-3 px-4 rounded-lg hover:opacity-90 transition-all shadow-md hover:shadow-lg">
+                            Create Account
+                        </button>
+
+                        <p class="text-center text-gray-600 text-sm">
+                            Already have an account? <a href="login.html" class="text-blue-600 font-semibold hover:underline">Login here</a>
                         </p>
-                    </div>
-                    
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column: Features & Benefits -->
+            <div class="space-y-6" data-aos="fade-left">
+                <!-- Features Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-4 flex items-center gap-2">
+                        <i data-feather="zap" class="w-5 h-5 text-blue-600"></i>
+                        VitaCare Features
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <div class="bg-green-100 p-1.5 rounded-full">
+                                <i data-feather="calendar" class="w-4 h-4 text-green-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800">Appointment Scheduling</div>
+                                <div class="text-sm text-gray-500">Book, reschedule, or cancel appointments online</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="bg-purple-100 p-1.5 rounded-full">
+                                <i data-feather="file-text" class="w-4 h-4 text-purple-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800">EHR Integration</div>
+                                <div class="text-sm text-gray-500">Secure electronic health records access</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="bg-amber-100 p-1.5 rounded-full">
+                                <i data-feather="clipboard" class="w-4 h-4 text-amber-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800">Lab Results Portal</div>
+                                <div class="text-sm text-gray-500">View test results and medical reports</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="bg-red-100 p-1.5 rounded-full">
+                                <i data-feather="package" class="w-4 h-4 text-red-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800">Prescription Management</div>
+                                <div class="text-sm text-gray-500">Track medications and refill requests</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="bg-indigo-100 p-1.5 rounded-full">
+                                <i data-feather="dollar-sign" class="w-4 h-4 text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800">Billing & Insurance</div>
+                                <div class="text-sm text-gray-500">Manage payments and insurance claims</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Emergency Alerts -->
+                <div class="bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-2xl shadow-lg p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-4 flex items-center gap-2">
+                        <i data-feather="alert-triangle" class="w-5 h-5 text-red-600"></i>
+                        Emergency Alert System
+                    </h3>
+                    <p class="text-gray-600 mb-4">VitaCare provides instant emergency notifications for critical situations:</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-600"></i>
+                            <span class="text-sm">Real-time emergency room updates</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-600"></i>
+                            <span class="text-sm">Critical prescription alerts</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-600"></i>
+                            <span class="text-sm">Staff emergency notifications</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-600"></i>
+                            <span class="text-sm">Natural disaster protocols</span>
+                        </li>
+                    </ul>
+                    <button class="w-full mt-4 bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2">
+                        <i data-feather="bell" class="w-4 h-4"></i>
+                        Enable Emergency Alerts
+                    </button>
+                </div>
+
+                <!-- Security Badge -->
+                <div class="bg-gray-900 text-white rounded-2xl p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-feather="lock" class="w-8 h-8 text-blue-400"></i>
+                        <div>
+                            <h3 class="font-bold text-xl">Bank-Level Security</h3>
+                            <p class="text-blue-200 text-sm">HIPAA Compliant</p>
                         </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
+                    </div>
+                    <p class="text-gray-300 text-sm mb-4">All data is encrypted with AES-256 encryption. Multi-factor authentication available for enhanced security.</p>
+                    <div class="flex items-center justify-between text-xs text-gray-400">
+                        <div class="flex items-center gap-1">
+                            <i data-feather="shield" class="w-3 h-3"></i>
+                            <span>End-to-End Encryption</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <i data-feather="check" class="w-3 h-3"></i>
+                            <span>HIPAA Certified</span>
                         </div>
                     </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            Facebook
-                        </button>
-                        <button type="button" 
-                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="twitter" class="text-blue-400 mr-2"></i>
-                            Twitter
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-16">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <i data-feather="shopping-bag" class="text-blue-400"></i>
-                    <span class="font-bold text-xl">E-Shop</span>
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 w-10 h-10 rounded-lg flex items-center justify-center">
+                        <span class="text-xl">🏥</span>
+                    </div>
+                    <div>
+                        <div class="font-bold text-xl">VitaCare</div>
+                        <div class="text-gray-400 text-sm">Secure Healthcare Management System</div>
+                    </div>
                 </div>
-                <p class="text-gray-400">Your trusted online marketplace for quality products and seamless shopping.</p>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" class="hover:text-blue-400">Product Catalog</a></li>
-                    <li><a href="cart.html" class="hover:text-blue-400">Shopping Cart</a></li>
-                    <li><a href="checkout.html" class="hover:text-blue-400">Checkout Process</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Account</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="login.html" class="hover:text-blue-400">User Login</a></li>
-                    <li><a href="signup.html" class="hover:text-blue-400">Create Account</a></li>
-                    <li><a href="#" class="hover:text-blue-400">Order Tracking</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="font-bold text-lg mb-4">Contact</h3>
-                <p class="text-gray-400">support@eshop.com</p>
-                <p class="text-gray-400">+1 (555) 123-4567</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400"><i data-feather="instagram"></i></a>
+                
+                <div class="text-center md:text-right">
+                    <div class="text-gray-400 text-sm mb-2">© 2024 VitaCare. All rights reserved.</div>
+                    <div class="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
+                        <a href="#" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">Terms of Service</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">HIPAA Compliance</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">Contact Support</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2023 E-Shop. All rights reserved. | <a href="#" class="hover:text-blue-400">Privacy Policy</a> | <a href="#" class="hover:text-blue-400">Terms of Service</a></p>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        feather.replace();
-        
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
             
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Simulate successful signup
-            alert('Account created successfully! Redirecting to login...');
-            window.location.href = 'login.html';
+            // Role selection functionality
+            const roleButtons = document.querySelectorAll('.role-btn');
+            roleButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    roleButtons.forEach(btn => {
+                        btn.classList.remove('border-blue-500', 'bg-blue-50', 'border-green-500', 'bg-green-50', 'border-purple-500', 'bg-purple-50');
+                        btn.classList.add('border-gray-200');
+                    });
+                    
+                    const role = this.getAttribute('data-role');
+                    if(role === 'patient') {
+                        this.classList.add('border-blue-500', 'bg-blue-50');
+                    } else if(role === 'staff') {
+                        this.classList.add('border-green-500', 'bg-green-50');
+                    } else {
+                        this.classList.add('border-purple-500', 'bg-purple-50');
+                    }
+                    
+                    // Update form based on role (simplified example)
+                    console.log('Selected role:', role);
+                });
+            });
+
+            // Form submission
+            document.getElementById('registrationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // In a real application, this would submit to a server
+                alert('Account registration submitted! You will be redirected to verification.');
+                // window.location.href = 'dashboard.html';
+            });
         });
     </script>
 </body>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records | VitaCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .record-card {
+            border-left: 4px solid #3b82f6;
+        }
+        .emergency-card {
+            border-left: 4px solid #ef4444;
+        }
+        .prescription-card {
+            border-left: 4px solid #10b981;
+        }
+        .lab-card {
+            border-left: 4px solid #8b5cf6;
+        }
+        .access-badge {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+        .hipaa-notice {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #bae6fd;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar (copied exactly as provided) -->
+    <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;gap:8px;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🏥</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>VitaCare</span></a><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='dashboard.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Dashboard</a><a href='patient-management.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Patient Management</a><a href='doctor-schedules.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Doctor Schedules</a><a href='appointments.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Appointments</a><a href='medical-records.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Medical Records</a><a href='billing.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Billing</a></div></nav>
+
+    <!-- Page Content -->
+    <main class="min-h-screen p-4 md:p-6">
+        <!-- Header -->
+        <div class="mb-8" data-aos="fade-up">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Medical Records</h1>
+            <p class="text-gray-600 mt-2">Secure, HIPAA-compliant electronic health records management</p>
+            
+            <!-- Role-based Access Badges -->
+            <div class="flex flex-wrap gap-2 mt-4">
+                <span class="access-badge bg-blue-100 text-blue-800">Patient Access</span>
+                <span class="access-badge bg-purple-100 text-purple-800">Staff Access</span>
+                <span class="access-badge bg-red-100 text-red-800">Admin Access</span>
+                <span class="access-badge bg-green-100 text-green-800">HIPAA Compliant</span>
+            </div>
+        </div>
+
+        <!-- Emergency Status Banner -->
+        <div class="emergency-card bg-white rounded-lg shadow-md p-4 mb-8" data-aos="fade-up">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                        <i data-feather="alert-triangle" class="text-red-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900">Emergency Room Status</h3>
+                        <p class="text-sm text-gray-600">Real-time capacity and wait times</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="text-2xl font-bold text-green-600">Available</div>
+                    <div class="text-sm text-gray-500">Wait time: 15-20 min</div>
+                </div>
+            </div>
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-gray-50 p-3 rounded">
+                    <div class="text-sm text-gray-500">Available Beds</div>
+                    <div class="text-xl font-bold">8/12</div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded">
+                    <div class="text-sm text-gray-500">Staff On Duty</div>
+                    <div class="text-xl font-bold">14</div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded">
+                    <div class="text-sm text-gray-500">Critical Cases</div>
+                    <div class="text-xl font-bold text-red-600">2</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Patient Search & Registration -->
+                <div class="record-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-bold text-gray-900">Patient Records</h2>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
+                            <i data-feather="user-plus"></i>
+                            Register New Patient
+                        </button>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="relative">
+                            <input type="text" placeholder="Search patient records by name, ID, or contact..." 
+                                   class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <i data-feather="search" class="absolute left-3 top-3.5 text-gray-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Recent Records -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i data-feather="user" class="text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium">Johnathan Doe</div>
+                                    <div class="text-sm text-gray-500">ID: PT-2024-001 | Last visit: 2 days ago</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Active</span>
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i data-feather="chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i data-feather="user" class="text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium">Maria Garcia</div>
+                                    <div class="text-sm text-gray-500">ID: PT-2024-002 | Last visit: 1 week ago</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Follow-up</span>
+                                <button class="text-blue-600 hover:text-blue-800">
+                                    <i data-feather="chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EHR Integration & Lab Results -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- EHR Integration -->
+                    <div class="record-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i data-feather="database" class="text-purple-600"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">EHR Integration</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Connected systems and data sources</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                <span class="text-sm">Lab Systems</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Connected</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                <span class="text-sm">Imaging Systems</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Connected</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                <span class="text-sm">Pharmacy Network</span>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Syncing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lab Results Portal -->
+                    <div class="lab-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i data-feather="activity" class="text-purple-600"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">Lab Results</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Recent test results and reports</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                <div>
+                                    <div class="font-medium">Blood Work</div>
+                                    <div class="text-xs text-gray-500">Completed: Today 10:30 AM</div>
+                                </div>
+                                <button class="text-blue-600 hover:text-blue-800 text-sm">
+                                    View
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                <div>
+                                    <div class="font-medium">X-Ray Scan</div>
+                                    <div class="text-xs text-gray-500">Completed: Yesterday</div>
+                                </div>
+                                <button class="text-blue-600 hover:text-blue-800 text-sm">
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-6">
+                <!-- Prescription Management -->
+                <div class="prescription-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                            <i data-feather="file-text" class="text-green-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">Prescriptions</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Active prescriptions and refill status</p>
+                    
+                    <div class="space-y-4">
+                        <div class="p-3 bg-gray-50 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="font-medium">Lisinopril 10mg</div>
+                                    <div class="text-sm text-gray-500">For: Johnathan Doe</div>
+                                </div>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Active</span>
+                            </div>
+                            <div class="mt-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Refills left:</span>
+                                    <span class="font-medium">2</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Next refill:</span>
+                                    <span class="font-medium">May 15, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-gray-50 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="font-medium">Metformin 500mg</div>
+                                    <div class="text-sm text-gray-500">For: Maria Garcia</div>
+                                </div>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Needs Refill</span>
+                            </div>
+                            <div class="mt-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Refills left:</span>
+                                    <span class="font-medium">0</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Last filled:</span>
+                                    <span class="font-medium">Apr 1, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full mt-4 border border-green-600 text-green-600 hover:bg-green-50 px-4 py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2">
+                        <i data-feather="plus"></i>
+                        New Prescription
+                    </button>
+                </div>
+
+                <!-- Staff Shift Planner -->
+                <div class="record-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                            <i data-feather="calendar" class="text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">Staff Shifts</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Today's schedule and coverage</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-2">
+                            <span class="text-sm">Dr. Smith (ER)</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">7AM - 7PM</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2">
+                            <span class="text-sm">Nurse Johnson</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">3PM - 11PM</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2">
+                            <span class="text-sm">Dr. Lee (Cardio)</span>
+                            <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">9AM - 5PM</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full mt-4 border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2">
+                        <i data-feather="edit"></i>
+                        Manage Shifts
+                    </button>
+                </div>
+
+                <!-- HIPAA Compliance Notice -->
+                <div class="hipaa-notice rounded-lg p-4" data-aos="fade-up">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-feather="shield" class="text-blue-600"></i>
+                        <h4 class="font-bold text-gray-900">HIPAA Compliance</h4>
+                    </div>
+                    <p class="text-sm text-gray-700">
+                        All medical records are encrypted and access is logged. Unauthorized access is prohibited and monitored. Audit trails are maintained for all record views and modifications.
+                    </p>
+                    <div class="mt-3 text-xs text-gray-600">
+                        Last audit: April 10, 2024 | All systems secure
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emergency Alerts Section -->
+        <div class="mt-8" data-aos="fade-up">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-900">Emergency Alerts</h2>
+                <button class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center gap-2">
+                    <i data-feather="bell"></i>
+                    Alert Settings
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                            <i data-feather="alert-circle" class="text-red-600"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-red-800">Critical Alert</div>
+                            <div class="text-sm text-red-600">ER at 85% capacity</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                            <i data-feather="clock" class="text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-yellow-800">Medication Alert</div>
+                            <div class="text-sm text-yellow-600">3 prescriptions need renewal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i data-feather="download" class="text-blue-600"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-blue-800">System Alert</div>
+                            <div class="text-sm text-blue-600">Lab results pending upload</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">🏥</span>
+                        <span class="text-xl font-bold">VitaCare</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mt-2">Secure Medical Records Management System</p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400 text-sm">© 2024 VitaCare. All rights reserved.</p>
+                    <p class="text-gray-500 text-xs mt-1">HIPAA Compliant • Encrypted • Secure</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center">
+                <p class="text-gray-500 text-sm">
+                    This system contains protected health information. Unauthorized access is prohibited.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Initialize Feather Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+        
+        // Simple emergency alert simulation
+        function simulateEmergency() {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'fixed top-20 right-4 bg-red-600 text-white p-4 rounded-lg shadow-lg z-50 max-w-sm';
+            alertDiv.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <i data-feather="alert-triangle"></i>
+                    <div>
+                        <div class="font-bold">Emergency Alert</div>
+                        <div class="text-sm">New critical case in ER</div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(alertDiv);
+            feather.replace();
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+        
+        // Simulate an alert every 30 seconds (for demo)
+        // setInterval(simulateEmergency, 30000);
+    </script>
+</body>
+</html>
