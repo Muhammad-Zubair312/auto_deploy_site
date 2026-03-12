@@ -3,346 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart | E-Commerce</title>
+    <title>Your Cart | TechShop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <meta name="description" content="Review and manage items in your shopping cart. Secure checkout with SSL encryption.">
     <style>
         .cart-item:hover {
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
-        .quantity-btn {
-            user-select: none;
+        .secure-badge {
+            background: linear-gradient(90deg, #10b981, #059669);
         }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Shared Navbar -->
+    <!-- Navigation -->
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex space-x-4">
+        <div class="flex items-center space-x-2 mb-2 md:mb-0">
+            <i data-feather="shopping-cart" class="text-blue-400"></i>
+            <span class="font-bold text-xl">TechShop</span>
+        </div>
+        <div class="flex flex-wrap space-x-2 md:space-x-4">
             <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
             <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
             <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+            <a href='cart.html' class='px-3 py-2 hover:text-blue-400 bg-blue-900 rounded'>Cart</a>
             <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
             <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
             <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
-        </div>
-        <div class="flex items-center space-x-2 mt-2 md:mt-0">
-            <span id="cart-count" class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
-            <span>Items</span>
+            <a href='user-account.html' class='px-3 py-2 hover:text-blue-400'>User Account</a>
         </div>
     </nav>
 
-    <!-- Main Cart Content -->
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Your Shopping Cart</h1>
-        <p class="text-gray-600 mb-8">Review your items and proceed to checkout</p>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Your Shopping Cart</h1>
+        <p class="text-gray-600 mb-8">Review your items, update quantities, or save for later.</p>
 
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Cart Items Section -->
             <div class="lg:w-2/3">
-                <div class="bg-white rounded-xl shadow-md p-6 mb-6" data-aos="fade-up">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-xl font-semibold">Cart Items (3)</h2>
-                        <button class="text-red-500 hover:text-red-700 flex items-center">
-                            <i data-feather="trash-2" class="w-4 h-4 mr-1"></i>
-                            Clear Cart
-                        </button>
-                    </div>
-
-                    <!-- Cart Item 1 -->
-                    <div class="cart-item border-b pb-6 mb-6 flex flex-col md:flex-row items-center">
-                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
-                             alt="Wireless Headphones" 
-                             class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6">
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-lg">Premium Wireless Headphones</h3>
-                            <p class="text-gray-600 text-sm mt-1">Noise cancelling, 30hr battery</p>
-                            <div class="flex items-center mt-2">
-                                <span class="text-yellow-400 flex">
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4"></i>
-                                </span>
-                                <span class="text-gray-500 text-sm ml-2">(128 reviews)</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between w-full md:w-auto mt-4 md:mt-0">
-                            <div class="flex items-center border rounded-lg mr-6">
-                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
-                                <span class="px-3 py-1 border-x">1</span>
-                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xl font-bold">$199.99</p>
-                                <button class="text-red-500 hover:text-red-700 text-sm mt-1">
-                                    <i data-feather="x" class="w-4 h-4 inline mr-1"></i>
-                                    Remove
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cart Item 2 -->
-                    <div class="cart-item border-b pb-6 mb-6 flex flex-col md:flex-row items-center">
-                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
-                             alt="Camera" 
-                             class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6">
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-lg">Digital Camera 4K</h3>
-                            <p class="text-gray-600 text-sm mt-1">24MP, 4K Video, 3x Zoom</p>
-                            <div class="flex items-center mt-2">
-                                <span class="text-yellow-400 flex">
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                </span>
-                                <span class="text-gray-500 text-sm ml-2">(256 reviews)</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between w-full md:w-auto mt-4 md:mt-0">
-                            <div class="flex items-center border rounded-lg mr-6">
-                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
-                                <span class="px-3 py-1 border-x">1</span>
-                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xl font-bold">$599.99</p>
-                                <button class="text-red-500 hover:text-red-700 text-sm mt-1">
-                                    <i data-feather="x" class="w-4 h-4 inline mr-1"></i>
-                                    Remove
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cart Item 3 -->
-                    <div class="cart-item flex flex-col md:flex-row items-center">
-                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
-                             alt="Smart Watch" 
-                             class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6">
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-lg">Smart Watch Pro</h3>
-                            <p class="text-gray-600 text-sm mt-1">Heart rate monitor, GPS, Waterproof</p>
-                            <div class="flex items-center mt-2">
-                                <span class="text-yellow-400 flex">
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                    <i data-feather="star" class="w-4 h-4"></i>
-                                </span>
-                                <span class="text-gray-500 text-sm ml-2">(89 reviews)</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between w-full md:w-auto mt-4 md:mt-0">
-                            <div class="flex items-center border rounded-lg mr-6">
-                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
-                                <span class="px-3 py-1 border-x">2</span>
-                                <button class="quantity-btn px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xl font-bold">$299.98</p>
-                                <button class="text-red-500 hover:text-red-700 text-sm mt-1">
-                                    <i data-feather="x" class="w-4 h-4 inline mr-1"></i>
-                                    Remove
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Continue Shopping -->
-                <div class="flex justify-between items-center">
-                    <a href="products.html" class="text-blue-600 hover:text-blue-800 flex items-center">
-                        <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        Continue Shopping
-                    </a>
-                    <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-lg font-medium">
-                        Update Cart
-                    </button>
-                </div>
-            </div>
-
-            <!-- Order Summary -->
-            <div class="lg:w-1/3">
-                <div class="bg-white rounded-xl shadow-md p-6 sticky top-6" data-aos="fade-left">
-                    <h2 class="text-xl font-semibold mb-6">Order Summary</h2>
-                    
-                    <div class="space-y-4 mb-6">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Subtotal</span>
-                            <span class="font-medium">$1,099.96</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Shipping</span>
-                            <span class="font-medium">$9.99</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Tax</span>
-                            <span class="font-medium">$88.00</span>
-                        </div>
-                        <div class="border-t pt-4">
-                            <div class="flex justify-between text-lg font-bold">
-                                <span>Total</span>
-                                <span>$1,197.95</span>
-                            </div>
-                            <p class="text-gray-500 text-sm mt-1">Including $88.00 in taxes</p>
-                        </div>
-                    </div>
-
-                    <!-- Promo Code -->
-                    <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-medium mb-2">Promo Code</label>
-                        <div class="flex">
-                            <input type="text" 
-                                   class="flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                   placeholder="Enter code">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-lg">
-                                Apply
+                <!-- Cart Header -->
+                <div class="bg-white rounded-lg shadow p-4 mb-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-semibold">Items (3)</h2>
+                        <div class="flex items-center space-x-4">
+                            <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                                <i data-feather="heart" class="w-4 h-4 mr-1"></i> Wishlist (2)
+                            </button>
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i data-feather="trash-2" class="w-4 h-4"></i> Clear Cart
                             </button>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Checkout Button -->
-                    <a href="checkout.html" 
-                       class="block w-full bg-green-600 hover:bg-green-700 text-white text-center font-semibold py-3 px-4 rounded-lg mb-4 transition duration-300">
-                        Proceed to Checkout
-                    </a>
-
-                    <!-- Payment Methods -->
-                    <div class="border-t pt-6">
-                        <p class="text-gray-600 text-sm mb-3">We accept</p>
-                        <div class="flex space-x-4">
-                            <div class="w-12 h-8 bg-gray-200 rounded flex items-center justify-center">
-                                <i data-feather="credit-card" class="text-gray-600"></i>
+                <!-- Cart Items List -->
+                <div class="space-y-6">
+                    <!-- Item 1 -->
+                    <div class="cart-item bg-white rounded-xl shadow p-4 md:p-6 flex flex-col md:flex-row gap-4" data-aos="fade-up">
+                        <div class="md:w-1/4">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Wireless Headphones" 
+                                 class="w-full h-48 object-cover rounded-lg">
+                        </div>
+                        <div class="md:w-3/4">
+                            <div class="flex justify-between">
+                                <h3 class="text-lg font-semibold text-gray-800">Premium Wireless Headphones</h3>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i data-feather="x" class="w-5 h-5"></i>
+                                </button>
                             </div>
-                            <div class="w-12 h-8 bg-gray-200 rounded flex items-center justify-center">
-                                <i data-feather="dollar-sign" class="text-gray-600"></i>
+                            <p class="text-gray-600 text-sm mt-1">Noise cancelling, 30hr battery</p>
+                            
+                            <!-- Rating -->
+                            <div class="flex items-center mt-2">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm ml-2">(128 reviews)</span>
                             </div>
-                            <div class="w-12 h-8 bg-gray-200 rounded flex items-center justify-center">
-                                <i data-feather="smartphone" class="text-gray-600"></i>
+                            
+                            <div class="flex flex-wrap justify-between items-center mt-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center border rounded-lg">
+                                        <button class="px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
+                                        <span class="px-3 py-1 border-x">1</span>
+                                        <button class="px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
+                                    </div>
+                                    <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                                        <i data-feather="heart" class="w-4 h-4 mr-1"></i> Save
+                                    </button>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-2xl font-bold text-gray-900">$149.99</p>
+                                    <p class="text-green-600 text-sm">In stock</p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Security Note -->
-                    <div class="mt-6 p-4 bg-blue-50 rounded-lg">
-                        <div class="flex items-start">
-                            <i data-feather="shield" class="text-blue-500 mr-3 mt-1"></i>
-                            <div>
-                                <p class="text-sm text-blue-800 font-medium">Secure Checkout</p>
-                                <p class="text-xs text-blue-600 mt-1">Your payment information is encrypted and secure.</p>
+                    <!-- Item 2 -->
+                    <div class="cart-item bg-white rounded-xl shadow p-4 md:p-6 flex flex-col md:flex-row gap-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="md:w-1/4">
+                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Smart Watch" 
+                                 class="w-full h-48 object-cover rounded-lg">
+                        </div>
+                        <div class="md:w-3/4">
+                            <div class="flex justify-between">
+                                <h3 class="text-lg font-semibold text-gray-800">Smart Fitness Watch</h3>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i data-feather="x" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">Heart rate monitor, GPS, waterproof</p>
+                            
+                            <!-- Rating -->
+                            <div class="flex items-center mt-2">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm ml-2">(64 reviews)</span>
+                            </div>
+                            
+                            <div class="flex flex-wrap justify-between items-center mt-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center border rounded-lg">
+                                        <button class="px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
+                                        <span class="px-3 py-1 border-x">2</span>
+                                        <button class="px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
+                                    </div>
+                                    <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                                        <i data-feather="heart" class="w-4 h-4 mr-1"></i> Save
+                                    </button>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-2xl font-bold text-gray-900">$199.99</p>
+                                    <p class="text-green-600 text-sm">In stock</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="cart-item bg-white rounded-xl shadow p-4 md:p-6 flex flex-col md:flex-row gap-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="md:w-1/4">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Portable Speaker" 
+                                 class="w-full h-48 object-cover rounded-lg">
+                        </div>
+                        <div class="md:w-3/4">
+                            <div class="flex justify-between">
+                                <h3 class="text-lg font-semibold text-gray-800">Bluetooth Portable Speaker</h3>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i data-feather="x" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">360° sound, 12hr battery, waterproof</p>
+                            
+                            <!-- Rating -->
+                            <div class="flex items-center mt-2">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm ml-2">(312 reviews)</span>
+                            </div>
+                            
+                            <div class="flex flex-wrap justify-between items-center mt-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center border rounded-lg">
+                                        <button class="px-3 py-1 text-gray-600 hover:text-gray-800">-</button>
+                                        <span class="px-3 py-1 border-x">1</span>
+                                        <button class="px-3 py-1 text-gray-600 hover:text-gray-800">+</button>
+                                    </div>
+                                    <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                                        <i data-feather="heart" class="w-4 h-4 mr-1"></i> Save
+                                    </button>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-2xl font-bold text-gray-900">$89.99</p>
+                                    <p class="text-green-600 text-sm">In stock</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Recently Viewed -->
-                <div class="bg-white rounded-xl shadow-md p-6 mt-6" data-aos="fade-up">
-                    <h3 class="font-semibold mb-4">Recently Viewed</h3>
-                    <div class="flex items-center space-x-4">
-                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                             alt="Smartphone" 
-                             class="w-16 h-16 object-cover rounded-lg">
-                        <div>
-                            <p class="font-medium text-sm">Smartphone X</p>
-                            <p class="text-green-600 font-bold">$799.99</p>
+                <!-- Order Tracking Section -->
+                <div class="mt-10 bg-white rounded-xl shadow p-6" data-aos="fade-up">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i data-feather="package" class="w-5 h-5 mr-2 text-blue-500"></i> Order Tracking
+                    </h3>
+                    <p class="text-gray-600 mb-4">Track your recent orders from your account page.</p>
+                    <a href="user-account.html#orders" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                        View Order History <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Order Summary & Checkout -->
+            <div class="lg:w-1/3">
+                <div class="sticky top-8">
+                    <!-- Order Summary -->
+                    <div class="bg-white rounded-xl shadow p-6 mb-6" data-aos="fade-left">
+                        <h3 class="text-xl font-semibold mb-4">Order Summary</h3>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Subtotal (3 items)</span>
+                                <span class="font-medium">$439.97</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Shipping</span>
+                                <span class="font-medium text-green-600">Free</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Tax</span>
+                                <span class="font-medium">$35.20</span>
+                            </div>
+                            <div class="border-t pt-3">
+                                <div class="flex justify-between text-lg font-bold">
+                                    <span>Total</span>
+                                    <span>$475.17</span>
+                                </div>
+                                <p class="text-gray-500 text-sm mt-1">Including $35.20 in taxes</p>
+                            </div>
                         </div>
+
+                        <!-- SSL Security Badge -->
+                        <div class="secure-badge text-white rounded-lg p-4 mb-6 flex items-center justify-center">
+                            <i data-feather="lock" class="w-5 h-5 mr-2"></i>
+                            <span class="font-semibold">SSL Encrypted & Secure Checkout</span>
+                        </div>
+
+                        <!-- Checkout Button -->
+                        <a href="checkout.html" 
+                           class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-bold py-3 px-4 rounded-lg mb-4 transition duration-300">
+                            Proceed to Checkout
+                        </a>
+                        
+                        <p class="text-center text-gray-500 text-sm">
+                            <i data-feather="shield" class="w-4 h-4 inline mr-1"></i>
+                            30-day return policy • Secure payment
+                        </p>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="bg-white rounded-xl shadow p-6" data-aos="fade-left" data-aos-delay="100">
+                        <h4 class="font-semibold mb-3">Accepted Payment Methods</h4>
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <div class="border rounded-lg p-2">
+                                <i class="fab fa-cc-visa text-2xl text-blue-600"></i>
+                            </div>
+                            <div class="border rounded-lg p-2">
+                                <i class="fab fa-cc-mastercard text-2xl text-red-600"></i>
+                            </div>
+                            <div class="border rounded-lg p-2">
+                                <i class="fab fa-cc-amex text-2xl text-blue-800"></i>
+                            </div>
+                            <div class="border rounded-lg p-2">
+                                <i class="fab fa-cc-paypal text-2xl text-blue-500"></i>
+                            </div>
+                            <div class="border rounded-lg p-2">
+                                <i class="fab fa-apple-pay text-2xl text-gray-800"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm">All transactions are secure and encrypted.</p>
+                    </div>
+
+                    <!-- Wishlist Preview -->
+                    <div class="bg-white rounded-xl shadow p-6 mt-6" data-aos="fade-left" data-aos-delay="200">
+                        <h4 class="font-semibold mb-3 flex items-center">
+                            <i data-feather="heart" class="w-4 h-4 mr-2 text-red-500"></i> Wishlist Items
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                     alt="Smartphone" 
+                                     class="w-12 h-12 object-cover rounded mr-3">
+                                <div>
+                                    <p class="text-sm font-medium">Smartphone X</p>
+                                    <p class="text-xs text-gray-500">$799.99</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                     alt="Laptop" 
+                                     class="w-12 h-12 object-cover rounded mr-3">
+                                <div>
+                                    <p class="text-sm font-medium">Ultrabook Pro</p>
+                                    <p class="text-xs text-gray-500">$1,299.99</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="user-account.html#wishlist" class="block text-center text-blue-600 hover:text-blue-800 text-sm font-medium mt-3">
+                            View All Wishlist Items →
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white mt-12 py-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
-                    <p class="text-xl font-bold">E-Commerce</p>
-                    <p class="text-gray-400 text-sm">Your one-stop shopping destination</p>
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="shopping-cart" class="text-blue-400"></i>
+                        <span class="font-bold text-xl">TechShop</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mt-2">Secure e-commerce with SSL encryption</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
-                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
-                    <a href="#" class="text-gray-400 hover:text-white">Contact Us</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Terms of Service</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Contact</a>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-400 text-sm">
-                <p>&copy; 2023 E-Commerce. All rights reserved.</p>
+                <p>© 2023 TechShop. All rights reserved. <span class="text-green-400">🔒 Secure Checkout</span></p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
         // Initialize AOS animations
         AOS.init({
-            duration: 600,
+            duration: 800,
             once: true
         });
 
-        // Initialize Feather Icons
-        feather.replace();
-
-        // Cart functionality
-        document.querySelectorAll('.quantity-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const span = this.parentElement.querySelector('span');
-                let quantity = parseInt(span.textContent);
-                
-                if (this.textContent === '+') {
-                    quantity++;
-                } else if (this.textContent === '-' && quantity > 1) {
-                    quantity--;
+        // Cart quantity functionality
+        document.querySelectorAll('.cart-item').forEach(item => {
+            const minusBtn = item.querySelector('button:first-child');
+            const plusBtn = item.querySelector('button:last-child');
+            const quantitySpan = item.querySelector('span.border-x');
+            
+            minusBtn.addEventListener('click', () => {
+                let qty = parseInt(quantitySpan.textContent);
+                if (qty > 1) {
+                    quantitySpan.textContent = qty - 1;
+                    updateCartTotal();
                 }
-                
-                span.textContent = quantity;
-                
-                // Update price (simplified - in real app would calculate properly)
-                const priceElement = this.closest('.cart-item').querySelector('.text-xl.font-bold');
-                const basePrice = parseFloat(priceElement.textContent.replace('$', '')) / (quantity === 1 ? 1 : quantity - (this.textContent === '+' ? 0 : 1));
-                priceElement.textContent = '$' + (basePrice * quantity).toFixed(2);
+            });
+            
+            plusBtn.addEventListener('click', () => {
+                let qty = parseInt(quantitySpan.textContent);
+                quantitySpan.textContent = qty + 1;
+                updateCartTotal();
             });
         });
 
-        // Remove item functionality
-        document.querySelectorAll('.text-red-500.hover\\:text-red-700.text-sm').forEach(button => {
-            if (button.textContent.includes('Remove')) {
-                button.addEventListener('click', function() {
-                    const cartItem = this.closest('.cart-item');
-                    cartItem.style.opacity = '0';
-                    cartItem.style.transform = 'translateX(-20px)';
-                    setTimeout(() => {
-                        cartItem.remove();
-                        updateCartCount();
-                    }, 300);
-                });
-            }
-        });
-
-        // Clear cart button
-        document.querySelector('.text-red-500.hover\\:text-red-700.flex.items-center').addEventListener('click', function() {
-            document.querySelectorAll('.cart-item').forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-20px)';
-                setTimeout(() => item.remove(), 300);
-            });
-            setTimeout(updateCartCount, 350);
-        });
-
-        function updateCartCount() {
-            const count = document.querySelectorAll('.cart-item').length;
-            document.getElementById('cart-count').textContent = count;
+        // Simple cart total update (for demo)
+        function updateCartTotal() {
+            console.log('Cart updated - in a real app, this would recalculate totals');
         }
+
+        // Remove item from cart
+        document.querySelectorAll('.cart-item button.text-red-500').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.cart-item').style.opacity = '0';
+                setTimeout(() => {
+                    this.closest('.cart-item').remove();
+                    updateCartTotal();
+                }, 300);
+            });
+        });
     </script>
 </body>
 </html>

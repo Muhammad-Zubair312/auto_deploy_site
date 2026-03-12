@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - E-Commerce Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <meta name="description" content="Manage your account, orders, wishlist, and reviews on our secure e-commerce platform.">
+    <link rel="canonical" href="https://example.com/user-account.html">
+</head>
+<body class="bg-gray-50">
+    <!-- Shared Navbar -->
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-center md:justify-start space-x-4'>
+        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+        <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+        <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+        <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+        <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+        <a href='user-account.html' class='px-3 py-2 hover:text-blue-400'>User Account</a>
+    </nav>
+
+    <!-- SSL Security Badge -->
+    <div class="bg-green-100 border-l-4 border-green-500 p-2 text-center">
+        <div class="flex items-center justify-center">
+            <i data-feather="lock" class="w-4 h-4 mr-2"></i>
+            <span class="text-sm font-semibold text-green-800">Secure SSL Encryption Active</span>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">My Account</h1>
+        <p class="text-gray-600 mb-8">Welcome back, Alex Johnson! Manage your orders, wishlist, and account settings.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Sidebar Navigation -->
+            <aside class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i data-feather="user" class="w-8 h-8 text-blue-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold text-gray-800">Alex Johnson</h3>
+                            <p class="text-sm text-gray-600">alex@example.com</p>
+                        </div>
+                    </div>
+                    <nav class="space-y-2">
+                        <a href="#orders" class="flex items-center p-3 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600">
+                            <i data-feather="package" class="w-5 h-5 mr-3"></i> My Orders
+                        </a>
+                        <a href="#wishlist" class="flex items-center p-3 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600">
+                            <i data-feather="heart" class="w-5 h-5 mr-3"></i> Wishlist
+                        </a>
+                        <a href="#reviews" class="flex items-center p-3 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600">
+                            <i data-feather="star" class="w-5 h-5 mr-3"></i> My Reviews
+                        </a>
+                        <a href="#payment" class="flex items-center p-3 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600">
+                            <i data-feather="credit-card" class="w-5 h-5 mr-3"></i> Payment Methods
+                        </a>
+                        <a href="#settings" class="flex items-center p-3 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600">
+                            <i data-feather="settings" class="w-5 h-5 mr-3"></i> Account Settings
+                        </a>
+                        <button class="flex items-center p-3 rounded hover:bg-red-50 text-gray-700 hover:text-red-600 w-full text-left">
+                            <i data-feather="log-out" class="w-5 h-5 mr-3"></i> Logout
+                        </button>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="lg:col-span-3 space-y-8">
+                <!-- Order Tracking Section -->
+                <section id="orders" class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Order Tracking</h2>
+                        <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <i data-feather="search" class="w-4 h-4 mr-2"></i> Search Orders
+                        </button>
+                    </div>
+
+                    <!-- Order Filter -->
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">All Orders</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Processing</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Shipped</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Delivered</button>
+                    </div>
+
+                    <!-- Order List -->
+                    <div class="space-y-4">
+                        <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-3">
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Order #ORD-78945</h3>
+                                    <p class="text-sm text-gray-600">Placed on Oct 15, 2023</p>
+                                </div>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium mt-2 md:mt-0">Delivered</span>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="smartphone" class="w-8 h-8 text-gray-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Premium Smartphone X</h4>
+                                    <p class="text-sm text-gray-600">Quantity: 1 • $899.99</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="text-sm">
+                                    <p class="text-gray-600">Tracking: <span class="font-medium">TRK-784512369</span></p>
+                                    <p class="text-gray-600">Delivered on Oct 20, 2023</p>
+                                </div>
+                                <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                                    <i data-feather="eye" class="w-4 h-4 mr-2"></i> View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-3">
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Order #ORD-78946</h3>
+                                    <p class="text-sm text-gray-600">Placed on Nov 5, 2023</p>
+                                </div>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium mt-2 md:mt-0">Processing</span>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="headphones" class="w-8 h-8 text-gray-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Wireless Headphones Pro</h4>
+                                    <p class="text-sm text-gray-600">Quantity: 2 • $249.98</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="text-sm">
+                                    <p class="text-gray-600">Estimated Delivery: Nov 12-15, 2023</p>
+                                </div>
+                                <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                                    <i data-feather="truck" class="w-4 h-4 mr-2"></i> Track Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Wishlist Section -->
+                <section id="wishlist" class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">My Wishlist</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                            <div class="w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+                                <i data-feather="watch" class="w-16 h-16 text-gray-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Smart Watch Series 5</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-gray-600 ml-2">(128 reviews)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-800">$299.99</span>
+                                <div class="flex space-x-2">
+                                    <button class="p-2 text-red-500 hover:bg-red-50 rounded-full">
+                                        <i data-feather="heart" class="w-5 h-5 fill-current"></i>
+                                    </button>
+                                    <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                                        <i data-feather="shopping-cart" class="w-5 h-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                            <div class="w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+                                <i data-feather="tablet" class="w-16 h-16 text-gray-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Gaming Tablet Pro</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                </div>
+                                <span class="text-sm text-gray-600 ml-2">(89 reviews)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-800">$599.99</span>
+                                <div class="flex space-x-2">
+                                    <button class="p-2 text-red-500 hover:bg-red-50 rounded-full">
+                                        <i data-feather="heart" class="w-5 h-5 fill-current"></i>
+                                    </button>
+                                    <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                                        <i data-feather="shopping-cart" class="w-5 h-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                            <div class="w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+                                <i data-feather="camera" class="w-16 h-16 text-gray-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800 mb-2">DSLR Camera Kit</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-sm text-gray-600 ml-2">(42 reviews)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-800">$1,199.99</span>
+                                <div class="flex space-x-2">
+                                    <button class="p-2 text-red-500 hover:bg-red-50 rounded-full">
+                                        <i data-feather="heart" class="w-5 h-5 fill-current"></i>
+                                    </button>
+                                    <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                                        <i data-feather="shopping-cart" class="w-5 h-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- My Reviews Section -->
+                <section id="reviews" class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">My Reviews</h2>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <div class="flex items-center mb-2">
+                                <h3 class="font-semibold text-gray-800 mr-4">Premium Smartphone X</h3>
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-2">"Excellent phone! The battery life is amazing and the camera quality is outstanding. Highly recommended!"</p>
+                            <p class="text-sm text-gray-500">Reviewed on Oct 22, 2023</p>
+                        </div>
+
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <div class="flex items-center mb-2">
+                                <h3 class="font-semibold text-gray-800 mr-4">Wireless Earbuds</h3>
+                                <div class="flex text-yellow-400">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                    <i data-feather="star" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-2">"Good sound quality but the battery doesn't last as long as advertised. Comfortable fit though."</p>
+                            <p class="text-sm text-gray-500">Reviewed on Sep 15, 2023</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Payment Gateway Integration -->
+                <section id="payment" class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Payment Methods</h2>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center justify-between p-4 border rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-12 h-8 bg-blue-100 rounded flex items-center justify-center mr-4">
+                                    <i data-feather="credit-card" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Visa ending in 4242</h3>
+                                    <p class="text-sm text-gray-600">Expires 12/25</p>
+                                </div>
+                            </div>
+                            <button class="text-red-600 hover:text-red-800">
+                                <i data-feather="trash-2" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-12 h-8 bg-green-100 rounded flex items-center justify-center mr-4">
+                                    <i data-feather="credit-card" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Mastercard ending in 8888</h3>
+                                    <p class="text-sm text-gray-600">Expires 08/26</p>
+                                </div>
+                            </div>
+                            <button class="text-red-600 hover:text-red-800">
+                                <i data-feather="trash-2" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Add Payment Method Form -->
+                    <div class="border-t pt-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Add New Payment Method</h3>
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+                                    <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="1234 5678 9012 3456">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
+                                    <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Alex Johnson">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Expiration Date</label>
+                                    <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="MM/YY">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                                    <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="123">
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="default-card" class="w-4 h-4 text-blue-600 rounded">
+                                <label for="default-card" class="ml-2 text-sm text-gray-700">Set as default payment method</label>
+                            </div>
+                            <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+                                <i data-feather="plus" class="w-5 h-5 inline mr-2"></i> Add Payment Method
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Account Settings -->
+                <section id="settings" class="bg-white rounded-lg shadow p-6" data-aos="fade-up">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Account Settings</h2>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" value="Alex Johnson" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                <input type="email" value="alex@example.com" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" value="+1 (555) 123-4567" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                                <input type="date" value="1990-05-15" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Shipping Address</label>
+                            <textarea class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="3">123 Main Street, Apt 4B, New York, NY 10001, United States</textarea>
+                        </div>
+
+                        <div class="border-t pt-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Change Password</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                                    <input type="password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                                    <input type="password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                                    <input type="password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end space-x-4">
+                            <button type="button" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium">
+                                Cancel
+                            </button>
+                            <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">E-Commerce Store</h3>
+                    <p class="text-gray-400">Your trusted online shopping destination with secure SSL encryption and premium products.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">Shop Products</a></li>
+                        <li><a href="user-account.html" class="text-gray-400 hover:text-white">My Account</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Order Tracking</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Security</h4>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <i data-feather="lock" class="w-5 h-5 text-green-400"></i>
+                        <span class="text-gray-400">256-bit SSL Encryption</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="shield" class="w-5 h-5 text-green-400"></i>
+                        <span class="text-gray-400">PCI DSS Compliant</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 E-Commerce Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('aside a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

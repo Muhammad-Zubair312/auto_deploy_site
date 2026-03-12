@@ -3,367 +3,439 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | E-Commerce</title>
+    <title>Secure Checkout | TechShop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e40af',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        .form-input:focus {
+        .secure-badge {
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+        }
+        .input-focus:focus {
+            border-color: #3b82f6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
-        .step-active {
-            background-color: #3b82f6;
-            color: white;
+        .payment-card {
+            transition: transform 0.3s ease;
+        }
+        .payment-card:hover {
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex space-x-4'>
-        <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-        <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-        <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-        <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-        <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-        <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-        <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
+        <div class="flex items-center space-x-2">
+            <i data-feather="shopping-bag" class="text-blue-400"></i>
+            <span class="font-bold text-xl">TechShop</span>
+        </div>
+        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
+            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
+            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 font-semibold text-blue-300'>Checkout</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+            <a href='user-account.html' class='px-3 py-2 hover:text-blue-400'>User Account</a>
+        </div>
     </nav>
 
-    <!-- Checkout Page Content -->
-    <div class="container mx-auto px-4 py-8" data-aos="fade-up">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Checkout</h1>
-        <p class="text-gray-600 mb-8">Complete your purchase securely</p>
-
-        <!-- Checkout Steps -->
-        <div class="flex flex-col md:flex-row justify-between items-center mb-10">
-            <div class="flex items-center mb-4 md:mb-0">
-                <div class="w-8 h-8 rounded-full step-active flex items-center justify-center">1</div>
-                <div class="ml-3">
-                    <p class="font-medium">Cart Review</p>
-                    <p class="text-sm text-gray-500">Items in your cart</p>
-                </div>
-            </div>
-            <div class="hidden md:block w-16 h-1 bg-blue-500"></div>
-            <div class="flex items-center mb-4 md:mb-0">
-                <div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center">2</div>
-                <div class="ml-3">
-                    <p class="font-medium">Shipping & Billing</p>
-                    <p class="text-sm text-gray-500">Your information</p>
-                </div>
-            </div>
-            <div class="hidden md:block w-16 h-1 bg-gray-300"></div>
-            <div class="flex items-center">
-                <div class="w-8 h-8 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center">3</div>
-                <div class="ml-3">
-                    <p class="font-medium">Payment</p>
-                    <p class="text-sm text-gray-500">Secure payment</p>
-                </div>
-            </div>
-        </div>
-
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
         <div class="flex flex-col lg:flex-row gap-8">
-            <!-- Left Column - Order Summary & Shipping -->
-            <div class="lg:w-2/3">
-                <!-- Shipping Information -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Shipping Information</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Left Column: Checkout Form -->
+            <div class="lg:w-2/3" data-aos="fade-right">
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h1 class="text-3xl font-bold text-gray-800">Secure Checkout</h1>
+                        <div class="secure-badge text-white px-4 py-2 rounded-full flex items-center">
+                            <i data-feather="lock" class="mr-2"></i>
+                            <span>SSL Encrypted</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Steps -->
+                    <div class="mb-8">
+                        <div class="flex justify-between items-center">
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center">1</div>
+                                <span class="mt-2 text-sm font-medium">Cart</span>
+                            </div>
+                            <div class="h-1 w-1/4 bg-blue-600"></div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center">2</div>
+                                <span class="mt-2 text-sm font-medium">Information</span>
+                            </div>
+                            <div class="h-1 w-1/4 bg-blue-600"></div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center">3</div>
+                                <span class="mt-2 text-sm font-medium">Payment</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Contact Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <div>
-                            <label class="block text-gray-700 mb-2">First Name</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="John">
+                            <label class="block text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" class="w-full p-3 border border-gray-300 rounded-lg input-focus" placeholder="you@example.com" required>
                         </div>
                         <div>
-                            <label class="block text-gray-700 mb-2">Last Name</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="Doe">
+                            <label class="block text-gray-700 mb-2">Phone Number *</label>
+                            <input type="tel" class="w-full p-3 border border-gray-300 rounded-lg input-focus" placeholder="+1 (555) 123-4567" required>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address -->
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Shipping Address</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">First Name *</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg input-focus" placeholder="John" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Last Name *</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg input-focus" placeholder="Doe" required>
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-gray-700 mb-2">Address</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="123 Main Street">
+                            <label class="block text-gray-700 mb-2">Address *</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg input-focus" placeholder="123 Main Street" required>
                         </div>
                         <div>
-                            <label class="block text-gray-700 mb-2">City</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="New York">
+                            <label class="block text-gray-700 mb-2">City *</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg input-focus" placeholder="New York" required>
                         </div>
                         <div>
-                            <label class="block text-gray-700 mb-2">ZIP Code</label>
-                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="10001">
+                            <label class="block text-gray-700 mb-2">ZIP Code *</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg input-focus" placeholder="10001" required>
                         </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-gray-700 mb-2">Country</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg form-input">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Country *</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg input-focus">
                                 <option>United States</option>
                                 <option>Canada</option>
                                 <option>United Kingdom</option>
                                 <option>Australia</option>
                             </select>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Payment Method -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Payment Method</h2>
-                    <div class="space-y-4">
-                        <div class="flex items-center p-4 border border-gray-300 rounded-lg hover:border-blue-500 cursor-pointer">
-                            <input type="radio" name="payment" id="credit-card" checked class="mr-3">
-                            <label for="credit-card" class="flex-1 cursor-pointer">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="font-medium">Credit/Debit Card</p>
-                                        <p class="text-sm text-gray-500">Pay with your card securely</p>
-                                    </div>
-                                    <div class="flex space-x-2">
-                                        <i data-feather="credit-card" class="text-gray-400"></i>
-                                        <i data-feather="shield" class="text-green-500"></i>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="flex items-center p-4 border border-gray-300 rounded-lg hover:border-blue-500 cursor-pointer">
-                            <input type="radio" name="payment" id="paypal" class="mr-3">
-                            <label for="paypal" class="flex-1 cursor-pointer">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="font-medium">PayPal</p>
-                                        <p class="text-sm text-gray-500">Pay with your PayPal account</p>
-                                    </div>
-                                    <i data-feather="dollar-sign" class="text-blue-500"></i>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="flex items-center p-4 border border-gray-300 rounded-lg hover:border-blue-500 cursor-pointer">
-                            <input type="radio" name="payment" id="apple-pay" class="mr-3">
-                            <label for="apple-pay" class="flex-1 cursor-pointer">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="font-medium">Apple Pay</p>
-                                        <p class="text-sm text-gray-500">Pay with Apple Pay</p>
-                                    </div>
-                                    <i data-feather="smartphone" class="text-gray-800"></i>
-                                </div>
-                            </label>
+                        <div>
+                            <label class="block text-gray-700 mb-2">State *</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg input-focus">
+                                <option>New York</option>
+                                <option>California</option>
+                                <option>Texas</option>
+                                <option>Florida</option>
+                            </select>
                         </div>
                     </div>
 
-                    <!-- Card Details (shown when credit card selected) -->
-                    <div id="card-details" class="mt-6 p-4 bg-gray-50 rounded-lg">
+                    <!-- Payment Method -->
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Payment Method</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="payment-card border-2 border-blue-500 rounded-xl p-4 cursor-pointer">
+                            <div class="flex items-center">
+                                <i data-feather="credit-card" class="text-blue-600 mr-3"></i>
+                                <span class="font-semibold">Credit Card</span>
+                            </div>
+                        </div>
+                        <div class="payment-card border border-gray-300 rounded-xl p-4 cursor-pointer">
+                            <div class="flex items-center">
+                                <i class="fab fa-paypal text-blue-600 mr-3 text-xl"></i>
+                                <span class="font-semibold">PayPal</span>
+                            </div>
+                        </div>
+                        <div class="payment-card border border-gray-300 rounded-xl p-4 cursor-pointer">
+                            <div class="flex items-center">
+                                <i data-feather="smartphone" class="text-blue-600 mr-3"></i>
+                                <span class="font-semibold">Apple Pay</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Credit Card Details -->
+                    <div class="bg-gray-50 p-6 rounded-xl mb-6">
+                        <h3 class="font-semibold mb-4">Credit Card Details</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="md:col-span-2">
-                                <label class="block text-gray-700 mb-2">Card Number</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="1234 5678 9012 3456">
+                                <label class="block text-gray-700 mb-2">Card Number *</label>
+                                <div class="flex items-center border border-gray-300 rounded-lg p-3 input-focus">
+                                    <input type="text" class="w-full outline-none" placeholder="1234 5678 9012 3456" required>
+                                    <i data-feather="credit-card" class="text-gray-400"></i>
+                                </div>
                             </div>
                             <div>
-                                <label class="block text-gray-700 mb-2">Expiry Date</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="MM/YY">
+                                <label class="block text-gray-700 mb-2">Expiration Date *</label>
+                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg input-focus" placeholder="MM/YY" required>
                             </div>
                             <div>
-                                <label class="block text-gray-700 mb-2">CVV</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="123">
+                                <label class="block text-gray-700 mb-2">Security Code *</label>
+                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg input-focus" placeholder="CVC" required>
                             </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-gray-700 mb-2">Name on Card</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg form-input" placeholder="John Doe">
+                        </div>
+                    </div>
+
+                    <!-- Order Notes -->
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2">Order Notes (Optional)</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-lg input-focus" rows="3" placeholder="Special instructions for delivery"></textarea>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="flex items-center mb-6">
+                        <input type="checkbox" id="terms" class="mr-3 h-5 w-5">
+                        <label for="terms" class="text-gray-700">
+                            I agree to the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <!-- Complete Order Button -->
+                    <button id="completeOrder" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg text-lg transition duration-300 flex items-center justify-center">
+                        <i data-feather="lock" class="mr-3"></i>
+                        Complete Secure Order
+                    </button>
+                </div>
+
+                <!-- Security Assurance -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="font-semibold text-lg mb-4">Your Security is Our Priority</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="flex items-center">
+                            <i data-feather="shield" class="text-green-500 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">SSL Encryption</h4>
+                                <p class="text-sm text-gray-600">All data is securely encrypted</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="credit-card" class="text-blue-500 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Safe Payments</h4>
+                                <p class="text-sm text-gray-600">PCI DSS compliant</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="privacy" class="text-purple-500 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Privacy Protected</h4>
+                                <p class="text-sm text-gray-600">Your data is never shared</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column - Order Summary -->
-            <div class="lg:w-1/3">
-                <div class="bg-white rounded-lg shadow-md p-6 sticky top-6">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Order Summary</h2>
+            <!-- Right Column: Order Summary -->
+            <div class="lg:w-1/3" data-aos="fade-left">
+                <div class="bg-white rounded-xl shadow-lg p-6 sticky top-6">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800">Order Summary</h2>
                     
                     <!-- Order Items -->
                     <div class="space-y-4 mb-6">
-                        <div class="flex items-center">
-                            <div class="w-16 h-16 bg-gray-200 rounded-lg mr-4"></div>
-                            <div class="flex-1">
-                                <h3 class="font-medium">Wireless Headphones</h3>
-                                <p class="text-gray-500 text-sm">Quantity: 1</p>
-                                <p class="font-bold text-gray-800">$199.99</p>
+                        <div class="flex justify-between items-center border-b pb-4">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Product" class="w-16 h-16 object-cover rounded-lg mr-4">
+                                <div>
+                                    <h4 class="font-medium">Wireless Headphones</h4>
+                                    <p class="text-sm text-gray-600">Quantity: 1</p>
+                                </div>
                             </div>
+                            <span class="font-semibold">$199.99</span>
                         </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-16 h-16 bg-gray-200 rounded-lg mr-4"></div>
-                            <div class="flex-1">
-                                <h3 class="font-medium">Smart Watch</h3>
-                                <p class="text-gray-500 text-sm">Quantity: 1</p>
-                                <p class="font-bold text-gray-800">$299.99</p>
+                        <div class="flex justify-between items-center border-b pb-4">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Product" class="w-16 h-16 object-cover rounded-lg mr-4">
+                                <div>
+                                    <h4 class="font-medium">Smart Watch</h4>
+                                    <p class="text-sm text-gray-600">Quantity: 1</p>
+                                </div>
                             </div>
+                            <span class="font-semibold">$299.99</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Product" class="w-16 h-16 object-cover rounded-lg mr-4">
+                                <div>
+                                    <h4 class="font-medium">Sports Shoes</h4>
+                                    <p class="text-sm text-gray-600">Quantity: 1</p>
+                                </div>
+                            </div>
+                            <span class="font-semibold">$89.99</span>
                         </div>
                     </div>
 
                     <!-- Price Breakdown -->
-                    <div class="border-t border-b border-gray-200 py-4 space-y-2">
+                    <div class="space-y-3 mb-6">
                         <div class="flex justify-between">
                             <span class="text-gray-600">Subtotal</span>
-                            <span class="font-medium">$499.98</span>
+                            <span>$589.97</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Shipping</span>
-                            <span class="font-medium">$9.99</span>
+                            <span class="text-green-600">Free</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Tax</span>
-                            <span class="font-medium">$35.00</span>
+                            <span>$47.20</span>
                         </div>
-                    </div>
-
-                    <!-- Total -->
-                    <div class="flex justify-between items-center mt-4 mb-6">
-                        <span class="text-lg font-bold text-gray-800">Total</span>
-                        <span class="text-2xl font-bold text-blue-600">$544.97</span>
+                        <div class="border-t pt-3 flex justify-between text-lg font-bold">
+                            <span>Total</span>
+                            <span class="text-blue-600">$637.17</span>
+                        </div>
                     </div>
 
                     <!-- Promo Code -->
                     <div class="mb-6">
                         <label class="block text-gray-700 mb-2">Promo Code</label>
                         <div class="flex">
-                            <input type="text" class="flex-1 p-3 border border-gray-300 rounded-l-lg form-input" placeholder="Enter code">
-                            <button class="bg-gray-800 text-white px-4 rounded-r-lg hover:bg-gray-700 transition">Apply</button>
+                            <input type="text" class="flex-grow p-3 border border-gray-300 rounded-l-lg input-focus" placeholder="SUMMER2024">
+                            <button class="bg-gray-800 text-white px-4 rounded-r-lg hover:bg-gray-900 transition">Apply</button>
                         </div>
                     </div>
 
-                    <!-- Terms & Place Order -->
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <input type="checkbox" id="terms" class="mt-1 mr-3">
-                            <label for="terms" class="text-sm text-gray-600">
-                                I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
-                            </label>
+                    <!-- Support Info -->
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <i data-feather="help-circle" class="text-blue-600 mr-2"></i>
+                            <h4 class="font-semibold">Need Help?</h4>
                         </div>
-                        
-                        <div class="flex items-start">
-                            <input type="checkbox" id="newsletter" class="mt-1 mr-3">
-                            <label for="newsletter" class="text-sm text-gray-600">
-                                Subscribe to our newsletter for updates and exclusive offers
-                            </label>
+                        <p class="text-sm text-gray-700 mb-3">Our support team is available 24/7</p>
+                        <div class="flex items-center text-blue-600">
+                            <i data-feather="phone" class="mr-2"></i>
+                            <span>1-800-TECHSHOP</span>
                         </div>
-
-                        <button id="place-order" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition flex items-center justify-center">
-                            <i data-feather="lock" class="mr-2"></i>
-                            Place Order Securely
-                        </button>
-                        
-                        <p class="text-center text-sm text-gray-500">
-                            <i data-feather="shield" class="inline mr-1 text-green-500"></i>
-                            Your payment is secure and encrypted
-                        </p>
                     </div>
                 </div>
 
-                <!-- Support Info -->
-                <div class="mt-6 bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-start">
-                        <i data-feather="help-circle" class="text-blue-500 mr-3 mt-1"></i>
-                        <div>
-                            <h3 class="font-bold text-gray-800">Need Help?</h3>
-                            <p class="text-gray-600 text-sm mt-1">Contact our support team 24/7</p>
-                            <p class="text-blue-600 font-medium mt-2">support@ecommerce.com</p>
-                        </div>
-                    </div>
+                <!-- Order Tracking Info -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mt-6">
+                    <h3 class="font-semibold text-lg mb-4">Order Tracking</h3>
+                    <p class="text-gray-600 mb-4">After placing your order, you'll receive:</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-3"></i>
+                            <span>Order confirmation email</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="truck" class="text-blue-500 mr-3"></i>
+                            <span>Shipping updates via SMS/Email</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="package" class="text-purple-500 mr-3"></i>
+                            <span>Live tracking link</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white mt-12 py-8">
+    <footer class="bg-gray-900 text-white py-8 mt-12">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h2 class="text-2xl font-bold">E-Commerce</h2>
-                    <p class="text-gray-400">Secure shopping experience</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i data-feather="shopping-bag" class="text-blue-400 mr-2"></i>
+                        <span class="font-bold text-xl">TechShop</span>
+                    </div>
+                    <p class="text-gray-400">Your trusted online shopping destination for electronics, fashion, and more.</p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
-                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
-                    <a href="#" class="text-gray-400 hover:text-white">Contact Us</a>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
+                        <li><a href="cart.html" class="text-gray-400 hover:text-white">Shopping Cart</a></li>
+                        <li><a href="user-account.html" class="text-gray-400 hover:text-white">My Account</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Wishlist</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="border-t border-gray-800 mt-6 pt-6 text-center text-gray-400">
-                <p>&copy; 2024 E-Commerce. All rights reserved.</p>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Refunds</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Secure Payment</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <i class="fab fa-cc-visa text-2xl"></i>
+                        <i class="fab fa-cc-mastercard text-2xl"></i>
+                        <i class="fab fa-cc-amex text-2xl"></i>
+                        <i class="fab fa-cc-paypal text-2xl"></i>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2024 TechShop. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
         // Initialize AOS animations
         AOS.init({
             duration: 800,
             once: true
         });
 
-        // Initialize Feather Icons
-        feather.replace();
-
-        // Payment method toggle
-        document.querySelectorAll('input[name="payment"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const cardDetails = document.getElementById('card-details');
-                if (this.id === 'credit-card') {
-                    cardDetails.classList.remove('hidden');
-                } else {
-                    cardDetails.classList.add('hidden');
-                }
+        // Payment method selection
+        document.querySelectorAll('.payment-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.payment-card').forEach(c => {
+                    c.classList.remove('border-2', 'border-blue-500');
+                    c.classList.add('border', 'border-gray-300');
+                });
+                this.classList.remove('border', 'border-gray-300');
+                this.classList.add('border-2', 'border-blue-500');
             });
         });
 
-        // Place order button handler
-        document.getElementById('place-order').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Validate required fields
-            const requiredFields = document.querySelectorAll('input[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('border-red-500');
-                } else {
-                    field.classList.remove('border-red-500');
-                }
-            });
-            
-            if (!isValid) {
-                alert('Please fill in all required fields');
+        // Complete order button handler
+        document.getElementById('completeOrder').addEventListener('click', function() {
+            const termsChecked = document.getElementById('terms').checked;
+            if (!termsChecked) {
+                alert('Please agree to the Terms and Conditions before placing your order.');
                 return;
             }
             
-            // Simulate order processing
-            this.innerHTML = '<i data-feather="loader" class="animate-spin mr-2"></i> Processing...';
+            // Simulate payment processing
+            this.innerHTML = '<i data-feather="loader" class="animate-spin mr-3"></i> Processing Payment...';
             this.disabled = true;
             
-            // Simulate API call
             setTimeout(() => {
-                alert('Order placed successfully! You will be redirected to order tracking.');
-                // In a real app, redirect to order confirmation page
-                // window.location.href = 'order-confirmation.html';
-                
-                this.innerHTML = '<i data-feather="check" class="mr-2"></i> Order Placed!';
-                setTimeout(() => {
-                    this.innerHTML = '<i data-feather="lock" class="mr-2"></i> Place Order Securely';
-                    this.disabled = false;
-                }, 2000);
+                alert('Order placed successfully! You will receive a confirmation email shortly.');
+                window.location.href = 'user-account.html';
             }, 2000);
         });
 
-        // Form validation styling
-        document.querySelectorAll('.form-input').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.classList.add('border-blue-500');
-            });
-            
+        // Form validation
+        document.querySelectorAll('input[required], select[required]').forEach(input => {
             input.addEventListener('blur', function() {
-                this.classList.remove('border-blue-500');
-                if (!this.value.trim() && this.hasAttribute('required')) {
+                if (!this.value) {
                     this.classList.add('border-red-500');
+                } else {
+                    this.classList.remove('border-red-500');
                 }
             });
         });

@@ -3,17 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEasy - Home</title>
+    <title>ShopEase - Premium E-Commerce Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <meta name="description" content="ShopEase - Your one-stop destination for premium products. Discover amazing deals, read customer reviews, and enjoy secure shopping with SSL encryption.">
+    <meta name="keywords" content="ecommerce, online shopping, products, deals, electronics, fashion, home">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .product-card:hover { transform: translateY(-5px); transition: transform 0.3s ease; }
-        .category-icon { width: 64px; height: 64px; }
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .rating-stars {
+            color: #fbbf24;
+        }
+        .secure-badge {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .filter-active {
+            background-color: #3b82f6;
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -21,301 +37,473 @@
     <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
         <div class="flex items-center space-x-2">
             <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="text-xl font-bold">ShopEasy</span>
+            <h1 class="text-xl font-bold">ShopEase</h1>
         </div>
         <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
             <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Signup</a>
+            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
+            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
+            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
+            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
+            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
+            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+            <a href='user-account.html' class='px-3 py-2 hover:text-blue-400'>User Account</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient text-white py-16 md:py-24 px-4">
-        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Discover Amazing Products</h1>
-            <p class="text-xl mb-10 max-w-2xl mx-auto">Shop the latest trends with secure checkout, fast delivery, and easy returns.</p>
+    <section id="hero" class="hero-gradient text-white py-16 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover Amazing Products</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Shop the latest trends in electronics, fashion, home goods, and more with secure SSL encryption and fast delivery.</p>
             
             <!-- Search Bar -->
-            <div class="max-w-2xl mx-auto flex">
-                <input type="text" placeholder="Search for products, brands, categories..." 
-                       class="flex-grow p-4 rounded-l-lg text-gray-800 focus:outline-none">
-                <button class="bg-blue-600 hover:bg-blue-700 px-6 rounded-r-lg flex items-center">
-                    <i data-feather="search"></i>
-                    <span class="ml-2">Search</span>
-                </button>
+            <div class="max-w-2xl mx-auto mb-10">
+                <div class="flex bg-white rounded-lg overflow-hidden shadow-lg">
+                    <input type="text" id="searchInput" placeholder="Search for products, brands, categories..." class="flex-grow p-4 text-gray-800 outline-none">
+                    <button id="searchBtn" class="bg-blue-600 hover:bg-blue-700 px-6 py-4">
+                        <i data-feather="search"></i>
+                    </button>
+                </div>
+                <div class="flex flex-wrap justify-center mt-4 space-x-2">
+                    <span class="text-sm">Popular:</span>
+                    <button class="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full">Smartphones</button>
+                    <button class="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full">Laptops</button>
+                    <button class="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full">Fashion</button>
+                    <button class="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full">Home & Kitchen</button>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Featured Categories -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Shop by Category</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="smartphone" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Electronics</h3>
-                    <p class="text-gray-600">Latest gadgets & devices</p>
+            
+            <div class="flex flex-wrap justify-center items-center space-x-6 text-sm">
+                <div class="flex items-center">
+                    <i data-feather="shield" class="mr-2"></i>
+                    <span>SSL Secure Checkout</span>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shirt" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Fashion</h3>
-                    <p class="text-gray-600">Trendy clothing & accessories</p>
+                <div class="flex items-center">
+                    <i data-feather="truck" class="mr-2"></i>
+                    <span>Free Shipping Over $50</span>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="bg-yellow-100 text-yellow-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="home" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Home & Living</h3>
-                    <p class="text-gray-600">Furniture & decor</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-red-100 text-red-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="heart" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Health & Beauty</h3>
-                    <p class="text-gray-600">Wellness & personal care</p>
+                <div class="flex items-center">
+                    <i data-feather="refresh-cw" class="mr-2"></i>
+                    <span>30-Day Returns</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Featured Products -->
-    <section class="py-16 px-4 bg-gray-100">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl font-bold" data-aos="fade-right">Featured Products</h2>
-                <a href="products.html" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center" data-aos="fade-left">
-                    View All <i data-feather="arrow-right" class="ml-2"></i>
-                </a>
+    <section class="py-12 px-4 md:px-8 max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800">Featured Products</h2>
+            <a href="products.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                View All <i data-feather="arrow-right" class="ml-2"></i>
+            </a>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mb-8">
+            <button class="filter-btn px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg" data-filter="all">All</button>
+            <button class="filter-btn px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg" data-filter="electronics">Electronics</button>
+            <button class="filter-btn px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg" data-filter="fashion">Fashion</button>
+            <button class="filter-btn px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg" data-filter="home">Home & Kitchen</button>
+            <button class="filter-btn px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg" data-filter="sale">On Sale</button>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid">
+            <!-- Product 1 -->
+            <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200" data-category="electronics" data-aos="fade-up">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Smartphone" class="w-full h-48 object-cover">
+                    <button class="wishlist-btn absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-red-50">
+                        <i data-feather="heart" class="text-gray-600"></i>
+                    </button>
+                    <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Sale</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Premium Smartphone X</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="rating-stars flex">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4"></i>
+                        </div>
+                        <span class="text-gray-600 text-sm ml-2">(128 reviews)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Latest model with advanced camera and battery life.</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-gray-800">$699</span>
+                            <span class="text-gray-500 line-through ml-2">$799</span>
+                        </div>
+                        <button class="add-to-cart bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
+                            <i data-feather="shopping-cart" class="mr-2"></i> Add
+                        </button>
+                    </div>
+                </div>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Wireless Headphones" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Premium Wireless Headphones</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(128 reviews)</span>
+
+            <!-- Product 2 -->
+            <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200" data-category="fashion" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Jacket" class="w-full h-48 object-cover">
+                    <button class="wishlist-btn absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-red-50">
+                        <i data-feather="heart" class="text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Designer Denim Jacket</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="rating-stars flex">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$199.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
+                        <span class="text-gray-600 text-sm ml-2">(89 reviews)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Premium quality denim with modern fit.</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-gray-800">$129</span>
                         </div>
+                        <button class="add-to-cart bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
+                            <i data-feather="shopping-cart" class="mr-2"></i> Add
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Product 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Smart Watch" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Fitness Smart Watch</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(256 reviews)</span>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200" data-category="electronics" data-aos="fade-up" data-aos-delay="200">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Laptop" class="w-full h-48 object-cover">
+                    <button class="wishlist-btn absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-red-50">
+                        <i data-feather="heart" class="text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Ultrabook Pro Laptop</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="rating-stars flex">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4"></i>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$249.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
+                        <span class="text-gray-600 text-sm ml-2">(256 reviews)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Lightweight laptop with powerful performance.</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-gray-800">$1,199</span>
                         </div>
+                        <button class="add-to-cart bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
+                            <i data-feather="shopping-cart" class="mr-2"></i> Add
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Product 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Bluetooth Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Portable Bluetooth Speaker</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(87 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$89.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-200" data-category="home" data-aos="fade-up" data-aos-delay="300">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coffee Maker" class="w-full h-48 object-cover">
+                    <button class="wishlist-btn absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-red-50">
+                        <i data-feather="heart" class="text-gray-600"></i>
+                    </button>
+                    <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">New</span>
                 </div>
-                
-                <!-- Product 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Running Shoes" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Professional Running Shoes</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(312 reviews)</span>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Smart Coffee Maker</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="rating-stars flex">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4"></i>
+                            <i data-feather="star" class="w-4 h-4"></i>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$129.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
+                        <span class="text-gray-600 text-sm ml-2">(42 reviews)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Programmable coffee maker with app control.</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-2xl font-bold text-gray-800">$89</span>
+                            <span class="text-gray-500 line-through ml-2">$99</span>
                         </div>
+                        <button class="add-to-cart bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
+                            <i data-feather="shopping-cart" class="mr-2"></i> Add
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Why Shop With Us?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center" data-aos="fade-up">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shield" class="w-12 h-12"></i>
+    <!-- Customer Reviews -->
+    <section class="py-12 px-4 md:px-8 bg-gray-100">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-10">What Our Customers Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <div class="rating-stars flex">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Secure Payment</h3>
-                    <p class="text-gray-600">100% secure payment processing with SSL encryption and multiple payment options.</p>
+                    <p class="text-gray-600">"The smartphone I bought exceeded my expectations. The delivery was fast and the packaging was secure. Will definitely shop here again!"</p>
+                    <div class="mt-4 text-sm text-gray-500">
+                        <i data-feather="calendar" class="inline w-4 h-4 mr-1"></i> Purchased: Smartphone X • 2 days ago
+                    </div>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="truck" class="w-12 h-12"></i>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Michael Chen</h4>
+                            <div class="rating-stars flex">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4"></i>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Fast Delivery</h3>
-                    <p class="text-gray-600">Free shipping on orders over $50. Express delivery available in select areas.</p>
+                    <p class="text-gray-600">"Great selection of electronics. The order tracking feature kept me updated every step of the way. SSL encryption made me feel safe."</p>
+                    <div class="mt-4 text-sm text-gray-500">
+                        <i data-feather="calendar" class="inline w-4 h-4 mr-1"></i> Purchased: Ultrabook Pro • 1 week ago
+                    </div>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-purple-100 text-purple-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="refresh-cw" class="w-12 h-12"></i>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Jessica Williams</h4>
+                            <div class="rating-stars flex">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Easy Returns</h3>
-                    <p class="text-gray-600">30-day return policy. No questions asked returns for all products.</p>
+                    <p class="text-gray-600">"Love the wishlist feature! Saved items for later and bought them during the sale. The checkout process was smooth and secure."</p>
+                    <div class="mt-4 text-sm text-gray-500">
+                        <i data-feather="calendar" class="inline w-4 h-4 mr-1"></i> Purchased: Denim Jacket • 3 weeks ago
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 px-4 bg-gray-900 text-white">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Ready to Start Shopping?</h2>
-            <p class="text-xl mb-10 text-gray-300" data-aos="fade-up" data-aos-delay="100">Join thousands of satisfied customers today.</p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="signup.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in">
-                    <i data-feather="user-plus" class="mr-3"></i> Create Free Account
-                </a>
-                <a href="products.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in" data-aos-delay="200">
-                    <i data-feather="shopping-bag" class="mr-3"></i> Browse Products
-                </a>
+    <!-- Security & Features -->
+    <section class="py-12 px-4 md:px-8 max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-10">Secure Shopping Experience</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="text-center p-6" data-aos="fade-up">
+                <div class="secure-badge w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="lock" class="text-white text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">SSL Encryption</h3>
+                <p class="text-gray-600">All transactions are protected with 256-bit SSL encryption.</p>
+            </div>
+            <div class="text-center p-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="credit-card" class="text-blue-600 text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">Secure Payments</h3>
+                <p class="text-gray-600">We accept all major credit cards and PayPal for your convenience.</p>
+            </div>
+            <div class="text-center p-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="package" class="text-green-600 text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">Order Tracking</h3>
+                <p class="text-gray-600">Real-time tracking for all orders from warehouse to your doorstep.</p>
+            </div>
+            <div class="text-center p-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="refresh-cw" class="text-purple-600 text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">Easy Returns</h3>
+                <p class="text-gray-600">30-day return policy with no questions asked for most items.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-4">
-        <div class="container mx-auto max-w-6xl">
+    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
                         <i data-feather="shopping-bag" class="text-blue-400"></i>
-                        <span class="text-xl font-bold">ShopEasy</span>
+                        <h2 class="text-2xl font-bold">ShopEase</h2>
                     </div>
-                    <p class="text-gray-400">Your trusted online shopping destination for quality products and exceptional service.</p>
+                    <p class="text-gray-400">Your trusted online shopping destination since 2020. We bring you the best products with security and convenience.</p>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">All Products</a></li>
                         <li><a href="cart.html" class="text-gray-400 hover:text-white">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white">Checkout</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
-                    <ul class="space-y-2">
+                        <li><a href="user-account.html" class="text-gray-400 hover:text-white">My Account</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Order Tracking</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Refunds</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Stay Connected</h4>
-                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
+                    <h3 class="text-lg font-bold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Return Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Stay Connected</h3>
+                    <p class="text-gray-400 mb-4">Subscribe for exclusive deals and updates.</p>
                     <div class="flex">
-                        <input type="email" placeholder="Your email" class="flex-grow p-3 rounded-l-lg text-gray-800">
+                        <input type="email" placeholder="Your email" class="bg-gray-800 text-white p-3 rounded-l-lg flex-grow outline-none">
                         <button class="bg-blue-600 hover:bg-blue-700 px-4 rounded-r-lg">
                             <i data-feather="send"></i>
                         </button>
                     </div>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="youtube"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 ShopEase. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+                <div class="mt-4 flex justify-center items-center">
+                    <i data-feather="lock" class="w-4 h-4 mr-2"></i>
+                    <span>Secure SSL Encryption • PCI Compliant</span>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         // Initialize AOS animations
         AOS.init({
             duration: 800,
             once: true
         });
-        
+
         // Initialize Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
-        });
-        
-        // Simple cart counter
-        let cartCount = 0;
-        document.querySelectorAll('button:contains("Add to Cart")').forEach(button => {
+        feather.replace();
+
+        // Vanta.js background for hero (optional)
+        /* VANTA.NET({
+            el: "#hero",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x3b82f6,
+            backgroundColor: 0x111827
+        }); */
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
             button.addEventListener('click', function() {
-                cartCount++;
-                // In a real app, this would update a cart badge
-                console.log(`Added to cart. Total items: ${cartCount}`);
-                alert('Product added to cart!');
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('filter-active');
+                    btn.classList.add('bg-gray-200', 'hover:bg-gray-300');
+                });
+                
+                // Add active class to clicked button
+                this.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+                this.classList.add('filter-active');
+                
+                const filter = this.getAttribute('data-filter');
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    if (filter === 'all' || product.getAttribute('data-category') === filter) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
             });
+        });
+
+        // Search functionality
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                alert(`Searching for: "${searchTerm}" - This would filter products in a real implementation.`);
+                // In a real app, you would filter products here
+            }
+        });
+
+        // Wishlist functionality
+        document.querySelectorAll('.wishlist-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.getAttribute('data-feather') === 'heart') {
+                    feather.icons.heart.toSvg().then(svg => {
+                        icon.outerHTML = svg;
+                        icon.classList.add('text-red-500', 'fill-current');
+                        feather.replace();
+                    });
+                    alert('Added to wishlist!');
+                } else {
+                    feather.icons.heart.toSvg().then(svg => {
+                        icon.outerHTML = svg;
+                        icon.classList.remove('text-red-500', 'fill-current');
+                        feather.replace();
+                    });
+                    alert('Removed from wishlist!');
+                }
+            });
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('h3').textContent;
+                alert(`"${productName}" added to cart!`);
+                // In a real app, you would update cart count and storage here
+            });
+        });
+
+        // Make search input respond to Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('searchBtn').click();
+            }
         });
     </script>
 </body>
