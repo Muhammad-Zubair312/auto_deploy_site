@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Orders · ShopEase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; }
+    .order-card { transition: all 0.2s ease; }
+    .order-card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.08); }
+    .search-input { transition: border 0.2s; }
+    .search-input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.2); }
+    .badge { font-size: 0.7rem; letter-spacing: 0.3px; }
+    .step-line { width: 2px; background: #e5e7eb; }
+    .step-active .step-dot { background: #6366f1; box-shadow: 0 0 0 4px rgba(99,102,241,0.2); }
+    .step-done .step-dot { background: #10b981; }
+    .step-done .step-line { background: #10b981; }
+    @media (max-width: 640px) { .order-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="antialiased text-gray-800">
+
+  <!-- NAVBAR (verbatim) -->
+  <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🛍️</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>ShopEase</span></a><span style='width:1px;height:22px;background:#374151;margin:0 6px;flex-shrink:0;'></span><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='cart.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Cart</a><a href='checkout.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Checkout</a><a href='product-details.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Product Details</a><a href='products.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Products</a><a href='orders.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Orders</a><a href='profile.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Profile</a></div></nav>
+
+  <!-- MAIN ORDERS PAGE -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+
+    <!-- HERO SECTION with search + background image -->
+    <section class="relative rounded-2xl overflow-hidden mb-10 shadow-lg bg-gray-900">
+      <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1200&q=80" alt="ShopEase orders hero" style="width:100%;height:220px;object-fit:cover;opacity:0.4;" class="sm:h-64">
+      <div class="absolute inset-0 flex flex-col justify-center items-center px-4 text-center">
+        <h1 class="text-white text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow-sm">📦 Your Orders</h1>
+        <p class="text-gray-200 mt-2 max-w-md text-sm sm:text-base">Track, search & manage everything you've bought</p>
+        <!-- product search -->
+        <div class="mt-5 w-full max-w-lg relative">
+          <input type="text" id="orderSearch" placeholder="Search orders by product, ID or status…" class="search-input w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 bg-white/90 backdrop-blur-sm text-gray-800 text-sm shadow-sm focus:outline-none">
+          <i data-feather="search" class="absolute left-3 top-3.5 text-gray-400" width="18" height="18"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCOUNT / USER GREETING (user_account feature) -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-indigo-200 flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80" alt="User avatar" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div>
+          <p class="text-sm text-gray-500">Welcome back</p>
+          <p class="font-semibold text-gray-800">Alex Rivera</p>
+        </div>
+      </div>
+      <div class="flex gap-2 text-sm">
+        <span class="bg-indigo-100 text-indigo-700 px-3 py-1.5 rounded-full font-medium flex items-center gap-1"><i data-feather="package" width="14" height="14"></i> 4 active</span>
+        <span class="bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full font-medium flex items-center gap-1"><i data-feather="check-circle" width="14" height="14"></i> 12 completed</span>
+      </div>
+    </div>
+
+    <!-- ORDER TRACKING (feature) + timeline cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+      <!-- order 1 – in transit -->
+      <div class="order-card bg-white rounded-2xl p-5 shadow-sm border border-gray-100 col-span-1">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <span class="text-xs text-gray-400 font-mono">#ORD-8723</span>
+            <h3 class="font-semibold text-gray-800 mt-0.5">Wireless Headphones</h3>
+          </div>
+          <span class="badge bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-medium">In transit</span>
+        </div>
+        <div class="flex gap-3 mb-4">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=100&q=80" alt="headphones" style="width:64px;height:64px;object-fit:cover;border-radius:12px;" class="flex-shrink-0">
+          <div class="text-sm text-gray-500">
+            <p class="font-medium text-gray-700">Sony WH-1000XM5</p>
+            <p>Qty: 1 · $349</p>
+            <p class="text-xs mt-1">Est. delivery: Apr 12</p>
+          </div>
+        </div>
+        <!-- tracking steps (mini) -->
+        <div class="flex items-center gap-1 text-xs mt-2">
+          <div class="flex items-center gap-1 text-emerald-600"><i data-feather="check-circle" width="14" height="14"></i> Ordered</div>
+          <span class="text-gray-300 mx-1">—</span>
+          <div class="flex items-center gap-1 text-indigo-600 font-medium"><i data-feather="truck" width="14" height="14"></i> Shipping</div>
+          <span class="text-gray-300 mx-1">—</span>
+          <div class="flex items-center gap-1 text-gray-400"><i data-feather="home" width="14" height="14"></i> Delivered</div>
+        </div>
+        <div class="mt-3 w-full bg-gray-100 rounded-full h-1.5"><div class="bg-indigo-500 h-1.5 rounded-full" style="width:55%"></div></div>
+      </div>
+
+      <!-- order 2 – delivered -->
+      <div class="order-card bg-white rounded-2xl p-5 shadow-sm border border-gray-100 col-span-1">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <span class="text-xs text-gray-400 font-mono">#ORD-8719</span>
+            <h3 class="font-semibold text-gray-800 mt-0.5">Running Shoes</h3>
+          </div>
+          <span class="badge bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-medium">Delivered</span>
+        </div>
+        <div class="flex gap-3 mb-4">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=100&q=80" alt="shoes" style="width:64px;height:64px;object-fit:cover;border-radius:12px;">
+          <div class="text-sm text-gray-500">
+            <p class="font-medium text-gray-700">Nike Air Zoom</p>
+            <p>Qty: 1 · $129</p>
+            <p class="text-xs mt-1">Delivered Apr 2</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-xs mt-2 text-emerald-600">
+          <i data-feather="check-circle" width="14" height="14"></i> Completed
+          <span class="text-gray-400 ml-2">⭐ Rate product</span>
+        </div>
+        <div class="mt-3 w-full bg-gray-100 rounded-full h-1.5"><div class="bg-emerald-500 h-1.5 rounded-full" style="width:100%"></div></div>
+      </div>
+
+      <!-- order 3 – pending payment (checkout_payment feature) -->
+      <div class="order-card bg-white rounded-2xl p-5 shadow-sm border border-gray-100 col-span-1">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <span class="text-xs text-gray-400 font-mono">#ORD-8740</span>
+            <h3 class="font-semibold text-gray-800 mt-0.5">Smartwatch</h3>
+          </div>
+          <span class="badge bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-medium">Payment pending</span>
+        </div>
+        <div class="flex gap-3 mb-4">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=100&q=80" alt="watch" style="width:64px;height:64px;object-fit:cover;border-radius:12px;">
+          <div class="text-sm text-gray-500">
+            <p class="font-medium text-gray-700">Apple Watch SE</p>
+            <p>Qty: 1 · $279</p>
+            <p class="text-xs mt-1">Awaiting payment</p>
+          </div>
+        </div>
+        <div class="flex gap-2 mt-2">
+          <button class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-4 py-2 rounded-lg font-medium transition">Pay now</button>
+          <button class="text-gray-500 text-xs border border-gray-200 px-3 py-2 rounded-lg">Cancel</button>
+        </div>
+        <div class="mt-3 w-full bg-gray-100 rounded-full h-1.5"><div class="bg-orange-400 h-1.5 rounded-full" style="width:20%"></div></div>
+      </div>
+    </div>
+
+    <!-- ADD TO CART / CHECKOUT PAYMENT FEATURE (inline demo) -->
+    <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-5 sm:p-6 mb-10 flex flex-col sm:flex-row items-center gap-5 border border-indigo-100">
+      <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=200&q=80" alt="quick add to cart" style="width:80px;height:80px;object-fit:cover;border-radius:16px;" class="flex-shrink-0 shadow-sm">
+      <div class="flex-1">
+        <h3 class="font-semibold text-gray-800 text-lg">Need to reorder? ⚡</h3>
+        <p class="text-sm text-gray-600">Add items from past orders to your cart with one tap.</p>
+      </div>
+      <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-sm transition flex items-center gap-2"><i data-feather="shopping-cart" width="16" height="16"></i> Add to cart</button>
+    </div>
+
+    <!-- FULL ORDER LIST (with product_search filter) -->
+    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"><i data-feather="list" width="20" height="20"></i> All orders</h2>
+    <div id="orderList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- order cards injected via JS (static fallback) -->
+    </div>
+
+    <!-- ORDER TRACKING DETAIL (expanded) -->
+    <div class="mt-12 bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-100">
+      <div class="flex items-center gap-3 mb-5">
+        <i data-feather="map-pin" width="22" height="22" class="text-indigo-600"></i>
+        <h3 class="font-semibold text-gray-800 text-lg">Live tracking — #ORD-8723</h3>
+        <span class="ml-auto text-xs text-gray-400 bg-gray-50 px-3 py-1 rounded-full">Updated 2 min ago</span>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-8">
+        <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&w=300&q=80" alt="package map" style="width:100%;max-width:200px;height:120px;object-fit:cover;border-radius:16px;" class="shadow-sm">
+        <div class="flex-1 space-y-3">
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center"><div class="step-dot w-3 h-3 rounded-full bg-emerald-500 mt-1"></div><div class="step-line h-8 w-0.5 bg-emerald-300"></div></div>
+            <div><p class="font-medium text-gray-800">Order placed</p><p class="text-xs text-gray-400">Apr 1, 2025 · 10:23 AM</p></div>
+          </div>
+          <div class="flex items-start gap-3 step-active">
+            <div class="flex flex-col items-center"><div class="step-dot w-3 h-3 rounded-full bg-indigo-500 mt-1"></div><div class="step-line h-8 w-0.5 bg-gray-200"></div></div>
+            <div><p class="font-medium text-gray-800">Out for delivery</p><p class="text-xs text-gray-400">Arriving Apr 12 · 2:00–5:00 PM</p></div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="flex flex-col items-center"><div class="step-dot w-3 h-3 rounded-full bg-gray-300 mt-1"></div></div>
+            <div><p class="font-medium text-gray-400">Delivered</p><p class="text-xs text-gray-300">—</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER (ShopEase brand) -->
+    <footer class="mt-16 border-t border-gray-200 pt-8 pb-6 text-center text-sm text-gray-500">
+      <p class="font-semibold text-gray-700 text-base">🛍️ ShopEase</p>
+      <p class="mt-1">© 2025 ShopEase. Fast, friendly orders & tracking.</p>
+      <p class="mt-2 flex justify-center gap-4 text-indigo-600">
+        <a href="#" class="hover:underline">Help</a>
+        <a href="#" class="hover:underline">Returns</a>
+        <a href="#" class="hover:underline">Contact</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    feather.replace();
+
+    // product_search + order_tracking dynamic list (static data)
+    const ordersData = [
+      { id: '#ORD-8723', product: 'Wireless Headphones', status: 'In transit', img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=100&q=80', price: 349, qty: 1 },
+      { id: '#ORD-8719', product: 'Running Shoes', status: 'Delivered', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=100&q=80', price: 129, qty: 1 },
+      { id: '#ORD-8740', product: 'Smartwatch', status: 'Payment pending', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=100&q=80', price: 279, qty: 1 },
+      { id: '#ORD-8705', product: 'Leather Backpack', status: 'Shipped', img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=100&q=80', price: 89, qty: 2 },
+      { id: '#ORD-8692', product: 'Desk Lamp', status: 'Delivered', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80', price: 45, qty: 1 },
+      { id: '#ORD-8688', product: 'Yoga Mat', status: 'Cancelled', img: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=100&q=80', price: 32, qty: 1 }
+    ];
+
+    const orderListEl = document.getElementById('orderList');
+    const searchInput = document.getElementById('orderSearch');
+
+    function renderOrders(filter = '') {
+      const filtered = ordersData.filter(o => 
+        o.product.toLowerCase().includes(filter.toLowerCase()) ||
+        o.id.toLowerCase().includes(filter.toLowerCase()) ||
+        o.status.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        orderListEl.innerHTML = `<div class="col-span-full text-center py-10 text-gray-400"><i data-feather="search" width="32" height="32" class="mx-auto mb-2"></i><p>No orders match “${filter}”</p></div>`;
+        feather.replace();
+        return;
+      }
+      orderListEl.innerHTML = filtered.map(order => `
+        <div class="order-card bg-white rounded-xl p-4 border border-gray-100 shadow-sm flex flex-col">
+          <div class="flex items-start justify-between mb-2">
+            <span class="text-xs text-gray-400 font-mono">${order.id}</span>
+            <span class="badge text-xs px-2.5 py-0.5 rounded-full font-medium 
+              ${order.status === 'Delivered' ? 'bg-emerald-100 text-emerald-700' : 
+                order.status === 'In transit' || order.status === 'Shipped' ? 'bg-amber-100 text-amber-800' :
+                order.status === 'Payment pending' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-600'}">${order.status}</span>
+          </div>
+          <div class="flex gap-3 items-center">
+            <img src="${order.img}" alt="${order.product}" style="width:52px;height:52px;object-fit:cover;border-radius:10px;" class="flex-shrink-0">
+            <div class="text-sm">
+              <p class="font-medium text-gray-800">${order.product}</p>
+              <p class="text-gray-400">Qty: ${order.qty} · $${order.price}</p>
+            </div>
+          </div>
+          <div class="mt-3 flex gap-2 text-xs">
+            <button class="text-indigo-600 hover:bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-200 transition">Track</button>
+            <button class="text-gray-500 hover:bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200 transition">Details</button>
+          </div>
+        </div>
+      `).join('');
+      feather.replace();
+    }
+
+    renderOrders();
+
+    searchInput.addEventListener('input', (e) => {
+      renderOrders(e.target.value);
+    });
+
+    // add_to_cart demo (button in reorder section)
+    document.querySelector('.bg-indigo-600.hover\\:bg-indigo-700')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      const btn = this;
+      const original = btn.innerHTML;
+      btn.innerHTML = '<i data-feather="check" width="16" height="16"></i> Added!';
+      feather.replace();
+      setTimeout(() => { btn.innerHTML = original; feather.replace(); }, 1800);
+    });
+
+    // payment pending "Pay now" quick action
+    document.querySelectorAll('.order-card .bg-indigo-600').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        if (this.textContent.trim() === 'Pay now') {
+          this.textContent = '⏳ Processing…';
+          this.style.opacity = '0.7';
+          setTimeout(() => {
+            this.textContent = '✅ Paid';
+            this.style.background = '#10b981';
+            this.style.opacity = '1';
+          }, 1200);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
