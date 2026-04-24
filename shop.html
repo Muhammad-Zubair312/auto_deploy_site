@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>ShopEase – Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    body { background: #f8fafc; }
+    .product-card { transition: all 0.2s ease; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.08); }
+    .search-bar:focus { box-shadow: 0 0 0 3px rgba(99,102,241,0.25); }
+    .badge { background: #eef2ff; color: #4338ca; }
+    .btn-primary { background: #111827; color: white; transition: 0.2s; }
+    .btn-primary:hover { background: #1f2937; }
+    .btn-outline { border: 1px solid #d1d5db; transition: 0.2s; }
+    .btn-outline:hover { border-color: #6366f1; color: #6366f1; }
+    .wishlist-btn { transition: 0.15s; }
+    .wishlist-btn:hover { color: #ef4444; transform: scale(1.1); }
+    .rating-star { color: #f59e0b; }
+    .footer-bg { background: #0f172a; }
+    .img-cover { width: 100%; height: 100%; object-fit: cover; }
+    .grid-gap { gap: 1.25rem; }
+    @media (max-width: 640px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body class="antialiased text-gray-800">
+
+  <!-- NAVBAR (verbatim) -->
+  <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🛍️</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>ShopEase</span></a><span style='width:1px;height:22px;background:#374151;margin:0 6px;flex-shrink:0;'></span><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='shop.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Shop</a><a href='product-details.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Product Details</a><a href='cart.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Cart</a><a href='checkout.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Checkout</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='orders.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Orders</a><a href='about.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">About</a><a href='contact.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Contact</a></div></nav>
+
+  <!-- MAIN SHOP CONTENT -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+
+    <!-- HERO / BANNER with product search -->
+    <div class="relative rounded-2xl overflow-hidden mb-10 shadow-md">
+      <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1600&q=80" alt="ShopEase shop banner" class="w-full h-48 sm:h-64 md:h-72 object-cover" style="object-position: center 30%;">
+      <div class="absolute inset-0 bg-gradient-to-r from-gray-900/70 to-transparent flex items-center">
+        <div class="px-6 md:px-12 text-white max-w-lg">
+          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow-sm">Discover your style</h1>
+          <p class="text-sm md:text-base mt-2 opacity-90">Thousands of products, one marketplace.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEARCH + FILTER ROW (product_search) -->
+    <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between mb-8">
+      <div class="relative w-full sm:w-80 lg:w-96">
+        <i data-feather="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" style="width:18px;height:18px;"></i>
+        <input type="text" id="productSearchInput" placeholder="Search products, brands..." class="search-bar w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 transition">
+      </div>
+      <div class="flex gap-2 flex-wrap">
+        <select id="categoryFilter" class="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white shadow-sm">
+          <option value="all">All categories</option>
+          <option value="electronics">Electronics</option>
+          <option value="fashion">Fashion</option>
+          <option value="home">Home & Living</option>
+          <option value="beauty">Beauty</option>
+        </select>
+        <button class="btn-outline rounded-lg px-4 py-2 text-sm font-medium flex items-center gap-1"><i data-feather="sliders" style="width:16px;height:16px;"></i> Filters</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID (shopping_cart, wishlist, product_reviews integrated) -->
+    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+      <!-- Product 1 -->
+      <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col" data-category="electronics">
+        <div class="relative bg-gray-100 h-40 sm:h-48">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" alt="Wireless Headphones" class="img-cover" loading="lazy">
+          <button class="wishlist-btn absolute top-2 right-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full shadow" aria-label="Add to wishlist"><i data-feather="heart" style="width:18px;height:18px;"></i></button>
+        </div>
+        <div class="p-3 flex flex-col flex-1">
+          <span class="badge text-[10px] font-semibold px-2 py-0.5 rounded-full w-fit mb-1">Electronics</span>
+          <h3 class="font-semibold text-sm leading-tight">Sonic Pro Wireless</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="rating-star text-xs">★★★★★</span><span class="text-xs text-gray-400">(124)</span>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <span class="font-bold text-base">$79</span>
+            <button class="btn-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 add-to-cart"><i data-feather="shopping-cart" style="width:14px;height:14px;"></i> Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col" data-category="fashion">
+        <div class="relative bg-gray-100 h-40 sm:h-48">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="Minimalist Watch" class="img-cover" loading="lazy">
+          <button class="wishlist-btn absolute top-2 right-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full shadow"><i data-feather="heart" style="width:18px;height:18px;"></i></button>
+        </div>
+        <div class="p-3 flex flex-col flex-1">
+          <span class="badge text-[10px] font-semibold px-2 py-0.5 rounded-full w-fit mb-1">Fashion</span>
+          <h3 class="font-semibold text-sm leading-tight">Nordic Minimal Watch</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="rating-star text-xs">★★★★☆</span><span class="text-xs text-gray-400">(89)</span>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <span class="font-bold text-base">$129</span>
+            <button class="btn-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 add-to-cart"><i data-feather="shopping-cart" style="width:14px;height:14px;"></i> Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col" data-category="home">
+        <div class="relative bg-gray-100 h-40 sm:h-48">
+          <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?auto=format&fit=crop&w=400&q=80" alt="Ceramic Vase" class="img-cover" loading="lazy">
+          <button class="wishlist-btn absolute top-2 right-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full shadow"><i data-feather="heart" style="width:18px;height:18px;"></i></button>
+        </div>
+        <div class="p-3 flex flex-col flex-1">
+          <span class="badge text-[10px] font-semibold px-2 py-0.5 rounded-full w-fit mb-1">Home</span>
+          <h3 class="font-semibold text-sm leading-tight">Artisan Ceramic Vase</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="rating-star text-xs">★★★★★</span><span class="text-xs text-gray-400">(56)</span>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <span class="font-bold text-base">$49</span>
+            <button class="btn-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 add-to-cart"><i data-feather="shopping-cart" style="width:14px;height:14px;"></i> Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col" data-category="beauty">
+        <div class="relative bg-gray-100 h-40 sm:h-48">
+          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=400&q=80" alt="Lipstick set" class="img-cover" loading="lazy">
+          <button class="wishlist-btn absolute top-2 right-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full shadow"><i data-feather="heart" style="width:18px;height:18px;"></i></button>
+        </div>
+        <div class="p-3 flex flex-col flex-1">
+          <span class="badge text-[10px] font-semibold px-2 py-0.5 rounded-full w-fit mb-1">Beauty</span>
+          <h3 class="font-semibold text-sm leading-tight">Velvet Matte Lip Kit</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="rating-star text-xs">★★★★☆</span><span class="text-xs text-gray-400">(203)</span>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <span class="font-bold text-base">$34</span>
+            <button class="btn-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 add-to-cart"><i data-feather="shopping-cart" style="width:14px;height:14px;"></i> Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col" data-category="electronics">
+        <div class="relative bg-gray-100 h-40 sm:h-48">
+          <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=80" alt="Camera" class="img-cover" loading="lazy">
+          <button class="wishlist-btn absolute top-2 right-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full shadow"><i data-feather="heart" style="width:18px;height:18px;"></i></button>
+        </div>
+        <div class="p-3 flex flex-col flex-1">
+          <span class="badge text-[10px] font-semibold px-2 py-0.5 rounded-full w-fit mb-1">Electronics</span>
+          <h3 class="font-semibold text-sm leading-tight">Polaroid Instant Cam</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="rating-star text-xs">★★★★☆</span><span class="text-xs text-gray-400">(72)</span>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <span class="font-bold text-base">$99</span>
+            <button class="btn-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 add-to-cart"><i data-feather="shopping-cart" style="width:14px;height:14px;"></i> Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col" data-category="fashion">
+        <div class="relative bg-gray-100 h-40 sm:h-48">
+          <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=400&q=80" alt="Sneakers" class="img-cover" loading="lazy">
+          <button class="wishlist-btn absolute top-2 right-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full shadow"><i data-feather="heart" style="width:18px;height:18px;"></i></button>
+        </div>
+        <div class="p-3 flex flex-col flex-1">
+          <span class="badge text-[10px] font-semibold px-2 py-0.5 rounded-full w-fit mb-1">Fashion</span>
+          <h3 class="font-semibold text-sm leading-tight">Air Flex Runner</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="rating-star text-xs">★★★★★</span><span class="text-xs text-gray-400">(310)</span>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <span class="font-bold text-base">$119</span>
+            <button class="btn-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 add-to-cart"><i data-feather="shopping-cart" style="width:14px;height:14px;"></i> Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col" data-category="home">
+        <div class="relative bg-gray-100 h-40 sm:h-48">
+          <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=400&q=80" alt="Table lamp" class="img-cover" loading="lazy">
+          <button class="wishlist-btn absolute top-2 right-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full shadow"><i data-feather="heart" style="width:18px;height:18px;"></i></button>
+        </div>
+        <div class="p-3 flex flex-col flex-1">
+          <span class="badge text-[10px] font-semibold px-2 py-0.5 rounded-full w-fit mb-1">Home</span>
+          <h3 class="font-semibold text-sm leading-tight">Nordic Table Lamp</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="rating-star text-xs">★★★★☆</span><span class="text-xs text-gray-400">(44)</span>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <span class="font-bold text-base">$59</span>
+            <button class="btn-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 add-to-cart"><i data-feather="shopping-cart" style="width:14px;height:14px;"></i> Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col" data-category="beauty">
+        <div class="relative bg-gray-100 h-40 sm:h-48">
+          <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=400&q=80" alt="Perfume" class="img-cover" loading="lazy">
+          <button class="wishlist-btn absolute top-2 right-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full shadow"><i data-feather="heart" style="width:18px;height:18px;"></i></button>
+        </div>
+        <div class="p-3 flex flex-col flex-1">
+          <span class="badge text-[10px] font-semibold px-2 py-0.5 rounded-full w-fit mb-1">Beauty</span>
+          <h3 class="font-semibold text-sm leading-tight">Bloom Eau de Parfum</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="rating-star text-xs">★★★★★</span><span class="text-xs text-gray-400">(178)</span>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <span class="font-bold text-base">$89</span>
+            <button class="btn-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 add-to-cart"><i data-feather="shopping-cart" style="width:14px;height:14px;"></i> Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGINATION / LOAD MORE (simple) -->
+    <div class="flex justify-center mt-10">
+      <button class="btn-outline rounded-full px-8 py-2 text-sm font-medium flex items-center gap-2"><i data-feather="refresh-cw" style="width:16px;height:16px;"></i> Load more products</button>
+    </div>
+
+    <!-- ORDER TRACKING & ACCOUNT quick links (user_account / order_tracking) -->
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-gray-200 pt-8">
+      <a href="orders.html" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+        <i data-feather="package" class="text-indigo-600" style="width:22px;height:22px;"></i>
+        <span class="text-sm font-medium">Track orders</span>
+      </a>
+      <a href="login.html" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+        <i data-feather="user" class="text-indigo-600" style="width:22px;height:22px;"></i>
+        <span class="text-sm font-medium">My account</span>
+      </a>
+      <a href="cart.html" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+        <i data-feather="shopping-bag" class="text-indigo-600" style="width:22px;height:22px;"></i>
+        <span class="text-sm font-medium">Shopping cart</span>
+      </a>
+      <a href="checkout.html" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+        <i data-feather="credit-card" class="text-indigo-600" style="width:22px;height:22px;"></i>
+        <span class="text-sm font-medium">Checkout</span>
+      </a>
+    </div>
+
+    <!-- ADMIN PANEL teaser (admin_panel) -->
+    <div class="mt-8 bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-5 flex items-center justify-between text-white shadow-lg">
+      <div class="flex items-center gap-3">
+        <i data-feather="shield" style="width:28px;height:28px;" class="text-indigo-300"></i>
+        <div>
+          <h4 class="font-semibold text-sm">Admin panel</h4>
+          <p class="text-xs text-gray-300">Manage products, orders & users</p>
+        </div>
+      </div>
+      <button class="bg-white text-gray-900 text-xs font-semibold px-4 py-2 rounded-lg">Dashboard</button>
+    </div>
+  </main>
+
+  <!-- FOOTER (ShopEase brand) -->
+  <footer class="footer-bg text-gray-300 mt-14">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+      <div>
+        <h5 class="text-white font-bold text-base mb-3">ShopEase</h5>
+        <p class="text-xs leading-relaxed">Your one‑stop shop for modern lifestyle. Fast delivery, easy returns.</p>
+      </div>
+      <div>
+        <h6 class="text-white font-semibold mb-2">Support</h6>
+        <ul class="space-y-1 text-xs"><li>Help center</li><li>Returns</li><li>Shipping info</li></ul>
+      </div>
+      <div>
+        <h6 class="text-white font-semibold mb-2">Company</h6>
+        <ul class="space-y-1 text-xs"><li>About</li><li>Careers</li><li>Privacy</li></ul>
+      </div>
+      <div>
+        <h6 class="text-white font-semibold mb-2">Follow us</h6>
+        <div class="flex gap-3 text-gray-400"><i data-feather="instagram" style="width:18px;"></i><i data-feather="twitter" style="width:18px;"></i><i data-feather="facebook" style="width:18px;"></i></div>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 text-xs text-center py-5">© 2025 ShopEase. All rights reserved.</div>
+  </footer>
+
+  <!-- Feather Icons init -->
+  <script>
+    feather.replace();
+  </script>
+
+  <!-- Product search + category filter (product_search) -->
+  <script>
+    (function() {
+      const searchInput = document.getElementById('productSearchInput');
+      const categoryFilter = document.getElementById('categoryFilter');
+      const productCards = document.querySelectorAll('.product-card');
+
+      function filterProducts() {
+        const query = searchInput.value.toLowerCase().trim();
+        const category = categoryFilter.value;
+
+        productCards.forEach(card => {
+          const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
+          const cat = card.dataset.category || '';
+          const matchesSearch = title.includes(query);
+          const matchesCategory = category === 'all' || cat === category;
+          card.style.display = (matchesSearch && matchesCategory) ? 'flex' : 'none';
+        });
+      }
+
+      searchInput.addEventListener('input', filterProducts);
+      categoryFilter.addEventListener('change', filterProducts);
+    })();
+  </script>
+
+  <!-- Mini cart / wishlist simulation (shopping_cart, wishlist) -->
+  <script>
+    (function() {
+      // wishlist toggle
+      document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const icon = this.querySelector('i');
+          if (icon) {
+            const isActive = icon.getAttribute('data-feather') === 'heart' && icon.style.fill !== 'red';
+            if (icon.style.fill === 'red') {
+              icon.style.fill = 'none';
+              icon.style.color = '';
+            } else {
+              icon.style.fill = 'red';
+              icon.style.color = 'red';
+            }
+          }
+        });
+      });
+
+      // add to cart (simple counter simulation)
+      document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const original = this.innerHTML;
+          this.innerHTML = '<i data-feather="check" style="width:14px;height:14px;"></i> Added';
+          feather.replace();
+          setTimeout(() => {
+            this.innerHTML = original;
+            feather.replace();
+          }, 1200);
+        });
+      });
+    })();
+  </script>
+
+  <!-- ensure feather icons after dynamic changes -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      feather.replace();
+    });
+  </script>
+</body>
+</html>

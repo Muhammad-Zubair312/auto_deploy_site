@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>ShopEase – Orders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { background: #f8fafc; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+    .order-card { transition: all 0.2s ease; }
+    .order-card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.08); }
+    .badge { font-size: 0.7rem; letter-spacing: 0.3px; }
+    .search-box:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.2); }
+    .product-img { object-fit: cover; width: 100%; height: 100%; }
+    .grid-gap { gap: 1.25rem; }
+    @media (max-width: 640px) { .order-summary-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="antialiased text-gray-800">
+
+  <!-- NAVBAR (verbatim) -->
+  <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🛍️</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>ShopEase</span></a><span style='width:1px;height:22px;background:#374151;margin:0 6px;flex-shrink:0;'></span><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='shop.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Shop</a><a href='product-details.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Product Details</a><a href='cart.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Cart</a><a href='checkout.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Checkout</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='orders.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Orders</a><a href='about.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">About</a><a href='contact.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Contact</a></div></nav>
+
+  <!-- MAIN ORDERS CONTENT -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+
+    <!-- HERO / BANNER with search + unsplash -->
+    <div class="relative rounded-2xl overflow-hidden mb-10 shadow-md bg-white">
+      <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1200&q=80" alt="ShopEase order tracking" style="width:100%;height:220px;object-fit:cover;opacity:0.25;" class="absolute inset-0">
+      <div class="relative z-10 p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">📦 My Orders</h1>
+          <p class="text-gray-600 mt-1 text-sm md:text-base">Track, review, and manage everything you've ordered.</p>
+        </div>
+        <!-- product search -->
+        <div class="w-full md:w-80 lg:w-96">
+          <div class="relative">
+            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+            <input type="text" id="orderSearch" placeholder="Search orders, products, or ID..." class="search-box w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white/90 backdrop-blur-sm text-sm focus:outline-none transition">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK FILTERS + WISHLIST / ACCOUNT SHORTCUTS -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+      <div class="flex flex-wrap gap-2">
+        <button class="px-4 py-2 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700 hover:bg-indigo-200 transition">All</button>
+        <button class="px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-gray-300 transition">Processing</button>
+        <button class="px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-gray-300 transition">Shipped</button>
+        <button class="px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-gray-300 transition">Delivered</button>
+        <button class="px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-gray-300 transition">Cancelled</button>
+      </div>
+      <div class="flex items-center gap-3 text-sm">
+        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center gap-1"><i class="far fa-heart"></i> Wishlist</a>
+        <a href="#" class="text-gray-500 hover:text-gray-700 flex items-center gap-1"><i class="far fa-user-circle"></i> Account</a>
+      </div>
+    </div>
+
+    <!-- ORDER LIST (with order_tracking, product_reviews, admin_panel hints) -->
+    <div id="ordersContainer" class="space-y-5">
+
+      <!-- ORDER CARD 1 -->
+      <div class="order-card bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100">
+        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+          <!-- product image -->
+          <div class="w-full sm:w-28 h-28 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80" alt="Nike Red Sneakers" class="product-img" width="200" height="200">
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="font-bold text-lg text-gray-800">Nike Air Max Pulse</h3>
+                <p class="text-sm text-gray-500 mt-0.5">Order #SE-8723-1 • Placed 12 Jan 2025</p>
+              </div>
+              <span class="badge inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-800 font-semibold">🕒 Processing</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-4 text-sm text-gray-600">
+              <span><i class="far fa-credit-card mr-1"></i> $189.00</span>
+              <span><i class="fas fa-box mr-1"></i> 1 item</span>
+              <span><i class="fas fa-truck mr-1"></i> Est. 18–22 Jan</span>
+            </div>
+            <!-- order tracking progress (simplified) -->
+            <div class="mt-3 w-full bg-gray-100 rounded-full h-2.5">
+              <div class="bg-indigo-500 h-2.5 rounded-full" style="width:45%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mt-1">
+              <span>Confirmed</span><span>Shipped</span><span>Delivered</span>
+            </div>
+            <!-- actions: review, track, admin -->
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1.5 rounded-lg font-medium transition"><i class="far fa-star mr-1"></i>Write a review</button>
+              <button class="text-xs bg-gray-50 hover:bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg font-medium transition"><i class="fas fa-map-pin mr-1"></i>Track</button>
+              <button class="text-xs bg-gray-50 hover:bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg font-medium transition"><i class="fas fa-shield-alt mr-1"></i>Support</button>
+              <!-- admin panel hint (visible only to admin, but shown as subtle) -->
+              <span class="text-[10px] text-gray-300 ml-auto self-center"><i class="fas fa-lock"></i> admin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER CARD 2 (with wishlist + review) -->
+      <div class="order-card bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100">
+        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+          <div class="w-full sm:w-28 h-28 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=200&q=80" alt="Smartwatch" class="product-img" width="200" height="200">
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="font-bold text-lg text-gray-800">Amazfit GTR 4</h3>
+                <p class="text-sm text-gray-500 mt-0.5">Order #SE-8719-4 • Placed 5 Jan 2025</p>
+              </div>
+              <span class="badge inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-semibold">✅ Delivered</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-4 text-sm text-gray-600">
+              <span><i class="far fa-credit-card mr-1"></i> $229.00</span>
+              <span><i class="fas fa-box mr-1"></i> 1 item</span>
+              <span><i class="fas fa-calendar-check mr-1"></i> Delivered 12 Jan</span>
+            </div>
+            <div class="mt-3 w-full bg-gray-100 rounded-full h-2.5">
+              <div class="bg-emerald-500 h-2.5 rounded-full" style="width:100%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mt-1">
+              <span>Confirmed</span><span>Shipped</span><span>Delivered</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1.5 rounded-lg font-medium transition"><i class="fas fa-star mr-1"></i>Review product</button>
+              <button class="text-xs bg-pink-50 hover:bg-pink-100 text-pink-600 px-3 py-1.5 rounded-lg font-medium transition"><i class="far fa-heart mr-1"></i>Add to wishlist</button>
+              <button class="text-xs bg-gray-50 hover:bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg font-medium transition"><i class="fas fa-rotate-left mr-1"></i>Return</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER CARD 3 (multiple items, checkout_payment hint) -->
+      <div class="order-card bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100">
+        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+          <div class="w-full sm:w-28 h-28 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 relative">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Leather watch" class="product-img" width="200" height="200">
+            <span class="absolute bottom-1 right-1 bg-white/80 text-[10px] font-bold px-1.5 py-0.5 rounded">+2</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="font-bold text-lg text-gray-800">Fossil Gen 6 + accessories</h3>
+                <p class="text-sm text-gray-500 mt-0.5">Order #SE-8700-9 • Placed 28 Dec 2024</p>
+              </div>
+              <span class="badge inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 font-semibold">📦 Shipped</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-4 text-sm text-gray-600">
+              <span><i class="far fa-credit-card mr-1"></i> $349.00</span>
+              <span><i class="fas fa-boxes mr-1"></i> 3 items</span>
+              <span><i class="fas fa-truck mr-1"></i> Est. 16–20 Jan</span>
+            </div>
+            <div class="mt-3 w-full bg-gray-100 rounded-full h-2.5">
+              <div class="bg-blue-500 h-2.5 rounded-full" style="width:70%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mt-1">
+              <span>Confirmed</span><span>Shipped</span><span>Delivered</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1.5 rounded-lg font-medium transition"><i class="far fa-star mr-1"></i>Review</button>
+              <button class="text-xs bg-gray-50 hover:bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg font-medium transition"><i class="fas fa-map-pin mr-1"></i>Track package</button>
+              <button class="text-xs bg-gray-50 hover:bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg font-medium transition"><i class="fas fa-receipt mr-1"></i>Invoice</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER CARD 4 (cancelled, with review possibility) -->
+      <div class="order-card bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100">
+        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+          <div class="w-full sm:w-28 h-28 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80" alt="Headphones" class="product-img" width="200" height="200">
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="font-bold text-lg text-gray-800">Sony WH-1000XM5</h3>
+                <p class="text-sm text-gray-500 mt-0.5">Order #SE-8688-2 • Placed 15 Dec 2024</p>
+              </div>
+              <span class="badge inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 font-semibold">❌ Cancelled</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-4 text-sm text-gray-600">
+              <span><i class="far fa-credit-card mr-1"></i> $349.00</span>
+              <span><i class="fas fa-box mr-1"></i> 1 item</span>
+              <span><i class="fas fa-times-circle mr-1"></i> Cancelled 18 Dec</span>
+            </div>
+            <div class="mt-3 w-full bg-gray-100 rounded-full h-2.5">
+              <div class="bg-gray-300 h-2.5 rounded-full" style="width:100%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mt-1">
+              <span>Cancelled</span><span></span><span></span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1.5 rounded-lg font-medium transition"><i class="far fa-star mr-1"></i>Write a review</button>
+              <button class="text-xs bg-gray-50 hover:bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg font-medium transition"><i class="fas fa-redo mr-1"></i>Reorder</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGINATION (mobile friendly) -->
+    <div class="mt-10 flex items-center justify-between text-sm">
+      <p class="text-gray-500">Showing 1–4 of 12 orders</p>
+      <div class="flex gap-1">
+        <button class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-500 hover:bg-gray-50">←</button>
+        <button class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-semibold">1</button>
+        <button class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50">2</button>
+        <button class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50">3</button>
+        <button class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-500 hover:bg-gray-50">→</button>
+      </div>
+    </div>
+
+    <!-- FOOTER (brand + unsplash) -->
+    <footer class="mt-16 border-t border-gray-200 pt-8 pb-6 text-center text-sm text-gray-500">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🛍️</span>
+          <span class="font-bold text-gray-700">ShopEase</span>
+        </div>
+        <div class="flex gap-5 text-xs">
+          <a href="#" class="hover:text-indigo-600">Help Center</a>
+          <a href="#" class="hover:text-indigo-600">Privacy</a>
+          <a href="#" class="hover:text-indigo-600">Terms</a>
+          <a href="#" class="hover:text-indigo-600">Admin Panel</a>
+        </div>
+        <p class="text-xs">© 2025 ShopEase. All orders tracked with ❤️</p>
+      </div>
+      <div class="mt-4 w-24 h-10 mx-auto rounded-lg overflow-hidden opacity-60">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=200&q=80" alt="payment methods" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </footer>
+  </main>
+
+  <!-- simple JS for search (product_search) -->
+  <script>
+    (function() {
+      const searchInput = document.getElementById('orderSearch');
+      const orders = document.querySelectorAll('.order-card');
+      if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+          const term = e.target.value.toLowerCase().trim();
+          orders.forEach(card => {
+            const text = card.innerText.toLowerCase();
+            card.style.display = text.includes(term) ? '' : 'none';
+          });
+        });
+      }
+    })();
+  </script>
+  <!-- feather icons (optional) but we use fontawesome -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

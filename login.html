@@ -1,284 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | E-Commerce Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <style>
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-        .login-card {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
-        }
-        .input-focus:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>ShopEase · Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    body { background: #f8fafc; }
+    .card-shadow { box-shadow: 0 8px 30px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.03); }
+    .input-focus:focus { border-color: #6366f1; box-shadow: 0 0 0 4px rgba(99,102,241,0.15); }
+    .bg-soft-gradient { background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%); }
+    .hero-overlay { background: linear-gradient(135deg, rgba(15,23,42,0.65) 0%, rgba(30,41,59,0.4) 100%); }
+  </style>
 </head>
-<body class="font-sans">
-    <!-- Shared Navbar -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center'>
-        <div class="flex space-x-4">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400'>Signup</a>
+<body class="antialiased text-slate-800">
+
+  <!-- ⬇️ NAVBAR (verbatim) ⬇️ -->
+  <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🛍️</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>ShopEase</span></a><span style='width:1px;height:22px;background:#374151;margin:0 6px;flex-shrink:0;'></span><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='shop.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Shop</a><a href='product-details.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Product Details</a><a href='cart.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Cart</a><a href='checkout.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Checkout</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='orders.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Orders</a><a href='about.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">About</a><a href='contact.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Contact</a></div></nav>
+  <!-- ⬆️ END NAVBAR ⬆️ -->
+
+  <!-- HERO / BANNER with Unsplash image -->
+  <section class="relative w-full overflow-hidden bg-slate-900">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80" alt="ShopEase online shopping" style="width:100%;height:100%;object-fit:cover;" class="opacity-70">
+      <div class="absolute inset-0 hero-overlay"></div>
+    </div>
+    <div class="relative z-10 flex flex-col items-center justify-center px-5 py-16 md:py-24 text-center text-white">
+      <span class="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90 mb-3 border border-white/10">🔐 Welcome back</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-lg">Sign in to <span class="text-indigo-300">ShopEase</span></h1>
+      <p class="mt-3 max-w-xl text-base md:text-lg text-slate-200/80 font-medium">Your account, orders, wishlist & reviews — all in one place.</p>
+    </div>
+  </section>
+
+  <!-- LOGIN CARD + FEATURE GRID (mobile-first) -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 md:-mt-16 relative z-20 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
+      
+      <!-- LEFT: Login form card -->
+      <div class="lg:col-span-3 bg-white/95 backdrop-blur-sm rounded-2xl card-shadow p-6 sm:p-8 border border-slate-200/60">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600">
+            <i data-feather="log-in" width="20" height="20"></i>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-800">Login to your account</h2>
         </div>
-        <div class="text-sm text-gray-300 mt-2 md:mt-0">
-            Welcome back! Access your account
+
+        <form class="space-y-5" id="loginForm" onsubmit="event.preventDefault(); alert('🔐 Demo: login successful (no backend)');">
+          <!-- email -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="email">Email address</label>
+            <div class="relative">
+              <i data-feather="mail" width="16" height="16" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+              <input id="email" type="email" placeholder="you@example.com" value="demo@shopease.com" class="input-focus w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 bg-white/80 text-sm font-medium transition-all duration-200 focus:outline-none">
+            </div>
+          </div>
+          <!-- password -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="password">Password</label>
+            <div class="relative">
+              <i data-feather="lock" width="16" height="16" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+              <input id="password" type="password" placeholder="••••••••" value="demo1234" class="input-focus w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 bg-white/80 text-sm font-medium transition-all duration-200 focus:outline-none">
+            </div>
+          </div>
+          <!-- remember + forgot -->
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <label class="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+              <input type="checkbox" checked class="accent-indigo-500 w-4 h-4 rounded border-slate-300">
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 transition">Forgot password?</a>
+          </div>
+          <!-- submit -->
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold text-base shadow-md shadow-indigo-200 transition-all duration-150 flex items-center justify-center gap-2">
+            <i data-feather="arrow-right" width="18" height="18"></i> Sign in
+          </button>
+          <!-- divider -->
+          <div class="relative my-4">
+            <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div>
+            <div class="relative flex justify-center text-xs uppercase"><span class="bg-white px-4 text-slate-400 font-semibold">or continue with</span></div>
+          </div>
+          <!-- social -->
+          <div class="grid grid-cols-2 gap-3">
+            <button class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition text-sm font-medium text-slate-700"><i data-feather="chrome" width="17" height="17" class="text-indigo-500"></i> Google</button>
+            <button class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition text-sm font-medium text-slate-700"><i data-feather="github" width="17" height="17" class="text-slate-700"></i> GitHub</button>
+          </div>
+          <p class="text-center text-sm text-slate-500 pt-1">Don’t have an account? <a href="signup.html" class="font-semibold text-indigo-600 hover:text-indigo-700">Sign up free →</a></p>
+        </form>
+      </div>
+
+      <!-- RIGHT: feature cards + image (wishlist, orders, reviews, admin) -->
+      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5">
+        
+        <!-- card 1: wishlist + product search -->
+        <div class="bg-white rounded-xl card-shadow p-5 border border-slate-100 flex flex-col">
+          <div class="flex items-center gap-2 mb-2">
+            <i data-feather="heart" width="18" height="18" class="text-rose-500"></i>
+            <span class="font-semibold text-sm text-slate-700">Wishlist & search</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=400&q=80" alt="wishlist products" style="width:100%;height:110px;object-fit:cover;border-radius:10px;" class="mb-2">
+          <p class="text-xs text-slate-500">Save favourites, search 10k+ products.</p>
         </div>
-    </nav>
 
-    <!-- Login Page Content -->
-    <main class="container mx-auto px-4 py-12">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" data-aos="fade-up">
-            <!-- Login Form Section -->
-            <div class="login-card rounded-2xl shadow-2xl p-8 md:p-12">
-                <div class="text-center mb-10">
-                    <h1 class="text-4xl font-bold text-gray-900 mb-3">Welcome Back</h1>
-                    <p class="text-gray-600">Sign in to your account to continue shopping</p>
-                </div>
-
-                <form id="loginForm" class="space-y-6">
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address
-                        </label>
-                        <div class="relative">
-                            <i data-feather="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                required
-                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="you@example.com"
-                            >
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            Password
-                        </label>
-                        <div class="relative">
-                            <i data-feather="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input 
-                                type="password" 
-                                id="password" 
-                                required
-                                class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none focus:border-blue-500 transition"
-                                placeholder="Enter your password"
-                            >
-                            <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                <i data-feather="eye"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input 
-                                type="checkbox" 
-                                id="remember"
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                            >
-                            <label for="remember" class="ml-2 text-sm text-gray-700">
-                                Remember me
-                            </label>
-                        </div>
-                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800 hover:underline">
-                            Forgot password?
-                        </a>
-                    </div>
-
-                    <button 
-                        type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-                    >
-                        Sign In
-                    </button>
-
-                    <div class="text-center">
-                        <p class="text-gray-600">
-                            Don't have an account? 
-                            <a href="signup.html" class="text-blue-600 hover:text-blue-800 font-semibold hover:underline">
-                                Sign up here
-                            </a>
-                        </p>
-                    </div>
-                </form>
-
-                <div class="mt-8 pt-8 border-t border-gray-200">
-                    <p class="text-center text-gray-600 mb-4">Or continue with</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="facebook" class="text-blue-600 mr-2"></i>
-                            <span>Facebook</span>
-                        </button>
-                        <button class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i data-feather="github" class="mr-2"></i>
-                            <span>GitHub</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Benefits Section -->
-            <div class="space-y-8">
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="200">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i data-feather="shopping-bag" class="text-blue-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Track Your Orders</h3>
-                            <p class="text-gray-600">Monitor your purchases from order to delivery with real-time updates.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="400">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-green-100 p-3 rounded-lg mr-4">
-                            <i data-feather="heart" class="text-green-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Personalized Experience</h3>
-                            <p class="text-gray-600">Get product recommendations based on your browsing and purchase history.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-left" data-aos-delay="600">
-                    <div class="flex items-start mb-6">
-                        <div class="bg-purple-100 p-3 rounded-lg mr-4">
-                            <i data-feather="star" class="text-purple-600 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Write Reviews</h3>
-                            <p class="text-gray-600">Share your experience and help other customers make informed decisions.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-lg p-8 text-white" data-aos="fade-up" data-aos-delay="800">
-                    <h3 class="text-2xl font-bold mb-4">Secure Shopping</h3>
-                    <p class="mb-4">Your security is our priority. We use industry-standard encryption to protect your data.</p>
-                    <div class="flex items-center">
-                        <i data-feather="shield" class="mr-3"></i>
-                        <span class="font-semibold">256-bit SSL Encryption</span>
-                    </div>
-                </div>
-            </div>
+        <!-- card 2: order tracking + shopping cart -->
+        <div class="bg-white rounded-xl card-shadow p-5 border border-slate-100 flex flex-col">
+          <div class="flex items-center gap-2 mb-2">
+            <i data-feather="package" width="18" height="18" class="text-emerald-600"></i>
+            <span class="font-semibold text-sm text-slate-700">Orders & cart</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=400&q=80" alt="order tracking" style="width:100%;height:110px;object-fit:cover;border-radius:10px;" class="mb-2">
+          <p class="text-xs text-slate-500">Track orders, manage cart, quick checkout.</p>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">E-Commerce Store</h3>
-                    <p class="text-gray-400">Your one-stop shop for all your needs. Quality products, secure payments, fast delivery.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white transition">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white transition">Checkout</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Account</h4>
-                    <ul class="space-y-2">
-                        <li><a href="login.html" class="text-gray-400 hover:text-white transition">Login</a></li>
-                        <li><a href="signup.html" class="text-gray-400 hover:text-white transition">Sign Up</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Order Tracking</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <p class="text-gray-400">support@ecommerce.com</p>
-                    <p class="text-gray-400">+1 (555) 123-4567</p>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 E-Commerce Store. All rights reserved.</p>
-            </div>
+        <!-- card 3: product reviews + admin panel -->
+        <div class="bg-white rounded-xl card-shadow p-5 border border-slate-100 flex flex-col">
+          <div class="flex items-center gap-2 mb-2">
+            <i data-feather="star" width="18" height="18" class="text-amber-400"></i>
+            <span class="font-semibold text-sm text-slate-700">Reviews & admin</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=400&q=80" alt="admin panel reviews" style="width:100%;height:110px;object-fit:cover;border-radius:10px;" class="mb-2">
+          <p class="text-xs text-slate-500">Rate products, access admin dashboard.</p>
         </div>
-    </footer>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
+        <!-- card 4: user account + payment -->
+        <div class="bg-white rounded-xl card-shadow p-5 border border-slate-100 flex flex-col">
+          <div class="flex items-center gap-2 mb-2">
+            <i data-feather="credit-card" width="18" height="18" class="text-indigo-500"></i>
+            <span class="font-semibold text-sm text-slate-700">Account & payment</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&q=80" alt="payment methods" style="width:100%;height:110px;object-fit:cover;border-radius:10px;" class="mb-2">
+          <p class="text-xs text-slate-500">Secure checkout, saved cards & addresses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Initialize Feather Icons
-        feather.replace();
+  <!-- BANNER: ShopEase benefits (with Unsplash) -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="relative rounded-2xl overflow-hidden bg-slate-800">
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=80" alt="shopping experience" style="width:100%;height:220px;object-fit:cover;object-position:center 30%;" class="opacity-30">
+      <div class="absolute inset-0 bg-gradient-to-r from-indigo-900/80 to-slate-900/60"></div>
+      <div class="relative z-10 flex flex-col md:flex-row items-center justify-between px-6 py-8 md:py-10 gap-4">
+        <div class="text-white">
+          <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">🚀 ShopEase membership</h3>
+          <p class="text-slate-200/80 text-sm md:text-base max-w-lg mt-1">Free shipping, exclusive deals, early access & more.</p>
+        </div>
+        <a href="signup.html" class="inline-flex items-center gap-2 bg-white text-indigo-700 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-indigo-50 transition text-sm">Create free account <i data-feather="arrow-right" width="16" height="16"></i></a>
+      </div>
+    </div>
+  </section>
 
-        // Toggle password visibility
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.querySelector('i').setAttribute('data-feather', type === 'password' ? 'eye' : 'eye-off');
-            feather.replace();
-        });
+  <!-- FOOTER (ShopEase brand) -->
+  <footer class="bg-slate-900 text-slate-300 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="col-span-2 md:col-span-1">
+        <span class="text-white font-bold text-lg tracking-tight">🛍️ ShopEase</span>
+        <p class="mt-2 text-slate-400 leading-relaxed">Your smart shopping hub. Search, save, review, and track — all in one place.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-3">Account</h4>
+        <ul class="space-y-1.5">
+          <li><a href="login.html" class="hover:text-white transition">Login</a></li>
+          <li><a href="signup.html" class="hover:text-white transition">Sign up</a></li>
+          <li><a href="orders.html" class="hover:text-white transition">Orders</a></li>
+          <li><a href="cart.html" class="hover:text-white transition">Cart</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-3">Shop</h4>
+        <ul class="space-y-1.5">
+          <li><a href="shop.html" class="hover:text-white transition">All products</a></li>
+          <li><a href="#" class="hover:text-white transition">Wishlist</a></li>
+          <li><a href="#" class="hover:text-white transition">Deals</a></li>
+          <li><a href="product-details.html" class="hover:text-white transition">Details</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-3">Support</h4>
+        <ul class="space-y-1.5">
+          <li><a href="about.html" class="hover:text-white transition">About</a></li>
+          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+          <li><a href="#" class="hover:text-white transition">Privacy</a></li>
+          <li><a href="#" class="hover:text-white transition">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-slate-700 py-5 text-center text-xs text-slate-500">
+      &copy; 2025 ShopEase. All rights reserved. Made with ❤️ for seamless shopping.
+    </div>
+  </footer>
 
-        // Form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Simple validation
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Simulate login process
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Signing in...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                alert('Login successful! Redirecting to homepage...');
-                window.location.href = 'index.html';
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
-
-        // Social login buttons
-        document.querySelectorAll('button:has(i[data-feather="facebook"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Facebook login would be implemented here');
-            });
-        });
-
-        document.querySelectorAll('button:has(i[data-feather="github"])').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('GitHub login would be implemented here');
-            });
-        });
-    </script>
+  <!-- Feather icons init -->
+  <script>
+    feather.replace({ 'stroke-width': 1.5 });
+  </script>
+  <!-- simple mobile-friendly interaction: no extra JS needed -->
 </body>
 </html>
