@@ -1,322 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEasy - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .product-card:hover { transform: translateY(-5px); transition: transform 0.3s ease; }
-        .category-icon { width: 64px; height: 64px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeatherVue — Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; }
+    .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(99, 102, 241, 0.2); }
+    .gradient-text { background: linear-gradient(135deg, #818cf8, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .alert-badge { background: #f59e0b; color: #0f172a; font-weight: 600; }
+    .forecast-card { transition: transform 0.2s ease, box-shadow 0.2s; }
+    .forecast-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.5); }
+    .search-input { background: #1e293b; border: 1px solid #334155; color: #f1f5f9; }
+    .search-input:focus { border-color: #6366f1; outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.3); }
+    .btn-primary { background: linear-gradient(135deg, #6366f1, #3b82f6); border: none; color: white; font-weight: 600; padding: 10px 24px; border-radius: 40px; transition: 0.2s; cursor: pointer; }
+    .btn-primary:hover { transform: scale(1.02); box-shadow: 0 8px 20px -6px #3b82f6; }
+  </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class='bg-gray-900 text-white p-4 flex flex-wrap justify-between items-center sticky top-0 z-50'>
-        <div class="flex items-center space-x-2">
-            <i data-feather="shopping-bag" class="text-blue-400"></i>
-            <span class="text-xl font-bold">ShopEasy</span>
-        </div>
-        <div class="flex flex-wrap space-x-4 mt-2 md:mt-0">
-            <a href='index.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Home</a>
-            <a href='products.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Products</a>
-            <a href='product-details.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Product Details</a>
-            <a href='cart.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Cart</a>
-            <a href='checkout.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Checkout</a>
-            <a href='login.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Login</a>
-            <a href='signup.html' class='px-3 py-2 hover:text-blue-400 font-medium'>Signup</a>
-        </div>
-    </nav>
+<body class="antialiased">
 
-    <!-- Hero Section -->
-    <section class="hero-gradient text-white py-16 md:py-24 px-4">
-        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Discover Amazing Products</h1>
-            <p class="text-xl mb-10 max-w-2xl mx-auto">Shop the latest trends with secure checkout, fast delivery, and easy returns.</p>
-            
-            <!-- Search Bar -->
-            <div class="max-w-2xl mx-auto flex">
-                <input type="text" placeholder="Search for products, brands, categories..." 
-                       class="flex-grow p-4 rounded-l-lg text-gray-800 focus:outline-none">
-                <button class="bg-blue-600 hover:bg-blue-700 px-6 rounded-r-lg flex items-center">
-                    <i data-feather="search"></i>
-                    <span class="ml-2">Search</span>
-                </button>
+  <!-- NAVBAR (copied verbatim) -->
+  <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🌤️</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>WeatherVue</span></a><span style='width:1px;height:22px;background:#374151;margin:0 6px;flex-shrink:0;'></span><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='dashboard.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Dashboard</a><a href='search.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Search</a></div></nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- HERO SECTION with background image + city search -->
+    <section class="relative rounded-3xl overflow-hidden mb-12 shadow-2xl">
+      <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=1600&q=80" alt="Weather landscape" style="width:100%;height:420px;object-fit:cover;display:block;">
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/50 to-transparent flex items-center">
+        <div class="px-6 md:px-12 w-full max-w-2xl">
+          <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-3">WeatherVue <span class="gradient-text">real‑time</span></h1>
+          <p class="text-slate-300 text-lg md:text-xl mb-6">Accurate forecasts, alerts & visual insights for any city.</p>
+          <!-- city search -->
+          <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+            <div class="relative flex-1 w-full">
+              <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input type="text" id="citySearchInput" placeholder="Search city, e.g. London, Tokyo..." class="search-input w-full pl-11 pr-4 py-3 rounded-2xl text-base">
             </div>
+            <button id="searchBtn" class="btn-primary whitespace-nowrap"><i class="fas fa-cloud-sun mr-2"></i>Get Weather</button>
+          </div>
+          <p class="text-xs text-slate-400 mt-3"><i class="fas fa-map-pin mr-1"></i> Try: New York, Paris, Sydney, Mumbai</p>
         </div>
+      </div>
     </section>
 
-    <!-- Featured Categories -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Shop by Category</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="smartphone" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Electronics</h3>
-                    <p class="text-gray-600">Latest gadgets & devices</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shirt" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Fashion</h3>
-                    <p class="text-gray-600">Trendy clothing & accessories</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="bg-yellow-100 text-yellow-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="home" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Home & Living</h3>
-                    <p class="text-gray-600">Furniture & decor</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-red-100 text-red-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="heart" class="category-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Health & Beauty</h3>
-                    <p class="text-gray-600">Wellness & personal care</p>
-                </div>
-            </div>
+    <!-- CURRENT WEATHER + ALERTS row -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+      <!-- current weather card (spans 2 cols) -->
+      <div class="lg:col-span-2 glass-card rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-center">
+        <div class="flex-1">
+          <div class="flex items-center gap-3 mb-2">
+            <i class="fas fa-map-marker-alt text-blue-400 text-xl"></i>
+            <h2 class="text-2xl font-bold text-white" id="currentCity">San Francisco</h2>
+            <span class="text-sm text-slate-400 bg-slate-700/50 px-3 py-0.5 rounded-full">NOW</span>
+          </div>
+          <div class="flex items-baseline gap-2 mt-2">
+            <span class="text-6xl font-extralight text-white" id="currentTemp">18°</span>
+            <span class="text-slate-400 text-lg">C</span>
+          </div>
+          <p class="text-slate-300 mt-1" id="currentDesc">Partly cloudy · feels like 16°</p>
+          <div class="flex gap-6 mt-4 text-sm text-slate-400">
+            <span><i class="fas fa-wind mr-1"></i> 12 km/h</span>
+            <span><i class="fas fa-tint mr-1"></i> 68%</span>
+            <span><i class="fas fa-compress-alt mr-1"></i> 1013 hPa</span>
+          </div>
         </div>
+        <div class="flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="current weather icon" class="w-28 h-28 rounded-full object-cover border-2 border-blue-400/30 shadow-lg">
+        </div>
+      </div>
+
+      <!-- weather alerts card -->
+      <div class="glass-card rounded-2xl p-5 flex flex-col">
+        <div class="flex items-center gap-2 mb-3">
+          <i class="fas fa-exclamation-triangle text-amber-400"></i>
+          <h3 class="font-semibold text-white">Weather Alerts</h3>
+          <span class="ml-auto alert-badge text-xs px-2 py-0.5 rounded-full">2 active</span>
+        </div>
+        <ul class="space-y-3 text-sm">
+          <li class="flex gap-3 items-start bg-slate-700/30 p-2 rounded-lg">
+            <i class="fas fa-cloud-rain text-cyan-300 mt-1"></i>
+            <div><span class="text-white font-medium">Heavy rain</span><br><span class="text-slate-400">until 21:00 · 12‑25 mm/h</span></div>
+          </li>
+          <li class="flex gap-3 items-start bg-slate-700/30 p-2 rounded-lg">
+            <i class="fas fa-wind text-amber-300 mt-1"></i>
+            <div><span class="text-white font-medium">Wind advisory</span><br><span class="text-slate-400">gusts up to 65 km/h</span></div>
+          </li>
+        </ul>
+        <button class="mt-auto text-xs text-blue-400 hover:text-blue-300 self-end">view all alerts →</button>
+      </div>
+    </div>
+
+    <!-- 7-DAY FORECAST -->
+    <section class="mb-12">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-2xl font-bold text-white"><i class="fas fa-calendar-week mr-2 text-blue-400"></i>7‑Day Forecast</h2>
+        <span class="text-sm text-slate-400">San Francisco</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
+        <!-- day cards (dummy data, but with unsplash images) -->
+        <div class="forecast-card glass-card rounded-xl p-3 text-center">
+          <p class="text-slate-300 font-medium">Mon</p>
+          <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=100&q=80" alt="sun" class="w-10 h-10 mx-auto my-1 rounded-full object-cover">
+          <p class="text-white text-xl font-semibold">21°</p>
+          <p class="text-xs text-slate-400">sunny</p>
+        </div>
+        <div class="forecast-card glass-card rounded-xl p-3 text-center">
+          <p class="text-slate-300 font-medium">Tue</p>
+          <img src="https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?auto=format&fit=crop&w=100&q=80" alt="cloudy" class="w-10 h-10 mx-auto my-1 rounded-full object-cover">
+          <p class="text-white text-xl font-semibold">19°</p>
+          <p class="text-xs text-slate-400">cloudy</p>
+        </div>
+        <div class="forecast-card glass-card rounded-xl p-3 text-center">
+          <p class="text-slate-300 font-medium">Wed</p>
+          <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?auto=format&fit=crop&w=100&q=80" alt="rain" class="w-10 h-10 mx-auto my-1 rounded-full object-cover">
+          <p class="text-white text-xl font-semibold">16°</p>
+          <p class="text-xs text-slate-400">rain</p>
+        </div>
+        <div class="forecast-card glass-card rounded-xl p-3 text-center">
+          <p class="text-slate-300 font-medium">Thu</p>
+          <img src="https://images.unsplash.com/photo-1530908295418-a12e326966ba?auto=format&fit=crop&w=100&q=80" alt="storm" class="w-10 h-10 mx-auto my-1 rounded-full object-cover">
+          <p class="text-white text-xl font-semibold">14°</p>
+          <p class="text-xs text-slate-400">storm</p>
+        </div>
+        <div class="forecast-card glass-card rounded-xl p-3 text-center">
+          <p class="text-slate-300 font-medium">Fri</p>
+          <img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=100&q=80" alt="partly cloudy" class="w-10 h-10 mx-auto my-1 rounded-full object-cover">
+          <p class="text-white text-xl font-semibold">18°</p>
+          <p class="text-xs text-slate-400">partly cloudy</p>
+        </div>
+        <div class="forecast-card glass-card rounded-xl p-3 text-center">
+          <p class="text-slate-300 font-medium">Sat</p>
+          <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?auto=format&fit=crop&w=100&q=80" alt="rain" class="w-10 h-10 mx-auto my-1 rounded-full object-cover">
+          <p class="text-white text-xl font-semibold">15°</p>
+          <p class="text-xs text-slate-400">rain</p>
+        </div>
+        <div class="forecast-card glass-card rounded-xl p-3 text-center">
+          <p class="text-slate-300 font-medium">Sun</p>
+          <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=100&q=80" alt="sunny" class="w-10 h-10 mx-auto my-1 rounded-full object-cover">
+          <p class="text-white text-xl font-semibold">22°</p>
+          <p class="text-xs text-slate-400">clear</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="py-16 px-4 bg-gray-100">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl font-bold" data-aos="fade-right">Featured Products</h2>
-                <a href="products.html" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center" data-aos="fade-left">
-                    View All <i data-feather="arrow-right" class="ml-2"></i>
-                </a>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Wireless Headphones" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Premium Wireless Headphones</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(128 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$199.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Smart Watch" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Fitness Smart Watch</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(256 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$249.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Bluetooth Speaker" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Portable Bluetooth Speaker</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(87 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$89.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden product-card" data-aos="flip-left" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                         alt="Running Shoes" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-lg mb-2">Professional Running Shoes</h3>
-                        <div class="flex items-center mb-3">
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4"></i>
-                            </div>
-                            <span class="text-gray-600 text-sm ml-2">(312 reviews)</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">$129.99</span>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                                <i data-feather="shopping-cart" class="mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- FEATURE CARDS with images (data visualization & user-friendly) -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="glass-card rounded-2xl overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=400&q=80" alt="weather chart" style="width:100%;height:160px;object-fit:cover;">
+        <div class="p-5">
+          <h3 class="text-white font-semibold text-lg"><i class="fas fa-chart-line text-blue-400 mr-2"></i>Clear Data Viz</h3>
+          <p class="text-slate-400 text-sm mt-1">Interactive charts for temperature, humidity & pressure trends.</p>
         </div>
+      </div>
+      <div class="glass-card rounded-2xl overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80" alt="search interface" style="width:100%;height:160px;object-fit:cover;">
+        <div class="p-5">
+          <h3 class="text-white font-semibold text-lg"><i class="fas fa-search-location text-blue-400 mr-2"></i>Smart Search</h3>
+          <p class="text-slate-400 text-sm mt-1">Find any city instantly with autocomplete and recent searches.</p>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=400&q=80" alt="alerts" style="width:100%;height:160px;object-fit:cover;">
+        <div class="p-5">
+          <h3 class="text-white font-semibold text-lg"><i class="fas fa-bell text-amber-400 mr-2"></i>Severe Alerts</h3>
+          <p class="text-slate-400 text-sm mt-1">Real‑time warnings for storms, floods, and extreme temperatures.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Why Shop With Us?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center" data-aos="fade-up">
-                    <div class="bg-blue-100 text-blue-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="shield" class="w-12 h-12"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Secure Payment</h3>
-                    <p class="text-gray-600">100% secure payment processing with SSL encryption and multiple payment options.</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-green-100 text-green-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="truck" class="w-12 h-12"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Fast Delivery</h3>
-                    <p class="text-gray-600">Free shipping on orders over $50. Express delivery available in select areas.</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-purple-100 text-purple-600 rounded-full p-4 inline-block mb-4">
-                        <i data-feather="refresh-cw" class="w-12 h-12"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Easy Returns</h3>
-                    <p class="text-gray-600">30-day return policy. No questions asked returns for all products.</p>
-                </div>
-            </div>
+    <!-- BANNER / CTA with background image -->
+    <section class="relative rounded-3xl overflow-hidden mb-8">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1500&q=80" alt="city skyline" style="width:100%;height:260px;object-fit:cover;">
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/40 flex items-center px-8">
+        <div class="max-w-xl">
+          <h2 class="text-3xl font-bold text-white">WeatherVue Pro</h2>
+          <p class="text-slate-200 mt-1">Unlock hourly forecasts, radar maps & ad‑free experience.</p>
+          <button class="mt-4 btn-primary text-sm"><i class="fas fa-crown mr-2"></i>Explore Plans</button>
         </div>
+      </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 px-4 bg-gray-900 text-white">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Ready to Start Shopping?</h2>
-            <p class="text-xl mb-10 text-gray-300" data-aos="fade-up" data-aos-delay="100">Join thousands of satisfied customers today.</p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="signup.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in">
-                    <i data-feather="user-plus" class="mr-3"></i> Create Free Account
-                </a>
-                <a href="products.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center justify-center" data-aos="zoom-in" data-aos-delay="200">
-                    <i data-feather="shopping-bag" class="mr-3"></i> Browse Products
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-feather="shopping-bag" class="text-blue-400"></i>
-                        <span class="text-xl font-bold">ShopEasy</span>
-                    </div>
-                    <p class="text-gray-400">Your trusted online shopping destination for quality products and exceptional service.</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="products.html" class="text-gray-400 hover:text-white">Products</a></li>
-                        <li><a href="cart.html" class="text-gray-400 hover:text-white">Shopping Cart</a></li>
-                        <li><a href="checkout.html" class="text-gray-400 hover:text-white">Checkout</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Order Tracking</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Refunds</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Stay Connected</h4>
-                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="flex-grow p-3 rounded-l-lg text-gray-800">
-                        <button class="bg-blue-600 hover:bg-blue-700 px-4 rounded-r-lg">
-                            <i data-feather="send"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 ShopEasy. All rights reserved.</p>
-            </div>
-        </div>
+    <!-- FOOTER (brand name) -->
+    <footer class="border-t border-slate-700/50 pt-6 pb-4 text-center text-slate-500 text-sm">
+      <p class="font-semibold text-slate-300">WeatherVue · real‑time weather intelligence</p>
+      <p class="mt-1">© 2025 WeatherVue. All data simulated for demo.</p>
     </footer>
+  </main>
 
-    <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-        
-        // Initialize Feather Icons
-        document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
-        });
-        
-        // Simple cart counter
-        let cartCount = 0;
-        document.querySelectorAll('button:contains("Add to Cart")').forEach(button => {
-            button.addEventListener('click', function() {
-                cartCount++;
-                // In a real app, this would update a cart badge
-                console.log(`Added to cart. Total items: ${cartCount}`);
-                alert('Product added to cart!');
-            });
-        });
-    </script>
+  <!-- JAVASCRIPT for city search interaction (demo) -->
+  <script>
+    (function() {
+      const searchInput = document.getElementById('citySearchInput');
+      const searchBtn = document.getElementById('searchBtn');
+      const currentCity = document.getElementById('currentCity');
+      const currentTemp = document.getElementById('currentTemp');
+      const currentDesc = document.getElementById('currentDesc');
+
+      // demo weather data mapping
+      const weatherMap = {
+        'new york': { city: 'New York', temp: '22°', desc: 'Humid · feels like 24°' },
+        'london': { city: 'London', temp: '15°', desc: 'Overcast · feels like 13°' },
+        'paris': { city: 'Paris', temp: '19°', desc: 'Light rain · feels like 17°' },
+        'sydney': { city: 'Sydney', temp: '26°', desc: 'Sunny · feels like 27°' },
+        'mumbai': { city: 'Mumbai', temp: '31°', desc: 'Hazy · feels like 34°' },
+        'tokyo': { city: 'Tokyo', temp: '17°', desc: 'Clear · feels like 16°' },
+        'san francisco': { city: 'San Francisco', temp: '18°', desc: 'Partly cloudy · feels like 16°' },
+      };
+
+      function updateWeather(cityName) {
+        const key = cityName.trim().toLowerCase();
+        const data = weatherMap[key] || { city: cityName || 'San Francisco', temp: '--°', desc: 'forecast not available' };
+        currentCity.textContent = data.city;
+        currentTemp.textContent = data.temp;
+        currentDesc.textContent = data.desc;
+      }
+
+      searchBtn.addEventListener('click', function() {
+        const val = searchInput.value.trim();
+        if (val.length > 0) {
+          updateWeather(val);
+        } else {
+          alert('Please enter a city name.');
+        }
+      });
+
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          searchBtn.click();
+        }
+      });
+
+      // initial load (San Francisco)
+      updateWeather('San Francisco');
+    })();
+  </script>
 </body>
 </html>

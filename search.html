@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeatherVue · Search</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Google Font for subtle polish -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #0b1120; }
+    .glass-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.08); }
+    .search-glow:focus { box-shadow: 0 0 0 3px rgba(99,102,241,0.5); }
+    .forecast-scroll::-webkit-scrollbar { height: 6px; }
+    .forecast-scroll::-webkit-scrollbar-track { background: #1e293b; border-radius: 12px; }
+    .forecast-scroll::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 12px; }
+  </style>
+</head>
+<body class="text-gray-100 antialiased">
+
+  <!-- ========== NAVBAR (verbatim) ========== -->
+  <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>🌤️</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>WeatherVue</span></a><span style='width:1px;height:22px;background:#374151;margin:0 6px;flex-shrink:0;'></span><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='dashboard.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Dashboard</a><a href='search.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Search</a></div></nav>
+
+  <!-- ========== HERO with search + background image ========== -->
+  <section class="relative w-full overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=1600&q=80" alt="Weather sky" class="w-full h-full object-cover opacity-30" style="object-fit:cover;">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0b1120]/70 via-[#0b1120]/50 to-[#0b1120]"></div>
+    </div>
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-lg" data-aos="fade-down">WeatherVue <span class="text-indigo-400">Search</span></h1>
+      <p class="mt-3 text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Real‑time weather, 7‑day forecast & alerts — any city, any moment.</p>
+      
+      <!-- city search -->
+      <div class="mt-8 max-w-xl mx-auto flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="relative flex-1">
+          <i data-feather="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" style="width:18px;height:18px;"></i>
+          <input id="cityInput" type="text" placeholder="Search city (e.g. London, Tokyo, New York)" class="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none search-glow transition">
+        </div>
+        <button id="searchBtn" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
+          <i data-feather="search" style="width:18px;height:18px;"></i> Search
+        </button>
+      </div>
+      <p class="text-xs text-gray-400 mt-3" data-aos="fade">Try: Paris, Sydney, Mumbai, São Paulo</p>
+    </div>
+  </section>
+
+  <!-- ========== MAIN CONTENT (current weather + 7-day + alerts) ========== -->
+  <main class="max-w-6xl mx-auto px-4 pb-20 -mt-4 relative z-20">
+
+    <!-- loading / error placeholder -->
+    <div id="weatherDisplay" class="space-y-10">
+
+      <!-- ===== CURRENT WEATHER ===== -->
+      <div id="currentWeatherCard" class="glass-card rounded-2xl p-6 md:p-8 backdrop-blur-md" data-aos="fade-up">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="bg-indigo-500/20 p-3 rounded-full">
+              <i data-feather="sun" class="text-yellow-300" style="width:36px;height:36px;"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-white" id="cityName">San Francisco</h2>
+              <p class="text-gray-400 text-sm" id="currentDate">Thursday, 12:30 PM</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-5xl font-extrabold text-white" id="currentTemp">18°</span>
+            <span class="text-gray-300 text-lg" id="weatherDesc">Partly cloudy</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 text-sm">
+          <div class="bg-white/5 rounded-xl p-3 flex items-center gap-2"><i data-feather="wind" class="text-indigo-300" style="width:18px;"></i><span><span class="text-gray-400">Wind</span> <br><span id="windSpeed" class="font-semibold">12 km/h</span></span></div>
+          <div class="bg-white/5 rounded-xl p-3 flex items-center gap-2"><i data-feather="droplet" class="text-blue-300" style="width:18px;"></i><span><span class="text-gray-400">Humidity</span> <br><span id="humidity" class="font-semibold">68%</span></span></div>
+          <div class="bg-white/5 rounded-xl p-3 flex items-center gap-2"><i data-feather="eye" class="text-teal-300" style="width:18px;"></i><span><span class="text-gray-400">Visibility</span> <br><span id="visibility" class="font-semibold">10 km</span></span></div>
+          <div class="bg-white/5 rounded-xl p-3 flex items-center gap-2"><i data-feather="sunrise" class="text-orange-300" style="width:18px;"></i><span><span class="text-gray-400">UV Index</span> <br><span id="uvIndex" class="font-semibold">4 moderate</span></span></div>
+        </div>
+        <!-- small unsplash banner inside card -->
+        <div class="mt-5 rounded-xl overflow-hidden h-20 md:h-24">
+          <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?auto=format&fit=crop&w=800&q=80" alt="city weather" class="w-full h-full object-cover opacity-60">
+        </div>
+      </div>
+
+      <!-- ===== 7-DAY FORECAST ===== -->
+      <div data-aos="fade-up" data-aos-delay="100">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-xl font-bold text-white flex items-center gap-2"><i data-feather="calendar" class="text-indigo-400" style="width:20px;"></i> 7‑Day Forecast</h3>
+          <span class="text-xs text-gray-400 bg-white/5 px-3 py-1 rounded-full">Next 7 days</span>
+        </div>
+        <div class="forecast-scroll flex gap-4 overflow-x-auto pb-2">
+          <!-- forecast cards injected by JS -->
+          <div id="forecastContainer" class="flex gap-4 w-max"></div>
+        </div>
+        <div class="mt-3 text-xs text-gray-500 flex items-center gap-1"><i data-feather="info" style="width:14px;"></i> Scroll horizontally for full week</div>
+      </div>
+
+      <!-- ===== WEATHER ALERTS ===== -->
+      <div data-aos="fade-up" data-aos-delay="150">
+        <div class="flex items-center gap-2 mb-3">
+          <i data-feather="alert-triangle" class="text-amber-400" style="width:20px;"></i>
+          <h3 class="text-xl font-bold text-white">Weather Alerts</h3>
+        </div>
+        <div id="alertsContainer" class="grid md:grid-cols-2 gap-4">
+          <!-- alert cards injected by JS -->
+        </div>
+        <div class="mt-2 text-xs text-gray-500 flex items-center gap-1"><i data-feather="bell" style="width:14px;"></i> Alerts based on simulated conditions</div>
+      </div>
+
+      <!-- ===== BACKGROUND IMAGE BANNER (decorative) ===== -->
+      <div class="rounded-2xl overflow-hidden h-40 md:h-52 relative" data-aos="fade-up">
+        <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=1400&q=80" alt="atmospheric" class="w-full h-full object-cover opacity-30">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="text-white/40 text-lg font-light tracking-widest">WeatherVue · always accurate</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-white/10 bg-[#0b1120] py-8 text-center text-sm text-gray-500">
+    <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-2">
+      <span>© 2025 WeatherVue — clear skies ahead</span>
+      <span class="flex items-center gap-2"><i data-feather="map-pin" style="width:14px;"></i> Global coverage</span>
+    </div>
+  </footer>
+
+  <!-- scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 600, once: true });
+    feather.replace();
+  </script>
+
+  <!-- ========== WEATHER SIMULATION (fully client-side) ========== -->
+  <script>
+    (function() {
+      // ---------- DOM refs ----------
+      const cityInput = document.getElementById('cityInput');
+      const searchBtn = document.getElementById('searchBtn');
+      const cityName = document.getElementById('cityName');
+      const currentDate = document.getElementById('currentDate');
+      const currentTemp = document.getElementById('currentTemp');
+      const weatherDesc = document.getElementById('weatherDesc');
+      const windSpeed = document.getElementById('windSpeed');
+      const humidity = document.getElementById('humidity');
+      const visibility = document.getElementById('visibility');
+      const uvIndex = document.getElementById('uvIndex');
+      const forecastContainer = document.getElementById('forecastContainer');
+      const alertsContainer = document.getElementById('alertsContainer');
+
+      // ---------- sample city database (realistic) ----------
+      const cityDB = {
+        'san francisco': { temp: 18, desc: 'Partly cloudy', wind: 12, hum: 68, vis: 10, uv: 4, alerts: ['Coastal fog advisory until 10 AM'] },
+        'london': { temp: 11, desc: 'Light drizzle', wind: 22, hum: 82, vis: 6, uv: 1, alerts: ['Yellow rain warning', 'Flood alert low lying areas'] },
+        'tokyo': { temp: 22, desc: 'Clear sky', wind: 8, hum: 55, vis: 14, uv: 6, alerts: [] },
+        'new york': { temp: 26, desc: 'Sunny', wind: 15, hum: 45, vis: 12, uv: 7, alerts: ['Heat advisory until 8 PM'] },
+        'paris': { temp: 14, desc: 'Overcast', wind: 18, hum: 72, vis: 8, uv: 2, alerts: [] },
+        'sydney': { temp: 20, desc: 'Windy', wind: 35, hum: 50, vis: 11, uv: 5, alerts: ['Coastal wind warning'] },
+        'mumbai': { temp: 31, desc: 'Humid & hazy', wind: 10, hum: 78, vis: 5, uv: 8, alerts: ['High humidity advisory'] },
+        'são paulo': { temp: 24, desc: 'Scattered clouds', wind: 14, hum: 60, vis: 9, uv: 6, alerts: [] },
+        'berlin': { temp: 9, desc: 'Rain showers', wind: 20, hum: 80, vis: 4, uv: 1, alerts: ['Thunderstorm possible afternoon'] },
+        'dubai': { temp: 38, desc: 'Blazing sun', wind: 8, hum: 25, vis: 15, uv: 10, alerts: ['Extreme heat warning'] }
+      };
+
+      // ---------- helpers ----------
+      function getCityData(city) {
+        const key = city.trim().toLowerCase();
+        return cityDB[key] || null;
+      }
+
+      function formatDate() {
+        const d = new Date();
+        const options = { weekday: 'long', hour: 'numeric', minute: '2-digit' };
+        return d.toLocaleDateString('en-US', options);
+      }
+
+      // ---------- render forecast (7 days) ----------
+      function renderForecast(baseTemp) {
+        const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+        let html = '';
+        for (let i = 0; i < 7; i++) {
+          const dayTemp = baseTemp + Math.floor(Math.random() * 8) - 2;
+          const icon = i % 2 === 0 ? 'sun' : 'cloud';
+          const label = days[i % 7];
+          html += `
+            <div class="glass-card rounded-xl p-4 min-w-[110px] flex-shrink-0 text-center backdrop-blur-sm">
+              <p class="text-gray-400 text-xs font-medium">${label}</p>
+              <i data-feather="${icon}" class="mx-auto my-2 text-indigo-300" style="width:24px;height:24px;"></i>
+              <p class="text-white font-bold text-lg">${dayTemp}°</p>
+              <p class="text-gray-500 text-xs">${icon === 'sun' ? 'Clear' : 'Cloudy'}</p>
+            </div>
+          `;
+        }
+        forecastContainer.innerHTML = html;
+        feather.replace();
+      }
+
+      // ---------- render alerts ----------
+      function renderAlerts(alertList) {
+        if (!alertList || alertList.length === 0) {
+          alertsContainer.innerHTML = `
+            <div class="glass-card rounded-xl p-4 md:col-span-2 flex items-center gap-3 text-gray-300">
+              <i data-feather="check-circle" class="text-green-400" style="width:20px;"></i>
+              <span>No active alerts for this area.</span>
+            </div>
+          `;
+          feather.replace();
+          return;
+        }
+        let html = '';
+        alertList.forEach((alertText, idx) => {
+          const severity = idx === 0 ? 'amber' : 'yellow';
+          html += `
+            <div class="glass-card rounded-xl p-4 flex items-start gap-3 border-l-4 border-${severity}-400">
+              <i data-feather="alert-triangle" class="text-${severity}-400 flex-shrink-0" style="width:20px;"></i>
+              <div>
+                <p class="font-semibold text-white">${severity === 'amber' ? 'Moderate' : 'Info'}</p>
+                <p class="text-sm text-gray-300">${alertText}</p>
+              </div>
+            </div>
+          `;
+        });
+        alertsContainer.innerHTML = html;
+        feather.replace();
+      }
+
+      // ---------- update UI with city data ----------
+      function updateWeather(cityNameRaw) {
+        const data = getCityData(cityNameRaw);
+        if (!data) {
+          // fallback random
+          const fallback = { temp: 21, desc: 'Fair', wind: 10, hum: 55, vis: 12, uv: 4, alerts: [] };
+          applyData('Unknown city', fallback);
+          return;
+        }
+        applyData(cityNameRaw, data);
+      }
+
+      function applyData(city, data) {
+        cityName.textContent = city.charAt(0).toUpperCase() + city.slice(1);
+        currentDate.textContent = formatDate();
+        currentTemp.textContent = data.temp + '°';
+        weatherDesc.textContent = data.desc;
+        windSpeed.textContent = data.wind + ' km/h';
+        humidity.textContent = data.hum + '%';
+        visibility.textContent = data.vis + ' km';
+        uvIndex.textContent = data.uv + (data.uv > 5 ? ' high' : ' moderate');
+        renderForecast(data.temp);
+        renderAlerts(data.alerts);
+      }
+
+      // ---------- search handler ----------
+      function handleSearch() {
+        const query = cityInput.value.trim();
+        if (query === '') {
+          // default to San Francisco
+          updateWeather('San Francisco');
+          cityInput.value = 'San Francisco';
+          return;
+        }
+        // try direct match, else fallback
+        const match = getCityData(query);
+        if (match) {
+          updateWeather(query);
+        } else {
+          // show generic with random data
+          const randomCities = Object.keys(cityDB);
+          const randCity = randomCities[Math.floor(Math.random() * randomCities.length)];
+          const data = cityDB[randCity];
+          applyData(query, data);
+        }
+      }
+
+      // ---------- event listeners ----------
+      searchBtn.addEventListener('click', handleSearch);
+      cityInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSearch(); });
+
+      // ---------- init with default city ----------
+      cityInput.value = 'San Francisco';
+      updateWeather('San Francisco');
+    })();
+  </script>
+</body>
+</html>
