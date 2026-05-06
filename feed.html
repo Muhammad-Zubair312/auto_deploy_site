@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SocialSpark · Feed</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Feather Icons + AOS (lightweight) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    body { background: #f3f4f6; font-family: system-ui, -apple-system, sans-serif; }
+    .post-card { transition: all 0.2s ease; }
+    .post-card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.08); }
+    .like-btn { transition: 0.15s; }
+    .like-btn.liked { color: #ef4444; fill: #ef4444; }
+    .toast { animation: slideUp 0.4s ease; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR (verbatim) -->
+  <nav style='background:#111827;padding:10px 24px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-wrap:wrap;'><a href='index.html' style='display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;'><span style='display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#6366f1,#3b82f6);font-size:20px;line-height:1;flex-shrink:0;'>💬</span><span style='color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.3px;white-space:nowrap;'>SocialSpark</span></a><span style='width:1px;height:22px;background:#374151;margin:0 6px;flex-shrink:0;'></span><div style='display:flex;align-items:center;gap:2px;flex-wrap:wrap;'><a href='index.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Home</a><a href='login.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Login</a><a href='signup.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Signup</a><a href='feed.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Feed</a><a href='post-details.html' style='padding:6px 12px;border-radius:6px;color:#d1d5db;text-decoration:none;white-space:nowrap;transition:background 0.15s;font-size:14px;font-weight:500;'onmouseover="this.style.background='#374151';this.style.color='#fff'"onmouseout="this.style.background='transparent';this.style.color='#d1d5db'">Post Details</a></div></nav>
+
+  <!-- MAIN FEED CONTENT -->
+  <main class="max-w-4xl mx-auto px-4 py-8">
+
+    <!-- page header + hero image -->
+    <div class="relative rounded-2xl overflow-hidden mb-10 shadow-lg" data-aos="fade-down">
+      <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=80" alt="SocialSpark feed" style="width:100%;height:220px;object-fit:cover;">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-6">
+        <h1 class="text-white text-3xl md:text-4xl font-bold tracking-tight">⚡ Feed</h1>
+      </div>
+    </div>
+
+    <!-- Create Post card (CRUD: create) -->
+    <div class="bg-white rounded-2xl shadow-md p-5 mb-8" data-aos="fade-up">
+      <div class="flex items-start gap-4">
+        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=64&q=80" alt="user" class="w-12 h-12 rounded-full object-cover border-2 border-indigo-100">
+        <div class="flex-1">
+          <textarea id="postContent" rows="2" class="w-full border-0 bg-gray-50 rounded-xl p-3 text-sm resize-none focus:ring-2 focus:ring-indigo-300 outline-none" placeholder="What's on your mind, Alex?"></textarea>
+          <div class="flex items-center justify-between mt-3">
+            <span class="text-xs text-gray-400 flex items-center gap-1"><i data-feather="image" class="w-4 h-4"></i> add photo</span>
+            <button id="createPostBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 py-2 rounded-full transition">Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity logging + notification toast (hidden by default) -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
+
+    <!-- Feed posts grid (CRUD: read, update, delete, like/unlike, pagination) -->
+    <div id="postsContainer" class="space-y-6">
+      <!-- posts will be injected via JS -->
+    </div>
+
+    <!-- Pagination controls -->
+    <div class="flex items-center justify-center gap-4 mt-10 pb-4" data-aos="fade-up">
+      <button id="prevPage" class="px-5 py-2 bg-white rounded-full shadow-sm border border-gray-200 text-sm font-medium hover:bg-gray-50 transition disabled:opacity-40" disabled>← Previous</button>
+      <span id="pageIndicator" class="text-sm text-gray-500 font-medium">Page 1</span>
+      <button id="nextPage" class="px-5 py-2 bg-white rounded-full shadow-sm border border-gray-200 text-sm font-medium hover:bg-gray-50 transition">Next →</button>
+    </div>
+  </main>
+
+  <script>
+    // ---------- INIT AOS ----------
+    AOS.init({ duration: 600, once: true });
+
+    // ---------- FEATHER ----------
+    feather.replace();
+
+    // ---------- SIMULATED AUTH / USER ----------
+    const currentUser = { id: 1, name: 'Alex Rivera', avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=64&q=80' };
+
+    // ---------- MOCK DATA (RESTful simulation) ----------
+    let posts = [
+      { id: 1, userId: 1, author: 'Alex Rivera', avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=64&q=80', content: 'Just launched the new SocialSpark API! Real-time likes and notifications ⚡', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80', likes: 24, likedByMe: false, createdAt: '2025-03-28T10:30:00Z' },
+      { id: 2, userId: 2, author: 'Maya Chen', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=64&q=80', content: 'Morning coffee + code = perfect vibe ☕️✨', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80', likes: 18, likedByMe: false, createdAt: '2025-03-28T09:15:00Z' },
+      { id: 3, userId: 3, author: 'Jordan Lee', avatar: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=64&q=80', content: 'Exploring new UI patterns for social feeds. Less clutter, more connection.', image: '', likes: 31, likedByMe: true, createdAt: '2025-03-27T22:05:00Z' },
+      { id: 4, userId: 1, author: 'Alex Rivera', avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=64&q=80', content: 'Activity logging is live — every like and post is tracked. #transparency', image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80', likes: 12, likedByMe: false, createdAt: '2025-03-27T18:20:00Z' },
+      { id: 5, userId: 2, author: 'Maya Chen', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=64&q=80', content: 'Just finished a 5k run 🏃‍♀️ feeling unstoppable!', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80', likes: 45, likedByMe: false, createdAt: '2025-03-27T14:00:00Z' }
+    ];
+
+    // ---------- PAGINATION STATE ----------
+    const PER_PAGE = 3;
+    let currentPage = 1;
+
+    // ---------- DOM REFS ----------
+    const container = document.getElementById('postsContainer');
+    const prevBtn = document.getElementById('prevPage');
+    const nextBtn = document.getElementById('nextPage');
+    const pageIndicator = document.getElementById('pageIndicator');
+    const createBtn = document.getElementById('createPostBtn');
+    const postContent = document.getElementById('postContent');
+    const toastContainer = document.getElementById('toastContainer');
+
+    // ---------- HELPERS ----------
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    // ---------- TOAST NOTIFICATION (like / unlike) ----------
+    function showNotification(message, type = 'like') {
+      const toast = document.createElement('div');
+      toast.className = `toast bg-white shadow-xl rounded-xl px-5 py-3 border-l-4 ${type === 'like' ? 'border-red-400' : 'border-indigo-400'} flex items-center gap-3 text-sm font-medium`;
+      toast.innerHTML = `<span>${message}</span>`;
+      toastContainer.appendChild(toast);
+      setTimeout(() => { toast.remove(); }, 3000);
+    }
+
+    // ---------- ACTIVITY LOG (simulated) ----------
+    function logActivity(action, detail) {
+      console.log(`[Activity Log] ${action} — ${detail} (user: ${currentUser.name})`);
+      // In production, send to REST API /activity
+    }
+
+    // ---------- RENDER POSTS (with pagination) ----------
+    function renderPosts() {
+      const start = (currentPage - 1) * PER_PAGE;
+      const end = start + PER_PAGE;
+      const pagePosts = posts.slice(start, end);
+
+      if (pagePosts.length === 0) {
+        container.innerHTML = `<div class="bg-white rounded-2xl p-12 text-center shadow-sm"><p class="text-gray-400 text-lg">No posts yet. Be the first to spark!</p></div>`;
+        return;
+      }
+
+      let html = '';
+      pagePosts.forEach(post => {
+        const isOwner = post.userId === currentUser.id;
+        const likedClass = post.likedByMe ? 'liked' : '';
+        const likeIcon = post.likedByMe ? 'heart' : 'heart';
+        html += `
+          <div class="post-card bg-white rounded-2xl shadow-sm p-5" data-post-id="${post.id}" data-aos="fade-up">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <img src="${post.avatar}" alt="${post.author}" class="w-11 h-11 rounded-full object-cover border-2 border-gray-100">
+                <div>
+                  <p class="font-semibold text-gray-800 text-sm">${post.author}</p>
+                  <p class="text-xs text-gray-400">${formatDate(post.createdAt)}</p>
+                </div>
+              </div>
+              ${isOwner ? `<div class="flex gap-1">
+                <button class="edit-post-btn text-gray-400 hover:text-indigo-600 transition p-1" title="Update post"><i data-feather="edit-2" class="w-4 h-4"></i></button>
+                <button class="delete-post-btn text-gray-400 hover:text-red-500 transition p-1" title="Delete post"><i data-feather="trash-2" class="w-4 h-4"></i></button>
+              </div>` : `<span class="text-xs text-gray-300">${isOwner ? '' : ''}</span>`}
+            </div>
+            <p class="mt-3 text-gray-700 text-sm leading-relaxed">${post.content}</p>
+            ${post.image ? `<img src="${post.image}" alt="post image" class="mt-3 rounded-xl w-full h-48 object-cover border border-gray-100">` : ''}
+            <div class="flex items-center justify-between mt-4 pt-2 border-t border-gray-100">
+              <button class="like-btn flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-red-500 transition ${likedClass}" data-post-id="${post.id}">
+                <i data-feather="${likeIcon}" class="w-4 h-4"></i> <span class="like-count">${post.likes}</span>
+              </button>
+              <span class="text-xs text-gray-300">💬 reply</span>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+      feather.replace();
+
+      // Attach like events
+      document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const postId = parseInt(this.dataset.postId);
+          const post = posts.find(p => p.id === postId);
+          if (!post) return;
+          // toggle like
+          if (post.likedByMe) {
+            post.likedByMe = false;
+            post.likes = Math.max(0, post.likes - 1);
+            showNotification(`💔 You unliked a post by ${post.author}`, 'unlike');
+            logActivity('unlike', `post ${postId} by ${post.author}`);
+          } else {
+            post.likedByMe = true;
+            post.likes += 1;
+            showNotification(`❤️ You liked a post by ${post.author}`, 'like');
+            logActivity('like', `post ${postId} by ${post.author}`);
+            // Notification on like (simulated)
+          }
+          renderPosts();
+          updatePagination();
+        });
+      });
+
+      // Attach edit (update) – simple inline prompt (CRUD update)
+      document.querySelectorAll('.edit-post-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const card = this.closest('.post-card');
+          const postId = parseInt(card.dataset.postId);
+          const post = posts.find(p => p.id === postId);
+          if (!post) return;
+          const newContent = prompt('✏️ Update your post:', post.content);
+          if (newContent && newContent.trim() !== '') {
+            post.content = newContent.trim();
+            logActivity('update', `post ${postId} content changed`);
+            renderPosts();
+            updatePagination();
+            showNotification('✅ Post updated', 'update');
+          }
+        });
+      });
+
+      // Attach delete (CRUD delete)
+      document.querySelectorAll('.delete-post-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const card = this.closest('.post-card');
+          const postId = parseInt(card.dataset.postId);
+          if (!confirm('Delete this post?')) return;
+          posts = posts.filter(p => p.id !== postId);
+          logActivity('delete', `post ${postId} removed`);
+          // adjust page if needed
+          if (posts.length <= (currentPage-1)*PER_PAGE && currentPage > 1) currentPage--;
+          renderPosts();
+          updatePagination();
+          showNotification('🗑️ Post deleted', 'delete');
+        });
+      });
+    }
+
+    // ---------- PAGINATION UPDATE ----------
+    function updatePagination() {
+      const totalPages = Math.ceil(posts.length / PER_PAGE) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
+      prevBtn.disabled = currentPage <= 1;
+      nextBtn.disabled = currentPage >= totalPages;
+    }
+
+    // ---------- CREATE POST (CRUD create) ----------
+    createBtn.addEventListener('click', function() {
+      const content = postContent.value.trim();
+      if (!content) { alert('Please write something.'); return; }
+      const newPost = {
+        id: Date.now(),
+        userId: currentUser.id,
+        author: currentUser.name,
+        avatar: currentUser.avatar,
+        content: content,
+        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80', // demo image
+        likes: 0,
+        likedByMe: false,
+        createdAt: new Date().toISOString()
+      };
+      posts.unshift(newPost);
+      postContent.value = '';
+      // go to first page to see new post
+      currentPage = 1;
+      renderPosts();
+      updatePagination();
+      logActivity('create', `post ${newPost.id} by ${currentUser.name}`);
+      showNotification('✨ New post published!', 'create');
+    });
+
+    // ---------- PAGE NAVIGATION ----------
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) { currentPage--; renderPosts(); updatePagination(); }
+    });
+    nextBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(posts.length / PER_PAGE);
+      if (currentPage < totalPages) { currentPage++; renderPosts(); updatePagination(); }
+    });
+
+    // ---------- INIT ----------
+    renderPosts();
+    updatePagination();
+  </script>
+</body>
+</html>
